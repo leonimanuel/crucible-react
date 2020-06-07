@@ -15,7 +15,26 @@ class Login extends Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		console.log("submitting login info")
+		
 		let rootURL = "http://localhost:3000"
+
+		let configObj = {
+			method: "POST",
+			headers: {
+				"Content_Type": "application/json",
+				Accept: "application/json"
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password
+			})
+		}
+
+		fetch(rootURL + "/authenticate", rootURL)
+			.then(resp => resp.json())
+			.then(obj => {
+				console.log(obj)
+			})
 	}
 
 	render() {
