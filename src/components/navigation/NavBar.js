@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { NavLink } from "react-router-dom"
 
 class NavBar extends Component {
 	redirect = (destination) => {
@@ -9,10 +9,10 @@ class NavBar extends Component {
 	render() {
 		return (
 			<div id="nav-wrapper">
-				<div onClick={() => this.redirect("/home")}>Home</div>
-				<div onClick={() => this.redirect("/console")}>Console</div>
-				<div onClick={() => this.redirect("/review")}>Review</div>
-				<div onClick={() => this.redirect("/groups")}>Groups</div>				
+				<NavLink to="/" >Home</NavLink>
+				<NavLink to="/console" >Console</NavLink>
+				<NavLink to="/review" >Review</NavLink>
+				<NavLink to="/groups" >Groups</NavLink>				
 			</div>
 		)
 	}
