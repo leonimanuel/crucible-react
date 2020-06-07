@@ -1,0 +1,18 @@
+#nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+#menu-options {
+	border: 1px solid green;
+	/*justify-content: space-between;*/
+}
+
+.nav-link {
+	margin: 0 10px;
+}
+
+#profile-options {
+	border: 1px solid purple;
+}

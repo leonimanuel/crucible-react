@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
+import "./navigation.css"
 
 class NavBar extends Component {
-	redirect = (destination) => {
-		console.log(destination)
-	}
-
 	render() {
 		return (
 			<div id="nav-wrapper">
-				<NavLink to="/" >Home</NavLink>
-				<NavLink to="/console" >Console</NavLink>
-				<NavLink to="/review" >Review</NavLink>
-				<NavLink to="/groups" >Groups</NavLink>				
+				<div id="menu-options">
+					<Link class="nav-link" to="/" >Home</Link>
+					<Link class="nav-link" to="/console" >Console</Link>
+					<Link class="nav-link" to="/review" >Review</Link>
+					<Link class="nav-link" to="/groups" >Groups</Link>								
+				</div>
+				<div id="profile-options">
+					<Link to="/login" >Login</Link>													
+				</div>
 			</div>
 		)
 	}
