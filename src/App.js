@@ -8,6 +8,8 @@ import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
+import Login from "./containers/Login.js"
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/console" component={Console} />
         <Route path="/review" component={Review} />
         <Route path="/groups" component={Groups} />
+        <Route path="/login" component={Login} />        
       </div>      
     </Router>
 
