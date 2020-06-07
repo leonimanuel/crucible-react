@@ -9,7 +9,6 @@ import NavBar from "./components/navigation/NavBar.js"
 function App() {
   return (
     <div className="App">
-      <h1>HII</h1>
       <NavBar />
     </div>
   );
