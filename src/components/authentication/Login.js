@@ -21,7 +21,7 @@ class Login extends Component {
 		let configObj = {
 			method: "POST",
 			headers: {
-				"Content_Type": "application/json",
+				"Content-Type": "application/json",
 				Accept: "application/json"
 			},
 			body: JSON.stringify({
@@ -30,11 +30,12 @@ class Login extends Component {
 			})
 		}
 
-		fetch(rootURL + "/authenticate", rootURL)
+		fetch(rootURL + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(obj => {
 				console.log(obj)
 			})
+			.catch(err => alert(err.message))
 	}
 
 	render() {
@@ -44,6 +45,8 @@ class Login extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<label>Email: </label>
 					<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
+					<br/>
+					<label>Password: </label>
 					<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
 					<input type="submit" value="Log in"/>
 				</form>
