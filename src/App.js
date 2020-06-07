@@ -8,7 +8,7 @@ import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
-import Login from "./containers/Login.js"
+import Login from "./components/authentication/Login.js"
 
 
 function App() {
