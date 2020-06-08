@@ -32,8 +32,9 @@ class Login extends Component {
 
 		fetch(rootURL + "/authenticate", configObj)
 			.then(resp => resp.json())
-			.then(obj => {
-				console.log(obj)
+			.then(data => {
+				console.log(data)
+				localStorage.setItem("token", data.auth_token)
 			})
 			.catch(err => alert(err.message))
 	}
