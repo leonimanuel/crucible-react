@@ -9,12 +9,12 @@ import { createStore } from 'redux';
 import userReducer from "./reducers/userReducer.js"
 
 
-const store = createStore(userReducer)
+const store = createStore(userReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <React.StrictMode>
-	  <Provider>
-	    <App />  	
+	  <Provider store={store} >
+	    <App store={store} />  	
 	  </Provider>
   </React.StrictMode>,
   document.getElementById('root')

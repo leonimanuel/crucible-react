@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { addEmail } from "../../actions/users.js"
+import { connect } from 'react-redux';
+
 
 class Login extends Component {
 	state = {
-		email: "",
-		password: ""
+		email: "megan@aol.com",
+		password: "greenbeans"
 	}
 
 	handleChange = e => {
@@ -35,7 +38,7 @@ class Login extends Component {
 			.then(data => {
 				console.log(data)
 				localStorage.setItem("token", data.auth_token)
-				
+				this.props.addEmail({email: data.email})
 			})
 			.catch(err => alert(err.message))
 	}
@@ -58,4 +61,11 @@ class Login extends Component {
 }
 
 
-export default Login;
+export default connect(null, { addEmail })(Login);
+
+
+
+
+
+
+
