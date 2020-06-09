@@ -10,12 +10,37 @@ import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
-
+import rootURL from "./rootURL.js"
+import { logIn } from "./actions/users.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
-  // console.log()
+  loadUser = () => {
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    // console.log(store)
+    fetch(rootURL() + `/users/GETUSER`, configObj)
+      .then(resp => resp.json())
+      .then((data) => {
+        if (data.name) {
+          this.props.logIn({email: data.email})
+          // this.props.logIn({email: data.email})
+        } else {
+          console.log("nobody's logged in")
+        }
+      })
+  }
+
   render() {
+    this.loadUser()
+    // console.log(this.props.isLoggedIn)
     return (
       <Router>
         <div className="App">
@@ -31,4 +56,8 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({isLoggedIn: state.isLoggedIn}))(App);
+export default connect(state => ({isLoggedIn: state.isLoggedIn}), { logIn })(App);
+
+
+
+

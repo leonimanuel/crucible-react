@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addEmail } from "../../actions/users.js"
+import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect, Route } from "react-router-dom";
 
@@ -40,7 +40,7 @@ class Login extends Component {
 			.then(data => {
 				if (data.auth_token) {
 					localStorage.setItem("token", data.auth_token)
-					this.props.addEmail({email: data.email})
+					this.props.logIn({email: data.email})
 					console.log(this.props.isLoggedIn)					
 				} else {
 					alert(data.error.user_authentication)
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { addEmail })(Login);
+export default connect(mapStateToProps, { logIn })(Login);
 
 
 
