@@ -3,6 +3,7 @@ import { addEmail } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
 
+import rootURL from "../../rootURL.js"
 
 class Login extends Component {
 	state = {
@@ -20,7 +21,7 @@ class Login extends Component {
 		e.preventDefault()
 		console.log("submitting login info")
 		
-		let rootURL = "http://localhost:3000"
+		// let rootURL = "http://localhost:3000"
 
 		let configObj = {
 			method: "POST",
@@ -34,7 +35,7 @@ class Login extends Component {
 			})
 		}
 
-		fetch(rootURL + "/authenticate", configObj)
+		fetch(rootURL() + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {
 				if (data.auth_token) {
