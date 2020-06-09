@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
 import "./navigation.css"
 
 class NavBar extends Component {
+	componentDidMount() {
+		console.log(this.props.isLoggedIn)		
+	}
+
 	render() {
 		return (
 			<div id="nav-wrapper">
@@ -13,7 +18,8 @@ class NavBar extends Component {
 					<Link className="nav-link" to="/groups" >Groups</Link>								
 				</div>
 				<div id="profile-options">
-					<Link to="/login" >Login</Link>													
+					{ this.props.isLoggedIn ? <Link to="/logout" >Logout</Link>
+						: <Link to="/login" >Login</Link>  } 										
 				</div>
 			</div>
 		)
@@ -21,4 +27,4 @@ class NavBar extends Component {
 }
 
 
-export default NavBar;
+export default connect(state => ({isLoggedIn: state.isLoggedIn}))(NavBar);
