@@ -5,17 +5,22 @@ import { connect } from "react-redux"
 class Console extends Component {
 	componentDidMount() {
 		let configObj = {
-			method: "POST",
+			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				Accept: "application/json"
+				Accept: "application/json",
+				Authorization: localStorage.getItem("token")
 			},
-			body: JSON.stringify({
-				token: localStorage.getItem("token")
-			})
+			// body: JSON.stringify({
+			// 	token: localStorage.getItem("token")
+			// })
 		}
-		// console.log(this.props.email)
-		// fetch(rootURL() + `/users/`, configObj)
+		console.log(rootURL() + `/users/${this.props.email}`)
+		fetch(rootURL() + `/users/${this.props.email}`, configObj)
+			.then(resp => resp.json())
+			.then((data) => {
+				console.log(data)
+			})
 	}
 
 	render() {
