@@ -31,7 +31,6 @@ class App extends Component {
       .then((data) => {
         if (data.name) {
           this.props.logIn({email: data.email})
-          // this.props.logIn({email: data.email})
         } else {
           console.log("nobody's logged in")
         }
@@ -45,11 +44,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <Route exact path="/" component={Home} />
-          <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
-          <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
-          <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
-          <Route path="/login"><Login/></Route>
+          <main>
+            <Route exact path="/" component={Home} />
+            <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
+            <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
+            <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
+            <Route path="/login"><Login/></Route>            
+          </main> 
         </div>      
       </Router>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import rootURL from "../rootURL.js"
 import { connect } from "react-redux"
+import ConsoleWindow from "../components/console/ConsoleWindow.js"
 
 class Console extends Component {
 	componentDidMount() {
@@ -25,8 +26,8 @@ class Console extends Component {
 
 	render() {
 		return (
-			<div id="console-wrapper">
-				<h1>Console</h1>
+			<div id="console-container">
+				<ConsoleWindow />
 			</div>
 		)
 	}

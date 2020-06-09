@@ -1,0 +1,7 @@
+#console-window {
+	border: 2px solid red;
+	width: 20%;
+	max-width: 200px;
+	display: flex;
+	height: 500px;
+}
