@@ -1,6 +1,7 @@
 export const logIn = (user) => {
+	// console.log(user)
 	return {
-		type: "ADD_USER",
+		type: "LOG_IN",
 		user
 	}
 }
@@ -10,3 +11,10 @@ export const logOut = () => {
 		type: "LOG_OUT"		
 	}
 }
+
+// export const addFacts = facts => {
+// 	return {
+// 		type: "ADD_FACTS"	,
+// 		facts	
+// 	}
+// }

@@ -40,7 +40,7 @@ class Login extends Component {
 			.then(data => {
 				if (data.auth_token) {
 					localStorage.setItem("token", data.auth_token)
-					this.props.logIn({email: data.email})
+					this.props.logIn(data)
 					console.log(this.props.isLoggedIn)					
 				} else {
 					alert(data.error.user_authentication)

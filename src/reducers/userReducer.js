@@ -1,12 +1,14 @@
 export default function userReducer(state = {
 	isLoggedIn: false,
-	userEmail: "none"
+	userEmail: "none",
+	facts: []
 }, action) {
 	switch (action.type) {
-		case "ADD_USER":
+		case "LOG_IN":
 			return {
 				isLoggedIn: true, //necessary?
-				userEmail: action.user.email
+				userEmail: action.user.email,
+				facts: action.user.facts
 			}
 		
 		case "LOG_OUT":
