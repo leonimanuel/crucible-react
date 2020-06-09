@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Redirect, Switch, Route, Link, withRouter } from "react-router-dom";
-import { connect } from "react-redux"
+import { BrowserRouter as Router, Switch, Route, Link, withRouter } from "react-router-dom";
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import Home from "./containers/Home.js"
@@ -11,23 +10,21 @@ import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
 
-// import { isLoggedIn } from 
 
-const App = props => {
-  // console.log()
+function App() {
   return (
     <Router>
       <div className="App">
         <NavBar />
         <Route exact path="/" component={Home} />
-        <Route path="/console" >{!props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
-        <Route path="/review" >{!props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
-        <Route path="/groups" >{!props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
-        <Route path="/login"><Login/></Route>
+        <Route path="/console" component={Console} />
+        <Route path="/review" component={Review} />
+        <Route path="/groups" component={Groups} />
+        <Route path="/login" component={Login} />        
       </div>      
     </Router>
 
   );
 }
 
-export default connect(state => ({isLoggedIn: state.isLoggedIn}))(App);
+export default App;
