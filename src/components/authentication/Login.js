@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { addEmail } from "../../actions/users.js"
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 import rootURL from "../../rootURL.js"
 
@@ -52,17 +52,17 @@ class Login extends Component {
 	render() {
 		if (this.props.isLoggedIn == true) { return <Redirect to="/"/> }
 		return (
-			<div id="login-wrapper">
-				<h1>Login</h1>
-				<form onSubmit={this.handleSubmit}>
-					<label>Email: </label>
-					<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
-					<br/>
-					<label>Password: </label>
-					<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
-					<input type="submit" value="Log in"/>
-				</form>
-			</div>
+				<div id="login-wrapper">
+					<h1>Login</h1>
+					<form onSubmit={this.handleSubmit}>
+						<label>Email: </label>
+						<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
+						<br/>
+						<label>Password: </label>
+						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+						<input type="submit" value="Log in"/>
+					</form>
+				</div>					
 		)
 	}
 }
