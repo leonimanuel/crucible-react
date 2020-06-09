@@ -1,0 +1,37 @@
+#console-window div {
+	/*border: 1px solid blue;*/
+}
+
+#console-window {
+	border: 2px solid red;
+	/*width: 20%;*/
+	max-width: 200px;
+	display: flex;
+	height: 500px;
+	flex-direction: column;
+}
+
+#console-fact-list-container {
+	border: 2px solid black;
+}
+
+#console-facts-container {
+	border: 2px solid green;
+	display: flex;
+	flex-direction: column;
+}
+
+#console-window-title {
+	font-size: 1.5em;
+	text-decoration: bold;
+}
+
+.console-section-title {
+	font-size: 1.3em;
+	/*text-decoration: underline;*/
+	text-align: left;
+}
+
+.fact-box {
+	border: 2px solid purple;
+}

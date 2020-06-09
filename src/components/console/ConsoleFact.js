@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class ConsoleFact extends Component {
 	render() {
 		return (
-			<div>{this.props.fact.content}</div>
+			<div className="fact-box">{this.props.fact.content}</div>
 		)
 	}
 }

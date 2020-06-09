@@ -41,6 +41,7 @@ class App extends Component {
   render() {
     this.loadUser()
     // console.log(this.props.isLoggedIn)
+    console.log("rendering app")
     return (
       <Router>
         <div className="App">
