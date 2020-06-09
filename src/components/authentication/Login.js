@@ -49,6 +49,7 @@ class Login extends Component {
 	}
 
 	render() {
+		if (this.props.isLoggedIn == true) { return <Redirect to="/"/> }
 		return (
 			<div id="login-wrapper">
 				<h1>Login</h1>
