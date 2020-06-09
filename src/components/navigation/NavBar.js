@@ -8,6 +8,10 @@ class NavBar extends Component {
 		console.log(this.props.isLoggedIn)		
 	}
 
+	handleLogOut() {
+		localStorage.removeItem("token")
+	}
+
 	render() {
 		return (
 			<div id="nav-wrapper">
@@ -18,7 +22,7 @@ class NavBar extends Component {
 					<Link className="nav-link" to="/groups" >Groups</Link>								
 				</div>
 				<div id="profile-options">
-					{ this.props.isLoggedIn ? <Link to="/logout" >Logout</Link>
+					{ this.props.isLoggedIn ? <div onClick={this.handleLogOut}>Logout</div>
 						: <Link to="/login" >Login</Link>  } 										
 				</div>
 			</div>
