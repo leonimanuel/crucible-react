@@ -37,8 +37,13 @@ class Login extends Component {
 			.then(resp => resp.json())
 			.then(data => {
 				console.log(data)
-				localStorage.setItem("token", data.auth_token)
-				this.props.addEmail({email: data.email})
+				if (data.auth_token) {
+					localStorage.setItem("token", data.auth_token)
+					this.props.addEmail({email: data.email})					
+				} else {
+					alert(data.error.user_authentication)
+				}
+
 			})
 			.catch(err => alert(err.message))
 	}
