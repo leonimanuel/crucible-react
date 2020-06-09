@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import rootURL from "../rootURL.js"
+import { connect } from "react-redux"
 
 class Console extends Component {
 	componentDidMount() {
@@ -13,8 +14,8 @@ class Console extends Component {
 				token: localStorage.getItem("token")
 			})
 		}
-		console.log(rootURL())
-		// fetch(rootURL() + `/users/${}`, configObj)
+		// console.log(this.props.email)
+		// fetch(rootURL() + `/users/`, configObj)
 	}
 
 	render() {
@@ -26,4 +27,15 @@ class Console extends Component {
 	}
 }
 
-export default Console;
+const mapStateToProps = state => {
+	return {
+		email: state.userEmail
+	}
+}
+
+
+export default connect(mapStateToProps)(Console);
+
+
+
+
