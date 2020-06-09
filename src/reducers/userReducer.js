@@ -4,12 +4,17 @@ export default function userReducer(state = {
 }, action) {
 	switch (action.type) {
 		case "ADD_USER":
-			console.log(action.user.email)
 			return {
 				isLoggedIn: true, //necessary?
 				userEmail: action.user.email
 			}
-
+		
+		case "LOG_OUT":
+			return {
+				isLoggedIn: false,
+				userEmail: "none"
+			}
+			
 		default:
 			return state;
 	}
