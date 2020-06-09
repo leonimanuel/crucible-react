@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Redirect, Switch, Route, Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
@@ -13,21 +13,22 @@ import Login from "./components/authentication/Login.js"
 
 // import { isLoggedIn } from 
 
-const App = props => {
+class App extends Component {
   // console.log()
-  return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <Route exact path="/" component={Home} />
-        <Route path="/console" >{!props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
-        <Route path="/review" >{!props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
-        <Route path="/groups" >{!props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
-        <Route path="/login"><Login/></Route>
-      </div>      
-    </Router>
-
-  );
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Route exact path="/" component={Home} />
+          <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
+          <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
+          <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
+          <Route path="/login"><Login/></Route>
+        </div>      
+      </Router>
+    );
+  }
 }
 
 export default connect(state => ({isLoggedIn: state.isLoggedIn}))(App);
