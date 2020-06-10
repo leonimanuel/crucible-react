@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-// import ConsoleTopic from "./ConsoleTopic.js"
+import ConsoleTopic from "./ConsoleTopic.js"
 
-class ConsoleTopicList extends Component {
+class ConsoleTopicsList extends Component {
 	render() {
 		console.log(this.props.topics)
 		return (
-			<div id="console-topic-list-container">
+			<div id="console-topics-list-container">
 				<div className="console-topics-title console-section-title">Topic</div>
 				<div id="console-topics-container">
-					{/*this.props.facts.map(fact => <ConsoleTopic key={topic.id} topic={topic}/>)*/}
+					{this.props.topics ? this.props.topics.map(topic => <ConsoleTopic key={topic.id} topic={topic}/>) : null}
 				</div>
 			</div>
 		)
@@ -17,7 +17,7 @@ class ConsoleTopicList extends Component {
 }
 
 
-export default connect(state => ({topics: state.topics}))(ConsoleTopicList);
+export default connect(state => ({topics: state.topics}))(ConsoleTopicsList);
 
 
 

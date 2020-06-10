@@ -12,6 +12,13 @@ export const logOut = () => {
 	}
 }
 
+export const addTopics = (topics) => {
+	return {
+		type: "ADD_TOPICS",
+		topics
+	}
+}
+
 // export const addFacts = facts => {
 // 	return {
 // 		type: "ADD_FACTS"	,

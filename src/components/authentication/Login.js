@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
-import { Redirect, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import rootURL from "../../rootURL.js"
 
@@ -50,7 +50,7 @@ class Login extends Component {
 	}
 
 	render() {
-		if (this.props.isLoggedIn == true) { return <Redirect to="/"/> }
+		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
 				<div id="login-wrapper">
 					<h1>Login</h1>

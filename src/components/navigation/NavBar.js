@@ -7,7 +7,7 @@ import { logOut } from "../../actions/users.js"
 
 class NavBar extends Component {
 	componentDidMount() {
-		console.log(this.props.isLoggedIn)		
+		// console.log(this.props.isLoggedIn)		
 	}
 
 	handleLogOut = () => {

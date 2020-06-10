@@ -4,6 +4,7 @@ import "../components/console/console.css"
 import rootURL from "../rootURL.js"
 import { connect } from "react-redux"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
+import { addTopics } from "../actions/users.js"
 
 class Console extends Component {
     componentDidMount() {
@@ -22,6 +23,7 @@ class Console extends Component {
 	      .then(resp => resp.json())
 	      .then((data) => {
 					console.log(data)
+					this.props.addTopics(data)
 	      })
 	      .catch(err => err.message)
     } 
@@ -37,7 +39,7 @@ class Console extends Component {
 	}
 }
 
-export default connect()(Console);
+export default connect(null, { addTopics })(Console);
 
 
 

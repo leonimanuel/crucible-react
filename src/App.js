@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Redirect, Switch, Route, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
@@ -30,7 +30,7 @@ class App extends Component {
       .then(resp => resp.json())
       .then((data) => {
         if (data.name) {
-          console.log(data)
+          // console.log(data)
           this.props.logIn(data)
         } else {
           console.log("nobody's logged in")
@@ -41,7 +41,7 @@ class App extends Component {
   render() {
     this.loadUser()
     // console.log(this.props.isLoggedIn)
-    console.log("rendering app")
+    // console.log("rendering app")
     return (
       <Router>
         <div className="App">

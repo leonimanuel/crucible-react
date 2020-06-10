@@ -4,7 +4,7 @@ export default function userReducer(state = {
 	topics: [],
 	facts: [],
 }, action) {
-	console.log(action)
+	// console.log(action)
 	switch (action.type) {
 		case "LOG_IN":
 			return {
@@ -18,6 +18,12 @@ export default function userReducer(state = {
 			return {
 				isLoggedIn: false,
 				userEmail: "none"
+			}
+
+		case "ADD_TOPICS":
+			return {
+				...state,
+				topics: action.topics
 			}
 			
 		default:
