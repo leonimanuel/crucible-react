@@ -4,7 +4,6 @@ import { selectTopic } from "../../actions/users.js"
 
 class ConsoleTopic extends Component {
 	handleTopicSelection = () => {
-		// console.log(this.props.topic)
 		this.props.selectTopic(this.props.topic)
 	}
 
