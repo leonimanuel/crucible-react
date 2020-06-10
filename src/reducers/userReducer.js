@@ -3,8 +3,9 @@ export default function userReducer(state = {
 	userEmail: "none",
 	topics: [],
 	facts: [],
+	parentTopic: ""
 }, action) {
-	// console.log(action)
+	console.log(action)
 	switch (action.type) {
 		case "LOG_IN":
 			return {
@@ -21,9 +22,17 @@ export default function userReducer(state = {
 			}
 
 		case "ADD_TOPICS":
+			console.log("adding topic")
 			return {
 				...state,
 				topics: action.topics
+			}
+
+		case "SELECT_TOPIC":
+			console.log("setting parent topic")
+			return {
+				...state,
+				parentTopic: action.topic		
 			}
 			
 		default:

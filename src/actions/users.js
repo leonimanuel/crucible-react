@@ -19,9 +19,10 @@ export const addTopics = (topics) => {
 	}
 }
 
-// export const addFacts = facts => {
-// 	return {
-// 		type: "ADD_FACTS"	,
-// 		facts	
-// 	}
-// }
+export const selectTopic = topic => {
+	console.log("selected topic")
+	return {
+		type: "SELECT_TOPIC",
+		topic
+	}
+}

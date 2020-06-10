@@ -1,5 +1,9 @@
-#console-window div {
-	/*border: 1px solid blue;*/
+#console-container {
+	display: flex;
+}
+
+#console-topic-menu-container {
+	border: 2px solid green;
 }
 
 #console-window {
