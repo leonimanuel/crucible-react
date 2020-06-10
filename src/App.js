@@ -30,7 +30,7 @@ class App extends Component {
       .then(resp => resp.json())
       .then((data) => {
         if (data.name) {
-          // console.log(data)
+          console.log(data)
           this.props.logIn(data)
         } else {
           console.log("nobody's logged in")

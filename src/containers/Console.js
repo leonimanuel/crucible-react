@@ -28,13 +28,7 @@ class Console extends Component {
       })
       .catch(err => err.message)
   } 
-
-	handleTopicSelection = (topic) => {
-		this.setState({
-			topic: topic
-		})
-	}
-
+  
 	render() {
 		// this.fetchFacts()
 		return (
