@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 class ConsoleFact extends Component {
 	startDrag = e => {
 		console.log("dragging")
-		e.dataTransfer.setData("drag-item", this.props.dataItem)
+		let data = e.dataTransfer.setData("text", e.target.id)
+		// console.log(data)
 	}
 
 	render() {
 		return (
-			<div className="fact-box"
+			<div id={`fact-${this.props.fact.id}`} className="fact-box"
  				draggable onDragStart={this.startDrag}>
 				{this.props.fact.content}
 			</div>

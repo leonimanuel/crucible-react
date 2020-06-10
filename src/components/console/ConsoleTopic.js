@@ -13,33 +13,53 @@ class ConsoleTopic extends Component {
 
 	allowDrop = e => {
 		e.preventDefault();
-		console.log("allowing drag-over")
-		// e.target.style.back
 	}
 
 	handleDragEnter = e => {
-		// e.preventDefault();
-		this.setState({
-			draggedOver: true
-		})
-		// console.log(e.target.class)
-		// e.target.class.add("blue")
+		this.setState({ draggedOver: true })
 	}
 
 	handleDragLeave = e => {
-		// e.preventDefault();
-		// e.target.style.backgroundColor = "none"
-		this.setState({
-			draggedOver: false
-		})
-		console.log("aight peace")
+		this.setState({ draggedOver: false })
+	}
+
+	drop = e => {
+		e.preventDefault();
+		let id = e.dataTransfer.getData("text").split("-").pop();
+		console.log(id)
+		
+		this.setState({draggedOver: false})
+
+		this.moveFact(id)
+	}
+
+	moveFact = (factId) => {
+  	// console.log("Console did mount")
+    // let configObj = {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     Authorization: localStorage.getItem("token")
+    //   }
+    // }
+
+    // // console.log("OY")
+    // fetch(rootURL() + `/topics`, configObj)
+    //   .then(resp => resp.json())
+    //   .then((data) => {
+				// console.log(data)
+				// this.props.addTopics(data)
+    //   })
+    //   .catch(err => err.message)
 	}
 
 	render() {
 		return (
 			<div onClick={this.handleTopicSelection} 
 				onDragOver={this.allowDrop} onDragEnter={this.handleDragEnter}
-				onDragLeave={this.handleDragLeave} 
+				onDragLeave={this.handleDragLeave}
+				onDrop={this.drop}
 				className={`topic-box ${this.state.draggedOver ? "dragged-over" : "" }`}
 			>
 				{this.props.topic.name}
