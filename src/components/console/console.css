@@ -4,10 +4,6 @@
 	border: 2px solid yellow;
 }
 
-#console-topic-menu-container {
-	border: 2px solid green;
-}
-
 #console-window {
 	border: 2px solid red;
 	/*width: 20%;*/
@@ -15,6 +11,14 @@
 	display: flex;
 	/*height: 500px;*/
 	flex-direction: column;
+}
+
+#console-topic-menu-container {
+	border: 2px solid green;
+}
+
+.dragged-over {
+	background-color: darkcyan;
 }
 
 #console-fact-list-container {
