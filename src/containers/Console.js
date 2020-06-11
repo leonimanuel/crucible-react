@@ -19,7 +19,6 @@ class Console extends Component {
       }
     }
 
-    // console.log("OY")
     fetch(rootURL() + `/topics`, configObj)
       .then(resp => resp.json())
       .then((data) => {
@@ -34,13 +33,20 @@ class Console extends Component {
 		return (
 			<div id="console-container">
 				<TopicMenu topics={this.props.topics} />
-				<ConsoleWindow />
+				{this.props.parentTopic ? <ConsoleWindow /> : null}
 			</div>
 		)
 	}
 }
 
-export default connect(state => ({topics: state.topics}), { addTopics })(Console);
+const mapStateToProps = state => {
+  return {
+    topics: state.topics,
+    parentTopic: state.parentTopic
+  }
+}
+
+export default connect(mapStateToProps, { addTopics })(Console);
 
 
 

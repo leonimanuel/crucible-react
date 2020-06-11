@@ -10,7 +10,7 @@ class TopicMenu extends Component {
 			<div id="console-topic-menu-container">
 				<div className="console-topics-title console-section-title">Topics</div>
 				<div id="console-topics-container">
-					{<ConsoleTopicsList topics={this.props.topics}/>} 
+					{this.props.topics ? <ConsoleTopicsList topics={this.props.topics}/> : null} 
 				</div>
 			</div>
 		)
