@@ -27,3 +27,10 @@ export const selectTopic = topic => {
 		topic
 	}
 }
+
+export const updateTopics = fact => {
+	return {
+		type: "UPDATE_TOPICS",
+		fact
+	}
+}

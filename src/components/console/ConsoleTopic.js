@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { selectTopic } from "../../actions/users.js"
+import { selectTopic, updateTopics, addTopics } from "../../actions/users.js"
 import rootURL from "../../rootURL.js"
 
 
@@ -49,15 +49,17 @@ class ConsoleTopic extends Component {
       })
     }
 
-    // console.log("OY")
     fetch(rootURL() + `/facts`, configObj)
       .then(resp => resp.json())
       .then((data) => {
 				console.log(data)
-				this.props.addTopics(data)
+				// this.props.updateTopics(data)
+				// this.setState({
+
+				// })
+
       })
       .catch(err => err.message)
-		console.log(factId)
 	}
 
 	render() {
@@ -75,7 +77,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic })(ConsoleTopic);
+export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic, updateTopics, addTopics })(ConsoleTopic);
 
 
 
