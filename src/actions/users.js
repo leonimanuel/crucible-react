@@ -28,9 +28,9 @@ export const selectTopic = topic => {
 	}
 }
 
-export const updateTopics = fact => {
+export const updateTopic = fact => {
 	return {
-		type: "UPDATE_TOPICS",
+		type: "UPDATE_TOPIC",
 		fact
 	}
 }

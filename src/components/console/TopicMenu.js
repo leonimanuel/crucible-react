@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import ConsoleTopic from "./ConsoleTopic.js"
+// import ConsoleTopic from "./ConsoleTopic.js"
+import ConsoleTopicsList from "./ConsoleTopicsList.js"
 
 class TopicMenu extends Component {
 	render() {
-		// console.log(this.props.topics)
+		console.log(!!this.props.topics)
 		return (
 			<div id="console-topic-menu-container">
 				<div className="console-topics-title console-section-title">Topics</div>
 				<div id="console-topics-container">
-					{this.props.topics ? this.props.topics.map(topic => <ConsoleTopic key={topic.id} topic={topic}/>) : null}
+					{<ConsoleTopicsList topics={this.props.topics}/>} 
 				</div>
 			</div>
 		)
@@ -17,7 +18,7 @@ class TopicMenu extends Component {
 }
 
 
-export default connect(state => ({topics: state.topics}))(TopicMenu);
+export default connect()(TopicMenu);
 
 
 

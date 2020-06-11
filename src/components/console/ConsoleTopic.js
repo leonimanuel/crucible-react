@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { selectTopic, updateTopics, addTopics } from "../../actions/users.js"
+import { selectTopic, updateTopic, addTopics } from "../../actions/users.js"
 import rootURL from "../../rootURL.js"
 
 
@@ -27,7 +27,7 @@ class ConsoleTopic extends Component {
 
 	drop = e => {
 		e.preventDefault();
-		let id = e.dataTransfer.getData("text").split("-").pop();
+		let id = parseInt(e.dataTransfer.getData("text").split("-").pop());
 		console.log(id)
 		this.setState({draggedOver: false})
 		this.moveFact(id)
@@ -51,14 +51,14 @@ class ConsoleTopic extends Component {
 
     fetch(rootURL() + `/facts`, configObj)
       .then(resp => resp.json())
-      .then((data) => {
-				console.log(data)
-				// this.props.updateTopics(data)
-				// this.setState({
+      .then((topicsData) => {
+				console.log(topicsData)
+				this.props.addTopics(topicsData)
+				console.log(this.props.topic.facts.find(fact => fact.id === factId))
+				// console.log(factId)
 
-				// })
-
-      })
+				this.props.updateTopic(this.props.topic.facts.find(fact => fact.id === factId))
+     })
       .catch(err => err.message)
 	}
 
@@ -77,7 +77,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic, updateTopics, addTopics })(ConsoleTopic);
+export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic, updateTopic, addTopics })(ConsoleTopic);
 
 
 

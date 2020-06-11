@@ -33,14 +33,14 @@ class Console extends Component {
 		// this.fetchFacts()
 		return (
 			<div id="console-container">
-				<TopicMenu />
+				<TopicMenu topics={this.props.topics} />
 				<ConsoleWindow />
 			</div>
 		)
 	}
 }
 
-export default connect(null, { addTopics })(Console);
+export default connect(state => ({topics: state.topics}), { addTopics })(Console);
 
 
 

@@ -35,18 +35,17 @@ export default function userReducer(state = {
 				parentTopic: action.topic		
 			}
 
-		// case "UPDATE_TOPICS":
-		// 	console.log(action.fact.id)
-		// 	//find
-		// 	...state.topics.filter(topic => topic.ancestry === state.parentTopic.ancestry)
-		// 	return {
-		// 		...state,
-		// 		parentTopic: {
-		// 			...state.parentTopic, 
-		// 			facts: state.parentTopic.facts.filter(fact => fact.id !== action.fact.id)
-		// 		},
-		// 		topics: 
-		// 	}
+		case "UPDATE_TOPIC":
+			console.log(action.fact.id)
+			//find
+			// ...state.topics.filter(topic => topic.ancestry === state.parentTopic.ancestry)
+			return {
+				...state,
+				parentTopic: {
+					...state.parentTopic, 
+					facts: state.parentTopic.facts.filter(fact => fact.id !== action.fact.id)
+				}
+			}
 			
 		default:
 			return state;
