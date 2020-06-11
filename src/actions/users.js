@@ -1,4 +1,4 @@
-import rootURL from "../rootURL.js"
+// import rootURL from "../rootURL.js"
 
 export const logIn = (user) => {
 	// console.log(user)

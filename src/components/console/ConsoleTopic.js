@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { selectTopic } from "../../actions/users.js"
+import rootURL from "../../rootURL.js"
+
 
 class ConsoleTopic extends Component {
 	state = {
@@ -27,31 +29,35 @@ class ConsoleTopic extends Component {
 		e.preventDefault();
 		let id = e.dataTransfer.getData("text").split("-").pop();
 		console.log(id)
-		
 		this.setState({draggedOver: false})
-
 		this.moveFact(id)
 	}
 
 	moveFact = (factId) => {
-  	// console.log("Console did mount")
-    // let configObj = {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     Authorization: localStorage.getItem("token")
-    //   }
-    // }
+		// SET UP NESTED ROUTES IN SERVER?
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }, 
+      body: JSON.stringify({
+      	fact_id: factId,
+      	origin_topic_name: this.props.parentTopic.name,
+      	destination_topic_name: this.props.topic.name
+      })
+    }
 
-    // // console.log("OY")
-    // fetch(rootURL() + `/topics`, configObj)
-    //   .then(resp => resp.json())
-    //   .then((data) => {
-				// console.log(data)
-				// this.props.addTopics(data)
-    //   })
-    //   .catch(err => err.message)
+    // console.log("OY")
+    fetch(rootURL() + `/facts`, configObj)
+      .then(resp => resp.json())
+      .then((data) => {
+				console.log(data)
+				this.props.addTopics(data)
+      })
+      .catch(err => err.message)
+		console.log(factId)
 	}
 
 	render() {
@@ -69,7 +75,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(null, { selectTopic })(ConsoleTopic);
+export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic })(ConsoleTopic);
 
 
 

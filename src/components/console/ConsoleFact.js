@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class ConsoleFact extends Component {
 	startDrag = e => {
 		console.log("dragging")
-		let data = e.dataTransfer.setData("text", e.target.id)
+		e.dataTransfer.setData("text", e.target.id)
 		// console.log(data)
 	}
 
