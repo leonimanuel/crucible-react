@@ -5,18 +5,19 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	render() {
+		console.log(this.props.parentTopic)
 		return (
 			<div id="console-window">
 				<div id="console-window-title">{this.props.parentTopic ? this.props.parentTopic.name : "NONE"}</div>
-				<ConsoleTopicsList topics={this.props.parentTopic ? this.props.parentTopic.children : null}/>
-				<ConsoleFactsList />
+				<ConsoleTopicsList topics={this.props.parentTopic.children} />
+				<ConsoleFactsList parentTopic={this.props.parentTopic} />
 			</div>
 		)
 	}
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}))(ConsoleWindow);
+export default connect()(ConsoleWindow);
 
 
 

@@ -33,7 +33,7 @@ class Console extends Component {
 		return (
 			<div id="console-container">
 				<TopicMenu topics={this.props.topics} />
-				{this.props.parentTopic ? <ConsoleWindow /> : null}
+				{this.props.parentTopic ? <ConsoleWindow parentTopic={this.props.parentTopic}/> : null}
 			</div>
 		)
 	}

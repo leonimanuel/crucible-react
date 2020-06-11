@@ -5,7 +5,7 @@ import ConsoleTopic from "./ConsoleTopic.js"
 
 class ConsoleTopicsList extends Component {
 	render() {
-		console.log(this.props.topics)
+		// console.log(this.props.topics)
 		return (
 			<div id="console-topics-list-container">
 				<div className="console-topics-title console-section-title">Topics</div>

@@ -22,7 +22,7 @@ export default function userReducer(state = {
 			}
 
 		case "ADD_TOPICS":
-			console.log("adding topic")
+			console.log("adding topics")
 			return {
 				...state,
 				topics: action.topics
@@ -36,9 +36,9 @@ export default function userReducer(state = {
 			}
 
 		case "UPDATE_TOPIC":
-			console.log(action.fact.id)
-			//find
-			// ...state.topics.filter(topic => topic.ancestry === state.parentTopic.ancestry)
+			console.log("updating parent topic")
+			console.log(state.parentTopic.facts)
+			console.log(action)
 			return {
 				...state,
 				parentTopic: {

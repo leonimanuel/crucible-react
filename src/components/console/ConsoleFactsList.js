@@ -4,12 +4,12 @@ import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
-		console.log(this.props.parentTopic)
+		// console.log(this.props.facts)
 		return (
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>
 				<div id="console-facts-container">
-					{this.props.parentTopic ? this.props.parentTopic.facts.map(fact => <ConsoleFact key={fact.id} fact={fact}/>) : null}
+					{this.props.parentTopic.facts ? this.props.parentTopic.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) : null}
 				</div>
 			</div>
 		)
@@ -17,7 +17,7 @@ class ConsoleFactsList extends Component {
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}))(ConsoleFactsList);
+export default connect()(ConsoleFactsList);
 
 
 

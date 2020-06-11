@@ -10,6 +10,7 @@ class ConsoleTopic extends Component {
 	}
 
 	handleTopicSelection = () => {
+		console.log("handling topic selection")
 		this.props.selectTopic(this.props.topic)
 	}
 
@@ -27,13 +28,13 @@ class ConsoleTopic extends Component {
 
 	drop = e => {
 		e.preventDefault();
-		let id = parseInt(e.dataTransfer.getData("text").split("-").pop());
-		console.log(id)
+		let originTopicName = e.dataTransfer.getData("text").split("-")[0]
+		let factId = parseInt(e.dataTransfer.getData("text").split("-").pop());
 		this.setState({draggedOver: false})
-		this.moveFact(id)
+		this.moveFact(originTopicName, factId)
 	}
 
-	moveFact = (factId) => {
+	moveFact = (originTopicName, factId) => {
 		// SET UP NESTED ROUTES IN SERVER?
     let configObj = {
       method: "POST",
@@ -44,7 +45,7 @@ class ConsoleTopic extends Component {
       }, 
       body: JSON.stringify({
       	fact_id: factId,
-      	origin_topic_name: this.props.parentTopic.name,
+      	origin_topic_name: originTopicName,
       	destination_topic_name: this.props.topic.name
       })
     }
@@ -52,17 +53,18 @@ class ConsoleTopic extends Component {
     fetch(rootURL() + `/facts`, configObj)
       .then(resp => resp.json())
       .then((topicsData) => {
-				console.log(topicsData)
+				console.log(this.props.topic)
+				console.log(this.props.topic.facts.find(fact => fact.id === factId))
 				this.props.addTopics(topicsData)
 				console.log(this.props.topic.facts.find(fact => fact.id === factId))
-				// console.log(factId)
-
 				this.props.updateTopic(this.props.topic.facts.find(fact => fact.id === factId))
      })
       .catch(err => err.message)
 	}
 
 	render() {
+		console.log(this.props.topic)
+		console.log(this.props.parentTopic)
 		return (
 			<div onClick={this.handleTopicSelection} 
 				onDragOver={this.allowDrop} onDragEnter={this.handleDragEnter}

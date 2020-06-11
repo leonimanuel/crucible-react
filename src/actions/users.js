@@ -29,6 +29,7 @@ export const selectTopic = topic => {
 }
 
 export const updateTopic = fact => {
+	console.log(fact)
 	return {
 		type: "UPDATE_TOPIC",
 		fact
