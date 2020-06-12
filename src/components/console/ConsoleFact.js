@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class ConsoleFact extends Component {
 	startDrag = e => {
 		console.log("dragging")
-		e.dataTransfer.setData("text", e.target.id)
+		e.dataTransfer.setData("object", JSON.stringify({parentTopic: this.props.parentTopic, fact: this.props.fact}))
 	}
 
 	render() {

@@ -28,13 +28,18 @@ class ConsoleTopic extends Component {
 
 	drop = e => {
 		e.preventDefault();
-		let originTopicName = e.dataTransfer.getData("text").split("-")[0]
-		let factId = parseInt(e.dataTransfer.getData("text").split("-").pop());
+		console.log(JSON.parse(e.dataTransfer.getData("object")))
+		let transferObj = JSON.parse(e.dataTransfer.getData("object"))
+		// let originTopicName = e.dataTransfer.getData("text").split("-")[0]
+		// let factId = parseInt(e.dataTransfer.getData("text").split("-").pop());
+		let originTopic = transferObj.parentTopic
+		let fact = transferObj.fact
+
 		this.setState({draggedOver: false})
-		this.moveFact(originTopicName, factId)
+		this.moveFact(originTopic, fact)
 	}
 
-	moveFact = (originTopicName, factId) => {
+	moveFact = (originTopic, fact) => {
 		// SET UP NESTED ROUTES IN SERVER?
     let configObj = {
       method: "POST",
@@ -44,8 +49,8 @@ class ConsoleTopic extends Component {
         Authorization: localStorage.getItem("token")
       }, 
       body: JSON.stringify({
-      	fact_id: factId,
-      	origin_topic_name: originTopicName,
+      	fact_id: fact.id,
+      	origin_topic_name: originTopic.name,
       	destination_topic_name: this.props.topic.name
       })
     }
@@ -53,18 +58,18 @@ class ConsoleTopic extends Component {
     fetch(rootURL() + `/facts`, configObj)
       .then(resp => resp.json())
       .then((topicsData) => {
-				console.log(this.props.topic)
-				console.log(this.props.topic.facts.find(fact => fact.id === factId))
-				this.props.addTopics(topicsData)
-				console.log(this.props.topic.facts.find(fact => fact.id === factId))
-				this.props.updateTopic(this.props.topic.facts.find(fact => fact.id === factId))
+				// console.log(this.props.topic)
+				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
+				// this.props.addTopics(topicsData)
+				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
+				this.props.updateTopic(fact, this.props.topic)
      })
       .catch(err => err.message)
 	}
 
 	render() {
 		console.log(this.props.topic)
-		console.log(this.props.parentTopic)
+		// console.log(this.props.parentTopic)
 		return (
 			<div onClick={this.handleTopicSelection} 
 				onDragOver={this.allowDrop} onDragEnter={this.handleDragEnter}
@@ -79,7 +84,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}), { selectTopic, updateTopic, addTopics })(ConsoleTopic);
+export default connect(null, { selectTopic, updateTopic, addTopics })(ConsoleTopic);
 
 
 
