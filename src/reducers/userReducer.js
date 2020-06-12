@@ -41,8 +41,8 @@ export default function userReducer(state = {
 
 		case "UPDATE_TOPIC":
 			console.log("updating parent topic")
-			console.log(state.parentTopic.facts)
-			console.log(action)
+			console.log(state.parentTopic)
+			// console.log(action)
 			
 			let updatedTopics = state.topics
 			let desTopicIndex = updatedTopics.findIndex(topic => topic.name === action.destinationTopic.root.name)
@@ -51,7 +51,7 @@ export default function userReducer(state = {
 
 			// action.destinationTopic.facts.push(action.fact)
 			// let updatedDesTopic = action.destinationTopic
-
+			let updatedParentTopic
 			function getIndexPath(rootTopic, topic) {
 				let schema = rootTopic
 				let path = topic.path.map(topic => topic.name).slice(1)
@@ -62,9 +62,13 @@ export default function userReducer(state = {
 					indexPathArr.push("children", subIndex)
 				}
 
+				
+				updatedParentTopic = schema
 				indexPathArr.push("facts")
 				return indexPathArr
 			}
+
+			console.log(updatedParentTopic)
 
 			let desIndexPathArr = getIndexPath(desRootTopic, action.destinationTopic)
 			let desIndexPath = desIndexPathArr.join(".")
@@ -81,20 +85,22 @@ export default function userReducer(state = {
 			let parIndexPath = parIndexPathArr.join(".")
 			// _.get(parRootTopic, parIndexPath).filter(fact => fact.id !== action.fact.id)
 			_.set(parRootTopic, parIndexPath, state.parentTopic.facts.filter(fact => fact.id !== action.fact.id))
-			
 			updatedTopics[parTopicIndex] = parRootTopic
-			console.log(parRootTopic)
-			debugger
 			
+			console.log(_.get(parRootTopic, _.initial(parIndexPath.split(".")).join(".")))
+			// debugger
+
+			console.log(updatedParentTopic)
+
 
 
 			return {
 				...state,
-				// parentTopic: {
-				// 	...state.parentTopic, 
-				// 	facts: state.parentTopic.facts.filter(fact => fact.id !== action.fact.id)
-				// },
-				topics: updatedTopics
+				topics: updatedTopics,
+				parentTopic: {
+					...state.parentTopic,
+					updatedParentTopic
+				} 
 			}
 			
 		default:
@@ -103,3 +109,10 @@ export default function userReducer(state = {
 };
 
 // export default userReducer;
+
+
+// _.initial(parIndexPath.split(".")) ? _.get(parRootTopic, _.initial(parIndexPath.split(".")).join(".")) : parRootTopic
+
+
+
+
