@@ -80,11 +80,14 @@ export default function userReducer(state = {
 			let parIndexPathArr = getIndexPath(parRootTopic, state.parentTopic)
 			let parIndexPath = parIndexPathArr.join(".")
 			// _.get(parRootTopic, parIndexPath).filter(fact => fact.id !== action.fact.id)
-			_.set(parRootTopic, parIndexPath, [])
+			_.set(parRootTopic, parIndexPath, state.parentTopic.facts.filter(fact => fact.id !== action.fact.id))
 			
 			updatedTopics[parTopicIndex] = parRootTopic
 			console.log(parRootTopic)
+			debugger
 			
+
+
 			return {
 				...state,
 				// parentTopic: {
