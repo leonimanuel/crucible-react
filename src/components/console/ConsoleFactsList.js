@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
+// import { connect } from "react-redux"
 import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
-		// console.log(this.props.facts)
+		console.log("rendering console facts list")
 		return (
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>
@@ -17,7 +17,7 @@ class ConsoleFactsList extends Component {
 }
 
 
-export default connect()(ConsoleFactsList);
+export default ConsoleFactsList;
 
 
 

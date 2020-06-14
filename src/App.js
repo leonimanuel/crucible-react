@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
+import SideNav from "./containers/SideNav.js"
 import Home from "./containers/Home.js"
 import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
@@ -46,6 +47,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
+          <SideNav />
           <main>
             <Route exact path="/" component={Home} />
             <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>

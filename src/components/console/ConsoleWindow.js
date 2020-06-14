@@ -5,7 +5,7 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	render() {
-		// console.log(this.props.parentTopic)
+		console.log("rendering console window")
 		if (!this.props.parentTopic) {
 			return null
 		} else {

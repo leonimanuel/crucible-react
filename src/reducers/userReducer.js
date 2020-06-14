@@ -9,7 +9,6 @@ export default function userReducer(state = {
 	facts: [],
 	parentTopic: ""
 }, action) {
-	// console.log(action)
 	switch (action.type) {
 		case "LOG_IN":
 			return {
@@ -61,8 +60,6 @@ export default function userReducer(state = {
 					schema = schema.children[subIndex]
 					indexPathArr.push("children", subIndex)
 				}
-
-				
 				updatedParentTopic = schema
 				indexPathArr.push("facts")
 				return indexPathArr
