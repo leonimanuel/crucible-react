@@ -5,8 +5,15 @@ import DetailPane from "./DetailPane.js"
 
 
 class SideNav extends Component {
+	componentDidMount() {
+		console.log("mounted sidenav")
+		let sideNav = document.getElementById("side-nav")
+		let sectionTabs = document.getElementById("sections-list")
+		sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`	
+	}
+
 	state = {
-		open: true,
+		open: false,
 		section: "console"
 	}
 

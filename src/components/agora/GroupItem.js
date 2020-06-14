@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 // import { connect } from "react-redux"
 // import GroupItem from "./Group.js"
 
-class GroupsList extends Component {
+class GroupsItem extends Component {
 	render() {
 		return (
-			<div>
+			<div >
 				{this.props.group.name}
 			</div>
 		)
@@ -13,7 +13,7 @@ class GroupsList extends Component {
 }
 
 
-export default GroupsList;
+export default GroupsItem;
 
 
 

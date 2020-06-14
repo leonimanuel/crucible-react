@@ -8,7 +8,7 @@ class GroupsList extends Component {
 			<div >
 				<div>Groups</div>
 				<div>
-					{this.props.groups.map(group => <GroupItem group={group} />)}
+					{this.props.groups.map(group => <GroupItem key={group.id} group={group} />)}
 				</div>
 			</div>
 		)
