@@ -1,6 +1,6 @@
 export default function groupsReducer(state = {
 	groups: [],
-	details: false,
+	selectedGroup: [],
 	members: [],
 	discussions: []
 }, action) {
@@ -13,11 +13,11 @@ export default function groupsReducer(state = {
 					groups: action.groups
 				}
 
-			case "SET_DETAILS_TO_TRUE":
+			case "SET_SELECTED_GROUP":
 				console.log("setting state.details to true")
 				return {
 					...state,
-					details: true
+					selectedGroup: action.group
 				}
 
 			default:

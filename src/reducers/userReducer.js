@@ -10,10 +10,6 @@ export default function userReducer(state = {
 	topics: [],
 	facts: [],
 	parentTopic: "",
-	groups: [],
-	details: false,
-	members: [],
-	discussions: []
 }, action) {
 	console.log("executing userReducer")
 	switch (action.type) {

@@ -40,10 +40,10 @@ class SideNav extends Component {
 		return (
 			<div id="side-nav" >
 				<MainPane section={this.state.section}/>
-				{this.props.details ? <DetailPane /> : null}
+				{this.props.selectedGroup ? <DetailPane section={this.state.section} /> : null}
 				<div id="sections-list">
 					<div id="console" className="section-tab" onClick={this.handleTabClick}>Console</div>
-					<div id="agora" className="section-tab" onClick={this.handleTabClick}>Agora</div>
+					<div id="agora" className="section-tab" onClick={this.handleTabClick} >Agora</div>
 				</div>
 			</div>
 
@@ -51,8 +51,13 @@ class SideNav extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		selectedGroup: state.sidenav.selectedGroup,
+	}
+}
 
 
-export default connect(state => ({details: state.details}))(SideNav)
+export default connect(mapStateToProps)(SideNav)
 
 

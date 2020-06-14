@@ -39,7 +39,7 @@ class AgoraMenu extends Component {
 }
 
 
-export default connect(state => ({groups: state.groups.groups}), { loadGroups })(AgoraMenu);
+export default connect(state => ({groups: state.sidenav.groups}), { loadGroups })(AgoraMenu);
 
 
 

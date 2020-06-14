@@ -5,5 +5,5 @@ import userReducer from "./userReducer.js"
 
 export default combineReducers({
 	users: userReducer,
-	groups: groupsReducer
+	sidenav: groupsReducer
 })

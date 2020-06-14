@@ -46,13 +46,6 @@ export const updateTopic = (fact, destinationTopic) => {
 // 	}
 // }
 
-export const setDetailsToTrue = () => {
-	console.log("dispatching set details to true")
-	return {
-		type: "SET_DETAILS_TO_TRUE"
-	}
-} 
-
 
 
 
