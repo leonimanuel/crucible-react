@@ -1,8 +1,36 @@
 #side-nav {
 	position: absolute;
+	/*float: left;*/
+	/*top: 0;*/
+	/*bottom: 0px;*/
+	/*width: 200px;*/
+	/*left: 0px;*/
 	height: 100%;
 	background-color: silver;
 	border: 2px solid green;
 	display: flex;
-	flex-direction: vertical;
+	/*flex-grow: 1;*/
+	/*flex-direction: vertical;*/
+}
+
+
+
+#main-pane {
+	border: 2px solid red;
+}
+
+#detail-pane {
+	border: 2px solid yellow;
+}
+
+#sections-list {
+	border: 1px solid blue;
+	/*display: flex;*/
+	/*flex-direction: column;*/
+}
+
+.section-tab {
+	border: 1px solid purple;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
 }

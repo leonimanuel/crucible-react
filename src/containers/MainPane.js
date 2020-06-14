@@ -4,7 +4,7 @@ import "./sidenav.css"
 class MainPane extends Component {
 	render() {
 		return (
-			<div>MAIN PANE</div>
+			<div id="main-pane">MAIN PANE</div>
 		)
 	}
 }

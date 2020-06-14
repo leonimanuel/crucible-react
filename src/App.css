@@ -1,5 +1,7 @@
-.App, main {
-  height: 100%;
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App {
@@ -10,6 +12,8 @@
 
 main {
   border: 2px solid black;
+  flex-grow: 1;
+
   display: flex;
 }
 

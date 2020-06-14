@@ -47,8 +47,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <SideNav />
           <main>
+            <SideNav />
             <Route exact path="/" component={Home} />
             <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
             <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
