@@ -46,13 +46,13 @@ export const loadGroups = (groups) => {
 	}
 }
 
-export const showGroupDetails = group => {
-	console.log("dispatching showGroupDetails")
-	return {
-		type: "SHOW_GROUP_DETAILS",
-		group
-	}
-}
+// export const showGroupDetails = group => {
+// 	console.log("dispatching showGroupDetails")
+// 	return {
+// 		type: "SHOW_GROUP_DETAILS",
+// 		group
+// 	}
+// }
 
 export const setDetailsToTrue = () => {
 	console.log("dispatching set details to true")

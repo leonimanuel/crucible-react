@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { showGroupDetails } from "../../actions/users.js"
+// import { showGroupDetails } from "../../actions/users.js"
 import { setDetailsToTrue } from "../../actions/users.js"
 
 class GroupsItem extends Component {
 	handleGroupClick = () => {
-		this.props.showGroupDetails(this.props.group)
+		// this.props.showGroupDetails(this.props.group)
 		this.props.setDetailsToTrue(this.props.group)
 	}
 
@@ -19,7 +19,7 @@ class GroupsItem extends Component {
 }
 
 
-export default connect(null, { showGroupDetails, setDetailsToTrue })(GroupsItem);
+export default connect(null, { setDetailsToTrue })(GroupsItem);
 
 
 

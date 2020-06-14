@@ -113,13 +113,13 @@ export default function userReducer(state = {
 				groups: action.groups
 			}
 
-		case "SHOW_GROUP_DETAILS":
-			// console.log(action.group.discussions)
-			return {
-				...state,
-				members: action.group.users,
-				discussions: action.group.discussions
-			}
+		// case "SHOW_GROUP_DETAILS":
+		// 	// console.log(action.group.discussions)
+		// 	return {
+		// 		...state,
+		// 		members: action.group.users,
+		// 		discussions: action.group.discussions
+		// 	}
 
 		case "SET_DETAILS_TO_TRUE":
 			console.log("setting state.details to true")
