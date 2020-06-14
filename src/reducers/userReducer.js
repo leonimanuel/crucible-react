@@ -8,7 +8,10 @@ export default function userReducer(state = {
 	topics: [],
 	facts: [],
 	parentTopic: "",
-	groups: []
+	groups: [],
+	details: false,
+	members: [],
+	discussions: []
 }, action) {
 	switch (action.type) {
 		case "LOG_IN":
@@ -108,6 +111,21 @@ export default function userReducer(state = {
 			return {
 				...state,
 				groups: action.groups
+			}
+
+		case "SHOW_GROUP_DETAILS":
+			// console.log(action.group.discussions)
+			return {
+				...state,
+				members: action.group.users,
+				discussions: action.group.discussions
+			}
+
+		case "SET_DETAILS_TO_TRUE":
+			console.log("setting state.details to true")
+			return {
+				...state,
+				details: true
 			}
 
 		default:

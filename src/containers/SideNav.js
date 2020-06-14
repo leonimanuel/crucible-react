@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
+
 import "./sidenav.css"
 import MainPane from "./MainPane.js"
 import DetailPane from "./DetailPane.js"
@@ -38,7 +40,7 @@ class SideNav extends Component {
 		return (
 			<div id="side-nav" >
 				<MainPane section={this.state.section}/>
-				<DetailPane />
+				{this.props.details ? <DetailPane /> : null}
 				<div id="sections-list">
 					<div id="console" className="section-tab" onClick={this.handleTabClick}>Console</div>
 					<div id="agora" className="section-tab" onClick={this.handleTabClick}>Agora</div>
@@ -51,4 +53,6 @@ class SideNav extends Component {
 
 
 
-export default SideNav
+export default connect(state => ({details: state.details}))(SideNav)
+
+

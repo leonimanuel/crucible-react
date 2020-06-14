@@ -47,14 +47,18 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <main>
-            <SideNav />
-            <Route exact path="/" component={Home} />
-            <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
-            <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
-            <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>
-            <Route path="/login"><Login/></Route>            
-          </main> 
+          {this.props.isLoggedIn ?
+            <main>
+              <SideNav />
+              <Route exact path="/" component={Home} />
+              <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
+              <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
+              <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>           
+            </main>             
+          : null
+          }
+            <Route path="/login"><Login/></Route> 
+
         </div>      
       </Router>
     );
