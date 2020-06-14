@@ -7,7 +7,8 @@ export default function userReducer(state = {
 	userEmail: "none",
 	topics: [],
 	facts: [],
-	parentTopic: ""
+	parentTopic: "",
+	groups: []
 }, action) {
 	switch (action.type) {
 		case "LOG_IN":
@@ -100,15 +101,20 @@ export default function userReducer(state = {
 				} 
 			}
 			
+
+
+
+		case "LOAD_GROUPS":
+			return {
+				...state,
+				groups: action.groups
+			}
+
 		default:
 			return state;
 	}
 };
 
-// export default userReducer;
-
-
-// _.initial(parIndexPath.split(".")) ? _.get(parRootTopic, _.initial(parIndexPath.split(".")).join(".")) : parRootTopic
 
 
 

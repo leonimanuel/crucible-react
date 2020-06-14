@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 // import ConsoleTopic from "./ConsoleTopic.js"
 import GroupsList from "./GroupsList.js"
+import rootURL from "../../rootURL.js"
+import { loadGroups } from "../../actions/users.js"
 
 class AgoraMenu extends Component {
+	componentDidMount() {
+    console.log("mounted agora side-menu")
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    fetch(rootURL() + `/groups`, configObj)
+      .then(resp => resp.json())
+      .then((groupsData) => {
+				this.props.loadGroups(groupsData)
+     })
+      .catch(err => alert(err.message))
+	}
+
 	render() {
 		return (
 			<div id="agora-menu">
@@ -17,7 +38,7 @@ class AgoraMenu extends Component {
 }
 
 
-export default connect()(AgoraMenu);
+export default connect(state => ({groups: state.groups}), { loadGroups })(AgoraMenu);
 
 
 

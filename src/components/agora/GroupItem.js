@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 // import { connect } from "react-redux"
-import GroupItem from "./GroupItem.js"
+// import GroupItem from "./Group.js"
 
 class GroupsList extends Component {
 	render() {
 		return (
-			<div >
-				<div>Groups</div>
-				<div>
-					{this.props.groups.map(group => <GroupItem group={group} />)}
-				</div>
+			<div>
+				{this.props.group.name}
 			</div>
 		)
 	}

@@ -36,3 +36,12 @@ export const updateTopic = (fact, destinationTopic) => {
 		destinationTopic
 	}
 }
+
+
+
+export const loadGroups = (groups) => {
+	return {
+		type: "LOAD_GROUPS",
+		groups
+	}
+}
