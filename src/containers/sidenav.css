@@ -1,0 +1,8 @@
+#side-nav {
+	position: absolute;
+	height: 100%;
+	background-color: silver;
+	border: 2px solid green;
+	display: flex;
+	flex-direction: vertical;
+}
