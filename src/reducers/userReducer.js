@@ -1,5 +1,7 @@
 import chunk from 'lodash/chunk';
 import _ from 'lodash';
+import { combineReducers } from "redux"
+import groupsReducer from "./groupsReducer.js"
 
 
 export default function userReducer(state = {
@@ -13,6 +15,7 @@ export default function userReducer(state = {
 	members: [],
 	discussions: []
 }, action) {
+	console.log("executing userReducer")
 	switch (action.type) {
 		case "LOG_IN":
 			return {
@@ -93,8 +96,6 @@ export default function userReducer(state = {
 
 			console.log(updatedParentTopic)
 
-
-
 			return {
 				...state,
 				topics: updatedTopics,
@@ -104,30 +105,6 @@ export default function userReducer(state = {
 				} 
 			}
 			
-
-
-
-		case "LOAD_GROUPS":
-			return {
-				...state,
-				groups: action.groups
-			}
-
-		// case "SHOW_GROUP_DETAILS":
-		// 	// console.log(action.group.discussions)
-		// 	return {
-		// 		...state,
-		// 		members: action.group.users,
-		// 		discussions: action.group.discussions
-		// 	}
-
-		case "SET_DETAILS_TO_TRUE":
-			console.log("setting state.details to true")
-			return {
-				...state,
-				details: true
-			}
-
 		default:
 			return state;
 	}

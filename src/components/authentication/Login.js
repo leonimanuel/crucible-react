@@ -69,7 +69,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
 	return {
-		isLoggedIn: state.isLoggedIn
+		isLoggedIn: state.users.isLoggedIn
 	}
 }
 

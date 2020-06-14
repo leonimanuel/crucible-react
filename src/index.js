@@ -8,11 +8,11 @@ import _ from 'lodash';
 import App from './App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import userReducer from "./reducers/userReducer.js"
+import rootReducer from "./reducers/rootReducer.js"
 // import rootURL from "./rootURL.js"
 
 
-const store = createStore(userReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <React.StrictMode>

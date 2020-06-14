@@ -65,7 +65,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({isLoggedIn: state.isLoggedIn}), { logIn })(App);
+export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn })(App);
 
 
 

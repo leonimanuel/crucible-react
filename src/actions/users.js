@@ -38,14 +38,6 @@ export const updateTopic = (fact, destinationTopic) => {
 }
 
 
-
-export const loadGroups = (groups) => {
-	return {
-		type: "LOAD_GROUPS",
-		groups
-	}
-}
-
 // export const showGroupDetails = group => {
 // 	console.log("dispatching showGroupDetails")
 // 	return {

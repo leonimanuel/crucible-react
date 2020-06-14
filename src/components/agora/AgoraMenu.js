@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 // import ConsoleTopic from "./ConsoleTopic.js"
 import GroupsList from "./GroupsList.js"
 import rootURL from "../../rootURL.js"
-import { loadGroups } from "../../actions/users.js"
+import { loadGroups } from "../../actions/groups.js"
 
 class AgoraMenu extends Component {
 	componentDidMount() {
@@ -26,6 +26,7 @@ class AgoraMenu extends Component {
 	}
 
 	render() {
+		// debugger
 		return (
 			<div id="agora-menu">
 				<div className="">Agora</div>
@@ -38,7 +39,7 @@ class AgoraMenu extends Component {
 }
 
 
-export default connect(state => ({groups: state.groups}), { loadGroups })(AgoraMenu);
+export default connect(state => ({groups: state.groups.groups}), { loadGroups })(AgoraMenu);
 
 
 
