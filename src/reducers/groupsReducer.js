@@ -22,19 +22,6 @@ export default function groupsReducer(state = {
 					selectedGroup: action.group
 				}
 
-			case "LOADING_DISCUSSION":
-				return {
-					...state,
-					loading: true
-				}
-
-			case "ADD_DISCUSSION":
-				return {
-					...state,
-					loading: false,
-					discussion: action.discussionData
-				}
-
 			case "UPDATE_GROUP_DISCUSSIONS":
 				console.log("updating group discussions")
 				return {

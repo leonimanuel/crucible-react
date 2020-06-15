@@ -1,0 +1,21 @@
+#groups-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#article-wrapper {
+	/*align-self: flex-end;*/
+	border: 2px solid black;
+	width: 50%;
+	max-height: 100%;
+	overflow: scroll;
+}
+
+#article-title {
+	font-size: 1.5em;
+}
+
+#article-content {
+	overflow: scroll;
+	text-align: justify;
+}
