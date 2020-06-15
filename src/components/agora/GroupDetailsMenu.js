@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import DiscussionsList from "./DiscussionsList.js"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
 
 class GroupDetailsMenu extends Component {
 	render() {
-		// debugger
+		console.log(this.props.group)
 		return (
 			<div id="group-details-menu">
 				<div className="">{this.props.group.name}</div>
-				<div id="groups-list">
-
-				</div>
+				<DiscussionsList discussions={this.props.group.discussions}/>
 			</div>
 		)
 	}

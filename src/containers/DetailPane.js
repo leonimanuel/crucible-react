@@ -4,8 +4,8 @@ import GroupDetailsMenu from "../components/agora/GroupDetailsMenu.js"
 
 class DetailPane extends Component {
 	render() {
+		// console.log("rendering DetailPane")
 		return (
-			// <div id="detail-pane">DETAIL PANE</div>
 			<div id="sidenav-details-pane">
 				{this.props.section === "agora" ? <GroupDetailsMenu /> : null}
 			</div>

@@ -1,6 +1,6 @@
 export default function groupsReducer(state = {
 	groups: [],
-	selectedGroup: [],
+	selectedGroup: "",
 	members: [],
 	discussions: []
 }, action) {
