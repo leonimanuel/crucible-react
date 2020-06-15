@@ -4,13 +4,24 @@ import { fetchDiscussion } from "../../actions/groups.js"
 
 
 class Article extends Component {
+	state = {
+		location: ""	
+	}
+
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
-		
+		this.setState({location: this.props.location.pathname})
+	}
+
+	componentDidUpdate() {
+		if (this.props.location.pathname !== this.state.location) {
+			this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
+			this.setState({location: this.props.location.pathname})
+		}
 	}
 
 	render() {
-		debugger
+		// debugger
 		console.log(this.props.discussion)
 		return (
 			<div id="article-wrapper">
