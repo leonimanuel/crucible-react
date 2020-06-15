@@ -34,7 +34,7 @@ class DiscussionsList extends Component {
 				<div>Discussions</div>
 				<div onClick={this.handleNewDiscussion} id="new-discussion-button">NEW DIS</div>
 				<div>
-					{this.props.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion}/>)}
+					{this.props.group.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion}/>)}
 				</div>
 			</div>
 		)

@@ -20,8 +20,9 @@
 	border: 2px solid red;
 }
 
-#detail-pane {
+#sidenav-details-pane {
 	border: 2px solid yellow;
+	max-width: 200px;
 }
 
 #sections-list {
@@ -34,4 +35,9 @@
 	border: 1px solid purple;
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
+}
+
+
+.discussion-item {
+	border: 1px solid green;
 }

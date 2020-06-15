@@ -37,7 +37,7 @@ class SideNav extends Component {
 	}
 
 	render() {
-		console.log(this.props.selectedGroup)
+		// console.log(this.props.selectedGroup)
 		return (
 			<div id="side-nav" >
 				<MainPane section={this.state.section}/>

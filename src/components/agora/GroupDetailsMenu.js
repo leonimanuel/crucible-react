@@ -10,7 +10,7 @@ class GroupDetailsMenu extends Component {
 		return (
 			<div id="group-details-menu">
 				<div className="">{this.props.group.name}</div>
-				<DiscussionsList group={this.props.group} discussions={this.props.group.discussions}/>
+				<DiscussionsList group={this.props.group} />
 			</div>
 		)
 	}
