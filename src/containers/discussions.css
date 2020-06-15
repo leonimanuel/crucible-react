@@ -1,5 +1,6 @@
 #groups-wrapper {
 	display: flex;
+	/*max-height: 100%;*/
 	justify-content: center;
 }
 
@@ -7,7 +8,7 @@
 	/*align-self: flex-end;*/
 	border: 2px solid black;
 	width: 50%;
-	max-height: 100%;
+	height: 90%;
 	overflow: scroll;
 }
 
@@ -16,6 +17,6 @@
 }
 
 #article-content {
-	overflow: scroll;
+	/*overflow: scroll;*/
 	text-align: justify;
 }

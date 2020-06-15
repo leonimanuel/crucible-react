@@ -34,7 +34,7 @@ export const fetchDiscussion = (discussion) => {
         Authorization: localStorage.getItem("token")
       }
     }
-    debugger
+    // debugger
     fetch(rootURL() + `/groups/${discussion.group_id}/discussions/${discussion.id}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {

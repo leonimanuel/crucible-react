@@ -16,7 +16,7 @@ class DiscussionsList extends Component {
         Authorization: localStorage.getItem("token")
       }, 
       body: JSON.stringify({
-      	article_url: "https://www.sciencemag.org/news/2020/06/deep-sea-currents-are-behind-ocean-s-thickest-piles-microplastics"
+      	article_url: "https://www.scientificamerican.com/article/switch-in-mouse-brain-induces-a-deep-slumber-similar-to-hibernation/"
       })
     }
 
