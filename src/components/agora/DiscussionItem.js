@@ -24,3 +24,4 @@ export default connect(null, { fetchDiscussion })(DiscussionsItem);
 
 
 				// <div>{this.props.discussion.name}</div>
+// `/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.name}`

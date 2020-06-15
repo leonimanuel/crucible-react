@@ -5,8 +5,8 @@ class Article extends Component {
 	render() {
 		// debugger
 		return (
-			<div id="groups-wrapper">
-				<h3>{this.props.discussion ?this.props.discussion.article.title : null}</h3>
+			<div id="article-wrapper">
+				ARTICLEBOI
 			</div>
 		)
 	}
@@ -14,3 +14,5 @@ class Article extends Component {
 
 
 export default connect(state => ({discussion: state.sidenav.discussion}))(Article);
+
+				// <h3>{this.props.discussion ?this.props.discussion.article.title : null}</h3>
