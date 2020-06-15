@@ -19,7 +19,7 @@ class DiscussionsList extends Component {
       })
     }
 
-    fetch(rootURL() + `/discussions`, configObj)
+    fetch(rootURL() + `/groups/${this.props.group.id}/discussions`, configObj)
       .then(resp => resp.json())
       .then((data) => {
 				console.log(data)
