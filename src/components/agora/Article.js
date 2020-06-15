@@ -5,12 +5,12 @@ import { fetchDiscussion } from "../../actions/groups.js"
 
 class Article extends Component {
 	componentDidMount() {
-		// this.props.fetchDiscussion(this.props.discussion)
+		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
 		
 	}
 
 	render() {
-		// debugger
+		debugger
 		console.log(this.props.discussion)
 		return (
 			<div id="article-wrapper">
@@ -20,7 +20,7 @@ class Article extends Component {
 						<div id="article-content">{this.props.discussion.article.content}</div>						
 					</div>
 					: 
-					<h3>No Discussion</h3>}
+					<h3>Loading</h3>}
 			</div>
 		)
 	}

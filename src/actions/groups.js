@@ -23,7 +23,7 @@ export const updateGroupDiscussions = discussion => {
 	}
 }
 
-export const fetchDiscussion = (discussion) => {
+export const fetchDiscussion = (groupId, discussionId) => {
 	return (dispatch) => {
 		dispatch({type: "LOADING_DISCUSSION"})
     let configObj = {
@@ -35,7 +35,7 @@ export const fetchDiscussion = (discussion) => {
       }
     }
     // debugger
-    fetch(rootURL() + `/groups/${discussion.group_id}/discussions/${discussion.id}`, configObj)
+    fetch(rootURL() + `/groups/${groupId}/discussions/${discussionId}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
 				dispatch({ 

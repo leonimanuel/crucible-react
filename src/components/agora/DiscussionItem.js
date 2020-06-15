@@ -10,8 +10,7 @@ class DiscussionsItem extends Component {
 		// debugger
 		return (
 			<div className="discussion-item">
-				<Link onClick={() => this.props.fetchDiscussion(this.props.discussion)} 
-				to={`/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.name}`} >
+				<Link to={`/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}`} >
 					{this.props.discussion.name.split("_").join(" ")}
 				</Link>
 			</div>

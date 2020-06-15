@@ -10,7 +10,7 @@ class Groups extends Component {
 		const { match } = this.props;
 		return (
 			<div id="groups-wrapper">
-				<Route path={`${match.path}/:groupId/discussions/:discussionName`} 
+				<Route path={`${match.path}/:groupId/discussions/:discussionId`} 
 					render={routerProps => <Article {...routerProps} />} >
 				</Route>
 			</div>
