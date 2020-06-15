@@ -35,6 +35,16 @@ export default function groupsReducer(state = {
 					discussion: action.discussionData
 				}
 
+			case "UPDATE_GROUP_DISCUSSIONS":
+				console.log("updating group discussions")
+				return {
+					...state,
+					selectedGroup: {
+						...state.selectedGroup,
+						discussions: [...state.selectedGroup.discussions, action.discussion]
+					}
+				}
+
 			default:
 				return state;	
 		}

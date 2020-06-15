@@ -16,6 +16,13 @@ export const setSelectedGroup = group => {
 	}
 } 
 
+export const updateGroupDiscussions = discussion => {
+	return {
+		type: "UPDATE_GROUP_DISCUSSIONS",
+		discussion
+	}
+}
+
 export const fetchDiscussion = (discussion) => {
 	return (dispatch) => {
 		dispatch({type: "LOADING_DISCUSSION"})

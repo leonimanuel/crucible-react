@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import DiscussionItem from "./DiscussionItem.js"
 import rootURL from "../../rootURL.js"
+import { updateGroupDiscussions } from "../../actions/groups.js"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
 
@@ -15,20 +16,21 @@ class DiscussionsList extends Component {
         Authorization: localStorage.getItem("token")
       }, 
       body: JSON.stringify({
-      	article_url: "https://theintercept.com/2020/06/13/george-floyds-murder-may-finally-end-the-armys-fealty-to-defeated-confederate-traitors/"
+      	article_url: "https://www.sciencemag.org/news/2020/06/deep-sea-currents-are-behind-ocean-s-thickest-piles-microplastics"
       })
     }
 
     fetch(rootURL() + `/groups/${this.props.group.id}/discussions`, configObj)
       .then(resp => resp.json())
       .then((data) => {
-				console.log(data)
+				this.props.updateGroupDiscussions(data)
 				// this.props.loadGroups(groupsData)
      })
       .catch(err => alert(err.message))
 	}
 
 	render() {
+		// debugger
 		return (
 			<div id="group-discussions-list">
 				<div>Discussions</div>
@@ -42,7 +44,7 @@ class DiscussionsList extends Component {
 }
 
 
-export default connect()(DiscussionsList);
+export default connect(null, { updateGroupDiscussions })(DiscussionsList);
 
 
 
