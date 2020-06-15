@@ -29,8 +29,11 @@ export const fetchDiscussion = (discussion) => {
     }
     fetch(rootURL() + `/groups/${discussion.group_id}/discussions/${discussion.id}`, configObj)
       .then(resp => resp.json())
-      .then((data) => {
-				console.log(data)
+      .then((discussionData) => {
+				dispatch({ 
+					type: 'ADD_DISCUSSION', 
+					discussionData
+				})
      })
       .catch(err => alert(err.message))
 	}
