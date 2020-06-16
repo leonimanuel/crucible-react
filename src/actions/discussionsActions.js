@@ -1,6 +1,6 @@
 import rootURL from "../rootURL.js"
 
-export const addComment = (groupId, discussionId, comment) => {
+export const addComment = (groupId, discussionId, comment, spanId) => {
 	console.log(comment)
 	return (dispatch) => {
 		dispatch({type: "POSTING_COMMENT"})
@@ -12,7 +12,8 @@ export const addComment = (groupId, discussionId, comment) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-      	comment_text: comment
+      	comment_text: comment,
+				span_id: spanId
       })
     }
     // debugger

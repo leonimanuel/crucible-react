@@ -7,7 +7,8 @@ import { addComment } from "../../actions/discussionsActions.js"
 class Article extends Component {
 	state = {
 		location: "",
-		comment: ""
+		comment: "",
+		selection: ""
 	}
 
 	componentDidMount() {
@@ -33,7 +34,12 @@ class Article extends Component {
 			span.id = `selection-${window.getSelection().anchorOffset}`
 			span.appendChild(selectedText);
 			selection.insertNode(span);
-      
+
+			this.setState({
+				...this.state,
+				spanId: span.id
+			})
+
       const button = document.querySelector(`#${span.id}`);
       const popup = document.querySelector('#comment-popup');
 			
@@ -65,7 +71,8 @@ class Article extends Component {
 		this.props.addComment(
 			this.props.match.params.groupId,
 			this.props.match.params.discussionId,
-			this.state.comment
+			this.state.comment,
+			this.state.spanId
 		)
 	}
 
