@@ -17,7 +17,8 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					loading: false,
-					discussion: action.discussionData
+					discussion: action.discussionData,
+					comments: action.discussionData.comments
 				}
 
 			// case "POSTING_DISCUSSION"

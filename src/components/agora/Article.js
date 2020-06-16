@@ -62,21 +62,21 @@ class Article extends Component {
 		debugger
 		console.log(comment)
 		
-    const span = document.querySelector(`#${comment.span_id}`);
-    const popup = document.querySelector('#comment-popup');
-		popup.setAttribute('data-show', '');
+  //   const span = document.querySelector(`#${comment.span_id}`);
+  //   const popup = document.querySelector('#comment-popup');
+		// popup.setAttribute('data-show', '');
 		
-		createPopper(span, popup, {
-		  placement: 'left',
-		  modifiers: [
-		    {
-		      name: 'offset',
-		      options: {
-		        offset: [0, 4],
-		      },
-		    },
-		  ],
-		});
+		// createPopper(span, popup, {
+		//   placement: 'left',
+		//   // modifiers: [
+		//   //   {
+		//   //     name: 'offset',
+		//   //     options: {
+		//   //       offset: [0, 4],
+		//   //     },
+		//   //   },
+		//   // ],
+		// });
 	}
 
 	handleChange = e => {

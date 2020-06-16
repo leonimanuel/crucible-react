@@ -5,10 +5,14 @@ import React, { Component } from 'react';
 
 
 class Home extends Component {
+	handleMouseUp = e => {
+		// debugger
+	}
+
 	render() {
 		return (
-			<div id="home-wrapper">
-				<h1>Home</h1>
+			<div onMouseUp={this.handleMouseUp} id="home-wrapper">
+				<h1>This is the home page. isn't it nice?</h1>
 			</div>
 		)
 	}
