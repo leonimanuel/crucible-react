@@ -30,6 +30,14 @@
   border-radius: 4px;
 }
 
+#selection-popup {
+  display: none;  
+}
+
+#selection-popup[data-show] {
+  display: block;
+}
+
 #arrow,
 #arrow::before {
   position: absolute;

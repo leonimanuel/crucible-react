@@ -42,7 +42,8 @@ class Article extends Component {
 
       const button = document.querySelector(`#${span.id}`);
       const popup = document.querySelector('#selection-popup');
-			
+			popup.setAttribute('data-show', '');
+
 			createPopper(button, popup, {
 			  // placement: 'bottom',
 			  modifiers: [
@@ -58,11 +59,13 @@ class Article extends Component {
 	}
 
 	createCommentPopper(comment) {
-		// debugger
+		debugger
 		console.log(comment)
 		
     const span = document.querySelector(`#${comment.span_id}`);
     const popup = document.querySelector('#comment-popup');
+		popup.setAttribute('data-show', '');
+		
 		createPopper(span, popup, {
 		  placement: 'left',
 		  modifiers: [
@@ -93,6 +96,9 @@ class Article extends Component {
 			this.state.comment,
 			this.state.spanId
 		)
+    
+    const popup = document.querySelector('#selection-popup');
+		popup.removeAttribute('data-show');
 	}
 
 	render() {

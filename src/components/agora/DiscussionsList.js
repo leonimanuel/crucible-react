@@ -16,7 +16,7 @@ class DiscussionsList extends Component {
         Authorization: localStorage.getItem("token")
       }, 
       body: JSON.stringify({
-      	article_url: "https://www.scientificamerican.com/article/switch-in-mouse-brain-induces-a-deep-slumber-similar-to-hibernation/"
+      	article_url: "https://www.scientificamerican.com/article/why-do-people-avoid-facts-that-could-help-them/"
       })
     }
 
