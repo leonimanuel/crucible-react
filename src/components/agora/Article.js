@@ -20,6 +20,21 @@ class Article extends Component {
 		}
 	}
 
+	handleTextSelect = e => {
+		e.preventDefault()
+		// console.log("selected some text")
+		// console.log(e.target === window.getSelection().baseNode.parentNode)
+		if (e.target === window.getSelection().baseNode.parentNode) {
+			let selection= window.getSelection().getRangeAt(0);
+			let selectedText = selection.extractContents();
+			let span= document.createElement("span");
+			span.style.backgroundColor = "yellow";
+			span.appendChild(selectedText);
+			selection.insertNode(span);
+		}
+		// console.log(e.target.getSelection().toString())
+	}
+
 	render() {
 		// debugger
 		console.log(this.props.discussion)
@@ -28,7 +43,7 @@ class Article extends Component {
 				{this.props.discussion ? 
 					<div>
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div id="article-content">{this.props.discussion.article.content}</div>						
+						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
 					</div>
 					: 
 					<h3>Loading</h3>}
