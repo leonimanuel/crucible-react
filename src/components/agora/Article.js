@@ -41,7 +41,7 @@ class Article extends Component {
 			})
 
       const button = document.querySelector(`#${span.id}`);
-      const popup = document.querySelector('#comment-popup');
+      const popup = document.querySelector('#selection-popup');
 			
 			createPopper(button, popup, {
 			  // placement: 'bottom',
@@ -55,6 +55,25 @@ class Article extends Component {
 			  ],
 			});
 		}
+	}
+
+	createCommentPopper(comment) {
+		// debugger
+		console.log(comment)
+		
+    const span = document.querySelector(`#${comment.span_id}`);
+    const popup = document.querySelector('#comment-popup');
+		createPopper(span, popup, {
+		  placement: 'left',
+		  modifiers: [
+		    {
+		      name: 'offset',
+		      options: {
+		        offset: [0, 4],
+		      },
+		    },
+		  ],
+		});
 	}
 
 	handleChange = e => {
@@ -84,11 +103,9 @@ class Article extends Component {
 				{this.props.discussion ? 
 					<div>
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div>{this.props.comments ? this.props.comments.map(comment => <div>Commentodos</div>) : null}</div>
-
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
 						
-						<div id="comment-popup" role="tooltip">
+						<div id="selection-popup" role="tooltip">
 							Context Menu
 							<div id="arrow" data-popper-arrow></div>
 							<form onSubmit={this.handleSubmitComment} id="new-comment-form">
@@ -96,10 +113,18 @@ class Article extends Component {
 								<input type="submit" value="post"/>
 							</form>
 						</div>
+						
+						<div id="comment-popup">
+							COMMENTBOI
+							{/*<div id="arrow" data-popper-arrow></div>*/}
+						</div>
 					</div>				
 					: 
 					<h3>Loading</h3>
 				}
+				<div>
+					{this.props.comments ? this.props.comments.map(comment => this.createCommentPopper(comment)) : null}
+				</div>
 			</div>
 		)
 	}
@@ -114,5 +139,7 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, { fetchDiscussion, addComment })(Article);
+
+						// <div>{this.props.comments ? this.props.comments.map(comment => <div>Commentodos</div>) : null}</div>
 
 				// <h3>{this.props.discussion ?this.props.discussion.article.title : null}</h3>

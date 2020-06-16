@@ -21,7 +21,7 @@
 	text-align: justify;
 }
 
-#comment-popup {
+#selection-popup, #comment-popup {
   background: white;
   color: #333;
   font-weight: bold;
@@ -42,6 +42,22 @@
   content: '';
   transform: rotate(45deg);
   background: white;
+}
+
+#selection-popup[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
+}
+
+#selection-popup[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
+}
+
+#selection-popup[data-popper-placement^='left'] > #arrow {
+  right: -4px;
+}
+
+#selection-popup[data-popper-placement^='right'] > #arrow {
+  left: -4px;
 }
 
 #comment-popup[data-popper-placement^='bottom'] > #arrow {
