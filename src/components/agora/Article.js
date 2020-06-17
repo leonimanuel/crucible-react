@@ -92,6 +92,8 @@ class Article extends Component {
 		span.addEventListener("mouseenter", () => {
 	    const commentSpan = document.querySelector(`#${comment.span_id}`);
 	    const popup = document.querySelector('#comment-popup');
+	    // debugger
+	    popup.innerHTML = `<div>${comment.content}</div>`
 			popup.setAttribute('data-show', '');
 
 			createPopper(commentSpan, popup, {
