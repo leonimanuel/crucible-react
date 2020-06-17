@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment } from "../../actions/discussionsActions.js"
-
+import { v4 as uuidv4 } from 'uuid';
 
 class Article extends Component {
 	state = {
@@ -13,7 +13,7 @@ class Article extends Component {
 		startOffset: "",
 		endOffset: "",
 		commentsLoaded: false,
-		// newCommentAdded: false
+		previousElId: ""
 	}
 
 	componentDidMount() {
@@ -28,12 +28,14 @@ class Article extends Component {
 		}
 
 		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
-			debugger
+			// debugger
 			// this.props.comments.map(comment => this.createCommentPopper(comment))
-			this.renderComments()
+			// this.renderComments()
+			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
-			debugger
-			this.renderNewComment()
+			// debugger
+			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
+			// this.newCommentPopper(this.props.comments[this.props.comments.length - 1])
 			this.props.falsifyAddedNewComment()
 			// this.createCommentPopper(this.props.comments[this.props.comments.length - 1])
 		}
@@ -43,15 +45,32 @@ class Article extends Component {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
+			// range.setStart(range.startContainer.previousElementSibling)
+			// debugger
+
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
+			
+			let previousEl
+			if (range.startContainer.previousElementSibling) {
+				previousEl = range.startContainer.previousElementSibling
+				// debugger
+			} else {
+				previousEl = document.getElementById("article-content")
+				// debugger
+			}
+
+			
+			// debugger
 			// debugger
 			let selectedText = range.extractContents();
 			
 			// console.log(selectedText)
 			let span = document.createElement("span");
 			// span.style.backgroundColor = "yellow";
-			span.id = `selection-${window.getSelection().toString()}`
+			span.id = `selection-${uuidv4()}`
+			// debugger
+
 			span.appendChild(selectedText);
 			range.insertNode(span);
 			
@@ -59,7 +78,8 @@ class Article extends Component {
 				...this.state,
 				span: span,
 				startOffset: startOffset,
-				endOffset: endOffset
+				endOffset: endOffset,
+				previousElId: previousEl.id
 				// selection: window.getSelection().toString()
 			})
 
@@ -82,8 +102,53 @@ class Article extends Component {
 		}
 	}
 
-	renderComments = () => {
-		this.props.comments.map(comment => this.createCommentPopper(comment))
+	renderCommentHighlights = (comments) => {
+		comments.map(comment => {
+			// debugger
+			let articleContent = document.getElementById("article-content");
+			let range = new Range
+
+			let previousEl = document.getElementById(comment.previous_el_id)
+			
+			if (comment.previous_el_id === "article-content") {
+				range.setStart(articleContent.lastChild, comment.startPoint)
+				range.setEnd(articleContent.lastChild, comment.endPoint)					
+			} else {
+				range.setStart(previousEl.nextSibling, comment.startPoint)
+				range.setEnd(previousEl.nextSibling, comment.endPoint)				
+			}
+
+
+			// if (!this.state.previousEl) {
+			// 	range.setStart(articleContent.lastChild, comment.startPoint)
+			// 	range.setEnd(articleContent.lastChild, comment.endPoint)					
+			// 	debugger
+
+			// } else {
+			// 	range.setStart(this.state.previousEl.nextSibling, comment.startPoint)
+			// 	range.setEnd(this.state.previousEl.nextSibling, comment.endPoint)		
+			// 	debugger
+			// }
+
+			// debugger
+
+			let selectedText = range.extractContents();
+			
+			// debugger
+			
+			let span = document.createElement("span");
+			span.style.backgroundColor = "yellow";
+			span.id = comment.span_id
+
+			span.appendChild(selectedText);
+			range.insertNode(span);
+
+			// debugger
+			span.addEventListener("mouseenter", () => {
+				this.newCommentPopper(comment)
+			})
+		})
+		
 		this.setState({
 			...this.state,
 			commentsLoaded: true,
@@ -91,50 +156,72 @@ class Article extends Component {
 		})
 	}
 
-	createCommentPopper(comment) {
-		let articleContent = document.getElementById("article-content");
+	newCommentPopper = (comment) => {
+		console.log("new comment popper")
+    const commentSpan = document.querySelector(`#${comment.span_id}`);
+    const popup = document.querySelector('#comment-popup');
+    debugger
+    popup.innerHTML = `<div>${comment.content}</div>`
+		popup.setAttribute('data-show', '');
+
+		createPopper(commentSpan, popup, {
+		  placement: 'left',
+		  // modifiers: [
+		  //   {
+		  //     name: 'offset',
+		  //     options: {
+		  //       offset: [0, 4],
+		  //     },
+		  //   },
+		  // ],
+		});	
+	} 	
+
+	// createCommentPopper(comment) {
+	// 	// debugger
+	// 	let articleContent = document.getElementById("article-content");
 		
-		let range = new Range
-		range.setStart(articleContent.lastChild, comment.startPoint)
-		range.setEnd(articleContent.lastChild, comment.endPoint)
-		debugger
-		let selectedText = range.extractContents();
+	// 	let range = new Range
+	// 	range.setStart(articleContent.lastChild, comment.startPoint)
+	// 	range.setEnd(articleContent.lastChild, comment.endPoint)
+	// 	// debugger
+	// 	let selectedText = range.extractContents();
 
-		let span = document.createElement("span");
-		span.style.backgroundColor = "yellow";
-		span.id = `selection-${comment.selection}`
+	// 	let span = document.createElement("span");
+	// 	span.style.backgroundColor = "yellow";
+	// 	span.id = `selection-${comment.selection}`
 
-		span.appendChild(selectedText);
-		range.insertNode(span);
+	// 	span.appendChild(selectedText);
+	// 	range.insertNode(span);
 
-		span.addEventListener("mouseenter", () => {
-	    const commentSpan = document.querySelector(`#${comment.span_id}`);
-	    const popup = document.querySelector('#comment-popup');
-	    // debugger
-	    popup.innerHTML = `<div>${comment.content}</div>`
-			popup.setAttribute('data-show', '');
+	// 	span.addEventListener("mouseenter", () => {
+	//     const commentSpan = document.querySelector(`#${comment.span_id}`);
+	//     const popup = document.querySelector('#comment-popup');
+	//     debugger
+	//     popup.innerHTML = `<div>${comment.content}</div>`
+	// 		popup.setAttribute('data-show', '');
 
-			createPopper(commentSpan, popup, {
-			  placement: 'left',
-			  // modifiers: [
-			  //   {
-			  //     name: 'offset',
-			  //     options: {
-			  //       offset: [0, 4],
-			  //     },
-			  //   },
-			  // ],
-			});	
-		})
+	// 		createPopper(commentSpan, popup, {
+	// 		  placement: 'left',
+	// 		  // modifiers: [
+	// 		  //   {
+	// 		  //     name: 'offset',
+	// 		  //     options: {
+	// 		  //       offset: [0, 4],
+	// 		  //     },
+	// 		  //   },
+	// 		  // ],
+	// 		});	
+	// 	})
 
-		span.addEventListener("mouseleave", () => {
-			let popper = document.getElementById("comment-popup")
-			if (popper) {
-				// alert("pop boi")
-				popper.removeAttribute('data-show')
-			}
-		})
-	}
+	// 	span.addEventListener("mouseleave", () => {
+	// 		let popper = document.getElementById("comment-popup")
+	// 		if (popper) {
+	// 			// alert("pop boi")
+	// 			popper.removeAttribute('data-show')
+	// 		}
+	// 	})
+	// }
 
 	handleChange = e => {
 		// debugger
@@ -155,7 +242,8 @@ class Article extends Component {
 			this.state.comment,
 			this.state.span,
 			this.state.startOffset,
-			this.state.endOffset
+			this.state.endOffset,
+			this.state.previousElId
 			// this.state.selection,
 		)
     
@@ -176,14 +264,10 @@ class Article extends Component {
 		// })
 	}
 
-	renderNewComment = () => {
-		this.createCommentPopper(this.props.comments[this.props.comments.length - 1])
-		this.setState({
-			...this.state,
-			// commentsLoaded: false,
-			addingComment: false
-		})
-	} 
+	// renderNewComment = () => {
+	// 	debugger
+	// 	this.newCommentPopper(this.props.comments[this.props.comments.length - 1])
+	// } 
 
 	render() {
 		// debugger

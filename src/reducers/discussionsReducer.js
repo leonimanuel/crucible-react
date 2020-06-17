@@ -38,6 +38,7 @@ export default function discussionsReducer(state = {
 				}
 
 			case "FALSIFY_ADDED_NEW_COMMENT":
+				debugger
 				return {
 					...state,
 					addedNewComment: false

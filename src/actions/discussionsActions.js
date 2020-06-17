@@ -1,6 +1,6 @@
 import rootURL from "../rootURL.js"
 
-export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset) => {
+export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset, previousElId) => {
 	console.log(comment)
 	// debugger
 	return (dispatch) => {
@@ -17,7 +17,8 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
 				span_id: span.id,
 				selection: span.innerText,
 				start_offset: startOffset,
-				end_offset: endOffset
+				end_offset: endOffset,
+				previous_el_id: previousElId
       })
     }
     // debugger
