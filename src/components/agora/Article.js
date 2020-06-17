@@ -4,6 +4,7 @@ import { fetchDiscussion } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 import { addComment } from "../../actions/discussionsActions.js"
 
+
 class Article extends Component {
 	state = {
 		location: "",
@@ -74,43 +75,50 @@ class Article extends Component {
 	}
 
 	createCommentPopper(comment) {
-		console.log(comment)
-		
 		let articleContent = document.getElementById("article-content");
 		
-
 		let range = new Range
 		range.setStart(articleContent.lastChild, comment.startPoint)
-
 		range.setEnd(articleContent.lastChild, comment.endPoint)
-
 		let selectedText = range.extractContents();
 
 		let span = document.createElement("span");
 		span.style.backgroundColor = "yellow";
 		span.id = `selection-${comment.startPoint}`
+
 		span.appendChild(selectedText);
 		range.insertNode(span);
+
+		span.addEventListener("mouseenter", () => {
+	    const commentSpan = document.querySelector(`#${comment.span_id}`);
+	    const popup = document.querySelector('#comment-popup');
+			popup.setAttribute('data-show', '');
+
+			createPopper(commentSpan, popup, {
+			  placement: 'left',
+			  // modifiers: [
+			  //   {
+			  //     name: 'offset',
+			  //     options: {
+			  //       offset: [0, 4],
+			  //     },
+			  //   },
+			  // ],
+			});
+		})
+
+		span.addEventListener("mouseleave", () => {
+			let popper = document.getElementById("comment-popup")
+			if (popper) {
+				// alert("pop boi")
+				popper.removeAttribute('data-show')
+			}
+		})
 
 		this.setState({
 			...this.state,
 			commentsLoaded: true
 		})
-  //   const span = document.querySelector(`#${comment.span_id}`);
-  //   const popup = document.querySelector('#comment-popup');
-		// popup.setAttribute('data-show', '');
-
-		// createPopper(span, popup, {
-		//   placement: 'left',
-		//   // modifiers: [
-		//   //   {
-		//   //     name: 'offset',
-		//   //     options: {
-		//   //       offset: [0, 4],
-		//   //     },
-		//   //   },
-		//   // ],
-		// });
 	}
 
 	handleChange = e => {
@@ -162,6 +170,7 @@ class Article extends Component {
 							COMMENTBOI
 							{/*<div id="arrow" data-popper-arrow></div>*/}
 						</div>
+
 					</div>				
 					: 
 					<h3>Loading</h3>
