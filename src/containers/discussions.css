@@ -34,16 +34,13 @@
   padding: 4px 8px;
   font-size: 13px;
   border-radius: 4px;
+  /*display: none;  */
+
 }
 
-#selection-popup {
-  display: none;  
-  
-}
-
-#selection-popup[data-show], #comment-popup[data-show]{
+/*#selection-popup[data-show], #comment-popup[data-show]{
   display: block;
-}
+}*/
 
 #arrow,
 #arrow::before {

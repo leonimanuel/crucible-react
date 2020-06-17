@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom"
 import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment } from "../../actions/discussionsActions.js"
 import { v4 as uuidv4 } from 'uuid';
+import ArticleComment from "./ArticleComment.js"
 
 class Article extends Component {
 	state = {
@@ -59,18 +61,9 @@ class Article extends Component {
 				previousEl = document.getElementById("article-content")
 				// debugger
 			}
-
-			
-			// debugger
-			// debugger
 			let selectedText = range.extractContents();
-			
-			// console.log(selectedText)
 			let span = document.createElement("span");
-			// span.style.backgroundColor = "yellow";
 			span.id = `selection-${uuidv4()}`
-			// debugger
-
 			span.appendChild(selectedText);
 			range.insertNode(span);
 			
@@ -82,8 +75,6 @@ class Article extends Component {
 				previousElId: previousEl.id
 				// selection: window.getSelection().toString()
 			})
-
-			// debugger
       const button = document.querySelector(`#${span.id}`);
       const popup = document.querySelector('#selection-popup');
 			popup.setAttribute('data-show', '');
@@ -118,24 +109,7 @@ class Article extends Component {
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
 			}
 
-
-			// if (!this.state.previousEl) {
-			// 	range.setStart(articleContent.lastChild, comment.startPoint)
-			// 	range.setEnd(articleContent.lastChild, comment.endPoint)					
-			// 	debugger
-
-			// } else {
-			// 	range.setStart(this.state.previousEl.nextSibling, comment.startPoint)
-			// 	range.setEnd(this.state.previousEl.nextSibling, comment.endPoint)		
-			// 	debugger
-			// }
-
-			// debugger
-
-			let selectedText = range.extractContents();
-			
-			// debugger
-			
+			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
 			span.style.backgroundColor = "yellow";
 			span.id = comment.span_id
@@ -146,6 +120,18 @@ class Article extends Component {
 			// debugger
 			span.addEventListener("mouseenter", () => {
 				this.newCommentPopper(comment)
+			})
+
+			span.addEventListener("click", () => {
+				console.log(ReactDOM.render(<ArticleComment />))
+			})
+
+			span.addEventListener("mouseleave", () => {
+				let popup = document.querySelector("#comment-popup")
+				// popup.style = "color: green"
+				// popup.removeAttribute("data-show")
+				// console.log(popup.parentNode.removeChild(popup))
+				console.log("dueces")
 			})
 		})
 		
@@ -159,10 +145,14 @@ class Article extends Component {
 	newCommentPopper = (comment) => {
 		console.log("new comment popper")
     const commentSpan = document.querySelector(`#${comment.span_id}`);
-    const popup = document.querySelector('#comment-popup');
-    debugger
-    popup.innerHTML = `<div>${comment.content}</div>`
-		popup.setAttribute('data-show', '');
+    // const popup = document.createElement("div")
+    // popup.id= "comment-popup"
+    const popup = document.querySelector(`#comment-popup`)
+    // popup.innerText = comment.content
+
+
+  	// let articleWrapper = document.querySelector("#article-wrapper")
+		// articleWrapper.appendChild(popup)
 
 		createPopper(commentSpan, popup, {
 		  placement: 'left',
@@ -176,52 +166,6 @@ class Article extends Component {
 		  // ],
 		});	
 	} 	
-
-	// createCommentPopper(comment) {
-	// 	// debugger
-	// 	let articleContent = document.getElementById("article-content");
-		
-	// 	let range = new Range
-	// 	range.setStart(articleContent.lastChild, comment.startPoint)
-	// 	range.setEnd(articleContent.lastChild, comment.endPoint)
-	// 	// debugger
-	// 	let selectedText = range.extractContents();
-
-	// 	let span = document.createElement("span");
-	// 	span.style.backgroundColor = "yellow";
-	// 	span.id = `selection-${comment.selection}`
-
-	// 	span.appendChild(selectedText);
-	// 	range.insertNode(span);
-
-	// 	span.addEventListener("mouseenter", () => {
-	//     const commentSpan = document.querySelector(`#${comment.span_id}`);
-	//     const popup = document.querySelector('#comment-popup');
-	//     debugger
-	//     popup.innerHTML = `<div>${comment.content}</div>`
-	// 		popup.setAttribute('data-show', '');
-
-	// 		createPopper(commentSpan, popup, {
-	// 		  placement: 'left',
-	// 		  // modifiers: [
-	// 		  //   {
-	// 		  //     name: 'offset',
-	// 		  //     options: {
-	// 		  //       offset: [0, 4],
-	// 		  //     },
-	// 		  //   },
-	// 		  // ],
-	// 		});	
-	// 	})
-
-	// 	span.addEventListener("mouseleave", () => {
-	// 		let popper = document.getElementById("comment-popup")
-	// 		if (popper) {
-	// 			// alert("pop boi")
-	// 			popper.removeAttribute('data-show')
-	// 		}
-	// 	})
-	// }
 
 	handleChange = e => {
 		// debugger
@@ -255,19 +199,7 @@ class Article extends Component {
 		parent.insertBefore(span.firstChild, span);
 		parent.removeChild(span)
 		parent.normalize()
-		// debugger
-	
-		// this.setState({
-		// 	...this.state,
-		// 	// commentsLoaded: false,
-		// 	addingComment: true
-		// })
 	}
-
-	// renderNewComment = () => {
-	// 	debugger
-	// 	this.newCommentPopper(this.props.comments[this.props.comments.length - 1])
-	// } 
 
 	render() {
 		// debugger
@@ -286,13 +218,8 @@ class Article extends Component {
 								Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
 								<input type="submit" value="post"/>
 							</form>
-						</div>
-						
-						<div id="comment-popup">
-							COMMENTBOI
-							{/*<div id="arrow" data-popper-arrow></div>*/}
-						</div>
-
+						</div>						
+							<ArticleComment id="comment-popup" />
 					</div>				
 					: 
 					<h3>Loading</h3>
@@ -313,6 +240,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment })(Article);
 
-						// <div>{this.props.comments ? this.props.comments.map(comment => <div>Commentodos</div>) : null}</div>
 
-				// <h3>{this.props.discussion ?this.props.discussion.article.title : null}</h3>
+
+
+
