@@ -8,7 +8,10 @@ class Article extends Component {
 	state = {
 		location: "",
 		comment: "",
-		selection: ""
+		span: "",
+		startOffset: "",
+		endOffset: "",
+		commentsLoaded: false
 	}
 
 	componentDidMount() {
@@ -21,25 +24,37 @@ class Article extends Component {
 			this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
 			this.setState({location: this.props.location.pathname})
 		}
+
+		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
+			this.props.comments.map(comment => this.createCommentPopper(comment))
+		}
 	}
 
 	handleTextSelect = e => {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
-			let selection= window.getSelection().getRangeAt(0);
-			let selectedText = selection.extractContents();
+			let range = window.getSelection().getRangeAt(0);
+			let startOffset = range.startOffset
+			let endOffset = range.endOffset
+			// debugger
+			let selectedText = range.extractContents();
+			
 			// console.log(selectedText)
-			let span= document.createElement("span");
+			let span = document.createElement("span");
 			span.style.backgroundColor = "yellow";
 			span.id = `selection-${window.getSelection().anchorOffset}`
 			span.appendChild(selectedText);
-			selection.insertNode(span);
-
+			range.insertNode(span);
+			
 			this.setState({
 				...this.state,
-				spanId: span.id
+				span: span,
+				startOffset: startOffset,
+				endOffset: endOffset
+				// selection: window.getSelection().toString()
 			})
 
+			// debugger
       const button = document.querySelector(`#${span.id}`);
       const popup = document.querySelector('#selection-popup');
 			popup.setAttribute('data-show', '');
@@ -59,13 +74,32 @@ class Article extends Component {
 	}
 
 	createCommentPopper(comment) {
-		debugger
 		console.log(comment)
 		
+		let articleContent = document.getElementById("article-content");
+		
+
+		let range = new Range
+		range.setStart(articleContent.lastChild, comment.startPoint)
+
+		range.setEnd(articleContent.lastChild, comment.endPoint)
+
+		let selectedText = range.extractContents();
+
+		let span = document.createElement("span");
+		span.style.backgroundColor = "yellow";
+		span.id = `selection-${comment.startPoint}`
+		span.appendChild(selectedText);
+		range.insertNode(span);
+
+		this.setState({
+			...this.state,
+			commentsLoaded: true
+		})
   //   const span = document.querySelector(`#${comment.span_id}`);
   //   const popup = document.querySelector('#comment-popup');
 		// popup.setAttribute('data-show', '');
-		
+
 		// createPopper(span, popup, {
 		//   placement: 'left',
 		//   // modifiers: [
@@ -80,6 +114,7 @@ class Article extends Component {
 	}
 
 	handleChange = e => {
+		// debugger
 		this.setState({
 			...this.state,
 			comment: e.target.value
@@ -88,13 +123,16 @@ class Article extends Component {
 	}
 
 	handleSubmitComment = (e) => {
-		// debugger
+		debugger
 		e.preventDefault()
 		this.props.addComment(
 			this.props.match.params.groupId,
 			this.props.match.params.discussionId,
 			this.state.comment,
-			this.state.spanId
+			this.state.span,
+			this.state.startOffset,
+			this.state.endOffset
+			// this.state.selection,
 		)
     
     const popup = document.querySelector('#selection-popup');
@@ -128,9 +166,6 @@ class Article extends Component {
 					: 
 					<h3>Loading</h3>
 				}
-				<div>
-					{this.props.comments ? this.props.comments.map(comment => this.createCommentPopper(comment)) : null}
-				</div>
 			</div>
 		)
 	}

@@ -1,7 +1,8 @@
 import rootURL from "../rootURL.js"
 
-export const addComment = (groupId, discussionId, comment, spanId) => {
+export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset) => {
 	console.log(comment)
+	// debugger
 	return (dispatch) => {
 		dispatch({type: "POSTING_COMMENT"})
     let configObj = {
@@ -13,7 +14,10 @@ export const addComment = (groupId, discussionId, comment, spanId) => {
       },
       body: JSON.stringify({
       	comment_text: comment,
-				span_id: spanId
+				span_id: span.id,
+				selection: span.innerText,
+				start_offset: startOffset,
+				end_offset: endOffset
       })
     }
     // debugger
