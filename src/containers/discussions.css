@@ -7,9 +7,13 @@
 #article-wrapper {
 	/*align-self: flex-end;*/
 	border: 2px solid black;
-	width: 50%;
+  border-radius: 10px;
+	width: 75%;
+  max-width: 1000px;
 	height: 90%;
 	overflow: scroll;
+  font-family: Gill Sans, sans-serif;
+  background-color: azure;
 }
 
 #article-title {
@@ -18,7 +22,9 @@
 
 #article-content {
 	/*overflow: scroll;*/
-	text-align: justify;
+  font-size: 1.2em;
+	text-align: left;
+  padding: 50px;
 }
 
 #selection-popup, #comment-popup {
