@@ -32,30 +32,10 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
      })
       .catch(err => alert(err.message))
 	}
+}
 
-
-	// return {
-	// 	type: "ADDING_COMMENT",
-	// 	comment
-	// }
-	// return (dispatch) => {
-	// 	dispatch({type: "CREATE_COMMENT"})
- //    let configObj = {
- //      method: "POST",
- //      headers: {
- //        "Content-Type": "application/json",
- //        Accept: "application/json",
- //        Authorization: localStorage.getItem("token")
- //      }
- //    }
- //    // debugger
- //    fetch(rootURL() + `/groups/${groupId}/discussions/${discussionId}`, configObj)
- //      .then(resp => resp.json())
- //      .then((discussionData) => {
-	// 			dispatch({ 
-	// 				type: 'ADD_DISCUSSION', 
-	// 				discussionData
-	// 			})
- //     })
- //      .catch(err => alert(err.message))
+export const falsifyAddedNewComment = () => {
+	return {
+		type: "FALSIFY_ADDED_NEW_COMMENT"
+	}
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
-import { addComment } from "../../actions/discussionsActions.js"
+import { addComment, falsifyAddedNewComment } from "../../actions/discussionsActions.js"
 
 
 class Article extends Component {
@@ -12,7 +12,8 @@ class Article extends Component {
 		span: "",
 		startOffset: "",
 		endOffset: "",
-		commentsLoaded: false
+		commentsLoaded: false,
+		// newCommentAdded: false
 	}
 
 	componentDidMount() {
@@ -27,7 +28,14 @@ class Article extends Component {
 		}
 
 		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
-			this.props.comments.map(comment => this.createCommentPopper(comment))
+			debugger
+			// this.props.comments.map(comment => this.createCommentPopper(comment))
+			this.renderComments()
+		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
+			debugger
+			this.renderNewComment()
+			this.props.falsifyAddedNewComment()
+			// this.createCommentPopper(this.props.comments[this.props.comments.length - 1])
 		}
 	}
 
@@ -42,8 +50,8 @@ class Article extends Component {
 			
 			// console.log(selectedText)
 			let span = document.createElement("span");
-			span.style.backgroundColor = "yellow";
-			span.id = `selection-${window.getSelection().anchorOffset}`
+			// span.style.backgroundColor = "yellow";
+			span.id = `selection-${window.getSelection().toString()}`
 			span.appendChild(selectedText);
 			range.insertNode(span);
 			
@@ -74,17 +82,27 @@ class Article extends Component {
 		}
 	}
 
+	renderComments = () => {
+		this.props.comments.map(comment => this.createCommentPopper(comment))
+		this.setState({
+			...this.state,
+			commentsLoaded: true,
+			// addingComment: false
+		})
+	}
+
 	createCommentPopper(comment) {
 		let articleContent = document.getElementById("article-content");
 		
 		let range = new Range
 		range.setStart(articleContent.lastChild, comment.startPoint)
 		range.setEnd(articleContent.lastChild, comment.endPoint)
+		debugger
 		let selectedText = range.extractContents();
 
 		let span = document.createElement("span");
 		span.style.backgroundColor = "yellow";
-		span.id = `selection-${comment.startPoint}`
+		span.id = `selection-${comment.selection}`
 
 		span.appendChild(selectedText);
 		range.insertNode(span);
@@ -106,7 +124,7 @@ class Article extends Component {
 			  //     },
 			  //   },
 			  // ],
-			});
+			});	
 		})
 
 		span.addEventListener("mouseleave", () => {
@@ -115,11 +133,6 @@ class Article extends Component {
 				// alert("pop boi")
 				popper.removeAttribute('data-show')
 			}
-		})
-
-		this.setState({
-			...this.state,
-			commentsLoaded: true
 		})
 	}
 
@@ -132,8 +145,9 @@ class Article extends Component {
 		console.log(e.target.value)
 	}
 
+
+
 	handleSubmitComment = (e) => {
-		debugger
 		e.preventDefault()
 		this.props.addComment(
 			this.props.match.params.groupId,
@@ -147,7 +161,29 @@ class Article extends Component {
     
     const popup = document.querySelector('#selection-popup');
 		popup.removeAttribute('data-show');
+
+		let span = document.getElementById(this.state.span.id);
+		let parent = span.parentNode;
+		parent.insertBefore(span.firstChild, span);
+		parent.removeChild(span)
+		parent.normalize()
+		// debugger
+	
+		// this.setState({
+		// 	...this.state,
+		// 	// commentsLoaded: false,
+		// 	addingComment: true
+		// })
 	}
+
+	renderNewComment = () => {
+		this.createCommentPopper(this.props.comments[this.props.comments.length - 1])
+		this.setState({
+			...this.state,
+			// commentsLoaded: false,
+			addingComment: false
+		})
+	} 
 
 	render() {
 		// debugger
@@ -185,12 +221,13 @@ class Article extends Component {
 const mapStateToProps = state => {
 	return {
 		discussion: state.discussion.discussion,
-		comments: state.discussion.comments
+		comments: state.discussion.comments,
+		addedNewComment: state.discussion.addedNewComment
 	}
 }
 
 
-export default connect(mapStateToProps, { fetchDiscussion, addComment })(Article);
+export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment })(Article);
 
 						// <div>{this.props.comments ? this.props.comments.map(comment => <div>Commentodos</div>) : null}</div>
 

@@ -1,5 +1,6 @@
 export default function discussionsReducer(state = {
 	comments: [],
+	addedNewComment: false,
 	discussion: "",
 	loading: false,
 
@@ -21,13 +22,25 @@ export default function discussionsReducer(state = {
 					comments: action.discussionData.comments
 				}
 
-			// case "POSTING_DISCUSSION"
+			case "POSTING_DISCUSSION":
+				debugger
+				return {
+					...state,
+					loadingComment: true
+				}
 
 			case "ADD_COMMENT":
 				// debugger
 				return {
 					...state,
-					comments: [...state.comments, action.comment]
+					comments: [...state.comments, action.comment],
+					addedNewComment: true
+				}
+
+			case "FALSIFY_ADDED_NEW_COMMENT":
+				return {
+					...state,
+					addedNewComment: false
 				}
 
 			default:
