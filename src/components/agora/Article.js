@@ -17,7 +17,8 @@ class Article extends Component {
 		endOffset: "",
 		commentsLoaded: false,
 		previousElId: "",
-		hoverSelectionComment: false
+		hoverSelectionComment: "",
+		textSelected: false
 	}
 
 	componentDidMount() {
@@ -48,6 +49,11 @@ class Article extends Component {
 	handleTextSelect = e => {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
+			this.setState({
+				...this.state,
+				textSelected: true
+			})
+			
 			let range = window.getSelection().getRangeAt(0);
 			// range.setStart(range.startContainer.previousElementSibling)
 			// debugger
@@ -77,22 +83,27 @@ class Article extends Component {
 				previousElId: previousEl.id
 				// selection: window.getSelection().toString()
 			})
-      const button = document.querySelector(`#${span.id}`);
-      const popup = document.querySelector('#selection-popup');
-			popup.setAttribute('data-show', '');
 
-			createPopper(button, popup, {
-			  // placement: 'bottom',
-			  modifiers: [
-			    {
-			      name: 'offset',
-			      options: {
-			        offset: [0, 8],
-			      },
-			    },
-			  ],
-			});
+			this.createSelectionMenu(span.id)
 		}
+	}
+
+	createSelectionMenu = spanId => {
+    const button = document.querySelector(`#${spanId}`);
+    const popup = document.querySelector('#selection-popup');
+		popup.setAttribute('data-show', '');
+
+		createPopper(button, popup, {
+		  // placement: 'bottom',
+		  modifiers: [
+		    {
+		      name: 'offset',
+		      options: {
+		        offset: [0, 8],
+		      },
+		    },
+		  ],
+		});
 	}
 
 	renderCommentHighlights = (comments) => {
