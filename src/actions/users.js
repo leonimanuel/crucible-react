@@ -19,13 +19,6 @@ export const logOut = () => {
 // 	}
 // }
 
-export const selectTopic = topic => {
-	return {
-		type: "SELECT_TOPIC",
-		topic
-	}
-}
-
 export const updateTopic = (fact, destinationTopic) => {
 	console.log(fact)
 	return {

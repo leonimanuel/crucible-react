@@ -27,13 +27,6 @@ export default function userReducer(state = {
 				userEmail: "none"
 			}
 
-		case "SELECT_TOPIC":
-			console.log("setting parent topic")
-			return {
-				...state,
-				parentTopic: action.topic		
-			}
-
 		case "UPDATE_TOPIC":
 			console.log("updating parent topic")
 			console.log(state.parentTopic)

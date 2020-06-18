@@ -7,13 +7,13 @@ import ConsoleTopicsList from "./ConsoleTopicsList.js"
 
 class TopicMenu extends Component {
 	componentDidMount() {
-		debugger
+		// debugger
 		this.props.fetchTopics()
 	}
 
 	render() {
 		// console.log(!!this.props.topics)
-		debugger
+		// debugger
 		return (
 			<div id="console-topic-menu-container">
 				<div className="console-topics-title console-section-title">Topics</div>

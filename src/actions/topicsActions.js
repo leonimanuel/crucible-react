@@ -16,7 +16,7 @@ export const fetchTopics = () => {
 	  fetch(rootURL() + `/topics`, configObj)
 	    .then(resp => resp.json())
 	    .then((topics) => {
-				debugger
+				// debugger
 				dispatch(({
 					type: "ADD_TOPICS",
 					topics
@@ -24,5 +24,12 @@ export const fetchTopics = () => {
 				// this.props.addTopics(data)
 	    })
 	    .catch(err => err.message)
+	}
+}
+
+export const selectTopic = topic => {
+	return {
+		type: "SELECT_TOPIC",
+		topic
 	}
 }

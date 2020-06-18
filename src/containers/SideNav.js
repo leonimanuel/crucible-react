@@ -7,25 +7,16 @@ import DetailPane from "./DetailPane.js"
 
 
 class SideNav extends Component {
+	state = {
+		open: false,
+		section: ""
+	}
+
 	componentDidMount() {
 		console.log("mounted sidenav")
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
 		sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
-		// sideNav.style = `height: ${document.querySelector("main").clientHeight}px`
-		// debugger
-
-	}
-
-	// componentDidUpdate() {
-	// 	let sideNav = document.getElementById("side-nav")
-	// 	sideNav.style = `height: ${document.querySelector("main").clientHeight}px`
-		
-	// }
-
-	state = {
-		open: false,
-		section: "console"
 	}
 
 	handleTabClick = e => {
