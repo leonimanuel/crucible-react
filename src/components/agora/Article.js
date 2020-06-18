@@ -15,7 +15,8 @@ class Article extends Component {
 		startOffset: "",
 		endOffset: "",
 		commentsLoaded: false,
-		previousElId: ""
+		previousElId: "",
+		hoverSelectionComment: ""
 	}
 
 	componentDidMount() {
@@ -119,7 +120,9 @@ class Article extends Component {
 
 			// debugger
 			span.addEventListener("mouseenter", () => {
-				this.newCommentPopper(comment)
+				debugger
+				this.handleHover(comment)
+				// this.newCommentPopper(comment)
 			})
 
 			span.addEventListener("click", () => {
@@ -129,7 +132,7 @@ class Article extends Component {
 			span.addEventListener("mouseleave", () => {
 				let popup = document.querySelector("#comment-popup")
 				// popup.style = "color: green"
-				// popup.removeAttribute("data-show")
+				popup.removeAttribute("data-show")
 				// console.log(popup.parentNode.removeChild(popup))
 				console.log("dueces")
 			})
@@ -142,12 +145,21 @@ class Article extends Component {
 		})
 	}
 
+	handleHover = (comment) => {
+		this.setState({
+			hoverSelectionComment: comment
+		}, () => {
+			this.newCommentPopper(comment)
+		})
+	}
+
 	newCommentPopper = (comment) => {
 		console.log("new comment popper")
     const commentSpan = document.querySelector(`#${comment.span_id}`);
     // const popup = document.createElement("div")
     // popup.id= "comment-popup"
     const popup = document.querySelector(`#comment-popup`)
+    popup.setAttribute("data-show", "")
     // popup.innerText = comment.content
 
 
@@ -219,7 +231,7 @@ class Article extends Component {
 								<input type="submit" value="post"/>
 							</form>
 						</div>						
-							<ArticleComment id="comment-popup" />
+							{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
 					</div>				
 					: 
 					<h3>Loading</h3>

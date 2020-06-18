@@ -6,7 +6,7 @@ class ArticleComment extends Component {
 		const { match } = this.props;
 		return (
 			<div id={this.props.id}>
-				Hey there baby
+				{this.props.comment.content}
 			</div>
 		)
 	}
