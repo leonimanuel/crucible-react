@@ -1,5 +1,6 @@
 export default function topicsReducer(state = {
 	topics: [],
+	parentTopic: "",
 	b: ""
 }, action) {
 	switch (action.type) {
