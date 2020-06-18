@@ -6,6 +6,7 @@ import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment } from "../../actions/discussionsActions.js"
 import { v4 as uuidv4 } from 'uuid';
 import ArticleComment from "./ArticleComment.js"
+import SelectionMenu from "./SelectionMenu.js"
 
 class Article extends Component {
 	state = {
@@ -16,7 +17,7 @@ class Article extends Component {
 		endOffset: "",
 		commentsLoaded: false,
 		previousElId: "",
-		hoverSelectionComment: ""
+		hoverSelectionComment: false
 	}
 
 	componentDidMount() {
@@ -130,10 +131,10 @@ class Article extends Component {
 			})
 
 			span.addEventListener("mouseleave", () => {
-				let popup = document.querySelector("#comment-popup")
-				// popup.style = "color: green"
-				popup.removeAttribute("data-show")
-				// console.log(popup.parentNode.removeChild(popup))
+				this.setState({
+					...this.state,
+					hoverSelectionComment: ""
+				})
 				console.log("dueces")
 			})
 		})
@@ -147,6 +148,7 @@ class Article extends Component {
 
 	handleHover = (comment) => {
 		this.setState({
+			...this.state,
 			hoverSelectionComment: comment
 		}, () => {
 			this.newCommentPopper(comment)
