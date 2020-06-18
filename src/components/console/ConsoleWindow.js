@@ -5,6 +5,7 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	render() {
+		debugger
 		console.log("rendering console window")
 		if (!this.props.parentTopic) {
 			return null
@@ -21,7 +22,7 @@ class ConsoleWindow extends Component {
 }
 
 
-export default connect(state => ({parentTopic: state.parentTopic}))(ConsoleWindow);
+export default connect(state => ({parentTopic: state.topics.parentTopic}))(ConsoleWindow);
 
 
 
