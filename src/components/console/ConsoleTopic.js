@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { selectTopic, updateTopic, addTopics } from "../../actions/users.js"
+import { selectTopic, updateTopic } from "../../actions/users.js"
 import rootURL from "../../rootURL.js"
 
 
@@ -84,7 +84,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(null, { selectTopic, updateTopic, addTopics })(ConsoleTopic);
+export default connect(null, { selectTopic, updateTopic })(ConsoleTopic);
 
 
 

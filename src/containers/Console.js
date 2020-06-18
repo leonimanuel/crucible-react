@@ -5,7 +5,7 @@ import rootURL from "../rootURL.js"
 import { connect } from "react-redux"
 import TopicMenu from "../components/console/TopicMenu.js"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
-import { addTopics } from "../actions/users.js"
+// import { addTopics } from "../actions/topicsActions.js"
 
 class Console extends Component {
   componentDidMount() {
@@ -30,6 +30,7 @@ class Console extends Component {
   
 	render() {
 		// this.fetchFacts()
+    debugger
 		return (
 			<div id="console-container">
 				<TopicMenu topics={this.props.topics} />
@@ -46,7 +47,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { addTopics })(Console);
+export default connect(mapStateToProps, )(Console);
 
 
 

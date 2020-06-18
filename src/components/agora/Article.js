@@ -98,6 +98,7 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
+		// debugger
 		comments.map(comment => {
 			// debugger
 			let articleContent = document.getElementById("article-content");
@@ -106,10 +107,11 @@ class Article extends Component {
 			let previousEl = document.getElementById(comment.previous_el_id)
 			
 			if (comment.previous_el_id === "article-content") {
-				range.setStart(articleContent.lastChild, comment.startPoint)
-				range.setEnd(articleContent.lastChild, comment.endPoint)					
+				debugger
+				range.setStart(articleContent.firstChild, comment.startPoint)
+				range.setEnd(articleContent.firstChild, comment.endPoint)					
 			} else {
-				// debugger
+				debugger
 				range.setStart(previousEl.nextSibling, comment.startPoint)
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
 			}
@@ -122,7 +124,7 @@ class Article extends Component {
 			span.appendChild(selectedText);
 			range.insertNode(span);
 
-			// debugger
+			debugger
 			span.addEventListener("mouseenter", () => {
 				// debugger
 				this.handleHover(comment)

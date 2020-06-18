@@ -1,7 +1,5 @@
-// import rootURL from "../rootURL.js"
-
 export const logIn = (user) => {
-	// console.log(user)
+	// debugger
 	return {
 		type: "LOG_IN",
 		user
@@ -14,12 +12,12 @@ export const logOut = () => {
 	}
 }
 
-export const addTopics = (topics) => {
-	return {
-		type: "ADD_TOPICS",
-		topics
-	}
-}
+// export const addTopics = (topics) => {
+// 	return {
+// 		type: "ADD_TOPICS",
+// 		topics
+// 	}
+// }
 
 export const selectTopic = topic => {
 	return {

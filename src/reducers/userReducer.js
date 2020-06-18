@@ -17,7 +17,7 @@ export default function userReducer(state = {
 			return {
 				isLoggedIn: true, //necessary?
 				userEmail: action.user.email,
-				categories: action.user.topics,
+				topics: action.user.topics,
 				facts: action.user.facts
 			}
 		
@@ -25,13 +25,6 @@ export default function userReducer(state = {
 			return {
 				isLoggedIn: false,
 				userEmail: "none"
-			}
-
-		case "ADD_TOPICS":
-			console.log("adding topics")
-			return {
-				...state,
-				topics: action.topics
 			}
 
 		case "SELECT_TOPIC":

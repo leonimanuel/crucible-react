@@ -31,6 +31,7 @@ class App extends Component {
       .then(resp => resp.json())
       .then((data) => {
         if (data.name) {
+          // debugger
           console.log(data)
           this.props.logIn(data)
         } else {
