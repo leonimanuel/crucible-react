@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { selectTopic, updateTopic } from "../../actions/topicsActions.js"
 import rootURL from "../../rootURL.js"
+// import { showDetailPane } from "../../actions/sidenavActions.js"
 
 
 class ConsoleTopic extends Component {
@@ -12,6 +13,7 @@ class ConsoleTopic extends Component {
 	handleTopicSelection = () => {
 		console.log("handling topic selection")
 		this.props.selectTopic(this.props.topic)
+		// this.props.showDetailPane()
 	}
 
 	allowDrop = e => {
@@ -84,7 +86,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(null, { selectTopic, updateTopic })(ConsoleTopic);
+export default connect(null, { selectTopic, updateTopic})(ConsoleTopic);
 
 
 

@@ -8,6 +8,7 @@ class MainPane extends Component {
 		console.log("mounted MainPane")
 	}
 	render() {
+		// debugger
 		return (
 			<div>
 				{this.props.section === "console" ? <TopicMenu /> : null}

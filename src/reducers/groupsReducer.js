@@ -4,7 +4,8 @@ export default function groupsReducer(state = {
 	members: [],
 	discussions: [],
 	discussion: "",
-	loading: false
+	loading: false,
+	showDetailPane: false 
 }, action) {
 		// debugger
 		console.log("executing groupsReducer")
@@ -30,6 +31,18 @@ export default function groupsReducer(state = {
 						...state.selectedGroup,
 						discussions: [...state.selectedGroup.discussions, action.discussion]
 					}
+				}
+
+			case "SHOW_DETAIL_PANE":
+				return {
+					...state,
+					showDetailPane: true
+				}
+
+			case "HIDE_DETAIL_PANE":
+				return {
+					...state,
+					showDetailPane: false
 				}
 
 			default:
