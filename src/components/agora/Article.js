@@ -33,16 +33,11 @@ class Article extends Component {
 		}
 
 		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
-			// debugger
-			// this.props.comments.map(comment => this.createCommentPopper(comment))
-			// this.renderComments()
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			// debugger
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
-			// this.newCommentPopper(this.props.comments[this.props.comments.length - 1])
 			this.props.falsifyAddedNewComment()
-			// this.createCommentPopper(this.props.comments[this.props.comments.length - 1])
 		}
 	}
 
@@ -51,8 +46,6 @@ class Article extends Component {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
-			// range.setStart(range.startContainer.previousElementSibling)
-			// debugger
 
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
@@ -70,7 +63,7 @@ class Article extends Component {
 			span.id = `selection-${uuidv4()}`
 			span.appendChild(selectedText);
 			range.insertNode(span);
-			debugger
+			// debugger
 			
 			this.setState({
 				...this.state,
@@ -81,16 +74,6 @@ class Article extends Component {
 				textSelected: true
 				// selection: window.getSelection().toString()
 			}, () => {this.createSelectionMenu(span.id)})
-
-			// this.setState({
-			// 	...this.state,
-			// 	textSelected: true
-			// }
-			// // , 
-			// // () => {
-			// // 	this.createSelectionMenu(span.id);
-			// // }
-			// )
 		}
 	}
 
@@ -126,7 +109,7 @@ class Article extends Component {
 				range.setStart(articleContent.lastChild, comment.startPoint)
 				range.setEnd(articleContent.lastChild, comment.endPoint)					
 			} else {
-				debugger
+				// debugger
 				range.setStart(previousEl.nextSibling, comment.startPoint)
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
 			}
@@ -178,32 +161,14 @@ class Article extends Component {
 	newCommentPopper = (comment) => {
 		console.log("new comment popper")
     const commentSpan = document.querySelector(`#${comment.span_id}`);
-    // const popup = document.createElement("div")
-    // popup.id= "comment-popup"
-    const popup = document.querySelector(`#comment-popup`)
+
+		const popup = document.querySelector(`#comment-popup`)
     popup.setAttribute("data-show", "")
-    // popup.innerText = comment.content
-
-
-  	// let articleWrapper = document.querySelector("#article-wrapper")
-		// articleWrapper.appendChild(popup)
 
 		createPopper(commentSpan, popup, {
 		  placement: 'left',
-		  // modifiers: [
-		  //   {
-		  //     name: 'offset',
-		  //     options: {
-		  //       offset: [0, 4],
-		  //     },
-		  //   },
-		  // ],
 		});	
 	} 	
-
-	grab1() {
-		debugger
-	}
 
 	handleSubmitComment = (e, commentText) => {
 		// debugger
@@ -218,10 +183,8 @@ class Article extends Component {
 			this.state.previousElId
 			// this.state.selection,
 		)
-    
-    // const popup = document.querySelector('#selection-popup');
-		// popup.removeAttribute('data-show');
-		debugger
+
+		// debugger
 		let span = document.getElementById(this.state.span.id);
 		let parent = span.parentNode;
 		parent.insertBefore(span.firstChild, span);
@@ -238,7 +201,7 @@ class Article extends Component {
 			<div id="article-wrapper">
 				{this.props.discussion ? 
 					<div>
-						<div id="article-title" onClick={this.grab1.bind(this)}>{this.props.discussion.article.title}</div>
+						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
 						{this.state.textSelected ? <SelectionMenu id="selection-popup" submit={this.handleSubmitComment}/> : null}
 						{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
