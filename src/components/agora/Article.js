@@ -203,7 +203,7 @@ class Article extends Component {
 					<div>
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
-						{this.state.textSelected ? <SelectionMenu id="selection-popup" submit={this.handleSubmitComment}/> : null}
+						{this.state.textSelected ? <SelectionMenu id="selection-popup" selection={this.state.span.innerText} submit={this.handleSubmitComment}/> : null}
 						{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
 					</div>				
 					: 

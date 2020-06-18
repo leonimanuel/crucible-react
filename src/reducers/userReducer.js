@@ -100,6 +100,15 @@ export default function userReducer(state = {
 					updatedParentTopic
 				} 
 			}
+
+		// case "ADD_FACT":
+		// 	let boi = state.topics
+		// 	let newTopicIndex = updatedTopics.findIndex(topic => topic.name === "New")
+
+		// 	return {
+		// 		...state,
+		// 		topics: [...topics]
+		// 	}
 			
 		default:
 			return state;

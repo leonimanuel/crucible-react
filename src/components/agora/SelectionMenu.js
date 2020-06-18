@@ -2,7 +2,17 @@ import React, { Component } from 'react';
 
 class SelectionMenu extends Component {
 	state = {
-		action: ""
+		action: "",
+		comment: ""
+	}
+
+	handleChange = e => {
+		this.setState({
+			...this.state,
+			comment: e.target.value
+		})
+		console.log(e.target.value)
+		// this.props.glorp()
 	}
 
 	handleClick = e => {
@@ -16,7 +26,7 @@ class SelectionMenu extends Component {
 		return (
 			<div id="new-comment-form">
 				New Comment
-				<form onSubmit={this.props.submit} id="new-comment-form">
+				<form onSubmit={(e) => this.props.submit(e, this.state.comment)} id="new-comment-form">
 					Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
 					<input type="submit" value="post"/>
 				</form>
@@ -40,3 +50,5 @@ class SelectionMenu extends Component {
 
 
 export default SelectionMenu;
+
+
