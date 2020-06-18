@@ -19,14 +19,7 @@ export const logOut = () => {
 // 	}
 // }
 
-export const updateTopic = (fact, destinationTopic) => {
-	console.log(fact)
-	return {
-		type: "UPDATE_TOPIC",
-		fact,
-		destinationTopic
-	}
-}
+
 
 
 // export const showGroupDetails = group => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { updateTopic } from "../../actions/users.js"
-import { selectTopic } from "../../actions/topicsActions.js"
+import { selectTopic, updateTopic } from "../../actions/topicsActions.js"
 import rootURL from "../../rootURL.js"
 
 

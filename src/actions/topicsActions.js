@@ -33,3 +33,15 @@ export const selectTopic = topic => {
 		topic
 	}
 }
+
+export const updateTopic = (fact, destinationTopic) => {
+	// debugger
+	console.log(fact)
+	return {
+		type: "UPDATE_TOPIC",
+		fact,
+		destinationTopic
+	}
+}
+
+
