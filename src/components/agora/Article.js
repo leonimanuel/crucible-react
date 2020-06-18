@@ -49,11 +49,6 @@ class Article extends Component {
 	handleTextSelect = e => {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
-			this.setState({
-				...this.state,
-				textSelected: true
-			})
-			
 			let range = window.getSelection().getRangeAt(0);
 			// range.setStart(range.startContainer.previousElementSibling)
 			// debugger
@@ -84,11 +79,19 @@ class Article extends Component {
 				// selection: window.getSelection().toString()
 			})
 
-			this.createSelectionMenu(span.id)
+			this.setState({
+				...this.state,
+				textSelected: true
+			}, () => {
+				this.createSelectionMenu(span.id);
+			})
+			// this.createSelectionMenu(span.id))
 		}
 	}
 
-	createSelectionMenu = spanId => {
+	createSelectionMenu = (spanId) => {
+		console.log(this.state.textSelected)
+    // debugger
     const button = document.querySelector(`#${spanId}`);
     const popup = document.querySelector('#selection-popup');
 		popup.setAttribute('data-show', '');
@@ -132,7 +135,7 @@ class Article extends Component {
 
 			// debugger
 			span.addEventListener("mouseenter", () => {
-				debugger
+				// debugger
 				this.handleHover(comment)
 				// this.newCommentPopper(comment)
 			})
@@ -235,16 +238,8 @@ class Article extends Component {
 					<div>
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
-						
-						<div id="selection-popup" role="tooltip">
-							Context Menu
-							<div id="arrow" data-popper-arrow></div>
-							<form onSubmit={this.handleSubmitComment} id="new-comment-form">
-								Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
-								<input type="submit" value="post"/>
-							</form>
-						</div>						
-							{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
+						{this.state.textSelected ? <SelectionMenu id="selection-popup" /> : null}
+						{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
 					</div>				
 					: 
 					<h3>Loading</h3>
@@ -266,6 +261,12 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment })(Article);
 
 
-
-
+						// <div id="selection-popup" role="tooltip">
+						// 	Context Menu
+							
+						// 	<form onSubmit={this.handleSubmitComment} id="new-comment-form">
+						// 		Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
+						// 		<input type="submit" value="post"/>
+						// 	</form>
+						// </div>	
 
