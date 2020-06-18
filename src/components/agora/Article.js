@@ -12,7 +12,7 @@ class Article extends Component {
 	state = {
 		location: "",
 		comment: "",
-		span: "",
+		span: "baseline",
 		startOffset: "",
 		endOffset: "",
 		commentsLoaded: false,
@@ -47,6 +47,7 @@ class Article extends Component {
 	}
 
 	handleTextSelect = e => {
+		console.log(this)
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
@@ -69,23 +70,27 @@ class Article extends Component {
 			span.id = `selection-${uuidv4()}`
 			span.appendChild(selectedText);
 			range.insertNode(span);
+			debugger
 			
 			this.setState({
 				...this.state,
 				span: span,
 				startOffset: startOffset,
 				endOffset: endOffset,
-				previousElId: previousEl.id
-				// selection: window.getSelection().toString()
-			})
-
-			this.setState({
-				...this.state,
+				previousElId: previousEl.id,
 				textSelected: true
-			}, () => {
-				this.createSelectionMenu(span.id);
-			})
-			// this.createSelectionMenu(span.id))
+				// selection: window.getSelection().toString()
+			}, () => {this.createSelectionMenu(span.id)})
+
+			// this.setState({
+			// 	...this.state,
+			// 	textSelected: true
+			// }
+			// // , 
+			// // () => {
+			// // 	this.createSelectionMenu(span.id);
+			// // }
+			// )
 		}
 	}
 
@@ -121,6 +126,7 @@ class Article extends Component {
 				range.setStart(articleContent.lastChild, comment.startPoint)
 				range.setEnd(articleContent.lastChild, comment.endPoint)					
 			} else {
+				debugger
 				range.setStart(previousEl.nextSibling, comment.startPoint)
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
 			}
@@ -195,23 +201,17 @@ class Article extends Component {
 		});	
 	} 	
 
-	handleChange = e => {
-		// debugger
-		this.setState({
-			...this.state,
-			comment: e.target.value
-		})
-		console.log(e.target.value)
+	grab1() {
+		debugger
 	}
 
-
-
-	handleSubmitComment = (e) => {
+	handleSubmitComment = (e, commentText) => {
+		// debugger
 		e.preventDefault()
 		this.props.addComment(
 			this.props.match.params.groupId,
 			this.props.match.params.discussionId,
-			this.state.comment,
+			commentText,
 			this.state.span,
 			this.state.startOffset,
 			this.state.endOffset,
@@ -219,14 +219,16 @@ class Article extends Component {
 			// this.state.selection,
 		)
     
-    const popup = document.querySelector('#selection-popup');
-		popup.removeAttribute('data-show');
-
+    // const popup = document.querySelector('#selection-popup');
+		// popup.removeAttribute('data-show');
+		debugger
 		let span = document.getElementById(this.state.span.id);
 		let parent = span.parentNode;
 		parent.insertBefore(span.firstChild, span);
 		parent.removeChild(span)
 		parent.normalize()
+
+		this.setState({...this.state, textSelected: false})
 	}
 
 	render() {
@@ -236,9 +238,9 @@ class Article extends Component {
 			<div id="article-wrapper">
 				{this.props.discussion ? 
 					<div>
-						<div id="article-title">{this.props.discussion.article.title}</div>
+						<div id="article-title" onClick={this.grab1.bind(this)}>{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
-						{this.state.textSelected ? <SelectionMenu id="selection-popup" /> : null}
+						{this.state.textSelected ? <SelectionMenu id="selection-popup" submit={this.handleSubmitComment}/> : null}
 						{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
 					</div>				
 					: 
@@ -260,13 +262,4 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment })(Article);
 
-
-						// <div id="selection-popup" role="tooltip">
-						// 	Context Menu
-							
-						// 	<form onSubmit={this.handleSubmitComment} id="new-comment-form">
-						// 		Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
-						// 		<input type="submit" value="post"/>
-						// 	</form>
-						// </div>	
 
