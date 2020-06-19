@@ -47,20 +47,23 @@ export const fetchDiscussion = (groupId, discussionId) => {
 	}
 }
 
-export const fetchUsers = () => {
+export const fetchUsers = (value) => {
+	// debugger
 	return (dispatch) => {
     let configObj = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: localStorage.getItem("token")
+        Authorization: localStorage.getItem("token"),
+        searchVal: value
       }
     }
     // debugger
     fetch(rootURL() + `/users`, configObj)
       .then(resp => resp.json())
       .then((users) => {
+				debugger
 				dispatch({ 
 					type: 'ADD_USERS', 
 					users
