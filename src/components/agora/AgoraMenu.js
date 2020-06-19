@@ -20,7 +20,7 @@ class AgoraMenu extends Component {
     fetch(rootURL() + `/groups`, configObj)
       .then(resp => resp.json())
       .then((groupsData) => {
-				debugger
+				// debugger
 				this.props.loadGroups(groupsData)
      })
       .catch(err => alert(err.message))

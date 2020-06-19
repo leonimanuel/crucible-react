@@ -39,7 +39,7 @@ class SelectionMenu extends Component {
 	}
 
 	render() {
-		debugger
+		// debugger
 		// const { match } = this.props;
 		return (
 			<div>

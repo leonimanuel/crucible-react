@@ -25,7 +25,15 @@ class Article extends Component {
 
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
-		this.setState({location: this.props.location.pathname})
+		
+		let commentsLoaded
+		this.props.comments.length === 0 ? commentsLoaded = true : commentsLoaded = false
+		this.setState({
+			...this.state,
+			location: this.props.location.pathname,
+			commentsLoaded: commentsLoaded
+		})
+
 	}
 
 	componentDidUpdate() {
@@ -37,7 +45,6 @@ class Article extends Component {
 		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
-			// debugger
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
 		}
@@ -122,11 +129,9 @@ class Article extends Component {
 			let previousEl = document.getElementById(comment.previous_el_id)
 			
 			if (comment.previous_el_id === "article-content") {
-				debugger
 				range.setStart(articleContent.firstChild, comment.startPoint)
 				range.setEnd(articleContent.firstChild, comment.endPoint)					
 			} else {
-				debugger
 				range.setStart(previousEl.nextSibling, comment.startPoint)
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
 			}
@@ -139,7 +144,6 @@ class Article extends Component {
 			span.appendChild(selectedText);
 			range.insertNode(span);
 
-			debugger
 			span.addEventListener("mouseenter", () => {
 				// debugger
 				this.handleHover(comment)
@@ -212,7 +216,7 @@ class Article extends Component {
 	}
 
 	handleCollectFact = () => {
-		debugger
+		// debugger
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
 	}
 

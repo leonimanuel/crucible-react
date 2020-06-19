@@ -7,7 +7,7 @@ import MembersList from "./MembersList.js"
 
 class GroupDetailsMenu extends Component {
 	render() {
-		debugger
+		// debugger
 		console.log(this.props.group)
 		return (
 			<div id="group-details-menu">

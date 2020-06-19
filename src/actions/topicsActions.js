@@ -60,11 +60,11 @@ export const addFactToNew = (selection, articleURL) => {
 					"selection_url": articleURL			
 			})
 		}
-		debugger
+		// debugger
 		fetch("http://localhost:3000/facts", configObj)
 			.then(resp => resp.json())
 			.then(fact => {
-				debugger
+				// debugger
 				dispatch({
 					type: "ADD_FACT",
 					fact
