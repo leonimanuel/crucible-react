@@ -1,7 +1,7 @@
 export default function groupsReducer(state = {
 	groups: [],
 	selectedGroup: "",
-	members: [],
+	members: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
 	discussions: [],
 	discussion: "",
 	loading: false,
@@ -45,6 +45,13 @@ export default function groupsReducer(state = {
 					showDetailPane: false
 				}
 
+			case "ADD_USERS":
+				debugger
+				return {
+					...state,
+					members: action.users
+				}
+			
 			default:
 				return state;	
 		}

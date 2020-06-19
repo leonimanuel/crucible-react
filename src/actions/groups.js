@@ -46,3 +46,26 @@ export const fetchDiscussion = (groupId, discussionId) => {
       .catch(err => alert(err.message))
 	}
 }
+
+export const fetchUsers = () => {
+	return (dispatch) => {
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    // debugger
+    fetch(rootURL() + `/users`, configObj)
+      .then(resp => resp.json())
+      .then((users) => {
+				dispatch({ 
+					type: 'ADD_USERS', 
+					users
+				})
+     })
+      .catch(err => alert(err.message))
+	}
+}

@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
+import { fetchUsers } from "../../actions/groups.js"
+
+import Example from "./Example.js"
+import Autosuggest from 'react-autosuggest';
+import MemberSuggestion from "./MemberSuggestion.js"
+// Imagine you have a list of languages that you'd like to autosuggest.
 
 class newGroupPopup extends Component {
+	state = {
+		articleURL: "",
+		groupName: ""
+	}
+
+	showSuggestions = () => {
+		debugger
+		this.props.fetchUsers()
+	}
+
+
 	render() {
+		debugger
 		return (
 			<div id="new-group-popup">
+				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form">
 					Article link: <input type="text"/> <br/>
-					Members: <input type="text"/> <br/>
-					Group Name (optional): <input type="text"/>
+					Members: <input type="text"  onChange={this.showSuggestions} /> <br/>
+					Group Name (optional): <input type="text" />
 					<input type="submit" value="Create Group"/>
 				</form>
+				<div id="suggestions-popup">
+					{this.props.suggestionMembers.length > 0 ? this.props.suggestionMembers.map(member => <MemberSuggestion member={member} />) : null}
+				</div>
 			</div>
 		)
 	}
 }
 
 
-export default newGroupPopup;
+export default connect(state => ({suggestionMembers: state.sidenav.members}), { fetchUsers })(newGroupPopup);
 
 
 
