@@ -26,7 +26,9 @@ class newGroupPopup extends Component {
 
 		if (e.target.value) {
 			this.props.fetchUsers(e.target.value)
-		} 
+		} else {
+
+		}
 	}
 
 	handleFocus = (e) => {
@@ -40,7 +42,11 @@ class newGroupPopup extends Component {
 	}
 
 	renderSuggestions = () => {
-		return this.props.suggestionMembers.map(member => <MemberSuggestion member={member} />)
+		return this.props.suggestionMembers.map(member => {
+			return (
+				<MemberSuggestion member={member} />
+			) 
+		})
 	}
 
 	render() {
@@ -56,7 +62,7 @@ class newGroupPopup extends Component {
 					<input type="submit" value="Create Group"/>
 				</form>
 				<div id="suggestions-popup" className="popup">
-					{this.props.suggestionMembers.length > 0 ? this.renderSuggestions() : null}
+					{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
 				</div>
 			</div>
 		)
