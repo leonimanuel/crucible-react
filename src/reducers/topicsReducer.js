@@ -83,31 +83,18 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_FACT":
-			// debugger
-			// return state.topics.map(topic => )
-
-			// let newTopics = state.topics.map(topic => topic)
-			// newTopics[0].facts.push(action.fact)
-			// debugger
-
-			// let newTopics = state.topics
-			// newTopics[0].facts.push(action.fact)
-			// debugger
-			// let newParentTopic
-			// if (state.parentTopic === state.topics[0]) {
-			// 	debugger
-			// 	newParentTopic = newTopics[0] 
-			// } else {
-			// 	newParentTopic = state.parentTopic
-			// }
-
-			// debugger
-
-			// return {
-			// 	...state,
-			// 	topics: newTopics,
-			// 	// parentTopic: newParentTopic
-			// }
+			let newTopic = ""
+			return {
+				...state,
+				topics: state.topics.map((topic, index) => {
+					if (index === 0) {						
+						topic.facts.push(action.fact)
+						newTopic = topic	
+					}
+					return topic
+				}),
+				parentTopic: newTopic
+		}
 
 		default:
 			return state;
