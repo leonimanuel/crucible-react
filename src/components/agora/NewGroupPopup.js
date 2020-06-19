@@ -14,17 +14,16 @@ class newGroupPopup extends Component {
 		memberSearchVal: ""
 	}
 
+
 	handleChange = (e) => {
 		// debugger
-		// this.setState({
-		// 	memberSearchVal: e.target.value
-		// })
-		this.props.fetchUsers(e.target.value)
-	}
+		this.setState({
+			memberSearchVal: e.target.value
+		})
 
-	getSuggestions = (e) => {
-		// e.preventDefault()
-		this.props.fetchUsers(this.state.memberSearchVal)
+		if (e.target.value) {
+			this.props.fetchUsers(e.target.value)
+		}
 	}
 
 	render() {
@@ -35,7 +34,6 @@ class newGroupPopup extends Component {
 				<form id="new-group-form">
 					Article link: <input type="text"/> <br/>
 					Members: <input type="text" onChange={this.handleChange} value={this.state.memberSearchVal} />
-					<button onClick={this.getSuggestions} >search</button>
 					Group Name (optional): <input type="text" />
 					<input type="submit" value="Create Group"/>
 				</form>
