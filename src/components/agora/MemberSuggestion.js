@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 // import { connect } from "react-redux"
 
 class MemberSuggestion extends Component {
+	state = {
+		hoveredOver: false
+	}
+
+	handleMouseOver = () => {
+		this.setState({...this.state, hoveredOver: true})
+	}
+
+	hanldeMouseLeave = () => {
+		this.setState({...this.state, hoveredOver: false})
+	}
+
 	render() {
 		return (
-			<div className="member-suggestion">
-				<div className="suggestion-name">{this.props.member.name}</div>
+			<div className={`member-suggestion ${this.state.hoveredOver ? "highlight" : ""}`}
+				onMouseEnter={this.handleMouseOver} onMouseLeave={this.hanldeMouseLeave} >
+				<div className="suggestion-name {}">{this.props.member.name}</div>
 				<div className="suggestion-email">{this.props.member.email}</div>
 			</div>
 		)
 	}
 }
-
 
 export default MemberSuggestion;
 
