@@ -5,13 +5,13 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	render() {
-		// debugger
+		debugger
 		console.log("rendering console window")
 		return (
 			<div id="console-window">
 				<div id="console-window-title">{this.props.parentTopic ? this.props.parentTopic.name : "NONE"}</div>
 					<ConsoleTopicsList topics={this.props.parentTopic.children} />
-					<ConsoleFactsList parentTopic={this.props.parentTopic} />
+					<ConsoleFactsList  />
 			</div>
 		)			
 	}

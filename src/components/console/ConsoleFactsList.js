@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
 import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
+		debugger
 		console.log("rendering console facts list")
 		return (
 			<div id="console-fact-list-container">
@@ -17,7 +18,7 @@ class ConsoleFactsList extends Component {
 }
 
 
-export default ConsoleFactsList;
+export default connect(state => ({parentTopic: state.topics.parentTopic}))(ConsoleFactsList);
 
 
 

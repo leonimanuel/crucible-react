@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom"
 import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
+import { addFactToNew } from "../../actions/topicsActions.js"
+
 import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment } from "../../actions/discussionsActions.js"
 import { v4 as uuidv4 } from 'uuid';
@@ -95,6 +97,19 @@ class Article extends Component {
 		    },
 		  ],
 		});
+
+		const collectFactPopup = document.querySelector(`#collect-fact-button`)
+		createPopper(button, collectFactPopup, {
+			placement: "right",
+		  modifiers: [
+			    {
+			      name: 'offset',
+			      options: {
+			        offset: [0, 8],
+			      },
+			    },
+			  ],
+		})
 	}
 
 	renderCommentHighlights = (comments) => {
@@ -196,6 +211,11 @@ class Article extends Component {
 		this.setState({...this.state, textSelected: false})
 	}
 
+	handleCollectFact = () => {
+		debugger
+		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
+	}
+
 	render() {
 		// debugger
 		console.log(this.props.comments)
@@ -205,8 +225,19 @@ class Article extends Component {
 					<div>
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
-						{this.state.textSelected ? <SelectionMenu id="selection-popup" selection={this.state.span.innerText} submit={this.handleSubmitComment}/> : null}
-						{this.state.hoverSelectionComment ? <ArticleComment id="comment-popup" comment={this.state.hoverSelectionComment} /> : null}
+						{this.state.textSelected 
+							? <SelectionMenu id="selection-popup" 
+									selection={this.state.span.innerText} 
+									submit={this.handleSubmitComment} 
+									collectFact={this.handleCollectFact} /> 
+							: null
+						}
+						{this.state.hoverSelectionComment 
+							? <ArticleComment 
+									id="comment-popup" 
+									comment={this.state.hoverSelectionComment} /> 
+							: null
+						}
 					</div>				
 					: 
 					<h3>Loading</h3>
@@ -225,6 +256,6 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment })(Article);
+export default connect(mapStateToProps, { fetchDiscussion, addComment, falsifyAddedNewComment, addFactToNew })(Article);
 
 

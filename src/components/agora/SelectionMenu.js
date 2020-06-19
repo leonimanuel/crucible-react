@@ -34,16 +34,25 @@ class SelectionMenu extends Component {
 		)
 	}
 
+	collectFact = () => {
+		debugger
+	}
+
 	render() {
+		debugger
 		// const { match } = this.props;
 		return (
-			<div id={this.props.id}>
-				<button id="collectFact" onClick={this.handleClick} >Collect Fact</button>
-				<button id="createComment" onClick={this.handleClick} >Create Comment</button>
-				{this.state.action === "createComment" ? this.handleCreateComment() : null}
+			<div>
+				<div id={this.props.id}>
+					<button id="collectFact" onClick={this.handleClick} >Collect Fact</button>
+					<button id="createComment" onClick={this.handleClick} >Create Comment</button>
+					{this.state.action === "createComment" ? this.handleCreateComment() : null}
+					<div id="arrow" data-popper-arrow></div>
+				</div>
 
-				<div id="arrow" data-popper-arrow></div>
+				<div id="collect-fact-button" onClick={this.props.collectFact}>+</div>			
 			</div>
+
 		)
 	}
 }

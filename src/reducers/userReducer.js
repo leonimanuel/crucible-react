@@ -9,7 +9,7 @@ export default function userReducer(state = {
 	userEmail: "none",
 	topics: [],
 	facts: [],
-	parentTopic: "",
+	// parentTopic: "",
 }, action) {
 	console.log("executing userReducer")
 	switch (action.type) {

@@ -39,7 +39,7 @@ class SideNav extends Component {
 	}
 
 	render() {
-		debugger
+		// debugger
 		return (
 			<div id="side-nav" >
 				<MainPane section={this.state.section}/>

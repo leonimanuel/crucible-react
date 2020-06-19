@@ -44,4 +44,35 @@ export const updateTopic = (fact, destinationTopic) => {
 	}
 }
 
+export const addFactToNew = (selection, articleURL) => {
+
+	return (dispatch) => {
+		dispatch({type: "POST_FACT"})
+		let configObj = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: localStorage.getItem("token")
+			},
+			body: JSON.stringify({
+					"selected_text": selection,
+					"selection_url": articleURL			
+			})
+		}
+		debugger
+		fetch("http://localhost:3000/facts", configObj)
+			.then(resp => resp.json())
+			.then(fact => {
+				debugger
+				dispatch({
+					type: "ADD_FACT",
+					fact
+				})
+			})
+			.catch(function(error) {
+				alert(error.message);
+			})			
+	}
+}
 
