@@ -13,6 +13,7 @@
 	/*flex-direction: vertical;*/
 	transition: .2s;
 	z-index: 1;
+	/*justify-content: left*/
 	/*opacity: 0.1;*/
 }
 
@@ -20,6 +21,9 @@
 
 #main-pane {
 	border: 2px solid red;
+	text-align: left;
+	justify-content: left;
+	color: red;
 }
 
 #sidenav-details-pane {
@@ -30,18 +34,27 @@
 
 #sections-list {
 	border: 1px solid blue;
-	/*opacity: 0;*/
-	/*display: flex;*/
-	/*flex-direction: column;*/
+}
+
+#group-details-menu {
+	padding: 10px;
+	/*color:yellow;*/
+}
+
+.sidenav-list {
+	text-align: left;
+}
+
+.discussion-item {
+	border: 1px solid green;
+}
+
+.list-title {
+	font-size: 1.3em;
 }
 
 .section-tab {
 	border: 1px solid purple;
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
-}
-
-
-.discussion-item {
-	border: 1px solid green;
 }

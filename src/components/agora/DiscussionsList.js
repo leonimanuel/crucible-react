@@ -32,8 +32,8 @@ class DiscussionsList extends Component {
 	render() {
 		// debugger
 		return (
-			<div id="group-discussions-list">
-				<div>Discussions</div>
+			<div id="group-discussions-list" className="sidenav-list">
+				<div className="list-title">Discussions</div>
 				<div onClick={this.handleNewDiscussion} id="new-discussion-button">NEW DIS</div>
 				<div>
 					{this.props.group.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion}/>)}

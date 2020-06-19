@@ -5,9 +5,10 @@ import GroupItem from "./GroupItem.js"
 class GroupsList extends Component {
 	render() {
 		return (
-			<div >
-				<div>Groups</div>
+			<div className="sidenav-list">
+				<div id="groups-list-title" className="list-title">Groups</div>
 				<div>
+					<div>New Group</div>
 					{this.props.groups.map(group => <GroupItem key={group.id} group={group} />)}
 				</div>
 			</div>
