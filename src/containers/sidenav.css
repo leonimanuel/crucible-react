@@ -17,8 +17,6 @@
 	/*opacity: 0.1;*/
 }
 
-
-
 #main-pane {
 	border: 2px solid red;
 	text-align: left;
@@ -57,4 +55,14 @@
 	border: 1px solid purple;
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
+}
+
+#new-group-popup {
+  background: white;
+  color: #333;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  /*display: none;  */
 }
