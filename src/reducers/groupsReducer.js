@@ -46,7 +46,7 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_USERS":
-				debugger
+				// debugger
 				return {
 					...state,
 					members: action.users

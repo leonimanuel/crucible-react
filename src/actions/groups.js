@@ -63,7 +63,7 @@ export const fetchUsers = (value) => {
     fetch(rootURL() + `/users`, configObj)
       .then(resp => resp.json())
       .then((users) => {
-				debugger
+				// debugger
 				dispatch({ 
 					type: 'ADD_USERS', 
 					users

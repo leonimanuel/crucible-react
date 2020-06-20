@@ -6,25 +6,36 @@
 
 #article-wrapper {
 	/*align-self: flex-end;*/
-	border: 2px solid black;
+	/*border: 2px solid black;*/
+  margin: auto;
   border-radius: 10px;
 	width: 75%;
   max-width: 1000px;
-	height: 90%;
-	overflow: scroll;
-  font-family: Gill Sans, sans-serif;
-  background-color: azure;
+	height: 100%;
+	/*overflow: scroll;*/
+  font-family: Georgia, sans-serif;
+  /*background-color: azure;*/
+  /*background-color: snow;*/
+  color: black;
+  /*box-shadow: 0 0 5px gray;*/
 }
 
 #article-title {
-	font-size: 1.5em;
+/*	position: fixed;
+  background-color: white;
+  text-align: center;
+  width: 100%;*/
+  padding: 10px 20px;
+  font-size: 1.5em;
 }
 
 #article-content {
-	/*overflow: scroll;*/
+	/*border: 2px solid blue;*/
+  max-height: 85%;
+  overflow: scroll;
   font-size: 1.2em;
 	text-align: left;
-  padding: 50px;
+  padding: 10px 50px;
 }
 
 #selection-popup, #comment-popup {
@@ -35,6 +46,15 @@
   font-size: 13px;
   border-radius: 4px;
   /*display: none;  */
+}
+
+.popup {
+  background: white;
+  color: #333;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
 }
 
 #collect-fact-button {

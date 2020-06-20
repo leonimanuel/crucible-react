@@ -66,3 +66,11 @@
   border-radius: 4px;
   /*display: none;  */
 }
+
+.member-suggestion {
+	border: 1px solid green;
+}
+
+.highlight {
+	background-color: cyan
+}

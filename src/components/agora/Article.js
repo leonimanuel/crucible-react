@@ -224,9 +224,9 @@ class Article extends Component {
 		// debugger
 		console.log(this.props.comments)
 		return (
-			<div id="article-wrapper">
+			<div >
 				{this.props.discussion ? 
-					<div>
+					<div id="article-wrapper">
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
 						{this.state.textSelected 

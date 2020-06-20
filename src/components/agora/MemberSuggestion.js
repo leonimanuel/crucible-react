@@ -14,10 +14,16 @@ class MemberSuggestion extends Component {
 		this.setState({...this.state, hoveredOver: false})
 	}
 
+	// handleClick = () => {
+		
+	// }
+
 	render() {
 		return (
 			<div className={`member-suggestion ${this.state.hoveredOver ? "highlight" : ""}`}
-				onMouseEnter={this.handleMouseOver} onMouseLeave={this.hanldeMouseLeave} >
+				onMouseEnter={this.handleMouseOver} 
+				onMouseLeave={this.hanldeMouseLeave} 
+				onClick={this.handleClick} >
 				<div className="suggestion-name {}">{this.props.member.name}</div>
 				<div className="suggestion-email">{this.props.member.email}</div>
 			</div>
