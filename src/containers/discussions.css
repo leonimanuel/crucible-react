@@ -1,7 +1,10 @@
 #groups-wrapper {
 	display: flex;
 	/*max-height: 100%;*/
+  width: 100%;
 	justify-content: center;
+  background-color: #44558f;
+
 }
 
 #article-wrapper {
@@ -13,10 +16,12 @@
   max-width: 1000px;
 	height: 100%;
 	/*overflow: scroll;*/
-  font-family: Georgia, sans-serif;
-  /*background-color: azure;*/
+  /*font-family: Georgia, sans-serif;*/
+/*font-family: 'Abel', sans-serif; */
+font-family: 'Roboto Mono', monospace;
+ /*background-color: azure;*/
   /*background-color: snow;*/
-  color: black;
+  color: white;
   /*box-shadow: 0 0 5px gray;*/
 }
 
@@ -36,6 +41,7 @@
   font-size: 1.2em;
 	text-align: left;
   padding: 10px 50px;
+  font-size: 1em;
 }
 
 #selection-popup, #comment-popup {

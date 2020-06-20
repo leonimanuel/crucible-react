@@ -6,8 +6,8 @@
 	/*width: 200px;*/
 	/*left: -100px;*/
 	height: 95%;
-	background-color: silver;
-	border: 2px solid green;
+/*	background-color: silver;*/
+	/*border: 2px solid green;*/
 	display: flex;
 	/*flex-grow: 1;*/
 	/*flex-direction: vertical;*/
@@ -22,16 +22,18 @@
 	text-align: left;
 	justify-content: left;
 	color: red;
+	background-color: silver;
 }
 
 #sidenav-details-pane {
 	border: 2px solid yellow;
 	max-width: 200px;
 	/*z-index: 1;*/
+	background-color: silver;
 }
 
 #sections-list {
-	border: 1px solid blue;
+	/*border: 1px solid blue;*/
 }
 
 #group-details-menu {
@@ -52,9 +54,12 @@
 }
 
 .section-tab {
-	border: 1px solid purple;
+	padding: 5px 0;
+	/*border: 1px solid purple;*/
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
+	background-color: #44558f;
+	color: white;
 }
 
 #new-group-popup {

@@ -1,15 +1,16 @@
 #nav-wrapper {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
-  background-color: #44558f;
+  /*border: 1px solid black;*/
+  /*background-color: #44558f;*/
+  background-color: pink;
   height: 5vh;
   /*background-image: linear-gradient(to bottom right, #ADD8E6, #fff);*/
 
 }
 
 #menu-options {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	/*justify-content: space-between;*/
 }
 

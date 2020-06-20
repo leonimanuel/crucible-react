@@ -3,7 +3,7 @@ html, body, #root {
 }
 
 html {
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
 }
 
 body {
@@ -13,12 +13,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   /*height: 100%;*/
 }
 
 #root {
-  border: 2px solid purple;
+  /*border: 2px solid purple;*/
 }
 
 code {

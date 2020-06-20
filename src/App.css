@@ -14,7 +14,7 @@
 }
 
 main {
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   flex-grow: 1;
   max-height: 95vh;
   display: flex;
