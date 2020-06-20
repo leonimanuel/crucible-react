@@ -39,7 +39,7 @@ font-family: 'Roboto Mono', monospace;
   max-height: 85%;
   overflow: scroll;
   font-size: 1.2em;
-	text-align: left;
+	text-align: justify;
   padding: 10px 50px;
   font-size: 1em;
 }

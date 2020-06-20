@@ -54,13 +54,20 @@
 }
 
 .section-tab {
+	border: 2px solid pink;
+	border-radius: 0px 5px 5px 0px;
 	padding: 5px 0;
 	/*border: 1px solid purple;*/
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
-	background-color: #44558f;
+	/*background-color: #44558f;*/
+	background-color: pink;
 	color: white;
 }
+
+/*.section-tab::before {
+  content: "Read this: ";
+}*/
 
 #new-group-popup {
   background: white;
