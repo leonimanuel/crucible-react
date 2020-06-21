@@ -26,23 +26,26 @@ class Article extends Component {
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
 		
-		let commentsLoaded
-		this.props.comments.length === 0 ? commentsLoaded = true : commentsLoaded = false
-		this.setState({
-			...this.state,
-			location: this.props.location.pathname,
-			commentsLoaded: commentsLoaded
-		})
+		// let commentsLoaded
+		// this.props.comments.length === 0 ? commentsLoaded = true : commentsLoaded = false
+		// debugger
+		// this.setState({
+		// 	...this.state,
+		// 	location: this.props.location.pathname,
+		// 	commentsLoaded: commentsLoaded
+		// })
 
 	}
 
 	componentDidUpdate() {
+		debugger
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
 			this.setState({location: this.props.location.pathname})
 		}
 
 		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
+			debugger
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
@@ -120,7 +123,7 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
-		// debugger
+		debugger
 		comments.map(comment => {
 			// debugger
 			let articleContent = document.getElementById("article-content");
@@ -138,7 +141,7 @@ class Article extends Component {
 
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
-			span.style.backgroundColor = "yellow";
+			span.style.backgroundColor = "#9bdeac";
 			span.id = comment.span_id
 
 			span.appendChild(selectedText);
@@ -221,7 +224,7 @@ class Article extends Component {
 	}
 
 	render() {
-		// debugger
+		debugger
 		console.log(this.props.comments)
 		return (
 			<div >

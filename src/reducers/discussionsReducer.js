@@ -15,6 +15,7 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_DISCUSSION":
+				debugger
 				return {
 					...state,
 					loading: false,
