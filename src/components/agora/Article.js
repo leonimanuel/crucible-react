@@ -25,7 +25,7 @@ class Article extends Component {
 
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
-		
+		// this.handleArticleHTML()
 		// let commentsLoaded
 		// this.props.comments.length === 0 ? commentsLoaded = true : commentsLoaded = false
 		// debugger
@@ -223,15 +223,24 @@ class Article extends Component {
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
 	}
 
-	render() {
+	handleArticleHTML = () => {
+		let articleContent = document.querySelector("#article-content")
+		if (articleContent) {
+			articleContent.innerHTML = this.props.discussion.article.content
+		}
 		debugger
+	}
+
+	render() {
+		// debugger
 		console.log(this.props.comments)
 		return (
 			<div >
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw">
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
+						<div onMouseUp={this.handleTextSelect} id="article-content">{/*this.props.discussion.article.content*/}</div>						
+						{this.handleArticleHTML()}
 						{this.state.textSelected 
 							? <SelectionMenu id="selection-popup" 
 									selection={this.state.span.innerText} 
