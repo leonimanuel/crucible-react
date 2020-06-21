@@ -38,7 +38,7 @@ class Article extends Component {
 	}
 
 	componentDidUpdate() {
-		debugger
+		// debugger
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
 			this.setState({location: this.props.location.pathname})
@@ -227,8 +227,15 @@ class Article extends Component {
 		let articleContent = document.querySelector("#article-content")
 		if (articleContent) {
 			articleContent.innerHTML = this.props.discussion.article.content
+			let HTMLboi = document.getElementsByTagName("p")
+			let boi	= Array.from(HTMLboi)
+			debugger
+			boi.map((p, index) => {
+				p.id = `p-${index + 1}`
+				return p
+			})
+			// debugger
 		}
-		debugger
 	}
 
 	render() {
