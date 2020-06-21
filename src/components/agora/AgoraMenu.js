@@ -56,7 +56,7 @@ class AgoraMenu extends Component {
 		return (
 			<div id="agora-menu">
 				<div className="">Agora</div>
-				<div id="groups-list">
+				<div id="groups-list" className="sidenav-list">
 					{this.props.groups ? <GroupsList 
 						groups={this.props.groups} 
 						createGroup={this.handleNewGroup} 

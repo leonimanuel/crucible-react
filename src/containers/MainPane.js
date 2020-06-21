@@ -8,9 +8,13 @@ class MainPane extends Component {
 		console.log("mounted MainPane")
 	}
 	render() {
-		// debugger
+		let mainPane = document.querySelector("#sidenav-main-pane")
+		if (this.props.section) {
+			mainPane.style = "width: 100px"
+		}
+
 		return (
-			<div>
+			<div id="sidenav-main-pane">
 				{this.props.section === "console" ? <TopicMenu /> : null}
 				{this.props.section === "agora" ? <AgoraMenu /> : null}
 			</div>

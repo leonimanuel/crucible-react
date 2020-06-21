@@ -226,7 +226,7 @@ class Article extends Component {
 		return (
 			<div >
 				{this.props.discussion ? 
-					<div id="article-wrapper">
+					<div id="article-wrapper" className="draw">
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content">{this.props.discussion.article.content}</div>						
 						{this.state.textSelected 
