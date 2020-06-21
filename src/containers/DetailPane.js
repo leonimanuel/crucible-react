@@ -8,16 +8,16 @@ import ConsoleWindow from "../components/console/ConsoleWindow.js"
 class DetailPane extends Component {
 	render() {
 		let detailPane = document.querySelector("#sidenav-details-pane")
-		if (this.props.selectedGroup || this.props.parentTopic) {
-			// debugger
-			detailPane.style = "width: 200px"
+		if (detailPane) {
+			if ((this.props.selectedGroup && this.props.section === "agora") || 
+				(this.props.parentTopic && this.props.section === "console")) {
+				// debugger
+				detailPane.style = "width: 200px"
+			} else {
+				detailPane.style = "width: 0px"
+			}			
 		}
-		// if (this.props.section) {
-		// 	detailPane.style = "width: 200px"
-		// }
-		// debugger
-		// console.log("rendering DetailPane")
-		return (
+	return (
 			<div id="sidenav-details-pane">
 				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
 				{this.props.section === "agora" && this.props.selectedGroup ? <GroupDetailsMenu /> : null}

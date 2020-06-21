@@ -46,8 +46,8 @@ class SideNav extends Component {
 				<DetailPane section={this.state.section} /> 
 				
 				<div id="sections-list">
-					<div id="console" className="section-tab" onClick={this.handleTabClick}>Console</div>
-					<div id="agora" className="section-tab" onClick={this.handleTabClick} >Agora</div>
+					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Console</div>
+					<div id="agora" className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick} >Agora</div>
 				</div>
 			</div>
 
