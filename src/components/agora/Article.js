@@ -55,7 +55,7 @@ class Article extends Component {
 
 		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			debugger
-			// this.renderCommentHighlights(this.props.comments)
+			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			// this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
@@ -143,15 +143,12 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
-		debugger
 		comments.map(comment => {
-			// debugger
+			debugger
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
 			let previousEl = document.getElementById(comment.previous_el_id)
-
-			debugger
 			
 			if (previousEl.tagName === "P") {
 				range.setStart(previousEl.firstChild, comment.startPoint)
@@ -180,6 +177,7 @@ class Article extends Component {
 			})
 
 			span.addEventListener("mouseleave", () => {
+				debugger
 				this.setState({
 					...this.state,
 					hoverSelectionComment: ""
@@ -188,11 +186,11 @@ class Article extends Component {
 			})
 		})
 		
-		// this.setState({
-		// 	...this.state,
-		// 	commentsLoaded: true,
-		// 	// addingComment: false
-		// })
+		this.setState({
+			...this.state,
+			commentsLoaded: true,
+			// addingComment: false
+		})
 	}
 
 	handleHover = (comment) => {
@@ -202,6 +200,7 @@ class Article extends Component {
 		}, () => {
 			this.newCommentPopper(comment)
 		})
+		this.newCommentPopper(comment)
 	}
 
 	newCommentPopper = (comment) => {
@@ -209,8 +208,8 @@ class Article extends Component {
     const commentSpan = document.querySelector(`#${comment.span_id}`);
 
 		const popup = document.querySelector(`#comment-popup`)
-    popup.setAttribute("data-show", "")
-
+    // popup.setAttribute("data-show", "")
+		debugger
 		createPopper(commentSpan, popup, {
 		  placement: 'left',
 		});	
@@ -246,12 +245,12 @@ class Article extends Component {
 	}
 
 	handleArticleHTML = () => {
-		debugger
+		// debugger
 
 		let articleContent = document.querySelector("#article-content")
 		
 		if (articleContent) {
-			debugger
+			// debugger
 			articleContent.innerHTML = this.props.discussion.article.content
 			let pCollection = document.getElementsByTagName("p")
 			let pArray	= Array.from(pCollection)
@@ -264,23 +263,23 @@ class Article extends Component {
 
 		//HANDLING RENDERING COMMENTS
 		if (this.props.comments && articleContent) {
-			debugger
+			// debugger
 			this.renderCommentHighlights(this.props.comments)
 		}
 
 
 		if (this.state.span) {
-			debugger
+			// debugger
 			let range = new Range
 			let previousEl = document.getElementById(this.state.previousElId)
 			
 			if (previousEl) {
 				if (previousEl.tagName === "P") {
-					debugger
+					// debugger
 					range.setStart(previousEl.firstChild, this.state.startOffset)
 					range.setEnd(previousEl.firstChild, this.state.endOffset)						
 				} else {
-					debugger
+					// debugger
 					range.setStart(previousEl.nextSibling, this.state.startOffset)
 					range.setEnd(previousEl.nextSibling, this.state.endOffset)				
 				}
@@ -291,7 +290,7 @@ class Article extends Component {
 				span.id = this.state.span.id
 				span.appendChild(selectedText);
 				range.insertNode(span);
-				debugger
+				// debugger
 
 			} 			
 		}
@@ -306,7 +305,8 @@ class Article extends Component {
 					<div id="article-wrapper" className="draw">
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" >							
-							{this.handleArticleHTML()}
+							{/*this.handleArticleHTML()*/}
+							<ArticleContent />
 						</div>						
 						
 						{this.state.textSelected 

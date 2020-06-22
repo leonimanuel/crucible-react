@@ -14,20 +14,20 @@ export default function discussionsReducer(state = {
 					loading: true
 				}
 
-			case "ADD_DISCUSSION":
-				debugger
-				return {
-					...state,
-					loading: false,
-					discussion: action.discussionData,
-					comments: action.discussionData.comments
-				}
-
 			case "POSTING_DISCUSSION":
 				debugger
 				return {
 					...state,
 					loadingComment: true
+				}
+
+			case "ADD_DISCUSSION":
+				// debugger
+				return {
+					...state,
+					loading: false,
+					discussion: action.discussionData,
+					comments: action.discussionData.comments
 				}
 
 			case "ADD_COMMENT":

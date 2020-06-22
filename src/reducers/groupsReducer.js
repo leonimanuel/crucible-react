@@ -25,6 +25,7 @@ export default function groupsReducer(state = {
 
 			case "UPDATE_GROUP_DISCUSSIONS":
 				console.log("updating group discussions")
+				debugger
 				return {
 					...state,
 					selectedGroup: {

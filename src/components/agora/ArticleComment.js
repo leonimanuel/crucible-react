@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
 
 class ArticleComment extends Component {
-	createContent = () => {
-		let parser = new DOMParser();
-		let doc = parser.parseFromString(this.props.content, "text/html")
-		let pCollection = doc.getElementsByTagName("p")
-		let pArray	= Array.from(pCollection)
-		// debugger
-		let pTextArray = pArray.map(p => <p>{p.innerText}</p>)
-		return pTextArray
-	}
-
 	render() {
+		// debugger
+		const { match } = this.props;
 		return (
 			<div id={this.props.id}>
-				{this.createContent()}
+				{this.props.comment.content}
 			</div>
 		)
 	}
 }
 
 
-export default connect(state => ({content: state.discussion.discussion.article.content}))(ArticleComment);
+export default ArticleComment;
