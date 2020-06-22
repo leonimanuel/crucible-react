@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { fetchTopics } from "../actions/topicsActions.js" 
 
 import "./sidenav.css"
 import MainPane from "./MainPane.js"
@@ -14,6 +15,8 @@ class SideNav extends Component {
 	}
 
 	componentDidMount() {
+		this.props.fetchTopics()
+
 		console.log("mounted sidenav")
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
@@ -64,6 +67,6 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(SideNav)
+export default connect(mapStateToProps, { fetchTopics })(SideNav)
 
 
