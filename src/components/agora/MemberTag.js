@@ -5,6 +5,7 @@ class MemberTag extends Component {
 		return (
 			<div className="member-tag">
 				{this.props.member.name}
+				<div className="remove-member-button" onClick={() => this.props.removeMember(this.props.member)}>   X</div>
 			</div>
 		)
 	}

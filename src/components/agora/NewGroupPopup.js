@@ -54,8 +54,18 @@ class newGroupPopup extends Component {
 			addedMembers: [...this.state.addedMembers, member],
 			memberSearchVal: ""
 		})
+	}
 
+	removeMember = (member) => {
+		debugger
+		this.setState({
+			...this.state,
+			addedMembers: this.state.addedMembers.filter(mem => mem.id !== member.id)
+		})
+	}
 
+	handleSubmit = (e) => {
+		e.preventDefault()
 	}
 
 	render() {
@@ -64,25 +74,25 @@ class newGroupPopup extends Component {
 			let inputField = document.getElementById("add-member-input");
 			let suggestionsBox = document.getElementById("suggestions-box")
 
-			suggestionsBox.style = `width: ${inputField.clientWidth}px`
+			suggestionsBox.style = `width: ${inputField.clientWidth + 5}px`
 		}
 		return (
 			<div id="new-group-popup">
 				<div id="new-group-popup-title">New Group</div>
-				<form id="new-group-form">
-					Article link: <input type="text"/> <br/>
-					Members: <input id="add-member-input" type="text" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" />
+				<form id="new-group-form" onSubmit={this.handleSubmit}>
+					<div className="new-group-input-div"><label>Article link: </label><input type="text"/> <br/></div>
+					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" /></div>
+					
 					<div id="suggestions-box">
 						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
 					</div>
 
 					<div id="added-member-box">
-						{this.state.addedMembers.map(member => <MemberTag member={member} />)}
+						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					Group Name (optional): <input type="text" />
+					<div className="new-group-input-div">Group Name (optional): <input type="text" /></div>
 					<input type="submit" value="Create Group"/>
 				</form>
-
 			</div>
 		)
 	}

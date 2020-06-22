@@ -87,26 +87,59 @@
 }*/
 
 #new-group-popup {
-  background: white;
+  display: flex;
+  flex-direction: column;
+  background: #fbd46d;
+  font-family: 'Abel', sans-serif;
   color: #333;
   font-weight: bold;
   padding: 4px 8px;
   font-size: 13px;
+  border: 2px solid gold;
   border-radius: 4px;
   /*display: none;  */
 }
+
+#new-group-popup-title {
+	text-align: center;
+	font-size: 2em;
+	/*padding: 10px;*/
+}
+
+#new-group-form {
+	padding: 20px;
+}
+
 
 #suggestions-box {
 	position: absolute;
 	/*background-color: green;*/
 	background-color: white;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	border-top: 0px;
 	border-radius: 5px
 }
 
 .member-suggestion {
 	/*border: 1px solid green;*/
+}
+
+#added-member-box {
+	display: flex;
+}
+
+.member-tag {
+	display: flex;
+	align-items: center;
+	background-color: darkcyan;
+	/*color: white;*/
+	border: 2px solid blue;
+	border-radius: 5px;
+}
+
+.remove-member-button {
+	color: white;
+	font-size: 0.8em
 }
 
 .highlight {
