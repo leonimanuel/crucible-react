@@ -20,7 +20,7 @@ class Article extends Component {
 			articleContent: x,
 			location: "",
 			comment: "",
-			span: "baseline",
+			span: "",
 			startOffset: "",
 			endOffset: "",
 			commentsLoaded: false,
@@ -53,11 +53,11 @@ class Article extends Component {
 			this.setState({location: this.props.location.pathname})
 		}
 
-		if (this.props.comments.length > 0 && this.state.commentsLoaded === false) {
+		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			debugger
-			this.renderCommentHighlights(this.props.comments)
+			// this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
-			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
+			// this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
 		}
 	}
@@ -66,9 +66,17 @@ class Article extends Component {
 		console.log(this)
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
-			debugger
-			let range = window.getSelection().getRangeAt(0);
 
+			if (this.state.span) {
+				// debugger
+				let span = document.getElementById(this.state.span.id);
+				let parent = span.parentNode;
+				parent.insertBefore(span.firstChild, span);
+				parent.removeChild(span);
+				// debugger
+			}
+			let range = window.getSelection().getRangeAt(0);
+			debugger
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
 			
@@ -82,11 +90,11 @@ class Article extends Component {
 				// previousEl = document.getElementById("article-content")
 				// debugger
 			}
-			let selectedText = range.extractContents();
+			// let selectedText = range.extractContents();
 			let span = document.createElement("span");
 			span.id = `selection-${uuidv4()}`
-			span.appendChild(selectedText);
-			range.insertNode(span);
+			// span.appendChild(selectedText);
+			// range.insertNode(span);
 			debugger
 			
 			this.setState({
@@ -135,7 +143,7 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
-		// debugger
+		debugger
 		comments.map(comment => {
 			// debugger
 			let articleContent = document.getElementById("article-content");
@@ -145,7 +153,7 @@ class Article extends Component {
 
 			debugger
 			
-			if (comment.previous_el_id === "article-content") {
+			if (previousEl.tagName === "P") {
 				range.setStart(previousEl.firstChild, comment.startPoint)
 				range.setEnd(previousEl.firstChild, comment.endPoint)					
 			} else {
@@ -180,11 +188,11 @@ class Article extends Component {
 			})
 		})
 		
-		this.setState({
-			...this.state,
-			commentsLoaded: true,
-			// addingComment: false
-		})
+		// this.setState({
+		// 	...this.state,
+		// 	commentsLoaded: true,
+		// 	// addingComment: false
+		// })
 	}
 
 	handleHover = (comment) => {
@@ -229,7 +237,7 @@ class Article extends Component {
 		parent.removeChild(span)
 		parent.normalize()
 
-		this.setState({...this.state, textSelected: false})
+		this.setState({...this.state, textSelected: false, span: ""})
 	}
 
 	handleCollectFact = () => {
@@ -238,9 +246,12 @@ class Article extends Component {
 	}
 
 	handleArticleHTML = () => {
+		debugger
+
 		let articleContent = document.querySelector("#article-content")
+		
 		if (articleContent) {
-			// debugger
+			debugger
 			articleContent.innerHTML = this.props.discussion.article.content
 			let pCollection = document.getElementsByTagName("p")
 			let pArray	= Array.from(pCollection)
@@ -249,8 +260,15 @@ class Article extends Component {
 				p.id = `p-${index + 1}`
 				return p
 			})
-			debugger
 		}
+
+		//HANDLING RENDERING COMMENTS
+		if (this.props.comments && articleContent) {
+			debugger
+			this.renderCommentHighlights(this.props.comments)
+		}
+
+
 		if (this.state.span) {
 			debugger
 			let range = new Range
@@ -262,6 +280,7 @@ class Article extends Component {
 					range.setStart(previousEl.firstChild, this.state.startOffset)
 					range.setEnd(previousEl.firstChild, this.state.endOffset)						
 				} else {
+					debugger
 					range.setStart(previousEl.nextSibling, this.state.startOffset)
 					range.setEnd(previousEl.nextSibling, this.state.endOffset)				
 				}
@@ -286,11 +305,10 @@ class Article extends Component {
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw">
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div onMouseUp={this.handleTextSelect} id="article-content">
+						<div onMouseUp={this.handleTextSelect} id="article-content" >							
 							{this.handleArticleHTML()}
 						</div>						
 						
-						{/*this.handleArticleHTML()*/}
 						{this.state.textSelected 
 							? <SelectionMenu id="selection-popup" 
 									selection={this.state.span.innerText} 
