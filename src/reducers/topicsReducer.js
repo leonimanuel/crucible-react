@@ -1,4 +1,5 @@
 import chunk from 'lodash/chunk';
+import cloneDeep from "lodash/cloneDeep"
 import _ from 'lodash';
 
 export default function topicsReducer(state = {
@@ -83,13 +84,18 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_FACT":
+			let boi = _.cloneDeep(state.topics)
+			debugger
+
 			let newTopic = ""
 			return {
 				...state,
-				topics: state.topics.map((topic, index) => {
+				topics: boi.map((topic, index) => {
 					if (index === 0) {						
+						debugger
 						topic.facts.push(action.fact)
 						newTopic = topic	
+						debugger
 					}
 					return topic
 				}),
