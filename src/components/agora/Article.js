@@ -56,15 +56,6 @@ class Article extends Component {
 		console.log(this)
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
-
-			if (this.state.span) {
-				// debugger
-				let span = document.getElementById(this.state.span.id);
-				let parent = span.parentNode;
-				parent.insertBefore(span.firstChild, span);
-				parent.removeChild(span);
-				// debugger
-			}
 			let range = window.getSelection().getRangeAt(0);
 			debugger
 			let startOffset = range.startOffset
@@ -236,8 +227,13 @@ class Article extends Component {
 
 	clearTextSelected = () => {
 		if (this.state.textSelected === true) {
-			if (true) {}
-			this.setState({...this.state, textSelected: false})
+			this.setState({...this.state, textSelected: false}, () => {
+				let span = document.getElementById(this.state.span.id);
+				let parent = span.parentNode;
+				parent.insertBefore(span.firstChild, span);
+				parent.removeChild(span)
+				parent.normalize()
+			})
 		}
 	}
 
