@@ -14,9 +14,9 @@ class MemberSuggestion extends Component {
 		this.setState({...this.state, hoveredOver: false})
 	}
 
-	// handleClick = () => {
-		
-	// }
+	handleClick = () => {
+		this.props.addToMemberBox(this.props.member)
+	}
 
 	render() {
 		return (

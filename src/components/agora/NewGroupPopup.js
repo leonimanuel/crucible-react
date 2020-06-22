@@ -6,16 +6,17 @@ import { createPopper } from "@popperjs/core"
 import Example from "./Example.js"
 import Autosuggest from 'react-autosuggest';
 import MemberSuggestion from "./MemberSuggestion.js"
+import MemberTag from "./MemberTag.js"
+
 // Imagine you have a list of languages that you'd like to autosuggest.
 
 class newGroupPopup extends Component {
 	state = {
 		articleURL: "",
 		groupName: "",
-		memberSearchVal: ""
+		memberSearchVal: "",
+		addedMembers: []
 	}
-
-	
 
 	handleChange = (e) => {
 		// debugger
@@ -26,9 +27,7 @@ class newGroupPopup extends Component {
 
 		if (e.target.value) {
 			this.props.fetchUsers(e.target.value)
-		} else {
-
-		}
+		} 
 	}
 
 	handleFocus = (e) => {
@@ -37,33 +36,53 @@ class newGroupPopup extends Component {
 		let popup = document.querySelector("#suggestions-popup")
 		popup.style = `width: ${button.clientWidth}px`
 		createPopper(button, popup, {
-		  placement: 'bottom',
+		  placement: 'right',
 		});		
 	}
 
 	renderSuggestions = () => {
 		return this.props.suggestionMembers.map(member => {
 			return (
-				<MemberSuggestion member={member} />
+				<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
 			) 
 		})
 	}
 
+	addToMemberBox = (member) => {
+		this.setState({
+			...this.state, 
+			addedMembers: [...this.state.addedMembers, member],
+			memberSearchVal: ""
+		})
+
+
+	}
+
 	render() {
-		// debugger
+		debugger
+		if (document.getElementById("add-member-input")) {
+			let inputField = document.getElementById("add-member-input");
+			let suggestionsBox = document.getElementById("suggestions-box")
+
+			suggestionsBox.style = `width: ${inputField.clientWidth}px`
+		}
 		return (
 			<div id="new-group-popup">
 				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form">
 					Article link: <input type="text"/> <br/>
-					Members: <input id="add-member-input" type="text" onFocus={this.handleFocus} onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" />
-					<div id="added-member-box"></div>
+					Members: <input id="add-member-input" type="text" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" />
+					<div id="suggestions-box">
+						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
+					</div>
+
+					<div id="added-member-box">
+						{this.state.addedMembers.map(member => <MemberTag member={member} />)}
+					</div>
 					Group Name (optional): <input type="text" />
 					<input type="submit" value="Create Group"/>
 				</form>
-				<div id="suggestions-popup" className="popup">
-					{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
-				</div>
+
 			</div>
 		)
 	}

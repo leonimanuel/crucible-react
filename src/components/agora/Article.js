@@ -74,6 +74,7 @@ class Article extends Component {
 			let selectedText = range.extractContents();
 			let span = document.createElement("span");
 			span.id = `selection-${uuidv4()}`
+			span.style.backgroundColor = "orange";
 			span.appendChild(selectedText);
 			range.insertNode(span);
 			debugger

@@ -23,6 +23,8 @@
 
 #console-fact-list-container {
 	border: 2px solid black;
+	max-height: 300px;
+	overflow: scroll;
 }
 
 #console-facts-container {

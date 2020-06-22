@@ -85,17 +85,14 @@ export default function topicsReducer(state = {
 
 		case "ADD_FACT":
 			let boi = _.cloneDeep(state.topics)
-			debugger
 
 			let newTopic = ""
 			return {
 				...state,
 				topics: boi.map((topic, index) => {
 					if (index === 0) {						
-						debugger
 						topic.facts.push(action.fact)
 						newTopic = topic	
-						debugger
 					}
 					return topic
 				}),

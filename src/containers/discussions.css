@@ -36,12 +36,14 @@ font-family: 'Roboto Mono', monospace;
 
 #article-content {
 	/*border: 2px solid blue;*/
-  max-height: 85%;
+  max-height: 75%;
   overflow: scroll;
   font-size: 1.2em;
 	text-align: justify;
   padding: 10px 50px;
   font-size: 1em;
+  /*border: 1px solid black;*/
+  /*border-radius: 5px;*/
 }
 
 #selection-popup, #comment-popup {
