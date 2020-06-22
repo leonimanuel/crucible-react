@@ -234,15 +234,22 @@ class Article extends Component {
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
 	}
 
+	clearTextSelected = () => {
+		if (this.state.textSelected === true) {
+			if (true) {}
+			this.setState({...this.state, textSelected: false})
+		}
+	}
+
 	render() {
 		debugger
 		console.log(this.props.comments)
 		return (
 			<div >
 				{this.props.discussion ? 
-					<div id="article-wrapper" className="draw">
+					<div id="article-wrapper" className="draw" >
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div onMouseUp={this.handleTextSelect} id="article-content" >							
+						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
 							{/*this.handleArticleHTML()*/}
 							<ArticleContent />
 						</div>						
