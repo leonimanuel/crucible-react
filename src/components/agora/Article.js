@@ -9,19 +9,28 @@ import { addComment, falsifyAddedNewComment } from "../../actions/discussionsAct
 import { v4 as uuidv4 } from 'uuid';
 import ArticleComment from "./ArticleComment.js"
 import SelectionMenu from "./SelectionMenu.js"
+import ArticleContent from "./ArticleContent.js"
 
 class Article extends Component {
-	state = {
-		location: "",
-		comment: "",
-		span: "baseline",
-		startOffset: "",
-		endOffset: "",
-		commentsLoaded: false,
-		previousElId: "",
-		hoverSelectionComment: "",
-		textSelected: false
+	constructor() {
+		super()
+		let x = "HEY THERE"
+
+		this.state = {
+			articleContent: x,
+			location: "",
+			comment: "",
+			span: "baseline",
+			startOffset: "",
+			endOffset: "",
+			commentsLoaded: false,
+			previousElId: "",
+			hoverSelectionComment: "",
+			textSelected: false
+		}
 	}
+
+
 
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
@@ -57,17 +66,20 @@ class Article extends Component {
 		console.log(this)
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
+			debugger
 			let range = window.getSelection().getRangeAt(0);
 
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
 			
+			let paragraph = window.getSelection().baseNode.parentNode
 			let previousEl
 			if (range.startContainer.previousElementSibling) {
 				previousEl = range.startContainer.previousElementSibling
 				// debugger
 			} else {
-				previousEl = document.getElementById("article-content")
+				previousEl = paragraph
+				// previousEl = document.getElementById("article-content")
 				// debugger
 			}
 			let selectedText = range.extractContents();
@@ -75,7 +87,7 @@ class Article extends Component {
 			span.id = `selection-${uuidv4()}`
 			span.appendChild(selectedText);
 			range.insertNode(span);
-			// debugger
+			debugger
 			
 			this.setState({
 				...this.state,
@@ -84,7 +96,6 @@ class Article extends Component {
 				endOffset: endOffset,
 				previousElId: previousEl.id,
 				textSelected: true
-				// selection: window.getSelection().toString()
 			}, () => {this.createSelectionMenu(span.id)})
 		}
 	}
@@ -95,7 +106,8 @@ class Article extends Component {
     const button = document.querySelector(`#${spanId}`);
     const popup = document.querySelector('#selection-popup');
 		popup.setAttribute('data-show', '');
-
+		
+		debugger
 		createPopper(button, popup, {
 		  // placement: 'bottom',
 		  modifiers: [
@@ -123,17 +135,19 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
-		debugger
+		// debugger
 		comments.map(comment => {
 			// debugger
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
 			let previousEl = document.getElementById(comment.previous_el_id)
+
+			debugger
 			
 			if (comment.previous_el_id === "article-content") {
-				range.setStart(articleContent.firstChild, comment.startPoint)
-				range.setEnd(articleContent.firstChild, comment.endPoint)					
+				range.setStart(previousEl.firstChild, comment.startPoint)
+				range.setEnd(previousEl.firstChild, comment.endPoint)					
 			} else {
 				range.setStart(previousEl.nextSibling, comment.startPoint)
 				range.setEnd(previousEl.nextSibling, comment.endPoint)				
@@ -226,28 +240,57 @@ class Article extends Component {
 	handleArticleHTML = () => {
 		let articleContent = document.querySelector("#article-content")
 		if (articleContent) {
+			// debugger
 			articleContent.innerHTML = this.props.discussion.article.content
-			let HTMLboi = document.getElementsByTagName("p")
-			let boi	= Array.from(HTMLboi)
-			debugger
-			boi.map((p, index) => {
+			let pCollection = document.getElementsByTagName("p")
+			let pArray	= Array.from(pCollection)
+			// debugger
+			pArray.map((p, index) => {
 				p.id = `p-${index + 1}`
 				return p
 			})
-			// debugger
+			debugger
+		}
+		if (this.state.span) {
+			debugger
+			let range = new Range
+			let previousEl = document.getElementById(this.state.previousElId)
+			
+			if (previousEl) {
+				if (previousEl.tagName === "P") {
+					debugger
+					range.setStart(previousEl.firstChild, this.state.startOffset)
+					range.setEnd(previousEl.firstChild, this.state.endOffset)						
+				} else {
+					range.setStart(previousEl.nextSibling, this.state.startOffset)
+					range.setEnd(previousEl.nextSibling, this.state.endOffset)				
+				}
+
+				let selectedText = range.extractContents();
+				let span = document.createElement("span");
+				span.style.backgroundColor = "#9bdeac";
+				span.id = this.state.span.id
+				span.appendChild(selectedText);
+				range.insertNode(span);
+				debugger
+
+			} 			
 		}
 	}
 
 	render() {
-		// debugger
+		debugger
 		console.log(this.props.comments)
 		return (
 			<div >
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw">
 						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div onMouseUp={this.handleTextSelect} id="article-content">{/*this.props.discussion.article.content*/}</div>						
-						{this.handleArticleHTML()}
+						<div onMouseUp={this.handleTextSelect} id="article-content">
+							{this.handleArticleHTML()}
+						</div>						
+						
+						{/*this.handleArticleHTML()*/}
 						{this.state.textSelected 
 							? <SelectionMenu id="selection-popup" 
 									selection={this.state.span.innerText} 
