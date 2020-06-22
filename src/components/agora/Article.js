@@ -34,16 +34,6 @@ class Article extends Component {
 
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
-		// this.handleArticleHTML()
-		// let commentsLoaded
-		// this.props.comments.length === 0 ? commentsLoaded = true : commentsLoaded = false
-		// debugger
-		// this.setState({
-		// 	...this.state,
-		// 	location: this.props.location.pathname,
-		// 	commentsLoaded: commentsLoaded
-		// })
-
 	}
 
 	componentDidUpdate() {
@@ -57,7 +47,7 @@ class Article extends Component {
 			debugger
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
-			// this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
+			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
 		}
 	}
@@ -90,11 +80,11 @@ class Article extends Component {
 				// previousEl = document.getElementById("article-content")
 				// debugger
 			}
-			// let selectedText = range.extractContents();
+			let selectedText = range.extractContents();
 			let span = document.createElement("span");
 			span.id = `selection-${uuidv4()}`
-			// span.appendChild(selectedText);
-			// range.insertNode(span);
+			span.appendChild(selectedText);
+			range.insertNode(span);
 			debugger
 			
 			this.setState({
@@ -242,58 +232,6 @@ class Article extends Component {
 	handleCollectFact = () => {
 		// debugger
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
-	}
-
-	handleArticleHTML = () => {
-		// debugger
-
-		let articleContent = document.querySelector("#article-content")
-		
-		if (articleContent) {
-			// debugger
-			articleContent.innerHTML = this.props.discussion.article.content
-			let pCollection = document.getElementsByTagName("p")
-			let pArray	= Array.from(pCollection)
-			// debugger
-			pArray.map((p, index) => {
-				p.id = `p-${index + 1}`
-				return p
-			})
-		}
-
-		//HANDLING RENDERING COMMENTS
-		if (this.props.comments && articleContent) {
-			// debugger
-			this.renderCommentHighlights(this.props.comments)
-		}
-
-
-		if (this.state.span) {
-			// debugger
-			let range = new Range
-			let previousEl = document.getElementById(this.state.previousElId)
-			
-			if (previousEl) {
-				if (previousEl.tagName === "P") {
-					// debugger
-					range.setStart(previousEl.firstChild, this.state.startOffset)
-					range.setEnd(previousEl.firstChild, this.state.endOffset)						
-				} else {
-					// debugger
-					range.setStart(previousEl.nextSibling, this.state.startOffset)
-					range.setEnd(previousEl.nextSibling, this.state.endOffset)				
-				}
-
-				let selectedText = range.extractContents();
-				let span = document.createElement("span");
-				span.style.backgroundColor = "#9bdeac";
-				span.id = this.state.span.id
-				span.appendChild(selectedText);
-				range.insertNode(span);
-				// debugger
-
-			} 			
-		}
 	}
 
 	render() {
