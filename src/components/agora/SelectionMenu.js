@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import NewCommentFact from "./NewCommentFact.js"
 
 class SelectionMenu extends Component {
 	state = {
-		action: "createComment",
 		comment: "",
-		draggedOver: false
+		draggedOver: false,
+		facts: []
 	}
 
 	handleChange = e => {
@@ -39,40 +40,19 @@ class SelectionMenu extends Component {
 		e.preventDefault();
 		console.log(JSON.parse(e.dataTransfer.getData("object")))
 		let transferObj = JSON.parse(e.dataTransfer.getData("object"))
+		this.setState({
+			...this.state,
+			facts: [...this.state.facts, transferObj.fact],
+			draggedOver: false
+		})
+
 		debugger
-		// let originTopicName = e.dataTransfer.getData("text").split("-")[0]
-		// let factId = parseInt(e.dataTransfer.getData("text").split("-").pop());
-		// let originTopic = transferObj.parentTopic
-		// let fact = transferObj.fact
-
-		this.setState({...this.state, draggedOver: false})
+		// this.setState({...this.state, draggedOver: false}, this.debug())
 	}
 
-
-	handleCreateComment = () => {
-		return (
-			<div id="new-comment-form">
-				New Comment
-				<form onSubmit={(e) => this.props.submit(e, this.state.comment)} id="new-comment-form">
-					Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
-					<input type="submit" value="post"/>
-					<div 
-						id="comment-fact-box" 
-						onDragOver={this.allowDrop} 
-						onDragEnter={this.handleDragEnter}
-						onDragLeave={this.handleDragLeave}
-						onDrop={this.drop}
-						className={this.state.draggedOver ? "dragged-over" : "" }
-					>
-						DROP FACTS IN ME
-					</div>
-				</form>
-			</div>	
-		)
+	debug = () => {
+		debugger
 	}
-
-
-
 
 	render() {
 		// debugger
@@ -80,7 +60,26 @@ class SelectionMenu extends Component {
 		return (
 			<div>
 				<div id={this.props.id}>
-					{this.state.action === "createComment" ? this.handleCreateComment() : null}
+					<div id="new-comment-form">
+						New Comment
+						<form onSubmit={(e) => this.props.submit(e, this.state.comment)} id="new-comment-form">
+							Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
+							<input type="submit" value="post"/>
+							<div id="comment-facts-container">
+								{this.state.facts.map(fact => <NewCommentFact key={fact.id} fact={fact}/>) }
+							</div>
+							<div 
+								id="comment-fact-dropzone" 
+								onDragOver={this.allowDrop} 
+								onDragEnter={this.handleDragEnter}
+								onDragLeave={this.handleDragLeave}
+								onDrop={this.drop}
+								className={this.state.draggedOver ? "dragged-over" : "" }
+							>
+								DROP FACTS IN ME
+							</div>
+						</form>
+					</div>	
 					<div id="arrow" data-popper-arrow></div>
 				</div>
 
