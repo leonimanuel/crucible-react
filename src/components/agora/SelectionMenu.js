@@ -55,7 +55,7 @@ class SelectionMenu extends Component {
 				<div id={this.props.id}>
 					<div id="new-comment-form">
 						New Comment
-						<form onSubmit={(e) => this.props.submit(e, this.state.comment)} id="new-comment-form">
+						<form onSubmit={(e) => this.props.submit(e, this.state.comment, this.state.facts)} id="new-comment-form">
 							Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
 		
 							<div id="comment-facts-container">

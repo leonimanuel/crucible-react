@@ -1,10 +1,12 @@
 import rootURL from "../rootURL.js"
 
-export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset, previousElId) => {
+export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset, previousElId, facts) => {
 	console.log(comment)
-	// debugger
+	debugger
 	return (dispatch) => {
 		dispatch({type: "POSTING_COMMENT"})
+    
+		let factIds = facts.map(fact => fact.id)
     let configObj = {
       method: "POST",
       headers: {
@@ -18,7 +20,8 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
 				selection: span.innerText,
 				start_offset: startOffset,
 				end_offset: endOffset,
-				previous_el_id: previousElId
+				previous_el_id: previousElId,
+				factIds: factIds
       })
     }
     // debugger

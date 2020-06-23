@@ -44,7 +44,6 @@ class Article extends Component {
 		}
 
 		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
-			debugger
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
@@ -57,7 +56,6 @@ class Article extends Component {
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
-			debugger
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
 			
@@ -97,7 +95,6 @@ class Article extends Component {
     const popup = document.querySelector('#selection-popup');
 		popup.setAttribute('data-show', '');
 		
-		debugger
 		createPopper(button, popup, {
 		  // placement: 'bottom',
 		  modifiers: [
@@ -126,7 +123,6 @@ class Article extends Component {
 
 	renderCommentHighlights = (comments) => {
 		comments.map(comment => {
-			debugger
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
@@ -159,7 +155,6 @@ class Article extends Component {
 			})
 
 			span.addEventListener("mouseleave", () => {
-				debugger
 				this.setState({
 					...this.state,
 					hoverSelectionComment: ""
@@ -191,13 +186,12 @@ class Article extends Component {
 
 		const popup = document.querySelector(`#comment-popup`)
     // popup.setAttribute("data-show", "")
-		debugger
 		createPopper(commentSpan, popup, {
 		  placement: 'left',
 		});	
 	} 	
 
-	handleSubmitComment = (e, commentText) => {
+	handleSubmitComment = (e, commentText, facts) => {
 		// debugger
 		e.preventDefault()
 		this.props.addComment(
@@ -207,11 +201,11 @@ class Article extends Component {
 			this.state.span,
 			this.state.startOffset,
 			this.state.endOffset,
-			this.state.previousElId
+			this.state.previousElId,
+			facts
 			// this.state.selection,
 		)
 
-		// debugger
 		let span = document.getElementById(this.state.span.id);
 		let parent = span.parentNode;
 		parent.insertBefore(span.firstChild, span);
@@ -222,7 +216,6 @@ class Article extends Component {
 	}
 
 	handleCollectFact = () => {
-		// debugger
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
 	}
 
@@ -239,7 +232,6 @@ class Article extends Component {
 	}
 
 	render() {
-		debugger
 		console.log(this.props.comments)
 		return (
 			<div >
