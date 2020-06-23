@@ -28,7 +28,7 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
     fetch(rootURL() + `/groups/${groupId}/discussions/${discussionId}/comments`, configObj)
       .then(resp => resp.json())
       .then((comment) => {
-				// debugger
+				debugger
 				dispatch({ 
 					type: 'ADD_COMMENT', 
 					comment
