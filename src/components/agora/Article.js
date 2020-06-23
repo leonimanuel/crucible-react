@@ -26,7 +26,8 @@ class Article extends Component {
 			commentsLoaded: false,
 			previousElId: "",
 			hoverSelectionComment: "",
-			textSelected: false
+			highlightClicked: false,
+			textSelected: false,
 		}
 	}
 
@@ -151,14 +152,17 @@ class Article extends Component {
 			})
 
 			span.addEventListener("click", () => {
-				console.log(ReactDOM.render(<ArticleComment />))
+				// console.log(ReactDOM.render(<ArticleComment />))
+				this.setState({...this.state, highlightClicked: true})
 			})
 
 			span.addEventListener("mouseleave", () => {
-				this.setState({
-					...this.state,
-					hoverSelectionComment: ""
-				})
+				if (!this.state.highlightClicked) {
+					this.setState({
+						...this.state,
+						hoverSelectionComment: ""
+					})
+				}
 				console.log("dueces")
 			})
 		})
@@ -250,7 +254,7 @@ class Article extends Component {
 									collectFact={this.handleCollectFact} /> 
 							: null
 						}
-						{this.state.hoverSelectionComment 
+						{this.state.hoverSelectionComment
 							? <ArticleComment 
 									id="comment-popup" 
 									comment={this.state.hoverSelectionComment} /> 
