@@ -45,13 +45,6 @@ class SelectionMenu extends Component {
 			facts: [...this.state.facts, transferObj.fact],
 			draggedOver: false
 		})
-
-		debugger
-		// this.setState({...this.state, draggedOver: false}, this.debug())
-	}
-
-	debug = () => {
-		debugger
 	}
 
 	render() {
@@ -64,7 +57,7 @@ class SelectionMenu extends Component {
 						New Comment
 						<form onSubmit={(e) => this.props.submit(e, this.state.comment)} id="new-comment-form">
 							Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
-							<input type="submit" value="post"/>
+		
 							<div id="comment-facts-container">
 								{this.state.facts.map(fact => <NewCommentFact key={fact.id} fact={fact}/>) }
 							</div>
@@ -76,8 +69,9 @@ class SelectionMenu extends Component {
 								onDrop={this.drop}
 								className={this.state.draggedOver ? "dragged-over" : "" }
 							>
-								DROP FACTS IN ME
+								DRAG FACTS HERE
 							</div>
+							<input type="submit" value="post"/>
 						</form>
 					</div>	
 					<div id="arrow" data-popper-arrow></div>
