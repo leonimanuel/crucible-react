@@ -76,3 +76,35 @@ export const addFactFromComment = (fact) => {
 		//POST FACT
 	}
 }
+
+export const addNewDiscussion = (groupId, articleURL) => {
+	return (dispatch) => {
+		dispatch({type: "ADDING_NEW_DISCUSSION"})
+
+   let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+      	articleURL: articleURL
+      })
+    }
+
+    fetch(rootURL() + `/groups/${groupId}/discussions`, configObj)
+      .then(resp => resp.json())
+      .then((discussion) => {
+				if (discussion.error) {
+					alert(discussion.error)
+				} else {
+					dispatch({ 
+						type: 'UPDATE_GROUP_DISCUSSIONS', 
+						discussion
+					})		
+				}
+     })
+      .catch(err => alert(err.message))
+	}
+}
