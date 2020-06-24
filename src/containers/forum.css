@@ -1,0 +1,16 @@
+#forum-container {
+	display: flex;
+	flex-direction: column;
+
+	border: 2px solid red;
+	width: 30%;
+}
+
+#forum-messages-container {
+	height: 75%;
+	border: 2px solid green;
+}
+
+#forum-header-container {
+	border: 2px solid yellow;
+}
