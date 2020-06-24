@@ -105,6 +105,23 @@ font-family: 'Roboto Mono', monospace;
   background: white;
 }
 
+.popup[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
+}
+
+.popup[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
+}
+
+.popup[data-popper-placement^='left'] > #arrow {
+  right: -4px;
+}
+
+.popup[data-popper-placement^='right'] > #arrow {
+  left: -4px;
+}
+
+
 #selection-popup[data-popper-placement^='bottom'] > #arrow {
   top: -4px;
 }

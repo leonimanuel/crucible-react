@@ -43,3 +43,36 @@ export const falsifyAddedNewComment = () => {
 		type: "FALSIFY_ADDED_NEW_COMMENT"
 	}
 }
+
+export const addFactFromComment = (fact) => {
+	return (dispatch) => {
+		dispatch({type: "ADDING_COMMENT_FACT"})
+
+   let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+      	factId: fact.id
+      })
+    }
+    // debugger
+    fetch(rootURL() + `/facts`, configObj)
+      .then(resp => resp.json())
+      .then((fact) => {
+				if (fact.error) {
+					alert(fact.error)
+				} else {
+					dispatch({ 
+						type: 'ADD_FACT', 
+						fact
+					})		
+				}
+     })
+      .catch(err => alert(err.message))
+		//POST FACT
+	}
+}

@@ -191,7 +191,15 @@ class Article extends Component {
 		const popup = document.querySelector(`#comment-popup`)
     // popup.setAttribute("data-show", "")
 		createPopper(commentSpan, popup, {
-		  placement: 'left',
+		  placement: 'right',
+		  modifiers: [
+		    {
+		      name: 'offset',
+		      options: {
+		        offset: [0, 8],
+		      },
+		    },
+		  ],
 		});	
 	} 	
 
