@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { fetchUsers } from "../../actions/groups.js"
+import { fetchUsers, addNewGroup } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 
 import Example from "./Example.js"
@@ -15,14 +15,15 @@ class newGroupPopup extends Component {
 		articleURL: "",
 		groupName: "",
 		memberSearchVal: "",
-		addedMembers: []
+		addedMembers: [],
+		groupName: ""
 	}
 
 	handleChange = (e) => {
 		// debugger
 		this.setState({
 			...this.state,
-			memberSearchVal: e.target.value
+			[e.target.name]: e.target.value
 		})
 
 		if (e.target.value) {
@@ -57,7 +58,7 @@ class newGroupPopup extends Component {
 	}
 
 	removeMember = (member) => {
-		debugger
+		// debugger
 		this.setState({
 			...this.state,
 			addedMembers: this.state.addedMembers.filter(mem => mem.id !== member.id)
@@ -66,10 +67,12 @@ class newGroupPopup extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
+		debugger
+		this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
 	}
 
 	render() {
-		debugger
+		// debugger
 		if (document.getElementById("add-member-input")) {
 			let inputField = document.getElementById("add-member-input");
 			let suggestionsBox = document.getElementById("suggestions-box")
@@ -78,10 +81,11 @@ class newGroupPopup extends Component {
 		}
 		return (
 			<div id="new-group-popup">
+				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
 					<div className="new-group-input-div"><label>Article link: </label><input type="text"/> <br/></div>
-					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" /></div>
+					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" /></div>
 					
 					<div id="suggestions-box">
 						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
@@ -90,7 +94,7 @@ class newGroupPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					<div className="new-group-input-div">Group Name (optional): <input type="text" /></div>
+					<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>
 					<input type="submit" value="Create Group"/>
 				</form>
 			</div>
@@ -99,7 +103,7 @@ class newGroupPopup extends Component {
 }
 
 
-export default connect(state => ({suggestionMembers: state.sidenav.members}), { fetchUsers })(newGroupPopup);
+export default connect(state => ({suggestionMembers: state.sidenav.members}), { fetchUsers, addNewGroup })(newGroupPopup);
 
 
 

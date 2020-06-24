@@ -51,6 +51,10 @@ class AgoraMenu extends Component {
 		// 	members={this.props.members} />, wrapper, () => console.log("rendered new group popup"))
 	}
 
+	closePopup = () => {
+		this.setState({...this.state, renderNewGroupPopup: false})
+	}
+
 	render() {
 		// debugger
 		return (
@@ -62,7 +66,7 @@ class AgoraMenu extends Component {
 						createGroup={this.handleNewGroup} 
 						/> : null} 
 				</div>
-				{this.state.renderNewGroupPopup ? <NewGroupPopup /> : null}
+				{this.state.renderNewGroupPopup ? <NewGroupPopup closePopup={this.closePopup} /> : null}
 			</div>
 		)
 	}

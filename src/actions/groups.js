@@ -74,3 +74,36 @@ export const fetchUsers = (value) => {
       .catch(err => alert(err.message))
 	}
 }
+
+export const addNewGroup = (groupName, members) => {
+	return (dispatch) => {
+    let memberIds = members.map(member => member.id)
+    debugger
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+			body: JSON.stringify({
+				groupName: groupName,
+				memberIds: memberIds
+			})
+    }
+    // debugger
+    fetch(rootURL() + `/groups`, configObj)
+      .then(resp => resp.json())
+      .then((group) => {
+				// debugger
+				dispatch({ 
+					type: 'ADD_GROUP', 
+					group
+				})
+     })
+      .catch(err => alert(err.message))
+	}
+}
+
+

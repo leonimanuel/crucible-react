@@ -100,6 +100,12 @@
   /*display: none;  */
 }
 
+.close-button {
+	display: inline-block;
+	margin-left: 95%;
+	color: red;
+}
+
 #new-group-popup-title {
 	text-align: center;
 	font-size: 2em;

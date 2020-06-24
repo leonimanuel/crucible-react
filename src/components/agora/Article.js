@@ -153,7 +153,7 @@ class Article extends Component {
 
 			span.addEventListener("click", () => {
 				// console.log(ReactDOM.render(<ArticleComment />))
-				this.setState({...this.state, highlightClicked: true})
+				this.toggleHighlightClicked(span)
 			})
 
 			span.addEventListener("mouseleave", () => {
@@ -202,6 +202,15 @@ class Article extends Component {
 		  ],
 		});	
 	} 	
+
+	toggleHighlightClicked = (span) => {
+		this.setState({
+			...this.state, highlightClicked: !this.state.highlightClicked
+		}, () => {
+			span.style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
+			document.querySelector(`#comment-popup`).style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
+		})
+	}
 
 	handleSubmitComment = (e, commentText, facts) => {
 		// debugger
