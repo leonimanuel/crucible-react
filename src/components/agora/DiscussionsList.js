@@ -3,31 +3,30 @@ import { connect } from "react-redux"
 import DiscussionItem from "./DiscussionItem.js"
 import rootURL from "../../rootURL.js"
 import { updateGroupDiscussions } from "../../actions/groups.js"
+import NewDiscussionPopup from "./NewDiscussionPopup.js"
+import { createPopper } from "@popperjs/core"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
 
 class DiscussionsList extends Component {
-	handleNewDiscussion = () => {
-    let configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      }, 
-      body: JSON.stringify({
-      	article_url: "https://www.scientificamerican.com/article/why-do-people-avoid-facts-that-could-help-them/"
-      })
-    }
+	state = {
+		renderNewDiscussionPopup: false
+	}
 
-    fetch(rootURL() + `/groups/${this.props.group.id}/discussions`, configObj)
-      .then(resp => resp.json())
-      .then((data) => {
-				debugger
-				this.props.updateGroupDiscussions(data)
-				// this.props.loadGroups(groupsData)
-     })
-      .catch(err => alert(err.message))
+	handleNewDiscussion = () => {
+		this.setState({
+			renderNewDiscussionPopup: true
+		}, () => {
+			let button = document.querySelector("#new-discussion-button");
+			let popup = document.querySelector("#new-discussion-popup")
+			createPopper(button, popup, {
+			  placement: 'right',
+			});			
+		})
+	}
+
+	closePopup = () => {
+		this.setState({...this.state, renderNewDiscussionPopup: false})
 	}
 
 	render() {
@@ -39,6 +38,7 @@ class DiscussionsList extends Component {
 				<div>
 					{this.props.group.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion}/>)}
 				</div>
+				{this.state.renderNewDiscussionPopup ? <NewDiscussionPopup groupId={this.props.group.id} closePopup={this.closePopup}/> : null}
 			</div>
 		)
 	}
