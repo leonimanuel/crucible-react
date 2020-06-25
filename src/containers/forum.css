@@ -9,6 +9,7 @@
 #forum-messages-container {
 	height: 75%;
 	border: 2px solid green;
+	overflow: scroll;
 }
 
 #forum-header-container {
