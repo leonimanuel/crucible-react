@@ -5,6 +5,7 @@ export default function discussionsReducer(state = {
 	comments: [],
 	addedNewComment: false,
 	discussion: "",
+	discussionId: "",
 	loading: false,
 
 }, action) {
@@ -30,6 +31,7 @@ export default function discussionsReducer(state = {
 					...state,
 					loading: false,
 					discussion: action.discussionData,
+					discussionId: action.discussionData.id,
 					comments: action.discussionData.comments
 				}
 

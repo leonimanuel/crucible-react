@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux"
+
 import "./forum.css"
 import ForumMessageForm from "../components/agora/forum/ForumMessageForm.js"
 
 class Forum extends Component {
 
 	render() {
+		debugger
 		return (
 			<div id="forum-container">
 				<div id="forum-header-container">
@@ -12,7 +15,10 @@ class Forum extends Component {
 				</div>
 
 				<div id="forum-messages-container">
-					{this.props.discussion.messages.map(m => <div>{m.text}</div>)}
+					{this.props.discussion.messages.map(m => {
+						<div>{m.text}</div>
+					})
+					}
 				</div>
 
 				<ForumMessageForm discussion={this.props.discussion}/>
@@ -22,7 +28,7 @@ class Forum extends Component {
 }
 
 
-export default Forum;
+export default connect(state => ({discussion: state.discussion.discussion}))(Forum);
 
 				// <ForumHeader />
 				// <ForumMessagesContainer />

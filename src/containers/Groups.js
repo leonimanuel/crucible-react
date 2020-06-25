@@ -25,23 +25,30 @@ class Groups extends Component {
 		const { match } = this.props;
 		return (
 			<div id="groups-wrapper">
-				{this.props.activeDiscussion ? 
+				{this.props.activeDiscussionId ? 
 					<ActionCable 
-						channel={{ channel: "MessagesChannel", discussion: this.props.activeDiscussion.id}}
+						channel={{ channel: "MessagesChannel", discussion: this.props.activeDiscussionId}}
 						onReceived={this.handleReceivedMessage} 
 					/>
 				: null}
 				<Route path={`${match.path}/:groupId/discussions/:discussionId`} 
 					render={routerProps => <Article {...routerProps} />} >
 				</Route>
-				{this.state.renderForum && this.props.activeDiscussion ? <Forum discussion={this.props.activeDiscussion}/> : null}
+				{this.state.renderForum && this.props.activeDiscussionId ? <Forum discussion={this.props.activeDiscussion}/> : null}
 			</div>
 		)
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		activeDiscussionId: state.discussion.discussionId
+	}
+}
 
-export default withRouter(connect(state => ({activeDiscussion: state.discussion.discussion}), { addMessageToDiscussion })(Groups));
+
+
+export default withRouter(connect(mapStateToProps, { addMessageToDiscussion })(Groups));
 
 
 
