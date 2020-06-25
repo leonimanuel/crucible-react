@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./forum.css"
+import ForumMessageForm from "../components/agora/forum/ForumMessageForm.js"
 
 class Forum extends Component {
 
@@ -11,14 +12,10 @@ class Forum extends Component {
 				</div>
 
 				<div id="forum-messages-container">
-					MESSAGES GO HERE
+					{this.props.discussion.messages.map(m => <div>{m.text}</div>)}
 				</div>
 
-				<div id="forum-input-wrapper">
-					<form id="forum-input-form">
-						<input type="text" name="message"/>
-					</form>
-				</div>
+				<ForumMessageForm discussion={this.props.discussion}/>
 			</div>
 		)
 	}

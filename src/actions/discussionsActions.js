@@ -108,3 +108,12 @@ export const addNewDiscussion = (groupId, articleURL) => {
       .catch(err => alert(err.message))
 	}
 }
+
+export const addMessageToDiscussion = message => {
+  return {
+    type: "ADD_MESSAGE_TO_DISCUSSION",
+    message
+  }
+}
+
+

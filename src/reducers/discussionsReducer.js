@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import cloneDeep from "lodash/cloneDeep"
+
 export default function discussionsReducer(state = {
 	comments: [],
 	addedNewComment: false,
@@ -43,6 +46,14 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					addedNewComment: false
+				}
+
+			case "ADD_MESSAGE_TO_DISCUSSION":
+				let discussionClone = _.cloneDeep(state.discussion)
+				discussionClone.messages = [...discussionClone.messages, action.message]
+				return {
+					...state,
+					discussion: discussionClone
 				}
 
 			default:
