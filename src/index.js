@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import _ from 'lodash';
-
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 import App from './App';
 import { Provider } from 'react-redux';
@@ -11,7 +11,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from "./reducers/rootReducer.js"
 // import rootURL from "./rootURL.js"
-
+import { API_WS_ROOT } from "./constants";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -22,8 +22,10 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-	  <Provider store={store} >
-	    <App store={store} />  	
+	  <Provider store={store}>
+	    <ActionCableProvider url={API_WS_ROOT}>
+		    <App store={store}/>  	    	
+	    </ActionCableProvider>
 	  </Provider>
   </React.StrictMode>,
   document.getElementById('root')
