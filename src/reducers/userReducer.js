@@ -7,6 +7,7 @@ import groupsReducer from "./groupsReducer.js"
 export default function userReducer(state = {
 	isLoggedIn: false,
 	userEmail: "none",
+	userId: "",
 	topics: [],
 	facts: [],
 	// parentTopic: "",
@@ -18,7 +19,8 @@ export default function userReducer(state = {
 				isLoggedIn: true, //necessary?
 				userEmail: action.user.email,
 				topics: action.user.topics,
-				facts: action.user.facts
+				facts: action.user.facts,
+				userId: action.user.id
 			}
 		
 		case "LOG_OUT":

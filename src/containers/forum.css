@@ -3,15 +3,50 @@
 	flex-direction: column;
 
 	border: 2px solid red;
-	width: 30%;
+	min-width: 30%;
+	/*resize: horizontal;*/
 }
 
 #forum-messages-container {
 	height: 75%;
 	border: 2px solid green;
 	overflow: scroll;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: center;*/
+	align-items: center;
 }
 
 #forum-header-container {
 	border: 2px solid yellow;
+}
+
+.message-wrapper {
+	width: 80%;
+	margin: 5px;
+}
+
+.message-wrapper.received {
+	/*background-color: gold*/
+	align-self: flex-start
+}
+
+.message-wrapper.sent {
+	/*background-color: gold*/
+	align-self: flex-end
+}
+
+.message-user-name {
+	text-align: left;
+	font-size: 0.8em;
+	margin-left: 5px;
+}
+
+.message-text {
+	border: 2px solid black;
+	border-radius: 10px;
+	padding: 10px;
+
+	background-color: #0fabbc;
+	color: white;
 }

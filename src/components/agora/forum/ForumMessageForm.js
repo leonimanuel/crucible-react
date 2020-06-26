@@ -22,7 +22,7 @@ class NewMessageForm extends Component {
   }
 
   render = () => {
-    debugger
+    // debugger
     return (
       <div className="newMessageForm">
         <form onSubmit={this.handleSubmit}>

@@ -254,7 +254,7 @@ class Article extends Component {
 
 	render() {
 		console.log(this.props.comments)
-		debugger
+		// debugger
 		return (
 			<div >
 				{this.props.discussion ? 
