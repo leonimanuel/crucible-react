@@ -30,6 +30,7 @@ class App extends Component {
     fetch(rootURL() + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
       .then((data) => {
+        debugger
         if (data.name) {
           // debugger
           console.log(data)
