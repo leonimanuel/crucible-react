@@ -6,11 +6,9 @@ import groupsReducer from "./groupsReducer.js"
 
 export default function userReducer(state = {
 	isLoggedIn: false,
-	userEmail: "none",
+	userName: "",
+	userEmail: "",
 	userId: "",
-	topics: [],
-	facts: [],
-	// parentTopic: "",
 }, action) {
 	console.log("executing userReducer")
 	switch (action.type) {
@@ -26,8 +24,11 @@ export default function userReducer(state = {
 		
 		case "LOG_OUT":
 			return {
+				...state,
 				isLoggedIn: false,
-				userEmail: "none"
+				userName: "",
+				userEmail: "",
+				userId: "",
 			}
 			
 		default:

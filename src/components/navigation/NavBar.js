@@ -39,7 +39,7 @@ class NavBar extends Component {
 }
 
 
-export default connect(state => ({isLoggedIn: state.isLoggedIn}), { logOut })(NavBar);
+export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logOut })(NavBar);
 
 
 
