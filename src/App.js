@@ -11,6 +11,7 @@ import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
+import SignUp from "./components/authentication/SignUp.js"
 import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
@@ -63,7 +64,8 @@ class App extends Component {
             </main>             
           : null
           }
-            <Route path="/login"><Login/></Route> 
+            <Route path="/login"><Login/></Route>
+            <Route path="/signup"><SignUp/></Route> 
 
         </div>      
       </Router>

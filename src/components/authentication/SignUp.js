@@ -5,9 +5,10 @@ import { Redirect } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
 
-class Login extends Component {
+class SignUp extends Component {
 	state = {
-		email: "billy@aol.com",
+		name: "Charlie",
+		email: "charlie@aol.com",
 		password: "greenbeans"
 	}
 
@@ -21,8 +22,6 @@ class Login extends Component {
 		e.preventDefault()
 		console.log("submitting login info")
 		
-		// let rootURL = "http://localhost:3000"
-
 		let configObj = {
 			method: "POST",
 			headers: {
@@ -30,12 +29,13 @@ class Login extends Component {
 				Accept: "application/json"
 			},
 			body: JSON.stringify({
+				name: this.state.name,
 				email: this.state.email,
 				password: this.state.password
 			})
 		}
 
-		fetch(API_ROOT + "/authenticate", configObj)
+		fetch(API_ROOT + "/users", configObj)
 			.then(resp => resp.json())
 			.then(data => {
 				if (data) {
@@ -54,8 +54,11 @@ class Login extends Component {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
 				<div id="login-wrapper">
-					<h1>Login</h1>
+					<h1>Sign Up</h1>
 					<form onSubmit={this.handleSubmit}>
+						<label>Name: </label>
+						<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+						<br/>
 						<label>Email: </label>
 						<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
 						<br/>
@@ -74,7 +77,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { logIn })(Login);
+export default connect(mapStateToProps, { logIn })(SignUp);
 
 
 

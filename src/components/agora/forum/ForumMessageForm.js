@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { API_ROOT, HEADERS } from '../../../constants';
+import { connect } from 'react-redux';
 
 class NewMessageForm extends Component {
   state = {
@@ -16,7 +17,10 @@ class NewMessageForm extends Component {
     fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/messages`, {
       method: 'POST',
       headers: HEADERS,
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        text: this.state.text,
+        userId: this.props.userId
+      })
     });
     this.setState({ text: '' });
   }
@@ -40,4 +44,4 @@ class NewMessageForm extends Component {
   };
 }
 
-export default NewMessageForm;
+export default connect(state => ({userId: state.users.userId}))(NewMessageForm);

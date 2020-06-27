@@ -26,7 +26,12 @@ class NavBar extends Component {
 				</div>
 				<div id="profile-options">
 					{ this.props.isLoggedIn ? <div className="nav-link" onClick={this.handleLogOut}>Logout</div>
-						: <Link className="nav-link" to="/login" >Login</Link>  } 										
+						: 
+						<div>
+							<Link className="nav-link" to="/login" >Login</Link>
+							<Link className="nav-link" to="/signup" >Signup</Link>
+						</div>
+					} 										
 				</div>
 			</div>
 		)
