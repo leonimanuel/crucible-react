@@ -3,7 +3,7 @@ import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
 
-import rootURL from "../../rootURL.js"
+import { API_ROOT } from "../../constants"
 
 class Login extends Component {
 	state = {
@@ -35,13 +35,14 @@ class Login extends Component {
 			})
 		}
 
-		fetch(rootURL() + "/authenticate", configObj)
+		fetch(API_ROOT + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {
-				if (data.auth_token) {
+				if (data) {
+					// debugger
 					console.log(data)					
-					localStorage.setItem("token", data.auth_token)
-					this.props.logIn(data)
+					localStorage.setItem("token", data[0].auth_token)
+					this.props.logIn(data[1])
 				} else {
 					alert(data.error.user_authentication)
 				}

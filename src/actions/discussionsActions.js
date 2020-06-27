@@ -1,4 +1,4 @@
-import rootURL from "../rootURL.js"
+import { API_ROOT } from "../constants"
 
 export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset, previousElId, facts) => {
 	console.log(comment)
@@ -25,7 +25,7 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
       })
     }
     // debugger
-    fetch(rootURL() + `/groups/${groupId}/discussions/${discussionId}/comments`, configObj)
+    fetch(API_ROOT + `/groups/${groupId}/discussions/${discussionId}/comments`, configObj)
       .then(resp => resp.json())
       .then((comment) => {
 				debugger
@@ -60,7 +60,7 @@ export const addFactFromComment = (fact) => {
       })
     }
     // debugger
-    fetch(rootURL() + `/facts`, configObj)
+    fetch(API_ROOT + `/facts`, configObj)
       .then(resp => resp.json())
       .then((fact) => {
 				if (fact.error) {
@@ -93,7 +93,7 @@ export const addNewDiscussion = (groupId, articleURL) => {
       })
     }
 
-    fetch(rootURL() + `/groups/${groupId}/discussions`, configObj)
+    fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => resp.json())
       .then((discussion) => {
 				if (discussion.error) {

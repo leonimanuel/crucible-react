@@ -5,7 +5,7 @@ import { createPopper } from "@popperjs/core"
 
 // import ConsoleTopic from "./ConsoleTopic.js"
 import GroupsList from "./GroupsList.js"
-import rootURL from "../../rootURL.js"
+import { API_ROOT } from "../../constants"
 import { loadGroups, fetchUsers } from "../../actions/groups.js"
 import NewGroupPopup from "./NewGroupPopup.js"
 
@@ -25,7 +25,7 @@ class AgoraMenu extends Component {
       }
     }
 
-    fetch(rootURL() + `/groups`, configObj)
+    fetch(API_ROOT + `/groups`, configObj)
       .then(resp => resp.json())
       .then((groupsData) => {
 				// debugger

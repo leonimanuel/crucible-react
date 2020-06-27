@@ -15,11 +15,12 @@ export default function userReducer(state = {
 	console.log("executing userReducer")
 	switch (action.type) {
 		case "LOG_IN":
+			// debugger
 			return {
+				...state,
 				isLoggedIn: true, //necessary?
+				userName: action.user.name,
 				userEmail: action.user.email,
-				topics: action.user.topics,
-				facts: action.user.facts,
 				userId: action.user.id
 			}
 		
@@ -28,16 +29,6 @@ export default function userReducer(state = {
 				isLoggedIn: false,
 				userEmail: "none"
 			}
-
-
-		// case "ADD_FACT":
-		// 	let boi = state.topics
-		// 	let newTopicIndex = updatedTopics.findIndex(topic => topic.name === "New")
-
-		// 	return {
-		// 		...state,
-		// 		topics: [...topics]
-		// 	}
 			
 		default:
 			return state;

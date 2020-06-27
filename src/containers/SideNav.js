@@ -15,7 +15,7 @@ class SideNav extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchTopics()
+		// debugger
 
 		console.log("mounted sidenav")
 		let sideNav = document.getElementById("side-nav")
@@ -25,6 +25,12 @@ class SideNav extends Component {
 
 	handleTabClick = e => {
 		// this.setState({section: e.target.id})
+		if (this.state.section !== e.target.id) {
+			debugger
+			this.props.fetchTopics()
+		}
+		
+
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
 

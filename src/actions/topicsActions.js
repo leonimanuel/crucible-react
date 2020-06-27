@@ -1,4 +1,4 @@
-import rootURL from "../rootURL.js"
+import { API_ROOT } from "../constants"
 
 
 export const fetchTopics = () => {
@@ -13,10 +13,10 @@ export const fetchTopics = () => {
 	    }
 	  }
 
-	  fetch(rootURL() + `/topics`, configObj)
+	  fetch(API_ROOT + `/topics`, configObj)
 	    .then(resp => resp.json())
 	    .then((topics) => {
-				// debugger
+				debugger
 				dispatch(({
 					type: "ADD_TOPICS",
 					topics
@@ -61,7 +61,7 @@ export const addFactToNew = (selection, articleURL) => {
 			})
 		}
 		// debugger
-		fetch("http://localhost:3000/facts", configObj)
+		fetch(API_ROOT + "/facts", configObj)
 			.then(resp => resp.json())
 			.then(fact => {
 				// debugger

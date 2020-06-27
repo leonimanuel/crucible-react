@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import DiscussionItem from "./DiscussionItem.js"
-import rootURL from "../../rootURL.js"
 import { updateGroupDiscussions } from "../../actions/groups.js"
 import NewDiscussionPopup from "./NewDiscussionPopup.js"
 import { createPopper } from "@popperjs/core"

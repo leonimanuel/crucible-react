@@ -11,11 +11,16 @@ import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
-import rootURL from "./rootURL.js"
+import {API_ROOT} from "./constants"
+
 import { logIn } from "./actions/users.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
+  componentDidMount() {
+    this.loadUser()  
+  }
+
   loadUser = () => {
     let configObj = {
       method: "GET",
@@ -27,7 +32,7 @@ class App extends Component {
     }
 
     // console.log(store)
-    fetch(rootURL() + `/users/GETUSER`, configObj)
+    fetch(API_ROOT + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
       .then((data) => {
         debugger
@@ -42,7 +47,6 @@ class App extends Component {
   }
 
   render() {
-    this.loadUser()
     // console.log(this.props.isLoggedIn)
     // console.log("rendering app")
     return (

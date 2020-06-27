@@ -12,7 +12,7 @@ class NewMessageForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    debugger
     fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/messages`, {
       method: 'POST',
       headers: HEADERS,

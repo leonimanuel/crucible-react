@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../components/console/console.css"
 
-import rootURL from "../rootURL.js"
+import { API_ROOT } from "../constants"
 import { connect } from "react-redux"
 import TopicMenu from "../components/console/TopicMenu.js"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
@@ -19,7 +19,7 @@ class Console extends Component {
       }
     }
 
-    fetch(rootURL() + `/topics`, configObj)
+    fetch(API_ROOT + `/topics`, configObj)
       .then(resp => resp.json())
       .then((data) => {
 				console.log(data)

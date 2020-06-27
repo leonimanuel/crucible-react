@@ -1,4 +1,4 @@
-import rootURL from "../rootURL.js"
+import { API_ROOT } from "../constants"
 
 export const addFact = (selection, articleURL) => {
 	dispatch({type: "POST_FACT"})
@@ -16,7 +16,7 @@ export const addFact = (selection, articleURL) => {
 		})
 	}
 
-	fetch("http://localhost:3000/facts", configObj)
+	fetch(API_ROOT + "/facts", configObj)
 		.then(resp => resp.json())
 		.then(fact => {
 			debugger

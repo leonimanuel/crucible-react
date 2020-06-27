@@ -1,4 +1,4 @@
-import rootURL from "../rootURL.js"
+import { API_ROOT } from "../constants"
 
 export const loadGroups = (groups) => {
 	console.log("loading groups")
@@ -35,7 +35,7 @@ export const fetchDiscussion = (groupId, discussionId) => {
       }
     }
     // debugger
-    fetch(rootURL() + `/groups/${groupId}/discussions/${discussionId}`, configObj)
+    fetch(API_ROOT + `/groups/${groupId}/discussions/${discussionId}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
 					debugger
@@ -62,7 +62,7 @@ export const fetchUsers = (value) => {
       }
     }
     // debugger
-    fetch(rootURL() + `/users`, configObj)
+    fetch(API_ROOT + `/users`, configObj)
       .then(resp => resp.json())
       .then((users) => {
 				// debugger
@@ -93,7 +93,7 @@ export const addNewGroup = (groupName, members) => {
 			})
     }
     // debugger
-    fetch(rootURL() + `/groups`, configObj)
+    fetch(API_ROOT + `/groups`, configObj)
       .then(resp => resp.json())
       .then((group) => {
 				// debugger
