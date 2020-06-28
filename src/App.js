@@ -62,7 +62,7 @@ class App extends Component {
               <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
               <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>           
             </main>             
-          : <Redirect to="login"/>
+          : null
           }
             <Route path="/login"><Login/></Route>
             <Route path="/signup"><SignUp/></Route> 

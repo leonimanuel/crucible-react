@@ -20,10 +20,14 @@ class Forum extends Component {
 				</div>
 
 				<div id="forum-messages-container">
-					{this.props.discussion.messages.map(m => {
+					{this.props.discussion.messages.map((m, index) => {
+						// let lastSenderId = m.user.id
 						return (
 							<div className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}>
-								{m.user.id !== this.props.currentUserId ? <div className="message-user-name">{m.user.name}</div> : null}
+								{m.user.id !== this.props.currentUserId && m.user.id !== this.props.discussion.messages[index-1].user.id
+									? <div className="message-user-name">{m.user.name}</div> 
+									: null
+								}
 								<div className="message-text">{m.text}</div>
 							</div>
 						)

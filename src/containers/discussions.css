@@ -3,7 +3,9 @@
 	/*max-height: 100%;*/
   width: 100%;
 	justify-content: center;
-  background-color: #44558f;
+  /*background-color: #44558f;*/
+/*  background-color: #d1f2ef;
+  background-color: #30475e;*/
 
 }
 
@@ -12,16 +14,18 @@
 	/*border: 2px solid black;*/
   margin: auto;
   border-radius: 10px;
-	width: 75%;
-  max-width: 1000px;
+	width: 95%;
+  /*max-width: 1000px;*/
 	height: 100%;
 	/*overflow: scroll;*/
   /*font-family: Georgia, sans-serif;*/
 /*font-family: 'Abel', sans-serif; */
 font-family: 'Roboto Mono', monospace;
+/*font-family: 'Montserrat', sans-serif;*/
+/*font-family: 'Krona One', sans-serif;*/
  /*background-color: azure;*/
   /*background-color: snow;*/
-  color: white;
+  /*color: white;*/
   /*box-shadow: 0 0 5px gray;*/
 }
 

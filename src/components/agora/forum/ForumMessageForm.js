@@ -8,7 +8,16 @@ class NewMessageForm extends Component {
   }
 
   handleChange = e => {
-    this.setState({ text: e.target.value });
+    debugger
+    e.persist()
+    // let key = e.key
+    this.setState({ text: e.target.innerText }, () => {
+      if (e.key == "Enter") { 
+        debugger
+        this.handleSubmit(e) 
+        // e.target.innerHTML = ""
+      }
+    });
   }
 
   handleSubmit = e => {
@@ -23,15 +32,29 @@ class NewMessageForm extends Component {
       })
     });
     this.setState({ text: '' });
+    if (e.target.id === "message-input-div") {
+      e.target.innerHTML = ""
+    }
   }
 
   render = () => {
+    let messageInput = document.getElementById("message-input")
     // debugger
+    if (messageInput) {
+      messageInput.style = `height: ${messageInput.scrollHeight}px`
+    }
     return (
-      <div className="newMessageForm">
+      <div id="newMessageForm">
         <form onSubmit={this.handleSubmit}>
           <label>New Message:</label>
           <br />
+          <div 
+            id="message-input-div" 
+            contenteditable="true"
+            onKeyPress={this.handleChange}   
+          >
+
+          </div>
           <input
             type="text"
             value={this.state.text}
