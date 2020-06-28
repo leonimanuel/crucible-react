@@ -24,7 +24,7 @@ class Forum extends Component {
 						// let lastSenderId = m.user.id
 						return (
 							<div className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}>
-								{m.user.id !== this.props.currentUserId && m.user.id !== this.props.discussion.messages[index-1].user.id
+								{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.discussion.messages[index-1].user.id)
 									? <div className="message-user-name">{m.user.name}</div> 
 									: null
 								}
