@@ -45,22 +45,14 @@ class NewMessageForm extends Component {
     }
     return (
       <div id="newMessageForm">
-        <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
-          <br />
+        <form id="message-form" onSubmit={this.handleSubmit}>
           <div 
             id="message-input-div" 
             contenteditable="true"
             onKeyPress={this.handleChange}   
           >
-
           </div>
-          <input
-            type="text"
-            value={this.state.text}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
+          <input id="message-submit-button" type="submit" />
         </form>
       </div>
     );

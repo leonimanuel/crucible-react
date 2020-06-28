@@ -26,7 +26,7 @@
 }
 
 .message-wrapper {
-	width: 80%;
+	max-width: 80%;
 	margin: 5px;
 }
 
@@ -87,15 +87,29 @@
 	margin: 0 auto;*/
 }
 
+#message-form {
+	display: flex;
+	margin: 10px;
+	justify-content: space-between;
+}
+
 #message-input-div {
 	background-color: white;
 	border-radius: 5px;
-	width: 95%;
-	margin: 0 auto;
+	/*width: 70%;*/
+	flex: 1;
+	margin: 0 5px;
 	text-align: left;
   outline: none;
+  padding: 3px;
 }
 
+#message-submit-button {
+	border: none;
+	background-color: gold;
+	text-decoration: !important;
+	border-radius: 5px;
+}
 
 
 
