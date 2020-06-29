@@ -8,6 +8,7 @@ import topicsReducer from "./topicsReducer.js"
 export default combineReducers({
 	users: userReducer,
 	sidenav: groupsReducer,
+	groups: groupsReducer,
 	discussion: discussionsReducer,
 	topics: topicsReducer
 })

@@ -1,6 +1,6 @@
 import { API_ROOT } from "../constants"
 
-export const addComment = (groupId, discussionId, comment, span, startOffset, endOffset, previousElId, facts) => {
+export const addComment = (groupName, discussionName, comment, span, startOffset, endOffset, previousElId, facts) => {
 	console.log(comment)
 	debugger
 	return (dispatch) => {
@@ -25,7 +25,7 @@ export const addComment = (groupId, discussionId, comment, span, startOffset, en
       })
     }
     // debugger
-    fetch(API_ROOT + `/groups/${groupId}/discussions/${discussionId}/comments`, configObj)
+    fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}/comments`, configObj)
       .then(resp => resp.json())
       .then((comment) => {
 				debugger

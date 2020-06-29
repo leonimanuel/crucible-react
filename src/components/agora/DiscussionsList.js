@@ -35,7 +35,7 @@ class DiscussionsList extends Component {
 				<div className="list-title">Discussions</div>
 				<div onClick={this.handleNewDiscussion} id="new-discussion-button">NEW DIS</div>
 				<div>
-					{this.props.group.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion}/>)}
+					{this.props.group.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>)}
 				</div>
 				{this.state.renderNewDiscussionPopup ? <NewDiscussionPopup groupId={this.props.group.id} closePopup={this.closePopup}/> : null}
 			</div>

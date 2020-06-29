@@ -31,7 +31,7 @@ class Groups extends Component {
 						onReceived={this.handleReceivedMessage} 
 					/>
 				: null}
-				<Route path={`${match.path}/:groupId/discussions/:discussionId`} 
+				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
 					render={routerProps => <Article {...routerProps} />} >
 				</Route>
 				{this.state.renderForum && this.props.activeDiscussionId ? <Forum discussion={this.props.activeDiscussion}/> : null}

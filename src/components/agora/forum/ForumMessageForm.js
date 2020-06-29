@@ -48,7 +48,7 @@ class NewMessageForm extends Component {
         <form id="message-form" onSubmit={this.handleSubmit}>
           <div 
             id="message-input-div" 
-            contenteditable="true"
+            contentEditable="true"
             onKeyPress={this.handleChange}   
           >
           </div>

@@ -19,7 +19,7 @@ class GroupDetailsMenu extends Component {
 }
 
 
-export default connect(state => ({group: state.sidenav.selectedGroup}))(GroupDetailsMenu);
+export default connect(state => ({group: state.groups.selectedGroup}))(GroupDetailsMenu);
 
 
 

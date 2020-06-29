@@ -16,7 +16,7 @@ class Forum extends Component {
 		return (
 			<div id="forum-container">
 				<div id="forum-header-container">
-					HEADER GOES HERE
+					{this.props.group.name}
 				</div>
 
 				<div id="forum-messages-container">
@@ -44,7 +44,8 @@ class Forum extends Component {
 const mapStateToProps = state => {
 	return {
 		currentUserId: state.users.userId,
-		discussion: state.discussion.discussion
+		discussion: state.discussion.discussion,
+		group: state.groups.selectedGroup
 	}
 }
 

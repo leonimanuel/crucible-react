@@ -10,7 +10,7 @@ class DiscussionsItem extends Component {
 		// debugger
 		return (
 			<div className="discussion-item">
-				<Link to={`/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}`} >
+				<Link to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.name}`} >
 					{this.props.discussion.name.split("_").join(" ")}
 				</Link>
 			</div>

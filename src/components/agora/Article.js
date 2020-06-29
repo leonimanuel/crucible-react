@@ -34,15 +34,18 @@ class Article extends Component {
 
 
 	componentDidMount() {
-		this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
+		debugger
+		this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
+		// this.setState({location: this.props.location.pathname})
 	}
 
 	componentDidUpdate() {
-		// debugger
-		if (this.props.location.pathname !== this.state.location) {
-			this.props.fetchDiscussion(this.props.match.params.groupId, this.props.match.params.discussionId)
-			this.setState({location: this.props.location.pathname})
-		}
+		debugger
+		// if (this.props.location.pathname !== this.state.location) {
+		// 	debugger
+		// 	this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
+		// 	this.setState({location: this.props.location.pathname})
+		// }
 
 		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			this.renderCommentHighlights(this.props.comments)
@@ -216,9 +219,11 @@ class Article extends Component {
 		// debugger
 		e.preventDefault()
 		this.props.addComment(
-			this.props.match.params.groupId,
-			this.props.match.params.discussionId,
-			commentText,
+			this.props.discussion.group_id,
+			this.props.discussion.id,
+			// this.props.match.params.groupId,
+			// this.props.match.params.discussionId,
+			// commentText,
 			this.state.span,
 			this.state.startOffset,
 			this.state.endOffset,
