@@ -211,14 +211,14 @@ class Article extends Component {
 	}
 
 	handleSubmitComment = (e, commentText, facts) => {
-		// debugger
+		debugger
 		e.preventDefault()
 		this.props.addComment(
 			this.props.discussion.group_id,
 			this.props.discussion.id,
 			// this.props.match.params.groupId,
 			// this.props.match.params.discussionId,
-			// commentText,
+			commentText,
 			this.state.span,
 			this.state.startOffset,
 			this.state.endOffset,
@@ -259,16 +259,19 @@ class Article extends Component {
 			<div id="article-outer-container">
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw" >
-						<div id="article-title">{this.props.discussion.article.title}</div>
-						<div id="article-info-container">
-							<div id="author-and-date-published">
-								<div id="article-author">{this.props.discussion.article.author}</div>
-								<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
-							</div>
-							<button id="show-forum-button" onClick={this.props.onForumClick}>Forum</button>
+						<div id="title-and-forum-button">
+							<div id="article-title">{this.props.discussion.article.title}</div>
+							<div id="show-forum-button" onClick={this.props.onForumClick}>Forum</div>
 						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
 							{/*this.handleArticleHTML()*/}
+							<div id="article-info-container">
+								<div id="author-and-date-published">
+									<div id="article-author">{this.props.discussion.article.author}</div>
+									<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
+								</div>
+							</div>
+
 							<ArticleContent />
 						</div>						
 						

@@ -26,7 +26,6 @@ class SideNav extends Component {
 	handleTabClick = e => {
 		// this.setState({section: e.target.id})
 		if (this.state.section !== e.target.id) {
-			debugger
 			this.props.fetchTopics()
 		}
 		

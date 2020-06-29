@@ -1,26 +1,15 @@
 #groups-wrapper {
 	display: flex;
-	/*max-height: 100%;*/
   width: 100%;
 	justify-content: center;
-  /*background-color: #44558f;*/
-/*  background-color: #d1f2ef;
-  background-color: #30475e;*/
-
 }
 
 #article-outer-container {
-  /*border: 2px solid;*/
   width: 100%;
-  /*display: flex;*/
+  margin-top: 20px;
 }
 
 #article-wrapper {
-	/*align-self: flex-end;*/
-	/*border: 2px solid black;*/
-  /*padding: 10px;*/
-  /*flex-grow: 1;*/
-  /*align-self: center;*/
   margin: auto;
   /*max-width: 80%;*/
   max-width: 600px;
@@ -34,10 +23,12 @@
 font-family: 'Roboto Mono', monospace;
 /*font-family: 'Montserrat', sans-serif;*/
 /*font-family: 'Krona One', sans-serif;*/
- /*background-color: azure;*/
-  /*background-color: snow;*/
-  /*color: white;*/
-  /*box-shadow: 0 0 5px gray;*/
+}
+
+#title-and-forum-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #article-title {
@@ -46,7 +37,25 @@ font-family: 'Roboto Mono', monospace;
   text-align: center;
   width: 100%;*/
   /*padding: 10px 20px;*/
-  font-size: 1.5em;
+  font-size: 1.4em;
+  text-align: left;
+  /*margin-left: 10px;*/
+}
+
+#show-forum-button {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+
+  display: flex;
+  background-color: gold;
+  /*border: 2px solid black;*/
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  padding: 5px;
 }
 
 #article-info-container {
@@ -57,15 +66,15 @@ font-family: 'Roboto Mono', monospace;
   /*margin: 0 10px;*/
 }
 
-#show-forum-button {
-  background-color: gold;
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 5px;
+#article-info-container div {
+  text-align: left;
+  /*font-weight: italic;*/
 }
 
+
+
 #article-content {
-	/*border: 2px solid blue;*/
+  margin-top: 30px;
   max-height: 75%;
   overflow: scroll;
   font-size: 1.2em;
