@@ -263,6 +263,10 @@ class Article extends Component {
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="article-title">{this.props.discussion.article.title}</div>
+						<div id="article-info-container">
+							<div id="article-authors">{this.props.discussion.article.author}</div>
+							<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
+						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
 							{/*this.handleArticleHTML()*/}
 							<ArticleContent />
