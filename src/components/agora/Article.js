@@ -14,10 +14,8 @@ import ArticleContent from "./ArticleContent.js"
 class Article extends Component {
 	constructor() {
 		super()
-		let x = "HEY THERE"
-
 		this.state = {
-			articleContent: x,
+			articleContent: "HEY THERE",
 			location: "",
 			comment: "",
 			span: "",
@@ -41,11 +39,11 @@ class Article extends Component {
 
 	componentDidUpdate() {
 		debugger
-		// if (this.props.location.pathname !== this.state.location) {
-		// 	debugger
-		// 	this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
-		// 	this.setState({location: this.props.location.pathname})
-		// }
+		if (this.props.location.pathname !== this.state.location) {
+			debugger
+			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
+			this.setState({location: this.props.location.pathname})
+		}
 
 		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			this.renderCommentHighlights(this.props.comments)
