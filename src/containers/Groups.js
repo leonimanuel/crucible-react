@@ -21,6 +21,11 @@ class Groups extends Component {
 		this.props.addMessageToDiscussion(message)
 	}
 
+	handleToggleForum = () => {
+		debugger
+		this.setState({renderForum: !this.state.renderForum})
+	}
+
 	render() {
 		const { match } = this.props;
 		return (
@@ -32,9 +37,14 @@ class Groups extends Component {
 					/>
 				: null}
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
-					render={routerProps => <Article {...routerProps} />} >
+					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
 				</Route>
-				{this.state.renderForum && this.props.activeDiscussionId ? <Forum discussion={this.props.activeDiscussion}/> : null}
+				{this.state.renderForum && this.props.activeDiscussionId 
+					? <Forum 
+							discussion={this.props.activeDiscussion} 
+							/> 
+					: null
+				}
 			</div>
 		)
 	}

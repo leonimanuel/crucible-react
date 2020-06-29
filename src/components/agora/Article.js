@@ -32,15 +32,12 @@ class Article extends Component {
 
 
 	componentDidMount() {
-		debugger
 		this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 		// this.setState({location: this.props.location.pathname})
 	}
 
 	componentDidUpdate() {
-		debugger
 		if (this.props.location.pathname !== this.state.location) {
-			debugger
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
 		}
@@ -259,13 +256,16 @@ class Article extends Component {
 		console.log(this.props.comments)
 		// debugger
 		return (
-			<div >
+			<div id="article-outer-container">
 				{this.props.discussion ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="article-title">{this.props.discussion.article.title}</div>
 						<div id="article-info-container">
-							<div id="article-authors">{this.props.discussion.article.author}</div>
-							<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
+							<div id="author-and-date-published">
+								<div id="article-author">{this.props.discussion.article.author}</div>
+								<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
+							</div>
+							<button id="show-forum-button" onClick={this.props.onForumClick}>Forum</button>
 						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
 							{/*this.handleArticleHTML()*/}

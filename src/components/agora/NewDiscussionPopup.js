@@ -9,7 +9,6 @@ class NewDiscussionPopup extends Component {
 	}
 
 	handleChange = (e) => {
-		debugger
 		this.setState({
 			...this.state, 
 			articleURL: e.target.value
