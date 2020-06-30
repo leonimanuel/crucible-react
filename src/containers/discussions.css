@@ -43,20 +43,23 @@ font-family: 'Roboto Mono', monospace;
 }
 
 #show-forum-button {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-
   display: flex;
   background-color: gold;
   /*border: 2px solid black;*/
   border-radius: 5px;
   padding: 5px;
   outline: none;
-  font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+
   padding: 5px;
   cursor: pointer;
+}
+
+#show-forum-button-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
 #article-info-container {

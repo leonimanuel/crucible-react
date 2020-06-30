@@ -5,7 +5,7 @@ export default function discussionsReducer(state = {
 	discussions: [],
 	comments: [],
 	addedNewComment: false,
-	discussion: "",
+	// discussion: "",
 	discussionId: "",
 	loading: false,
 
@@ -34,9 +34,15 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_DISCUSSION":
+				debugger
+				// let disClone = _.cloneDeep(action.discussionData)
+				// let allDiscussionsClone = _.cloneDeep(state.discussions)
+				// let updatedDiscussions = allDiscussionsClone.filter(discussion => discussion.id !== disClone.id)
+				// updatedDiscussions.push(disClone)
 				// debugger
 				return {
 					...state,
+					// discussions: updatedDiscussions,
 					loading: false,
 					discussion: action.discussionData,
 					discussionId: action.discussionData.id,

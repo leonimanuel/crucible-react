@@ -262,7 +262,10 @@ class Article extends Component {
 					<div id="article-wrapper" className="draw" >
 						<div id="title-and-forum-button">
 							<div id="article-title">{this.props.discussion.article.title}</div>
-							<div id="show-forum-button" onClick={this.props.onForumClick}>Forum</div>
+							<div id="show-forum-button" onClick={this.props.onForumClick}>
+								<div id="show-forum-button-text">Forum</div>
+								<div>{this.props.discussion.unread_messages_count}</div>
+							</div>
 						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
 							{/*this.handleArticleHTML()*/}
@@ -299,8 +302,11 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
+	// debugger
 	return {
+		// discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
 		discussion: state.discussion.discussion,
+		// discussions: state.discussion.discussions, 
 		comments: state.discussion.comments,
 		addedNewComment: state.discussion.addedNewComment
 	}
