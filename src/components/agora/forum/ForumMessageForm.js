@@ -8,12 +8,12 @@ class NewMessageForm extends Component {
   }
 
   handleChange = e => {
-    debugger
+    // debugger
     e.persist()
     // let key = e.key
     this.setState({ text: e.target.innerText }, () => {
       if (e.key == "Enter") { 
-        debugger
+        // debugger
         this.handleSubmit(e) 
         // e.target.innerHTML = ""
       }
@@ -22,7 +22,7 @@ class NewMessageForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    debugger
+    // debugger
     fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/messages`, {
       method: 'POST',
       headers: HEADERS,

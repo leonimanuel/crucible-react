@@ -1,4 +1,4 @@
-import { API_ROOT } from "../constants"
+import { API_ROOT, HEADERS } from "../constants"
 
 export const addComment = (groupName, discussionName, comment, span, startOffset, endOffset, previousElId, facts) => {
 	console.log(comment)
@@ -116,4 +116,9 @@ export const addMessageToDiscussion = message => {
   }
 }
 
-
+// export const resetUnreadCount = (discussion) => {
+//   fetch(`${API_ROOT}/groups/${discussion.group_id}/discussions/${discussion.id}/unread-messages-count`, {
+//     method: 'PATCH',
+//     headers: HEADERS,
+//   });
+// }

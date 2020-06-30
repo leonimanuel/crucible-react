@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-
+// import { resetUnreadCount } from "../actions/discussionsActions.js"
+import { API_ROOT, HEADERS } from "../constants"
 import "./forum.css"
 import ForumMessageForm from "../components/agora/forum/ForumMessageForm.js"
 
 class Forum extends Component {
+	componentDidMount() {
+		// this.props.resetUnreadCount(this.props.discussion)
+	  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
+	    method: 'PATCH',
+	    headers: HEADERS,
+	  });
+	}
+
 	componentDidUpdate() {
 		let messagesContainer = document.getElementById("forum-messages-container");
 		// messagesContainer.scrollTo(0, messagesContainer.scrollHeight)
 		messagesContainer.scrollTo({top: messagesContainer.scrollHeight, left: 100, behavior: 'smooth'});
+	
+		// this.props.resetUnreadCount(this.props.discussion)
+	  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
+	    method: 'PATCH',
+	    headers: HEADERS,
+      body: JSON.stringify({
+        userId: this.props.userId
+      })
+	  });
 	}
 
 	render() {
@@ -45,6 +63,7 @@ const mapStateToProps = state => {
 	return {
 		currentUserId: state.users.userId,
 		discussion: state.discussion.discussion,
+		userId: state.users.userId
 	}
 }
 
