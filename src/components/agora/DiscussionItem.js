@@ -7,12 +7,13 @@ import { fetchDiscussion } from "../../actions/groups.js"
 
 class DiscussionsItem extends Component {
 	render() {
-		// debugger
+		debugger
 		return (
 			<div className="discussion-item">
 				<Link to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.name}`} >
 					{this.props.discussion.name.split("_").join(" ")}
 				</Link>
+				<div>{this.props.discussion.unread_messages_count}</div>
 			</div>
 		)
 	}

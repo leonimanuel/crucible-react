@@ -16,13 +16,11 @@ class Groups extends Component {
 	}
 
 	handleReceivedMessage = response => {
-		debugger
 		const { message } = response;
 		this.props.addMessageToDiscussion(message)
 	}
 
 	handleToggleForum = () => {
-		debugger
 		this.setState({renderForum: !this.state.renderForum})
 	}
 

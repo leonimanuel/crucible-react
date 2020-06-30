@@ -2,6 +2,7 @@ import _ from 'lodash';
 import cloneDeep from "lodash/cloneDeep"
 
 export default function discussionsReducer(state = {
+	discussions: [],
 	comments: [],
 	addedNewComment: false,
 	discussion: "",
@@ -12,6 +13,13 @@ export default function discussionsReducer(state = {
 		// debugger
 		console.log("executing discussionsReducer")
 		switch (action.type) {
+			case "ADD_DISCUSSIONS":
+			debugger
+				return {
+					...state,
+					discussions: action.discussions
+				}
+
 			case "LOADING_DISCUSSION":
 				return {
 					...state,

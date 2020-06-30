@@ -2,7 +2,7 @@ export default function groupsReducer(state = {
 	groups: [],
 	selectedGroup: "",
 	members: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
-	discussions: [],
+	// discussions: [],
 	discussion: "",
 	loading: false,
 	showDetailPane: false
@@ -11,7 +11,7 @@ export default function groupsReducer(state = {
 		console.log("executing groupsReducer")
 		switch (action.type) {
 			case "LOAD_GROUPS":
-				debugger
+				// debugger
 				return {
 					...state,
 					groups: action.groups
@@ -24,16 +24,16 @@ export default function groupsReducer(state = {
 					selectedGroup: action.group
 				}
 
-			case "UPDATE_GROUP_DISCUSSIONS":
-				console.log("updating group discussions")
-				// debugger
-				return {
-					...state,
-					selectedGroup: {
-						...state.selectedGroup,
-						discussions: [...state.selectedGroup.discussions, action.discussion]
-					}
-				}
+			// case "UPDATE_GROUP_DISCUSSIONS":
+			// 	console.log("updating group discussions")
+			// 	// debugger
+			// 	return {
+			// 		...state,
+			// 		selectedGroup: {
+			// 			...state.selectedGroup,
+			// 			discussions: [...state.selectedGroup.discussions, action.discussion]
+			// 		}
+			// 	}
 
 			case "ADD_GROUP":
 				// debugger

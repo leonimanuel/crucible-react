@@ -1,13 +1,5 @@
 import { API_ROOT } from "../constants"
 
-// export const logIn = (user) => {
-// 	// debugger
-// 	return {
-// 		type: "LOG_IN",
-// 		user
-// 	}
-// }
-
 export const logIn = () => {
 	return (dispatch) => {
     let configObj = {
@@ -19,15 +11,20 @@ export const logIn = () => {
       }
     }
 
-    // console.log(store)
     fetch(API_ROOT + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
       .then((user) => {
+        // debugger
         if (user.name) {
 					dispatch({
 						type: "LOG_IN",
 						user
-					})
+					});
+          let discussions = user.discussions
+          dispatch({
+            type: "ADD_DISCUSSIONS",
+            discussions
+          })
         } else {
           console.log("nobody's logged in")
         }

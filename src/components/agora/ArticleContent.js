@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { v4 as uuidv4 } from 'uuid';
 
 class ArticleContent extends Component {
 	createContent = () => {
@@ -8,7 +9,7 @@ class ArticleContent extends Component {
 		let pCollection = doc.getElementsByTagName("p")
 		let pArray	= Array.from(pCollection)
 		// debugger
-		let pTextArray = pArray.map((p, index) => <p id={`p-${index + 1}`}>{p.innerText}</p>)
+		let pTextArray = pArray.map((p, index) => <p key={index} id={`p-${index + 1}`}>{p.innerText}</p>)
 		return pTextArray
 	}
 
