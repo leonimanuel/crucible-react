@@ -138,6 +138,7 @@ class Article extends Component {
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
 			span.style.backgroundColor = "#9bdeac";
+			span.classList.add("comment-highlight")
 			span.id = comment.span_id
 
 			span.appendChild(selectedText);

@@ -14,7 +14,6 @@ class ArticleComment extends Component {
 	}
 
 	render() {
-		debugger
 		const { match } = this.props;
 		return (
 			<div id={this.props.id} className="popup">

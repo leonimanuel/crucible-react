@@ -6,18 +6,24 @@
 	justify-content: space-between;
 	/*align-items: flex-end;*/
 	border: 4px solid gold;
-	border-radius: 10px 0px 0px 10px;
-	min-width: 30%;
-	background-color: #dddddd;
+	border-top: none;
+
+	border-radius: 0px 0px 0px 10px;
+	min-width: 200px;
+	width: 30%;
+	/*max-width: 30%;*/
+	background-color: gold;
 	/*box-shadow: 0px 10px;*/
 
 }
 
 #forum-header-container {
+	background-color: #dddddd;
 	font-size: 1.5em;
 	font-family: 'Krona One', sans-serif;
 	padding: 5px 0;
-	/*border: 2px solid red;*/
+	/*border: 2px solid gold;*/
+	border-radius: 10px 10px 0 0;
 }
 
 #forum-messages-container {
@@ -30,10 +36,6 @@
 	/*justify-content: center;*/
 	align-items: center;
   background-color: #77abae;
-}
-
-#forum-header-container {
-	/*border: 2px solid yellow;*/
 }
 
 .message-wrapper {
@@ -61,6 +63,7 @@
 
 .message-text {
 	/*border: 2px solid black;*/
+	text-align: left;
 	border-radius: 10px;
 	padding: 10px;
 	color: white;
@@ -79,7 +82,7 @@
 }
 
 #newMessageForm {
-	/*background-color: yellow;*/
+	background-color: #dddddd;
 	/*align-self: baseline*/
 	/*text-align: center*/
 }
@@ -102,6 +105,7 @@
 	display: flex;
 	margin: 10px;
 	justify-content: space-between;
+	align-items: flex-end;
 }
 
 #message-input-div {
@@ -119,6 +123,9 @@
 	border: none;
 	background-color: gold;
 	border-radius: 5px;
+	padding: 5px;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 

@@ -24,7 +24,8 @@ export const updateGroupDiscussions = discussion => {
 }
 
 export const fetchDiscussion = (groupName, discussionName) => {
-	return (dispatch) => {
+	// debugger
+  return (dispatch) => {
 		dispatch({type: "LOADING_DISCUSSION"})
     let configObj = {
       method: "GET",
@@ -34,7 +35,6 @@ export const fetchDiscussion = (groupName, discussionName) => {
         Authorization: localStorage.getItem("token")
       }
     }
-    debugger
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
@@ -78,7 +78,7 @@ export const fetchUsers = (value) => {
 export const addNewGroup = (groupName, members) => {
 	return (dispatch) => {
     let memberIds = members.map(member => member.id)
-    debugger
+    // debugger
 
     let configObj = {
       method: "POST",

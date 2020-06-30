@@ -19,36 +19,10 @@ import { logIn } from "./actions/users.js"
 
 class App extends Component {
   componentDidMount() {
-    this.loadUser()  
-  }
-
-  loadUser = () => {
-    let configObj = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      }
-    }
-
-    // console.log(store)
-    fetch(API_ROOT + `/users/GETUSER`, configObj)
-      .then(resp => resp.json())
-      .then((data) => {
-        if (data.name) {
-          // debugger
-          console.log(data)
-          this.props.logIn(data)
-        } else {
-          console.log("nobody's logged in")
-        }
-      })
+    this.props.logIn()  
   }
 
   render() {
-    // console.log(this.props.isLoggedIn)
-    // console.log("rendering app")
     return (
       <Router>
         <div className="App">

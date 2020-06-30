@@ -46,7 +46,7 @@
 }
 
 #sections-list {
-	/*border: 1px solid blue;*/
+	padding-top: 5px;
 }
 
 #group-details-menu, #console-window {
@@ -73,18 +73,17 @@
 	/*border: 2px solid pink;*/
 	border-radius: 0px 5px 5px 0px;
 	padding: 5px 0;
-	/*border: 1px solid purple;*/
+	/*border: 2px solid gold;*/
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
 	/*background-color: #44558f;*/
 	background-color: #FFDF00;
 	color: black;
 	font-weight: bold;
+	cursor: pointer;
 }
 
-/*.section-tab::before {
-  content: "Read this: ";
-}*/
+
 
 #new-group-popup {
   display: flex;
@@ -161,5 +160,6 @@
 
 .unselected-section {
 	/*background-color: gold*/
-	background-color: silver
+	background-color: silver;
+	/*border-left: 4px solid gold;*/
 }

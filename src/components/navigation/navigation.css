@@ -6,6 +6,7 @@
   background-color: purple;
   height: 5vh;
   /*background-image: linear-gradient(to bottom right, #ADD8E6, #fff);*/
+  border-bottom: 4px solid gold;
 
 }
 

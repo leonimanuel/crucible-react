@@ -32,17 +32,16 @@ class NewMessageForm extends Component {
       })
     });
     this.setState({ text: '' });
-    if (e.target.id === "message-input-div") {
-      e.target.innerHTML = ""
-    }
+    let messageInput = document.getElementById("message-input-div")
+    messageInput.innerHTML = ""
   }
 
   render = () => {
-    let messageInput = document.getElementById("message-input")
-    // debugger
-    if (messageInput) {
-      messageInput.style = `height: ${messageInput.scrollHeight}px`
-    }
+    // let messageInput = document.getElementById("message-input")
+    // // debugger
+    // if (messageInput) {
+    //   messageInput.style = `height: ${messageInput.scrollHeight}px`
+    // }
     return (
       <div id="newMessageForm">
         <form id="message-form" onSubmit={this.handleSubmit}>
