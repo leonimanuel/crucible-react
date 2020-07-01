@@ -12,11 +12,11 @@ import SelectionMenu from "./SelectionMenu.js"
 import ArticleContent from "./ArticleContent.js"
 
 class Article extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			articleContent: "HEY THERE",
-			location: "",
+			location: props.location.pathname,
 			comment: "",
 			span: "",
 			startOffset: "",
@@ -28,8 +28,6 @@ class Article extends Component {
 			textSelected: false,
 		}
 	}
-
-
 
 	componentDidMount() {
 		this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
@@ -304,8 +302,8 @@ class Article extends Component {
 const mapStateToProps = state => {
 	// debugger
 	return {
-		// discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
-		discussion: state.discussion.discussion,
+		discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
+		// discussion: state.discussion.discussion,
 		// discussions: state.discussion.discussions, 
 		comments: state.discussion.comments,
 		addedNewComment: state.discussion.addedNewComment
