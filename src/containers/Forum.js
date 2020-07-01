@@ -2,23 +2,28 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 // import { resetUnreadCount } from "../actions/discussionsActions.js"
 import { API_ROOT, HEADERS } from "../constants"
+import { fetchMessages } from "../actions/discussionsActions.js"
+
 import "./forum.css"
 import ForumMessageForm from "../components/agora/forum/ForumMessageForm.js"
+import ForumMessages from "../components/agora/forum/ForumMessages.js"
 
 class Forum extends Component {
-	// componentDidMount() {
+	componentDidMount() {
+		debugger
+		if (!this.props.discussion.messages) {
+			debugger
+			this.props.fetchMessages(this.props.discussion.group_id, this.props.discussion.id)
+		}
+
 		// this.props.resetUnreadCount(this.props.discussion)
-	  // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
-	  //   method: 'PATCH',
-	  //   headers: HEADERS,
-	  // });
-	// }
+	 //  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
+	 //    method: 'PATCH',
+	 //    headers: HEADERS,
+	 //  });
+	}
 
 	componentDidUpdate() {
-		let messagesContainer = document.getElementById("forum-messages-container");
-		// messagesContainer.scrollTo(0, messagesContainer.scrollHeight)
-		messagesContainer.scrollTo({top: messagesContainer.scrollHeight, left: 100, behavior: 'smooth'});
-	
 		// this.props.resetUnreadCount(this.props.discussion)
 	  // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
 	  //   method: 'PATCH',
@@ -30,6 +35,7 @@ class Forum extends Component {
 	}
 
 	render() {
+		console.log("rendering Forum")
 		// debugger
 		return (
 			<div id="forum-container">
@@ -37,21 +43,7 @@ class Forum extends Component {
 					{this.props.discussion.group.name}
 				</div>
 
-				<div id="forum-messages-container">
-					{this.props.discussion.messages.map((m, index) => {
-						// let lastSenderId = m.user.id
-						return (
-							<div key=(index) className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}>
-								{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.discussion.messages[index-1].user.id)
-									? <div className="message-user-name">{m.user.name}</div> 
-									: null
-								}
-								<div className="message-text">{m.text}</div>
-							</div>
-						)
-					})
-					}
-				</div>
+				<ForumMessages discussion={this.props.discussion} currentUserId={this.props.currentUserId}/>
 
 				<ForumMessageForm discussion={this.props.discussion}/>
 			</div>
@@ -62,13 +54,11 @@ class Forum extends Component {
 const mapStateToProps = state => {
 	return {
 		currentUserId: state.users.userId,
-		// discussion: state.discussion.discussion,
-		userId: state.users.userId,
 		discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
 	}
 }
 
-export default connect(mapStateToProps)(Forum);
+export default connect(mapStateToProps, { fetchMessages })(Forum);
 				// <ForumHeader />
 				// <ForumMessagesContainer />
 				// <ForumInput />
