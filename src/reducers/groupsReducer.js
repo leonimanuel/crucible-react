@@ -61,6 +61,12 @@ export default function groupsReducer(state = {
 					members: action.users
 				}
 			
+			case "ADD_UNREAD_MESSAGES_COUNT":
+				return {
+					...state,
+					unreadMessages: action.groupUnreadCount
+				}
+
 			default:
 				return state;	
 		}

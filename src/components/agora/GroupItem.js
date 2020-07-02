@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 // import { showGroupDetails } from "../../actions/users.js"
-import { setSelectedGroup } from "../../actions/groups.js"
+import { setSelectedGroup, calculateUnreadMessages } from "../../actions/groups.js"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
 
 class GroupsItem extends Component {
@@ -11,17 +11,30 @@ class GroupsItem extends Component {
 		// this.props.showDetailPane()
 	}
 
+	componentDidMount() {
+		this.props.calculateUnreadMessages(this.props.discussions)
+	}
+
 	render() {
+		debugger
 		return (
 			<div onClick={this.handleGroupClick}>
 				{this.props.group.name}
+				{this.props.unreadMessages}
 			</div>
 		)
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		discussions: state.discussion.discussions,
+		unreadMessages: state.groups.unreadMessages
+	}
+}
 
-export default connect(null, { setSelectedGroup})(GroupsItem);
+
+export default connect(mapStateToProps, { setSelectedGroup, calculateUnreadMessages })(GroupsItem);
 
 
 

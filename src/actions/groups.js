@@ -106,4 +106,14 @@ export const addNewGroup = (groupName, members) => {
 	}
 }
 
-
+export const calculateUnreadMessages = (discussions) => {
+  let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
+  // debugger
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  let groupUnreadCount = unreadMessageArray.reduce(reducer)
+  // debugger
+  return {
+    type: "ADD_UNREAD_MESSAGES_COUNT",
+    groupUnreadCount
+  } 
+}
