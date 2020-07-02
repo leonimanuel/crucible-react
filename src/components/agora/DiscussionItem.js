@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import { fetchDiscussion } from "../../actions/groups.js"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
 
 class DiscussionsItem extends Component {
 	render() {
-		debugger
+		// debugger
 		return (
 			<div className="discussion-item">
 				<Link to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.name}`} >
@@ -19,7 +18,7 @@ class DiscussionsItem extends Component {
 	}
 }
 
-export default connect(null, { fetchDiscussion })(DiscussionsItem);
+export default connect()(DiscussionsItem);
 
 
 

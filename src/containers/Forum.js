@@ -10,20 +10,23 @@ import ForumMessages from "../components/agora/forum/ForumMessages.js"
 
 class Forum extends Component {
 	componentDidMount() {
-		debugger
+		// debugger
 		if (!this.props.discussion.messages) {
 			debugger
 			this.props.fetchMessages(this.props.discussion.group_id, this.props.discussion.id)
+		} else {
+		  debugger
+		  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
+		    method: 'PATCH',
+		    headers: HEADERS,
+		  });
 		}
 
 		// this.props.resetUnreadCount(this.props.discussion)
-	 //  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
-	 //    method: 'PATCH',
-	 //    headers: HEADERS,
-	 //  });
+
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(previousProps, previousState) {
 		// this.props.resetUnreadCount(this.props.discussion)
 	  // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
 	  //   method: 'PATCH',

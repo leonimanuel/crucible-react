@@ -24,6 +24,14 @@ class DiscussionsList extends Component {
 		})
 	}
 
+	sortedDiscussions = () => {
+		let sortedDiscussions = this.props.discussions.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1)
+		// debugger
+		return sortedDiscussions.map(discussion => {
+			return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
+		})
+	}
+
 	closePopup = () => {
 		this.setState({...this.state, renderNewDiscussionPopup: false})
 	}
@@ -35,7 +43,7 @@ class DiscussionsList extends Component {
 				<div className="list-title">Discussions</div>
 				<div onClick={this.handleNewDiscussion} id="new-discussion-button">NEW DIS</div>
 				<div>
-					{this.props.discussions.map(discussion => <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>)}
+					{this.sortedDiscussions()}
 				</div>
 				{this.state.renderNewDiscussionPopup ? <NewDiscussionPopup groupId={this.props.group.id} closePopup={this.closePopup}/> : null}
 			</div>

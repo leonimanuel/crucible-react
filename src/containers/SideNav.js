@@ -17,7 +17,7 @@ class SideNav extends Component {
 	componentDidMount() {
 		// debugger
 
-		console.log("mounted sidenav")
+		// console.log("mounted sidenav")
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
 		sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`

@@ -8,7 +8,7 @@ export default function groupsReducer(state = {
 	showDetailPane: false
 }, action) {
 		// debugger
-		console.log("executing groupsReducer")
+		// console.log("executing groupsReducer")
 		switch (action.type) {
 			case "LOAD_GROUPS":
 				// debugger

@@ -116,9 +116,62 @@ export const addMessageToDiscussion = message => {
   }
 }
 
-// export const resetUnreadCount = (discussion) => {
-//   fetch(`${API_ROOT}/groups/${discussion.group_id}/discussions/${discussion.id}/unread-messages-count`, {
-//     method: 'PATCH',
-//     headers: HEADERS,
-//   });
-// }
+export const resetUnreadCount = (response) => {
+  return {
+    type: "RESET_DISCUSSION_UNREAD_COUNT",
+    response
+  }
+}
+
+export const fetchMessages = (groupId, discussionId) => {
+  return (dispatch) => {
+    let response = {discussion_id: discussionId, unread_messages: 0}
+
+    debugger
+    console.log(localStorage.getItem("token"))
+
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    fetch(`${API_ROOT}/groups/${groupId}/discussions/${discussionId}/messages`, configObj)
+      .then(resp => resp.json())
+      .then(messages => {
+        debugger
+        dispatch({
+          type: "ADD_MESSAGES_TO_DISCUSSION",
+          messages
+        });
+      })
+
+
+    dispatch({
+      type: "RESET_DISCUSSION_UNREAD_COUNT",
+      response
+    })
+
+    // fetch(`${API_ROOT}/groups/${groupId}/discussions/${discussionId}/messages`, {
+    //   method: 'GET',
+    //   headers: HEADERS,
+    // })
+    // .then(resp => resp.json())
+    // .then(messages => {
+    //   // debugger
+    //   dispatch({
+    //     type: "ADD_MESSAGES_TO_DISCUSSION",
+    //     messages
+    //   });
+    // })     
+  }
+}
+
+
+
+
+
+

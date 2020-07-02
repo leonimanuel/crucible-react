@@ -5,7 +5,7 @@ import AgoraMenu from "../components/agora/AgoraMenu.js"
 
 class MainPane extends Component {
 	componentDidMount() {
-		console.log("mounted MainPane")
+		// console.log("mounted MainPane")
 	}
 	render() {
 		let mainPane = document.querySelector("#sidenav-main-pane")

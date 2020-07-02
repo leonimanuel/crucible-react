@@ -30,13 +30,13 @@ class Article extends Component {
 	}
 
 	componentDidMount() {
-		debugger
+		// debugger
 		this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 		// this.setState({location: this.props.location.pathname})
 	}
 
 	componentDidUpdate() {
-		debugger
+		// debugger
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})

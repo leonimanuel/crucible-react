@@ -10,7 +10,7 @@ export default function userReducer(state = {
 	userEmail: "",
 	userId: "",
 }, action) {
-	console.log("executing userReducer")
+	// console.log("executing userReducer")
 	switch (action.type) {
 		case "LOG_IN":
 			// debugger

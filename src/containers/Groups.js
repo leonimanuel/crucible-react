@@ -11,11 +11,23 @@ import { API_ROOT } from "../constants"
 import { addMessageToDiscussion } from "../actions/discussionsActions.js"
 
 class Groups extends Component {
-	state = {
-		renderForum: true
+	constructor(props) {
+		super(props)
+		this.state = {
+			renderForum: false,
+		}
+
+	}
+
+	componentDidUpdate(previousProps, previousState) {
+		if (previousProps.location.pathname !== this.props.location.pathname) {
+			this.setState({renderForum: false})
+		}
 	}
 
 	handleReceivedMessage = response => {
+		// debugger
+		console.log("handling received message")
 		const { message } = response;
 		this.props.addMessageToDiscussion(message)
 	}
@@ -26,9 +38,10 @@ class Groups extends Component {
 
 	render() {
 		const { match } = this.props;
+		debugger
 		return (
 			<div id="groups-wrapper">
-				{this.props.activeDiscussionId ? 
+				{this.state.renderForum ? 
 					<ActionCable 
 						channel={{ channel: "MessagesChannel", discussion: this.props.activeDiscussionId}}
 						onReceived={this.handleReceivedMessage} 

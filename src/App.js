@@ -2,6 +2,8 @@ import React,{ Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
+import { ActionCable } from "react-actioncable-provider";
+
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import SideNav from "./containers/SideNav.js"
@@ -15,11 +17,17 @@ import SignUp from "./components/authentication/SignUp.js"
 import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
+import { resetUnreadCount } from "./actions/discussionsActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
   componentDidMount() {
     this.props.logIn()  
+  }
+
+  handleUnreadUpdate = (response) => {
+    debugger
+    this.props.resetUnreadCount(response)
   }
 
   render() {
@@ -28,13 +36,21 @@ class App extends Component {
         <div className="App">
           <NavBar />
           {this.props.isLoggedIn ?
+          <div>
+            {/*<ActionCable 
+              channel={{ channel: "MessageNotificationsChannel" }}
+              onReceived={this.handleUnreadUpdate} 
+            /> */}           
+
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />
               <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
               <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
               <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>           
-            </main>             
+            </main>
+          </div>
+
           : null
           }
             <Route path="/login"><Login/></Route>
@@ -46,7 +62,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn })(App);
+export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn, resetUnreadCount })(App);
 
 
 

@@ -8,9 +8,7 @@ class NewMessageForm extends Component {
   }
 
   handleChange = e => {
-    // debugger
     e.persist()
-    // let key = e.key
     this.setState({ text: e.target.innerText }, () => {
       if (e.key == "Enter") { 
         // debugger
@@ -21,16 +19,24 @@ class NewMessageForm extends Component {
   }
 
   handleSubmit = e => {
+    console.log("submitting message")
     e.preventDefault();
-    // debugger
-    fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/messages`, {
+    
+    let configObj = {
       method: 'POST',
-      headers: HEADERS,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
       body: JSON.stringify({
         text: this.state.text,
         userId: this.props.userId
       })
-    });
+    }
+
+    fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/messages`, configObj);
+    
     this.setState({ text: '' });
     let messageInput = document.getElementById("message-input-div")
     messageInput.innerHTML = ""
