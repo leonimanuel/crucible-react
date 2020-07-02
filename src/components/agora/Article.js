@@ -30,11 +30,13 @@ class Article extends Component {
 	}
 
 	componentDidMount() {
+		debugger
 		this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 		// this.setState({location: this.props.location.pathname})
 	}
 
 	componentDidUpdate() {
+		debugger
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
@@ -49,7 +51,7 @@ class Article extends Component {
 	}
 
 	handleTextSelect = e => {
-		console.log(this)
+		// console.log(this)
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
@@ -252,11 +254,11 @@ class Article extends Component {
 	}
 
 	render() {
-		console.log(this.props.comments)
+		// console.log(this.props.comments)
 		// debugger
 		return (
 			<div id="article-outer-container">
-				{this.props.discussion ? 
+				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="title-and-forum-button">
 							<div id="article-title">{this.props.discussion.article.title}</div>
