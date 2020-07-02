@@ -8,6 +8,7 @@ export default function discussionsReducer(state = {
 	// discussion: "",
 	discussionId: "",
 	loading: false,
+	renderForum: false
 
 }, action) {
 		// debugger
@@ -84,14 +85,19 @@ export default function discussionsReducer(state = {
 				let newDiscussionsClone = _.cloneDeep(state.discussions)
 				let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === action.message.discussion_id)[0])
 				// debugger
-				newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
-				let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
-				readyDiscussions.push(newDiscussionClone)	
-				// debugger
-				return {
-					...state,
-					discussions: readyDiscussions
+				if (newDiscussionClone.messages) {
+					newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
+					let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
+					readyDiscussions.push(newDiscussionClone)	
+					// debugger
+					return {
+						...state,
+						discussions: readyDiscussions
+					}					
+				} else {
+					return state
 				}
+
 
 			case "RESET_DISCUSSION_UNREAD_COUNT":
 				// debugger
@@ -99,9 +105,8 @@ export default function discussionsReducer(state = {
 				let resetDiscussion = discussionsClone.filter(discussion => discussion.id === parseInt(action.response.discussion_id))[0];
 
 				if (action.response.unread_messages === 0 ) {
-
 					resetDiscussion.unread_messages_count = 0
-				} else if (action.response.unread_messages === 1 ) {
+				} else if (action.response.unread_messages === 1 && !state.renderForum ) {
 						resetDiscussion.unread_messages_count += 1
 				}
 
@@ -112,6 +117,12 @@ export default function discussionsReducer(state = {
 					...state,
 					discussions: updatedDiscussions,
 					// discussion: resetDiscussion
+				}
+
+			case "TOGGLE_FORUM":
+				return {
+					...state,
+					renderForum: !state.renderForum
 				}
 
 			default:

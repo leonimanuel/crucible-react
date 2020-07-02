@@ -27,11 +27,13 @@ class App extends Component {
 
   handleUnreadUpdate = (response) => {
     debugger
-    this.props.resetUnreadCount(response)
+    if (response.sender_id !== this.props.userId) {
+      this.props.resetUnreadCount(response)      
+    }
   }
 
   handleReceivedMessage = response => {
-    debugger
+    // debugger
     console.log("handling received message")
     const { message } = response;
     this.props.addMessageToDiscussion(message)
@@ -42,12 +44,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          {this.props.isLoggedIn ?
+          {this.props.userId ?
           <div>
-            {/*<ActionCable 
+            <ActionCable 
               channel={{ channel: "MessageNotificationsChannel" }}
               onReceived={this.handleUnreadUpdate} 
-            /> */}           
+            />          
+
             <ActionCable 
               channel={{ channel: "MessagesChannel" }}
               onReceived={this.handleReceivedMessage} 
@@ -55,9 +58,9 @@ class App extends Component {
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />
-              <Route path="/console" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Console />} </Route>
-              <Route path="/review" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Review />} </Route>
-              <Route path="/groups" >{!this.props.isLoggedIn ? <Redirect to="login"/> : <Groups />} </Route>           
+              <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
+              <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
+              <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
             </main>
           </div>
 
@@ -72,7 +75,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn, resetUnreadCount, addMessageToDiscussion })(App);
+export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion })(App);
 
 
 

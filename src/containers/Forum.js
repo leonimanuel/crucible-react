@@ -16,10 +16,16 @@ class Forum extends Component {
 			this.props.fetchMessages(this.props.discussion.group_id, this.props.discussion.id)
 		} else {
 		  debugger
-		  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
-		    method: 'PATCH',
-		    headers: HEADERS,
-		  });
+	    let configObj = {
+	      method: 'PATCH',
+	      headers: {
+	        "Content-Type": "application/json",
+	        Accept: "application/json",
+	        Authorization: localStorage.getItem("token")
+	      }
+	    }
+
+	    fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, configObj);
 		}
 
 		// this.props.resetUnreadCount(this.props.discussion)
@@ -27,6 +33,17 @@ class Forum extends Component {
 	}
 
 	componentDidUpdate(previousProps, previousState) {
+    // let configObj = {
+    //   method: 'PATCH',
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     Authorization: localStorage.getItem("token")
+    //   }
+    // }
+
+    // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, configObj);
+
 		// this.props.resetUnreadCount(this.props.discussion)
 	  // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
 	  //   method: 'PATCH',

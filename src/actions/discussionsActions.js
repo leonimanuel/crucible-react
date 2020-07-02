@@ -125,7 +125,7 @@ export const resetUnreadCount = (response) => {
 
 export const fetchMessages = (groupId, discussionId) => {
   return (dispatch) => {
-    let response = {discussion_id: discussionId, unread_messages: 0}
+
 
     debugger
     console.log(localStorage.getItem("token"))
@@ -149,7 +149,7 @@ export const fetchMessages = (groupId, discussionId) => {
         });
       })
 
-
+    let response = {discussion_id: discussionId, unread_messages: 0}
     dispatch({
       type: "RESET_DISCUSSION_UNREAD_COUNT",
       response
@@ -170,8 +170,11 @@ export const fetchMessages = (groupId, discussionId) => {
   }
 }
 
-
-
+export const toggleForum = () => {
+  return {
+    type: "TOGGLE_FORUM"
+  }
+}
 
 
 
