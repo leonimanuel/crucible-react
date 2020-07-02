@@ -4,6 +4,7 @@ import GroupItem from "./GroupItem.js"
 
 class GroupsList extends Component {
 	render() {
+		debugger
 		return (
 			<div id="groups-list" className="sidenav-list">
 				<div id="groups-list-title" className="list-title">Groups</div>
