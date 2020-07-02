@@ -26,7 +26,7 @@ class Groups extends Component {
 	}
 
 	handleReceivedMessage = response => {
-		// debugger
+		debugger
 		console.log("handling received message")
 		const { message } = response;
 		this.props.addMessageToDiscussion(message)
@@ -41,12 +41,12 @@ class Groups extends Component {
 		debugger
 		return (
 			<div id="groups-wrapper">
-				{this.state.renderForum ? 
+				{/*this.state.renderForum ? 
 					<ActionCable 
-						channel={{ channel: "MessagesChannel", discussion: this.props.activeDiscussionId}}
+						channel={{ channel: "MessagesChannel" }}
 						onReceived={this.handleReceivedMessage} 
 					/>
-				: null}
+				: null */}
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
 					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
 				</Route>

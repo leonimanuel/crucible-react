@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
 import { ActionCable } from "react-actioncable-provider";
-
+import { addMessageToDiscussion } from "./actions/discussionsActions.js"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import SideNav from "./containers/SideNav.js"
@@ -30,6 +30,13 @@ class App extends Component {
     this.props.resetUnreadCount(response)
   }
 
+  handleReceivedMessage = response => {
+    debugger
+    console.log("handling received message")
+    const { message } = response;
+    this.props.addMessageToDiscussion(message)
+  }
+
   render() {
     return (
       <Router>
@@ -41,7 +48,10 @@ class App extends Component {
               channel={{ channel: "MessageNotificationsChannel" }}
               onReceived={this.handleUnreadUpdate} 
             /> */}           
-
+            <ActionCable 
+              channel={{ channel: "MessagesChannel" }}
+              onReceived={this.handleReceivedMessage} 
+            />
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />
@@ -62,7 +72,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn, resetUnreadCount })(App);
+export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logIn, resetUnreadCount, addMessageToDiscussion })(App);
 
 
 

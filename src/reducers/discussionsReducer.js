@@ -80,9 +80,10 @@ export default function discussionsReducer(state = {
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")
+				// debugger
 				let newDiscussionsClone = _.cloneDeep(state.discussions)
-				let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === state.discussionId)[0])
-				debugger
+				let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === action.message.discussion_id)[0])
+				// debugger
 				newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
 				let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
 				readyDiscussions.push(newDiscussionClone)	
