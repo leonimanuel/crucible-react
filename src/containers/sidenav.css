@@ -85,7 +85,15 @@
 }
 
 .discussion-item {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
+	text-decoration: italic;
+	color: white;
+	margin-bottom: 10px;
+}
+
+.discussion-title {
+	font-style: italic;
+	color: white;
 }
 
 .list-title {

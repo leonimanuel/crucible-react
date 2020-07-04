@@ -8,11 +8,14 @@ class DiscussionsItem extends Component {
 	render() {
 		// debugger
 		return (
-			<div className="discussion-item">
-				<Link to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.name}`} >
-					{this.props.discussion.name.split("_").join(" ")}
+			<div className="discussion-item sidenav-item">
+				<Link 
+					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.name}`}
+					style={{ textDecoration: 'none' }} 
+				>
+					<div className="discussion-title">{this.props.discussion.name.split("_").join(" ")}</div>
 				</Link>
-				<div>{this.props.discussion.unread_messages_count}</div>
+				<div className="badge">{this.props.discussion.unread_messages_count}</div>
 			</div>
 		)
 	}
