@@ -60,6 +60,30 @@
 	padding-bottom: 20px ;
 }
 
+.sidenav-item {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	/*border: 1px solid yellow;*/
+}
+
+.sidenav-item div {
+	margin: auto 0;
+}
+
+
+.badge {
+	margin: auto 0;
+	padding: 0px 5px;
+	background-color: red;
+	border-radius: 100%;
+	font-weight: bold;
+	font-size: 0.75em;
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+
 .discussion-item {
 	border: 1px solid green;
 }

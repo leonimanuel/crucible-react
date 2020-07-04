@@ -17,20 +17,37 @@ class GroupsItem extends Component {
 		// this.props.calculateUnreadMessages(this.props.discussions)
 	}
 
+	calculateGroupUnreads = () => {
+		let reducer = (accumulator, currentValue) => accumulator + currentValue
+		// debugger
+		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
+		const groupUnreads = unreadsArray.reduce(reducer)
+		// debugger
+		return <div className="sidenav-badge badge">{groupUnreads}</div>
+	}
+
 	render() {
 		// debugger
 		return (
-			<div onClick={this.handleGroupClick}>
-				{this.props.group.name}
+			<div className="group-item sidenav-item" onClick={this.handleGroupClick}>
+				<div>{this.props.group.name}</div>
 				{/*this.props.unreadMessages*/}
+				<div>{this.calculateGroupUnreads()}</div>
 			</div>
 		)
 	}
 }
 
 
+const mapStateToProps = (state, ownProps) => {
+	debugger
+	return {
+		discussions: state.discussions.allDiscussions.filter(d => d.group_id === ownProps.group.id)
+	}
+}
+
 // export default connect(mapStateToProps, { setSelectedGroup, calculateUnreadMessages })(GroupsItem);
-export default connect(null, { setSelectedGroup })(GroupsItem);
+export default connect(mapStateToProps, { setSelectedGroup })(GroupsItem);
 
 
 
