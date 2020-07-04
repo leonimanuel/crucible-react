@@ -264,7 +264,10 @@ class Article extends Component {
 							<div id="article-title">{this.props.discussion.article.title}</div>
 							<div id="show-forum-button" onClick={this.props.onForumClick}>
 								<div id="show-forum-button-text">Forum</div>
-								<div id="forum-badge" className="badge">{this.props.discussion.unread_messages_count}</div>
+								{this.props.discussion.unread_messages_count
+									? <div id="forum-badge" className="badge">{this.props.discussion.unread_messages_count}</div>
+									: null
+								}
 							</div>
 						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							

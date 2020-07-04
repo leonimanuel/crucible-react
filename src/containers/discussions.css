@@ -2,15 +2,26 @@
 	display: flex;
   width: 100%;
 	justify-content: center;
+  background-color: gold;
 }
 
 #article-outer-container {
+  background-color: white;
   width: 100%;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
+  /*border-radius: 0px 10px 0px 0px;*/
+  border-radius: 10px;
+  /*border: 2px solid black;*/
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
 }
 
 #article-wrapper {
+  border-radius: 10px;
+
   margin: auto;
+  margin-top: 20px;
   /*max-width: 80%;*/
   max-width: 600px;
   border-radius: 10px;
@@ -20,9 +31,9 @@
 	/*overflow: scroll;*/
   /*font-family: Georgia, sans-serif;*/
 /*font-family: 'Abel', sans-serif; */
-font-family: 'Roboto Mono', monospace;
-/*font-family: 'Montserrat', sans-serif;*/
-/*font-family: 'Krona One', sans-serif;*/
+  font-family: 'Roboto Mono', monospace;
+  /*font-family: 'Montserrat', sans-serif;*/
+  /*font-family: 'Krona One', sans-serif;*/
 }
 
 #title-and-forum-button {

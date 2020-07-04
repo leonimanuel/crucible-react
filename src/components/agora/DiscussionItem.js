@@ -15,7 +15,10 @@ class DiscussionsItem extends Component {
 				>
 					<div className="discussion-title">{this.props.discussion.name.split("_").join(" ")}</div>
 				</Link>
-				<div className="badge">{this.props.discussion.unread_messages_count}</div>
+				{this.props.discussion.unread_messages_count 
+					? <div className="badge">{this.props.discussion.unread_messages_count}</div>
+					: null
+				}
 			</div>
 		)
 	}
