@@ -41,8 +41,16 @@ class DiscussionsList extends Component {
 		// debugger
 		return (
 			<div id="group-discussions-list" className="sidenav-list">
-				<div className="list-title">Discussions</div>
-				<div onClick={this.handleNewDiscussion} id="new-discussion-button">NEW DIS</div>
+				<div className="list-title-wrapper">
+					<div className="list-title">Discussions</div>
+					<div 
+						onClick={this.handleNewDiscussion} 
+						id="new-discussion-button"
+						className="new-list-item-button"
+					>
+						+
+					</div>
+				</div>
 				<div>
 					{this.sortedDiscussions()}
 				</div>
