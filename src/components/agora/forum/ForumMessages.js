@@ -24,13 +24,13 @@ class ForumMessages extends Component {
 		debugger
 		return (
 			<div id="forum-messages-container">
-				{this.props.discussion.messages 
+				{this.props.messages 
 					? 
-						this.props.discussion.messages.map((m, index) => {
+						this.props.messages.map((m, index) => {
 							// let lastSenderId = m.user.id
 							return (
 								<div key={index} className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}>
-									{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.discussion.messages[index-1].user.id)
+									{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.messages[index-1].user.id)
 										? <div className="message-user-name">{m.user.name}</div> 
 										: null
 									}

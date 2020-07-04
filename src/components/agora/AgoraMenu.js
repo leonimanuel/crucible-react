@@ -6,7 +6,7 @@ import { createPopper } from "@popperjs/core"
 // import ConsoleTopic from "./ConsoleTopic.js"
 import GroupsList from "./GroupsList.js"
 import { API_ROOT } from "../../constants"
-import { loadGroups, fetchUsers } from "../../actions/groups.js"
+import { fetchUsers } from "../../actions/groups.js"
 import NewGroupPopup from "./NewGroupPopup.js"
 
 class AgoraMenu extends Component {
@@ -15,23 +15,23 @@ class AgoraMenu extends Component {
 	}
 
 	componentDidMount() {
-    console.log("mounted agora side-menu")
-    let configObj = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      }
-    }
+    // console.log("mounted agora side-menu")
+    // let configObj = {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     Authorization: localStorage.getItem("token")
+    //   }
+    // }
 
-    fetch(API_ROOT + `/groups`, configObj)
-      .then(resp => resp.json())
-      .then((groupsData) => {
-				// debugger
-				this.props.loadGroups(groupsData)
-     })
-      .catch(err => alert(err.message))
+    // fetch(API_ROOT + `/groups`, configObj)
+    //   .then(resp => resp.json())
+    //   .then((groupsData) => {
+				// // debugger
+				// this.props.loadGroups(groupsData)
+    //  })
+    //   .catch(err => alert(err.message))
 	}
 
 	handleNewGroup = () => {
@@ -57,14 +57,19 @@ class AgoraMenu extends Component {
 
 	render() {
 		// debugger
+		console.log(this.props.groups)
 		return (
 			<div id="agora-menu">
 				<div className="">Agora</div>
 				<div id="groups-list" className="sidenav-list">
-					{this.props.groups ? <GroupsList 
-						groups={this.props.groups} 
-						createGroup={this.handleNewGroup} 
-						/> : null} 
+					{this.props.groups 
+						? 
+							<GroupsList 
+								groups={this.props.groups} 
+								createGroup={this.handleNewGroup} 
+							/> 
+						: null
+					} 
 				</div>
 				{this.state.renderNewGroupPopup ? <NewGroupPopup closePopup={this.closePopup} /> : null}
 			</div>
@@ -74,12 +79,12 @@ class AgoraMenu extends Component {
 
 const mapStateToProps = state => {
 	return {
-		groups: state.sidenav.groups,
-		members: state.sidenav.members
+		groups: state.groups.allGroups,
+		members: state.groups.allMembers
 	}
 }
 
-export default connect(mapStateToProps, { loadGroups, fetchUsers })(AgoraMenu);
+export default connect(mapStateToProps)(AgoraMenu);
 
 
 

@@ -1,18 +1,19 @@
 import { API_ROOT } from "../constants"
 
-export const loadGroups = (groups) => {
-	console.log("loading groups")
-	return {
-		type: "LOAD_GROUPS",
-		groups
-	}
-}
+// export const loadGroups = (groups) => {
+// 	console.log("loading groups")
+// 	return {
+// 		type: "LOAD_GROUPS",
+// 		groups
+// 	}
+// }
 
-export const setSelectedGroup = group => {
+export const setSelectedGroup = groupId => {
 	console.log("dispatching set details to true")
-	return {
+	// debugger
+  return {
 		type: "SET_SELECTED_GROUP",
-		group
+		groupId
 	}
 } 
 
@@ -24,9 +25,9 @@ export const updateGroupDiscussions = discussion => {
 }
 
 export const fetchDiscussion = (groupName, discussionName) => {
-	// debugger
+	debugger
   return (dispatch) => {
-		dispatch({type: "LOADING_DISCUSSION"})
+		// dispatch({type: "LOADING_DISCUSSION"})
     let configObj = {
       method: "GET",
       headers: {
@@ -38,14 +39,21 @@ export const fetchDiscussion = (groupName, discussionName) => {
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-			// debugger
+			debugger
 
 				dispatch({ 
-					type: 'ADD_DISCUSSION', 
+					type: 'ADD_DISCUSSION_AND_COMMENTS', 
 					discussionData
 				})
+
+        // let comments = discussionData.comments
+        // dispatch({
+        //   type: "ADD_COMMENTS",
+        //   comments
+        // })
      })
       .catch(err => alert(err.message))
+    debugger
 	}
 }
 
@@ -64,11 +72,11 @@ export const fetchUsers = (value) => {
     // debugger
     fetch(API_ROOT + `/users`, configObj)
       .then(resp => resp.json())
-      .then((users) => {
+      .then((members) => {
 				// debugger
 				dispatch({ 
-					type: 'ADD_USERS', 
-					users
+					type: 'ADD_MEMBERS', 
+					members
 				})
      })
       .catch(err => alert(err.message))
@@ -106,14 +114,13 @@ export const addNewGroup = (groupName, members) => {
 	}
 }
 
-export const calculateUnreadMessages = (discussions) => {
-  let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
-  // debugger
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  let groupUnreadCount = unreadMessageArray.reduce(reducer)
-  // debugger
-  return {
-    type: "ADD_UNREAD_MESSAGES_COUNT",
-    groupUnreadCount
-  } 
-}
+// export const calculateUnreadMessages = (discussions) => {
+//   let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
+//   const reducer = (accumulator, currentValue) => accumulator + currentValue;
+//   let groupUnreadCount = unreadMessageArray.reduce(reducer)
+  
+//   return {
+//     type: "ADD_UNREAD_MESSAGES_COUNT",
+//     groupUnreadCount
+//   } 
+// }

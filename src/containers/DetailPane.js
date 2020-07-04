@@ -7,20 +7,23 @@ import ConsoleWindow from "../components/console/ConsoleWindow.js"
 
 class DetailPane extends Component {
 	render() {
+		// debugger
 		let detailPane = document.querySelector("#sidenav-details-pane")
 		if (detailPane) {
-			if ((this.props.selectedGroup && this.props.section === "agora") || 
+			if ((this.props.selectedGroupId && this.props.section === "agora") || 
 				(this.props.parentTopic && this.props.section === "console")) {
 				// debugger
 				detailPane.style = "width: 200px"
 			} else {
+				// debugger
 				detailPane.style = "width: 0px"
 			}			
 		}
 	return (
+			// debugger
 			<div id="sidenav-details-pane">
 				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
-				{this.props.section === "agora" && this.props.selectedGroup ? <GroupDetailsMenu /> : null}
+				{this.props.section === "agora" && this.props.selectedGroupId ? <GroupDetailsMenu /> : null}
 			</div>
 		)
 	}
@@ -28,7 +31,7 @@ class DetailPane extends Component {
 
 const mapStateToProps = state => {
 	return {
-		selectedGroup: state.sidenav.selectedGroup,
+		selectedGroupId: state.groups.selectedGroupId,
 		parentTopic: state.topics.parentTopic,
 		// showDetailPane: state.sidenav.showDetailPane
 	}

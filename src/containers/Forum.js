@@ -65,7 +65,7 @@ class Forum extends Component {
 
 				<ForumMessages discussion={this.props.discussion} currentUserId={this.props.currentUserId}/>
 
-				<ForumMessageForm discussion={this.props.discussion}/>
+				<ForumMessageForm discussion={this.props.discussion} messages={this.props.messages} />
 			</div>
 		)
 	}
@@ -74,7 +74,8 @@ class Forum extends Component {
 const mapStateToProps = state => {
 	return {
 		currentUserId: state.users.userId,
-		discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
+		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
+		messages: state.discussions.allMessages.filter(m => m.discussion_id === state.discussions.selectedDiscussionId)
 	}
 }
 

@@ -2,11 +2,11 @@ import _ from 'lodash';
 import cloneDeep from "lodash/cloneDeep"
 
 export default function discussionsReducer(state = {
-	discussions: [],
-	comments: [],
+	allDiscussions: [],
+	selectedDiscussionId: "",
+	allComments: [],
 	addedNewComment: false,
-	// discussion: "",
-	discussionId: "",
+	allMessages: [],
 	loading: false,
 	renderForum: false
 
@@ -18,7 +18,7 @@ export default function discussionsReducer(state = {
 			// debugger
 				return {
 					...state,
-					discussions: action.discussions
+					allDiscussions: action.discussions
 				}
 
 			case "LOADING_DISCUSSION":
@@ -34,28 +34,46 @@ export default function discussionsReducer(state = {
 					loadingComment: true
 				}
 
-			case "ADD_DISCUSSION":
-				// debugger
-				let discsClone = _.cloneDeep(state.discussions)
-				// let resetDisc = discsClone.filter(discussion => discussion.id === parseInt(action.discussionData.id))[0];
-				// resetDisc.unread_messages_count = 0
-				let resetDisc = action.discussionData
-				let updatedDiscs = discsClone.filter(discussion => discussion.id !== resetDisc.id)
-				updatedDiscs.push(resetDisc)
+			case "ADD_DISCUSSION_AND_COMMENTS":
+				// let detailedDiscussion = action.discussionData
+				// state.allDiscussions.findIndex(discussion => discussion.id === detailedDiscussion.id)
+				debugger
 				return {
 					...state,
-					discussions: updatedDiscs,
-					loading: false,
-					// discussion: action.discussionData,
-					discussionId: action.discussionData.id,
-					comments: action.discussionData.comments
+					selectedDiscussionId: action.discussionData.id,
+					allDiscussions: [state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
+					allComments: state.allComments.concat(action.discussionData.comments)
+					// discussion
 				}
+				// debugger
+				// let discsClone = _.cloneDeep(state.discussions)
+				// // let resetDisc = discsClone.filter(discussion => discussion.id === parseInt(action.discussionData.id))[0];
+				// // resetDisc.unread_messages_count = 0
+				// let resetDisc = action.discussionData
+				// let updatedDiscs = discsClone.filter(discussion => discussion.id !== resetDisc.id)
+				// updatedDiscs.push(resetDisc)
+				// return {
+				// 	...state,
+				// 	discussions: updatedDiscs,
+				// 	loading: false,
+				// 	// discussion: action.discussionData,
+				// 	discussionId: action.discussionData.id,
+				// 	comments: action.discussionData.comments
+				// }
+
+			// case "ADD_COMMENTS":
+			// 	return {
+			// 		...state,
+			// 		allComments: 
+			// 	}
+			
+
 
 			case "ADD_COMMENT":
 				// debugger
 				return {
 					...state,
-					comments: [...state.comments, action.comment],
+					allComments: [...state.comments, action.comment],
 					addedNewComment: true
 				}
 
@@ -67,17 +85,21 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_MESSAGES_TO_DISCUSSION":
-				let dClone = _.cloneDeep(state.discussions.find(d => d.id === state.discussionId))
-				// debugger
-				dClone.messages = action.messages
-				let filteredClone = _.cloneDeep(state.discussions.filter(d => d.id !== dClone.id))
-				filteredClone.push(dClone)
-				debugger
-
 				return {
 					...state,
-					discussions: filteredClone
+					allMessages: state.allMessages.concat(action.messages)
 				}
+				// let dClone = _.cloneDeep(state.discussions.find(d => d.id === state.discussionId))
+				// // debugger
+				// dClone.messages = action.messages
+				// let filteredClone = _.cloneDeep(state.discussions.filter(d => d.id !== dClone.id))
+				// filteredClone.push(dClone)
+				// debugger
+
+				// return {
+				// 	...state,
+				// 	discussions: filteredClone
+				// }
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")

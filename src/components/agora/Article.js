@@ -35,14 +35,14 @@ class Article extends Component {
 		// this.setState({location: this.props.location.pathname})
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(previousProps, previousState) {
 		// debugger
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
 		}
 
-		if (document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
+		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.state.commentsLoaded === false) {
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
@@ -254,7 +254,7 @@ class Article extends Component {
 	}
 
 	render() {
-		// console.log(this.props.comments)
+		console.log(this.props.discussion)
 		// debugger
 		return (
 			<div id="article-outer-container">
@@ -302,13 +302,20 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
-	// debugger
-	return {
-		discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
+	console.log({
+		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		// discussion: state.discussion.discussion,
 		// discussions: state.discussion.discussions, 
-		comments: state.discussion.comments,
-		addedNewComment: state.discussion.addedNewComment
+		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
+		addedNewComment: state.discussions.addedNewComment
+	})
+	debugger
+	return {
+		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
+		// discussion: state.discussion.discussion,
+		// discussions: state.discussion.discussions, 
+		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
+		addedNewComment: state.discussions.addedNewComment
 	}
 }
 

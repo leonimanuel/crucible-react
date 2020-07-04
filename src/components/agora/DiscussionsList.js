@@ -25,7 +25,7 @@ class DiscussionsList extends Component {
 	}
 
 	sortedDiscussions = () => {
-		let sortedDiscussions = this.props.group.discussions.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1)
+		let sortedDiscussions = this.props.discussions.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1)
 		// debugger
 		return sortedDiscussions.map(discussion => {
 			return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
@@ -51,8 +51,13 @@ class DiscussionsList extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId)
+	}
+}
 
-export default connect(null, { updateGroupDiscussions })(DiscussionsList);
+export default connect(mapStateToProps, { updateGroupDiscussions })(DiscussionsList);
 
 
 

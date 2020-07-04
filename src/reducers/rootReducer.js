@@ -3,12 +3,12 @@ import groupsReducer from "./groupsReducer.js"
 import userReducer from "./userReducer.js"
 import discussionsReducer from "./discussionsReducer.js"
 import topicsReducer from "./topicsReducer.js"
-
+import sidenavReducer from "./sidenavReducer.js"
 
 export default combineReducers({
 	users: userReducer,
-	sidenav: groupsReducer,
+	sidenav: sidenavReducer,
 	groups: groupsReducer,
-	discussion: discussionsReducer,
+	discussions: discussionsReducer,
 	topics: topicsReducer
 })

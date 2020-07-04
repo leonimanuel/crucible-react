@@ -33,16 +33,14 @@ class Groups extends Component {
 
 	render() {
 		const { match } = this.props;
-		debugger
+		// debugger
 		return (
 			<div id="groups-wrapper">
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
 					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
 				</Route>
-				{this.props.renderForum && this.props.activeDiscussionId 
-					? <Forum 
-							discussion={this.props.activeDiscussion} 
-							/> 
+				{this.props.renderForum && this.props.selectedDiscussionId 
+					? <Forum /> 
 					: null
 				}
 			</div>
@@ -52,8 +50,8 @@ class Groups extends Component {
 
 const mapStateToProps = state => {
 	return {
-		activeDiscussionId: state.discussion.discussionId,
-		renderForum: state.discussion.renderForum
+		selectedDiscussionId: state.discussions.selectedDiscussionId,
+		renderForum: state.discussions.renderForum
 	}
 }
 

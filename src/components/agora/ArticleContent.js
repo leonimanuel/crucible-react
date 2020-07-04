@@ -24,7 +24,7 @@ class ArticleContent extends Component {
 
 const mapStateToProps = state => {
 	return {
-		discussion: state.discussion.discussions.filter(d => d.id === state.discussion.discussionId)[0],
+		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 	}
 }
 

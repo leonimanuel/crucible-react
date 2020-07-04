@@ -103,7 +103,7 @@ class newGroupPopup extends Component {
 }
 
 
-export default connect(state => ({suggestionMembers: state.sidenav.members}), { fetchUsers, addNewGroup })(newGroupPopup);
+export default connect(state => ({suggestionMembers: state.groups.allMembers}), { fetchUsers, addNewGroup })(newGroupPopup);
 
 
 

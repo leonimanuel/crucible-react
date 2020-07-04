@@ -46,6 +46,12 @@ class SideNav extends Component {
 		}
 	}
 
+	calculateTotalUnreads = () => {
+	// 	let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
+	//   const reducer = (accumulator, currentValue) => accumulator + currentValue;
+	//   let groupUnreadCount = unreadMessageArray.reduce(reducer)
+	}
+
 	render() {
 		// debugger
 		return (
@@ -55,7 +61,9 @@ class SideNav extends Component {
 				
 				<div id="sections-list">
 					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Console</div>
-					<div id="agora" className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick} >Agora</div>
+					<div>
+						<div id="agora" className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick} >Agora</div>					
+					</div>
 				</div>
 			</div>
 
@@ -67,6 +75,7 @@ const mapStateToProps = state => {
 	return {
 		// selectedGroup: state.sidenav.selectedGroup,
 		// parentTopic: state.topics.parentTopic,
+		// unreadMessages: state.groups.unreadMessages,
 		showDetailPane: state.sidenav.showDetailPane
 	}
 }
