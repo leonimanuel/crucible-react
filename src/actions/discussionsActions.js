@@ -100,7 +100,7 @@ export const addNewDiscussion = (groupId, articleURL) => {
 					alert(discussion.error)
 				} else {
 					dispatch({ 
-						type: 'UPDATE_GROUP_DISCUSSIONS', 
+						type: 'ADD_NEW_DISCUSSION', 
 						discussion
 					})		
 				}

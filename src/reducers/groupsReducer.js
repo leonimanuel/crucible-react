@@ -31,17 +31,6 @@ export default function groupsReducer(state = {
 					selectedGroupId: action.groupId
 				}
 
-			// case "UPDATE_GROUP_DISCUSSIONS":
-			// 	console.log("updating group discussions")
-			// 	// debugger
-			// 	return {
-			// 		...state,
-			// 		selectedGroup: {
-			// 			...state.selectedGroup,
-			// 			discussions: [...state.selectedGroup.discussions, action.discussion]
-			// 		}
-			// 	}
-
 			case "ADD_GROUP":
 				// debugger
 				return {

@@ -302,14 +302,6 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log({
-		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
-		// discussion: state.discussion.discussion,
-		// discussions: state.discussion.discussions, 
-		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
-		addedNewComment: state.discussions.addedNewComment
-	})
-	debugger
 	return {
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		// discussion: state.discussion.discussion,

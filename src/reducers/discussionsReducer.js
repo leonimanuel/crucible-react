@@ -41,7 +41,7 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
-					allDiscussions: [state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
+					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
 					allComments: state.allComments.concat(action.discussionData.comments)
 					// discussion
 				}
@@ -103,28 +103,40 @@ export default function discussionsReducer(state = {
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")
-				// debugger
-				let newDiscussionsClone = _.cloneDeep(state.discussions)
-				let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === action.message.discussion_id)[0])
-				// debugger
-				if (newDiscussionClone.messages) {
-					newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
-					let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
-					readyDiscussions.push(newDiscussionClone)	
-					// debugger
-					return {
-						...state,
-						discussions: readyDiscussions
-					}					
-				} else {
-					return state
-				}
+				return {
+					...state,
+					allMessages: [...state.allMessages, action.message]
+				}				
 
+
+				// let newDiscussionsClone = _.cloneDeep(state.discussions)
+				// let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === action.message.discussion_id)[0])
+				// // debugger
+				// if (newDiscussionClone.messages) {
+				// 	newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
+				// 	let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
+				// 	readyDiscussions.push(newDiscussionClone)	
+				// 	// debugger
+				// 	return {
+				// 		...state,
+				// 		discussions: readyDiscussions
+				// 	}					
+				// } else {
+				// 	return state
+				// }
+			
+			case "ADD_NEW_DISCUSSION":
+				debugger
+				return {
+					...state,
+					allDiscussions: [...state.allDiscussions, action.discussion]
+				}
 
 			case "RESET_DISCUSSION_UNREAD_COUNT":
 				// debugger
-				let discussionsClone = _.cloneDeep(state.discussions)
-				let resetDiscussion = discussionsClone.filter(discussion => discussion.id === parseInt(action.response.discussion_id))[0];
+
+				let discussionsClone = _.cloneDeep(state.allDiscussions)
+				let resetDiscussion = discussionsClone.find(discussion => discussion.id === parseInt(action.response.discussion_id));
 
 				if (action.response.unread_messages === 0 ) {
 					resetDiscussion.unread_messages_count = 0
@@ -137,7 +149,7 @@ export default function discussionsReducer(state = {
 
 				return {
 					...state,
-					discussions: updatedDiscussions,
+					allDiscussions: updatedDiscussions,
 					// discussion: resetDiscussion
 				}
 

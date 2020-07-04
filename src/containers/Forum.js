@@ -63,9 +63,9 @@ class Forum extends Component {
 					{this.props.discussion.group.name}
 				</div>
 
-				<ForumMessages discussion={this.props.discussion} currentUserId={this.props.currentUserId}/>
+				<ForumMessages discussion={this.props.discussion} messages={this.props.messages} currentUserId={this.props.currentUserId}/>
 
-				<ForumMessageForm discussion={this.props.discussion} messages={this.props.messages} />
+				<ForumMessageForm discussion={this.props.discussion} />
 			</div>
 		)
 	}
