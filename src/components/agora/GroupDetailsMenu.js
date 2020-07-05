@@ -23,7 +23,7 @@ const mapStateToProps = state => {
 	return {
 		// selectedGroupId: state.groups.selectedGroupId,
 		group: state.groups.allGroups.find(group => group.id === state.groups.selectedGroupId),
-		members: state.groups.allMembers.filter(member => member.group_id === state.groups.selectedGroupId)
+		members: state.groups.allMembers.filter(m => m.group_id === state.groups.selectedGroupId && m.id !== state.users.userId)
 	}
 }
 
