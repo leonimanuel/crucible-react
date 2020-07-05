@@ -70,7 +70,7 @@ export default function discussionsReducer(state = {
 
 
 			case "ADD_COMMENT":
-				// debugger
+				debugger
 				return {
 					...state,
 					allComments: [...state.comments, action.comment],

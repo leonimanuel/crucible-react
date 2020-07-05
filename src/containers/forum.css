@@ -1,18 +1,17 @@
 #forum-container {
-	/*align-self: flex-end;*/
-
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	/*align-items: flex-end;*/
-	border: 4px solid gold;
-	border-top: none;
-
-	border-radius: 0px 0px 0px 10px;
+	/*border: 4px solid gold;*/
+	/*border-top: none;*/
 	min-width: 200px;
 	width: 30%;
 	/*max-width: 30%;*/
 	background-color: gold;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	/*border-radius: 50px;*/
 	/*box-shadow: 0px 10px;*/
 
 }
@@ -83,6 +82,8 @@
 
 #newMessageForm {
 	background-color: #dddddd;
+	border-radius: 0 0 10px 10px ;
+/*border: 2px solid black;*/
 	/*align-self: baseline*/
 	/*text-align: center*/
 }

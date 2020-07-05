@@ -106,6 +106,14 @@
 	cursor: pointer;
 	/*line-height: 1em*/
 }
+
+.new-group-button {
+	width: 20px;
+	height: 20px;
+	fill: white;
+	/*background-color: white;*/
+}
+
 .discussion-item {
 	/*border: 1px solid green;*/
 	text-decoration: italic;

@@ -25,7 +25,7 @@ export const updateGroupDiscussions = discussion => {
 }
 
 export const fetchDiscussion = (groupName, discussionName) => {
-	debugger
+	// debugger
   return (dispatch) => {
 		// dispatch({type: "LOADING_DISCUSSION"})
     let configObj = {
@@ -75,7 +75,7 @@ export const fetchUsers = (value) => {
       .then((members) => {
 				// debugger
 				dispatch({ 
-					type: 'ADD_MEMBERS', 
+					type: 'ADD_MEMBER_SUGGESTIONS', 
 					members
 				})
      })

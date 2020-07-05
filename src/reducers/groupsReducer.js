@@ -10,7 +10,8 @@ export default function groupsReducer(state = {
 	loading: false,
 	// showDetailPane: false,
 	groupUnreadMessages: "",
-	renderForum: false
+	renderForum: false,
+	memberSuggestions: []
 }, action) {
 		// debugger
 		// console.log("executing groupsReducer")
@@ -38,11 +39,18 @@ export default function groupsReducer(state = {
 					allGroups: [...state.groups, action.group]
 				}
 
-			case "ADD_MEMBERS":
-				// debugger
+			case "ADD_GROUP_MEMBERS":
+				debugger
 				return {
 					...state,
 					allMembers: action.members
+				}
+
+			case "ADD_MEMBER_SUGGESTIONS":
+				// debugger
+				return {
+					...state,
+					memberSuggestions: action.members
 				}
 			
 			// case "ADD_UNREAD_MESSAGES_COUNT":

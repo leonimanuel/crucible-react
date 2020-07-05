@@ -34,6 +34,13 @@ export const logIn = () => {
             type: "ADD_DISCUSSIONS",
             discussions
           })
+
+          let members = user.group_members
+          debugger
+          dispatch({
+            type: "ADD_GROUP_MEMBERS",
+            members
+          })
         } else {
           console.log("nobody's logged in")
         }
