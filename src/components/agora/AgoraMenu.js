@@ -14,26 +14,6 @@ class AgoraMenu extends Component {
 		renderNewGroupPopup: false
 	}
 
-	componentDidMount() {
-    // console.log("mounted agora side-menu")
-    // let configObj = {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     Authorization: localStorage.getItem("token")
-    //   }
-    // }
-
-    // fetch(API_ROOT + `/groups`, configObj)
-    //   .then(resp => resp.json())
-    //   .then((groupsData) => {
-				// // debugger
-				// this.props.loadGroups(groupsData)
-    //  })
-    //   .catch(err => alert(err.message))
-	}
-
 	handleNewGroup = () => {
 		let wrapper = document.querySelector("#popup-container")
 		
@@ -44,6 +24,14 @@ class AgoraMenu extends Component {
 			let popup = document.querySelector("#new-group-popup")
 			createPopper(button, popup, {
 			  placement: 'right',
+			  modifiers: [
+			    {
+			      name: 'offset',
+			      options: {
+			        offset: [0, 8],
+			      },
+			    },
+			  ],
 			});			
 		})
 		// ReactDOM.render(<NewGroupPopup 
@@ -56,11 +44,10 @@ class AgoraMenu extends Component {
 	}
 
 	render() {
-		// debugger
+		debugger
 		console.log(this.props.groups)
 		return (
 			<div id="agora-menu">
-				<div className="">Agora</div>
 				<div id="groups-list" className="sidenav-list">
 					{this.props.groups 
 						? 

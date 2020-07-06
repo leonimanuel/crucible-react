@@ -12,7 +12,7 @@ import MemberTag from "./MemberTag.js"
 
 class newGroupPopup extends Component {
 	state = {
-		articleURL: "",
+		// articleURL: "",
 		groupName: "",
 		memberSearchVal: "",
 		addedMembers: [],
@@ -42,6 +42,7 @@ class newGroupPopup extends Component {
 	}
 
 	renderSuggestions = () => {
+		debugger
 		return this.props.suggestionMembers.map(member => {
 			return (
 				<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
@@ -80,12 +81,12 @@ class newGroupPopup extends Component {
 			suggestionsBox.style = `width: ${inputField.clientWidth + 5}px`
 		}
 		return (
-			<div id="new-group-popup">
+			<div id="new-group-popup" className="popup">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
-					<div className="new-group-input-div"><label>Article link: </label><input type="text"/> <br/></div>
-					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autocomplete="off" /></div>
+					<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>
+					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
 						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
@@ -94,7 +95,6 @@ class newGroupPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>
 					<input type="submit" value="Create Group"/>
 				</form>
 			</div>
@@ -103,7 +103,7 @@ class newGroupPopup extends Component {
 }
 
 
-export default connect(state => ({suggestionMembers: state.groups.allMembers}), { fetchUsers, addNewGroup })(newGroupPopup);
+export default connect(state => ({suggestionMembers: state.groups.memberSuggestions}), { fetchUsers, addNewGroup })(newGroupPopup);
 
 
 

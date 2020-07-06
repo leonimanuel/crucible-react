@@ -21,7 +21,8 @@ class GroupsItem extends Component {
 		let reducer = (accumulator, currentValue) => accumulator + currentValue
 		// debugger
 		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
-		const groupUnreads = unreadsArray.reduce(reducer)
+		debugger
+		const groupUnreads = unreadsArray.reduce(reducer, 0)
 		// debugger
 		return groupUnreads ? <div className="sidenav-badge badge">{groupUnreads}</div> : null
 	}
@@ -40,7 +41,6 @@ class GroupsItem extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-	debugger
 	return {
 		discussions: state.discussions.allDiscussions.filter(d => d.group_id === ownProps.group.id)
 	}

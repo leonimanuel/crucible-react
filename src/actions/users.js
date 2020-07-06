@@ -36,7 +36,6 @@ export const logIn = () => {
           })
 
           let members = user.group_members
-          debugger
           dispatch({
             type: "ADD_GROUP_MEMBERS",
             members

@@ -40,7 +40,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_GROUP_MEMBERS":
-				debugger
 				return {
 					...state,
 					allMembers: action.members
