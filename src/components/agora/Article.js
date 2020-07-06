@@ -242,7 +242,6 @@ class Article extends Component {
 	}
 
 	clearTextSelected = (e) => {            //!document.getElementById("comment-textarea").value
-		debugger
 		if (this.state.textSelected === true && (e.target.id === "selection-menu-close-button" ? true : !document.getElementById("comment-textarea").value)) {
 			this.setState({...this.state, textSelected: false}, () => {
 				let span = document.getElementById(this.state.span.id);

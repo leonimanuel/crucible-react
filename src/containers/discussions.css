@@ -120,6 +120,57 @@
   /*display: none;  */
 }
 
+#comment-popup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: teal;
+  border: 2px solid gold;
+
+}
+
+#comment-popup div {
+  /*border: 2px solid green;*/
+}
+
+.comment-user-name {
+
+}
+
+.comment-content {
+  /*border: 1px solid black;*/
+  border-radius: 10px;
+  background-color: teal;
+  color: white;
+
+  margin-bottom: 5px;
+}
+
+.comment-fact {
+  background-color: gold;
+  margin-bottom: 5px;
+
+  border: 1px solid gold;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 15px;
+  cursor: pointer
+}
+
+.add-comment-fact-button {
+  float: right;
+  background-color: steelblue;
+  color: white;
+  box-shadow: 0;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 1.3em;
+  cursor: pointer;
+  outline: none;
+  /*top: 10px;*/
+}
+
+
 #comment-fact-dropzone {
   border: 2px solid black;
   border-radius: 20px;
