@@ -154,7 +154,7 @@
   border-radius: 10px;
   padding: 5px;
   margin-left: 15px;
-  cursor: pointer
+  /*cursor: pointer*/
 }
 
 .add-comment-fact-button {

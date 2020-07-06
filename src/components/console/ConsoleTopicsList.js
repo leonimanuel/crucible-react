@@ -8,7 +8,7 @@ class ConsoleTopicsList extends Component {
 		// console.log(this.props.topics)
 		return (
 			<div id="console-topics-list-container">
-				<div className="console-topics-title console-section-title">Topics</div>
+				<div className="console-topics-title sidenav-list console-section-title">Topics</div>
 				<div id="console-topics-container">
 					{this.props.topics ? this.props.topics.map(topic => <ConsoleTopic key={topic.id} topic={topic}/>) : null}
 				</div>

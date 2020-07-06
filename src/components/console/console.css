@@ -1,11 +1,11 @@
 #console-container {
 	display: flex;
 	height: 100%;
-	border: 2px solid yellow;
+	/*border: 2px solid yellow;*/
 }
 
 #console-window {
-	border: 2px solid red;
+	/*border: 2px solid red;*/
 	/*width: 20%;*/
 	max-width: 200px;
 	display: flex;
@@ -14,7 +14,7 @@
 }
 
 #console-topic-menu-container {
-	border: 2px solid green;
+	/*border: 2px solid green;*/
 }
 
 .dragged-over {
@@ -22,15 +22,28 @@
 }
 
 #console-fact-list-container {
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	max-height: 300px;
 	overflow: scroll;
 }
 
 #console-facts-container {
-	border: 2px solid green;
+	/*border: 2px solid green;*/
+
 	display: flex;
 	flex-direction: column;
+
+}
+
+.fact-box {
+	text-align: left;
+	font-size: 0.8em;
+
+	border: 1px solid white;
+	border-radius: 15px;
+	padding: 5px;
+	cursor: grab;
+	margin-bottom: 5px;
 }
 
 #console-window-title {
@@ -45,5 +58,5 @@
 }
 
 .fact-box {
-	border: 2px solid purple;
+	/*border: 2px solid purple;*/
 }
