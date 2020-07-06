@@ -4,6 +4,7 @@ import DiscussionItem from "./DiscussionItem.js"
 import { updateGroupDiscussions } from "../../actions/groups.js"
 import NewDiscussionPopup from "./NewDiscussionPopup.js"
 import { createPopper } from "@popperjs/core"
+import AddListItemButton from "./AddListItemButton.js"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
 
@@ -43,13 +44,14 @@ class DiscussionsList extends Component {
 			<div id="group-discussions-list" className="sidenav-list">
 				<div className="list-title-wrapper">
 					<div className="list-title">Discussions</div>
-					<div 
-						onClick={this.handleNewDiscussion} 
-						id="new-discussion-button"
-						className="new-list-item-button"
-					>
-						+
-					</div>
+					<AddListItemButton buttonAction={this.handleNewDiscussion}/>
+					{/*<div 
+											onClick={this.handleNewDiscussion} 
+											id="new-discussion-button"
+											className="new-list-item-button"
+										>
+											+
+										</div>*/}
 				</div>
 				<div>
 					{this.sortedDiscussions()}
