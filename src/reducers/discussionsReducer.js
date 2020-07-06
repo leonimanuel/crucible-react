@@ -73,7 +73,7 @@ export default function discussionsReducer(state = {
 				debugger
 				return {
 					...state,
-					allComments: [...state.comments, action.comment],
+					allComments: [...state.allComments, action.comment],
 					addedNewComment: true
 				}
 

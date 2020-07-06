@@ -8,6 +8,14 @@ class SelectionMenu extends Component {
 		facts: []
 	}
 
+	componentDidUpdate() {
+		if (this.state.comment && this.state.facts.length) {
+			document.getElementById("comment-submit").disabled = false;
+		} else {
+			document.getElementById("comment-submit").disabled = true;
+		}
+	}
+
 	handleChange = e => {
 		this.setState({
 			...this.state,
@@ -54,7 +62,6 @@ class SelectionMenu extends Component {
 			<div>
 				<div id={this.props.id}>
 					<div id="new-comment-form">
-						New Comment
 						<form onSubmit={(e) => this.props.submit(e, this.state.comment, this.state.facts)} id="new-comment-form">
 							Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
 		
@@ -71,7 +78,7 @@ class SelectionMenu extends Component {
 							>
 								DRAG FACTS HERE
 							</div>
-							<input type="submit" value="post"/>
+							<input id="comment-submit" type="submit" value="post" disabled="true"/>
 						</form>
 					</div>	
 					<div id="arrow" data-popper-arrow></div>

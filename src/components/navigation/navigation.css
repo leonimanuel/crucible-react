@@ -24,6 +24,9 @@
   text-decoration: none;
 }
 
+.section-nav-link {
+  display: none;
+}
 /*#sidenav-details-pane {
 	width: 0;
 }*/

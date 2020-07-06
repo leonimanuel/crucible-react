@@ -19,14 +19,20 @@ class NavBar extends Component {
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">
-					<Link className="nav-link" to="/" >Home</Link>
-					<Link className="nav-link" to="/console" >Console</Link>
-					<Link className="nav-link" to="/review" >Review</Link>
-					<Link className="nav-link" to="/groups" >Groups</Link>												
+					<Link className="nav-link section-nav-link" to="/" >Home</Link>
+					<Link className="nav-link section-nav-link" to="/console" >Console</Link>
+					<Link className="nav-link section-nav-link" to="/review" >Review</Link>
+					<Link className="nav-link section-nav-link" to="/groups" >Groups</Link>												
 				</div>
 				<div id="profile-options">
-					{ this.props.isLoggedIn 
-						? <div className="nav-link" onClick={this.handleLogOut}>Logout</div>
+					{ this.props.userName 
+						? 
+							<div className="dropdown">
+								<div>{this.props.userName}</div>
+								<div className="dropdown-content">
+									<div className="nav-link" onClick={this.handleLogOut}>Logout</div>								
+								</div>
+							</div>
 						: 
 						<div>
 							<Link className="nav-link" to="/login" >Login</Link>
@@ -40,7 +46,7 @@ class NavBar extends Component {
 }
 
 
-export default connect(state => ({isLoggedIn: state.users.isLoggedIn}), { logOut })(NavBar);
+export default connect(state => ({userName: state.users.userName}), { logOut })(NavBar);
 
 
 
