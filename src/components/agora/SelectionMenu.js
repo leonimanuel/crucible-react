@@ -61,9 +61,10 @@ class SelectionMenu extends Component {
 		return (
 			<div>
 				<div id={this.props.id}>
+					<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 					<div id="new-comment-form">
 						<form onSubmit={(e) => this.props.submit(e, this.state.comment, this.state.facts)} id="new-comment-form">
-							Comment: <textarea onChange={this.handleChange} value={this.state.comment} name="comment" id="" cols="20" rows="3"></textarea> <br/>
+							Comment: <textarea id="comment-textarea" onChange={this.handleChange} value={this.state.comment} name="comment" cols="20" rows="3"></textarea> <br/>
 		
 							<div id="comment-facts-container">
 								{this.state.facts.map(fact => <NewCommentFact key={fact.id} fact={fact}/>) }
@@ -76,7 +77,7 @@ class SelectionMenu extends Component {
 								onDrop={this.drop}
 								className={this.state.draggedOver ? "dragged-over" : "" }
 							>
-								DRAG FACTS HERE
+								DRAG SUPPORTING FACT HERE
 							</div>
 							<input id="comment-submit" type="submit" value="post" disabled="true"/>
 						</form>

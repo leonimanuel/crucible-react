@@ -242,7 +242,7 @@ class Article extends Component {
 	}
 
 	clearTextSelected = () => {
-		if (this.state.textSelected === true) {
+		if (this.state.textSelected === true && !document.getElementById("comment-textarea").value) {
 			this.setState({...this.state, textSelected: false}, () => {
 				let span = document.getElementById(this.state.span.id);
 				let parent = span.parentNode;
@@ -286,7 +286,8 @@ class Article extends Component {
 							? <SelectionMenu id="selection-popup" 
 									selection={this.state.span.innerText} 
 									submit={this.handleSubmitComment} 
-									collectFact={this.handleCollectFact} /> 
+									collectFact={this.handleCollectFact} 
+									closePopup={this.clearTextSelected} /> 
 							: null
 						}
 						{this.state.hoverSelectionComment

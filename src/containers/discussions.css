@@ -120,6 +120,11 @@
   /*display: none;  */
 }
 
+#comment-fact-dropzone {
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
 .new-comment-fact {
   background-color: darkcyan;
   border: 2px solid blue;
