@@ -241,8 +241,9 @@ class Article extends Component {
 		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
 	}
 
-	clearTextSelected = () => {
-		if (this.state.textSelected === true && !document.getElementById("comment-textarea").value) {
+	clearTextSelected = (e) => {            //!document.getElementById("comment-textarea").value
+		debugger
+		if (this.state.textSelected === true && (e.target.id === "selection-menu-close-button" ? true : !document.getElementById("comment-textarea").value)) {
 			this.setState({...this.state, textSelected: false}, () => {
 				let span = document.getElementById(this.state.span.id);
 				let parent = span.parentNode;

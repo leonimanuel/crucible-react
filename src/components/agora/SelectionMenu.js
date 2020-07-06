@@ -61,7 +61,7 @@ class SelectionMenu extends Component {
 		return (
 			<div>
 				<div id={this.props.id}>
-					<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
+					<span id="selection-menu-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 					<div id="new-comment-form">
 						<form onSubmit={(e) => this.props.submit(e, this.state.comment, this.state.facts)} id="new-comment-form">
 							Comment: <textarea id="comment-textarea" onChange={this.handleChange} value={this.state.comment} name="comment" cols="20" rows="3"></textarea> <br/>
