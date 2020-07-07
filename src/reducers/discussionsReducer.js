@@ -42,7 +42,7 @@ export default function discussionsReducer(state = {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
 					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
-					allComments: state.allComments.concat(action.discussionData.comments),
+					allComments: state.allComments.filter(c => c.discussion_id !== action.discussionData.id).concat(action.discussionData.comments),
 					commentsRendered: false
 					// discussion
 				}
