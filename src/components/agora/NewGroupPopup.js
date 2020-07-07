@@ -69,7 +69,11 @@ class newGroupPopup extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		debugger
-		this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+		if (this.state.groupName && this.state.addedMembers) {
+			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+			this.props.closePopup()
+		}
+		
 	}
 
 	render() {
