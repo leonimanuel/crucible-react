@@ -39,7 +39,6 @@ export const fetchDiscussion = (groupName, discussionName) => {
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-			debugger
 
 				dispatch({ 
 					type: 'ADD_DISCUSSION_AND_COMMENTS', 
@@ -53,7 +52,6 @@ export const fetchDiscussion = (groupName, discussionName) => {
         // })
      })
       .catch(err => alert(err.message))
-    debugger
 	}
 }
 
@@ -86,7 +84,6 @@ export const fetchUsers = (value) => {
 export const addNewGroup = (groupName, members) => {
 	return (dispatch) => {
     let memberIds = members.map(member => member.id)
-    // debugger
 
     let configObj = {
       method: "POST",
@@ -104,7 +101,7 @@ export const addNewGroup = (groupName, members) => {
     fetch(API_ROOT + `/groups`, configObj)
       .then(resp => resp.json())
       .then((group) => {
-				// debugger
+				debugger
 				dispatch({ 
 					type: 'ADD_GROUP', 
 					group

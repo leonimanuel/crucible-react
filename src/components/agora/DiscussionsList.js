@@ -26,7 +26,6 @@ class DiscussionsList extends Component {
 	}
 
 	sortedDiscussions = () => {
-		debugger
 		let sortedDiscussions = this.props.discussions.sort((a, b) => (a.created_at > b.created_at) ? 1 : -1)
 		// debugger
 		return sortedDiscussions.map(discussion => {
@@ -63,7 +62,6 @@ class DiscussionsList extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	return {
 		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId)
 	}

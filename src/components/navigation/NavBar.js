@@ -28,9 +28,9 @@ class NavBar extends Component {
 					{ this.props.userName 
 						? 
 							<div className="dropdown">
-								<div>{this.props.userName}</div>
+								<div className="nav-link user-dropdown">{this.props.userName}</div>
 								<div className="dropdown-content">
-									<div className="nav-link" onClick={this.handleLogOut}>Logout</div>								
+									<div className="nav-link dropdown-item" onClick={this.handleLogOut}>Logout</div>								
 								</div>
 							</div>
 						: 

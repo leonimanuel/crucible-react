@@ -44,7 +44,6 @@ class AgoraMenu extends Component {
 	}
 
 	render() {
-		debugger
 		console.log(this.props.groups)
 		return (
 			<div id="agora-menu">

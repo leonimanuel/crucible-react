@@ -21,7 +21,6 @@ class GroupsItem extends Component {
 		let reducer = (accumulator, currentValue) => accumulator + currentValue
 		// debugger
 		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
-		debugger
 		const groupUnreads = unreadsArray.reduce(reducer, 0)
 		// debugger
 		return groupUnreads ? <div className="sidenav-badge badge">{groupUnreads}</div> : null

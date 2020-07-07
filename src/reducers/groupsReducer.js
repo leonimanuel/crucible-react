@@ -33,10 +33,10 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_GROUP":
-				// debugger
+				debugger
 				return {
 					...state,
-					allGroups: [...state.groups, action.group]
+					allGroups: [...state.allGroups, action.group]
 				}
 
 			case "ADD_GROUP_MEMBERS":

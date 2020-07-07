@@ -42,7 +42,7 @@ class newGroupPopup extends Component {
 	}
 
 	renderSuggestions = () => {
-		debugger
+		// debugger
 		return this.props.suggestionMembers.map(member => {
 			return (
 				<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
