@@ -155,10 +155,13 @@ export default function discussionsReducer(state = {
 				}
 
 			case "TOGGLE_FORUM":
-				return {
-					...state,
-					renderForum: !state.renderForum
+				if (action.bool === false) {
+					return { ...state, renderForum: false }
+				} else {
+					return { ...state, renderForum: !state.renderForum }
 				}
+
+
 
 			case "SET_COMMENTS_RENDERED_TO_TRUE":
 				return {

@@ -35,16 +35,13 @@ class Article extends Component {
 	}
 
 	componentDidUpdate(previousProps, previousState) {
-		debugger
 		console.log(previousProps === this.props)
 		if (this.props.location.pathname !== this.state.location) {
-			debugger
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
 		}
 
 		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.props.commentsRendered === false) {
-			debugger
 			this.renderCommentHighlights(this.props.comments)
 		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
 			
@@ -260,7 +257,7 @@ class Article extends Component {
 
 	render() {
 		console.log(this.props.discussion)
-		debugger
+		// debugger
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 

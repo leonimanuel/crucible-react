@@ -164,9 +164,11 @@ export const fetchMessages = (groupId, discussionId) => {
   }
 }
 
-export const toggleForum = () => {
+export const toggleForum = (bool) => {
+  debugger
   return {
-    type: "TOGGLE_FORUM"
+    type: "TOGGLE_FORUM",
+    bool
   }
 }
 

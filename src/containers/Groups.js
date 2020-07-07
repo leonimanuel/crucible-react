@@ -22,7 +22,7 @@ class Groups extends Component {
 	componentDidUpdate(previousProps, previousState) {
 		if (previousProps.location.pathname !== this.props.location.pathname) {
 			// this.setState({renderForum: false})
-			this.props.toggleForum()
+			this.props.toggleForum(false)
 		}
 	}
 
