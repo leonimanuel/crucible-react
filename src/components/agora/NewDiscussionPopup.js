@@ -25,13 +25,18 @@ class NewDiscussionPopup extends Component {
 	}
 
 	render() {
+		let opts = {}
+		if (!this.state.articleURL) {
+			opts["disabled"] = "disabled";
+		}
+
 		return (
 			<div id="new-discussion-popup" className="popup">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>				
 				<form id="new-discussion-form" onSubmit={this.handleSubmit}>
 					<div id="new-discussion-popup-title">New Discussion</div>
 					<div>Article Link: <input type="url" name="articleURL" onChange={this.handleChange} value={this.state.articleURL} required/></div>
-					<input type="submit" value="Create Discussion"/>
+					<input type="submit" value="Create Discussion" {...opts} />
 				</form>
 			</div>
 		)
