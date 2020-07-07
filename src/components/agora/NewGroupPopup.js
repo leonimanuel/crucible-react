@@ -69,7 +69,7 @@ class newGroupPopup extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		debugger
-		if (this.state.groupName && this.state.addedMembers) {
+		if (this.state.groupName && this.state.addedMembers.length) {
 			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
 			this.props.closePopup()
 		}
@@ -84,6 +84,12 @@ class newGroupPopup extends Component {
 
 			suggestionsBox.style = `width: ${inputField.clientWidth + 5}px`
 		}
+
+		let opts = {}
+		if (!this.state.groupName || !this.state.addedMembers.length) {
+			opts["disabled"] = "disabled";
+		}
+
 		return (
 			<div id="new-group-popup" className="popup">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
@@ -99,7 +105,8 @@ class newGroupPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					<input type="submit" value="Create Group"/>
+					<input type="submit" value="Create Group" {...opts}
+					/>
 				</form>
 			</div>
 		)
