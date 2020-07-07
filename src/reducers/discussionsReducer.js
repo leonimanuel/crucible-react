@@ -8,8 +8,8 @@ export default function discussionsReducer(state = {
 	addedNewComment: false,
 	allMessages: [],
 	loading: false,
-	renderForum: false
-
+	renderForum: false,
+	commentsRendered: false
 }, action) {
 		// debugger
 		// console.log("executing discussionsReducer")
@@ -42,7 +42,8 @@ export default function discussionsReducer(state = {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
 					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
-					allComments: state.allComments.concat(action.discussionData.comments)
+					allComments: state.allComments.concat(action.discussionData.comments),
+					commentsRendered: false
 					// discussion
 				}
 				// debugger
@@ -157,6 +158,12 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					renderForum: !state.renderForum
+				}
+
+			case "SET_COMMENTS_RENDERED_TO_TRUE":
+				return {
+					...state,
+					commentsRendered: true
 				}
 
 			default:

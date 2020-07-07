@@ -2,7 +2,6 @@ import { API_ROOT, HEADERS } from "../constants"
 
 export const addComment = (groupName, discussionName, comment, span, startOffset, endOffset, previousElId, facts) => {
 	console.log(comment)
-	debugger
 	return (dispatch) => {
 		dispatch({type: "POSTING_COMMENT"})
     
@@ -28,7 +27,6 @@ export const addComment = (groupName, discussionName, comment, span, startOffset
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}/comments`, configObj)
       .then(resp => resp.json())
       .then((comment) => {
-				debugger
 				dispatch({ 
 					type: 'ADD_COMMENT', 
 					comment
@@ -125,9 +123,6 @@ export const resetUnreadCount = (response) => {
 
 export const fetchMessages = (groupId, discussionId) => {
   return (dispatch) => {
-
-
-    debugger
     console.log(localStorage.getItem("token"))
 
     let configObj = {
@@ -142,7 +137,6 @@ export const fetchMessages = (groupId, discussionId) => {
     fetch(`${API_ROOT}/groups/${groupId}/discussions/${discussionId}/messages`, configObj)
       .then(resp => resp.json())
       .then(messages => {
-        debugger
         dispatch({
           type: "ADD_MESSAGES_TO_DISCUSSION",
           messages
@@ -176,5 +170,9 @@ export const toggleForum = () => {
   }
 }
 
-
+export const truthifyCommentsRendered = () => {
+  return {
+    type: "SET_COMMENTS_RENDERED_TO_TRUE"
+  }
+}
 

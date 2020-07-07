@@ -22,10 +22,10 @@ class ArticleContent extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
-	}
-}
+// const mapStateToProps = state => {
+// 	return {
+// 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
+// 	}
+// }
 
-export default connect(mapStateToProps)(ArticleContent);
+export default connect()(ArticleContent);

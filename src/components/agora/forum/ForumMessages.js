@@ -21,7 +21,7 @@ class ForumMessages extends Component {
 	}
 
 	render() {
-		debugger
+		// debugger
 		return (
 			<div id="forum-messages-container">
 				{this.props.messages 
