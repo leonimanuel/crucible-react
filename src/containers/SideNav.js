@@ -47,10 +47,11 @@ class SideNav extends Component {
 	}
 
 	calculateTotalUnreads = () => {
-	// 	let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
-	//   const reducer = (accumulator, currentValue) => accumulator + currentValue;
-	//   let groupUnreadCount = unreadMessageArray.reduce(reducer)
-	}
+		let reducer = (accumulator, currentValue) => accumulator + currentValue
+		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
+		const totalUnreads = unreadsArray.reduce(reducer, 0)
+		debugger
+		return totalUnreads ? <div className="badge section-tab-badge">{totalUnreads}</div> : null	}
 
 	render() {
 		// debugger
@@ -62,7 +63,15 @@ class SideNav extends Component {
 				<div id="sections-list">
 					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Console</div>
 					<div>
-						<div id="agora" className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick} >Agora</div>					
+						<div 
+							id="agora" 
+							className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} 
+							onClick={this.handleTabClick} 
+						>
+							Agora
+							{this.calculateTotalUnreads()}
+						</div>					
+						
 					</div>
 				</div>
 			</div>
@@ -72,7 +81,10 @@ class SideNav extends Component {
 }
 
 const mapStateToProps = state => {
+	// debugger
 	return {
+		discussions: state.discussions.allDiscussions,
+		// unreadMessageCount: state.groups.map
 		// selectedGroup: state.sidenav.selectedGroup,
 		// parentTopic: state.topics.parentTopic,
 		// unreadMessages: state.groups.unreadMessages,
