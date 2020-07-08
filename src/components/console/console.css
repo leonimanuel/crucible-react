@@ -13,8 +13,13 @@
 	flex-direction: column;
 }
 
-#console-topic-menu-container {
-	/*border: 2px solid green;*/
+#console-topics-container {
+	margin-bottom: 20px;
+}
+
+.topic-box {
+	border: 2px solid green;
+	text-align: left;
 }
 
 .dragged-over {

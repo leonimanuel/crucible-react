@@ -185,7 +185,6 @@
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
 	/*background-color: #44558f;*/
-	background-color: #FFDF00;
 	color: black;
 	font-weight: bold;
 	cursor: pointer;
@@ -265,6 +264,9 @@
 /*	border-right: 2px solid #2c3539;
 	border-top: 2px solid #2c3539;
 	border-bottom: 2px solid #2c3539;*/
+	background-color: #FFDF00;
+	border: 2px solid black;
+	border-left: none;
 }
 
 .unselected-section {

@@ -53,7 +53,7 @@ class SignUp extends Component {
 	render() {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
-				<div id="login-wrapper">
+				<div id="login-wrapper" className="auth-wrapper">
 					<h1>Sign Up</h1>
 					<form onSubmit={this.handleSubmit}>
 						<label>Name: </label>
@@ -64,6 +64,7 @@ class SignUp extends Component {
 						<br/>
 						<label>Password: </label>
 						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+						<br/>
 						<input type="submit" value="Log in"/>
 					</form>
 				</div>					

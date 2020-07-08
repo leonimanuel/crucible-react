@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
+import "./auth.css"
 
 class Login extends Component {
 	state = {
@@ -53,7 +54,7 @@ class Login extends Component {
 	render() {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
-				<div id="login-wrapper">
+				<div id="login-wrapper" className="auth-wrapper">
 					<h1>Login</h1>
 					<form onSubmit={this.handleSubmit}>
 						<label>Email: </label>
@@ -61,6 +62,7 @@ class Login extends Component {
 						<br/>
 						<label>Password: </label>
 						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+						<br/>
 						<input type="submit" value="Log in"/>
 					</form>
 				</div>					

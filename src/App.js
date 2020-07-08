@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   handleReceivedMessage = response => {
-    // debugger
+    debugger
     console.log("handling received message")
     const { message } = response;
     this.props.addMessageToDiscussion(message)
