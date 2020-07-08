@@ -134,20 +134,23 @@ export default function discussionsReducer(state = {
 				}
 
 			case "RESET_DISCUSSION_UNREAD_COUNT":
-				// debugger
+				debugger
 
 				let discussionsClone = _.cloneDeep(state.allDiscussions)
 				let resetDiscussion = discussionsClone.find(discussion => discussion.id === parseInt(action.response.discussion_id));
 
 				if (action.response.unread_messages === 0 ) {
+					debugger
 					resetDiscussion.unread_messages_count = 0
-				} else if (action.response.unread_messages === 1 && !state.renderForum ) {
+				} else if (action.response.unread_messages === 1 && !(state.renderForum && state.selectedDiscussionId === action.response.discussion_id)) {
+						debugger
 						resetDiscussion.unread_messages_count += 1
 				}
-
+				
+				// debugger
 				let updatedDiscussions = discussionsClone.filter(discussion => discussion.id !== resetDiscussion.id)
 				updatedDiscussions.push(resetDiscussion)
-
+				debugger
 				return {
 					...state,
 					allDiscussions: updatedDiscussions,
