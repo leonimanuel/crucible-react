@@ -25,6 +25,7 @@ class Article extends Component {
 			hoverSelectionComment: "",
 			highlightClicked: false,
 			textSelected: false,
+			forumHovered: false
 		}
 	}
 
@@ -42,9 +43,11 @@ class Article extends Component {
 		}
 
 		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.props.commentsRendered === false) {
+			debugger
 			this.renderCommentHighlights(this.props.comments)
-		} else if (this.props.comments.length > 0 && this.props.addedNewComment === true) {
-			
+		} 
+		else if (this.props.comments.length > 1 && this.props.addedNewComment === true) {
+			debugger
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
 		}
@@ -121,13 +124,14 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
+		debugger
 		comments.map(comment => {
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
 			let previousEl = document.getElementById(comment.previous_el_id)
 			
-			// debugger
+			debugger
 			if (previousEl.tagName === "P") {
 				range.setStart(previousEl.firstChild, comment.startPoint)
 				range.setEnd(previousEl.firstChild, comment.endPoint)					
@@ -255,16 +259,43 @@ class Article extends Component {
 		}
 	}
 
+	onForumHoverStart = () => {
+		if (!this.props.comments.filter(c => c.user_id === this.props.userId).length) {
+			this.setState({
+				forumHovered: true
+			}, () => {
+				const button = document.getElementById("show-forum-button")
+				const popup = document.getElementById("forum-lock-popup")
+				debugger
+				createPopper(button, popup, {
+					placement: "left"
+				}) 
+			})
+		}
+	}
+
+	onForumHoverEnd = () => {
+		this.setState({
+			forumHovered: false
+		})
+	}
+
+
 	render() {
 		console.log(this.props.discussion)
-		// debugger
+		const userCommented = !!this.props.comments.filter(c => c.user_id === this.props.userId).length
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="title-and-forum-button">
 							<div id="article-title">{this.props.discussion.article.title}</div>
-							<div id="show-forum-button" onClick={this.props.onForumClick}>
+							<div 
+								id="show-forum-button" 
+								onClick={userCommented ? this.props.onForumClick : null}
+								onMouseEnter={this.onForumHoverStart}
+								onMouseLeave={this.onForumHoverEnd}
+							>
 								<div id="show-forum-button-text">Forum</div>
 								{this.props.discussion.unread_messages_count
 									? <div id="forum-badge" className="badge">{this.props.discussion.unread_messages_count}</div>
@@ -298,6 +329,13 @@ class Article extends Component {
 									comment={this.state.hoverSelectionComment} /> 
 							: null
 						}
+						{this.state.forumHovered
+							? <div id="forum-lock-popup" className="popup">
+									You must make at least one comment on this article to access the forum
+								</div>
+							:
+								null
+						}
 					</div>				
 					: 
 					<h3>Loading</h3>
@@ -313,7 +351,8 @@ const mapStateToProps = state => {
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
 		addedNewComment: state.discussions.addedNewComment,
-		commentsRendered: state.discussions.commentsRendered
+		commentsRendered: state.discussions.commentsRendered,
+		userId: state.users.userId
 	}
 }
 
