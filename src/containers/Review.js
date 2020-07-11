@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-
+import { connect } from "react-redux"
+import { fetchItemsForReview } from "../actions/reviewsActions.js"
 
 class Review extends Component {
+	componentDidMount() {
+		this.props.fetchItemsForReview()
+	}
+
 	render() {
 		return (
 			<div id="review-wrapper">
@@ -12,4 +17,4 @@ class Review extends Component {
 }
 
 
-export default Review;
+export default connect(null, { fetchItemsForReview })(Review);
