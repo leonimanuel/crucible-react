@@ -1,0 +1,14 @@
+#review-items-wrapper {
+	border: 2px solid green;
+	display: flex;
+	flex-direction: column;
+	/*align-items: center;*/
+	width: 80%;
+	margin: 0 auto;
+}
+
+.review-fact {
+	/*width: 80%;*/
+	border: 2px solid black;
+}
+

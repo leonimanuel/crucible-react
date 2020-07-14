@@ -2,7 +2,6 @@ import { API_ROOT, HEADERS } from "../constants"
 
 export const fetchItemsForReview = () => {
 	return (dispatch) => {    
-		let factIds = facts.map(fact => fact.id)
     let configObj = {
       method: "GET",
       headers: {
@@ -16,6 +15,12 @@ export const fetchItemsForReview = () => {
       .then(resp => resp.json())
       .then((items) => {
 				debugger
+				
+        const facts = items.facts
+        dispatch({
+					type: "ADD_REVIEW_FACTS",
+					facts
+				})
      })
       .catch(err => alert(err.message))
 	}

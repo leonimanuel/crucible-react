@@ -36,10 +36,11 @@ export const fetchDiscussion = (groupName, discussionName) => {
         Authorization: localStorage.getItem("token")
       }
     }
+    debugger
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-        // debugger
+        debugger
 				dispatch({ 
 					type: 'ADD_DISCUSSION_AND_COMMENTS', 
 					discussionData

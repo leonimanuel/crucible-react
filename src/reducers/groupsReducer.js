@@ -17,7 +17,7 @@ export default function groupsReducer(state = {
 		// console.log("executing groupsReducer")
 		switch (action.type) {
 			case "LOAD_GROUPS":
-				debugger
+				// debugger
 				return {
 					...state,
 					allGroups: action.groups,
@@ -33,10 +33,11 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_GROUP":
-				// debugger
+				debugger
 				return {
 					...state,
-					allGroups: [...state.allGroups, action.group]
+					allGroups: [...state.allGroups, action.group],
+					allMembers: [...state.allMembers, action.group.members]
 				}
 
 			case "ADD_GROUP_MEMBERS":

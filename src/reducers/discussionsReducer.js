@@ -37,7 +37,7 @@ export default function discussionsReducer(state = {
 			case "ADD_DISCUSSION_AND_COMMENTS":
 				// let detailedDiscussion = action.discussionData
 				// state.allDiscussions.findIndex(discussion => discussion.id === detailedDiscussion.id)
-				// debugger
+				debugger
 				return {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
@@ -46,6 +46,14 @@ export default function discussionsReducer(state = {
 					commentsRendered: false
 					// discussion
 				}
+
+			case "ADD_NEW_DISCUSSION":
+				// debugger
+				return {
+					...state,
+					allDiscussions: [...state.allDiscussions, action.discussion]
+				}
+
 				// debugger
 				// let discsClone = _.cloneDeep(state.discussions)
 				// // let resetDisc = discsClone.filter(discussion => discussion.id === parseInt(action.discussionData.id))[0];
@@ -126,35 +134,21 @@ export default function discussionsReducer(state = {
 				// 	return state
 				// }
 			
-			case "ADD_NEW_DISCUSSION":
-				// debugger
-				return {
-					...state,
-					allDiscussions: [...state.allDiscussions, action.discussion]
-				}
-
 			case "RESET_DISCUSSION_UNREAD_COUNT":
-				debugger
-
 				let discussionsClone = _.cloneDeep(state.allDiscussions)
 				let resetDiscussion = discussionsClone.find(discussion => discussion.id === parseInt(action.response.discussion_id));
 
 				if (action.response.unread_messages === 0 ) {
-					debugger
 					resetDiscussion.unread_messages_count = 0
 				} else if (action.response.unread_messages === 1 && !(state.renderForum && state.selectedDiscussionId === action.response.discussion_id)) {
-						debugger
-						resetDiscussion.unread_messages_count += 1
+					resetDiscussion.unread_messages_count += 1
 				}
 				
-				// debugger
 				let updatedDiscussions = discussionsClone.filter(discussion => discussion.id !== resetDiscussion.id)
 				updatedDiscussions.push(resetDiscussion)
-				debugger
 				return {
 					...state,
 					allDiscussions: updatedDiscussions,
-					// discussion: resetDiscussion
 				}
 
 			case "TOGGLE_FORUM":

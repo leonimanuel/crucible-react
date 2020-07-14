@@ -27,7 +27,7 @@
 	background-color: #2c3539;
 	transition: width .2s;
 	overflow: hidden;
-	border-right: 2px solid gold;
+	/*border-right: 2px solid gold;*/
 }
 
 #console-topic-menu-container, #agora-menu {
@@ -37,13 +37,13 @@
 }
 
 #sidenav-details-pane {
-	border-right: 2px solid gold;
+	/*border-right: 2px solid gold;*/
 	width: 0;
 	/*background-color: #708090;*/
 	background-color: #738598;
 	/*background-color: rgb(38, 50, 56);*/
 	transition: .2s;
-	overflow: hidden;
+	overflow: scroll;
 	border-radius: 0px 10px 10px 0px;
 }
 
@@ -55,6 +55,10 @@
 	padding: 10px;
 	width: 180px;
 	/*color:yellow;*/
+}
+
+.group-details-title {
+	font-size: 1.6em
 }
 
 .sidenav-list {
@@ -114,6 +118,12 @@
 	font-size: 1.3em;
 	margin-right: 5px;
 	/*text-decoration: underline;*/
+}
+
+.sidenav-list-contents {
+	/*display: none;*/
+/*	overflow: scroll;
+	border: 2px solid yellow;*/
 }
 
 /*.new-list-item-button {
@@ -257,6 +267,17 @@
 
 .highlight {
 	background-color: cyan
+}
+
+#new-discussion-popup {
+	z-index: 1;
+	text-align: center;
+	border: 2px solid black;
+}
+
+#new-discussion-popup-title {
+	font-size: 1.5em;
+	margin-bottom: 10px;
 }
 
 .selected-section {

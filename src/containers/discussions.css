@@ -203,6 +203,12 @@
   border-radius: 4px;
 }
 
+#forum-lock-popup {
+  border: 2px solid red;
+  max-width: 200px;
+  background-color: silver;
+}
+
 #collect-fact-button {
   background: steelblue;
   color: white;

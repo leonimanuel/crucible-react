@@ -36,6 +36,7 @@ class NewDiscussionPopup extends Component {
 				<form id="new-discussion-form" onSubmit={this.handleSubmit}>
 					<div id="new-discussion-popup-title">New Discussion</div>
 					<div>Article Link: <input type="url" name="articleURL" onChange={this.handleChange} value={this.state.articleURL} required/></div>
+					<br/>
 					<input type="submit" value="Create Discussion" {...opts} />
 				</form>
 			</div>

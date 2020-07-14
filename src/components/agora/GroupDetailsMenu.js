@@ -8,10 +8,10 @@ import MembersList from "./MembersList.js"
 class GroupDetailsMenu extends Component {
 	render() {
 		// console.log(this.props.group)
-		// debugger
+		debugger
 		return (
 			<div id="group-details-menu">
-				<div className="">{this.props.group.name}</div>
+				<div className="group-details-title">{this.props.group.name}</div>
 				<MembersList members={this.props.members}/>
 				<DiscussionsList group={this.props.group} />
 			</div>

@@ -50,7 +50,6 @@ class SideNav extends Component {
 		let reducer = (accumulator, currentValue) => accumulator + currentValue
 		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
 		const totalUnreads = unreadsArray.reduce(reducer, 0)
-		debugger
 		return totalUnreads ? <div className="badge section-tab-badge">{totalUnreads}</div> : null	}
 
 	render() {
