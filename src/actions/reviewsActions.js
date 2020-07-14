@@ -25,3 +25,29 @@ export const fetchItemsForReview = () => {
       .catch(err => alert(err.message))
 	}
 }
+
+export const submitDecision = (factId, questionType, decision) => {
+  return dispatch => {
+    debugger
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        factId: factId,
+        questionType: questionType,
+        decision: decision
+      })
+    }
+    // debugger
+    fetch(API_ROOT + `/review`, configObj)
+      .then(resp => resp.json())
+      .then((items) => {
+        debugger
+     })
+      .catch(err => alert(err.message))
+  }
+}

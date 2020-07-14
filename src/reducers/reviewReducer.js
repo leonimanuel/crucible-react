@@ -2,14 +2,19 @@ import chunk from 'lodash/chunk';
 import _ from 'lodash';
 
 export default function userReducer(state = {
+	factUnderReview: "",
 	allReviewFacts: []
 }, action) {
 	// console.log("executing userReducer")
 	switch (action.type) {
 		case "ADD_REVIEW_FACTS":
-		debugger
+			let facts = action.facts;
+			let firstFact = action.facts.shift();
+			let remainingFacts = action.facts
+			// debugger
 			return {
-				allReviewFacts: action.facts
+				factUnderReview: firstFact,
+				allReviewFacts: remainingFacts
 			}
 
 		default:

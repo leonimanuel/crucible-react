@@ -12,3 +12,16 @@
 	border: 2px solid black;
 }
 
+
+
+#valid-button {
+	background-color: green;
+}
+
+#invalid-button {
+	background-color: red;
+}
+
+.review-decision-button {
+	border: none;
+}
