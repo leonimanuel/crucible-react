@@ -38,7 +38,7 @@ export const submitDecision = (factId, questionType, decision) => {
       },
       body: JSON.stringify({
         factId: factId,
-        questionType: questionType,
+        reviewType: questionType,
         decision: decision
       })
     }
@@ -46,7 +46,9 @@ export const submitDecision = (factId, questionType, decision) => {
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
       .then((items) => {
-        debugger
+        dispatch({
+          type: "RESET_FACT_UNDER_REVIEW"
+        })
      })
       .catch(err => alert(err.message))
   }

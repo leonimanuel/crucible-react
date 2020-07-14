@@ -10,6 +10,7 @@ class ReviewItemsWrapper extends Component {
 	chooseQuestion = () => {
 		// { selectedFact } = this.props
 		const logicTotal = this.props.selectedFact.logic_upvotes + this.props.selectedFact.logic_downvotes
+		debugger
 		if (logicTotal < 10) {
 			if (this.state.questionType !== "logic") this.setState({questionType: "logic"})
 			return <div>Is this logically a fact?</div>
@@ -29,7 +30,7 @@ class ReviewItemsWrapper extends Component {
 					<div>{this.chooseQuestion()}</div>
 					<button onClick={this.handleDecision} className="review-decision-button" id="valid-button">valid</button>
 					<button onClick={this.handleDecision} className="review-decision-button" id="invalid-button">invalid</button>
-					<div>{this.props.selectedFact.content}</div>
+					<div id="selected-fact">{this.props.selectedFact.content}</div>
 				</div>
 				
 				{this.props.facts.map(fact => <div className="review-fact">{fact.content}</div>)}				

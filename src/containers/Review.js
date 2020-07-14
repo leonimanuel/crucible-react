@@ -7,13 +7,13 @@ import ReviewItemsWrapper from "../components/review/ReviewItemsWrapper.js"
 
 
 class Review extends Component {
-	// componentDidMount() {
-	// 	this.props.fetchItemsForReview()
-	// }
-
-	handleClick = () => {
+	componentDidMount() {
 		this.props.fetchItemsForReview()
 	}
+
+	// handleClick = () => {
+	// 	this.props.fetchItemsForReview()
+	// }
 
 	render() {
 		return (

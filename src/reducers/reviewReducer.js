@@ -17,6 +17,13 @@ export default function userReducer(state = {
 				allReviewFacts: remainingFacts
 			}
 
+		case "RESET_FACT_UNDER_REVIEW":
+			debugger
+			return {
+				factUnderReview: state.allReviewFacts.shift(),
+				allReviewFacts: state.allReviewFacts				
+			}
+
 		default:
 			return state;
 	}

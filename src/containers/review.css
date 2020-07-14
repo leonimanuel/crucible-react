@@ -25,3 +25,7 @@
 .review-decision-button {
 	border: none;
 }
+
+#selected-fact {
+	background: snow;
+}
