@@ -16,7 +16,7 @@ class ReviewItemsWrapper extends Component {
 
 	chooseQuestion = () => {
 		debugger
-		const questionTypes = ["logic", "context", "legitimacy"]
+		const questionTypes = ["logic", "context", "credibility"]
 		let selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)]
 		console.log(selectedQuestionType)
 		switch(selectedQuestionType) {
@@ -27,9 +27,9 @@ class ReviewItemsWrapper extends Component {
 					if (this.state.questionType !== "logic") this.setState({questionType: "logic"})
 					return (
 						<React.Fragment>
-							<div>Is this logically a fact?</div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" id="valid-button">valid</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" id="invalid-button">invalid</button>
+							<div id="review-question">Is this logically a fact?</div>
+							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
+							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
 						</React.Fragment>
 					) 
 				}
@@ -42,26 +42,26 @@ class ReviewItemsWrapper extends Component {
 					debugger
 					return (
 						<React.Fragment>
-							<div>Is this fact taken in context? <button>Copy fact and go to source</button></div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" id="in-context-button">in context</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" id="out-of-context-button">out of context</button>
+							<div id="review-question">Is this fact taken in context? <button>Copy fact and go to source</button></div>
+							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
+							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
 						</React.Fragment>
 					)
 				} else {
 					debugger
 				}
 
-			case "legitimacy": 
+			case "credibility": 
 				debugger
-				const legitimacyTotal = this.props.selectedFact.legitimacy_upvotes + this.props.selectedFact.legitimacy_downvotes
-				if (legitimacyTotal < 10) {
-					if (this.state.questionType !== "legitimacy") this.setState({questionType: "legitimacy"})
+				const credibilityTotal = this.props.selectedFact.credibility_upvotes + this.props.selectedFact.credibility_downvotes
+				if (credibilityTotal < 10) {
+					if (this.state.questionType !== "credibility") this.setState({questionType: "credibility"})
 					debugger
 					return (
 						<React.Fragment>
-							<div>Does this fact come from a credit source, or is it attributed to one? <button>Copy fact and go to source</button></div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" id="credible-button">credible</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" id="not-credible-button">not credible</button>
+							<div id="review-question">Does this fact come from a credit source, or is it attributed to one? <button>Copy fact and go to source</button></div>
+							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
+							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
 						</React.Fragment>
 					)
 				} else {
@@ -71,7 +71,7 @@ class ReviewItemsWrapper extends Component {
 	}
 
 	handleDecision = (e) => {
-		const decision = e.target.innerText
+		const decision = e.target.dataset.validity
 		// debugger
 		this.props.submitDecision(this.props.selectedFact.id, this.state.questionType, decision)
 	}
