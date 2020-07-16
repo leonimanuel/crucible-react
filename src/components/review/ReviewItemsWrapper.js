@@ -14,53 +14,57 @@ class ReviewItemsWrapper extends Component {
   //   return true;
   // }
 
-	chooseQuestion = () => {
-		const questionTypes = ["logic", "context", "credibility"]
-		let selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)]
-		console.log(selectedQuestionType)
-		switch(selectedQuestionType) {
-			case "logic":
-				const logicTotal = this.props.selectedItem.logic_upvotes + this.props.selectedItem.logic_downvotes
-				if (logicTotal < 10) {
-					if (this.state.questionType !== "logic") this.setState({questionType: "logic"})
-					return (
-						<React.Fragment>
-							<div id="review-question">Is this logically a fact?</div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
-							<div id="selected-fact">{this.props.selectedItem.content}</div>
-						</React.Fragment>
-					) 
-				}
-			
-			case "context": 
-				const contextTotal = this.props.selectedItem.context_upvotes + this.props.selectedItem.context_downvotes
-				if (contextTotal < 10) {
-					if (this.state.questionType !== "context") this.setState({questionType: "context"})
-					return (
-						<React.Fragment>
-							<div id="review-question">Is this fact taken in context? <button>Copy fact and go to source</button></div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
-							<div id="selected-fact">{this.props.selectedItem.content}</div>
-						</React.Fragment>
-					)
-				} else {
-				}
+	chooseQuestion = (selectedItem) => {
+		debugger
+		switch (selectedItem.type) {
+			case "fact":
+				debugger
+				const questionTypes = ["logic", "context", "credibility"]
+				let selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)]
+				console.log(selectedQuestionType)
+				switch(selectedQuestionType) {
+					case "logic":
+						const logicTotal = selectedItem.logic_upvotes + selectedItem.logic_downvotes
+						if (logicTotal < 10) {
+							if (this.state.questionType !== "logic") this.setState({questionType: "logic"})
+							return (
+								<React.Fragment>
+									<div id="review-question">Is this logically a fact?</div>
+									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
+									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
+									<div id="selected-fact">{selectedItem.content}</div>
+								</React.Fragment>
+							) 
+						}
+					
+					case "context": 
+						const contextTotal = selectedItem.context_upvotes + selectedItem.context_downvotes
+						if (contextTotal < 10) {
+							if (this.state.questionType !== "context") this.setState({questionType: "context"})
+							return (
+								<React.Fragment>
+									<div id="review-question">Is this fact taken in context? <button>Copy fact and go to source</button></div>
+									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
+									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
+									<div id="selected-fact">{selectedItem.content}</div>
+								</React.Fragment>
+							)
+						} else {
+						}
 
-			case "credibility": 
-				const credibilityTotal = this.props.selectedItem.credibility_upvotes + this.props.selectedItem.credibility_downvotes
-				if (credibilityTotal < 10) {
-					if (this.state.questionType !== "credibility") this.setState({questionType: "credibility"})
-					return (
-						<React.Fragment>
-							<div id="review-question">Does this fact come from a credit source, or is it attributed to one? <button>Copy fact and go to source</button></div>
-							<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
-							<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
-							<div id="selected-fact">{this.props.selectedItem.content}</div>
-						</React.Fragment>
-					)
-				} else {
+					case "credibility": 
+						const credibilityTotal = selectedItem.credibility_upvotes + selectedItem.credibility_downvotes
+						if (credibilityTotal < 10) {
+							if (this.state.questionType !== "credibility") this.setState({questionType: "credibility"})
+							return (
+								<React.Fragment>
+									<div id="review-question">Does this fact come from a credit source, or is it attributed to one? <button>Copy fact and go to source</button></div>
+									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
+									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
+									<div id="selected-fact">{selectedItem.content}</div>
+								</React.Fragment>
+							)
+						} 
 				}
 		}
 	}
@@ -71,15 +75,18 @@ class ReviewItemsWrapper extends Component {
 			switch(item.type) {
 				case "fact":
 					return (
-						<div>{item.content}</div>
+						<div className="review-item">{item.content}</div>
 					)
 				case "comment":
 					return (
-						<div>{item.content}</div>
+						<div className="review-item">
+							<div>{item.selection}</div>
+							<div>{item.content}</div>
+						</div>
 					)
 				case "facts_comment":
 					return (
-						<div>
+						<div className="review-item">
 							<div>{item.comment_content}</div>
 							<div>{item.fact_content}</div>							
 						</div>
@@ -98,7 +105,7 @@ class ReviewItemsWrapper extends Component {
 		return (
 			<div id="review-items-wrapper">
 				<div id="review-question-wrapper">
-					{/*this.props.selectedItem ? <div>{this.chooseQuestion()}</div> : null */}					
+					{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
 				</div>
 
 				{this.props.items ? this.renderReviewItems(this.props.items) : null}			
