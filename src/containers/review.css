@@ -26,6 +26,15 @@
 	border: none;
 }
 
+.green-decision {
+	background-color: green;
+}
+
+.red-decision {
+	background-color: red;
+}
+
 #selected-fact {
 	background: snow;
 }
+
