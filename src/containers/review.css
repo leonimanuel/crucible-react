@@ -27,6 +27,7 @@
 
 #selected-item {
 	background-color: snow;
+	border: 2px solid blue;
 }
 /*
 #selected-item div {

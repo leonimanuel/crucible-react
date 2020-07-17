@@ -13,9 +13,7 @@ export const fetchItemsForReview = () => {
     // debugger
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
-      .then((itemData) => {
-				debugger
-				
+      .then((itemData) => {				
         const itemsObj = itemData
         dispatch({
 					type: "ADD_REVIEW_ITEMS",
@@ -26,7 +24,7 @@ export const fetchItemsForReview = () => {
 	}
 }
 
-export const submitDecision = (itemId, questionType, decision) => {
+export const submitDecision = (selectedItem, questionType, decision) => {
   return dispatch => {
     debugger
     let configObj = {
@@ -37,7 +35,8 @@ export const submitDecision = (itemId, questionType, decision) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-        itemId: itemId,
+        itemType: selectedItem.type,
+        itemId: selectedItem.id,
         reviewType: questionType,
         decision: decision
       })
@@ -46,7 +45,7 @@ export const submitDecision = (itemId, questionType, decision) => {
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
       .then((items) => {
-        debugger
+        // debugger
         dispatch({
           type: "RESET_ITEM_UNDER_REVIEW"
         })
