@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from "react-redux"
+import FactDetailsPane from "./FactDetailsPane.js"
 
 class ConsoleFact extends Component {
 	state = {
@@ -29,7 +30,7 @@ class ConsoleFact extends Component {
 						{this.props.fact.content}
 				</div>				
 			
-				{this.state.showFactDetails ? <div>DETAILS</div> : null}
+				{this.state.showFactDetails ? <FactDetailsPane /> : null}
 			</div>
 		)
 	}
