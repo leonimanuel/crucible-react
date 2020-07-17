@@ -7,19 +7,10 @@
 	margin: 0 auto;
 }
 
-.review-fact {
+.review-item {
 	/*width: 80%;*/
 	border: 2px solid black;
-}
-
-
-
-#valid-button {
-	background-color: green;
-}
-
-#invalid-button {
-	background-color: red;
+	margin: 2px 0;
 }
 
 .review-decision-button {
@@ -34,7 +25,11 @@
 	background-color: red;
 }
 
-#selected-fact {
-	background: snow;
+#selected-item {
+	background-color: snow;
 }
+/*
+#selected-item div {
+	background-color: snow;
+}*/
 

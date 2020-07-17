@@ -7,22 +7,21 @@ class ReviewItemsWrapper extends Component {
 		questionType: ""
 	}
 
-  // shouldComponentUpdate(nextProps, nextState) { 
-  //   if (nextState.questionType !== "") { 
-  //     return false;
-  //   }
-  //   return true;
-  // }
+  shouldComponentUpdate(nextProps, nextState) { 
+    if (nextState.questionType !== "") { 
+      return false;
+    }
+    return true;
+  }
 
 	chooseQuestion = (selectedItem) => {
 		debugger
 		switch (selectedItem.type) {
 			case "fact":
 				debugger
-				const questionTypes = ["logic", "context", "credibility"]
-				let selectedQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)]
-				console.log(selectedQuestionType)
-				switch(selectedQuestionType) {
+				const factQuestionTypes = ["logic", "context", "credibility"]
+				let selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+				switch(selectedFactQuestionType) {
 					case "logic":
 						const logicTotal = selectedItem.logic_upvotes + selectedItem.logic_downvotes
 						if (logicTotal < 10) {
@@ -58,13 +57,62 @@ class ReviewItemsWrapper extends Component {
 							if (this.state.questionType !== "credibility") this.setState({questionType: "credibility"})
 							return (
 								<React.Fragment>
-									<div id="review-question">Does this fact come from a credit source, or is it attributed to one? <button>Copy fact and go to source</button></div>
+									<div id="review-question">Does this fact come from a credible source, or is it attributed to one? <button>Copy fact and go to source</button></div>
 									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
-									<div id="selected-fact">{selectedItem.content}</div>
+									<div id="selected-item">{selectedItem.content}</div>
 								</React.Fragment>
 							)
 						} 
+				}
+		
+
+			case "comment":
+				const commentQuestionTypes = ["selection_comment"]
+				let selectedCommentQuestionType = commentQuestionTypes[Math.floor(Math.random() * commentQuestionTypes.length)]
+				switch (selectedCommentQuestionType) {
+					case "selection_comment":
+						const selectionCommentTotal = selectedItem.selection_comment_upvotes + selectedItem.selection_comment_downvotes
+						if (selectionCommentTotal < 10) {
+							if (this.state.questionType !== "selection_comment") this.setState({questionType: "selection_comment"})
+							return (
+								<React.Fragment>
+									<div id="review-question">Does this comment respond logically to the article selection?</div>
+									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
+									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" >No</button>
+									<div className="selected-item">
+										<div>{selectedItem.selection}</div>
+										<div>{selectedItem.content}</div>
+									</div>
+								</React.Fragment>									
+							)
+						}
+				}
+			
+
+			case "facts_comment":
+				// debugger
+				const commentFactQuestionTypes = ["comment_fact"]
+				let selectedCommentFactQuestionType = commentFactQuestionTypes[Math.floor(Math.random() * commentFactQuestionTypes.length)]
+				switch (selectedCommentFactQuestionType) {
+					case "comment_fact":
+						// debugger
+						const CommentFactTotal = selectedItem.comment_fact_upvotes + selectedItem.comment_fact_downvotes
+						if (CommentFactTotal < 10) {
+							if (this.state.questionType !== "fact_comment") this.setState({questionType: "fact_comment"})
+							debugger
+							return (
+								<React.Fragment>
+									<div id="review-question">Does this fact support this comment?</div>
+									<button onClick={this.handleDecision} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
+									<button onClick={this.handleDecision} className="review-decision-button red-decision" data-validity="invalid" >No</button>
+									<div className="selected-item">
+										<div>{selectedItem.comment_content}</div>
+										<div>{selectedItem.fact_content}</div>
+									</div>
+								</React.Fragment>									
+							)
+						}
 				}
 		}
 	}
