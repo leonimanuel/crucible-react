@@ -15,7 +15,6 @@ class ConsoleFact extends Component {
 	toggleFactDetailPane = () => {
 		this.setState({showFactDetails: !this.state.showFactDetails})
 	}
-				 // <FactDetailPane />
 
 	render() {
 		return (
@@ -27,10 +26,10 @@ class ConsoleFact extends Component {
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
 				>
-						{this.props.fact.content}
+					{this.props.fact.rephrase ? this.props.fact.rephrase.content : this.props.fact.content}
 				</div>				
 			
-				{this.state.showFactDetails ? <FactDetailsPane /> : null}
+				{this.state.showFactDetails ? <FactDetailsPane fact={this.props.fact} /> : null}
 			</div>
 		)
 	}

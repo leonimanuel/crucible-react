@@ -5,6 +5,8 @@ class FactDetailsPane extends Component {
 	render() {
 		return (
 			<div className="fact-details-pane">
+				<div>Rephrase: {this.props.fact.rephrase.content}</div>
+				
 				<div>Logic upvotes: {this.props.fact.logic_upvotes}</div>
 				<div>Logic downvotes: {this.props.fact.logic_downvotes}</div>
 				<div>Context upvotes: {this.props.fact.context_upvotes}</div>
