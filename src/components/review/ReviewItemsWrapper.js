@@ -3,13 +3,6 @@ import { connect } from "react-redux"
 import { submitDecision } from "../../actions/reviewsActions.js"
 
 class ReviewItemsWrapper extends Component {
-  shouldComponentUpdate(nextProps, nextState) { 
-    if (this.props.selectedItem === nextProps.selectedItem && nextState.questionType !== "") { 
-      return false;
-    }
-    return true;
-  }
-
 	chooseQuestion = (selectedItem) => {
 		switch (selectedItem.type) {
 			case "Fact":
@@ -41,7 +34,7 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>
 							)
 						} 
-						
+
 					case "credibility": 
 						const credibilityTotal = selectedItem.credibility_upvotes + selectedItem.credibility_downvotes
 						if (credibilityTotal < 10) {
