@@ -50,15 +50,11 @@ export default function topicsReducer(state = {
 				return indexPathArr
 			}
 
-			console.log(updatedParentTopic)
-
 			let desIndexPathArr = getIndexPath(desRootTopic, action.destinationTopic)
 			let desIndexPath = desIndexPathArr.join(".")
 			_.get(desRootTopic, desIndexPath).push(action.fact)
 			updatedTopics[desTopicIndex] = desRootTopic
 			console.log(desRootTopic)
-			// debugger
-
 
 			let parTopicIndex = updatedTopics.findIndex(topic => topic.name === state.parentTopic.root.name)
 			let parRootTopic = updatedTopics[parTopicIndex]
