@@ -42,20 +42,20 @@ class FactDetailsPane extends Component {
           {this.state.showRephraseForm ? <div id="rephrase-input-div" contentEditable="true" onKeyPress={this.handleChange}></div> : null} 
 				</div>
 
-				
-
-				<div>Logic upvotes: {fact.logic_upvotes}</div>
-				<div>Logic downvotes: {fact.logic_downvotes}</div>
-
 				<div className="fact-score">
-					<div>Logic:</div>
+					<div className="fact-score-title">Logic:</div>
 					<ScoreBar greenScore={fact.logic_upvotes} redScore={fact.logic_downvotes} />
 				</div>
 
-				<div>Context upvotes: {fact.context_upvotes}</div>
-				<div>Context downvotes: {fact.context_downvotes}</div>
-				<div>Credibility upvotes: {fact.credibility_upvotes}</div>
-				<div>Credibility downvotes: {fact.credibility_downvotes}</div>
+				<div className="fact-score">
+					<div className="fact-score-title">Context:</div>
+					<ScoreBar greenScore={fact.context_upvotes} redScore={fact.context_downvotes} />
+				</div>
+
+				<div className="fact-score">
+					<div className="fact-score-title">Credibility:</div>
+					<ScoreBar greenScore={fact.credibility_upvotes} redScore={fact.credibility_downvotes} />
+				</div>
 			</div>
 		)
 	}

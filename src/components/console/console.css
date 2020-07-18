@@ -68,22 +68,29 @@
 
 .fact-score {
 	display: flex;
-	justify-content: space-around;
+	justify-content: flex-start;
 	/*border: 2px solid black;*/
 	align-items: center;
+
 }
 
 .score-bar {
+	margin-left: 10px;
+
 	display: flex;
 	height: 7px;
-	flex-grow: .8;
+	flex-grow: 0;
+	transition: all .5s;
 	/*border: 2px solid black;*/
 	/*border-radius: 10px;*/
 }
 
+.mounted-score-bar {
+	flex-grow: 1;
+}
+
 .score-bar .score-color {
 	/*width: 30%;*/
-	/*flex-grow: 1;*/
 }
 
 .green-score {
