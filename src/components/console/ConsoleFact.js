@@ -17,19 +17,34 @@ class ConsoleFact extends Component {
 	}
 
 	render() {
+		const { fact } = this.props;
+
+		const factUpvotes = fact.logic_upvotes + fact.context_upvotes + fact.credibility_upvotes
+		const factDownvotes = fact.logic_downvotes + fact.context_downvotes + fact.credibility_downvotes
+
+		let border
+		if (fact.review_status === "pending") {
+			border = "2px solid yellow" 
+		} else if (factUpvotes > factDownvotes) {
+				border = "2px solid green" 		
+		} else {
+				border = "2px solid red" 		
+		}
+
 		return (
 			<div>
 				<div 
-					id={`${this.props.parentTopic.name}-fact-${this.props.fact.id}`} 
+					id={`${this.props.parentTopic.name}-fact-${fact.id}`} 
 					className="fact-box"
 	 				draggable 
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
+	 				style={{border: fact ? border : "2px solid black"}}
 				>
-					{this.props.fact.rephrase ? this.props.fact.rephrase.content : this.props.fact.content}
+					{fact.rephrase ? fact.rephrase.content : fact.content}
 				</div>				
 			
-				{this.state.showFactDetails ? <FactDetailsPane fact={this.props.fact} /> : null}
+				{this.state.showFactDetails ? <FactDetailsPane fact={fact} /> : null}
 			</div>
 		)
 	}
