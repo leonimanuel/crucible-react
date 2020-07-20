@@ -34,21 +34,33 @@ export const selectTopic = topic => {
 	}
 }
 
-// export const updateTopic = (fact, destinationTopic) => {
-// 	// debugger
-// 	console.log(fact)
-// 	return {
-// 		type: "UPDATE_TOPIC",
-// 		fact,
-// 		destinationTopic
-// 	}
-// }
+export const moveFact = (factId, originTopicName, destinationTopicName) => {
+  return (dispatch) => {
+	  let configObj = {
+	    method: "POST",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }, 
+	    body: JSON.stringify({
+	    	fact_id: factId,
+	    	origin_topic_name: originTopicName,
+	    	destination_topic_name: destinationTopicName
+	    })
+	  }
 
-export const updateTopic = (fact) => {
-	return {
-		type: "MOVE_FACT",
-		fact
-	}
+	  fetch(API_ROOT + `/facts`, configObj)
+	    .then(resp => resp.json())
+	    .then((fact) => {
+	    	debugger
+				dispatch({
+					type: "MOVE_FACT",
+					fact
+				})
+	   })
+	    .catch(err => err.message)
+  }
 }
 
 export const addFactToNew = (selection, articleURL) => {

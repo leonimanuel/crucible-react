@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { selectTopic, updateTopic } from "../../actions/topicsActions.js"
+import { selectTopic, moveFact } from "../../actions/topicsActions.js"
 import { API_ROOT } from "../../constants"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
 
@@ -38,40 +38,7 @@ class ConsoleTopic extends Component {
 		let fact = transferObj.fact
 
 		this.setState({draggedOver: false})
-		this.moveFact(originTopic, fact)
-	}
-
-	moveFact = (originTopic, fact) => {
-		// SET UP NESTED ROUTES IN SERVER?
-    let configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      }, 
-      body: JSON.stringify({
-      	fact_id: fact.id,
-      	origin_topic_name: originTopic.name,
-      	destination_topic_name: this.props.topic.name
-      })
-    }
-
-    fetch(API_ROOT + `/facts`, configObj)
-      .then(resp => resp.json())
-      .then((fact) => {
-      	debugger
-				// console.log(this.props.topic)
-				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
-				// this.props.addTopics(topicsData)
-				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
-				
-				
-				this.props.updateTopic(fact)
-				// this.props.updateTopic(fact, this.props.topic)
-
-     })
-      .catch(err => err.message)
+		this.props.moveFact(fact.id, originTopic.name, this.props.topic.name)
 	}
 
 	render() {
@@ -91,7 +58,7 @@ class ConsoleTopic extends Component {
 }
 
 
-export default connect(null, { selectTopic, updateTopic})(ConsoleTopic);
+export default connect(null, { selectTopic, moveFact})(ConsoleTopic);
 
 
 
