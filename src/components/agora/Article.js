@@ -43,11 +43,9 @@ class Article extends Component {
 		}
 
 		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.props.commentsRendered === false) {
-			debugger
 			this.renderCommentHighlights(this.props.comments)
 		} 
 		else if (this.props.comments.length > 1 && this.props.addedNewComment === true) {
-			debugger
 			this.renderCommentHighlights([this.props.comments[this.props.comments.length - 1]])
 			this.props.falsifyAddedNewComment()
 		}
@@ -65,11 +63,9 @@ class Article extends Component {
 			let previousEl
 			if (range.startContainer.previousElementSibling) {
 				previousEl = range.startContainer.previousElementSibling
-				// debugger
 			} else {
 				previousEl = paragraph
 				// previousEl = document.getElementById("article-content")
-				// debugger
 			}
 			let selectedText = range.extractContents();
 			let span = document.createElement("span");
@@ -77,7 +73,6 @@ class Article extends Component {
 			span.style.backgroundColor = "orange";
 			span.appendChild(selectedText);
 			range.insertNode(span);
-			debugger
 			
 			this.setState({
 				...this.state,
@@ -92,7 +87,6 @@ class Article extends Component {
 
 	createSelectionMenu = (spanId) => {
 		console.log(this.state.textSelected)
-    // debugger
     const button = document.querySelector(`#${spanId}`);
     const popup = document.querySelector('#selection-popup');
 		popup.setAttribute('data-show', '');
@@ -124,14 +118,12 @@ class Article extends Component {
 	}
 
 	renderCommentHighlights = (comments) => {
-		debugger
 		comments.map(comment => {
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
 			let previousEl = document.getElementById(comment.previous_el_id)
 			
-			debugger
 			if (previousEl.tagName === "P") {
 				range.setStart(previousEl.firstChild, comment.startPoint)
 				range.setEnd(previousEl.firstChild, comment.endPoint)					
@@ -218,7 +210,6 @@ class Article extends Component {
 	}
 
 	handleSubmitComment = (e, commentText, facts) => {
-		// debugger
 		e.preventDefault()
 		this.props.addComment(
 			this.props.discussion.group_id,
@@ -266,7 +257,6 @@ class Article extends Component {
 			}, () => {
 				const button = document.getElementById("show-forum-button")
 				const popup = document.getElementById("forum-lock-popup")
-				debugger
 				createPopper(button, popup, {
 					placement: "left"
 				}) 
@@ -346,7 +336,6 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
-	// debugger
 	return {
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),

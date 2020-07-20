@@ -32,14 +32,13 @@ class ConsoleFact extends Component {
 		}
 
 		return (
-			<div>
+			<div className="fact-box" style={{border: fact ? border : "2px solid black"}} >
 				<div 
 					id={`${this.props.parentTopic.name}-fact-${fact.id}`} 
-					className="fact-box"
+					className="console-fact-content"
 	 				draggable 
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
-	 				style={{border: fact ? border : "2px solid black"}}
 				>
 					{fact.rephrase ? fact.rephrase.content : fact.content}
 				</div>				

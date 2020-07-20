@@ -13,18 +13,25 @@ class ArticleComment extends Component {
 		this.props.addFactFromComment(fact);
 	}
 
-	render() {
-		const { match } = this.props;
-		debugger
+	render() {		
+		const { comment } = this.props
+
+		let border
+		if (comment.review_status === "pending" || 
+				comment.facts_comments_reviews.some(comment_fact => comment_fact.review_status === "pending")) {
+				debugger
+				border = "2px solid orange"
+		} else if (true) {}
+
 		return (
-			<div id={this.props.id} className="popup">
-				<div className="comment-user-name">{this.props.userId === this.props.comment.user_id ? "You" : this.props.comment.user.name}</div>
-				<div className="comment-content">{this.props.comment.content}</div>
+			<div id={this.props.id} className="popup" style={{border: border}}>
+				<div className="comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>
+				<div className="comment-content">{comment.content}</div>
 				
-				{this.props.comment.facts ? this.props.comment.facts.map(fact => {
+				{comment.facts ? comment.facts.map(fact => {
 					return (
 						<div className="comment-fact-wrapper">
-							{this.props.userId !== this.props.comment.user_id
+							{this.props.userId !== comment.user_id
 								? 
 									<button 
 										className="add-comment-fact-button" 

@@ -36,11 +36,9 @@ export const fetchDiscussion = (groupName, discussionName) => {
         Authorization: localStorage.getItem("token")
       }
     }
-    debugger
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-        debugger
 				dispatch({ 
 					type: 'ADD_DISCUSSION_AND_COMMENTS', 
 					discussionData
@@ -102,7 +100,6 @@ export const addNewGroup = (groupName, members) => {
     fetch(API_ROOT + `/groups`, configObj)
       .then(resp => resp.json())
       .then((group) => {
-				debugger
 				dispatch({ 
 					type: 'ADD_GROUP', 
 					group

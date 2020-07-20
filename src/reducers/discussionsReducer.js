@@ -11,11 +11,9 @@ export default function discussionsReducer(state = {
 	renderForum: false,
 	commentsRendered: false
 }, action) {
-		// debugger
 		// console.log("executing discussionsReducer")
 		switch (action.type) {
 			case "ADD_DISCUSSIONS":
-			// debugger
 				return {
 					...state,
 					allDiscussions: action.discussions
@@ -28,7 +26,6 @@ export default function discussionsReducer(state = {
 				}
 
 			case "POSTING_DISCUSSION":
-				// debugger
 				return {
 					...state,
 					loadingComment: true
@@ -37,7 +34,6 @@ export default function discussionsReducer(state = {
 			case "ADD_DISCUSSION_AND_COMMENTS":
 				// let detailedDiscussion = action.discussionData
 				// state.allDiscussions.findIndex(discussion => discussion.id === detailedDiscussion.id)
-				debugger
 				return {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
@@ -48,13 +44,11 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_NEW_DISCUSSION":
-				// debugger
 				return {
 					...state,
 					allDiscussions: [...state.allDiscussions, action.discussion]
 				}
 
-				// debugger
 				// let discsClone = _.cloneDeep(state.discussions)
 				// // let resetDisc = discsClone.filter(discussion => discussion.id === parseInt(action.discussionData.id))[0];
 				// // resetDisc.unread_messages_count = 0
@@ -79,7 +73,6 @@ export default function discussionsReducer(state = {
 
 
 			case "ADD_COMMENT":
-				debugger
 				return {
 					...state,
 					allComments: [...state.allComments, action.comment],
@@ -87,7 +80,6 @@ export default function discussionsReducer(state = {
 				}
 
 			case "FALSIFY_ADDED_NEW_COMMENT":
-				// debugger
 				return {
 					...state,
 					addedNewComment: false
@@ -99,11 +91,9 @@ export default function discussionsReducer(state = {
 					allMessages: state.allMessages.concat(action.messages)
 				}
 				// let dClone = _.cloneDeep(state.discussions.find(d => d.id === state.discussionId))
-				// // debugger
 				// dClone.messages = action.messages
 				// let filteredClone = _.cloneDeep(state.discussions.filter(d => d.id !== dClone.id))
 				// filteredClone.push(dClone)
-				// debugger
 
 				// return {
 				// 	...state,
@@ -120,12 +110,10 @@ export default function discussionsReducer(state = {
 
 				// let newDiscussionsClone = _.cloneDeep(state.discussions)
 				// let newDiscussionClone = _.cloneDeep(state.discussions.filter(d => d.id === action.message.discussion_id)[0])
-				// // debugger
 				// if (newDiscussionClone.messages) {
 				// 	newDiscussionClone.messages = [...newDiscussionClone.messages, action.message]
 				// 	let readyDiscussions = newDiscussionsClone.filter(discussion => discussion.id !== newDiscussionClone.id)
 				// 	readyDiscussions.push(newDiscussionClone)	
-				// 	// debugger
 				// 	return {
 				// 		...state,
 				// 		discussions: readyDiscussions

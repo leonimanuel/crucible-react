@@ -127,15 +127,6 @@
   flex-direction: column;
   text-align: left;
   background-color: teal;
-  border: 2px solid gold;
-
-}
-
-#comment-popup div {
-  /*border: 2px solid green;*/
-}
-
-.comment-user-name {
 
 }
 
