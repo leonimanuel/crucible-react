@@ -21,6 +21,12 @@ export const logIn = () => {
 						user
 					});
           
+          let facts = user.facts
+          dispatch({
+            type: "LOAD_FACTS",
+            facts
+          })
+
           let groups = user.groups
           let groupMembers = user.group_members
           // debugger

@@ -5,7 +5,6 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	render() {
-		debugger
 		console.log("rendering console window")
 		return (
 			<div id="console-window">

@@ -12,7 +12,6 @@ class ConsoleTopic extends Component {
 
 	handleTopicSelection = () => {
 		console.log("handling topic selection")
-		debugger
 		this.props.selectTopic(this.props.topic)
 		// this.props.showDetailPane()
 	}

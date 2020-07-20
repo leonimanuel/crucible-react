@@ -4,21 +4,27 @@ import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
-		// debugger
-		console.log("rendering console facts list")
+		debugger
 		return (
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>
 				<div id="console-facts-container">
-					{this.props.parentTopic.facts ? this.props.parentTopic.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) : null}
+					{this.props.facts ? this.props.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) : null}
 				</div>
 			</div>
 		)
 	}
 }
 
+const mapStateToProps = state => {
+	debugger
+	return {
+		parentTopic: state.topics.parentTopic,
+		facts: state.topics.facts.filter(fact => fact.topic_id === state.topics.parentTopic.id)
+	}
+}
 
-export default connect(state => ({parentTopic: state.topics.parentTopic}))(ConsoleFactsList);
+export default connect(mapStateToProps)(ConsoleFactsList);
 
 
 
