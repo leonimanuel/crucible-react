@@ -4,7 +4,6 @@ import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
-		debugger
 		return (
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>
@@ -17,7 +16,6 @@ class ConsoleFactsList extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	return {
 		parentTopic: state.topics.parentTopic,
 		facts: state.topics.facts.filter(fact => fact.topic_id === state.topics.parentTopic.id)

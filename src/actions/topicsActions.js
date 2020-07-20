@@ -34,13 +34,20 @@ export const selectTopic = topic => {
 	}
 }
 
-export const updateTopic = (fact, destinationTopic) => {
-	// debugger
-	console.log(fact)
+// export const updateTopic = (fact, destinationTopic) => {
+// 	// debugger
+// 	console.log(fact)
+// 	return {
+// 		type: "UPDATE_TOPIC",
+// 		fact,
+// 		destinationTopic
+// 	}
+// }
+
+export const updateTopic = (fact) => {
 	return {
-		type: "UPDATE_TOPIC",
-		fact,
-		destinationTopic
+		type: "MOVE_FACT",
+		fact
 	}
 }
 

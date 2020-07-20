@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { selectTopic, updateTopic } from "../../actions/topicsActions.js"
-import rootURL from "../../rootURL.js"
+import { API_ROOT } from "../../constants"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
 
 
@@ -57,14 +57,19 @@ class ConsoleTopic extends Component {
       })
     }
 
-    fetch(rootURL() + `/facts`, configObj)
+    fetch(API_ROOT + `/facts`, configObj)
       .then(resp => resp.json())
-      .then((topicsData) => {
+      .then((fact) => {
+      	debugger
 				// console.log(this.props.topic)
 				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
 				// this.props.addTopics(topicsData)
 				// console.log(this.props.topic.facts.find(fact => fact.id === fact.id))
-				this.props.updateTopic(fact, this.props.topic)
+				
+				
+				this.props.updateTopic(fact)
+				// this.props.updateTopic(fact, this.props.topic)
+
      })
       .catch(err => err.message)
 	}

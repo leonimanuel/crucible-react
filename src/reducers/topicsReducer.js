@@ -87,6 +87,13 @@ export default function topicsReducer(state = {
 				} 
 			}
 
+		case "MOVE_FACT":
+			debugger
+			return {
+				...state,
+				facts: [...state.facts.filter(f => f.id !== action.fact.id), action.fact]
+			}		
+
 		case "ADD_FACT":
 			let boi = _.cloneDeep(state.topics)
 

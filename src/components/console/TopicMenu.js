@@ -4,6 +4,7 @@ import ConsoleTopicsList from "./ConsoleTopicsList.js"
 
 class TopicMenu extends Component {
 	render() {
+		debugger
 		return (
 			<div id="console-topic-menu-container">
 				<div id="console-topics-container">

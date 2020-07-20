@@ -4,6 +4,10 @@ import ConsoleTopicsList from "./ConsoleTopicsList.js"
 import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
+	componentWillUnmount() {
+		debugger
+	}
+
 	render() {
 		console.log("rendering console window")
 		return (
