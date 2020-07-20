@@ -69,6 +69,14 @@
 	text-align: left;
 }
 
+#rephrase-input-form {
+	background-color: white;
+	outline: none;
+	color: black;
+	border-radius: 2px;
+	margin: 0 5px;
+}
+
 .fact-box {
 	/*border: 2px solid purple;*/
 }

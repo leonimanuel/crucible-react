@@ -10,6 +10,10 @@ class FactDetailsPane extends Component {
 		text: ""
 	}
 
+	handleAddRephrase = () => {
+		this.setState({showRephraseForm: !this.state.showRephraseForm})
+	}
+
   handleChange = e => {
     e.persist()
     this.setState({ text: e.target.innerText }, () => {
@@ -21,12 +25,13 @@ class FactDetailsPane extends Component {
 
   handleSubmit = () => {
     // e.preventDefault();
-    this.props.submitRephrase(this.state.text)
-    
+    debugger
+    this.props.submitRephrase(this.state.text, this.props.fact.id)
     this.setState({ text: '' });
-    let rephraseInput = document.getElementById("rephrase-input-div")
+    let rephraseInput = document.getElementById("rephrase-input-form")
     rephraseInput.innerHTML = ""
   }
+
 
 	render() {
 		const { fact } = this.props
@@ -36,10 +41,17 @@ class FactDetailsPane extends Component {
 					{
 						fact.rephrase 
 							? `Original fact: ${fact.content}` 
-							: <button onClick="handleAddRephrase">Rephrase Fact</button>
+							: <button onClick={this.handleAddRephrase}>Rephrase Fact</button>
 					}
 					
-          {this.state.showRephraseForm ? <div id="rephrase-input-div" contentEditable="true" onKeyPress={this.handleChange}></div> : null} 
+          {this.state.showRephraseForm 
+          	? 
+							<div>
+	          		<div id="rephrase-input-form" contentEditable="true" onKeyPress={this.handleChange}></div> 							
+								<button onClick={this.handleSubmit}>submit rephrase</button>
+							</div>
+          	: null
+          } 
 				</div>
 
 				<div className="fact-score">

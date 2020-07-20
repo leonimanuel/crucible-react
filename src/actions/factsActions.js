@@ -31,7 +31,7 @@ import { API_ROOT } from "../constants"
 // 	}		
 // }
 
-export const submitRephrase = (rephraseText) => {
+export const submitRephrase = (rephraseText, factId) => {
   return (dispatch) => {
 	  debugger
 	  let configObj = {
@@ -42,16 +42,17 @@ export const submitRephrase = (rephraseText) => {
 	      Authorization: localStorage.getItem("token")
 	    },
 	    body: JSON.stringify({
-	      text: rephraseText,
+	      text: rephraseText
 	    })
 	  }
 
-	  fetch(`${API_ROOT}/facts/rephrases`, configObj)
+	  fetch(`${API_ROOT}/facts/${factId}/rephrases`, configObj)
 	  	.then(resp => resp.json())
-	  	.then(rephrase => {
+	  	.then(fact => {
+	  		debugger
 	  		dispatch({
 	  			type: "ADD_REPHRASE",
-					rephrase
+					fact
 	  		})
 	  	}) 	
   }
