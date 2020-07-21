@@ -19,11 +19,9 @@ class ArticleComment extends Component {
 		let border
 		if (comment.review_status === "pending" || 
 				comment.facts_comments_reviews.some(comment_fact => comment_fact.review_status === "pending")) {
-				debugger
 				border = "3px solid yellow"
 		} else if (comment.review_status === "pass" && 
 						comment.facts_comments_reviews.every(comment_fact => comment_fact.review_status === "pass")) {
-				debugger
 				border = "3px solid green"
 		} else {
 			border = "3px solid red"

@@ -119,6 +119,7 @@ class Article extends Component {
 
 	renderCommentHighlights = (comments) => {
 		comments.map(comment => {
+			debugger
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
@@ -272,6 +273,7 @@ class Article extends Component {
 
 
 	render() {
+		debugger
 		console.log(this.props.discussion)
 		const userCommented = !!this.props.comments.filter(c => c.user_id === this.props.userId).length
 		return (
@@ -336,6 +338,7 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
+	debugger
 	return {
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),

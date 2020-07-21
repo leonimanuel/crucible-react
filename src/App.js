@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
 import { ActionCable } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
+import { addCommentToDiscussion } from "./actions/discussionsActions.js"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import SideNav from "./containers/SideNav.js"
@@ -39,6 +40,12 @@ class App extends Component {
     this.props.addMessageToDiscussion(message)
   }
 
+  handleReceivedComment = response => {
+    debugger
+    const { comment } = response;
+    this.props.addCommentToDiscussion(comment)   
+  }
+
   render() {
     return (
       <Router>
@@ -55,6 +62,11 @@ class App extends Component {
               channel={{ channel: "MessagesChannel" }}
               onReceived={this.handleReceivedMessage} 
             />
+
+            <ActionCable 
+              channel={{ channel: "CommentsChannel" }}
+              onReceived={this.handleReceivedComment} 
+            />            
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />
@@ -75,7 +87,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion })(App);
+export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion })(App);
 
 
 

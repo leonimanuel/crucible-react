@@ -72,7 +72,15 @@ export default function discussionsReducer(state = {
 			
 
 
-			case "ADD_COMMENT":
+			// case "ADD_COMMENT":
+			// 	return {
+			// 		...state,
+			// 		allComments: [...state.allComments, action.comment],
+			// 		addedNewComment: true
+			// 	}
+
+			case "ADD_COMMENT_TO_DISCUSSION":
+				debugger
 				return {
 					...state,
 					allComments: [...state.allComments, action.comment],
@@ -99,6 +107,8 @@ export default function discussionsReducer(state = {
 				// 	...state,
 				// 	discussions: filteredClone
 				// }
+
+
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")

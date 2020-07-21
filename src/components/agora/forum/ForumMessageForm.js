@@ -19,7 +19,6 @@ class NewMessageForm extends Component {
   }
 
   handleSubmit = e => {
-    console.log("submitting message")
     e.preventDefault();
     
     let configObj = {

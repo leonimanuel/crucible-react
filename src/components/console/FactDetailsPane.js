@@ -16,6 +16,7 @@ class FactDetailsPane extends Component {
 
   handleChange = e => {
     e.persist()
+    debugger
     this.setState({ text: e.target.innerText }, () => {
       if (e.key == "Enter") { 
         this.handleSubmit() 
@@ -47,7 +48,7 @@ class FactDetailsPane extends Component {
           {this.state.showRephraseForm 
           	? 
 							<div>
-	          		<div id="rephrase-input-form" contentEditable="true" onKeyPress={this.handleChange}></div> 							
+	          		<div id="rephrase-input-form" contentEditable="true" onKeyUp={this.handleChange}></div> 							
 								<button onClick={this.handleSubmit}>submit rephrase</button>
 							</div>
           	: null

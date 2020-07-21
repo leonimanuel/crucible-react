@@ -25,14 +25,14 @@ export const addComment = (groupName, discussionName, comment, span, startOffset
     }
     // debugger
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}/comments`, configObj)
-      .then(resp => resp.json())
-      .then((comment) => {
-				dispatch({ 
-					type: 'ADD_COMMENT', 
-					comment
-				})
-     })
-      .catch(err => alert(err.message))
+    //   .then(resp => resp.json())
+    //   .then((comment) => {
+				// dispatch({ 
+				// 	type: 'ADD_COMMENT', 
+				// 	comment
+				// })
+    //  })
+    //   .catch(err => alert(err.message))
 	}
 }
 
@@ -111,6 +111,13 @@ export const addMessageToDiscussion = message => {
   return {
     type: "ADD_MESSAGE_TO_DISCUSSION",
     message
+  }
+}
+
+export const addCommentToDiscussion = comment => {
+  return {
+    type: "ADD_COMMENT_TO_DISCUSSION",
+    comment
   }
 }
 
