@@ -5,6 +5,30 @@ import { submitDecision } from "../../actions/reviewsActions.js"
 class ReviewItemsWrapper extends Component {
 	chooseQuestion = (selectedItem) => {
 		switch (selectedItem.type) {
+			case "FactRephrase":
+				debugger
+				const factRephraseQuestionTypes = ["phrasing"]
+				let selectedFactRephraseQuestionType = factRephraseQuestionTypes[Math.floor(Math.random() * factRephraseQuestionTypes.length)]
+				switch(selectedFactRephraseQuestionType) {
+					case "phrasing":
+						const phrasingTotal = selectedItem.phrasing_upvotes + selectedItem.phrasing_downvotes
+						if (phrasingTotal < 10) {
+							return (
+								<React.Fragment>
+									<div id="review-question">Is this rephrasing an accurate reflection of the factual information in the source text?</div>
+									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">good</button>
+									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">problematic</button>
+									<div id="selected-item">
+										<div>Rephrase: {selectedItem.rephrase_content}</div>
+										<div>Source text: {selectedItem.fact_content}</div>
+										<div>{selectedItem.phrasing_upvotes}</div>
+									</div>
+								</React.Fragment>
+							) 							
+						}
+			}
+			
+
 			case "Fact":
 				const factQuestionTypes = ["logic", "context", "credibility"]
 				let selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
@@ -101,20 +125,27 @@ class ReviewItemsWrapper extends Component {
 			switch(item.type) {
 				case "Fact":
 					return (
-						<div className="review-item">{item.content}</div>
+						<div className="review-item">Fact: {item.content}</div>
 					)
 				case "Comment":
 					return (
 						<div className="review-item">
-							<div>{item.selection}</div>
-							<div>{item.content}</div>
+							<div>Article selection: {item.selection}</div>
+							<div>Comment: {item.content}</div>
 						</div>
 					)
 				case "FactsComment":
 					return (
 						<div className="review-item">
-							<div>{item.comment_content}</div>
-							<div>{item.fact_content}</div>							
+							<div>Comment: {item.comment_content}</div>
+							<div>Supporting Fact: {item.fact_content}</div>							
+						</div>
+					)
+				case "FactRephrase":
+					return (
+						<div className="review-item">
+							<div>Rephrase: {item.rephrase_content}</div>
+							<div>Source text: {item.fact_content}</div>							
 						</div>
 					)
 			}
@@ -142,6 +173,7 @@ class ReviewItemsWrapper extends Component {
 }
 
 const mapStateToProps = state => {
+	debugger
 	return {
 		selectedItem: state.review.itemUnderReview,
 		items: state.review.allReviewItems
