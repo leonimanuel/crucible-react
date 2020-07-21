@@ -20,6 +20,19 @@ class ForumMessages extends Component {
 		messagesContainer.scrollTo({top: messagesContainer.scrollHeight, left: 100, behavior: 'smooth'});
 	}
 
+	scrollToComment = (previous_el_id) => {
+		console.log("scrolling to comment", previous_el_id);
+		const previousEl = document.getElementById(previous_el_id);
+		let comment
+		if (previousEl.tagName === "P") {
+			comment = previousEl.firstElementChild;
+		} else {
+			comment = previousEl.nextElementSibling
+		}
+		comment.scrollIntoView({behavior: "smooth", block: "center"});
+		comment.style.border = "2px solid red"
+	}
+
 	render() {
 		// debugger
 		return (
@@ -29,7 +42,11 @@ class ForumMessages extends Component {
 						this.props.messages.map((m, index) => {
 							// let lastSenderId = m.user.id
 							return (
-								<div key={index} className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}>
+								<div 
+									key={index} 
+									className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}
+									onClick={m.message_type === "comment" ? () => this.scrollToComment(m.previous_el_id) : null}
+								>
 									{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.messages[index-1].user.id)
 										? <div className="message-user-name">{m.user.name}</div> 
 										: null

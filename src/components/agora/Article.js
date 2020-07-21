@@ -144,7 +144,10 @@ class Article extends Component {
 
 			span.addEventListener("mouseenter", () => {
 				// debugger
-				this.handleHover(comment)
+				if (!this.state.highlightClicked) {
+					span.style.border = "none"
+					this.handleHover(comment)
+				}
 				// this.newCommentPopper(comment)
 			})
 
@@ -154,6 +157,7 @@ class Article extends Component {
 			})
 
 			span.addEventListener("mouseleave", () => {
+				console.log("mouse left")
 				if (!this.state.highlightClicked) {
 					this.setState({
 						...this.state,
@@ -203,7 +207,7 @@ class Article extends Component {
 
 	toggleHighlightClicked = (span) => {
 		this.setState({
-			...this.state, highlightClicked: !this.state.highlightClicked
+			...this.state, highlightClicked: !this.state.highlightClicked, 
 		}, () => {
 			span.style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
 			document.querySelector(`#comment-popup`).style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
@@ -273,7 +277,6 @@ class Article extends Component {
 
 
 	render() {
-		debugger
 		console.log(this.props.discussion)
 		const userCommented = !!this.props.comments.filter(c => c.user_id === this.props.userId).length
 		return (
@@ -315,7 +318,7 @@ class Article extends Component {
 									closePopup={this.clearTextSelected} /> 
 							: null
 						}
-						{this.state.hoverSelectionComment
+						{this.state.hoverSelectionComment || this.state.highlightClicked
 							? <ArticleComment 
 									id="comment-popup" 
 									comment={this.state.hoverSelectionComment} /> 
@@ -338,7 +341,6 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	return {
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
 		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
