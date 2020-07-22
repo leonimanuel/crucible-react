@@ -10,7 +10,7 @@ export default function topicsReducer(state = {
 }, action) {
 	switch (action.type) {
 		case "LOAD_FACTS":
-			debugger
+			// debugger
 			return {
 				...state,
 				facts: action.facts

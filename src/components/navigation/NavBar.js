@@ -16,6 +16,7 @@ class NavBar extends Component {
 	}
 
 	render() {
+		debugger
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">
@@ -24,6 +25,9 @@ class NavBar extends Component {
 					<Link className="nav-link section-nav-link" to="/review" >Review</Link>
 					<Link className="nav-link section-nav-link" to="/groups" >Groups</Link>												
 				</div>
+				
+				<div>Peer Score: {this.props.user ? this.props.user.review_score : null}</div>
+
 				<div id="profile-options">
 					{ this.props.userName 
 						? 
@@ -45,8 +49,14 @@ class NavBar extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		userName: state.users.userName,
+		user: state.users.user
+	}
+}
 
-export default connect(state => ({userName: state.users.userName}), { logOut })(NavBar);
+export default connect(mapStateToProps, { logOut })(NavBar);
 
 
 

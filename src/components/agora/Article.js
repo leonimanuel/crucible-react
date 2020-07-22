@@ -153,7 +153,7 @@ class Article extends Component {
 
 			span.addEventListener("click", () => {
 				// console.log(ReactDOM.render(<ArticleComment />))
-				this.toggleHighlightClicked(span)
+				this.toggleHighlightClicked(span, comment)
 			})
 
 			span.addEventListener("mouseleave", () => {
@@ -189,7 +189,6 @@ class Article extends Component {
 	newCommentPopper = (comment) => {
 		console.log("new comment popper")
     const commentSpan = document.querySelector(`#${comment.span_id}`);
-
 		const popup = document.querySelector(`#comment-popup`)
     // popup.setAttribute("data-show", "")
 		createPopper(commentSpan, popup, {
@@ -205,11 +204,14 @@ class Article extends Component {
 		});	
 	} 	
 
-	toggleHighlightClicked = (span) => {
+	toggleHighlightClicked = (span, comment) => {
 		this.setState({
-			...this.state, highlightClicked: !this.state.highlightClicked, 
+			...this.state, 
+			highlightClicked: !this.state.highlightClicked, 
+			hoverSelectionComment: comment 
 		}, () => {
 			span.style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
+			this.newCommentPopper(comment)
 			document.querySelector(`#comment-popup`).style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
 		})
 	}
