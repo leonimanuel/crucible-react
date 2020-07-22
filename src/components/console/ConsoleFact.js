@@ -25,7 +25,7 @@ class ConsoleFact extends Component {
 		let border
 		if (fact.review_status === "pending") {
 			border = "2px solid yellow" 
-		} else if (factUpvotes > factDownvotes) {
+		} else if (fact.review_status === "pass") {
 				border = "2px solid green" 		
 		} else {
 				border = "2px solid red" 		

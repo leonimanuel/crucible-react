@@ -1,5 +1,9 @@
 #review-items-wrapper {
 	border: 2px solid green;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: cadetblue;
+
 	display: flex;
 	flex-direction: column;
 	/*align-items: center;*/
@@ -7,14 +11,52 @@
 	margin: 0 auto;
 }
 
+#review-question-wrapper {
+	border: 3px solid gold;
+	border-radius: 10px;
+}
+
+#pending-reviews-wrapper {
+	/*border: 3px solid yellow;*/
+	/*border-top: 3px solid white;*/
+	margin-top: 10px;
+	height: 200px;
+	overflow: scroll;
+}
+
+#review-question {
+	color: white;
+	font-size: 1.1em;
+	margin: 0 50px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#selected-item {
+	margin: 10px 20px;
+	/*margin-top: 10px;*/
+	background-color: snow;
+	border: 2px solid black;
+	padding: 5px;
+	border-radius: 5px;
+}
+
 .review-item {
 	/*width: 80%;*/
 	border: 2px solid black;
+	border-radius: 5px;
+	background-color: silver;
 	margin: 2px 0;
 }
 
 .review-decision-button {
 	border: none;
+	border-radius: 5px;
+
+	padding: 5px 10px;
+	color: white;
+	font-weight: bold;
+	margin: 0 5px;
 }
 
 .green-decision {
@@ -25,10 +67,7 @@
 	background-color: red;
 }
 
-#selected-item {
-	background-color: snow;
-	border: 2px solid blue;
-}
+
 /*
 #selected-item div {
 	background-color: snow;

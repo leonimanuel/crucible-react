@@ -19,9 +19,8 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">good</button>
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">problematic</button>
 									<div id="selected-item">
-										<div>Rephrase: {selectedItem.rephrase_content}</div>
-										<div>Source text: {selectedItem.fact_content}</div>
-										<div>{selectedItem.phrasing_upvotes}</div>
+										<div><b>Rephrase:</b> {selectedItem.rephrase_content}</div>
+										<div><b>Source text:</b> {selectedItem.fact_content}</div>
 									</div>
 								</React.Fragment>
 							) 							
@@ -41,7 +40,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Is this logically a fact?</div>
 									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
 									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
-									<div id="selected-item">{selectedItem.content}</div>
+									<div id="selected-item"><b>Fact:</b> {selectedItem.content}</div>
 								</React.Fragment>
 							) 
 						}
@@ -54,7 +53,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Is this fact taken in context? <button>Copy fact and go to source</button></div>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
-									<div id="selected-item">{selectedItem.content}</div>
+									<div id="selected-item"><b>Fact:</b> {selectedItem.content}</div>
 								</React.Fragment>
 							)
 						} 
@@ -67,7 +66,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Does this fact come from a credible source, or is it attributed to one? <button>Copy fact and go to source</button></div>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
-									<div id="selected-item">{selectedItem.content}</div>
+									<div id="selected-item"><b>Fact:</b> {selectedItem.content}</div>
 								</React.Fragment>
 							)
 						} 
@@ -164,8 +163,9 @@ class ReviewItemsWrapper extends Component {
 				<div id="review-question-wrapper">
 					{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
 				</div>
-
-				{this.props.items ? this.renderReviewItems(this.props.items) : null}			
+				<div id="pending-reviews-wrapper">
+					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
+				</div>
 			</div>
 
 		)

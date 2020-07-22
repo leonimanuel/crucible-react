@@ -16,7 +16,7 @@ class NavBar extends Component {
 	}
 
 	render() {
-		debugger
+		// debugger
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">
@@ -26,7 +26,14 @@ class NavBar extends Component {
 					<Link className="nav-link section-nav-link" to="/groups" >Groups</Link>												
 				</div>
 				
-				<div>Peer Score: {this.props.user ? this.props.user.review_score : null}</div>
+				{this.props.user ?
+					<div id="user-ranks">
+						<div>Reputability: {this.props.user.reputability_score}</div>
+						<div>Peer Score: {this.props.user.review_score}</div>
+					</div>
+					: null
+				}
+				
 
 				<div id="profile-options">
 					{ this.props.userName 

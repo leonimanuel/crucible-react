@@ -14,7 +14,7 @@ export default function userReducer(state = {
 	// console.log("executing userReducer")
 	switch (action.type) {
 		case "LOG_IN":
-			debugger
+			// debugger
 			return {
 				...state,
 				isLoggedIn: true, //necessary?
