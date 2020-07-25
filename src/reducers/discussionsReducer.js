@@ -10,7 +10,8 @@ export default function discussionsReducer(state = {
 	loading: false,
 	renderForum: false,
 	commentsRendered: false,
-	interests: []
+	allInterests: [],
+	selectedInterests: []
 }, action) {
 		// console.log("executing discussionsReducer")
 		switch (action.type) {
@@ -166,11 +167,19 @@ export default function discussionsReducer(state = {
 				}
 
 			case "LOAD_INTERESTS":
-				debugger
+				// debugger
 				return {
 					...state,
-					interests: action.interests
+					allInterests: action.interests,
+					selectedInterests: action.interests.filter(i => i.selected === true)
 				}
+
+			case "UPDATE_SELECTED_INTERESTS":
+				return {
+					...state,
+					allInterests: action.interests
+				}
+
 
 			default:
 				return state;	

@@ -43,9 +43,9 @@
 }
 
 .interest-card-wrapper {
-	background-color: white;
+	background-color: whitesmoke;
 	width: 150px;
-	border: 2px solid white;
+	border: 3px solid whitesmoke;
 	border-radius: 20px;
 
 	margin: 5px 0;
@@ -53,4 +53,11 @@
 
 	font-weight: bold;
 	cursor: pointer;
+	transition: .2s;
+}
+
+.selected-interest {
+	background-color: green;
+	border: 3px solid whitesmoke;
+	color: white;
 }

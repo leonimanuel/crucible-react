@@ -1,11 +1,11 @@
 import { API_ROOT, HEADERS } from "../constants"
 
 export const addComment = (groupName, discussionName, comment, span, startOffset, endOffset, previousElId, facts) => {
-	console.log(comment)
-	return (dispatch) => {
-		dispatch({type: "POSTING_COMMENT"})
+  console.log(comment)
+  return (dispatch) => {
+    dispatch({type: "POSTING_COMMENT"})
     
-		let factIds = facts.map(fact => fact.id)
+    let factIds = facts.map(fact => fact.id)
     let configObj = {
       method: "POST",
       headers: {
@@ -14,37 +14,37 @@ export const addComment = (groupName, discussionName, comment, span, startOffset
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-      	comment_text: comment,
-				span_id: span.id,
-				selection: span.innerText,
-				start_offset: startOffset,
-				end_offset: endOffset,
-				previous_el_id: previousElId,
-				factIds: factIds
+        comment_text: comment,
+        span_id: span.id,
+        selection: span.innerText,
+        start_offset: startOffset,
+        end_offset: endOffset,
+        previous_el_id: previousElId,
+        factIds: factIds
       })
     }
     // debugger
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}/comments`, configObj)
     //   .then(resp => resp.json())
     //   .then((comment) => {
-				// dispatch({ 
-				// 	type: 'ADD_COMMENT', 
-				// 	comment
-				// })
+        // dispatch({ 
+        //  type: 'ADD_COMMENT', 
+        //  comment
+        // })
     //  })
     //   .catch(err => alert(err.message))
-	}
+  }
 }
 
 export const falsifyAddedNewComment = () => {
-	return {
-		type: "FALSIFY_ADDED_NEW_COMMENT"
-	}
+  return {
+    type: "FALSIFY_ADDED_NEW_COMMENT"
+  }
 }
 
 export const addFactFromComment = (fact) => {
-	return (dispatch) => {
-		dispatch({type: "ADDING_COMMENT_FACT"})
+  return (dispatch) => {
+    dispatch({type: "ADDING_COMMENT_FACT"})
 
    let configObj = {
       method: "POST",
@@ -54,30 +54,30 @@ export const addFactFromComment = (fact) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-      	factId: fact.id
+        factId: fact.id
       })
     }
     // debugger
     fetch(API_ROOT + `/facts`, configObj)
       .then(resp => resp.json())
       .then((fact) => {
-				if (fact.error) {
-					alert(fact.error)
-				} else {
-					dispatch({ 
-						type: 'ADD_FACT', 
-						fact
-					})		
-				}
+        if (fact.error) {
+          alert(fact.error)
+        } else {
+          dispatch({ 
+            type: 'ADD_FACT', 
+            fact
+          })    
+        }
      })
       .catch(err => alert(err.message))
-		//POST FACT
-	}
+    //POST FACT
+  }
 }
 
 export const addNewDiscussion = (groupId, articleURL) => {
-	return (dispatch) => {
-		dispatch({type: "ADDING_NEW_DISCUSSION"})
+  return (dispatch) => {
+    dispatch({type: "ADDING_NEW_DISCUSSION"})
 
    let configObj = {
       method: "POST",
@@ -87,7 +87,7 @@ export const addNewDiscussion = (groupId, articleURL) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-      	articleURL: articleURL
+        articleURL: articleURL
       })
     }
 
@@ -103,17 +103,17 @@ export const addNewDiscussion = (groupId, articleURL) => {
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => resp.json())
       .then((discussion) => {
-				if (discussion.error) {
-					alert(discussion.error)
-				} else {
-					dispatch({ 
-						type: 'ADD_NEW_DISCUSSION', 
-						discussion
-					})		
-				}
+        if (discussion.error) {
+          alert(discussion.error)
+        } else {
+          dispatch({ 
+            type: 'ADD_NEW_DISCUSSION', 
+            discussion
+          })    
+        }
      })
       .catch(err => alert(err.message))
-	}
+  }
 }
 
 export const addMessageToDiscussion = message => {
@@ -208,7 +208,7 @@ export const fetchInterests = () => {
     fetch(`${API_ROOT}/interests`, configObj)
       .then(resp => resp.json())
       .then(interests => {
-        debugger
+        // debugger
         dispatch({
           type: "LOAD_INTERESTS",
           interests
@@ -217,7 +217,25 @@ export const fetchInterests = () => {
     }
 }
 
+export const updateSelectedInterests = (interest) => {
+  return dispatch => {
+    let configObj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
 
-
-
-
+    fetch(`${API_ROOT}/interests/${interest.id}`, configObj)
+      .then(resp => resp.json())
+      .then(interests => {
+        // debugger
+        dispatch({
+          type: "UPDATE_SELECTED_INTERESTS",
+          interests
+        });
+      })    
+    }
+}
