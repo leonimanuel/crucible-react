@@ -9,7 +9,10 @@ class GroupsItem extends Component {
 	handleGroupClick = () => {
 		// this.props.showGroupDetails(this.props.group)
 		// debugger
-		this.props.setSelectedGroup(this.props.group.id)
+		if (this.props.group.name === "Feed") {
+
+		}
+		this.props.setSelectedGroup(this.props.group)
 		// this.props.showDetailPane()
 	}
 

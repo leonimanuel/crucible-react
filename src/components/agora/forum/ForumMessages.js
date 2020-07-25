@@ -44,14 +44,14 @@ class ForumMessages extends Component {
 							return (
 								<div 
 									key={index} 
-									className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"}`}
+									className={`message-wrapper ${m.user.id === this.props.currentUserId ? "sent" : "received"} `}
 									onClick={m.message_type === "comment" ? () => this.scrollToComment(m.previous_el_id) : null}
 								>
 									{m.user.id !== this.props.currentUserId && (index !== 0 && m.user.id !== this.props.messages[index-1].user.id)
 										? <div className="message-user-name">{m.user.name}</div> 
 										: null
 									}
-									<div className="message-text">{m.text}</div>
+									<div className={`message-text ${m.message_type === "comment" ? "comment-message" : null}`}>{m.text}</div>
 								</div>
 							)
 						})

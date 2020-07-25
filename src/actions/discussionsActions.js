@@ -91,6 +91,15 @@ export const addNewDiscussion = (groupId, articleURL) => {
       })
     }
 
+    // fetch('https://gnews.io/api/v3/search?q=amazon&token=a3cbbbace66491b895eb064379755ca7')
+    //   .then(function (response) {
+    //       return response.json();
+    //   })
+    //   .then(function (data) {
+    //       debugger
+    //       console.log(data);
+    //   });
+
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => resp.json())
       .then((discussion) => {

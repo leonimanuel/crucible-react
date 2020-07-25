@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom"
-import Article from "../components/agora/Article.js"
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux"
-
-import "./discussions.css"
-import Forum from "./Forum.js"
 import { ActionCable } from "react-actioncable-provider";
 import { API_ROOT } from "../constants"
 import { addMessageToDiscussion, toggleForum } from "../actions/discussionsActions.js"
+import "./discussions.css"
+
+import Article from "../components/agora/Article.js"
+import Forum from "./Forum.js"
+import Interests from "../components/agora/Interests.js"
 
 class Groups extends Component {
 	// constructor(props) {
@@ -33,25 +34,30 @@ class Groups extends Component {
 
 	render() {
 		const { match } = this.props;
-		// debugger
+		debugger
 		return (
 			<div id="groups-wrapper">
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
 					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
 				</Route>
-				{this.props.renderForum && this.props.selectedDiscussionId 
-					? <Forum /> 
-					: null
-				}
+				
+				<Route path={"/groups/interests"}>
+					<div>INTERESNA</div>
+				</Route>
+
+				{this.props.renderForum && this.props.selectedDiscussionId ? <Forum /> : null }
+				{this.props.renderInterests ? <Interests /> : null}
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = state => {
+	debugger
 	return {
 		selectedDiscussionId: state.discussions.selectedDiscussionId,
-		renderForum: state.discussions.renderForum
+		renderForum: state.discussions.renderForum,
+		renderInterests: state.groups.renderInterests
 	}
 }
 

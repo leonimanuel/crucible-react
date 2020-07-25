@@ -8,14 +8,18 @@ import { API_ROOT } from "../constants"
 // 	}
 // }
 
-export const setSelectedGroup = groupId => {
-	console.log("dispatching set details to true")
-	// debugger
+export const setSelectedGroup = (group) => {
   return {
-		type: "SET_SELECTED_GROUP",
-		groupId
-	}
+    type: "SET_SELECTED_GROUP",
+    group
+  }    
 } 
+
+export const renderInterests = () => {
+  return {
+    type: "RENDER_INTERESTS"
+  }
+}
 
 export const updateGroupDiscussions = discussion => {
 	return {

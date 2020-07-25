@@ -14,6 +14,16 @@
 
 }
 
+#user-ranks {
+  display: flex;
+  /*border: 2px solid green;*/
+  margin: auto 20px;
+}
+
+#user-ranks div {
+  margin: 0 10px;
+}
+
 .dropdown {
   display: flex;
   flex-direction: column;

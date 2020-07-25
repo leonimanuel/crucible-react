@@ -15,6 +15,7 @@ export const fetchItemsForReview = () => {
       .then(resp => resp.json())
       .then((itemData) => {				
         const itemsObj = itemData
+        // debugger
         dispatch({
 					type: "ADD_REVIEW_ITEMS",
 					itemsObj
@@ -26,7 +27,6 @@ export const fetchItemsForReview = () => {
 
 export const submitDecision = (selectedItem, questionType, decision) => {
   return dispatch => {
-    debugger
     let configObj = {
       method: "POST",
       headers: {
@@ -44,12 +44,21 @@ export const submitDecision = (selectedItem, questionType, decision) => {
     // debugger
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
-      .then((items) => {
-        // debugger
+      .then((response) => {
+        const item  = response.item
         dispatch({
-          type: "RESET_ITEM_UNDER_REVIEW"
+          type: "RESET_ITEM_UNDER_REVIEW",
+          item
         })
      })
       .catch(err => alert(err.message))
+  }
+}
+
+export const updateScore = (vote, itemId) => {
+  return {
+    type: "UPDATE_ITEM_SCORE",
+    vote,
+    itemId
   }
 }

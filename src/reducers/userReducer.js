@@ -21,6 +21,7 @@ export default function userReducer(state = {
 				userName: action.user.name,
 				userEmail: action.user.email,
 				userId: action.user.id,
+				userReviewScore: action.user.review_score,
 				user: action.user
 			}
 		
@@ -31,9 +32,16 @@ export default function userReducer(state = {
 				userName: "",
 				userEmail: "",
 				userId: "",
+				userReviewScore: "",
 				user: ""
 			}
 			
+		case "RESET_ITEM_UNDER_REVIEW":
+			return {
+				...state,
+				userReviewScore: state.userReviewScore + 10
+			}
+
 		default:
 			return state;
 	}

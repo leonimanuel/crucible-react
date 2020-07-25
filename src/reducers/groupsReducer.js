@@ -4,6 +4,7 @@ import cloneDeep from "lodash/cloneDeep"
 export default function groupsReducer(state = {
 	allGroups: [],
 	selectedGroupId: "",
+	selectedGroupName: "",
 	allMembers: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
 	// discussions: [],
 	discussion: "",
@@ -11,6 +12,7 @@ export default function groupsReducer(state = {
 	// showDetailPane: false,
 	groupUnreadMessages: "",
 	renderForum: false,
+	renderInterests: false,
 	memberSuggestions: []
 }, action) {
 		// debugger
@@ -29,7 +31,15 @@ export default function groupsReducer(state = {
 				// debugger
 				return {
 					...state,
-					selectedGroupId: action.groupId
+					selectedGroupId: action.group.id,
+					selectedGroupName: action.group.name
+				}
+
+			case "RENDER_INTERESTS":
+				debugger
+				return {
+					...state,
+					renderInterests: true
 				}
 
 			case "ADD_GROUP":

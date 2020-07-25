@@ -8,8 +8,9 @@ export default function userReducer(state = {
 	// console.log("executing userReducer")
 	switch (action.type) {
 		case "ADD_REVIEW_ITEMS":			
-			debugger
+			// debugger
 			let itemsArray = [...action.itemsObj.facts, ...action.itemsObj.comments, ...action.itemsObj.facts_comments]
+			// let itemsArray = [action.itemsObj.facts]
 			let shuffledItemsArray = shuffle(itemsArray)
 
 			let firstItem = shuffledItemsArray.shift();
@@ -23,10 +24,19 @@ export default function userReducer(state = {
 			}
 
 		case "RESET_ITEM_UNDER_REVIEW":
-			debugger
+			// debugger
 			return {
 				itemUnderReview: state.allReviewItems.shift(),
 				allReviewItems: state.allReviewItems				
+			}
+
+
+		case "UPDATE_ITEM_SCORE":
+			const votedItem = state.allReviewItems.find(item => item.id === action.itemId)
+			action.vote === "upvote" ? votedItem.score += 1 : votedItem.score -= 1
+			return {
+				...state,
+				allReviewItems: [...state.allReviewItems.filter(item => item.id !== votedItem.id), votedItem]
 			}
 
 		default:

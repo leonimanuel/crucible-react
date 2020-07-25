@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { Redirect } from "react-router-dom";
 import DiscussionItem from "./DiscussionItem.js"
-import { updateGroupDiscussions } from "../../actions/groups.js"
+import { updateGroupDiscussions, renderInterests } from "../../actions/groups.js"
 import NewDiscussionPopup from "./NewDiscussionPopup.js"
 import { createPopper } from "@popperjs/core"
 import AddListItemButton from "./AddListItemButton.js"
@@ -11,6 +12,13 @@ import AddListItemButton from "./AddListItemButton.js"
 class DiscussionsList extends Component {
 	state = {
 		renderNewDiscussionPopup: false
+	}
+
+	componentDidMount() {
+		if (this.props.selectedGroupName === "Feed" && !this.props.discussions.length) {
+			// this.props.renderInterests()
+
+		} 
 	}
 
 	handleNewDiscussion = () => {
@@ -28,9 +36,13 @@ class DiscussionsList extends Component {
 	sortedDiscussions = () => {
 		let sortedDiscussions = this.props.discussions.sort((a, b) => (a.updated_at > b.updated_at) ? 1 : -1)
 		// debugger
-		return sortedDiscussions.map(discussion => {
-			return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
-		})
+		if (sortedDiscussions.length) {
+			return sortedDiscussions.map(discussion => {
+				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
+			})			
+		} else {
+			return <Redirect to={"/groups/interests"} />
+		}
 	}
 
 	closePopup = () => {
@@ -56,11 +68,12 @@ class DiscussionsList extends Component {
 
 const mapStateToProps = state => {
 	return {
+		selectedGroupName: state.groups.selectedGroupName,
 		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId)
 	}
 }
 
-export default connect(mapStateToProps, { updateGroupDiscussions })(DiscussionsList);
+export default connect(mapStateToProps, { updateGroupDiscussions, renderInterests })(DiscussionsList);
 
 
 

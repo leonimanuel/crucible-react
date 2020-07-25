@@ -129,6 +129,9 @@
 	cursor: pointer;
 }
 
-
+.comment-message {
+	border: 2px solid white;
+	cursor: pointer;
+}
 
 

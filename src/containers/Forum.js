@@ -12,10 +12,8 @@ class Forum extends Component {
 	componentDidMount() {
 		// debugger
 		if (!this.props.messages.length) {
-			debugger
 			this.props.fetchMessages(this.props.discussion.group_id, this.props.discussion.id)
 		} else {
-	    debugger
 	    let configObj = {
 	      method: 'PATCH',
 	      headers: {

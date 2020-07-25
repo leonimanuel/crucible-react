@@ -22,6 +22,7 @@ export const logIn = () => {
 					});
           
           let facts = user.facts
+          debugger
           dispatch({
             type: "LOAD_FACTS",
             facts

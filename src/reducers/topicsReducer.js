@@ -61,6 +61,14 @@ export default function topicsReducer(state = {
 				parentTopic: newTopic
 		}
 
+		// case "RESET_ITEM_UNDER_REVIEW":
+		// 	if (action.item.logic_upvotes) {
+		// 		return {
+		// 			...state,
+		// 			facts: [...state.facts.filter(f => f.id !== action.item.id), ]
+		// 		}
+		// 	}
+
 		default:
 			return state;
 	}
