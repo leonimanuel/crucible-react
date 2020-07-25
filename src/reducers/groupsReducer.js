@@ -12,7 +12,6 @@ export default function groupsReducer(state = {
 	// showDetailPane: false,
 	groupUnreadMessages: "",
 	renderForum: false,
-	renderInterests: false,
 	memberSuggestions: []
 }, action) {
 		// debugger
@@ -33,13 +32,6 @@ export default function groupsReducer(state = {
 					...state,
 					selectedGroupId: action.group.id,
 					selectedGroupName: action.group.name
-				}
-
-			case "RENDER_INTERESTS":
-				debugger
-				return {
-					...state,
-					renderInterests: true
 				}
 
 			case "ADD_GROUP":

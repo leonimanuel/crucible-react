@@ -15,12 +15,6 @@ export const setSelectedGroup = (group) => {
   }    
 } 
 
-export const renderInterests = () => {
-  return {
-    type: "RENDER_INTERESTS"
-  }
-}
-
 export const updateGroupDiscussions = discussion => {
 	return {
 		type: "UPDATE_GROUP_DISCUSSIONS",

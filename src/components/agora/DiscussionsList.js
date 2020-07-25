@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom";
 import DiscussionItem from "./DiscussionItem.js"
-import { updateGroupDiscussions, renderInterests } from "../../actions/groups.js"
+import { updateGroupDiscussions } from "../../actions/groups.js"
 import NewDiscussionPopup from "./NewDiscussionPopup.js"
 import { createPopper } from "@popperjs/core"
 import AddListItemButton from "./AddListItemButton.js"
@@ -17,7 +17,6 @@ class DiscussionsList extends Component {
 	componentDidMount() {
 		if (this.props.selectedGroupName === "Feed" && !this.props.discussions.length) {
 			// this.props.renderInterests()
-
 		} 
 	}
 
@@ -73,7 +72,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { updateGroupDiscussions, renderInterests })(DiscussionsList);
+export default connect(mapStateToProps, { updateGroupDiscussions })(DiscussionsList);
 
 
 
