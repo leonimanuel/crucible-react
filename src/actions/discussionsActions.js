@@ -239,3 +239,33 @@ export const updateSelectedInterests = (interest) => {
       })    
     }
 }
+
+export const addFeedDiscussion = () => {
+  return (dispatch) => {
+    dispatch({type: "ADDING_NEW_DISCUSSION"})
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    fetch(API_ROOT + `/interests`, configObj)
+      .then(resp => resp.json())
+      .then((discussion) => {
+        debugger
+        dispatch({ 
+          type: 'ADD_FEED_DISCUSSION', 
+          discussion
+        })    
+     })
+      .catch(err => alert(err.message))
+  }
+}
+
+
+
+
