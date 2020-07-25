@@ -194,3 +194,30 @@ export const truthifyCommentsRendered = () => {
   }
 }
 
+export const fetchInterests = () => {
+  return dispatch => {
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    fetch(`${API_ROOT}/interests`, configObj)
+      .then(resp => resp.json())
+      .then(interests => {
+        debugger
+        return {
+          type: "LOAD_INTERESTS",
+          interests
+        };
+      })    
+    }
+}
+
+
+
+
+

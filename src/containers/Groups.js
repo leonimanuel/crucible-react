@@ -34,7 +34,6 @@ class Groups extends Component {
 
 	render() {
 		const { match } = this.props;
-		debugger
 		return (
 			<div id="groups-wrapper">
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
@@ -53,7 +52,6 @@ class Groups extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	return {
 		selectedDiscussionId: state.discussions.selectedDiscussionId,
 		renderForum: state.discussions.renderForum,
