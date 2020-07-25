@@ -4,7 +4,7 @@ class InterestCard extends Component {
 	render() {
 		return (
 			<div className="interest-card-wrapper">
-				{this.props.interest}
+				{this.props.interest.title}
 			</div>
 		)
 	}

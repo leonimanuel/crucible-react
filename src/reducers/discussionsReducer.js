@@ -9,7 +9,8 @@ export default function discussionsReducer(state = {
 	allMessages: [],
 	loading: false,
 	renderForum: false,
-	commentsRendered: false
+	commentsRendered: false,
+	interests: []
 }, action) {
 		// console.log("executing discussionsReducer")
 		switch (action.type) {
@@ -162,6 +163,13 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					commentsRendered: true
+				}
+
+			case "LOAD_INTERESTS":
+				debugger
+				return {
+					...state,
+					interests: action.interests
 				}
 
 			default:

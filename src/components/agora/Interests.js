@@ -21,19 +21,26 @@ class Interests extends Component {
 			<div id="interests-wrapper">
 				<div id="issues-wrapper" className="interest-section-wrapper">
 					<div className="interests-section-name">Issues</div>
-					<div className="section-cards-wrapper">{this.state.issues.map(interest => <InterestCard interest={interest} />)}</div>
+					<div className="section-cards-wrapper">{this.props.issues.map(interest => <InterestCard interest={interest} />)}</div>
 				</div>
 				
 				<div id="interests-dividing-line"></div>
 				
 				<div id="current-events-wrapper" className="interest-section-wrapper">
 					<div className="interests-section-name">Current Events</div>
-					<div className="section-cards-wrapper">{this.state.currentEvents.map(interest => <InterestCard interest={interest} />)}</div>
+					<div className="section-cards-wrapper">{this.props.currentEvents.map(interest => <InterestCard interest={interest} />)}</div>
 				</div>
 			</div>
 		)
 	}
 }
 
+const mapStateToProps = state => {
+	// debugger
+	return {
+		issues: state.discussions.interests.filter(interest => interest.section === "issues"),
+		currentEvents: state.discussions.interests.filter(interest => interest.section === "current events")
+	}
+}
 
-export default connect(null, { fetchInterests })(Interests);
+export default connect(mapStateToProps, { fetchInterests })(Interests);

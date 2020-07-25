@@ -209,10 +209,10 @@ export const fetchInterests = () => {
       .then(resp => resp.json())
       .then(interests => {
         debugger
-        return {
+        dispatch({
           type: "LOAD_INTERESTS",
           interests
-        };
+        });
       })    
     }
 }
