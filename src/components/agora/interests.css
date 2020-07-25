@@ -1,0 +1,46 @@
+#interests-wrapper {
+	width: 80%;
+	max-width: 800px;
+	border: 2px solid green;
+
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.interests-section-name {
+	font-size: 1.5em;
+}
+
+#interests-dividing-line {
+	border: 2px solid white;
+	border-radius: 5px;
+	height: 100%;
+}
+
+.interest-section-wrapper {
+	border: 2px solid yellow;
+	/*width: 80%;*/
+}
+
+.section-cards-wrapper {
+	border: 2px solid purple;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: left;
+	/*text-align: left;*/
+	/*width: 450px;*/
+}
+
+.interest-card-wrapper {
+	background-color: white;
+	width: 150px;
+	border: 2px solid white;
+	border-radius: 20px;
+
+	margin: 5px 0;
+	padding: 10px 0;
+
+	font-weight: bold;
+}
