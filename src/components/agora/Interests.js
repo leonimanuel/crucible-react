@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import InterestCard from "./InterestCard.js"
 
 class Interests extends Component {
+	state = {
+		interests: ["Politics", "Science", "Tech"]
+	}
+
 	render() {
 		return (
-			<div>INTERESTINOS</div>
+			<div id="interests-wrapper">
+				{this.state.interests.map(interest => <InterestCard interest={interest} />)}
+			</div>
 		)
 	}
 }

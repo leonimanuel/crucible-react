@@ -41,8 +41,8 @@ class Groups extends Component {
 					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
 				</Route>
 				
-				<Route path={"/groups/interests"}>
-					<div>INTERESNA</div>
+				<Route path={"/groups/interests"}
+					render={routerProps => <Interests {...routerProps} />} >
 				</Route>
 
 				{this.props.renderForum && this.props.selectedDiscussionId ? <Forum /> : null }
