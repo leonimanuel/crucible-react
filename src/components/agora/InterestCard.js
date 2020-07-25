@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class InterestCard extends Component {
 	render() {
 		return (
-			<div id="interests-wrapper">
+			<div id="interest-wrapper">
 				{this.props.interest}
 			</div>
 		)
