@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom";
 import DiscussionItem from "./DiscussionItem.js"
 import { updateGroupDiscussions } from "../../actions/groups.js"
+import { addFeedDiscussion } from "../../actions/discussionsActions.js"
 import NewDiscussionPopup from "./NewDiscussionPopup.js"
 import { createPopper } from "@popperjs/core"
 import AddListItemButton from "./AddListItemButton.js"
@@ -21,15 +22,19 @@ class DiscussionsList extends Component {
 	}
 
 	handleNewDiscussion = () => {
-		this.setState({
-			renderNewDiscussionPopup: true
-		}, () => {
-			let button = document.querySelector("#new-discussion-button");
-			let popup = document.querySelector("#new-discussion-popup")
-			createPopper(button, popup, {
-			  placement: 'right',
-			});			
-		})
+		if (this.props.selectedGroupName === "Feed") {
+			this.props.addFeedDiscussion()
+		} else {
+			this.setState({
+				renderNewDiscussionPopup: true
+			}, () => {
+				let button = document.querySelector("#new-discussion-button");
+				let popup = document.querySelector("#new-discussion-popup")
+				createPopper(button, popup, {
+				  placement: 'right',
+				});			
+			})
+		}
 	}
 
 	sortedDiscussions = () => {
@@ -72,7 +77,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { updateGroupDiscussions })(DiscussionsList);
+export default connect(mapStateToProps, { updateGroupDiscussions, addFeedDiscussion })(DiscussionsList);
 
 
 
