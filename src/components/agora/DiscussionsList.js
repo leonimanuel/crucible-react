@@ -40,7 +40,6 @@ class DiscussionsList extends Component {
 	sortedDiscussions = () => {
 		let discussions
 		if (this.props.selectedGroupName === "Guest") {
-			debugger
 			discussions = this.props.allDiscussions.filter(d => d.access === "guest")
 		} else {
 			discussions = this.props.discussions
