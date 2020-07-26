@@ -40,7 +40,7 @@ class Groups extends Component {
 					render={routerProps => {
 						return (
 								<div>
-									{this.props.guests ? this.props.guests.map(guest => <div>Guest: {guest.name}</div>) : <div>NO GUESTS</div>}
+									{this.props.guests && this.props.guests.length ? this.props.guests.map(guest => <div>Guest: {guest.name}</div>) : <div>NO GUESTS</div>}
 									<Article {...routerProps} onForumClick={this.handleToggleForum}/>								
 								</div>
 						)

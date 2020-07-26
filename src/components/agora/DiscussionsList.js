@@ -38,8 +38,15 @@ class DiscussionsList extends Component {
 	}
 
 	sortedDiscussions = () => {
-		let sortedDiscussions = this.props.discussions.sort((a, b) => (a.updated_at > b.updated_at) ? 1 : -1)
-		// debugger
+		let discussions
+		if (this.props.selectedGroupName === "Guest") {
+			debugger
+			discussions = this.props.allDiscussions.filter(d => d.access === "guest")
+		} else {
+			discussions = this.props.discussions
+		}
+
+		let sortedDiscussions = discussions.sort((a, b) => (a.updated_at > b.updated_at) ? 1 : -1)
 		if (sortedDiscussions.length) {
 			return sortedDiscussions.map(discussion => {
 				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
@@ -74,7 +81,8 @@ const mapStateToProps = state => {
 	return {
 		groupId: state.groups.selectedGroupId,
 		selectedGroupName: state.groups.selectedGroupName,
-		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId)
+		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId),
+		allDiscussions: state.discussions.allDiscussions
 	}
 }
 
