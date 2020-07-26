@@ -11,7 +11,7 @@ export default function discussionsReducer(state = {
 	renderForum: false,
 	commentsRendered: false,
 	allInterests: [],
-	selectedInterests: []
+	// selectedInterests: []
 }, action) {
 		// console.log("executing discussionsReducer")
 		switch (action.type) {
@@ -41,7 +41,8 @@ export default function discussionsReducer(state = {
 					selectedDiscussionId: action.discussionData.id,
 					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
 					allComments: state.allComments.filter(c => c.discussion_id !== action.discussionData.id).concat(action.discussionData.comments),
-					commentsRendered: false
+					commentsRendered: false,
+					discussionGuests: action.discussionData.guests
 					// discussion
 				}
 
@@ -171,7 +172,7 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					allInterests: action.interests,
-					selectedInterests: action.interests.filter(i => i.selected === true)
+					// selectedInterests: action.interests.filter(i => i.selected === true)
 				}
 
 			case "UPDATE_SELECTED_INTERESTS":

@@ -16,7 +16,6 @@ export const fetchTopics = () => {
 	  fetch(API_ROOT + `/topics`, configObj)
 	    .then(resp => resp.json())
 	    .then((topics) => {
-				debugger
 				dispatch(({
 					type: "ADD_TOPICS",
 					topics
@@ -53,7 +52,6 @@ export const moveFact = (factId, originTopicName, destinationTopicName) => {
 	  fetch(API_ROOT + `/facts`, configObj)
 	    .then(resp => resp.json())
 	    .then((fact) => {
-	    	debugger
 				dispatch({
 					type: "MOVE_FACT",
 					fact

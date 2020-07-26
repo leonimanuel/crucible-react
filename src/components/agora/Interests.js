@@ -18,7 +18,7 @@ class Interests extends Component {
 		return (
 			<div id="interests-wrapper">
 				<div id="issues-wrapper" className="interest-section-wrapper">
-					<div className="interests-section-name">Issues</div>
+					<div className="interests-section-name">Voting Issues</div>
 					<div className="section-cards-wrapper">{this.props.issues.map(interest => <InterestCard interest={interest} onSelect={this.toggleSelect}/>)}</div>
 				</div>
 				

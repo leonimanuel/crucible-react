@@ -37,7 +37,14 @@ class Groups extends Component {
 		return (
 			<div id="groups-wrapper">
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
-					render={routerProps => <Article {...routerProps} onForumClick={this.handleToggleForum}/>} >
+					render={routerProps => {
+						return (
+								<div>
+									{this.props.guests ? this.props.guests.map(guest => <div>Guest: {guest.name}</div>) : <div>NO GUESTS</div>}
+									<Article {...routerProps} onForumClick={this.handleToggleForum}/>								
+								</div>
+						)
+					} } >
 				</Route>
 				
 				<Route path={"/groups/interests"}
@@ -55,7 +62,8 @@ const mapStateToProps = state => {
 	return {
 		selectedDiscussionId: state.discussions.selectedDiscussionId,
 		renderForum: state.discussions.renderForum,
-		renderInterests: state.groups.renderInterests
+		renderInterests: state.groups.renderInterests,
+		guests: state.discussions.discussionGuests
 	}
 }
 

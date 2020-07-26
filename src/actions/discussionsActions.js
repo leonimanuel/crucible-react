@@ -79,6 +79,24 @@ export const addNewDiscussion = (groupId, articleURL) => {
   return (dispatch) => {
     dispatch({type: "ADDING_NEW_DISCUSSION"})
 
+   // let configObj = {
+   //    method: "GET",
+   //    headers: {
+   //      "Content-Type": "application/json",
+   //      Accept: "application/json",
+   //      "Ocp-Apim-Subscription-Key": "b802d49bc8e247acac1a1fe236710554"
+   //      // Authorization: localStorage.getItem("token")
+   //    }
+   //  }
+    
+   //  fetch("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=covid", configObj)
+   //    .then(resp => resp.json())
+   //    .then((response) => {
+   //      debugger  
+   //   })
+   //    .catch(err => alert(err.message))
+
+      
    let configObj = {
       method: "POST",
       headers: {
@@ -90,15 +108,6 @@ export const addNewDiscussion = (groupId, articleURL) => {
         articleURL: articleURL
       })
     }
-
-    // fetch('https://gnews.io/api/v3/search?q=amazon&token=a3cbbbace66491b895eb064379755ca7')
-    //   .then(function (response) {
-    //       return response.json();
-    //   })
-    //   .then(function (data) {
-    //       debugger
-    //       console.log(data);
-    //   });
 
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => resp.json())
@@ -181,7 +190,6 @@ export const fetchMessages = (groupId, discussionId) => {
 }
 
 export const toggleForum = (bool) => {
-  debugger
   return {
     type: "TOGGLE_FORUM",
     bool
@@ -240,31 +248,31 @@ export const updateSelectedInterests = (interest) => {
     }
 }
 
-export const addFeedDiscussion = () => {
-  return (dispatch) => {
-    dispatch({type: "ADDING_NEW_DISCUSSION"})
+// export const addFeedDiscussion = () => {
+//   return (dispatch) => {
+//     dispatch({type: "ADDING_NEW_DISCUSSION"})
 
-    let configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      }
-    }
+//     let configObj = {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json",
+//         Authorization: localStorage.getItem("token")
+//       }
+//     }
 
-    fetch(API_ROOT + `/interests`, configObj)
-      .then(resp => resp.json())
-      .then((discussion) => {
-        debugger
-        dispatch({ 
-          type: 'ADD_FEED_DISCUSSION', 
-          discussion
-        })    
-     })
-      .catch(err => alert(err.message))
-  }
-}
+//     fetch(API_ROOT + `/interests`, configObj)
+//       .then(resp => resp.json())
+//       .then((discussion) => {
+//         debugger
+//         dispatch({ 
+//           type: 'ADD_FEED_DISCUSSION', 
+//           discussion
+//         })    
+//      })
+//       .catch(err => alert(err.message))
+//   }
+// }
 
 
 

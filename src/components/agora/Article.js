@@ -279,14 +279,15 @@ class Article extends Component {
 
 
 	render() {
-		console.log(this.props.discussion)
 		const userCommented = !!this.props.comments.filter(c => c.user_id === this.props.userId).length
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="title-and-forum-button">
-							<div id="article-title">{this.props.discussion.article.title}</div>
+							<a href={this.props.discussion.article_url} target="_blank">
+								<div id="article-title">{this.props.discussion.article.title}</div>
+							</a>
 							<div 
 								id="show-forum-button" 
 								onClick={userCommented ? this.props.onForumClick : null}

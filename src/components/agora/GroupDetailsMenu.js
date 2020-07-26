@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { Redirect } from "react-router-dom";
 import DiscussionsList from "./DiscussionsList.js"
 import MembersList from "./MembersList.js"
+import GuestsList from "./GuestsList.js"
 // import ConsoleTopic from "./ConsoleTopic.js"
 
-
 class GroupDetailsMenu extends Component {
+	openInterests = () => {
+		return <Redirect to={"/groups/interests"} />
+	}
+
 	render() {
-		// console.log(this.props.group)
+		const { group } = this.props
 		return (
 			<div id="group-details-menu">
-				<div className="group-details-title">{this.props.group.name}</div>
-				<MembersList members={this.props.members}/>
-				<DiscussionsList group={this.props.group} />
+				<div className="group-details-title">{group.name}</div>
+				{group.name !== "Feed" 
+					? <MembersList members={this.props.members}/> 
+					: 
+					<div>
+						<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
+						{/*<GuestsList />*/}
+					</div> 
+				}
+				<DiscussionsList group={group} />
 			</div>
 		)
 	}
