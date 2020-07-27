@@ -119,7 +119,6 @@ class Article extends Component {
 
 	renderCommentHighlights = (comments) => {
 		comments.map(comment => {
-			debugger
 			let articleContent = document.getElementById("article-content");
 			let range = new Range
 
@@ -308,6 +307,16 @@ class Article extends Component {
 									<div id="article-author">{this.props.discussion.article.author}</div>
 									<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
 								</div>
+								<div id="participants-wrapper">
+									<div id="participants-header">Participants</div>
+									<div className="discussion-participant">You</div>
+									{this.props.participants.map(p => {
+										return (
+											<div className="discussion-participant">{p.name}</div>
+										) 
+									}) 
+									}
+								</div>
 							</div>
 
 							<ArticleContent discussion={this.props.discussion}/>
@@ -344,12 +353,17 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
+	const discussion = state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId)
 	return {
-		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
+		discussion: discussion,
 		comments: state.discussions.allComments.filter(c => c.discussion_id === state.discussions.selectedDiscussionId),
 		addedNewComment: state.discussions.addedNewComment,
 		commentsRendered: state.discussions.commentsRendered,
-		userId: state.users.userId
+		userId: state.users.userId,
+		participants: [
+			...state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
+			...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
+		]
 	}
 }
 

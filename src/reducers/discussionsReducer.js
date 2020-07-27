@@ -4,6 +4,7 @@ import cloneDeep from "lodash/cloneDeep"
 export default function discussionsReducer(state = {
 	allDiscussions: [],
 	selectedDiscussionId: "",
+	selectedDiscussion: "",
 	allComments: [],
 	addedNewComment: false,
 	allMessages: [],
@@ -11,6 +12,7 @@ export default function discussionsReducer(state = {
 	renderForum: false,
 	commentsRendered: false,
 	allInterests: [],
+	discussionGuests: []
 	// selectedInterests: []
 }, action) {
 		// console.log("executing discussionsReducer")
@@ -39,6 +41,7 @@ export default function discussionsReducer(state = {
 				return {
 					...state,
 					selectedDiscussionId: action.discussionData.id,
+					selectedDiscussion: action.discussionData,
 					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
 					allComments: state.allComments.filter(c => c.discussion_id !== action.discussionData.id).concat(action.discussionData.comments),
 					commentsRendered: false,

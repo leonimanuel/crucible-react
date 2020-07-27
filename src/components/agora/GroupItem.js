@@ -7,13 +7,7 @@ import { setSelectedGroup } from "../../actions/groups.js"
 
 class GroupsItem extends Component {
 	handleGroupClick = () => {
-		// this.props.showGroupDetails(this.props.group)
-		// debugger
-		if (this.props.group.name === "Feed") {
-
-		}
 		this.props.setSelectedGroup(this.props.group)
-		// this.props.showDetailPane()
 	}
 
 	componentDidMount() {

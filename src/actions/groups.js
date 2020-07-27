@@ -37,7 +37,7 @@ export const fetchDiscussion = (groupName, discussionName) => {
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-        debugger
+        // debugger
         dispatch({ 
 					type: 'ADD_DISCUSSION_AND_COMMENTS', 
 					discussionData

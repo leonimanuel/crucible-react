@@ -39,10 +39,10 @@ class Groups extends Component {
 				<Route path={`${match.path}/:groupName/discussions/:discussionName`} 
 					render={routerProps => {
 						return (
-								<div>
-									{this.props.guests && this.props.guests.length ? this.props.guests.map(guest => <div>Guest: {guest.name}</div>) : <div>NO GUESTS</div>}
+								<React.Fragment>
+									{this.props.guests && this.props.guests.length ? this.props.guests.map(guest => <div id="guests-wrapper">Guest: {guest.name}</div>) : <div id="guests-wrapper">NO GUESTS</div>}
 									<Article {...routerProps} onForumClick={this.handleToggleForum}/>								
-								</div>
+								</React.Fragment>
 						)
 					} } >
 				</Route>

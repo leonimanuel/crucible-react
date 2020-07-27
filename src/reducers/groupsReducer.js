@@ -18,7 +18,6 @@ export default function groupsReducer(state = {
 		// console.log("executing groupsReducer")
 		switch (action.type) {
 			case "LOAD_GROUPS":
-				// debugger
 				return {
 					...state,
 					allGroups: action.groups,
