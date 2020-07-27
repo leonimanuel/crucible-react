@@ -10,12 +10,13 @@ import MemberTag from "./MemberTag.js"
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 
-class newGroupPopup extends Component {
+class newMemberPopup extends Component {
 	state = {
 		// articleURL: "",
-		groupName: "",
+		// groupName: "",
 		memberSearchVal: "",
 		addedMembers: [],
+		// groupName: ""
 	}
 
 	handleChange = (e) => {
@@ -68,8 +69,8 @@ class newGroupPopup extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		debugger
-		if (this.state.groupName && this.state.addedMembers.length) {
-			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+		if (this.state.addedMembers.length) {
+			this.props.addNewGroup(this.props.groupName, this.state.addedMembers)
 			this.props.closePopup()
 		}
 		
@@ -85,16 +86,16 @@ class newGroupPopup extends Component {
 		}
 
 		let opts = {}
-		if (!this.state.groupName || !this.state.addedMembers.length) {
+		if (!this.state.addedMembers.length) {
 			opts["disabled"] = "disabled";
 		}
 
 		return (
 			<div id="new-group-popup" className="popup">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
-				<div id="new-group-popup-title">New Group</div>
+				<div id="new-group-popup-title">New Members</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
-					<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>
+					{/*<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>*/}
 					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
@@ -104,7 +105,7 @@ class newGroupPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					<input type="submit" value="Create Group" {...opts}
+					<input type="submit" value="Add Member" {...opts}
 					/>
 				</form>
 			</div>
@@ -112,8 +113,14 @@ class newGroupPopup extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		suggestionMembers: state.groups.memberSuggestions,
+		groupName: state.groups.allGroups.find(g => g.id === state.groups.selectedGroupId).name
+	}
+}
 
-export default connect(state => ({suggestionMembers: state.groups.memberSuggestions}), { fetchUsers, addNewGroup })(newGroupPopup);
+export default connect(mapStateToProps, { fetchUsers, addNewGroup })(newMemberPopup);
 
 
 

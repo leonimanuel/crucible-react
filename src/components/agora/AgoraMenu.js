@@ -14,9 +14,7 @@ class AgoraMenu extends Component {
 		renderNewGroupPopup: false
 	}
 
-	handleNewGroup = () => {
-		let wrapper = document.querySelector("#popup-container")
-		
+	handleNewGroup = () => {		
 		this.setState({
 			renderNewGroupPopup: true
 		}, () => {
@@ -34,9 +32,6 @@ class AgoraMenu extends Component {
 			  ],
 			});			
 		})
-		// ReactDOM.render(<NewGroupPopup 
-		// 	showSuggestions={this.handleShowSuggestions} 
-		// 	members={this.props.members} />, wrapper, () => console.log("rendered new group popup"))
 	}
 
 	closePopup = () => {

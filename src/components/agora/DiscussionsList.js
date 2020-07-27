@@ -79,7 +79,7 @@ class DiscussionsList extends Component {
 const mapStateToProps = state => {
 	return {
 		groupId: state.groups.selectedGroupId,
-		selectedGroupName: state.groups.selectedGroupName,
+		selectedGroupName: state.groups.allGroups.find(g => g.id === state.groups.selectedGroupId).name,
 		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId),
 		allDiscussions: state.discussions.allDiscussions
 	}

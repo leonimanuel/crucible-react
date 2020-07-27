@@ -12,14 +12,6 @@ import Forum from "./Forum.js"
 import Interests from "../components/agora/Interests.js"
 
 class Groups extends Component {
-	// constructor(props) {
-	// 	super(props)
-	// 	this.state = {
-	// 		renderForum: false,
-	// 	}
-
-	// }
-
 	componentDidUpdate(previousProps, previousState) {
 		if (previousProps.location.pathname !== this.props.location.pathname) {
 			// this.setState({renderForum: false})

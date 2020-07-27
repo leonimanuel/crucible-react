@@ -37,7 +37,7 @@ export const fetchDiscussion = (groupName, discussionName) => {
     fetch(API_ROOT + `/groups/${groupName}/discussions/${discussionName}`, configObj)
       .then(resp => resp.json())
       .then((discussionData) => {
-        // debugger
+        debugger
         dispatch({ 
 					type: 'ADD_DISCUSSION_AND_COMMENTS', 
 					discussionData
@@ -102,13 +102,37 @@ export const addNewGroup = (groupName, members) => {
 	}
 }
 
-// export const calculateUnreadMessages = (discussions) => {
-//   let unreadMessageArray = discussions.map(discussion => parseInt(discussion.unread_messages_count))
-//   const reducer = (accumulator, currentValue) => accumulator + currentValue;
-//   let groupUnreadCount = unreadMessageArray.reduce(reducer)
-  
-//   return {
-//     type: "ADD_UNREAD_MESSAGES_COUNT",
-//     groupUnreadCount
-//   } 
-// }
+export const editGroup = (groupId, groupName, addedMembers, removedMembers) => {
+  return (dispatch) => {
+    let addedMemberIds = addedMembers.map(member => member.id)
+    let removedMemberIds = removedMembers.map(member => member.id)
+
+    let configObj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        groupName: groupName,
+        addedMemberIds: addedMemberIds,
+        removedMemberIds: removedMemberIds
+      })
+    }
+    // debugger
+    fetch(API_ROOT + `/groups/${groupId}`, configObj)
+      .then(resp => resp.json())
+      .then((group) => {
+        dispatch({ 
+          type: 'UPDATE_GROUP', 
+          group
+        })
+     })
+      .catch(err => alert(err.message))
+  }  
+}
+
+
+
+
