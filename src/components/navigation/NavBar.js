@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import "./navigation.css"
 
 import { logOut } from "../../actions/users.js"
+import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
 	componentDidMount() {
@@ -14,6 +15,28 @@ class NavBar extends Component {
 		this.props.logOut()
 		localStorage.removeItem("token")
 	}
+
+	handleEmail = (email) => {
+    let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token"),
+	    }
+	  	//,
+			// body: JSON.stringify({
+			// 	inviteEmail: email,
+			// })
+		}
+
+	  fetch(API_ROOT + `/email`, configObj)
+	  //   .then(resp => resp.json())
+	  //   .then((response) => {
+			// 	debugger
+			// })
+	}
+
 
 	render() {
 		// debugger
@@ -33,7 +56,7 @@ class NavBar extends Component {
 					</div>
 					: null
 				}
-				
+				<button onClick={this.handleEmail}>Email Leon</button>				
 
 				<div id="profile-options">
 					{ this.props.userName 

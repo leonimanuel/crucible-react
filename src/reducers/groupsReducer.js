@@ -60,6 +60,13 @@ export default function groupsReducer(state = {
 					memberSuggestions: action.members
 				}
 
+			case "ADD_MEMBERS_FOR_GUEST":
+				debugger
+				return {
+					...state,
+					allMembers: [...state.allMembers, ...action.members]
+				}
+
 
 			default:
 				return state;	

@@ -29,7 +29,6 @@ class SideNav extends Component {
 			this.props.fetchTopics()
 		}
 		
-
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
 
@@ -50,7 +49,7 @@ class SideNav extends Component {
 		let reducer = (accumulator, currentValue) => accumulator + currentValue
 		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
 		const totalUnreads = unreadsArray.reduce(reducer, 0)
-		return totalUnreads ? <div className="badge section-tab-badge">{totalUnreads}</div> : null	}
+		return totalUnreads && !this.state.open ? <div className="badge section-tab-badge">{totalUnreads}</div> : null	}
 
 	render() {
 		// debugger
@@ -87,7 +86,7 @@ const mapStateToProps = state => {
 		// selectedGroup: state.sidenav.selectedGroup,
 		// parentTopic: state.topics.parentTopic,
 		// unreadMessages: state.groups.unreadMessages,
-		showDetailPane: state.sidenav.showDetailPane
+		// showDetailPane: state.sidenav.showDetailPane
 	}
 }
 
