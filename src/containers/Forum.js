@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 // import { resetUnreadCount } from "../actions/discussionsActions.js"
 import { API_ROOT, HEADERS } from "../constants"
-import { fetchMessages } from "../actions/discussionsActions.js"
+import { fetchMessages, zeroUnreadCount } from "../actions/discussionsActions.js"
 
 import "./forum.css"
 import ForumMessageForm from "../components/agora/forum/ForumMessageForm.js"
@@ -14,56 +14,34 @@ class Forum extends Component {
 		if (!this.props.messages.length) {
 			this.props.fetchMessages(this.props.discussion.group_id, this.props.discussion.id)
 		} else {
-	    let configObj = {
-	      method: 'PATCH',
-	      headers: {
-	        "Content-Type": "application/json",
-	        Accept: "application/json",
-	        Authorization: localStorage.getItem("token")
-	      }
-	    }
-
-	    fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, configObj);
+			this.props.zeroUnreadCount(this.props.discussion.group_id, this.props.discussion.id)
 		}
-
 		// this.props.resetUnreadCount(this.props.discussion)
-
 	}
 
-	componentDidUpdate(previousProps, previousState) {
-    // let configObj = {
-    //   method: 'PATCH',
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //     Authorization: localStorage.getItem("token")
-    //   }
-    // }
-
-    // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, configObj);
-
-		// this.props.resetUnreadCount(this.props.discussion)
-	  // fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
-	  //   method: 'PATCH',
-	  //   headers: HEADERS,
-   //    // body: JSON.stringify({
-   //    //   userId: this.props.userId
-   //    // })
-	  // });
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.props.discussion === nextProps.discussion
 	}
+
+	componentDidUpdate() {
+		this.props.zeroUnreadCount(this.props.discussion.group_id, this.props.discussion.id)
+	}
+
+	// componentWillUnmount() {
+	// 	this.props.zeroUnreadCount(this.props.discussion.group_id, this.props.discussion.id)
+	// }
 
 	render() {
-		console.log("rendering Forum")
-		// debugger
+		const { discussion } = this.props
 		return (
 			<div id="forum-container">
 				<div id="forum-header-container">
-					{this.props.discussion.group.name}
+					{discussion.group.name}
 				</div>
 
-				<ForumMessages discussion={this.props.discussion} messages={this.props.messages} currentUserId={this.props.currentUserId}/>
+				<ForumMessages groupId={discussion.group_id} discussionId={discussion.id} messages={this.props.messages} currentUserId={this.props.currentUserId}/>
 
-				<ForumMessageForm discussion={this.props.discussion} />
+				<ForumMessageForm discussion={discussion} />
 			</div>
 		)
 	}
@@ -77,11 +55,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchMessages })(Forum);
-				// <ForumHeader />
-				// <ForumMessagesContainer />
-				// <ForumInput />
-
+export default connect(mapStateToProps, { fetchMessages, zeroUnreadCount })(Forum);
 
 
 

@@ -248,32 +248,55 @@ export const updateSelectedInterests = (interest) => {
     }
 }
 
-// export const addFeedDiscussion = () => {
-//   return (dispatch) => {
-//     dispatch({type: "ADDING_NEW_DISCUSSION"})
+export const addGuests = (discussion, addedMembers) => {
+  return (dispatch) => {
+    let memberIds = addedMembers.map(member => member.id)
 
-//     let configObj = {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Accept: "application/json",
-//         Authorization: localStorage.getItem("token")
-//       }
-//     }
+    let configObj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        memberIds: memberIds
+      })
+    }
+    // debugger
+    fetch(API_ROOT + `/groups/${discussion.group_id}/discussions/${discussion.id}`, configObj)
+      .then(resp => resp.json())
+      .then((discussion) => {
+        dispatch({ 
+          type: 'ADD_GUESTS', 
+          discussion
+        })
+     })
+      .catch(err => alert(err.message))
+  }
+}
 
-//     fetch(API_ROOT + `/interests`, configObj)
-//       .then(resp => resp.json())
-//       .then((discussion) => {
-//         debugger
-//         dispatch({ 
-//           type: 'ADD_FEED_DISCUSSION', 
-//           discussion
-//         })    
-//      })
-//       .catch(err => alert(err.message))
-//   }
-// }
+export const zeroUnreadCount = (groupId, discussionId) => {
+  return dispatch => {
+    let configObj = {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
 
+    fetch(`${API_ROOT}/groups/${groupId}/discussions/${discussionId}/unread-messages-count`, configObj)
+      .then(resp => resp.json())
+      .then(response => {
+        dispatch({
+          type: "ZERO_UNREAD_COUNT",
+          response
+        })
+      })
+  }
+}
 
 
 

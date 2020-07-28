@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 import ArticleComment from "./ArticleComment.js"
 import SelectionMenu from "./SelectionMenu.js"
 import ArticleContent from "./ArticleContent.js"
+import AddListItemButton from "./AddListItemButton.js"
+import AddGuestsPopup from "./AddGuestsPopup.js"
 
 class Article extends Component {
 	constructor(props) {
@@ -25,7 +27,8 @@ class Article extends Component {
 			hoverSelectionComment: "",
 			highlightClicked: false,
 			textSelected: false,
-			forumHovered: false
+			forumHovered: false,
+			renderAddGuestsPopup: false
 		}
 	}
 
@@ -276,9 +279,33 @@ class Article extends Component {
 		})
 	}
 
+	handleAddGuests = () => {
+		this.setState({
+			renderAddGuestsPopup: true
+		}, () => {
+			let button = document.querySelector("#add-guests-button");
+			let popup = document.querySelector("#add-guests-popup")
+			createPopper(button, popup, {
+			  placement: 'bottom',
+			  modifiers: [
+			    {
+			      name: 'offset',
+			      options: {
+			        offset: [0, 8],
+			      },
+			    },
+			  ],
+			});			
+		})
+	}
+
+	closeAddGuestsPopup = () => {
+		this.setState({...this.state, renderAddGuestsPopup: false})
+	}
 
 	render() {
-		const userCommented = !!this.props.comments.filter(c => c.user_id === this.props.userId).length
+		// const userCommented =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length
+		const userCommented = true
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
@@ -308,7 +335,10 @@ class Article extends Component {
 									<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
 								</div>
 								<div id="participants-wrapper">
-									<div id="participants-header">Participants</div>
+									<div id="participants-header-wrapper">
+										<div id="participants-header">Participants</div>
+										<AddListItemButton id="add-guests-button" buttonAction={this.handleAddGuests} fill="cadetblue"/>
+									</div>
 									<div className="discussion-participant">You</div>
 									{this.props.participants.map(p => {
 										return (
@@ -347,6 +377,8 @@ class Article extends Component {
 					: 
 					<h3>Loading</h3>
 				}
+
+				{this.state.renderAddGuestsPopup ? <AddGuestsPopup discussion={this.props.discussion} closePopup={this.closeAddGuestsPopup}/> : null}
 			</div>
 		)
 	}

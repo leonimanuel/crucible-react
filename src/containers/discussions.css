@@ -101,12 +101,14 @@
   /*font-weight: italic;*/
 }
 
-#participants-wrapper {
-  /*border: 2px solid purple;*/
+#participants-header-wrapper {
+  display: flex;
+  /*justify-content: space-around;*/
 }
 
 #participants-header {
   font-size: 1.2em;
+  margin-right: 5px;
 }
 
 .discussion-participant {

@@ -41,6 +41,7 @@ class DiscussionsList extends Component {
 		let discussions
 		if (this.props.selectedGroupName === "Guest") {
 			discussions = this.props.allDiscussions.filter(d => d.access === "guest")
+			// debugger
 		} else {
 			discussions = this.props.discussions
 		}
@@ -48,6 +49,7 @@ class DiscussionsList extends Component {
 		let sortedDiscussions = discussions.sort((a, b) => (a.updated_at > b.updated_at) ? 1 : -1)
 		if (sortedDiscussions.length) {
 			return sortedDiscussions.map(discussion => {
+				// debugger
 				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
 			})			
 		} else {

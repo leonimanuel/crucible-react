@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { API_ROOT } from "../../../constants"
 
 class ForumMessages extends Component {
 	componentDidMount() {
@@ -7,10 +8,20 @@ class ForumMessages extends Component {
 		let messagesContainer = document.getElementById("forum-messages-container");
 		messagesContainer.scrollTo({top: messagesContainer.scrollHeight, left: 100, behavior: 'smooth'});
 		// this.props.resetUnreadCount(this.props.discussion)
-	 //  fetch(`${API_ROOT}/groups/${this.props.discussion.group_id}/discussions/${this.props.discussion.id}/unread-messages-count`, {
-	 //    method: 'PATCH',
-	 //    headers: HEADERS,
-	 //  });
+   //  let configObj = {
+   //    method: "GET",
+   //    headers: {
+   //      "Content-Type": "application/json",
+   //      Accept: "application/json",
+   //      Authorization: localStorage.getItem("token")
+   //    }
+   //  }	  
+
+	  // fetch(`${API_ROOT}/groups/${this.props.groupId}/discussions/${this.props.discussionId}/unread-messages-count`, configObj)
+	  // 	.then(resp => resp.json())
+	  // 	.then(response => {
+	  // 		debugger
+	  // 	})
 	}
 
 	componentDidUpdate() {

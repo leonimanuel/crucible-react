@@ -1,6 +1,9 @@
+// NOT USED!!!
+
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { fetchUsers, addNewGroup } from "../../actions/groups.js"
+import { fetchUsers } from "../../actions/groups.js"
+import { addGuests } from "../../actions/discussionsActions.js"
 import { createPopper } from "@popperjs/core"
 
 import Example from "./Example.js"
@@ -10,13 +13,12 @@ import MemberTag from "./MemberTag.js"
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 
-class newMemberPopup extends Component {
+class AddGuestsPopup extends Component {
 	state = {
 		// articleURL: "",
 		// groupName: "",
 		memberSearchVal: "",
 		addedMembers: [],
-		// groupName: ""
 	}
 
 	handleChange = (e) => {
@@ -70,7 +72,7 @@ class newMemberPopup extends Component {
 		e.preventDefault()
 		debugger
 		if (this.state.addedMembers.length) {
-			this.props.addNewGroup(this.props.groupName, this.state.addedMembers)
+			this.props.addGuests(this.props.discussion, this.state.addedMembers)
 			this.props.closePopup()
 		}
 		
@@ -91,12 +93,11 @@ class newMemberPopup extends Component {
 		}
 
 		return (
-			<div id="new-group-popup" className="popup">
+			<div id="add-guests-popup" className="popup">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
-				<div id="new-group-popup-title">New Members</div>
+				<div id="new-group-popup-title">Add Guests</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
-					{/*<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>*/}
-					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
+					<div className="new-group-input-div">Guest: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
 						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
@@ -105,7 +106,7 @@ class newMemberPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
-					<input type="submit" value="Add Member" {...opts}
+					<input type="submit" value="Add Guest" {...opts}
 					/>
 				</form>
 			</div>
@@ -116,11 +117,10 @@ class newMemberPopup extends Component {
 const mapStateToProps = state => {
 	return {
 		suggestionMembers: state.groups.memberSuggestions,
-		groupName: state.groups.allGroups.find(g => g.id === state.groups.selectedGroupId).name
 	}
 }
 
-export default connect(mapStateToProps, { fetchUsers, addNewGroup })(newMemberPopup);
+export default connect(mapStateToProps, { fetchUsers, addGuests })(AddGuestsPopup);
 
 
 
