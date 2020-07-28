@@ -25,7 +25,7 @@ class newGroupPopup extends Component {
 			[e.target.name]: e.target.value
 		})
 
-		if (e.target.value) {
+		if (e.target.name === "memberSearchVal" && e.target.value) {
 			this.props.fetchUsers(e.target.value)
 		} 
 	}

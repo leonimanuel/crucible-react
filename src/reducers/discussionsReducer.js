@@ -53,7 +53,7 @@ export default function discussionsReducer(state = {
 				debugger
 				return {
 					...state,
-					addGuests: action.discussionData.guests
+					discussionGuests: action.discussion.guests
 				}
 
 			case "ADD_NEW_DISCUSSION":

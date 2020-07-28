@@ -263,10 +263,11 @@ export const addGuests = (discussion, addedMembers) => {
         memberIds: memberIds
       })
     }
-    // debugger
+    debugger
     fetch(API_ROOT + `/groups/${discussion.group_id}/discussions/${discussion.id}`, configObj)
       .then(resp => resp.json())
       .then((discussion) => {
+        debugger
         dispatch({ 
           type: 'ADD_GUESTS', 
           discussion
