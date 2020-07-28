@@ -340,10 +340,14 @@ class Article extends Component {
 										<AddListItemButton id="add-guests-button" buttonAction={this.handleAddGuests} fill="cadetblue"/>
 									</div>
 									<div className="discussion-participant">You</div>
-									{this.props.participants.map(p => {
+									{this.props.members.map(p => <div className="discussion-participant discussion-member">{p.name}</div>)}
+									{this.props.guests.map(p => {
 										return (
-											<div className="discussion-participant">{p.name}</div>
-										) 
+											<div className="discussion-participant discussion-guest">
+												{p.name}
+												<div className="guest-marker">guest</div>
+											</div>
+										)
 									}) 
 									}
 								</div>
@@ -392,10 +396,13 @@ const mapStateToProps = state => {
 		addedNewComment: state.discussions.addedNewComment,
 		commentsRendered: state.discussions.commentsRendered,
 		userId: state.users.userId,
-		participants: [
-			...state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
-			...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
-		]
+		// participants: [
+		// 	...state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
+		// 	...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
+		// ]
+		members: state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
+		guests: state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
+
 	}
 }
 
