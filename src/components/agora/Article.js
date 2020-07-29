@@ -4,6 +4,9 @@ import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
 import { addFactToNew } from "../../actions/topicsActions.js"
 
+import _ from 'lodash';
+import cloneDeep from "lodash/cloneDeep"
+
 import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment, truthifyCommentsRendered } from "../../actions/discussionsActions.js"
 import { v4 as uuidv4 } from 'uuid';
@@ -28,7 +31,8 @@ class Article extends Component {
 			highlightClicked: false,
 			textSelected: false,
 			forumHovered: false,
-			renderAddGuestsPopup: false
+			renderAddGuestsPopup: false,
+			// participants: []
 		}
 	}
 
@@ -43,6 +47,19 @@ class Article extends Component {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
 		}
+		// debugger
+		// if (this.props.members.length && previousProps.members !== this.props.members) {
+		// 	debugger
+		// 	let participants = _.cloneDeep([...this.props.members, ...this.props.guests])
+		// 	const availableColors = ["#abf0e9", "#f9b384", "#84a9ac", "#5c2a9d", "#abc2e8", "#cfe5cf", "#e8505b"]
+		// 	// let i = 0
+		// 	participants.map(p => {
+		// 			let randomColor = availableColors[Math.floor(Math.random() * availableColors.length)]
+		// 			p.color = p.id === this.props.userId ? "cadetblue" : randomColor
+		// 	})
+		// 	this.setState({participants: participants})
+		// 	debugger
+		// }
 
 		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.props.commentsRendered === false) {
 			this.renderCommentHighlights(this.props.comments)
@@ -137,9 +154,8 @@ class Article extends Component {
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
 			
-			debugger
 			const author = [...this.props.members, ...this.props.guests].find(p => p.id === comment.user_id)
-			
+			debugger
 			span.style.backgroundColor = author.color;
 			span.classList.add("comment-highlight")
 			span.id = comment.span_id
@@ -346,12 +362,14 @@ class Article extends Component {
 									{this.props.guests.map(g => {
 										return (
 											<div className="discussion-participant discussion-guest" style={{backgroundColor: g.color}}>
-												{g.name}
+												{g.id === this.props.userId ? "You" : g.name}
 												<div className="guest-marker">guest</div>
 											</div>
 										)
 									}) 
 									}
+
+								{/*this.state.participants.map(m => <div className="discussion-participant discussion-member" style={{backgroundColor: m.color}}>{m.id === this.props.userId ? "You" : m.name}</div>)*/}
 								</div>
 							</div>
 
@@ -391,6 +409,7 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
+	debugger
 	const discussion = state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId)
 	return {
 		discussion: discussion,
@@ -403,7 +422,7 @@ const mapStateToProps = state => {
 		// 	...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
 		// ]
 		members: state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id),
-		guests: state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
+		guests: state.discussions.discussionGuests.filter(guest => guest.id /*!== state.users.userId*/)
 
 	}
 }

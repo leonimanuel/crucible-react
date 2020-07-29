@@ -24,8 +24,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "SET_SELECTED_GROUP":
-				console.log("setting state.details to true")
-				// debugger
 				return {
 					...state,
 					selectedGroupId: action.group.id,
@@ -60,11 +58,11 @@ export default function groupsReducer(state = {
 					memberSuggestions: action.members
 				}
 
-			case "ADD_MEMBERS_FOR_GUEST":
+			case "ADD_DISCUSSION_AND_COMMENTS":
 				debugger
 				return {
 					...state,
-					allMembers: [...state.allMembers, ...action.members]
+					allMembers: [...state.allMembers.filter(m => !action.discussionData.members.find(am => am.id === m.id)), ...action.discussionData.members]
 				}
 
 
