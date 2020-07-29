@@ -8,7 +8,7 @@ export default function discussionsReducer(state = {
 	allComments: [],
 	addedNewComment: false,
 	allMessages: [],
-	loading: false,
+	loadingNewDiscussion: true,
 	renderForum: false,
 	commentsRendered: false,
 	allInterests: [],
@@ -23,10 +23,10 @@ export default function discussionsReducer(state = {
 					allDiscussions: action.discussions
 				}
 
-			case "LOADING_DISCUSSION":
+			case "ADDING_NEW_DISCUSSION":
 				return {
 					...state,
-					loading: true
+					loadingNewDiscussion: true
 				}
 
 			case "POSTING_DISCUSSION":
@@ -45,7 +45,8 @@ export default function discussionsReducer(state = {
 					allDiscussions: [...state.allDiscussions.filter(d => d.id !== action.discussionData.id), action.discussionData],
 					allComments: state.allComments.filter(c => c.discussion_id !== action.discussionData.id).concat(action.discussionData.comments),
 					commentsRendered: false,
-					discussionGuests: action.discussionData.guests
+					discussionGuests: action.discussionData.guests,
+					// loading: false
 					// discussion
 				}
 
@@ -59,7 +60,8 @@ export default function discussionsReducer(state = {
 			case "ADD_NEW_DISCUSSION":
 				return {
 					...state,
-					allDiscussions: [...state.allDiscussions, action.discussion]
+					allDiscussions: [...state.allDiscussions, action.discussion],
+					loadingNewDiscussion: false 
 				}
 
 			case "ADD_COMMENT_TO_DISCUSSION":

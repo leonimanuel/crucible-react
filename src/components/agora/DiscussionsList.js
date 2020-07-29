@@ -70,6 +70,21 @@ class DiscussionsList extends Component {
 					<AddListItemButton id="new-discussion-button" buttonAction={this.handleNewDiscussion}/>
 				</div>
 				<div className="sidenav-list-contents">
+					{this.props.discussionLoading 
+						?
+							<div className="loading-animation">
+								<div id="discussion-loading-text">Getting article. Can take up to a minute...</div>
+								<div className="spinner">
+								  <div className="rect1"></div>
+								  <div className="rect2"></div>
+								  <div className="rect3"></div>
+								  <div className="rect4"></div>
+								  <div className="rect5"></div>
+								</div> 
+							</div>
+						:
+							null
+					}
 					{this.sortedDiscussions()}
 				</div>
 				{this.state.renderNewDiscussionPopup ? <NewDiscussionPopup groupId={this.props.group.id} closePopup={this.closePopup}/> : null}
@@ -83,7 +98,8 @@ const mapStateToProps = state => {
 		groupId: state.groups.selectedGroupId,
 		selectedGroupName: state.groups.allGroups.find(g => g.id === state.groups.selectedGroupId).name,
 		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId),
-		allDiscussions: state.discussions.allDiscussions
+		allDiscussions: state.discussions.allDiscussions,
+		discussionLoading: state.discussions.loadingNewDiscussion
 	}
 }
 

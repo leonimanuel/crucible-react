@@ -25,7 +25,7 @@ export const updateGroupDiscussions = discussion => {
 export const fetchDiscussion = (groupName, discussionName) => {
 	// debugger
   return (dispatch) => {
-		// dispatch({type: "LOADING_DISCUSSION"})
+		dispatch({type: "LOADING_DISCUSSION"})
     let configObj = {
       method: "GET",
       headers: {

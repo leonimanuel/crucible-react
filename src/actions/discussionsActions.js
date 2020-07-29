@@ -78,24 +78,6 @@ export const addFactFromComment = (fact) => {
 export const addNewDiscussion = (groupId, articleURL) => {
   return (dispatch) => {
     dispatch({type: "ADDING_NEW_DISCUSSION"})
-
-   // let configObj = {
-   //    method: "GET",
-   //    headers: {
-   //      "Content-Type": "application/json",
-   //      Accept: "application/json",
-   //      "Ocp-Apim-Subscription-Key": "b802d49bc8e247acac1a1fe236710554"
-   //      // Authorization: localStorage.getItem("token")
-   //    }
-   //  }
-    
-   //  fetch("https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=covid", configObj)
-   //    .then(resp => resp.json())
-   //    .then((response) => {
-   //      debugger  
-   //   })
-   //    .catch(err => alert(err.message))
-
       
    let configObj = {
       method: "POST",
