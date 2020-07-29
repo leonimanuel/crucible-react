@@ -8,7 +8,7 @@ export default function discussionsReducer(state = {
 	allComments: [],
 	addedNewComment: false,
 	allMessages: [],
-	loadingNewDiscussion: true,
+	loadingNewDiscussion: false,
 	renderForum: false,
 	commentsRendered: false,
 	allInterests: [],

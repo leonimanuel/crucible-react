@@ -136,7 +136,11 @@ class Article extends Component {
 
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
-			span.style.backgroundColor = "#9bdeac";
+			
+			debugger
+			const author = [...this.props.members, ...this.props.guests].find(p => p.id === comment.user_id)
+			
+			span.style.backgroundColor = author.color;
 			span.classList.add("comment-highlight")
 			span.id = comment.span_id
 
@@ -338,12 +342,11 @@ class Article extends Component {
 										<div id="participants-header">Participants</div>
 										<AddListItemButton id="add-guests-button" buttonAction={this.handleAddGuests} fill="cadetblue"/>
 									</div>
-									<div className="discussion-participant">You</div>
-									{this.props.members.map(p => <div className="discussion-participant discussion-member">{p.name}</div>)}
-									{this.props.guests.map(p => {
+									{this.props.members.map(m => <div className="discussion-participant discussion-member" style={{backgroundColor: m.color}}>{m.id === this.props.userId ? "You" : m.name}</div>)}
+									{this.props.guests.map(g => {
 										return (
-											<div className="discussion-participant discussion-guest">
-												{p.name}
+											<div className="discussion-participant discussion-guest" style={{backgroundColor: g.color}}>
+												{g.name}
 												<div className="guest-marker">guest</div>
 											</div>
 										)
@@ -399,7 +402,7 @@ const mapStateToProps = state => {
 		// 	...state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
 		// 	...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
 		// ]
-		members: state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
+		members: state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id),
 		guests: state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
 
 	}

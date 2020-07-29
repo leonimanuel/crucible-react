@@ -47,12 +47,14 @@ class DiscussionsList extends Component {
 		}
 
 		let sortedDiscussions = discussions.sort((a, b) => (a.updated_at > b.updated_at) ? 1 : -1)
-		if (sortedDiscussions.length) {
+		// debugger
+		if (sortedDiscussions.length || this.props.selectedGroupName !== "Feed") {
 			return sortedDiscussions.map(discussion => {
 				// debugger
 				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
 			})			
 		} else {
+			debugger
 			return <Redirect to={"/groups/interests"} />
 		}
 	}
@@ -75,11 +77,7 @@ class DiscussionsList extends Component {
 							<div className="loading-animation">
 								<div id="discussion-loading-text">Getting article. Can take up to a minute...</div>
 								<div className="spinner">
-								  <div className="rect1"></div>
-								  <div className="rect2"></div>
-								  <div className="rect3"></div>
-								  <div className="rect4"></div>
-								  <div className="rect5"></div>
+								  <div className="rect1"></div><div className="rect2"></div><div className="rect3"></div><div className="rect4"></div><div className="rect5"></div>
 								</div> 
 							</div>
 						:
