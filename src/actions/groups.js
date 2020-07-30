@@ -54,20 +54,25 @@ export const fetchDiscussion = (groupName, discussionName) => {
 	}
 }
 
-export const fetchUsers = (value) => {
+export const fetchUsers = (value, members) => {
 	// debugger
 	return (dispatch) => {
+    const memberIds = members.map(m => m.id)
+    debugger
     let configObj = {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: localStorage.getItem("token"),
-        searchVal: value
-      }
+      }, 
+      body: JSON.stringify({
+        searchVal: value,
+        memberIds: memberIds
+      })
     }
     // debugger
-    fetch(API_ROOT + `/users`, configObj)
+    fetch(API_ROOT + `/user-search`, configObj)
       .then(resp => resp.json())
       .then((members) => {
 				// debugger

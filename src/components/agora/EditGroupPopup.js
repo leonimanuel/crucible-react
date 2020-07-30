@@ -18,7 +18,8 @@ class editGroupPopup extends Component {
 			memberSearchVal: "",
 			currentMembers: this.props.members,
 			addedMembers: [],
-			removedMembers: []
+			removedMembers: [],
+			groupNameError: ""
 		}		
 	}
 
@@ -47,10 +48,14 @@ class editGroupPopup extends Component {
 
 	renderSuggestions = () => {
 		// debugger
+		const memberIds = this.props.members.map(m => m.id)
 		return this.props.suggestionMembers.map(member => {
-			return (
-				<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
-			) 
+			debugger
+			if (!memberIds.includes(member.id)) {
+				return (
+					<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
+				) 
+			}
 		})
 	}
 
@@ -83,12 +88,16 @@ class editGroupPopup extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		if (this.state.groupName && this.state.currentMembers.length) {
-			// this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
-			const { groupName, addedMembers, removedMembers } = this.state
-			this.props.editGroup(this.props.group.id, groupName, addedMembers, removedMembers)
-			this.props.closePopup()
+		debugger
+		if (this.state.groupName.toLowerCase() === "Feed".toLowerCase() || this.state.groupName.toLowerCase() === "Guest".toLowerCase()) {
+			this.setState({groupNameError: "Group name cannot be Feed or Guest"})
 		}
+		// else if (this.state.groupName && this.state.currentMembers.length) {
+		// 	// this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+		// 	const { groupName, addedMembers, removedMembers } = this.state
+		// 	this.props.editGroup(this.props.group.id, groupName, addedMembers, removedMembers)
+		// 	this.props.closePopup()
+		// }
 		
 	}
 
@@ -112,6 +121,7 @@ class editGroupPopup extends Component {
 				<div id="edit-group-popup-title">Edit Group</div>
 				<form id="edit-group-form" onSubmit={this.handleSubmit}>
 					<div className="edit-group-input-div">Group Name: <input type="text" name="groupName" onChange={this.handleChange} value={this.state.groupName}/></div>
+					<div>{this.state.groupNameError}</div>
 					<div className="edit-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
