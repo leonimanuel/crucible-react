@@ -64,6 +64,13 @@ export default function discussionsReducer(state = {
 					loadingNewDiscussion: false 
 				}
 
+			case "ADD_DISCUSSION_FAIL":
+				debugger
+				return {
+					...state,
+					loadingNewDiscussion: false
+				}
+
 			case "ADD_COMMENT_TO_DISCUSSION":
 				return {
 					...state,
