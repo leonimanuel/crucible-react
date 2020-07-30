@@ -55,7 +55,7 @@ class GroupDetailsMenu extends Component {
 						: null
 					}					
 				</div>
-				{group.name !== "Feed" 
+				{group.name !== "Feed" && group.name !== "Guest"
 					? <MembersList members={members} admin={group.admin}/> 
 					: 
 					<div>

@@ -15,12 +15,12 @@ class DiscussionsItem extends Component {
 				>
 					<div className="discussion-title">
 						{discussion.name}
-						{discussion.read ? null : <div className="discussion-unread-label">UNREAD</div>}
+						{discussion.read ? null : <div className="discussion-unread-label">UNOPENED</div>}
 					</div>
 
 				</Link>
 				{discussion.unread_messages_count 
-					? <div className="badge">{discussion.unread_messages_count}</div>
+					? <div className="badge discussion-badge">{discussion.unread_messages_count}</div>
 					: null
 				}
 			</div>

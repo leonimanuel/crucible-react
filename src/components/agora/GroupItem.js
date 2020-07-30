@@ -18,15 +18,13 @@ class GroupsItem extends Component {
 		let reducer = (accumulator, currentValue) => accumulator + currentValue
 		let unreadsArray = this.props.discussions.map(d => d.unread_messages_count)
 		const groupUnreads = unreadsArray.reduce(reducer, 0)
-		return groupUnreads ? <div className="sidenav-badge badge">{groupUnreads}</div> : null
+		return groupUnreads ? <div className="sidenav-badge group-badge badge">{groupUnreads}</div> : null
 	}
 
 	render() {
-		// debugger
 		return (
-			<div className="group-item sidenav-item" onClick={this.handleGroupClick}>
+			<div className={`sidenav-item group-item ${this.props.discussions.some(d => !d.read) ? "unread-group-item" : null}`} onClick={this.handleGroupClick}>
 				<div>{this.props.group.name}</div>
-				{/*this.props.unreadMessages*/}
 				<div>{this.calculateGroupUnreads()}</div>
 			</div>
 		)
