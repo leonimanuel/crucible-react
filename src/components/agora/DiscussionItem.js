@@ -6,17 +6,21 @@ import { Link } from "react-router-dom"
 
 class DiscussionsItem extends Component {
 	render() {
-		// debugger
+		const { discussion } = this.props;
 		return (
 			<div className="discussion-item sidenav-item">
 				<Link 
-					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${this.props.discussion.slug}`}
+					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${discussion.slug}`}
 					style={{ textDecoration: 'none' }} 
 				>
-					<div className="discussion-title">{this.props.discussion.name}</div>
+					<div className="discussion-title">
+						{discussion.name}
+						{discussion.read ? null : <div className="discussion-unread-label">UNREAD</div>}
+					</div>
+
 				</Link>
-				{this.props.discussion.unread_messages_count 
-					? <div className="badge">{this.props.discussion.unread_messages_count}</div>
+				{discussion.unread_messages_count 
+					? <div className="badge">{discussion.unread_messages_count}</div>
 					: null
 				}
 			</div>

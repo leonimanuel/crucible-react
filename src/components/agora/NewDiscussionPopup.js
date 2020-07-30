@@ -17,11 +17,12 @@ class NewDiscussionPopup extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		debugger
+		// debugger
 		this.props.addNewDiscussion(
 			this.props.groupId,
 			this.state.articleURL
 		)
+		this.props.closePopup()
 	}
 
 	render() {

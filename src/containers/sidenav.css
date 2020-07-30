@@ -158,13 +158,32 @@
 .discussion-item {
 	/*border: 1px solid green;*/
 	text-decoration: italic;
-	color: white;
+	background-color: white;
+
 	margin-bottom: 10px;
+
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	position: relative;
+}
+
+.discussion-unread-label {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+
+	border: 2px solid #e8505b;
+	border-radius: 5px;
+	background-color: #f9d56e;
+	color: #e8505b;
+	font-weight: bold;
+	padding: 0 5px;
 }
 
 .discussion-title {
 	font-style: italic;
-	color: white;
+	color: black;
 }
 
 .section-tab {
