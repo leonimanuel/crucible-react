@@ -1,5 +1,5 @@
-import chunk from 'lodash/chunk';
-import _ from 'lodash';
+// import chunk from 'lodash/chunk';
+// import _ from 'lodash';
 
 import React, { Component } from 'react';
 

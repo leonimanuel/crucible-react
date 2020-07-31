@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 // import { resetUnreadCount } from "../actions/discussionsActions.js"
-import { API_ROOT, HEADERS } from "../constants"
+// import { API_ROOT, HEADERS } from "../constants"
 import { fetchMessages, zeroUnreadCount } from "../actions/discussionsActions.js"
 
 import "./forum.css"

@@ -5,7 +5,7 @@ import { createPopper } from "@popperjs/core"
 
 import DiscussionsList from "./DiscussionsList.js"
 import MembersList from "./MembersList.js"
-import GuestsList from "./GuestsList.js"
+// import GuestsList from "./GuestsList.js"
 import EditGroupPopup from "./EditGroupPopup.js"
 
 // import ConsoleTopic from "./ConsoleTopic.js"
@@ -60,7 +60,6 @@ class GroupDetailsMenu extends Component {
 					: 
 					<div>
 						<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
-						{/*<GuestsList />*/}
 					</div> 
 				}
 				<DiscussionsList group={group} />

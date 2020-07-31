@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { connect } from "react-redux"
-import { ActionCable } from "react-actioncable-provider";
+import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
 import { addCommentToDiscussion } from "./actions/discussionsActions.js"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
@@ -15,7 +15,7 @@ import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
-import {API_ROOT} from "./constants"
+// import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
 import { resetUnreadCount } from "./actions/discussionsActions.js"
@@ -53,17 +53,17 @@ class App extends Component {
           <NavBar />
           {this.props.userId ?
           <div>
-            <ActionCable 
+            <ActionCableConsumer 
               channel={{ channel: "MessageNotificationsChannel" }}
               onReceived={this.handleUnreadUpdate} 
             />          
 
-            <ActionCable 
+            <ActionCableConsumer 
               channel={{ channel: "MessagesChannel" }}
               onReceived={this.handleReceivedMessage} 
             />
 
-            <ActionCable 
+            <ActionCableConsumer 
               channel={{ channel: "CommentsChannel" }}
               onReceived={this.handleReceivedComment} 
             />            

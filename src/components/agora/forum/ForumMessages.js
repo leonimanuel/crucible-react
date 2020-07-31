@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { API_ROOT } from "../../../constants"
+// import { API_ROOT } from "../../../constants"
 
 class ForumMessages extends Component {
 	componentDidMount() {

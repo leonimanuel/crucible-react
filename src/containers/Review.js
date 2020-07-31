@@ -3,7 +3,7 @@ import ReviewItemsWrapper from "../components/review/ReviewItemsWrapper.js"
 
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import ReviewItem from "./ReviewItem.js"
+// import ReviewItem from "./ReviewItem.js"
 import { fetchItemsForReview } from "../actions/reviewsActions.js"
 
 class Review extends Component {
@@ -12,7 +12,7 @@ class Review extends Component {
 	}
 
 	render() {
-		let sortedItems = this.props.items.sort((a, b) => (a.id > b.id) ? 1 : -1)
+		// let sortedItems = this.props.items.sort((a, b) => (a.id > b.id) ? 1 : -1)
 		return (
 			<div id="review-wrapper">
 				<h1 onClick={this.handleClick}>Review</h1>

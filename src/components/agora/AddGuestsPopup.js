@@ -6,8 +6,8 @@ import { fetchUsers } from "../../actions/groups.js"
 import { addGuests } from "../../actions/discussionsActions.js"
 import { createPopper } from "@popperjs/core"
 
-import Example from "./Example.js"
-import Autosuggest from 'react-autosuggest';
+// import Example from "./Example.js"
+// import Autosuggest from 'react-autosuggest';
 import MemberSuggestion from "./MemberSuggestion.js"
 import MemberTag from "./MemberTag.js"
 

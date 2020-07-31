@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom"
+// import ReactDOM from "react-dom"
 import { connect } from "react-redux"
 import { fetchDiscussion } from "../../actions/groups.js"
 import { addFactToNew } from "../../actions/topicsActions.js"
 
-import _ from 'lodash';
-import cloneDeep from "lodash/cloneDeep"
+// import _ from 'lodash';
+// import cloneDeep from "lodash/cloneDeep"
 
 import { createPopper } from "@popperjs/core"
 import { addComment, falsifyAddedNewComment, truthifyCommentsRendered } from "../../actions/discussionsActions.js"
@@ -138,8 +138,8 @@ class Article extends Component {
 
 	renderCommentHighlights = (comments) => {
 		comments.map(comment => {
-			let articleContent = document.getElementById("article-content");
-			let range = new Range
+			// let articleContent = document.getElementById("article-content");
+			let range = new Range()
 
 			let previousEl = document.getElementById(comment.previous_el_id)
 			
@@ -187,6 +187,7 @@ class Article extends Component {
 				}
 				console.log("dueces")
 			})
+			return comment
 		})
 		
 		this.props.truthifyCommentsRendered()
@@ -330,7 +331,7 @@ class Article extends Component {
 				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
 						<div id="title-and-forum-button">
-							<a href={this.props.discussion.article_url} target="_blank">
+							<a href={this.props.discussion.article_url} target="_blank" rel="noopener noreferrer">
 								<div id="article-title">{this.props.discussion.article.title}</div>
 							</a>
 							<div 
@@ -347,7 +348,6 @@ class Article extends Component {
 							</div>
 						</div>
 						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
-							{/*this.handleArticleHTML()*/}
 							<div id="article-info-container">
 								<div id="author-and-date-published">
 									<div id="article-author">{this.props.discussion.article.author}</div>
@@ -369,7 +369,6 @@ class Article extends Component {
 									}) 
 									}
 
-								{/*this.state.participants.map(m => <div className="discussion-participant discussion-member" style={{backgroundColor: m.color}}>{m.id === this.props.userId ? "You" : m.name}</div>)*/}
 								</div>
 							</div>
 

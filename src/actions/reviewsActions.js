@@ -1,4 +1,4 @@
-import { API_ROOT, HEADERS } from "../constants"
+import { API_ROOT } from "../constants"
 
 export const fetchItemsForReview = () => {
 	return (dispatch) => {    

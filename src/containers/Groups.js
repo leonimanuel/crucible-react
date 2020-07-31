@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom"
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux"
-import { ActionCable } from "react-actioncable-provider";
-import { API_ROOT } from "../constants"
+import { v4 as uuidv4 } from 'uuid';
+// import { ActionCable } from "react-actioncable-provider";
+// import { API_ROOT } from "../constants"
 import { addMessageToDiscussion, toggleForum } from "../actions/discussionsActions.js"
 import "./discussions.css"
 
@@ -32,7 +33,7 @@ class Groups extends Component {
 					render={routerProps => {
 						return (
 								<React.Fragment>
-									{this.props.guests && this.props.guests.length ? this.props.guests.map(guest => <div id="guests-wrapper">Guest: {guest.name}</div>) : <div id="guests-wrapper">NO GUESTS</div>}
+									{this.props.guests && this.props.guests.length ? this.props.guests.map(guest => <div key={uuidv4()} id="guests-wrapper">Guest: {guest.name}</div>) : <div key={uuidv4()} id="guests-wrapper">NO GUESTS</div>}
 									<Article {...routerProps} onForumClick={this.handleToggleForum}/>								
 								</React.Fragment>
 						)

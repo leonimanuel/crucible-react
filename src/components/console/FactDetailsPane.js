@@ -18,7 +18,7 @@ class FactDetailsPane extends Component {
     e.persist()
     debugger
     this.setState({ text: e.target.innerText }, () => {
-      if (e.key == "Enter") { 
+      if (e.key === "Enter") { 
         this.handleSubmit() 
       }
     });

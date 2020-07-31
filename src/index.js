@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import _ from 'lodash';
+// import _ from 'lodash';
 import { ActionCableProvider } from 'react-actioncable-provider';
 
 import App from './App';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { selectTopic, moveFact } from "../../actions/topicsActions.js"
-import { API_ROOT } from "../../constants"
+// import { API_ROOT } from "../../constants"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
 
 

@@ -24,9 +24,13 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>
 							) 							
 						}
-			}
-			
-
+						break
+					
+					default: 
+						return <div>CAN'T GENERATE REVIEW</div>
+				}
+				break		
+	
 			case "Fact":
 				const factQuestionTypes = ["logic", "context", "credibility"]
 				let selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
@@ -43,7 +47,8 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>
 							) 
 						}
-					
+					break
+
 					case "context": 
 						const contextTotal = selectedItem.context_upvotes + selectedItem.context_downvotes
 						if (contextTotal < 10) {
@@ -60,6 +65,7 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>
 							)
 						} 
+					break
 
 					case "credibility": 
 						const credibilityTotal = selectedItem.credibility_upvotes + selectedItem.credibility_downvotes
@@ -77,8 +83,12 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>
 							)
 						} 
-				}
-		
+						break
+				
+				default: 
+					return <div>CAN'T GENERATE REVIEW</div>				
+				}	
+				break
 
 			case "Comment":
 				const commentQuestionTypes = ["selection_comment"]
@@ -99,8 +109,12 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>									
 							)
 						}
+						break
+
+					default: 
+						return <div>CAN'T GENERATE REVIEW</div>				
 				}
-			
+				break
 
 			case "FactsComment":
 				const commentFactQuestionTypes = ["comment_fact"]
@@ -121,7 +135,15 @@ class ReviewItemsWrapper extends Component {
 								</React.Fragment>									
 							)
 						}
+						break
+
+					default: 
+						return <div>CAN'T GENERATE REVIEW</div>				
 				}
+				break
+
+			default:
+				return <div>CAN'T GENERATE REVIEW</div>
 		}
 	}
 
@@ -153,6 +175,9 @@ class ReviewItemsWrapper extends Component {
 							<div>Source text: {item.fact_content}</div>							
 						</div>
 					)
+				
+				default:
+					return <div>NO REVIEW TYPE</div>
 			}
 		})
 	}

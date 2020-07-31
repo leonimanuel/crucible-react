@@ -19,8 +19,8 @@ class ConsoleFact extends Component {
 	render() {
 		const { fact } = this.props;
 
-		const factUpvotes = fact.logic_upvotes + fact.context_upvotes + fact.credibility_upvotes
-		const factDownvotes = fact.logic_downvotes + fact.context_downvotes + fact.credibility_downvotes
+		// const factUpvotes = fact.logic_upvotes + fact.context_upvotes + fact.credibility_upvotes
+		// const factDownvotes = fact.logic_downvotes + fact.context_downvotes + fact.credibility_downvotes
 
 		let border
 		if (fact.review_status === "pending") {

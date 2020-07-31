@@ -3,8 +3,8 @@ import { connect } from "react-redux"
 import { fetchUsers, addNewGroup, editGroup } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 
-import Example from "./Example.js"
-import Autosuggest from 'react-autosuggest';
+// import Example from "./Example.js"
+// import Autosuggest from 'react-autosuggest';
 import MemberSuggestion from "./MemberSuggestion.js"
 import MemberTag from "./MemberTag.js"
 

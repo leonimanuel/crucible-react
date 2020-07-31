@@ -42,10 +42,7 @@ class NavBar extends Component {
 		// debugger
 		return (
 			<div id="nav-wrapper">
-				<div id="menu-options">
-					{/*<Link className="nav-link section-nav-link" to="/" >Home</Link>
-					<Link className="nav-link section-nav-link" to="/console" >Console</Link>
-					<Link className="nav-link section-nav-link" to="/groups" >Groups</Link>*/}												
+				<div id="menu-options">											
 					<Link className="nav-link section-nav-link" to="/review" >Review</Link>
 				</div>
 				

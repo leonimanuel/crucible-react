@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_ROOT, HEADERS } from '../../../constants';
+import { API_ROOT } from '../../../constants';
 import { connect } from 'react-redux';
 
 class NewMessageForm extends Component {
@@ -10,7 +10,7 @@ class NewMessageForm extends Component {
   handleChange = e => {
     e.persist()
     this.setState({ text: e.target.innerText }, () => {
-      if (e.key == "Enter") { 
+      if (e.key === "Enter") { 
         // debugger
         this.handleSubmit(e) 
         // e.target.innerHTML = ""

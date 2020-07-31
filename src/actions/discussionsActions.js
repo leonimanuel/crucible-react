@@ -1,4 +1,4 @@
-import { API_ROOT, HEADERS } from "../constants"
+import { API_ROOT } from "../constants"
 
 export const addComment = (groupName, discussionName, comment, span, startOffset, endOffset, previousElId, facts) => {
   console.log(comment)
@@ -94,7 +94,7 @@ export const addNewDiscussion = (groupId, articleURL) => {
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => {
         if (!resp.ok) {
-          throw new Error("SOMETHING WENT WRONG")
+          // throw new Error("SOMETHING WENT WRONG")
           dispatch({type: "ADD_DISCUSSION_FAIL"})
           alert("something went wrong, please try again later")
         } else {
