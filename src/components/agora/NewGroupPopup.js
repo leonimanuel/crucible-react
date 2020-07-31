@@ -16,6 +16,7 @@ class newGroupPopup extends Component {
 		groupName: "",
 		memberSearchVal: "",
 		addedMembers: [],
+		groupNameError: ""
 	}
 
 	handleChange = (e) => {
@@ -26,7 +27,7 @@ class newGroupPopup extends Component {
 		})
 
 		if (e.target.name === "memberSearchVal" && e.target.value) {
-			this.props.fetchUsers(e.target.value)
+			this.props.fetchUsers(e.target.value, null)
 		} 
 	}
 
@@ -68,10 +69,14 @@ class newGroupPopup extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		debugger
-		if (this.state.groupName && this.state.addedMembers.length) {
-			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
-			this.props.closePopup()
+		if (this.state.groupName.toLowerCase() === "Feed".toLowerCase() || this.state.groupName.toLowerCase() === "Guest".toLowerCase()) {
+			this.setState({groupNameError: "Group name can't be Feed or Guest"})
 		}
+
+		// if (this.state.groupName && this.state.addedMembers.length) {
+		// 	this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+		// 	this.props.closePopup()
+		// }
 		
 	}
 
@@ -94,8 +99,9 @@ class newGroupPopup extends Component {
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
-					<div className="new-group-input-div">Group Name (optional): <input type="text" name="groupName" onChange={this.handleChange}/></div>
-					<div className="new-group-input-div">Members: <input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
+					<div className="new-group-input-div"><b>Group Name (optional): </b><input type="text" name="groupName" onChange={this.handleChange}/></div>
+					<div style={{color: "red"}}>{this.state.groupNameError}</div>
+					<div className="new-group-input-div"><b>Members: </b><input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
 						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}

@@ -20,7 +20,7 @@ class AddGuestsPopup extends Component {
 		memberSearchVal: "",
 		addedMembers: [],
 	}
-
+	
 	handleChange = (e) => {
 		// debugger
 		this.setState({
@@ -29,7 +29,7 @@ class AddGuestsPopup extends Component {
 		})
 
 		if (e.target.value) {
-			this.props.fetchUsers(e.target.value)
+			this.props.fetchUsers(e.target.value, [...this.props.members, ...this.props.guests])
 		} 
 	}
 

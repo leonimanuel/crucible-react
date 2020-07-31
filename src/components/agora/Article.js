@@ -402,7 +402,15 @@ class Article extends Component {
 					<h3>Loading</h3>
 				}
 
-				{this.state.renderAddGuestsPopup ? <AddGuestsPopup discussion={this.props.discussion} closePopup={this.closeAddGuestsPopup}/> : null}
+				{this.state.renderAddGuestsPopup ? 
+					<AddGuestsPopup 
+						discussion={this.props.discussion} 
+						closePopup={this.closeAddGuestsPopup}
+						members={this.props.members}
+						guests={this.props.guests}
+					/> 
+					: null
+				}
 			</div>
 		)
 	}

@@ -242,11 +242,12 @@
   font-family: 'Abel', sans-serif;
   color: #333;
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 4px 4px;
   font-size: 13px;
-  border: 2px solid gold;
+  border: 2px solid black;
   border-radius: 4px;
   z-index: 1;
+  width: 200px;
   /*display: none;  */
 }
 
@@ -263,7 +264,8 @@
 }
 
 #new-group-form {
-	padding: 20px;
+	padding: 10px;
+	/*width: 100px;*/
 }
 
 

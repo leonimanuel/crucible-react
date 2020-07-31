@@ -32,7 +32,7 @@ class editGroupPopup extends Component {
 		})
 
 		if (e.target.name === "memberSearchVal" && e.target.value) {
-			this.props.fetchUsers(e.target.value)
+			this.props.fetchUsers(e.target.value, this.props.members)
 		} 
 	}
 
@@ -48,14 +48,11 @@ class editGroupPopup extends Component {
 
 	renderSuggestions = () => {
 		// debugger
-		const memberIds = this.props.members.map(m => m.id)
 		return this.props.suggestionMembers.map(member => {
 			debugger
-			if (!memberIds.includes(member.id)) {
 				return (
 					<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
 				) 
-			}
 		})
 	}
 
