@@ -19,8 +19,7 @@ class DetailPane extends Component {
 				detailPane.style = "width: 0px"
 			}			
 		}
-	return (
-			// debugger
+		return (
 			<div id="sidenav-details-pane">
 				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
 				{this.props.section === "agora" && this.props.selectedGroupId ? <GroupDetailsMenu /> : null}
