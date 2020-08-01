@@ -51,7 +51,6 @@ class ForumMessages extends Component {
 				{this.props.messages 
 					? 
 						this.props.messages.map((m, index) => {
-							// let lastSenderId = m.user.id
 							return (
 								<div 
 									key={index} 

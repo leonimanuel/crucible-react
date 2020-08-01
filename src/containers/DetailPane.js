@@ -7,15 +7,12 @@ import ConsoleWindow from "../components/console/ConsoleWindow.js"
 
 class DetailPane extends Component {
 	render() {
-		// debugger
 		let detailPane = document.querySelector("#sidenav-details-pane")
 		if (detailPane) {
 			if ((this.props.selectedGroupId && this.props.section === "agora") || 
 				(this.props.parentTopic && this.props.section === "console")) {
-				// debugger
 				detailPane.style = "width: 200px"
 			} else {
-				// debugger
 				detailPane.style = "width: 0px"
 			}			
 		}
