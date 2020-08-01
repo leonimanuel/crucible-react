@@ -9,7 +9,9 @@ export default function userReducer(state = {
 	userName: "",
 	userEmail: "",
 	userId: "",
-	user: ""
+	user: "",
+	userReputabilityScore: "",
+	userReviewScore: ""
 }, action) {
 	// console.log("executing userReducer")
 	switch (action.type) {
@@ -21,6 +23,7 @@ export default function userReducer(state = {
 				userName: action.user.name,
 				userEmail: action.user.email,
 				userId: action.user.id,
+				userReputabilityScore: action.user.reputability_score,
 				userReviewScore: action.user.review_score,
 				user: action.user
 			}

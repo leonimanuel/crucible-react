@@ -4,6 +4,7 @@ import "./home.css"
 import DiscussionsOverview from "../components/home/DiscussionsOverview.js"
 import ReviewsOverview from "../components/home/ReviewsOverview.js"
 import BriefingsOverview from "../components/home/BriefingsOverview.js"
+import ScoresOverview from "../components/home/ScoresOverview.js"
 
 class Home extends Component {
 	handleMouseUp = e => {
@@ -16,6 +17,7 @@ class Home extends Component {
 				<DiscussionsOverview />
 				<ReviewsOverview />
 				<BriefingsOverview />
+				<ScoresOverview />
 			</div>
 		)
 	}
