@@ -49,6 +49,10 @@
 	/*border: 2px solid yellow;*/
 }
 
+#briefings-overview {
+	background-color: snow
+}
+
 #overview-briefings-container {
 	/*max-height: 200px;*/
 	/*border: 2px solid green;*/
@@ -94,11 +98,29 @@
 
 
 
+#daily-reviews-bar {
+	display: flex;
+	width: 100px;
+	height: 10px;
+	border: 2px solid black; 
+}
 
+.daily-reviews-notch {
+	height: 100%;
+	width: 10%;
+	/*background-color: green;*/
+	border-right: 1px solid black;
+	position: relative;
+	z-index: 1;
+}
 
-
-
-
+#shadow-daily-reviews-bar {
+	position: absolute;
+	width: 0px;
+	height: 10px;
+	background-color: green;
+	transition: width 1s;
+}
 
 
 
