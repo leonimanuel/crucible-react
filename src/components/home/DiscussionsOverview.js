@@ -21,7 +21,7 @@ class DiscussionsOverview extends Component {
 		return (
 			<div id="discussions-overview" className="overview-wrapper">
 				<div className="overview-header" id="discussions-overview-header" >New Discussions</div>
-				<div id="overview-discussions-container">
+				<div className="overview-content-container" id="overview-discussions-container">
 					{this.showUnreadDiscussions(this.props.discussions)}				
 				</div>
 			</div>

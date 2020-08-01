@@ -7,7 +7,10 @@ class ReviewsOverview extends Component {
 	render() {
 		return (
 			<div id="reviews-overview" className="overview-wrapper">
-				<ReviewItemsWrapper />
+				<div className="overview-header" id="reviews-overview-header" >Reviews</div>
+				<div className="overview-content-container" id="overview-reviews-container">
+					<ReviewItemsWrapper />
+				</div>
 			</div>
 		)
 	}
