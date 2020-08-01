@@ -5,6 +5,7 @@ import discussionsReducer from "./discussionsReducer.js"
 import topicsReducer from "./topicsReducer.js"
 import sidenavReducer from "./sidenavReducer.js"
 import reviewReducer from "./reviewReducer.js"
+import briefingsReducer from "./briefingsReducer.js"
 
 export default combineReducers({
 	users: userReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
 	groups: groupsReducer,
 	discussions: discussionsReducer,
 	topics: topicsReducer,
-	review: reviewReducer
+	review: reviewReducer,
+	briefings: briefingsReducer
 })

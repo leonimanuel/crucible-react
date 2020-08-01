@@ -3,6 +3,7 @@ import "./home.css"
 
 import DiscussionsOverview from "../components/home/DiscussionsOverview.js"
 import ReviewsOverview from "../components/home/ReviewsOverview.js"
+import BriefingsOverview from "../components/home/BriefingsOverview.js"
 
 class Home extends Component {
 	handleMouseUp = e => {
@@ -14,6 +15,7 @@ class Home extends Component {
 			<div onMouseUp={this.handleMouseUp} id="home-wrapper">
 				<DiscussionsOverview />
 				<ReviewsOverview />
+				<BriefingsOverview />
 			</div>
 		)
 	}

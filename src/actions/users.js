@@ -16,7 +16,7 @@ export const logIn = () => {
       .then((data) => {
         const user = data.user
         debugger
-        if (user.name) {
+        if (user) {
 					dispatch({
 						type: "LOG_IN",
 						user
@@ -53,6 +53,12 @@ export const logIn = () => {
           dispatch({
             type: "ADD_REVIEW_ITEMS",
             itemsObj
+          })
+
+          const briefings = user.briefings
+          dispatch({
+            type: "ADD_BRIEFINGS",
+            briefings
           })
         } else {
           console.log("nobody's logged in")
