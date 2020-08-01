@@ -13,7 +13,9 @@ export const logIn = () => {
 
     fetch(API_ROOT + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
-      .then((user) => {
+      .then((data) => {
+        const user = data.user
+        debugger
         if (user.name) {
 					dispatch({
 						type: "LOG_IN",
@@ -45,6 +47,12 @@ export const logIn = () => {
           dispatch({
             type: "ADD_GROUP_MEMBERS",
             members
+          })
+        
+          const itemsObj = data.review[0]
+          dispatch({
+            type: "ADD_REVIEW_ITEMS",
+            itemsObj
           })
         } else {
           console.log("nobody's logged in")

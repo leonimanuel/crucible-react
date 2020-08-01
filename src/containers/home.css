@@ -3,7 +3,13 @@
   /*padding: 10px 40px;*/
   border: 4px solid green;
   border-radius: 10px;
+  display: flex;
   /*background-color: snow;*/
+}
+
+.overview-wrapper {
+	border: 5px solid purple;
+	width: 40%;
 }
 
 .overview-header {
@@ -11,8 +17,8 @@
 }
 
 #discussions-overview {
-  width: 40%;
-  border: 2px solid red;
+  /*width: 40%;*/
+  /*border: 2px solid red;*/
 }
 
 #overview-discussions-container {
