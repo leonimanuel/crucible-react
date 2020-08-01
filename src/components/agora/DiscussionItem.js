@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 class DiscussionsItem extends Component {
 	render() {
 		const { discussion } = this.props;
+		debugger
 		return (
 			<div className="discussion-item sidenav-item">
 				<Link 

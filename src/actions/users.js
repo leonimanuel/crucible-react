@@ -2,7 +2,6 @@ import { API_ROOT } from "../constants"
 
 export const logIn = () => {
 	return (dispatch) => {
-    debugger
     let configObj = {
       method: "GET",
       headers: {
@@ -15,7 +14,6 @@ export const logIn = () => {
     fetch(API_ROOT + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
       .then((user) => {
-        debugger
         if (user.name) {
 					dispatch({
 						type: "LOG_IN",
