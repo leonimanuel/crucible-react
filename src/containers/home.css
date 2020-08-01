@@ -1,0 +1,35 @@
+#home-wrapper {
+  /*width: 50%;*/
+  /*padding: 10px 40px;*/
+  border: 4px solid green;
+  border-radius: 10px;
+  /*background-color: snow;*/
+}
+
+.overview-header {
+	font-size: 1.5em;
+}
+
+#discussions-overview {
+  width: 40%;
+  border: 2px solid red;
+}
+
+#overview-discussions-container {
+	margin: 10px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+  background-color: snow;	
+
+  border-radius: 5px;
+}
+
+.overview-discussion {
+	color: purple;
+	margin: 10px;
+	width: 40%;
+	max-height: 4.5em;
+	overflow: hidden;
+	/*border: 2px solid yellow;*/
+}

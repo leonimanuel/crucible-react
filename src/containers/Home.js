@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./home.css"
 
 import DiscussionsOverview from "../components/home/DiscussionsOverview.js"
 

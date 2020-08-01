@@ -51,7 +51,7 @@ class DiscussionsList extends Component {
 		if (sortedDiscussions.length || this.props.selectedGroupName !== "Feed") {
 			return sortedDiscussions.map(discussion => {
 				// debugger
-				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name}/>
+				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name} class="sidenav-item"/>
 			})			
 		} else {
 			debugger

@@ -9,7 +9,7 @@ class DiscussionsItem extends Component {
 		const { discussion } = this.props;
 		debugger
 		return (
-			<div className="discussion-item sidenav-item">
+			<div className={`discussion-item ${this.props.class}`}>
 				<Link 
 					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${discussion.slug}`}
 					style={{ textDecoration: 'none' }} 

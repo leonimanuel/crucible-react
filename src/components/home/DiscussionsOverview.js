@@ -11,6 +11,7 @@ class DiscussionsOverview extends Component {
 					key={discussion.id} 
 					discussion={discussion} 
 					groupName={discussion.group_name} 
+					class="overview-discussion"
 				/>
 			)
 		})
@@ -19,7 +20,10 @@ class DiscussionsOverview extends Component {
 	render() {
 		return (
 			<div id="discussions-overview">
-				{this.showUnreadDiscussions(this.props.discussions)}
+				<div className="overview-header" id="discussions-overview-header" >New Discussions</div>
+				<div id="overview-discussions-container">
+					{this.showUnreadDiscussions(this.props.discussions)}				
+				</div>
 			</div>
 		)
 	}
