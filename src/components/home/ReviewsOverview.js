@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
 import ReviewItemsWrapper from "../review/ReviewItemsWrapper.js"
 
 class ReviewsOverview extends Component {
@@ -16,10 +15,4 @@ class ReviewsOverview extends Component {
 	}
 }
 
-// const mapStateToProps = state => {
-// 	return {
-// 		discussions: state.discussions.allDiscussions.filter(d => !d.read)
-// 	}
-// }
-
-export default connect()(ReviewsOverview);
+export default (ReviewsOverview);

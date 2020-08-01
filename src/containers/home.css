@@ -16,15 +16,11 @@
 	width: 40%;
 	height: 250px;
 	overflow: scroll;
+	background-color: snow;
 }
 
 .overview-header {
 	font-size: 1.5em;
-}
-
-#discussions-overview {
-  /*width: 40%;*/
-  /*border: 2px solid red;*/
 }
 
 #overview-discussions-container {
@@ -45,3 +41,61 @@
 	overflow: hidden;
 	/*border: 2px solid yellow;*/
 }
+
+#overview-briefings-container {
+	/*max-height: 200px;*/
+	/*border: 2px solid green;*/
+}
+
+.overview-selected-briefing {
+	/*border: 2px solid red;*/
+	max-height: 100%;
+	display: flex;
+
+	/*align-items: center;*/
+}
+
+.briefing-details {
+	text-align: left;
+}
+
+.briefing-name {
+	font-weight: bold;
+	font-size: .7em;
+}
+
+.briefing-description {
+	font-size: .5em;
+}
+
+.briefing-organization {
+	font-style: italic;
+	align-self: flex-end;
+}
+
+.briefing-poster-image {
+	/*width: 80px;*/
+	height: 80px;
+	margin: 0 10px;
+}
+
+.briefing-thumbnail-image {
+	border: 1px solid black;
+	width: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
