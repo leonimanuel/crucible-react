@@ -17,7 +17,6 @@
 	width: 40%;
 	height: 250px;
 	overflow: scroll;
-	background-color: #4b5d67;
 
   box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
               0 2px 2px rgba(0,0,0,0.12), 
@@ -28,6 +27,10 @@
 
 .overview-header {
 	font-size: 1.5em;
+}
+
+#discussions-overview {
+  background-color: #4b5d67;	
 }
 
 #overview-discussions-container {
@@ -96,7 +99,31 @@
 }
 
 
+/*REVIEWS OVERVIEW*/
+#scores-overview {
+	/*background-color: teal;*/
+	/*border: 2px solid white;*/
+	box-shadow: none;
+	/*color: white;*/
+}
 
+.score-type-container {
+	border: 2px solid green;
+
+	text-align: left;
+}
+
+.score-type-header {
+	font-size: 1.2em;
+	text-decoration: underline;
+}
+
+#review-scores-content {
+	/*border: 2px solid grey;*/
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
 
 #daily-reviews-bar {
 	display: flex;
@@ -123,7 +150,10 @@
 }
 
 
-
+#review-scores-l2 {
+	display: flex;
+	justify-content: space-between;
+}
 
 
 

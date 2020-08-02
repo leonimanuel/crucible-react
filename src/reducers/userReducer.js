@@ -11,7 +11,9 @@ export default function userReducer(state = {
 	userId: "",
 	user: "",
 	userReputabilityScore: "",
-	userReviewScore: ""
+	userReviewScore: "",
+	dailyReviews: "",
+	dailyStreak: ""
 }, action) {
 	// console.log("executing userReducer")
 	switch (action.type) {
@@ -25,6 +27,8 @@ export default function userReducer(state = {
 				userId: action.user.id,
 				userReputabilityScore: action.user.reputability_score,
 				userReviewScore: action.user.review_score,
+				dailyReviews: action.user.daily_reviews,
+				dailyStreak: action.user.daily_streaks,
 				user: action.user
 			}
 		
@@ -42,7 +46,8 @@ export default function userReducer(state = {
 		case "RESET_ITEM_UNDER_REVIEW":
 			return {
 				...state,
-				userReviewScore: state.userReviewScore + 10
+				userReviewScore: state.userReviewScore + 10,
+				dailyReviews: state.dailyReviews + 1
 			}
 
 		default:
