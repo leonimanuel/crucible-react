@@ -18,8 +18,8 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">good</button>
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">problematic</button>
 									<div id="selected-item">
-										<div><b>Rephrase:</b> {selectedItem.rephrase_content}</div>
-										<div><b>Source text:</b> {selectedItem.fact_content}</div>
+										<div><span className="item-bullet">rephrase: </span> {selectedItem.rephrase_content}</div>
+										<div><span className="item-bullet">rephrase: </span> {selectedItem.fact_content}</div>
 									</div>
 								</React.Fragment>
 							) 							
@@ -43,7 +43,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Is this logically a fact?</div>
 									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
 									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
-									<div id="selected-item"><b>Fact:</b> {selectedItem.content}</div>
+									<div id="selected-item"><span className="item-bullet">fact: </span>{selectedItem.content}</div>
 								</React.Fragment>
 							) 
 						}
@@ -60,7 +60,7 @@ class ReviewItemsWrapper extends Component {
 									</div>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
-									<div id="selected-item"><b>Fact:</b> <span id="fact-content">{selectedItem.content}</span></div>
+									<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
 									<textarea id="holdtext" style={{display: "none"}}></textarea>
 								</React.Fragment>
 							)
@@ -78,7 +78,7 @@ class ReviewItemsWrapper extends Component {
 									</div>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
-									<div id="selected-item"><b>Fact:</b> <span id="fact-content">{selectedItem.content}</span></div>
+									<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
 									<textarea id="holdtext" style={{display: "none"}}></textarea>									
 								</React.Fragment>
 							)
@@ -103,8 +103,8 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
 									<div id="selected-item">
-										<div>{selectedItem.selection}</div>
-										<div>{selectedItem.content}</div>
+										<div><span className="item-bullet">selection: </span>{selectedItem.selection}</div>
+										<div><span className="item-bullet">comment: </span>{selectedItem.content}</div>
 									</div>
 								</React.Fragment>									
 							)
@@ -129,8 +129,8 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "comment_fact")} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
 									<button onClick={(e) => this.handleDecision(e, "comment_fact")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
 									<div id="selected-item">
-										<div>{selectedItem.comment_content}</div>
-										<div>{selectedItem.fact_content}</div>
+										<div><span className="item-bullet">comment: </span>{selectedItem.comment_content}</div>
+										<div><span className="item-bullet">fact: </span>{selectedItem.fact_content}</div>
 									</div>
 								</React.Fragment>									
 							)
