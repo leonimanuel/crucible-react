@@ -54,10 +54,11 @@ export const fetchDiscussion = (groupName, discussionName) => {
 	}
 }
 
-export const fetchUsers = (value, members) => {
+export const fetchUsers = (value, members, addedUsers) => {
 	// debugger
 	return (dispatch) => {
     const memberIds = members.map(m => m.id)
+    const userIds = addedUsers.map(u => u.id)
     debugger
     let configObj = {
       method: "POST",
@@ -68,7 +69,8 @@ export const fetchUsers = (value, members) => {
       }, 
       body: JSON.stringify({
         searchVal: value,
-        memberIds: memberIds
+        memberIds: memberIds,
+        addedUserIds: userIds
       })
     }
     // debugger

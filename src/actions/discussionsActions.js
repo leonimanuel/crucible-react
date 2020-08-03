@@ -282,13 +282,13 @@ export const zeroUnreadCount = (groupId, discussionId) => {
     }
 
     fetch(`${API_ROOT}/groups/${groupId}/discussions/${discussionId}/unread-messages-count`, configObj)
-      .then(resp => resp.json())
-      .then(response => {
-        dispatch({
-          type: "ZERO_UNREAD_COUNT",
-          response
-        })
-      })
+      // .then(resp => resp.json())
+      // .then(response => {
+      //   dispatch({
+      //     type: "ZERO_UNREAD_COUNT",
+      //     response
+      //   })
+      // })
   }
 }
 

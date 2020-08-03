@@ -32,7 +32,7 @@ class editGroupPopup extends Component {
 		})
 
 		if (e.target.name === "memberSearchVal" && e.target.value) {
-			this.props.fetchUsers(e.target.value, this.props.members)
+			this.props.fetchUsers(e.target.value, this.props.members, this.state.addedMembers)
 		} 
 	}
 

@@ -7,6 +7,7 @@
   flex-wrap: wrap;
   justify-content: center;
 
+	/*color: black;*/
   /*height: 100%;*/
   /*background-color: snow;*/
 }
@@ -51,6 +52,15 @@
 	overflow: hidden;
 	/*border: 2px solid yellow;*/
 }
+
+
+/*REVIEWS OVERVIEW*/
+#reviews-overview {
+	background-color: #e8d4b4;
+}
+
+
+
 
 #briefings-overview {
 	background-color: snow
@@ -108,7 +118,7 @@
 }
 
 .score-type-container {
-	border: 2px solid green;
+	/*border: 2px solid green;*/
 
 	text-align: left;
 }

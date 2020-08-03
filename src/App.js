@@ -18,7 +18,7 @@ import SignUp from "./components/authentication/SignUp.js"
 // import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
-import { resetUnreadCount } from "./actions/discussionsActions.js"
+import { resetUnreadCount, zeroUnreadCount } from "./actions/discussionsActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
@@ -28,8 +28,10 @@ class App extends Component {
 
   handleUnreadUpdate = (response) => {
     debugger
-    if (response.sender_id !== this.props.userId) {
-      this.props.resetUnreadCount(response)      
+    if (!response.total_unreads) { //special case for chrome extension
+      if (response.sender_id !== this.props.userId) {
+        this.props.resetUnreadCount(response)      
+      }
     }
   }
 
@@ -44,6 +46,10 @@ class App extends Component {
     debugger
     const { comment } = response;
     this.props.addCommentToDiscussion(comment)   
+  }
+
+  handleDiscussionRead = response => {
+    this.props.zeroUnreadCount(response)
   }
 
   render() {
@@ -67,6 +73,12 @@ class App extends Component {
               channel={{ channel: "CommentsChannel" }}
               onReceived={this.handleReceivedComment} 
             />            
+
+            <ActionCableConsumer 
+              channel={{ channel: "CommentsChannel", user: this.props.userId }}
+              onReceived={this.handleDiscussionRead} 
+            />    
+
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />

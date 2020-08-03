@@ -15,6 +15,7 @@ export const logIn = () => {
       .then(resp => resp.json())
       .then((data) => {
         const user = data.user
+        debugger
         if (user) {
 					dispatch({
 						type: "LOG_IN",

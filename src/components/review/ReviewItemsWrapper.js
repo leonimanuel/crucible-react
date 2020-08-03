@@ -207,6 +207,7 @@ class ReviewItemsWrapper extends Component {
 					{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
 				</div>
 				<div id="pending-reviews-wrapper">
+					<div id="reviews-blanket"></div>
 					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
 				</div>
 			</div>

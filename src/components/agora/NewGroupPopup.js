@@ -27,7 +27,7 @@ class newGroupPopup extends Component {
 		})
 
 		if (e.target.name === "memberSearchVal" && e.target.value) {
-			this.props.fetchUsers(e.target.value, null)
+			this.props.fetchUsers(e.target.value, [], this.state.addedMembers)
 		} 
 	}
 
@@ -73,10 +73,10 @@ class newGroupPopup extends Component {
 			this.setState({groupNameError: "Group name can't be Feed or Guest"})
 		}
 
-		// if (this.state.groupName && this.state.addedMembers.length) {
-		// 	this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
-		// 	this.props.closePopup()
-		// }
+		else if (this.state.groupName && this.state.addedMembers.length) {
+			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+			this.props.closePopup()
+		}
 		
 	}
 
