@@ -18,7 +18,7 @@ import SignUp from "./components/authentication/SignUp.js"
 // import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
-import { resetUnreadCount, zeroUnreadCount } from "./actions/discussionsActions.js"
+import { resetUnreadCount } from "./actions/discussionsActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
@@ -48,8 +48,9 @@ class App extends Component {
     this.props.addCommentToDiscussion(comment)   
   }
 
-  handleDiscussionRead = response => {
-    this.props.zeroUnreadCount(response)
+  handleReadDiscussion = response => {
+    debugger
+    this.props.resetUnreadCount(response)
   }
 
   render() {
@@ -60,12 +61,12 @@ class App extends Component {
           {this.props.userId ?
           <div>
             <ActionCableConsumer 
-              channel={{ channel: "MessageNotificationsChannel" }}
+              channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
               onReceived={this.handleUnreadUpdate} 
             />          
 
             <ActionCableConsumer 
-              channel={{ channel: "MessagesChannel" }}
+              channel={{ channel: "MessagesChannel", user: this.props.userId }}
               onReceived={this.handleReceivedMessage} 
             />
 
@@ -75,8 +76,8 @@ class App extends Component {
             />            
 
             <ActionCableConsumer 
-              channel={{ channel: "CommentsChannel", user: this.props.userId }}
-              onReceived={this.handleDiscussionRead} 
+              channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
+              onReceived={this.handleReadDiscussion} 
             />    
 
             <main>

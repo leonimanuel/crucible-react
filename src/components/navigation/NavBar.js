@@ -48,12 +48,12 @@ class NavBar extends Component {
 				
 				{this.props.user ?
 					<div id="user-ranks">
-						<div><b>Reputability: </b>{this.props.user.reputability_score * 100}%</div>
-						<div><b>Peer Score: </b>{this.props.userReviewScore}</div>
+						{/*<div><b>Reputability: </b>{this.props.user.reputability_score * 100}%</div>
+						<div><b>Peer Score: </b>{this.props.userReviewScore}</div>*/}
 					</div>
 					: null
 				}
-				<button onClick={this.handleEmail}>Email Leon</button>				
+				{/*<button onClick={this.handleEmail}>Email Leon</button>	*/}			
 
 				<div id="profile-options">
 					{ this.props.userName 

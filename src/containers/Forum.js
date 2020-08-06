@@ -51,7 +51,8 @@ const mapStateToProps = state => {
 	return {
 		currentUserId: state.users.userId,
 		discussion: state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId),
-		messages: state.discussions.allMessages.filter(m => m.discussion_id === state.discussions.selectedDiscussionId)
+		messages: state.discussions.allMessages.filter(m => m.discussion_id === state.discussions.selectedDiscussionId),
+		// messagesFetched: state.discussions.fetchedDiscussionMessages
 	}
 }
 

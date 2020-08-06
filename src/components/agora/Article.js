@@ -416,7 +416,6 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	const discussion = state.discussions.allDiscussions.find(d => d.id === state.discussions.selectedDiscussionId)
 	return {
 		discussion: discussion,

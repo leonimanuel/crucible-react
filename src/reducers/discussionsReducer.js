@@ -12,7 +12,8 @@ export default function discussionsReducer(state = {
 	renderForum: false,
 	commentsRendered: false,
 	allInterests: [],
-	discussionGuests: []
+	discussionGuests: [],
+	fetchedDiscussionMessages: []
 	// selectedInterests: []
 }, action) {
 		// console.log("executing discussionsReducer")
@@ -85,17 +86,24 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_MESSAGES_TO_DISCUSSION":
+				debugger
 				return {
 					...state,
-					allMessages: state.allMessages.concat(action.messages)
+					allMessages: state.allMessages.concat(action.messages),
+					fetchedDiscussionMessages: [...state.fetchedDiscussionMessages, action.messages[0].discussion_id]
 				}
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")
-				return {
-					...state,
-					allMessages: [...state.allMessages, action.message]
-				}				
+				if (state.fetchedDiscussionMessages.includes(action.message.discussion_id)) {
+					return {
+						...state,
+						allMessages: [...state.allMessages, action.message]
+					}								
+				} else {
+					return state
+				}
+	
 		
 			case "RESET_DISCUSSION_UNREAD_COUNT":
 				let discussionsClone = _.cloneDeep(state.allDiscussions)
