@@ -87,11 +87,16 @@ export default function discussionsReducer(state = {
 
 			case "ADD_MESSAGES_TO_DISCUSSION":
 				debugger
-				return {
-					...state,
-					allMessages: state.allMessages.concat(action.messages),
-					fetchedDiscussionMessages: [...state.fetchedDiscussionMessages, action.messages[0].discussion_id]
+				if (action.messages.length) {
+					return {
+						...state,
+						allMessages: state.allMessages.concat(action.messages),
+						fetchedDiscussionMessages: [...state.fetchedDiscussionMessages, action.messages[0].discussion_id]
+					}
+				} else {
+					return state
 				}
+
 
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				console.log("adding message to discussion, updating state")

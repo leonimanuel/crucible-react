@@ -29,7 +29,7 @@ class AddGuestsPopup extends Component {
 		})
 
 		if (e.target.value) {
-			this.props.fetchUsers(e.target.value, [...this.props.members, ...this.props.guests])
+			this.props.fetchUsers(e.target.value, [...this.props.members, ...this.props.guests], this.state.addedMembers)
 		} 
 	}
 

@@ -11,7 +11,7 @@ class DiscussionsItem extends Component {
 		return (
 			<div className={`discussion-item ${this.props.class}`}>
 				<Link 
-					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${discussion.slug}`}
+					to={`/groups/${this.props.groupName.split(" ").join("-")}/discussions/${discussion.slug}-${discussion.id}`}
 					style={{ textDecoration: 'none' }} 
 				>
 					<div className="discussion-title">
