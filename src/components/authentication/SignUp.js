@@ -7,11 +7,11 @@ import { API_ROOT } from "../../constants"
 
 class SignUp extends Component {
 	state = {
-		name: "",
-		lastName: "",
-		handle: "",
-		email: "",
-		password: ""
+		name: "Charlie",
+		lastName: "Barley",
+		handle: "chakabaka",
+		email: "billy@aol.com",
+		password: "greenbeans"
 	}
 
 	handleChange = e => {
@@ -42,12 +42,18 @@ class SignUp extends Component {
 		fetch(API_ROOT + "/users", configObj)
 			.then(resp => resp.json())
 			.then(data => {
-				if (data) {
-					// debugger
+				debugger
+				if (data.auth_token) {
 					console.log(data)					
 					localStorage.setItem("token", data.auth_token)
 					this.props.logIn(data.user)
-				} else {
+				} 
+				else if (data.error) {
+					debugger
+					const errorBox = document.getElementById("error-box");
+					errorBox.innerText = data.error;
+				}
+				else {
 					alert(data.error.user_authentication)
 				}
 			})
@@ -59,7 +65,7 @@ class SignUp extends Component {
 		return (
 				<div id="login-wrapper" className="auth-wrapper">
 					<h1>Sign Up</h1>
-					<form onSubmit={this.handleSubmit}>
+					<form id="sign-up-form" onSubmit={this.handleSubmit}>
 						<label>First Name: </label>
 						<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
 						<br/>
@@ -75,6 +81,7 @@ class SignUp extends Component {
 						<label>Password: </label>
 						<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
 						<br/>
+						<div id="error-box" style={{color: "red"}}></div>
 						<input type="submit" value="Sign up"/>
 					</form>
 				</div>					
