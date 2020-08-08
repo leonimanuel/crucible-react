@@ -23,7 +23,6 @@ class Review extends Component {
 }
 
 const mapStateToProps = state => {
-	debugger
 	return {
 		items: state.review.allReviewItems
 	}

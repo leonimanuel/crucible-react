@@ -19,7 +19,7 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">problematic</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">rephrase: </span> {selectedItem.rephrase_content}</div>
-										<div><span className="item-bullet">rephrase: </span> {selectedItem.fact_content}</div>
+										<div><span className="item-bullet">original: </span> {selectedItem.fact_content}</div>
 									</div>
 								</React.Fragment>
 							) 							
@@ -56,7 +56,7 @@ class ReviewItemsWrapper extends Component {
 								<React.Fragment>
 									<div id="review-question">
 										Is this fact taken in context? 
-										<button onClick={this.openSource} >Copy fact and go to source</button>
+										<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
 									</div>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
@@ -74,7 +74,7 @@ class ReviewItemsWrapper extends Component {
 								<React.Fragment>
 									<div id="review-question">
 										Does this fact come from a credible source, or is it attributed to one? 
-										<button onClick={this.openSource}>Copy fact and go to source</button>
+										<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
 									</div>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
@@ -182,18 +182,16 @@ class ReviewItemsWrapper extends Component {
 		})
 	}
 
-	openSource = () => {
-		console.log("opening source", this.props.selectedItem.url)
-		
-		const ogText = document.getElementById("fact-content")
-		const copyText = document.getElementById("holdtext")
-		copyText.innerText = ogText.innerText;
-		
-		copyText.select();
-		document.execCommand("copy");
-		alert("Copied the text: " + copyText.value)
-		// window.open(this.props.selectedItem.url, "_blank")
-	}
+	copyAndOpen = (str, url) => {
+	  const el = document.createElement('textarea');
+	  el.value = str;
+	  document.body.appendChild(el);
+	  el.select();
+	  document.execCommand('copy');
+	  document.body.removeChild(el);
+
+	  window.open(url,'_blank');
+	};
 
 	handleDecision = (e, questionType) => {
 		const decision = e.target.dataset.validity

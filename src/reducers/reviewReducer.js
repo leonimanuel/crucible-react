@@ -8,15 +8,14 @@ export default function userReducer(state = {
 	// console.log("executing userReducer")
 	switch (action.type) {
 		case "ADD_REVIEW_ITEMS":			
-			let itemsArray = [...action.itemsObj.facts, ...action.itemsObj.comments, ...action.itemsObj.facts_comments]
-			// let itemsArray = [action.itemsObj.facts]
+			let itemsArray = [...action.itemsObj.facts, ...action.itemsObj.fact_rephrases, ...action.itemsObj.comments, ...action.itemsObj.facts_comments]
+			// let itemsArray = action.itemsObj.fact_rephrases
 			let shuffledItemsArray = shuffle(itemsArray)
-
-			let firstItem = shuffledItemsArray.shift();
-			let remainingItems = shuffledItemsArray
 			
+			let firstItem = shuffledItemsArray.shift();
+			debugger
+			let remainingItems = shuffledItemsArray
 
-			// debugger
 			return {
 				itemUnderReview: firstItem,
 				allReviewItems: remainingItems

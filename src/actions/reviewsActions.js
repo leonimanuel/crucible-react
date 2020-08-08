@@ -14,6 +14,7 @@ export const fetchItemsForReview = () => {
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
       .then((itemData) => {				
+        // debugger
         const itemsObj = itemData
         // debugger
         dispatch({
