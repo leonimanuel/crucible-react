@@ -42,20 +42,28 @@
 
 .fact-box {
 	text-align: left;
-	font-size: 0.8em;
-
+	font-size: .8em;
 	border-radius: 10px;
 	/*padding: 5px;*/
 	margin-bottom: 5px;
 	overflow: hidden;
+	/*padding: 3px;*/
+	text-align: justify;
 }
 
 .console-fact-content {
 	cursor: grab;
 	background-color: snow;
 	color: black;
-
+	max-height: 5em;
 	border-radius: ;
+	padding: 5px;
+}
+
+.expanded-fact {
+	max-height: 10em;
+	overflow: scroll;
+	/*background-color: blue;*/
 }
 
 #console-window-title {
