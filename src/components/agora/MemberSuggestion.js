@@ -25,7 +25,7 @@ class MemberSuggestion extends Component {
 				onMouseLeave={this.hanldeMouseLeave} 
 				onClick={this.handleClick} >
 				<div className="suggestion-name {}">{this.props.member.name}</div>
-				<div className="suggestion-email">{this.props.member.email}</div>
+				<div className="suggestion-handle">({this.props.member.handle})</div>
 			</div>
 		)
 	}

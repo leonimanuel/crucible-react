@@ -7,9 +7,11 @@ import { API_ROOT } from "../../constants"
 
 class SignUp extends Component {
 	state = {
-		name: "Charlie",
-		email: "charlie@aol.com",
-		password: "greenbeans"
+		name: "",
+		lastName: "",
+		handle: "",
+		email: "",
+		password: ""
 	}
 
 	handleChange = e => {
@@ -30,6 +32,8 @@ class SignUp extends Component {
 			},
 			body: JSON.stringify({
 				name: this.state.name,
+				lastName: this.state.lastName,
+				handle: this.state.handle,
 				email: this.state.email,
 				password: this.state.password
 			})
@@ -56,16 +60,22 @@ class SignUp extends Component {
 				<div id="login-wrapper" className="auth-wrapper">
 					<h1>Sign Up</h1>
 					<form onSubmit={this.handleSubmit}>
-						<label>Name: </label>
-						<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+						<label>First Name: </label>
+						<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
 						<br/>
+						<label>Last Name: </label>
+						<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
+						<br/>
+						<label>Handle: </label>
+						<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
+						<br/>						
 						<label>Email: </label>
-						<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
+						<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>
 						<br/>
 						<label>Password: </label>
-						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+						<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
 						<br/>
-						<input type="submit" value="Log in"/>
+						<input type="submit" value="Sign up"/>
 					</form>
 				</div>					
 		)
