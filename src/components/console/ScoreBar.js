@@ -10,10 +10,13 @@ class ScoreBar extends Component {
 	}
 
 	render() {
-		// debugger
-		const greenWidth = `${this.props.greenScore * 10}%`
-		const yellowWidth = `${(10 - (this.props.greenScore + this.props.redScore)) * 10}%`
-		const redWidth = `${this.props.redScore * 10}%`
+		const scoresTotal = this.props.greenScore + this.props.redScore
+		const greenShare = this.props.greenScore / scoresTotal
+		const redShare = this.props.redScore / scoresTotal
+		const greenWidth = `${greenShare * 100}%`
+		const yellowWidth = `${(1 - (greenShare + redShare)) * 100}%`
+		const redWidth = `${redShare * 100}%`
+		debugger
 		return (
 			<div className={`score-bar ${this.state.mounted ? "mounted-score-bar" : null}`} >
 				<div className="score-color green-score" style={{width: greenWidth}}></div>

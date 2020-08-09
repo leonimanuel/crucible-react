@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
 import { addCommentToDiscussion } from "./actions/discussionsActions.js"
+import { resetItemUnderReview } from "./actions/reviewsActions.js"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import SideNav from "./containers/SideNav.js"
@@ -53,6 +54,11 @@ class App extends Component {
     this.props.resetUnreadCount(response)
   }
 
+  handleReviewedItem = response => {
+    console.log(response.total_votes.accuracy)
+    this.props.resetItemUnderReview(response)
+  }
+
   render() {
     return (
       <Router>
@@ -80,6 +86,11 @@ class App extends Component {
               onReceived={this.handleReadDiscussion} 
             />    
 
+            <ActionCableConsumer 
+              channel={{ channel: "ReviewsChannel", user: this.props.userId }}
+              onReceived={this.handleReviewedItem} 
+            />    
+
             <main>
               <SideNav />
               <Route exact path="/" component={Home} />
@@ -100,7 +111,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion })(App);
+export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview })(App);
 
 
 

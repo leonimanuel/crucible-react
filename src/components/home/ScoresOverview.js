@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import ScoreBar from "../console/ScoreBar.js"
 
 class ScoresOverview extends Component {
 	componentDidMount() {
@@ -29,7 +30,8 @@ class ScoresOverview extends Component {
 				<div className="overview-content-container" id="overview-scores-container">
 					<div className="score-type-container" id="reputability-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reputability</div>
-						<div><span>Accuracy: {this.props.reputabilityScore * 100}%</span></div>
+						<div id="accuracy-scorebar"><span>Accuracy: {this.props.accuracyScore}%</span></div>
+						<ScoreBar greenScore={this.props.totalUpvotes} redScore={this.props.totalDownvotes}/>
 					</div>
 					
 					<div className="score-type-container" id="review-scores-overview-container">
@@ -66,10 +68,15 @@ class ScoresOverview extends Component {
 const mapStateToProps = state => {
 	return {
 		reputabilityScore: state.users.userReputabilityScore,
+		accuracyScore: state.users.userAccuracyScore,
 		reviewScore: state.users.userReviewScore,
 		dailyReviews: state.users.dailyReviews,
-		dailyStreak: state.users.dailyStreak
+		dailyStreak: state.users.dailyStreak,
+		totalUpvotes: state.users.totalUpvotes,
+		totalDownvotes: state.users.totalDownvotes				
+
 	}
 }
 
 export default connect(mapStateToProps)(ScoresOverview);
+
