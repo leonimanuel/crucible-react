@@ -56,7 +56,6 @@ class App extends Component {
 
   handleReviewedItem = response => {
     debugger
-    // console.log(response.total_votes.accuracy)
     if (response.daily_reviews) {
       this.props.resetItemUnderReview(response)      
     } else if (response.total_votes) {

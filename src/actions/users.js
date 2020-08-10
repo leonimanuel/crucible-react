@@ -48,7 +48,7 @@ export const logIn = () => {
             members
           })
         
-          const itemsObj = data.review[0]
+          const itemsObj = data.review
           dispatch({
             type: "ADD_REVIEW_ITEMS",
             itemsObj

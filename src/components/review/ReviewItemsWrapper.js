@@ -23,6 +23,9 @@ class ReviewItemsWrapper extends Component {
 									</div>
 								</React.Fragment>
 							) 							
+						} else {
+							debugger
+							this.chooseQuestion(this.props.selectedItem)
 						}
 						break
 					
@@ -33,57 +36,56 @@ class ReviewItemsWrapper extends Component {
 	
 			case "Fact":
 				const factQuestionTypes = ["logic", "context", "credibility"]
-				let selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+				let selectedFactQuestionType
+				if (selectedItem.logic_upvotes + selectedItem.logic_downvotes < 10) {
+					selectedFactQuestionType = "logic"
+				} else if (selectedItem.context_upvotes + selectedItem.context_downvotes) {
+					selectedFactQuestionType = "context"
+				} else {
+					selectedFactQuestionType = "credibility"
+				}
+				// debugger
 				switch(selectedFactQuestionType) {
 					case "logic":
-						const logicTotal = selectedItem.logic_upvotes + selectedItem.logic_downvotes
-						if (logicTotal < 10) {
-							return (
-								<React.Fragment>
-									<div id="review-question">Is this logically a fact?</div>
-									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
-									<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
-									<div id="selected-item"><span className="item-bullet">fact: </span>{selectedItem.content}</div>
-								</React.Fragment>
-							) 
-						}
+						return (
+							<React.Fragment>
+								<div id="review-question">Is this logically a fact?</div>
+								<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
+								<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
+								<div id="selected-item"><span className="item-bullet">fact: </span>{selectedItem.content}</div>
+							</React.Fragment>
+						) 
 					break
 
 					case "context": 
-						const contextTotal = selectedItem.context_upvotes + selectedItem.context_downvotes
-						if (contextTotal < 10) {
-							return (
-								<React.Fragment>
-									<div id="review-question">
-										Is this fact taken in context? 
-										<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
-									</div>
-									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
-									<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
-									<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
-									<textarea id="holdtext" style={{display: "none"}}></textarea>
-								</React.Fragment>
-							)
-						} 
+						return (
+							<React.Fragment>
+								<div id="review-question">
+									Is this fact taken in context? 
+									<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
+								</div>
+								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
+								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
+								<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
+								<textarea id="holdtext" style={{display: "none"}}></textarea>
+							</React.Fragment>
+						)
 					break
 
 					case "credibility": 
-						const credibilityTotal = selectedItem.credibility_upvotes + selectedItem.credibility_downvotes
-						if (credibilityTotal < 10) {
-							return (
-								<React.Fragment>
-									<div id="review-question">
-										Does this fact come from a credible source, or is it attributed to one? 
-										<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
-									</div>
-									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
-									<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
-									<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
-									<textarea id="holdtext" style={{display: "none"}}></textarea>									
-								</React.Fragment>
-							)
-						} 
-						break
+						return (
+							<React.Fragment>
+								<div id="review-question">
+									Does this fact come from a credible source, or is it attributed to one? 
+									<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
+								</div>
+								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
+								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
+								<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
+								<textarea id="holdtext" style={{display: "none"}}></textarea>									
+							</React.Fragment>
+						)
+					break
 				
 				default: 
 					return <div>CAN'T GENERATE REVIEW</div>				
@@ -108,6 +110,9 @@ class ReviewItemsWrapper extends Component {
 									</div>
 								</React.Fragment>									
 							)
+						} else {
+							debugger
+							this.chooseQuestion(this.props.selectedItem)
 						}
 						break
 
@@ -134,6 +139,9 @@ class ReviewItemsWrapper extends Component {
 									</div>
 								</React.Fragment>									
 							)
+						} else {
+							debugger
+							this.chooseQuestion(this.props.selectedItem)
 						}
 						break
 
@@ -206,7 +214,7 @@ class ReviewItemsWrapper extends Component {
 				</div>
 				<div id="pending-reviews-wrapper">
 					<div id="reviews-blanket"></div>
-					{this.props.items ? this.renderReviewItems(this.props.items.filter(item => item.subject_id !== this.props.userId)) : null}							
+					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
 				</div>
 			</div>
 

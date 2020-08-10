@@ -1,6 +1,6 @@
 import { API_ROOT } from "../constants"
 
-export const fetchItemsForReview = (userId) => {
+export const fetchItemsForReview = () => {
 	return (dispatch) => {    
     let configObj = {
       method: "GET",
@@ -13,11 +13,11 @@ export const fetchItemsForReview = (userId) => {
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
       .then((itemData) => {				
+        debugger
         const itemsObj = itemData
         dispatch({
 					type: "ADD_REVIEW_ITEMS",
 					itemsObj,
-          userId
 				})
      })
       .catch(err => alert(err.message))
