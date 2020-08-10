@@ -9,6 +9,8 @@ export default function userReducer(state = {
 	switch (action.type) {
 		case "ADD_REVIEW_ITEMS":			
 			let itemsArray = [...action.itemsObj.facts, ...action.itemsObj.comments, ...action.itemsObj.facts_comments]
+			debugger
+			itemsArray = itemsArray.filter(item => item.subject_id != action.userId)
 			// let itemsArray = action.itemsObj.fact_rephrases
 			let shuffledItemsArray = shuffle(itemsArray)
 			

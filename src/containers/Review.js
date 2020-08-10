@@ -8,7 +8,7 @@ import { fetchItemsForReview } from "../actions/reviewsActions.js"
 
 class Review extends Component {
 	componentDidMount() {
-		this.props.fetchItemsForReview()
+		this.props.fetchItemsForReview(this.props.userId)
 	}
 
 	render() {
@@ -24,7 +24,8 @@ class Review extends Component {
 
 const mapStateToProps = state => {
 	return {
-		items: state.review.allReviewItems
+		items: state.review.allReviewItems,
+		userId: state.users.userId
 	}
 }
 

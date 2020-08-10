@@ -54,7 +54,6 @@ class DiscussionsList extends Component {
 				return <DiscussionItem key={discussion.id} discussion={discussion} groupName={this.props.group.name} class="sidenav-item"/>
 			})			
 		} else {
-			debugger
 			return <Redirect to={"/groups/interests"} />
 		}
 	}

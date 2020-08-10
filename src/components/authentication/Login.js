@@ -8,8 +8,8 @@ import "./auth.css"
 
 class Login extends Component {
 	state = {
-		email: "billy@aol.com",
-		password: "greenbeans"
+		email: "",
+		password: ""
 	}
 
 	handleChange = e => {

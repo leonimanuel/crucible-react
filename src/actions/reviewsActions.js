@@ -1,6 +1,6 @@
 import { API_ROOT } from "../constants"
 
-export const fetchItemsForReview = () => {
+export const fetchItemsForReview = (userId) => {
 	return (dispatch) => {    
     let configObj = {
       method: "GET",
@@ -10,16 +10,14 @@ export const fetchItemsForReview = () => {
         Authorization: localStorage.getItem("token")
       }
     }
-    // debugger
     fetch(API_ROOT + `/review`, configObj)
       .then(resp => resp.json())
       .then((itemData) => {				
-        // debugger
         const itemsObj = itemData
-        // debugger
         dispatch({
 					type: "ADD_REVIEW_ITEMS",
-					itemsObj
+					itemsObj,
+          userId
 				})
      })
       .catch(err => alert(err.message))
@@ -43,7 +41,7 @@ export const submitDecision = (selectedItem, questionType, decision) => {
         subjectId: selectedItem.subject_id
       })
     }
-    // debugger
+    debugger
     fetch(API_ROOT + `/review`, configObj)
      //  .then(resp => resp.json())
      //  .then((response) => {

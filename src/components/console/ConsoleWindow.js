@@ -13,7 +13,7 @@ class ConsoleWindow extends Component {
 		return (
 			<div id="console-window">
 				<div id="console-window-title">{this.props.parentTopic ? this.props.parentTopic.name : "NONE"}</div>
-					<ConsoleTopicsList topics={this.props.parentTopic.children} />
+					<ConsoleTopicsList topics={this.props.parentTopic.children} parentId={this.props.parentTopic.id}/>
 					<ConsoleFactsList  />
 			</div>
 		)			

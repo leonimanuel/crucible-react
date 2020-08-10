@@ -52,7 +52,6 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_GUESTS":
-				debugger
 				return {
 					...state,
 					discussionGuests: action.discussion.guests
@@ -66,7 +65,6 @@ export default function discussionsReducer(state = {
 				}
 
 			case "ADD_DISCUSSION_FAIL":
-				debugger
 				return {
 					...state,
 					loadingNewDiscussion: false

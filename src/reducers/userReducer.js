@@ -52,18 +52,17 @@ export default function userReducer(state = {
 			return {
 				...state,
 				userReviewScore: state.userReviewScore + 10,
-				dailyReviews: action.response.daily_reviews,
-				userAccuracyScore: action.response.total_votes.accuracy,
-				totalUpvotes: action.response.tallies.total_upvotes,
-				totalDownvotes: action.response.tallies.total_downvotes,				
-
+				dailyReviews: action.response.daily_reviews
 			}
 
-		// case "UPDATE_ACCURACY_SCORE":
-		// 	return {
-		// 		...state,
-		// 		userAccuracyScore: action.response.accuracy
-		// 	}
+		case "UPDATE_ACCURACY_SCORE":
+			debugger
+			return {
+				...state,
+				userAccuracyScore: action.response.total_votes.accuracy,
+				totalUpvotes: action.response.total_votes.tallies.total_upvotes,
+				totalDownvotes: action.response.total_votes.tallies.total_downvotes
+			}
 
 		default:
 			return state;

@@ -16,7 +16,7 @@ class ScoreBar extends Component {
 		const greenWidth = `${greenShare * 100}%`
 		const yellowWidth = `${(1 - (greenShare + redShare)) * 100}%`
 		const redWidth = `${redShare * 100}%`
-		debugger
+		// debugger
 		return (
 			<div className={`score-bar ${this.state.mounted ? "mounted-score-bar" : null}`} >
 				<div className="score-color green-score" style={{width: greenWidth}}></div>

@@ -206,7 +206,7 @@ class ReviewItemsWrapper extends Component {
 				</div>
 				<div id="pending-reviews-wrapper">
 					<div id="reviews-blanket"></div>
-					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
+					{this.props.items ? this.renderReviewItems(this.props.items.filter(item => item.subject_id !== this.props.userId)) : null}							
 				</div>
 			</div>
 
@@ -217,7 +217,8 @@ class ReviewItemsWrapper extends Component {
 const mapStateToProps = state => {
 	return {
 		selectedItem: state.review.itemUnderReview,
-		items: state.review.allReviewItems
+		items: state.review.allReviewItems,
+		userId: state.users.userId
 	}
 }
 

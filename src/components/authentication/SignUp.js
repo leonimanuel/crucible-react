@@ -7,11 +7,11 @@ import { API_ROOT } from "../../constants"
 
 class SignUp extends Component {
 	state = {
-		name: "Charlie",
-		lastName: "Barley",
-		handle: "chakabaka",
-		email: "billy@aol.com",
-		password: "greenbeans"
+		name: "",
+		lastName: "",
+		handle: "",
+		email: "",
+		password: ""
 	}
 
 	handleChange = e => {

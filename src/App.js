@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
 import { addCommentToDiscussion } from "./actions/discussionsActions.js"
-import { resetItemUnderReview } from "./actions/reviewsActions.js"
+import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 
 import SideNav from "./containers/SideNav.js"
@@ -55,8 +55,14 @@ class App extends Component {
   }
 
   handleReviewedItem = response => {
-    console.log(response.total_votes.accuracy)
-    this.props.resetItemUnderReview(response)
+    debugger
+    // console.log(response.total_votes.accuracy)
+    if (response.daily_reviews) {
+      this.props.resetItemUnderReview(response)      
+    } else if (response.total_votes) {
+      this.props.updateAccuracyScore(response)
+    }
+
   }
 
   render() {
@@ -111,7 +117,7 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview })(App);
+export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore })(App);
 
 
 

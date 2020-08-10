@@ -96,7 +96,7 @@ export const addNewDiscussion = (groupId, articleURL) => {
         if (!resp.ok) {
           // throw new Error("SOMETHING WENT WRONG")
           dispatch({type: "ADD_DISCUSSION_FAIL"})
-          alert("something went wrong, please try again later")
+          alert("something's, please try again later")
         } else {
           return resp.json()
         }        
@@ -109,12 +109,12 @@ export const addNewDiscussion = (groupId, articleURL) => {
           })    
         }
       })
-      .catch(err => {
-        // alert(err.message)
-        debugger
-        dispatch({type: "ADD_DISCUSSION_FAIL"})
-        alert("something went wrong, please try again later")
-      })
+      // .catch(err => {
+      //   // alert(err.message)
+      //   debugger
+      //   dispatch({type: "ADD_DISCUSSION_FAIL"})
+      //   alert("something went wrong, please try again later")
+      // })
   }
 }
 
