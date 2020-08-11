@@ -34,7 +34,6 @@ class Interests extends Component {
 }
 
 const mapStateToProps = state => {
-	// debugger
 	return {
 		issues: state.discussions.allInterests.filter(interest => interest.section === "issues"),
 		currentEvents: state.discussions.allInterests.filter(interest => interest.section === "current events")

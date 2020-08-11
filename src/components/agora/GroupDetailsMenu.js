@@ -12,11 +12,13 @@ import EditGroupPopup from "./EditGroupPopup.js"
 
 class GroupDetailsMenu extends Component {
 	state = {
-		renderEditGroupPopup: false
+		renderEditGroupPopup: false,
+		renderInterests: false
 	}
 
 	openInterests = () => {
-		return <Redirect to={"/groups/interests"} />
+		debugger
+		this.setState({renderInterests: true})
 	}
 
 
@@ -60,6 +62,7 @@ class GroupDetailsMenu extends Component {
 					: 
 					<div>
 						<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
+						{this.state.renderInterests ? <Redirect to={"/groups/interests"} /> : null}
 					</div> 
 				}
 				<DiscussionsList group={group} />
