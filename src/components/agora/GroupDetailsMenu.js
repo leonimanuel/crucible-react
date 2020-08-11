@@ -17,7 +17,6 @@ class GroupDetailsMenu extends Component {
 	}
 
 	openInterests = () => {
-		debugger
 		this.setState({renderInterests: true})
 	}
 

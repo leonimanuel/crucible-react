@@ -31,7 +31,7 @@ class ScoresOverview extends Component {
 					<div className="score-type-container" id="reputability-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reputability</div>
 						<div id="accuracy-scorebar"><span>Accuracy: {this.props.accuracyScore}%</span></div>
-						<ScoreBar greenScore={this.props.totalUpvotes} redScore={this.props.totalDownvotes}/>
+						<ScoreBar greenScore={this.props.totalUpvotes} redScore={this.props.totalDownvotes} type="total"/>
 					</div>
 					
 					<div className="score-type-container" id="review-scores-overview-container">

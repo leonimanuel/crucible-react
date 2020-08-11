@@ -67,7 +67,7 @@ class FactDetailsPane extends Component {
 
 				<div className="fact-score">
 					<div className="fact-score-title">Credibility:</div>
-					<ScoreBar greenScore={fact.credibility_upvotes} redScore={fact.credibility_downvotes} />
+					<ScoreBar greenScore={fact.credibility_upvotes} redScore={fact.credibility_downvotes} type="individual" />
 				</div>
 			</div>
 		)
