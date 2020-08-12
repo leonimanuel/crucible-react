@@ -99,7 +99,7 @@ export default function discussionsReducer(state = {
 			case "ADD_MESSAGE_TO_DISCUSSION":
 				debugger
 				console.log("adding message to discussion, updating state")
-				if (state.fetchedDiscussionMessages.includes(action.message.discussion_id) || action.message.user_id === action.userId) {
+				if (state.fetchedDiscussionMessages.includes(action.message.discussion_id) || (action.message.user_id === action.userId && action.message.message_type !== "comment")) {
 					debugger
 					return {
 						...state,

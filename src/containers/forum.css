@@ -107,10 +107,10 @@
 	margin: 10px;
 	justify-content: space-between;
 	align-items: flex-end;
+	max-width: 100%;
 }
 
 #message-input-div {
-	background-color: white;
 	border-radius: 5px;
 	/*width: 70%;*/
 	flex: 1;
@@ -118,6 +118,11 @@
 	text-align: left;
   outline: none;
   padding: 3px;
+
+	max-width: 100px;
+	background-color: white;
+	font-size: 1em;
+	/*overflow-wrap: break-word;  */
 }
 
 #message-submit-button {
@@ -132,6 +137,22 @@
 .comment-message {
 	border: 2px solid white;
 	cursor: pointer;
+	position: relative;
+	max-height: 3em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+.comment-label {
+	position: absolute;
+	top: 0;
+	left: 10px;
+	font-weight: bold;
+	font-size: 0.75em;
+}
 
+.comment-click-hint {
+	color: silver;
+	font-size: 0.7em;
+}

@@ -61,7 +61,11 @@ class ForumMessages extends Component {
 										? <div className="message-user-name">{m.user.name}</div> 
 										: null
 									}
-									<div className={`message-text ${m.message_type === "comment" ? "comment-message" : null}`}>{m.text}</div>
+									<div className={`message-text ${m.message_type === "comment" ? "comment-message" : null}`}>
+										{m.text}
+										<span className="comment-label">comment</span>
+									</div>
+									{m.message_type === "comment" ? <div className="comment-click-hint">click to view</div> : null}
 								</div>
 							)
 						})
