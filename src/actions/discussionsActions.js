@@ -118,10 +118,11 @@ export const addNewDiscussion = (groupId, articleURL) => {
   }
 }
 
-export const addMessageToDiscussion = message => {
+export const addMessageToDiscussion = (message, userId) => {
   return {
     type: "ADD_MESSAGE_TO_DISCUSSION",
-    message
+    message,
+    userId
   }
 }
 

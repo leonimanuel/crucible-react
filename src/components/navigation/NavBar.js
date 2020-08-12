@@ -7,12 +7,8 @@ import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
-	componentDidMount() {
-		// console.log(this.props.isLoggedIn)		
-	}
-
 	handleLogOut = () => {
-		this.props.logOut()
+		this.props.logOut();
 		localStorage.removeItem("token")
 	}
 

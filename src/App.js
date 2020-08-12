@@ -40,7 +40,7 @@ class App extends Component {
     debugger
     console.log("handling received message")
     const { message } = response;
-    this.props.addMessageToDiscussion(message)
+    this.props.addMessageToDiscussion(message, this.props.userId)
   }
 
   handleReceivedComment = response => {
@@ -106,9 +106,8 @@ class App extends Component {
                 </main>
               </div>
             : 
-              <Redirect to="welcome"/>
+              <Route exact path="/" component={LandingPage} />
           }            
-            <Route path="/welcome" ><LandingPage/></Route>
             <Route path="/login"><Login/></Route>
             <Route path="/signup"><SignUp/></Route> 
 
