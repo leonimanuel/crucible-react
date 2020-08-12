@@ -60,6 +60,7 @@ class ScoresOverview extends Component {
 						</div>
 					</div>
 				</div>
+				{/*<div id="scores-backsplash"></div>*/}
 			</div>			
 		)
 	}

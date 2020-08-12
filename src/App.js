@@ -6,7 +6,7 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
 import { addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
-// import { Nav, NavItem, NavLink } from 'reactstrap';
+import LandingPage from "./components/home/LandingPage.js"
 
 import SideNav from "./containers/SideNav.js"
 import Home from "./containers/Home.js"
@@ -69,44 +69,46 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          {this.props.userId ?
-          <div>
-            <ActionCableConsumer 
-              channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
-              onReceived={this.handleUnreadUpdate} 
-            />          
+          {this.props.userId 
+            ?
+              <div>
+                <ActionCableConsumer 
+                  channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
+                  onReceived={this.handleUnreadUpdate} 
+                />          
 
-            <ActionCableConsumer 
-              channel={{ channel: "MessagesChannel", user: this.props.userId }}
-              onReceived={this.handleReceivedMessage} 
-            />
+                <ActionCableConsumer 
+                  channel={{ channel: "MessagesChannel", user: this.props.userId }}
+                  onReceived={this.handleReceivedMessage} 
+                />
 
-            <ActionCableConsumer 
-              channel={{ channel: "CommentsChannel" }}
-              onReceived={this.handleReceivedComment} 
-            />            
+                <ActionCableConsumer 
+                  channel={{ channel: "CommentsChannel" }}
+                  onReceived={this.handleReceivedComment} 
+                />            
 
-            <ActionCableConsumer 
-              channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
-              onReceived={this.handleReadDiscussion} 
-            />    
+                <ActionCableConsumer 
+                  channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
+                  onReceived={this.handleReadDiscussion} 
+                />    
 
-            <ActionCableConsumer 
-              channel={{ channel: "ReviewsChannel", user: this.props.userId }}
-              onReceived={this.handleReviewedItem} 
-            />    
+                <ActionCableConsumer 
+                  channel={{ channel: "ReviewsChannel", user: this.props.userId }}
+                  onReceived={this.handleReviewedItem} 
+                />    
 
-            <main>
-              <SideNav />
-              <Route exact path="/" component={Home} />
-              <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
-              <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
-              <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
-            </main>
-          </div>
-
-          : null
-          }
+                <main>
+                  <SideNav />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
+                  <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
+                  <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
+                </main>
+              </div>
+            : 
+              <Redirect to="welcome"/>
+          }            
+            <Route path="/welcome" ><LandingPage/></Route>
             <Route path="/login"><Login/></Route>
             <Route path="/signup"><SignUp/></Route> 
 
