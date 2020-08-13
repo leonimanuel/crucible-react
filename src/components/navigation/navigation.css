@@ -1,17 +1,12 @@
 #nav-wrapper {
   display: flex;
   justify-content: space-between;
-  /*border: 1px solid black;*/
-  /*background-color: #44558f;*/
-  /*background-color: gold;*/
+  background-color: #0f4c75;
   height: 5vh;
-  /*max-height: 10vh;*/
-  /*background-image: linear-gradient(to bottom right, #ADD8E6, #fff);*/
-  /*border-bottom: 4px solid gold;*/
-  border-bottom: 2px solid black;
   align-items: flex-start;
-  margin: 0 20px;
-
+  /*margin: 0 20px;*/
+  /*margin-bottom: 10px;*/
+  border-bottom: 4px solid gold;
 }
 
 #user-ranks {
@@ -29,6 +24,7 @@
   flex-direction: column;
   /*border: 2px solid red;*/
   cursor: default;
+  color:;
 }
 
 .dropdown-content {
@@ -41,12 +37,9 @@
   display: block;
 }
 
-.dropdown-item {
-  cursor: pointer;
-}
-
 #menu-options, #profile-options {
-  margin: auto 0;
+  /*margin: auto 0;*/
+  margin: 0 20px;
   font-weight: bold;
   font-family: 'Roboto Mono', monospace;
   margin-top: 5px;
@@ -54,11 +47,17 @@
 
 .nav-link {
 	/*margin: 0 10px;*/
-	color: black;
+	color: white;
   text-decoration: none;
   /*border: 1px solid purple;*/
   padding: 0 3px;
 }
+
+.dropdown-item {
+  cursor: pointer;
+  color: black;
+}
+
 
 .nav-link:hover {
   background-color: black;

@@ -1,6 +1,6 @@
 #groups-wrapper {
   width: 100%;
-	
+  margin-top: 10px;	
   display: flex;
   /*flex-direction: column;*/
 	justify-content: center;
@@ -38,7 +38,7 @@
   border-radius: 10px;
 	width: 95%;
   /*max-width: 1000px;*/
-	height: 100%;
+	height: 95%;
 	/*overflow: scroll;*/
   /*font-family: Georgia, sans-serif;*/
   font-family: 'Abel', sans-serif; 
@@ -141,7 +141,7 @@
 
 #article-content {
   margin-top: 30px;
-  max-height: 75%;
+  max-height: 80%;
   overflow: scroll;
   font-size: 1.2em;
 	text-align: justify;
