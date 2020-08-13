@@ -40,7 +40,6 @@ class Login extends Component {
 			.then(resp => resp.json())
 			.then(data => {
 				if (data) {
-					// debugger
 					console.log(data)					
 					localStorage.setItem("token", data.auth_token)
 					this.props.logIn(data.user)

@@ -93,28 +93,32 @@ export const addNewDiscussion = (groupId, articleURL) => {
     // debugger
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
       .then(resp => {
-        if (!resp.ok) {
+        if (resp.status === 424) {
+          debugger
           // throw new Error("SOMETHING WENT WRONG")
           dispatch({type: "ADD_DISCUSSION_FAIL"})
-          alert("something's, please try again later")
+          alert("Please select at least one interest to get article recommendations")
         } else {
           return resp.json()
         }        
       })
       .then((discussion) => {
-        if (discussion) {
+        debugger
+        if (discussion.article) {
           dispatch({ 
             type: 'ADD_NEW_DISCUSSION', 
             discussion
           })    
+        } else {
+          dispatch({type: "ADD_DISCUSSION_FAIL"})
         }
       })
-      // .catch(err => {
-      //   // alert(err.message)
-      //   debugger
-      //   dispatch({type: "ADD_DISCUSSION_FAIL"})
-      //   alert("something went wrong, please try again later")
-      // })
+      .catch(err => {
+        // alert(err.message)
+        debugger
+        dispatch({type: "ADD_DISCUSSION_FAIL"})
+        alert("something went wrong, please try again later")
+      })
   }
 }
 

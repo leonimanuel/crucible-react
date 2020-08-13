@@ -43,13 +43,11 @@ class SignUp extends Component {
 		fetch(API_ROOT + "/users", configObj)
 			.then(resp => resp.json())
 			.then(data => {
-				debugger
 				if (data.message) {
 					localStorage.setItem("token", data.auth_token)
 					this.setState({submitted: "success"})
 				} 
 				else if (data.error) {
-					debugger
 					const errorBox = document.getElementById("error-box");
 					errorBox.innerText = data.error;
 				}

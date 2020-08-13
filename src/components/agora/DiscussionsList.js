@@ -68,7 +68,7 @@ class DiscussionsList extends Component {
 			<div id="group-discussions-list" className="sidenav-list">
 				<div className="list-title-wrapper" id="discussions-list-title-wrapper">
 					<div className="list-title">Discussions</div>
-					<AddListItemButton id="new-discussion-button" buttonAction={this.handleNewDiscussion}/>
+					{this.props.selectedGroupName === "Guest" ? null : <AddListItemButton id="new-discussion-button" buttonAction={this.handleNewDiscussion}/>}
 				</div>
 				<div className="sidenav-list-contents">
 					{this.props.discussionLoading 

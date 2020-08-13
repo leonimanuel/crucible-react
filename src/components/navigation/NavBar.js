@@ -39,7 +39,7 @@ class NavBar extends Component {
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">											
-					<Link className="nav-link section-nav-link" to="/review" >Review</Link>
+					<Link className="nav-link section-nav-link" to="/" >Home</Link>
 				</div>
 				
 				{this.props.user ?
