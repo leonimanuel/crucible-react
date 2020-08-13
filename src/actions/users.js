@@ -10,7 +10,7 @@ export const logIn = () => {
         Authorization: localStorage.getItem("token")
       }
     }
-
+    debugger
     fetch(API_ROOT + `/users/GETUSER`, configObj)
       .then(resp => resp.json())
       .then((data) => {
@@ -71,6 +71,7 @@ export const logOut = () => {
 		type: "LOG_OUT"		
 	}
 }
+
 
 // export const addTopics = (topics) => {
 // 	return {

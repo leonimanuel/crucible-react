@@ -11,7 +11,8 @@ class SignUp extends Component {
 		lastName: "",
 		handle: "",
 		email: "",
-		password: ""
+		password: "",
+		submitted: ""
 	}
 
 	handleChange = e => {
@@ -43,10 +44,9 @@ class SignUp extends Component {
 			.then(resp => resp.json())
 			.then(data => {
 				debugger
-				if (data.auth_token) {
-					console.log(data)					
+				if (data.message) {
 					localStorage.setItem("token", data.auth_token)
-					this.props.logIn(data.user)
+					this.setState({submitted: "success"})
 				} 
 				else if (data.error) {
 					debugger
@@ -64,26 +64,33 @@ class SignUp extends Component {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
 				<div id="login-wrapper" className="auth-wrapper">
-					<h1>Sign Up</h1>
-					<form id="sign-up-form" onSubmit={this.handleSubmit}>
-						<label>First Name: </label>
-						<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
-						<br/>
-						<label>Last Name: </label>
-						<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
-						<br/>
-						<label>Handle: </label>
-						<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
-						<br/>						
-						<label>Email: </label>
-						<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>
-						<br/>
-						<label>Password: </label>
-						<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
-						<br/>
-						<div id="error-box" style={{color: "red"}}></div>
-						<input type="submit" value="Sign up"/>
-					</form>
+					{!this.state.submitted 
+						? 
+							<React.Fragment>
+								<h1>Sign Up</h1>
+								<form id="sign-up-form" onSubmit={this.handleSubmit}>
+									<label>First Name: </label>
+									<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
+									<br/>
+									<label>Last Name: </label>
+									<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
+									<br/>
+									<label>Handle: </label>
+									<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
+									<br/>						
+									<label>Email: </label>
+									<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>
+									<br/>
+									<label>Password: </label>
+									<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
+									<br/>
+									<div id="error-box" style={{color: "red"}}></div>
+									<input type="submit" value="Sign up"/>
+								</form>
+							</React.Fragment>
+						:
+							<div>Please check your email for a link to verify your account</div>
+					}
 				</div>					
 		)
 	}

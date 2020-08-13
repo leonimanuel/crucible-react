@@ -16,6 +16,7 @@ import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
+import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
 // import {API_ROOT} from "./constants"
 
 import { logIn } from "./actions/users.js"
@@ -110,6 +111,10 @@ class App extends Component {
           }            
             <Route path="/login"><Login/></Route>
             <Route path="/signup"><SignUp/></Route> 
+            <Route 
+              path="/:token/confirm-email"
+              render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+            </Route> 
 
         </div>      
       </Router>
