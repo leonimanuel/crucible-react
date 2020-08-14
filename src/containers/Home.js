@@ -9,6 +9,9 @@ import LandingPage from "../components/home/LandingPage.js"
 
 class Home extends Component {
 	render() {
+		let blob = document.getElementById("blob")
+		blob.style.width = "80%"
+		blob.style.height = "80%"
 		return (
 			<div id="home-wrapper">
 				<DiscussionsOverview />

@@ -5,6 +5,7 @@ import ScoreBar from "../console/ScoreBar.js"
 class ScoresOverview extends Component {
 	componentDidMount() {
 		this.updateDailyReviewsBar(500)
+		this.updateDailyFactsCommentsBar(200)
 	}
 
 	updateDailyReviewsBar = (delay) => {
@@ -20,14 +21,41 @@ class ScoresOverview extends Component {
 		}, delay)					
 	}
 
+	updateDailyFactsCommentsBar = (delay)	=> {
+		setTimeout(() => {
+			let outerScoreBar = document.getElementById("daily-facts-comments-bar")
+			let scoreBar = document.getElementById("shadow-daily-facts-comments-bar");
+			debugger
+			if (this.props.dailyFactsComments < 3) {
+				scoreBar.style.width = `${this.props.dailyFactsComments * 33.33}px`
+			} else {
+				scoreBar.style.width = "100px"
+				outerScoreBar.style.border = "2px solid gold"
+			}			
+		}, delay)		
+	}
+
 	render() {
-		if (document.getElementById("shadow-daily-reviews-bar")) {
-			this.updateDailyReviewsBar(200)
-		}
 		return (
 			<div id="scores-overview" className="overview-wrapper">
 				<div className="overview-header" id="scores-overview-header">Status</div>
 				<div className="overview-content-container" id="overview-scores-container">
+					
+					<div className="score-type-container" id="reach-scores-overview-container">
+						<div className="score-type-header" id="reach-score-header">Reach</div>
+						<div class="scores-content" id="reach-scores-content">
+							<div>Daily Streak: </div>
+							<div className="dailys-bar" id="daily-facts-comments-bar">
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+							
+								<div className="shadow-dailys-bar" id="shadow-daily-facts-comments-bar" ></div>
+							</div>
+							<div>{`${this.props.dailyFactsComments}/3`}</div>
+						</div>						
+					</div>					
+
 					<div className="score-type-container" id="reputability-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reputability</div>
 						<div id="accuracy-scorebar"><span>Accuracy: {this.props.accuracyScore}%</span></div>
@@ -36,9 +64,9 @@ class ScoresOverview extends Component {
 					
 					<div className="score-type-container" id="review-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reviews</div>
-						<div id="review-scores-content">
+						<div class="scores-content" id="review-scores-content">
 							<div>Daily Streak: </div>
-							<div id="daily-reviews-bar">
+							<div className="dailys-bar" id="daily-reviews-bar">
 								<div className="daily-reviews-notch"></div>
 								<div className="daily-reviews-notch"></div>
 								<div className="daily-reviews-notch"></div>
@@ -50,7 +78,7 @@ class ScoresOverview extends Component {
 								<div className="daily-reviews-notch"></div>
 								<div className="daily-reviews-notch"></div>
 							
-								<div id="shadow-daily-reviews-bar"></div>
+								<div className="shadow-dailys-bar" id="shadow-daily-reviews-bar"></div>
 							</div>
 							<div>{`${this.props.dailyReviews}/10`}</div>
 						</div>
@@ -74,7 +102,8 @@ const mapStateToProps = state => {
 		dailyReviews: state.users.dailyReviews,
 		dailyStreak: state.users.dailyStreak,
 		totalUpvotes: state.users.totalUpvotes,
-		totalDownvotes: state.users.totalDownvotes				
+		totalDownvotes: state.users.totalDownvotes,
+		dailyFactsComments: state.users.dailyFactsComments				
 
 	}
 }

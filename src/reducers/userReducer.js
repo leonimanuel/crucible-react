@@ -16,7 +16,8 @@ export default function userReducer(state = {
 	totalDownvotes: "",
 	userReviewScore: "",
 	dailyReviews: "",
-	dailyStreak: ""
+	dailyStreak: "",
+	dailyFactsComments: ""
 }, action) {
 	// console.log("executing userReducer")
 	switch (action.type) {
@@ -34,6 +35,7 @@ export default function userReducer(state = {
 				totalDownvotes: action.user.total_votes.tallies.total_downvotes,
 				dailyReviews: action.user.daily_reviews,
 				dailyStreak: action.user.daily_streaks,
+				dailyFactsComments: action.user.daily_facts_comments,
 				user: action.user
 			}
 		
@@ -56,12 +58,17 @@ export default function userReducer(state = {
 			}
 
 		case "UPDATE_ACCURACY_SCORE":
-			debugger
 			return {
 				...state,
 				userAccuracyScore: action.response.total_votes.accuracy,
 				totalUpvotes: action.response.total_votes.tallies.total_upvotes,
 				totalDownvotes: action.response.total_votes.tallies.total_downvotes
+			}
+
+		case "ADD_COMMENT_TO_DISCUSSION":
+			return {
+				...state,
+				dailyFactsComments: action.comment.user.daily_facts_comments
 			}
 
 		default:

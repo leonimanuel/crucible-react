@@ -69,6 +69,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Route exact path="/"><div id="blob"></div></Route>
           <NavBar />
           {this.props.userId 
             ?
@@ -100,7 +101,7 @@ class App extends Component {
 
                 <main>
                   <SideNav />
-                  <Route exact path="/" component={Home} />
+                  <Route exact path="/"><Home/></Route>
                   <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
                   <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
                   <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
