@@ -17,7 +17,7 @@ import Groups from "./containers/Groups.js"
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
-// import {API_ROOT} from "./constants"
+import FeedbackButton from "./components/feedback/FeedbackButton.js"
 
 import { logIn } from "./actions/users.js"
 import { resetUnreadCount } from "./actions/discussionsActions.js"
@@ -104,6 +104,7 @@ class App extends Component {
                   <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
                   <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
                   <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
+                  <FeedbackButton />
                 </main>
               </div>
             : 
