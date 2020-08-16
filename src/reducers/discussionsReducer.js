@@ -39,6 +39,7 @@ export default function discussionsReducer(state = {
 			case "ADD_DISCUSSION_AND_COMMENTS":
 				// let detailedDiscussion = action.discussionData
 				// state.allDiscussions.findIndex(discussion => discussion.id === detailedDiscussion.id)
+				debugger
 				return {
 					...state,
 					selectedDiscussionId: action.discussionData.id,

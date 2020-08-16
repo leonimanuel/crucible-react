@@ -46,28 +46,10 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_FACT":
-			let boi = _.cloneDeep(state.topics)
-
-			let newTopic = ""
 			return {
 				...state,
-				topics: boi.map((topic, index) => {
-					if (index === 0) {						
-						topic.facts.push(action.fact)
-						newTopic = topic	
-					}
-					return topic
-				}),
-				parentTopic: newTopic
-		}
-
-		// case "RESET_ITEM_UNDER_REVIEW":
-		// 	if (action.item.logic_upvotes) {
-		// 		return {
-		// 			...state,
-		// 			facts: [...state.facts.filter(f => f.id !== action.item.id), ]
-		// 		}
-		// 	}
+				facts: [...state.facts, action.fact]
+			}
 
 		default:
 			return state;

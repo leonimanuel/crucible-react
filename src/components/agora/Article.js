@@ -47,7 +47,6 @@ class Article extends Component {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})
 		}
-		// debugger
 		// if (this.props.members.length && previousProps.members !== this.props.members) {
 		// 	debugger
 		// 	let participants = _.cloneDeep([...this.props.members, ...this.props.guests])
@@ -58,7 +57,6 @@ class Article extends Component {
 		// 			p.color = p.id === this.props.userId ? "cadetblue" : randomColor
 		// 	})
 		// 	this.setState({participants: participants})
-		// 	debugger
 		// }
 
 		if (document.getElementById("article-content") && document.getElementById("article-content").innerHTML && this.props.comments.length > 0 && this.props.commentsRendered === false) {
@@ -155,7 +153,6 @@ class Article extends Component {
 			let span = document.createElement("span");
 			
 			const author = [...this.props.members, ...this.props.guests].find(p => p.id === comment.user_id)
-			debugger
 			span.style.backgroundColor = author.color;
 			span.classList.add("comment-highlight")
 			span.id = comment.span_id

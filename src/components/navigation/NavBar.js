@@ -75,7 +75,6 @@ class NavBar extends Component {
 
 	render() {
 		if (this.props.user && this.props.history.location.pathname.includes("/groups")) {
-			debugger
 			this.updateDailyReviewsBar(500);
 			this.updateDailyFactsCommentsBar(200)				
 		}

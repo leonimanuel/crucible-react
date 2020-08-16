@@ -30,7 +30,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_GROUP":
-				debugger
 				return {
 					...state,
 					allGroups: [...state.allGroups, action.group],
@@ -38,7 +37,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "UPDATE_GROUP":
-				debugger
 				return {
 					...state,
 					allGroups: [...state.allGroups.filter(g => g.id !== action.group.id), action.group],
@@ -52,7 +50,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_MEMBER_SUGGESTIONS":
-				// debugger
 				return {
 					...state,
 					memberSuggestions: action.members

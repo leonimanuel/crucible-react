@@ -54,13 +54,13 @@ export const addFactFromComment = (fact) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-        factId: fact.id
+        factId: fact.id,
       })
     }
-    // debugger
     fetch(API_ROOT + `/facts`, configObj)
       .then(resp => resp.json())
       .then((fact) => {
+        debugger
         if (fact.error) {
           alert(fact.error)
         } else {
