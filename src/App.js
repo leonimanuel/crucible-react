@@ -71,7 +71,7 @@ class App extends Component {
         <div className="App">
 
           <div id="blob"></div>
-          <Route path="/"><NavBar /></Route>
+          <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
           {this.props.userId 
             ?
               <div>

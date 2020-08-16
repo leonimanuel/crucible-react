@@ -33,7 +33,6 @@ class ScoresOverview extends Component {
 		setTimeout(() => {
 			let outerScoreBar = document.getElementById("daily-facts-comments-bar")
 			let scoreBar = document.getElementById("shadow-daily-facts-comments-bar");
-			debugger
 			if (this.props.dailyFactsComments < 3) {
 				scoreBar.style.width = `${this.props.dailyFactsComments * 33.33}px`
 			} else {
@@ -51,7 +50,7 @@ class ScoresOverview extends Component {
 					
 					<div className="score-type-container" id="reach-scores-overview-container">
 						<div className="score-type-header" id="reach-score-header">Reach</div>
-						<div class="scores-content" id="reach-scores-content">
+						<div className="scores-content" id="reach-scores-content">
 							<div>Daily Streak: </div>
 							<div className="dailys-bar" id="daily-facts-comments-bar">
 								<div className="daily-reviews-notch"></div>
@@ -72,7 +71,7 @@ class ScoresOverview extends Component {
 					
 					<div className="score-type-container" id="review-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reviews</div>
-						<div class="scores-content" id="review-scores-content">
+						<div className="scores-content" id="review-scores-content">
 							<div>Daily Streak: </div>
 							<div className="dailys-bar" id="daily-reviews-bar">
 								<div className="daily-reviews-notch"></div>

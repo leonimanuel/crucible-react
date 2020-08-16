@@ -9,8 +9,7 @@ import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
 	componentDidMount() {
-		// this.updateDailyReviewsBar(500)
-		// this.updateDailyFactsCommentsBar(200)		
+		// this.props.match	
 	}
 
 	updateDailyReviewsBar = (delay) => {
@@ -33,7 +32,6 @@ class NavBar extends Component {
 		setTimeout(() => {
 			let outerScoreBar = document.getElementById("daily-facts-comments-bar")
 			let scoreBar = document.getElementById("shadow-daily-facts-comments-bar");
-			debugger
 			if (this.props.dailyFactsComments < 3) {
 				scoreBar.style.width = `${this.props.dailyFactsComments * 33.33}px`
 			} else {
@@ -76,7 +74,8 @@ class NavBar extends Component {
 
 
 	render() {
-		if (this.props.user) {
+		debugger
+		if (this.props.user && this.props.history.location.pathname !== "/") {
 			this.updateDailyReviewsBar(500);
 			this.updateDailyFactsCommentsBar(200)				
 		}
@@ -86,39 +85,40 @@ class NavBar extends Component {
 					<Link className="nav-link section-nav-link" to="/" >Home</Link>
 				</div>
 				
-				{this.props.user ?
-					<div id="user-ranks">
-						<div class="scores-content" id="reach-scores-content">
-							<div className="streak-label">Facts:</div>
-							<div className="dailys-bar" id="daily-facts-comments-bar">
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-							
-								<div className="shadow-dailys-bar" id="shadow-daily-facts-comments-bar" ></div>
-							</div>
-							<div id="daily-facts-comments-fraction">{`${this.props.dailyFactsComments}/3`}</div>
-						</div>							
+				{this.props.user && this.props.history.location.pathname !== "/" 
+					?
+						<div id="user-ranks">
+							<div className="scores-content" id="reach-scores-content">
+								<div className="streak-label">Facts:</div>
+								<div className="dailys-bar" id="daily-facts-comments-bar">
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+								
+									<div className="shadow-dailys-bar" id="shadow-daily-facts-comments-bar" ></div>
+								</div>
+								<div id="daily-facts-comments-fraction">{`${this.props.dailyFactsComments}/3`}</div>
+							</div>							
 
-						<div class="scores-content" id="review-scores-content">
-							<div className="streak-label">Reviews: </div>
-							<div className="dailys-bar" id="daily-reviews-bar">
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-								<div className="daily-reviews-notch"></div>
-							
-								<div className="shadow-dailys-bar" id="shadow-daily-reviews-bar"></div>
+							<div className="scores-content" id="review-scores-content">
+								<div className="streak-label">Reviews: </div>
+								<div className="dailys-bar" id="daily-reviews-bar">
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+									<div className="daily-reviews-notch"></div>
+								
+									<div className="shadow-dailys-bar" id="shadow-daily-reviews-bar"></div>
+								</div>
+								<div id="daily-reviews-fraction">{`${this.props.dailyReviews}/10`}</div>
 							</div>
-							<div id="daily-reviews-fraction">{`${this.props.dailyReviews}/10`}</div>
 						</div>
-					</div>
 					: null
 				}
 
