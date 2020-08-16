@@ -74,8 +74,8 @@ class NavBar extends Component {
 
 
 	render() {
-		debugger
-		if (this.props.user && this.props.history.location.pathname !== "/") {
+		if (this.props.user && this.props.history.location.pathname.includes("/groups")) {
+			debugger
 			this.updateDailyReviewsBar(500);
 			this.updateDailyFactsCommentsBar(200)				
 		}
@@ -85,7 +85,7 @@ class NavBar extends Component {
 					<Link className="nav-link section-nav-link" to="/" >Home</Link>
 				</div>
 				
-				{this.props.user && this.props.history.location.pathname !== "/" 
+				{this.props.user && this.props.history.location.pathname.includes("/groups") 
 					?
 						<div id="user-ranks">
 							<div className="scores-content" id="reach-scores-content">

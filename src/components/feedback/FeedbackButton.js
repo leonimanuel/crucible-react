@@ -46,6 +46,9 @@ class FeedbackButton extends Component {
 	}
 
 	render() {
+		// if (this.state.renderFeedbackForm === true) {
+			
+		// }
 		return(
 			<React.Fragment>
 				<div id="feedback-button" onClick={this.toggleFeedbackForm}>

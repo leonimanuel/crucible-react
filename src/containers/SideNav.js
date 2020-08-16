@@ -59,14 +59,14 @@ class SideNav extends Component {
 				<DetailPane section={this.state.section} /> 
 				
 				<div id="sections-list">
-					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Console</div>
+					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Facts</div>
 					<div>
 						<div 
 							id="agora" 
 							className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} 
 							onClick={this.handleTabClick} 
 						>
-							Agora
+							Forum
 							{this.calculateTotalUnreads()}
 						</div>					
 						

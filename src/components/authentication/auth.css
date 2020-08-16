@@ -12,11 +12,33 @@
 	border: 2px solid black;
 	border-radius: 10px;
 
-	background-color: #d1f2ef;
+	background-color: whitesmoke;
 
 	z-index: 1;
+	/*text-align: center;*/
 }
 
 .auth-wrapper input {
 	margin: 5px 0;
+}
+
+.auth-header {
+	margin: 10px 0;
+}
+
+.auth-form {
+	text-align: right;
+	margin: 0 auto;
+}
+
+.auth-button {
+	border: none;
+	border-radius: 5px;
+	/*background-color: #0f4c75;*/
+	background-color: gold;
+	color: black;
+	padding: 5px;
+
+	font-weight: bold;
+	cursor: pointer;
 }

@@ -65,8 +65,8 @@ class SignUp extends Component {
 					{!this.state.submitted 
 						? 
 							<React.Fragment>
-								<h1>Sign Up</h1>
-								<form id="sign-up-form" onSubmit={this.handleSubmit}>
+								<h1 className="auth-header">Sign Up</h1>
+								<form className="auth-form" id="sign-up-form" onSubmit={this.handleSubmit}>
 									<label>First Name: </label>
 									<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
 									<br/>
@@ -83,7 +83,7 @@ class SignUp extends Component {
 									<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
 									<br/>
 									<div id="error-box" style={{color: "red"}}></div>
-									<input type="submit" value="Sign up"/>
+									<input className="auth-button" type="submit" value="Sign up"/>
 								</form>
 							</React.Fragment>
 						:

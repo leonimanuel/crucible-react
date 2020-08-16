@@ -19,6 +19,8 @@ class Login extends Component {
 	}
 
 	handleSubmit = e => {
+		const errorBox = document.getElementById("error-box");
+		errorBox.innerText = "";	
 		e.preventDefault()
 		console.log("submitting login info")
 		
@@ -39,13 +41,15 @@ class Login extends Component {
 		fetch(API_ROOT + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {
-				if (data) {
+				if (data.error) {
+					const errorBox = document.getElementById("error-box");
+					errorBox.innerText = data.error.user_authentication;
+				}
+				else if (data) {
 					console.log(data)					
 					localStorage.setItem("token", data.auth_token)
 					this.props.logIn(data.user)
-				} else {
-					alert(data.error.user_authentication)
-				}
+				} 				
 			})
 			.catch(err => alert(err.message))
 	}
@@ -54,15 +58,16 @@ class Login extends Component {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 		return (
 				<div id="login-wrapper" className="auth-wrapper">
-					<h1>Login</h1>
-					<form onSubmit={this.handleSubmit}>
+					<h1 className="auth-header">Login</h1>
+					<form className="auth-form" onSubmit={this.handleSubmit}>
 						<label>Email: </label>
 						<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
 						<br/>
 						<label>Password: </label>
 						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
 						<br/>
-						<input type="submit" value="Log in"/>
+						<div id="error-box" style={{color: "red"}}></div>
+						<input className="auth-button" type="submit" value="Log in"/>
 					</form>
 				</div>					
 		)

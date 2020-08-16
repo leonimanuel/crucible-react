@@ -108,8 +108,6 @@
 	/*flex-direction: column;*/
 	/*justify-content: flex-end;*/
 	align-items: baseline;
-	/*height: 50px;*/
-	/*border: 2px solid yellow;*/
 	margin-bottom: 10px;
 
 }
@@ -124,8 +122,6 @@
 	min-width: 15px;
 	max-width: 15px;
 	position: relative;
-	/*height: 30px;*/
-	/*border: 2px solid green;*/
 	cursor: pointer;
 	display: flex;
 	/*flex-direction: column;*/
@@ -142,19 +138,11 @@
 }
 
 .plus-button-svg {
-	/*width: 100%;*/
 	height: 100%;
-	/*height: 20px;*/
-	/*width: 20px;*/
 	fill: white;
-	/*background-color: pink;*/
-	/*height: 100px;*/
 }
 
 .plus-button-path {
-	/*height: 20px;*/
-	/*width: 20px;*/
-	/*fill: white;*/
 }
 
 .group-item {

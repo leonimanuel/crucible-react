@@ -62,7 +62,7 @@ class ReviewItemsWrapper extends Component {
 							<React.Fragment>
 								<div id="review-question">
 									Is this fact taken in context? 
-									<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
+									<button className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
@@ -77,7 +77,7 @@ class ReviewItemsWrapper extends Component {
 							<React.Fragment>
 								<div id="review-question">
 									Does this fact come from a credible source, or is it attributed to one? 
-									<button onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
+									<button className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
@@ -106,6 +106,7 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">selection: </span>{selectedItem.selection}</div>
+										<br/>
 										<div><span className="item-bullet">comment: </span>{selectedItem.content}</div>
 									</div>
 								</React.Fragment>									
@@ -135,6 +136,7 @@ class ReviewItemsWrapper extends Component {
 									<button onClick={(e) => this.handleDecision(e, "comment_fact")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">comment: </span>{selectedItem.comment_content}</div>
+										<br/>
 										<div><span className="item-bullet">fact: </span>{selectedItem.fact_content}</div>
 									</div>
 								</React.Fragment>									
@@ -210,12 +212,14 @@ class ReviewItemsWrapper extends Component {
 		return (
 			<div id="review-items-wrapper">
 				<div id="review-question-wrapper">
-					{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
+					<div id="review-extra-container">
+						{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
+					</div>
 				</div>
-				<div id="pending-reviews-wrapper">
-					<div id="reviews-blanket"></div>
-					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
-				</div>
+				{/*<div id="pending-reviews-wrapper">
+						<div id="reviews-blanket"></div>
+						{this.props.items ? this.renderReviewItems(this.props.items) : null}							
+					</div>*/}
 			</div>
 
 		)

@@ -8,7 +8,7 @@
   /*margin-bottom: 10px;*/
   border-bottom: 4px solid gold;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 #user-ranks {
@@ -36,7 +36,6 @@
 .dropdown-content {
   display: none;
   background-color: snow;
-  z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
@@ -57,17 +56,20 @@
   text-decoration: none;
   /*border: 1px solid purple;*/
   padding: 0 3px;
+
 }
 
 .dropdown-item {
+  background-color: #0f4c75;
   cursor: pointer;
-  color: black;
+  color: white;
+  border-radius: 0px 0px 5px 5px;
 }
 
 
 .nav-link:hover {
-  background-color: black;
-  color: white;
+  /*background-color: black;*/
+  color: gold;
 }
 
 .section-nav-link {

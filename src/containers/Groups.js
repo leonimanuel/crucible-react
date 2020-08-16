@@ -18,7 +18,7 @@ class Groups extends Component {
 			let blob = document.getElementById("blob")
 			blob.style.width = "0%"
 			blob.style.height = "0%"		
-			blob.style.borderRadius = "0px"					
+			// blob.style.borderRadius = "0px"					
 		}, 300)
 	}
 
