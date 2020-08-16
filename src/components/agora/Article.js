@@ -391,7 +391,7 @@ class Article extends Component {
 						}
 						{this.state.forumHovered
 							? <div id="forum-lock-popup" className="popup">
-									You must make at least one comment on this article to access the forum
+									Make at least one comment on this article or hit your daily streaks to access the forum.
 								</div>
 							:
 								null

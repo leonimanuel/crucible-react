@@ -20,6 +20,9 @@
 .topic-box {
 	/*border: 2px solid green;*/
 	text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;	
 }
 
 .dragged-over {

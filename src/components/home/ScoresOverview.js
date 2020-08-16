@@ -6,6 +6,14 @@ class ScoresOverview extends Component {
 	componentDidMount() {
 		this.updateDailyReviewsBar(500)
 		this.updateDailyFactsCommentsBar(200)
+
+		let app = document.querySelector(".App");
+		app.style.backgroundColor = "whitesmoke"
+
+		let blob = document.getElementById("blob")
+		blob.style.width = "80%"
+		blob.style.height = "80%"		
+		blob.style.borderRadius = "600px 0px 0px 0px"			
 	}
 
 	updateDailyReviewsBar = (delay) => {
@@ -96,6 +104,7 @@ class ScoresOverview extends Component {
 
 const mapStateToProps = state => {
 	return {
+		userId: state.users.userId,
 		reputabilityScore: state.users.userReputabilityScore,
 		accuracyScore: state.users.userAccuracyScore,
 		reviewScore: state.users.userReviewScore,
@@ -104,7 +113,6 @@ const mapStateToProps = state => {
 		totalUpvotes: state.users.totalUpvotes,
 		totalDownvotes: state.users.totalDownvotes,
 		dailyFactsComments: state.users.dailyFactsComments				
-
 	}
 }
 

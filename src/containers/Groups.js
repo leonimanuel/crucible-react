@@ -13,6 +13,15 @@ import Forum from "./Forum.js"
 import Interests from "../components/agora/Interests.js"
 
 class Groups extends Component {
+	componentDidMount() {
+		setTimeout(() => {
+			let blob = document.getElementById("blob")
+			blob.style.width = "0%"
+			blob.style.height = "0%"		
+			blob.style.borderRadius = "0px"					
+		}, 300)
+	}
+
 	componentDidUpdate(previousProps, previousState) {
 		if (previousProps.location.pathname !== this.props.location.pathname) {
 			// this.setState({renderForum: false})

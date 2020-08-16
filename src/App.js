@@ -25,7 +25,7 @@ import { resetUnreadCount } from "./actions/discussionsActions.js"
 
 class App extends Component {
   componentDidMount() {
-    this.props.logIn()  
+    this.props.logIn()
   }
 
   handleUnreadUpdate = (response) => {
@@ -69,8 +69,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/"><div id="blob"></div></Route>
-          <NavBar />
+
+          <div id="blob"></div>
+          <Route path="/"><NavBar /></Route>
           {this.props.userId 
             ?
               <div>
@@ -109,7 +110,7 @@ class App extends Component {
                 </main>
               </div>
             : 
-              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/" component={LandingPage} userId={this.props.userId}/>
           }            
             <Route path="/login"><Login/></Route>
             <Route path="/signup"><SignUp/></Route> 

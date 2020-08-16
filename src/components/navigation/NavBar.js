@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
 import "./navigation.css"
 
@@ -7,9 +8,49 @@ import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
+	componentDidMount() {
+		// this.updateDailyReviewsBar(500)
+		// this.updateDailyFactsCommentsBar(200)		
+	}
+
+	updateDailyReviewsBar = (delay) => {
+		setTimeout(() => {
+			let outerScoreBar = document.getElementById("daily-reviews-bar")
+			let scoreBar = document.getElementById("shadow-daily-reviews-bar");
+			if (this.props.dailyReviews < 10) {
+				scoreBar.style.width = `${this.props.dailyReviews * 10}px`
+			} else {
+				scoreBar.style.width = "100px"
+				outerScoreBar.style.border = "2px solid gold"
+
+				let fraction = document.getElementById("daily-reviews-fraction");
+				fraction.style.color = "gold"				
+			}			
+		}, delay)					
+	}
+
+	updateDailyFactsCommentsBar = (delay)	=> {
+		setTimeout(() => {
+			let outerScoreBar = document.getElementById("daily-facts-comments-bar")
+			let scoreBar = document.getElementById("shadow-daily-facts-comments-bar");
+			debugger
+			if (this.props.dailyFactsComments < 3) {
+				scoreBar.style.width = `${this.props.dailyFactsComments * 33.33}px`
+			} else {
+				scoreBar.style.width = "100px"
+				outerScoreBar.style.border = "2px solid gold"
+
+				let fraction = document.getElementById("daily-facts-comments-fraction");
+				fraction.style.color = "gold"
+			}			
+		}, delay)		
+	}
+
 	handleLogOut = () => {
 		this.props.logOut();
 		localStorage.removeItem("token")
+    
+    // this.props.history.push("/");
 	}
 
 	handleEmail = (email) => {
@@ -35,7 +76,10 @@ class NavBar extends Component {
 
 
 	render() {
-		// debugger
+		if (this.props.user) {
+			this.updateDailyReviewsBar(500);
+			this.updateDailyFactsCommentsBar(200)				
+		}
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">											
@@ -44,12 +88,39 @@ class NavBar extends Component {
 				
 				{this.props.user ?
 					<div id="user-ranks">
-						{/*<div><b>Reputability: </b>{this.props.user.reputability_score * 100}%</div>
-						<div><b>Peer Score: </b>{this.props.userReviewScore}</div>*/}
+						<div class="scores-content" id="reach-scores-content">
+							<div className="streak-label">Facts:</div>
+							<div className="dailys-bar" id="daily-facts-comments-bar">
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+							
+								<div className="shadow-dailys-bar" id="shadow-daily-facts-comments-bar" ></div>
+							</div>
+							<div id="daily-facts-comments-fraction">{`${this.props.dailyFactsComments}/3`}</div>
+						</div>							
+
+						<div class="scores-content" id="review-scores-content">
+							<div className="streak-label">Reviews: </div>
+							<div className="dailys-bar" id="daily-reviews-bar">
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+								<div className="daily-reviews-notch"></div>
+							
+								<div className="shadow-dailys-bar" id="shadow-daily-reviews-bar"></div>
+							</div>
+							<div id="daily-reviews-fraction">{`${this.props.dailyReviews}/10`}</div>
+						</div>
 					</div>
 					: null
 				}
-				{/*<button onClick={this.handleEmail}>Email Leon</button>	*/}			
 
 				<div id="profile-options">
 					{ this.props.userName 
@@ -57,7 +128,7 @@ class NavBar extends Component {
 							<div className="dropdown">
 								<div className="nav-link user-dropdown">{this.props.userName}</div>
 								<div className="dropdown-content">
-									<div className="nav-link dropdown-item" onClick={this.handleLogOut}>Logout</div>								
+									<Link to="/"><div className="nav-link dropdown-item" onClick={this.handleLogOut}>Logout</div></Link>
 								</div>
 							</div>
 						: 
@@ -76,7 +147,8 @@ const mapStateToProps = state => {
 	return {
 		userName: state.users.userName,
 		user: state.users.user,
-		userReviewScore: state.users.userReviewScore
+		dailyReviews: state.users.dailyReviews,
+		dailyFactsComments: state.users.dailyFactsComments		
 	}
 }
 

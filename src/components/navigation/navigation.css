@@ -7,16 +7,22 @@
   /*margin: 0 20px;*/
   /*margin-bottom: 10px;*/
   border-bottom: 4px solid gold;
+
+  z-index: 1;
 }
 
 #user-ranks {
   display: flex;
-  /*border: 2px solid green;*/
   margin: auto 20px;
+  color: white;
 }
 
-#user-ranks div {
-  margin: 0 10px;
+#reach-scores-content {
+  margin-right: 20px;
+}
+
+.streak-label, .dailys-bar {
+  margin-right: 5px;
 }
 
 .dropdown {

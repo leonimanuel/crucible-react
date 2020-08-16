@@ -157,6 +157,7 @@
 	border-left: 1px solid black;
 	position: relative;
 	z-index: 1;
+	/*margin: 0;*/
 }
 
 .shadow-dailys-bar {
@@ -187,4 +188,6 @@
 
 #landing-page {
 	font-size: 5em;
+	/*background-color: #0f4c75;*/
+	z-index: 1;
 }

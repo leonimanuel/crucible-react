@@ -12,10 +12,9 @@
 	border: 2px solid black;
 	border-radius: 10px;
 
-
-
-
 	background-color: #d1f2ef;
+
+	z-index: 1;
 }
 
 .auth-wrapper input {
