@@ -53,16 +53,18 @@ class GroupDetailsMenu extends Component {
 					<div id="group-details-title">{group.name}</div>
 					{group.name !== "Feed" && group.name !== "Guest" 
 						? <button id="edit-group-button" onClick={this.handleEditGroup}>edit</button> 
-						: null
+						: group.name === "Feed" 
+							? 
+								<React.Fragment>
+									<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
+									{this.state.renderInterests ? <Redirect to={"/groups/interests"} /> : null}
+								</React.Fragment>
+							: null
 					}					
 				</div>
 				{group.name !== "Feed" && group.name !== "Guest"
 					? <MembersList members={members} admin={group.admin}/> 
-					: 
-					<div>
-						<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
-						{this.state.renderInterests ? <Redirect to={"/groups/interests"} /> : null}
-					</div> 
+					: null
 				}
 				<DiscussionsList group={group} />
 

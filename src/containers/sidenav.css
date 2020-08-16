@@ -59,10 +59,25 @@
 
 #group-details-title-wrapper {
 	display: flex;
+	align-items: center;
 }
 
 #group-details-title {
-	font-size: 1.6em
+	font-size: 1.6em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;			
+}
+
+#interests-menu-button, #edit-group-button {
+	border: none;
+	border-radius: 3px;
+	background-color: white;
+	padding: 2px 5px;
+	margin-left: 10px;
+	color: #738598;
+	outline: none;
+	cursor: pointer;
 }
 
 .sidenav-list {
@@ -74,11 +89,15 @@
 	display: flex;
 	justify-content: space-between;
 	align-content: center;
+	font-size: 1.1em;	
 	/*border: 1px solid yellow;*/
 }
 
 .sidenav-item div {
 	margin: auto 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;		
 }
 
 
@@ -170,7 +189,6 @@
 }
 
 .discussion-item {
-	/*border: 1px solid green;*/
 	text-decoration: italic;
 	background-color: white;
 
@@ -180,6 +198,11 @@
 	border-radius: 5px;
 	padding: 5px;
 	position: relative;
+}
+
+/*IMPORTANTE*/
+.discussion-item div {
+	white-space: normal;	
 }
 
 .discussion-unread-label {
@@ -204,6 +227,8 @@
 .discussion-title {
 	font-style: italic;
 	color: black;
+	white-space: normal;
+	overflow: auto;
 }
 
 .section-tab {
