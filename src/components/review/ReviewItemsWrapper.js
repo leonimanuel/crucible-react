@@ -37,13 +37,40 @@ class ReviewItemsWrapper extends Component {
 			case "Fact":
 				const factQuestionTypes = ["logic", "context", "credibility"]
 				let selectedFactQuestionType
-				if (selectedItem.logic_upvotes + selectedItem.logic_downvotes < 10) {
-					selectedFactQuestionType = "logic"
-				} else if (selectedItem.context_upvotes + selectedItem.context_downvotes) {
-					selectedFactQuestionType = "context"
-				} else {
-					selectedFactQuestionType = "credibility"
+				
+				let valid = false
+				while (valid === false) {
+					selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+					if (selectedFactQuestionType === "logic") {
+						if (selectedItem.logic_upvotes + selectedItem.logic_downvotes >= 10 || selectedItem.review_types.includes("logic")) {
+							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+						} else {
+							valid = true
+						}
+					}
+					else if (selectedFactQuestionType === "context") {
+						if (selectedItem.context_upvotes + selectedItem.context_downvotes >= 10 || selectedItem.review_types.includes("context")) {
+							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+						} else {
+							valid = true
+						}
+					}
+					else if (selectedFactQuestionType === "credibility") {
+						if (selectedItem.credibility_upvotes + selectedItem.credibility_downvotes >= 10 || selectedItem.review_types.includes("credibility")) {
+							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
+						} else {
+							valid = true
+						}
+					}		
 				}
+
+				// if (selectedItem.logic_upvotes + selectedItem.logic_downvotes < 10) {
+				// 	selectedFactQuestionType = "logic"
+				// } else if (selectedItem.context_upvotes + selectedItem.context_downvotes < 10) {
+				// 	selectedFactQuestionType = "context"
+				// } else {
+				// 	selectedFactQuestionType = "credibility"
+				// }
 				// debugger
 				switch(selectedFactQuestionType) {
 					case "logic":
