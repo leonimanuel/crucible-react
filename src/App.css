@@ -9,6 +9,10 @@
   font-family: 'Abel', sans-serif;   
 }
 
+a {
+  text-decoration: none
+}
+
 #blob {
   width: 100%;
   height: 100%;

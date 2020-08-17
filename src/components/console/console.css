@@ -112,20 +112,19 @@
 	flex-grow: 0;
 	transition: all .5s;
 	/*border: 2px solid black;*/
-	/*border-radius: 10px;*/
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 .mounted-score-bar {
 	flex-grow: 1;
-}
-
-.score-bar .score-color {
-	/*width: 30%;*/
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 .green-score {
 	background-color: green;
-	border-radius: 3px 0 0 3px;
+	/*border-radius: 3px 0 0 3px;*/
 }
 
 .yellow-score {
@@ -134,5 +133,23 @@
 
 .red-score {
 	background-color: red;
-	border-radius: 0 3px 3px 0;
+	/*border-radius: 0 3px 3px 0;*/
+}
+
+#fact-detail-buttons-container {
+	display: flex;
+	justify-content: space-around;
+	margin: 5px 0;
+}
+
+.fact-detail-button {
+	border: none;
+	border-radius: 3px;
+	background-color: white;
+	padding: 2px 5px;
+	color: #738598;
+	outline: none;
+	cursor: pointer;	
+
+	font-size: 0.9em;
 }

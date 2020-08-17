@@ -4,7 +4,8 @@ import FactDetailsPane from "./FactDetailsPane.js"
 
 class ConsoleFact extends Component {
 	state = {
-		showFactDetails: false
+		showFactDetails: false,
+		showOriginalFact: false
 	}
 
 	startDrag = e => {
@@ -14,6 +15,10 @@ class ConsoleFact extends Component {
 
 	toggleFactDetailPane = () => {
 		this.setState({showFactDetails: !this.state.showFactDetails})
+	}
+
+	toggleFactContent = () => {
+		this.setState({showOriginalFact: !this.state.showOriginalFact})
 	}
 
 	render() {
@@ -43,10 +48,19 @@ class ConsoleFact extends Component {
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
 				>
-					{fact.rephrase ? fact.rephrase.content : fact.content}
+					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content }
 				</div>				
 			
-				{this.state.showFactDetails ? <FactDetailsPane fact={fact} /> : null}
+				{this.state.showFactDetails 
+					? 
+						<FactDetailsPane 
+							fact={fact} 
+							factText={this.state.showOriginalFact ? "show rephrase" : "show o.g. fact"} 
+							handleContentToggle={this.toggleFactContent}
+						/> 
+					: 
+						null
+				}
 			</div>
 		)
 	}
