@@ -8,10 +8,6 @@ import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
-	componentDidMount() {
-		// this.props.match	
-	}
-
 	updateDailyReviewsBar = (delay) => {
 		setTimeout(() => {
 			let outerScoreBar = document.getElementById("daily-reviews-bar")

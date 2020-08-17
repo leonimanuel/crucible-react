@@ -35,7 +35,7 @@ class ArticleComment extends Component {
 				{comment.facts ? comment.facts.map(fact => {
 					return (
 						<div className="comment-fact-wrapper">
-							{this.props.userId !== comment.user_id
+							{this.props.userId !== comment.user_id && !this.props.userFacts.find(f => f.id === fact.id)
 								? 
 									<button 
 										className="add-comment-fact-button" 
@@ -54,8 +54,14 @@ class ArticleComment extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		userId: state.users.userId,
+		userFacts: state.topics.facts 
+	}
+}
 
-export default connect(state => ({userId: state.users.userId}), { addFactFromComment })(ArticleComment);
+export default connect(mapStateToProps, { addFactFromComment })(ArticleComment);
 
 
 

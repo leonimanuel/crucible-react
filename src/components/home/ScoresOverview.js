@@ -4,9 +4,6 @@ import ScoreBar from "../console/ScoreBar.js"
 
 class ScoresOverview extends Component {
 	componentDidMount() {
-		this.updateDailyReviewsBar(500)
-		this.updateDailyFactsCommentsBar(200)
-
 		let app = document.querySelector(".App");
 		app.style.backgroundColor = "whitesmoke"
 
@@ -43,6 +40,8 @@ class ScoresOverview extends Component {
 	}
 
 	render() {
+		this.updateDailyReviewsBar(500)
+		this.updateDailyFactsCommentsBar(200)		
 		return (
 			<div id="scores-overview" className="overview-wrapper">
 				<div className="overview-header" id="scores-overview-header">Status</div>

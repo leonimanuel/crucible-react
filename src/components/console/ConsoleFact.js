@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from "react-redux"
+import ShowMoreIcon from "./down-arrow-icon.svg"
 import FactDetailsPane from "./FactDetailsPane.js"
 
 class ConsoleFact extends Component {
@@ -29,7 +30,7 @@ class ConsoleFact extends Component {
 
 		let border
 		if (fact.review_status === "pending") {
-			border = "2px solid yellow" 
+			border = "2px solid #ff9234" //yellow
 		} else if (fact.review_status === "pass") {
 				border = "2px solid green" 		
 		} else {
@@ -49,6 +50,7 @@ class ConsoleFact extends Component {
 	 				onClick={this.toggleFactDetailPane}
 				>
 					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content }
+					<img className="show-more-fact-icon" src={ShowMoreIcon} alt="show-more-icon" width="30px"/>
 				</div>				
 			
 				{this.state.showFactDetails 
@@ -61,6 +63,8 @@ class ConsoleFact extends Component {
 					: 
 						null
 				}
+
+				{/**/}
 			</div>
 		)
 	}

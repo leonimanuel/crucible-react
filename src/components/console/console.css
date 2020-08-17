@@ -70,7 +70,16 @@
 	background-color: snow;
 	color: black;
 	padding: 5px;
+	position: relative;
 }
+
+.show-more-fact-icon {
+	visibility: hidden;
+	position: absolute;
+	bottom: 2px;
+	left: 70px;
+}
+
 
 #console-window-title {
 	font-size: 1.5em;
@@ -159,3 +168,4 @@
 
 	font-size: 0.9em;
 }
+
