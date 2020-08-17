@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
+import { LastLocationProvider } from 'react-router-last-location';
 import { connect } from "react-redux"
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion } from "./actions/discussionsActions.js"
@@ -66,66 +67,80 @@ class App extends Component {
   }
 
   render() {
+    let blob = document.getElementById("blob")
+    if (blob) blob.style.opacity = "1"    
     return (
       <Router>
-        <div className="App">
+        <LastLocationProvider>
+          <div className="App">
 
-          <div id="blob"></div>
-          <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
-          {this.props.userId 
-            ?
-              <div>
-                <ActionCableConsumer 
-                  channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
-                  onReceived={this.handleUnreadUpdate} 
-                />          
+            <div id="blob"></div>
+            <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
+            
+            {this.props.userId 
+              ?
+                <div>
+                  <ActionCableConsumer 
+                    channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
+                    onReceived={this.handleUnreadUpdate} 
+                  />          
 
-                <ActionCableConsumer 
-                  channel={{ channel: "MessagesChannel", user: this.props.userId }}
-                  onReceived={this.handleReceivedMessage} 
-                />
+                  <ActionCableConsumer 
+                    channel={{ channel: "MessagesChannel", user: this.props.userId }}
+                    onReceived={this.handleReceivedMessage} 
+                  />
 
-                <ActionCableConsumer 
-                  channel={{ channel: "CommentsChannel" }}
-                  onReceived={this.handleReceivedComment} 
-                />            
+                  <ActionCableConsumer 
+                    channel={{ channel: "CommentsChannel" }}
+                    onReceived={this.handleReceivedComment} 
+                  />            
 
-                <ActionCableConsumer 
-                  channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
-                  onReceived={this.handleReadDiscussion} 
-                />    
+                  <ActionCableConsumer 
+                    channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
+                    onReceived={this.handleReadDiscussion} 
+                  />    
 
-                <ActionCableConsumer 
-                  channel={{ channel: "ReviewsChannel", user: this.props.userId }}
-                  onReceived={this.handleReviewedItem} 
-                />    
+                  <ActionCableConsumer 
+                    channel={{ channel: "ReviewsChannel", user: this.props.userId }}
+                    onReceived={this.handleReviewedItem} 
+                  />    
 
-                <main>
-                  <SideNav />
-                  <Route exact path="/"><Home/></Route>
-                  <Route path="/console" >{!this.props.userId ? <Redirect to="login"/> : <Console />} </Route>
-                  <Route path="/review" >{!this.props.userId ? <Redirect to="login"/> : <Review />} </Route>
-                  <Route path="/groups" >{!this.props.userId ? <Redirect to="login"/> : <Groups />} </Route>           
-                  <FeedbackButton />
-                </main>
-              </div>
-            : 
-              <Route exact path="/" component={LandingPage} userId={this.props.userId}/>
-          }            
-            <Route path="/login"><Login/></Route>
-            <Route path="/signup"><SignUp/></Route> 
-            <Route 
-              path="/:token/confirm-email"
-              render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
-            </Route> 
-
-        </div>      
+                  <main>
+                    <SideNav />
+                    <Route exact path="/"><Home/></Route>
+                    <Route path="/console"><Console/></Route>
+                    <Route path="/review"><Review/></Route>
+                    <Route path="/groups"><Groups/></Route>           
+                    <FeedbackButton />
+                  </main>
+                </div>
+              : 
+                <React.Fragment>
+                  <Route exact path="/" component={LandingPage} userId={this.props.userId}/>
+                  <Route path="/groups">{this.props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
+                </React.Fragment> 
+            }            
+              <Route path="/login"><Login/></Route>
+              <Route path="/signup"><SignUp/></Route> 
+              <Route 
+                path="/:token/confirm-email"
+                render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+              </Route> 
+          </div>      
+        </LastLocationProvider>
       </Router>
     );
   }
 }
 
-export default connect(state => ({userId: state.users.userId}), { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore })(App);
+const mapStateToProps = state => {
+  return {
+    userId: state.users.userId,
+    loginFailed: state.users.loginFailed
+  }
+}
+
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore })(App);
 
 
 

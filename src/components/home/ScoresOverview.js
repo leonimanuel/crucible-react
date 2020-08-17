@@ -8,6 +8,8 @@ class ScoresOverview extends Component {
 		app.style.backgroundColor = "whitesmoke"
 
 		let blob = document.getElementById("blob")
+		// blob.style.visibility = "visible"
+		blob.style.opacity = "1"
 		blob.style.width = "80%"
 		blob.style.height = "80%"		
 		blob.style.borderRadius = "600px 0px 0px 0px"			
@@ -64,8 +66,11 @@ class ScoresOverview extends Component {
 
 					<div className="score-type-container" id="reputability-scores-overview-container">
 						<div className="score-type-header" id="review-score-header">Reputability</div>
-						<div id="accuracy-scorebar"><span>Accuracy: {this.props.accuracyScore}%</span></div>
-						<ScoreBar greenScore={this.props.totalUpvotes} redScore={this.props.totalDownvotes} type="total"/>
+						<div id="accuracy-score-content">
+							<div>Accuracy:</div>
+							<ScoreBar id="accuracy-scorebar" greenScore={this.props.totalUpvotes} redScore={this.props.totalDownvotes} type="total"/>
+							<div>{this.props.accuracyScore}%</div>
+						</div>
 					</div>
 					
 					<div className="score-type-container" id="review-scores-overview-container">

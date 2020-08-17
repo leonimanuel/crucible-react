@@ -56,7 +56,6 @@ export default function groupsReducer(state = {
 				}
 
 			case "ADD_DISCUSSION_AND_COMMENTS":
-				debugger
 				return {
 					...state,
 					allMembers: [...state.allMembers.filter(m => !action.discussionData.members.find(am => am.id === m.id)), ...action.discussionData.members]

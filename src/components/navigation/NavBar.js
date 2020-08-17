@@ -83,7 +83,7 @@ class NavBar extends Component {
 				{this.props.user && this.props.history.location.pathname.includes("/groups") 
 					?
 						<div id="user-ranks">
-							<div className="scores-content" id="reach-scores-content">
+							<div className="scores-content navbar-scores-content" id="reach-scores-content">
 								<div className="streak-label">Facts:</div>
 								<div className="dailys-bar" id="daily-facts-comments-bar">
 									<div className="daily-reviews-notch"></div>
@@ -95,7 +95,7 @@ class NavBar extends Component {
 								<div id="daily-facts-comments-fraction">{`${this.props.dailyFactsComments}/3`}</div>
 							</div>							
 
-							<div className="scores-content" id="review-scores-content">
+							<div className="scores-content navbar-scores-content" id="review-scores-content">
 								<div className="streak-label">Reviews: </div>
 								<div className="dailys-bar" id="daily-reviews-bar">
 									<div className="daily-reviews-notch"></div>

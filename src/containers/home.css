@@ -62,9 +62,6 @@
 	background-color: #e8d4b4;
 }
 
-
-
-
 #briefings-overview {
 	background-color: snow
 }
@@ -121,11 +118,13 @@
 	/*border: 2px solid black;*/
 	position: relative;
 	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
 }
 
 .score-type-container {
 	/*border: 2px solid green;*/
-
 	text-align: left;
 	margin-bottom: 10px;
 }
@@ -141,13 +140,15 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
+	margin-right: 0px;
 }
 
 .dailys-bar {
 	display: flex;
 	width: 100px;
 	height: 10px;
-	border: 2px solid black; 
+	border: 2px solid black;
+	margin: 0 20px; 
 }
 
 .daily-reviews-notch {
@@ -169,18 +170,18 @@
 	transition: width 1s;
 }
 
+#accuracy-score-content {
+	display: flex;
+	align-items: center;
+}
+
+#accuracy-scorebar {
+	height: 10px;
+	margin: 0 20px;
+}
+
 
 #review-scores-l2 {
 	display: flex;
 	justify-content: space-between;
-}
-
-#scores-backsplash {
-	position: absolute;
-	width: 500px;
-	height: 50px;
-	bottom: 0;
-	right: 0;
-	background-color: blue;
-	z-index: 2;
 }

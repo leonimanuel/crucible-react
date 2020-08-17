@@ -42,7 +42,7 @@ class Article extends Component {
 	}
 
 	componentDidUpdate(previousProps, previousState) {
-		console.log(previousProps === this.props)
+		// console.log(previousProps === this.props)
 		if (this.props.location.pathname !== this.state.location) {
 			this.props.fetchDiscussion(this.props.match.params.groupName, this.props.match.params.discussionName)
 			this.setState({location: this.props.location.pathname})

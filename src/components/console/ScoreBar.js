@@ -29,7 +29,7 @@ class ScoreBar extends Component {
 		}
 
 		return (
-			<div className={`score-bar ${this.state.mounted ? "mounted-score-bar" : null}`} >
+			<div id={this.props.id} className={`score-bar ${this.state.mounted ? "mounted-score-bar" : null}`} >
 				<div className="score-color green-score" style={{width: greenWidth}}></div>
 				<div className="score-color yellow-score" style={{width: yellowWidth}}></div>
 				<div className="score-color red-score" style={{width: redWidth}}></div>

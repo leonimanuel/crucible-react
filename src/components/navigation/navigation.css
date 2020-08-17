@@ -17,8 +17,8 @@
   color: white;
 }
 
-#reach-scores-content {
-  margin-right: 20px;
+.navbar-scores-content {
+  margin: 0 10px;
 }
 
 .streak-label, .dailys-bar {

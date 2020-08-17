@@ -60,7 +60,7 @@ export const logIn = () => {
             briefings
           })
         } else {
-          console.log("nobody's logged in")
+          dispatch({type: "LOGIN_FAILED"})
         }
       })
 	}

@@ -6,6 +6,7 @@
 
 export default function userReducer(state = {
 	isLoggedIn: false,
+	loginFailed: false,
 	userName: "",
 	userEmail: "",
 	userId: "",
@@ -25,6 +26,7 @@ export default function userReducer(state = {
 			return {
 				...state,
 				isLoggedIn: true, //necessary?
+				loginFailed: false,
 				userName: action.user.name,
 				userEmail: action.user.email,
 				userId: action.user.id,
@@ -69,6 +71,12 @@ export default function userReducer(state = {
 			return {
 				...state,
 				dailyFactsComments: action.comment.user.daily_facts_comments
+			}
+
+		case "LOGIN_FAILED":
+			return {
+				...state,
+				loginFailed: true
 			}
 
 		default:
