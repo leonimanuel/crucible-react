@@ -53,6 +53,16 @@
 	overflow: hidden;
 	/*padding: 3px;*/
 	text-align: justify;
+	transition: .2s;	
+}
+
+.truncated-fact {
+	max-height: 4.3em;
+}
+
+.expanded-fact {
+	max-height: 20em;
+	overflow: scroll;
 }
 
 .console-fact-content {
@@ -60,16 +70,6 @@
 	background-color: snow;
 	color: black;
 	padding: 5px;
-}
-
-.truncated-fact {
-	height: 4.3em;
-}
-
-.expanded-fact {
-	max-height: 10em;
-	overflow: scroll;
-	/*background-color: blue;*/
 }
 
 #console-window-title {
