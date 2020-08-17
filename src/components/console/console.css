@@ -59,9 +59,11 @@
 	cursor: grab;
 	background-color: snow;
 	color: black;
-	max-height: 5em;
-	border-radius: ;
 	padding: 5px;
+}
+
+.truncated-fact {
+	height: 4.3em;
 }
 
 .expanded-fact {
@@ -101,11 +103,15 @@
 	justify-content: flex-start;
 	/*border: 2px solid black;*/
 	align-items: center;
+	margin: 0 5px;
+}
 
+.fact-score-title {
+	font-weight: bold;
 }
 
 .score-bar {
-	margin-left: 10px;
+	margin-left: 5px;
 
 	display: flex;
 	height: 7px;

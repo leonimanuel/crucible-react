@@ -43,7 +43,7 @@ class ConsoleFact extends Component {
 			>
 				<div 
 					id={`${this.props.parentTopic.name}-fact-${fact.id}`} 
-					className={`console-fact-content ${this.state.showFactDetails ? "expanded-fact" : null}`}
+					className={`console-fact-content ${this.state.showFactDetails ? "expanded-fact" : "truncated-fact"}`}
 	 				draggable 
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
