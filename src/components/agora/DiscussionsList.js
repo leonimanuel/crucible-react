@@ -23,7 +23,8 @@ class DiscussionsList extends Component {
 
 	handleNewDiscussion = () => {
 		if (this.props.selectedGroupName === "Feed") {
-			this.props.addNewDiscussion(this.props.groupId, "")
+			this.props.interests.find(i => i.selected) ? this.props.addNewDiscussion(this.props.groupId, "") : alert("Please select at least one interest to get article recommendations")
+			
 		} else {
 			this.setState({
 				renderNewDiscussionPopup: true
@@ -70,6 +71,7 @@ class DiscussionsList extends Component {
 					<div className="list-title">Discussions</div>
 					{this.props.selectedGroupName === "Guest" ? null : <AddListItemButton id="new-discussion-button" buttonAction={this.handleNewDiscussion}/>}
 				</div>
+					{this.props.selectedGroupName === "Feed" && !this.props.interests.find(i => i.selected) ? <div style={{"background-color": "#faf0af", color: "black", "border-radius": "5px", "margin-bottom": "5px", padding: "5px"}}>⚠️ Please select at least one interest to receive recommended discussions</div> : null }
 				<div className="sidenav-list-contents">
 					{this.props.discussionLoading 
 						?
@@ -96,7 +98,8 @@ const mapStateToProps = state => {
 		selectedGroupName: state.groups.allGroups.find(g => g.id === state.groups.selectedGroupId).name,
 		discussions: state.discussions.allDiscussions.filter(discussion => discussion.group_id === state.groups.selectedGroupId),
 		allDiscussions: state.discussions.allDiscussions,
-		discussionLoading: state.discussions.loadingNewDiscussion
+		discussionLoading: state.discussions.loadingNewDiscussion,
+		interests: state.discussions.allInterests
 	}
 }
 

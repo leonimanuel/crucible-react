@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core"
 
 import DiscussionsList from "./DiscussionsList.js"
@@ -13,13 +13,17 @@ import EditGroupPopup from "./EditGroupPopup.js"
 class GroupDetailsMenu extends Component {
 	state = {
 		renderEditGroupPopup: false,
-		renderInterests: false
+		// renderInterests: false
 	}
 
-	openInterests = () => {
-		this.setState({renderInterests: true})
-	}
+	// openInterests = () => {
+	// 	alert("opening interests")
+	// 	this.setState({renderInterests: true})
+	// }
 
+	redirectToInterests = () => {
+		return <Redirect to={"/groups/interests"} />		
+	}
 
 	handleEditGroup = () => {		
 		this.setState({
@@ -56,8 +60,8 @@ class GroupDetailsMenu extends Component {
 						: group.name === "Feed" 
 							? 
 								<React.Fragment>
-									<button id="interests-menu-button" onClick={this.openInterests}>Interests</button>
-									{this.state.renderInterests ? <Redirect to={"/groups/interests"} /> : null}
+									<Link to="/groups/interests"><button id="interests-menu-button">Interests</button></Link>
+									{/*this.state.renderInterests ? this.redirectToInterests : null*/}
 								</React.Fragment>
 							: null
 					}					

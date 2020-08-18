@@ -78,6 +78,26 @@
 	/*border: 2px solid yellow;*/
 }
 
+#new-discussion-instructions {
+	color: white;
+	text-align: left;
+	padding: 5px 40px;
+	font-size: 1.1em;
+	/*font-weight: bold;*/
+}
+
+#new-discussion-instructions ul {
+	margin: 0;
+}
+
+#new-discussion-instructions ul li {
+	margin-bottom: 10px;
+}
+
+.extension-link {
+	color: white;
+	text-decoration: underline;
+}
 
 /*REVIEWS OVERVIEW*/
 #reviews-overview {

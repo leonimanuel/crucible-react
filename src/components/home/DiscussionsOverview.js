@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import DiscussionItem from "../agora/DiscussionItem.js"
+import AddListItemButton from "../agora/AddListItemButton.js"
 
 class DiscussionsOverview extends Component {
 	showUnreadDiscussions = (discussions) => {
-		// debugger
-		return discussions.map(discussion => {
+		if (discussions.length) {
+			return discussions.map(discussion => {
+				return (
+					<DiscussionItem 
+						key={discussion.id} 
+						discussion={discussion} 
+						groupName={discussion.group_name} 
+						class="overview-discussion"
+					/>
+				)
+			})
+		} else {
 			return (
-				<DiscussionItem 
-					key={discussion.id} 
-					discussion={discussion} 
-					groupName={discussion.group_name} 
-					class="overview-discussion"
-				/>
+				<div id="new-discussion-instructions">
+					<div><b>To start a new discussion:</b></div>
+					<ul >
+						<li>For a recommended discussion, open Feed in the Forum section of the sidebar and click the add button</li>
+						<li>To create a new discussion with friends, find the desired group in Forum and click the add button or <a className="extension-link" href="https://chrome.google.com/webstore/category/extensions" target="_blank">use the extension</a></li>
+					</ul>					
+				</div>
 			)
-		})
+		}
 	}
 
 	render() {
