@@ -13,10 +13,10 @@ class Home extends Component {
 		app.style.backgroundColor = "whitesmoke"
 		return (
 			<div id="home-wrapper">
-				<DiscussionsOverview />
-				<ReviewsOverview />
-				<BriefingsOverview />
-				<ScoresOverview />
+				<DiscussionsOverview  />
+				<ReviewsOverview  />
+				<BriefingsOverview  />
+				<ScoresOverview  />
 			</div>
 
 		)

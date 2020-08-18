@@ -27,6 +27,28 @@
               0 16px 16px rgba(0,0,0,0.12);
 
 	z-index: 1;
+	position: relative;
+}
+
+.helper-icon {
+	position: absolute;
+	font-size: 0.8em;
+	top: 5px;
+	right: 5px;
+	border: 2px solid gold;
+	border-radius: 20px;
+	padding: 0 6px;
+	color: black;
+	font-weight: bold;
+	background-color: white;
+	cursor: help;
+}
+
+.helper-popup {
+	/*position: fixed;*/
+	text-align: left;
+	max-width: 300px;
+	z-index: 2;
 }
 
 .overview-header {

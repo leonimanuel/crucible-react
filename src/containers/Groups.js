@@ -36,16 +36,16 @@ class Groups extends Component {
 	render() {
 		const { match } = this.props;
 		let blob = document.getElementById("blob")
-		debugger
+		// debugger
 		if (blob.style.width !== "80%") {
 			setTimeout(() => blob.style.opacity = "0", 500) 
-			debugger
+			// debugger
 			setTimeout(() => {
 				blob.style.width = "0%"
 				blob.style.height = "0%"		
 			}, 1000)		
 		} else {
-			debugger
+			// debugger
 			setTimeout(() => {
 				blob.style.width = "0%"
 				blob.style.height = "0%"		

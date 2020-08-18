@@ -45,6 +45,7 @@ class SignUp extends Component {
 			.then(data => {
 				if (data.message) {
 					localStorage.setItem("token", data.auth_token)
+					debugger
 					this.setState({submitted: "success"})
 				} 
 				else if (data.error) {

@@ -34,7 +34,7 @@ class ConfirmEmail extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="auth-wrapper">
 				<div>CONFIRMING EMAIL</div>
 				{this.state.confirmation === "success" ? <div>Email confirmed. Logging in...</div> : null}				
 			</div>

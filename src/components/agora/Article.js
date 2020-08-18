@@ -151,7 +151,7 @@ class Article extends Component {
 
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
-			
+			debugger
 			const author = [...this.props.members, ...this.props.guests].find(p => p.id === comment.user_id)
 			span.style.backgroundColor = author.color;
 			span.classList.add("comment-highlight")
