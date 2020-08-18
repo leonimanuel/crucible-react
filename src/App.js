@@ -25,6 +25,10 @@ import { resetUnreadCount } from "./actions/discussionsActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
+  state = {
+    sidenavOpen: false
+  }
+
   componentDidMount() {
     this.props.logIn()
   }
@@ -66,6 +70,18 @@ class App extends Component {
 
   }
 
+  handleMainClick = () => {
+    let sideNav = document.getElementById("side-nav");
+    let sectionTabs = document.getElementById("sections-list")
+    sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
+    this.setState({sidenavOpen: false})
+  }
+
+  handleSidenavToggle = (bool) => {
+    debugger
+    this.setState({sidenavOpen: bool})
+  }
+
   render() {
     let blob = document.getElementById("blob")
     if (blob) blob.style.opacity = "1"    
@@ -105,8 +121,8 @@ class App extends Component {
                     onReceived={this.handleReviewedItem} 
                   />    
 
-                  <main>
-                    <SideNav />
+                  <SideNav sidenavOpen={this.state.sidenavOpen} onSidenavToggle={this.handleSidenavToggle}/>
+                  <main id="main-content" onClick={this.handleMainClick}>
                     <Route exact path="/"><Home/></Route>
                     <Route path="/console"><Console/></Route>
                     <Route path="/review"><Review/></Route>
