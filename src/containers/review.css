@@ -98,6 +98,18 @@
 	background-color: snow;
 }*/
 
+#load-more-reviews-button {
+	margin-top: 10%;
+	background-color: gold; 
+	border: none;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid black;
+	cursor: pointer;
+	font-weight: bold;
+	outline: none;
+}
+
 .copy-and-go-button {
 	background-color: whitesmoke;
 	padding: 5px;

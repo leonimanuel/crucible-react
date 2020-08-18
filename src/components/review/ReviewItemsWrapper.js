@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { submitDecision } from "../../actions/reviewsActions.js"
+import { submitDecision, fetchItemsForReview } from "../../actions/reviewsActions.js"
 
 class ReviewItemsWrapper extends Component {
 	chooseQuestion = (selectedItem) => {
@@ -240,7 +240,10 @@ class ReviewItemsWrapper extends Component {
 			<div id="review-items-wrapper">
 				<div id="review-question-wrapper">
 					<div id="review-extra-container">
-						{this.props.selectedItem ? <div>{this.chooseQuestion(this.props.selectedItem)}</div> : null }					
+						{this.props.selectedItem 
+							? <div>{this.chooseQuestion(this.props.selectedItem)}</div> 
+							: <button id="load-more-reviews-button" onClick={this.props.fetchItemsForReview}>Load more facts for review</button> 
+						}					
 					</div>
 				</div>
 				{/*<div id="pending-reviews-wrapper">
@@ -262,7 +265,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { submitDecision })(ReviewItemsWrapper);
+export default connect(mapStateToProps, { submitDecision, fetchItemsForReview })(ReviewItemsWrapper);
 
 
 
