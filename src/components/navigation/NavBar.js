@@ -8,6 +8,20 @@ import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
 
 class NavBar extends Component {
+	componentDidUpdate(prevProps, prevState) {
+		let navbar = document.getElementById("nav-wrapper")
+		if (this.props.accuracyScore > prevProps.accuracyScore) {
+			navbar.style.borderColor = "green"
+
+			setTimeout(() => navbar.style.borderColor = "gold", 200)
+		}
+		else if (this.props.accuracyScore < prevProps.accuracyScore) {
+			navbar.style.borderColor = "red"
+
+			setTimeout(() => navbar.style.borderColor = "gold", 200)
+		}		
+	}
+
 	updateDailyReviewsBar = (delay) => {
 		setTimeout(() => {
 			let outerScoreBar = document.getElementById("daily-reviews-bar")
@@ -143,7 +157,8 @@ const mapStateToProps = state => {
 		userName: state.users.userName,
 		user: state.users.user,
 		dailyReviews: state.users.dailyReviews,
-		dailyFactsComments: state.users.dailyFactsComments		
+		dailyFactsComments: state.users.dailyFactsComments,
+		accuracyScore: state.users.userAccuracyScore		
 	}
 }
 

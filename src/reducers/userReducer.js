@@ -16,6 +16,7 @@ export default function userReducer(state = {
 	totalUpvotes: "",
 	totalDownvotes: "",
 	userReviewScore: "",
+	reachScore: "",
 	dailyReviews: "",
 	dailyStreak: "",
 	dailyFactsComments: ""
@@ -33,6 +34,7 @@ export default function userReducer(state = {
 				userReputabilityScore: action.user.reputability_score,
 				userAccuracyScore: action.user.total_votes.accuracy,
 				userReviewScore: action.user.review_score,
+				reachScore: action.user.reach_score,
 				totalUpvotes: action.user.total_votes.tallies.total_upvotes,
 				totalDownvotes: action.user.total_votes.tallies.total_downvotes,
 				dailyReviews: action.user.daily_reviews,

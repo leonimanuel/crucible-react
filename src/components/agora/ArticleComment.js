@@ -10,7 +10,7 @@ class ArticleComment extends Component {
 
 	handleAddFact = (fact) => {
 		console.log("executing handleAddFact")
-		this.props.addFactFromComment(fact);
+		this.props.addFactFromComment(fact, this.props.comment.user_id);
 	}
 
 	render() {		

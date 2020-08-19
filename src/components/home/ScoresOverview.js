@@ -63,7 +63,7 @@ class ScoresOverview extends Component {
 
 	render() {
 		this.updateDailyReviewsBar(500)
-		this.updateDailyFactsCommentsBar(200)		
+		this.updateDailyFactsCommentsBar(200)
 		return (
 			<React.Fragment>
 				<div id="scores-overview" className="overview-wrapper">
@@ -75,6 +75,7 @@ class ScoresOverview extends Component {
 						
 						<div className="score-type-container" id="reach-scores-overview-container">
 							<div className="score-type-header" id="reach-score-header">Reach</div>
+							<div>Score: {this.props.reachScore}</div>
 							<div className="scores-content" id="reach-scores-content">
 								<div>Daily Streak: </div>
 								<div className="dailys-bar" id="daily-facts-comments-bar">
@@ -136,6 +137,7 @@ const mapStateToProps = state => {
 		reputabilityScore: state.users.userReputabilityScore,
 		accuracyScore: state.users.userAccuracyScore,
 		reviewScore: state.users.userReviewScore,
+		reachScore: state.users.reachScore,
 		dailyReviews: state.users.dailyReviews,
 		dailyStreak: state.users.dailyStreak,
 		totalUpvotes: state.users.totalUpvotes,

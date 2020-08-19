@@ -42,7 +42,7 @@ export const falsifyAddedNewComment = () => {
   }
 }
 
-export const addFactFromComment = (fact) => {
+export const addFactFromComment = (fact, authorId) => {
   return (dispatch) => {
     dispatch({type: "ADDING_COMMENT_FACT"})
 
@@ -55,6 +55,7 @@ export const addFactFromComment = (fact) => {
       },
       body: JSON.stringify({
         factId: fact.id,
+        authorId: authorId
       })
     }
     fetch(API_ROOT + `/facts`, configObj)
