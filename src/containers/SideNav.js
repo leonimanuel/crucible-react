@@ -40,24 +40,17 @@ class SideNav extends Component {
 		let sectionTabs = document.getElementById("sections-list")
 
 		if (this.props.sidenavOpen === true && this.state.section === e.target.id) {
-			debugger
 			sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`			
 			// this.setState({open: !this.state.open})
 			this.props.onSidenavToggle(!this.props.sidenavOpen)
 		} else if (this.props.sidenavOpen === true && this.state.section !== e.target.id) {
-			debugger
 			this.setState({section: e.target.id,})
 		} else if (this.props.sidenavOpen === false) {
-			debugger
 			this.setState({section: e.target.id})
 			sideNav.style = `left: 0px`
 			// this.setState({open: !this.state.open})
 			this.props.onSidenavToggle(!this.props.sidenavOpen)
 		}
-	}
-
-	handleBlur = () => {
-		debugger
 	}
 
 	calculateTotalUnreads = () => {
@@ -69,8 +62,8 @@ class SideNav extends Component {
 	render() {
 		// debugger
 		return (
-			<div id="side-nav" onFocus={this.handleBlur} >
-				<MainPane section={this.state.section} onFocus={this.handleBlur}/>
+			<div id="side-nav" >
+				<MainPane section={this.state.section} />
 				<DetailPane section={this.state.section} /> 
 				
 				<div id="sections-list">

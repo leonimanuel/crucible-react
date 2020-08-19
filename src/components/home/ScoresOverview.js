@@ -118,8 +118,8 @@ class ScoresOverview extends Component {
 								<div>{`${this.props.dailyReviews}/10`}</div>
 							</div>
 							<div id="review-scores-l2">
-								<div>Streak: <span>{`${this.props.dailyStreak} Day${this.props.dailyStreak !== 1 ? "s" : ""}`}</span></div>
-								<div>Total Score: <span>{this.props.reviewScore}</span></div>
+								{/*<div>Streak: <span>{`${this.props.dailyStreak} Day${this.props.dailyStreak !== 1 ? "s" : ""}`}</span></div>*/}
+								<div>Total Score: <span><b>{this.props.reviewScore}</b></span></div>
 							</div>
 						</div>
 					</div>

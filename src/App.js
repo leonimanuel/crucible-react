@@ -78,7 +78,6 @@ class App extends Component {
   }
 
   handleSidenavToggle = (bool) => {
-    debugger
     this.setState({sidenavOpen: bool})
   }
 
