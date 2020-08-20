@@ -321,8 +321,9 @@ class Article extends Component {
 	}
 
 	render() {
-		// const userCommented =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length
-		const userCommented = true
+		const dailysHit = this.props.dailyReviews >= 10 && this.props.dailyFactsComments >= 3
+		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit
+		debugger
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
@@ -333,9 +334,10 @@ class Article extends Component {
 							</a>
 							<div 
 								id="show-forum-button" 
-								onClick={userCommented ? this.props.onForumClick : null}
-								onMouseEnter={this.onForumHoverStart}
-								onMouseLeave={this.onForumHoverEnd}
+								onClick={forumUnlocked ? this.props.onForumClick : null}
+								onMouseEnter={forumUnlocked ? null : this.onForumHoverStart}
+								onMouseLeave={forumUnlocked ? null : this.onForumHoverEnd}
+								style={{"background-color": forumUnlocked ? "gold" : "silver"}}
 							>
 								<div id="show-forum-button-text">Forum</div>
 								{this.props.discussion.unread_messages_count
@@ -420,6 +422,8 @@ const mapStateToProps = state => {
 		addedNewComment: state.discussions.addedNewComment,
 		commentsRendered: state.discussions.commentsRendered,
 		userId: state.users.userId,
+		dailyReviews: state.users.dailyReviews,
+		dailyFactsComments: state.users.dailyFactsComments,
 		// participants: [
 		// 	...state.groups.allMembers.filter(mem => mem.group_id === state.discussions.selectedDiscussion.group_id && mem.id !== state.users.userId),
 		// 	...state.discussions.discussionGuests.filter(guest => guest.id !== state.users.userId)
