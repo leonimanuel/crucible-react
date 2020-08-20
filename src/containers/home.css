@@ -73,6 +73,7 @@
 	color: purple;
 	margin: 2%;
 	width: 40%;
+	min-height: 3em;
 	max-height: 4.5em;
 	overflow: hidden;
 	/*border: 2px solid yellow;*/

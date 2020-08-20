@@ -13,7 +13,7 @@ class ScoreOverviewHelper extends Component {
 
 				<div style={{"font-size": "1.2em", "font-weight": "bold", "margin-top": "10px"}}>Reviews</div>
 				<div><span style={{"font-weight": "bold", "text-decoration": "underline"}}>Daily Streak</span>: Add toward your daily review streak with every review decision you make</div>
-				<div><span style={{"font-weight": "bold", "text-decoration": "underline"}}>Total Score</span>: Earn points for every review decision</div>
+				<div><span style={{"font-weight": "bold", "text-decoration": "underline"}}>Review Score</span>: Earn points for every review decision</div>
 			</div>
 		)
 	}

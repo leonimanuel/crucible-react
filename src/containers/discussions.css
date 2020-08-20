@@ -172,6 +172,13 @@
   /*display: none;  */
 }
 
+#selection-popup {
+  /*border: 2px solid gold;*/
+  border: 2px solid #0f4c75;
+  /*background-color:  #0f4c75;*/
+  background-color: whitesmoke;
+}
+
 #comment-popup {
   display: flex;
   flex-direction: column;
@@ -243,6 +250,7 @@
   font-size: 13px;
   border-radius: 4px;
   z-index: 1;
+  border: 2px solid gold;
 }
 
 #forum-lock-popup {
@@ -259,10 +267,6 @@
   font-size: 2em;
   border-radius: 4px;
 }
-
-/*#selection-popup[data-show], #comment-popup[data-show]{
-  display: block;
-}*/
 
 #arrow,
 #arrow::before {

@@ -10,7 +10,8 @@ import { API_ROOT } from "../../constants"
 class NavBar extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		let navbar = document.getElementById("nav-wrapper")
-		if (this.props.accuracyScore > prevProps.accuracyScore) {
+		if (this.props.accuracyScore > prevProps.accuracyScore && prevProps.accuracyScore != 0) {
+		debugger
 			navbar.style.borderColor = "green"
 
 			setTimeout(() => navbar.style.borderColor = "gold", 200)
