@@ -11,7 +11,7 @@ class SideNav extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: this.props.sidenavOpen,
+			// open: this.props.sidenavOpen,
 			section: ""
 		}
 	}
@@ -38,7 +38,6 @@ class SideNav extends Component {
 		
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
-
 		if (this.props.sidenavOpen === true && this.state.section === e.target.id) {
 			sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`			
 			// this.setState({open: !this.state.open})
@@ -90,6 +89,7 @@ const mapStateToProps = state => {
 	// debugger
 	return {
 		discussions: state.discussions.allDiscussions,
+		sidenavOpen: state.sidenav.sidenavOpen
 		// unreadMessageCount: state.groups.map
 		// selectedGroup: state.sidenav.selectedGroup,
 		// parentTopic: state.topics.parentTopic,

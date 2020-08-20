@@ -42,3 +42,11 @@
 	font-weight: bold;
 	cursor: pointer;
 }
+
+#resend-confirmation-button {
+	border: none;
+	background-color: gold;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+}

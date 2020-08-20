@@ -9,3 +9,7 @@ export const hideDetailPane = () => {
 		type: "HIDE_DETAIL_PANE"
 	}
 }
+
+export const toggleSidenav = (bool) => {
+	return {type: "TOGGLE_SIDENAV", bool}
+}

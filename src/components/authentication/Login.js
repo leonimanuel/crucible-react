@@ -9,7 +9,8 @@ import "./auth.css"
 class Login extends Component {
 	state = {
 		email: "",
-		password: ""
+		password: "",
+		confirmationResent: false
 	}
 
 	handleChange = e => {
@@ -41,7 +42,15 @@ class Login extends Component {
 		fetch(API_ROOT + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {
-				if (data.error) {
+				if (data.message) {
+					const loginWrapper = document.getElementById("login-wrapper");
+					loginWrapper.innerHTML = data.message
+				}
+				if (data.error === "confirm email") {
+					const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
+					resendConfirmationButton.style.display = "block"
+				}
+				else if (data.error) {
 					const errorBox = document.getElementById("error-box");
 					errorBox.innerText = data.error.user_authentication;
 				}
@@ -52,6 +61,26 @@ class Login extends Component {
 				} 				
 			})
 			.catch(err => alert(err.message))
+	}
+
+	resendConfirmation = () => {
+	  debugger
+	  let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+	  // debugger
+	  fetch(API_ROOT + `/resend-confirmation-email`, configObj)
+	  	.then(resp => resp.json())
+	  	.then(data => {
+	  		const loginBox = document.getElementById("login-wrapper");
+	  		debugger
+	  		loginBox.innerHTML = <div>{data.message}</div>
+	  	}) 		
 	}
 
 	render() {
@@ -67,6 +96,7 @@ class Login extends Component {
 						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
 						<br/>
 						<div id="error-box" style={{color: "red"}}></div>
+						<button id='resend-confirmation-button' onClick={this.resendConfirmation} style={{display: "none"}}>resend confirmation email</button>
 						<input className="auth-button" type="submit" value="Log in"/>
 					</form>
 				</div>					

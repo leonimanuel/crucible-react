@@ -72,7 +72,6 @@ export const logOut = () => {
 	}
 }
 
-
 // export const addTopics = (topics) => {
 // 	return {
 // 		type: "ADD_TOPICS",

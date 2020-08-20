@@ -22,6 +22,7 @@ import FeedbackButton from "./components/feedback/FeedbackButton.js"
 
 import { logIn } from "./actions/users.js"
 import { resetUnreadCount } from "./actions/discussionsActions.js"
+import { toggleSidenav } from "./actions/sidenavActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
@@ -74,11 +75,11 @@ class App extends Component {
     let sideNav = document.getElementById("side-nav");
     let sectionTabs = document.getElementById("sections-list")
     sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
-    this.setState({sidenavOpen: false})
+    this.props.toggleSidenav(false)
   }
 
   handleSidenavToggle = (bool) => {
-    this.setState({sidenavOpen: bool})
+    this.props.toggleSidenav(bool)
   }
 
   render() {
@@ -120,7 +121,7 @@ class App extends Component {
                     onReceived={this.handleReviewedItem} 
                   />    
 
-                  <SideNav sidenavOpen={this.state.sidenavOpen} onSidenavToggle={this.handleSidenavToggle}/>
+                  <SideNav onSidenavToggle={this.handleSidenavToggle}/>
                   <main id="main-content" onClick={this.handleMainClick}>
                     <Route exact path="/"><Home/></Route>
                     <Route path="/console"><Console/></Route>
@@ -155,7 +156,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore })(App);
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav })(App);
 
 
 
