@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
-
+import splitRetain from "split-retain"
 import "./landing-page.css"
 
 class LandingPage extends Component {
@@ -22,31 +22,33 @@ class LandingPage extends Component {
 				// 	word.style.backgroundColor = "#0f4c75"
 				// 	// word.style.filter = "blur(0px)";
 				// }, 10*index)
-			}, 5*index)
+			}, 50*index)
 
 			setTimeout(() => {
 				shuffledArray.forEach((word, index) => {
 					setTimeout(() => {
 						word.style.backgroundColor = "#0f4c75"
-					}, 10*index)
+					}, 100*index)
 				})
-			}, 3000)
+			}, 2500)
 		})
 		
 		let header = document.getElementById("welcome-header")
-		setTimeout(() => header.style.opacity = "1", 2000)
+		setTimeout(() => header.style.opacity = "1", 1500)
 
 		let buttons = document.getElementById("landing-buttons-container")
-		setTimeout(() => buttons.style.opacity = "1", 5000)		
+		setTimeout(() => buttons.style.opacity = "1", 4500)		
 	}
 
 	renderText = () => {
 		let text = "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, --That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government, laying its foundation on such principles and organizing its powers in such form, as to them shall seem most likely to effect their Safety and Happiness. Prudence, indeed, will dictate that Governments long established should not be changed for light and transient causes; and accordingly all experience hath shewn, that mankind are more disposed to suffer, while evils are sufferable, than to right themselves by abolishing the forms to which they are accustomed."
-		let textArray = text.split(" ")
+		// let textArray = text.split(" ")
+		let textArray = splitRetain(text, "c")
 		return textArray.map(word => {
 			return (
 				<React.Fragment>
-					<span className="welcome-word">{word}</span><span> </span>
+					{/*<span className="welcome-word">{word}</span><span> </span>*/}
+					<span className="welcome-word">{word}</span>
 				</React.Fragment>
 			)
 		})		

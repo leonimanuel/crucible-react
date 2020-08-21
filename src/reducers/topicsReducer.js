@@ -46,6 +46,7 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_FACT":
+			debugger
 			return {
 				...state,
 				facts: [...state.facts, action.fact]

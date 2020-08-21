@@ -93,33 +93,34 @@ export const addNewDiscussion = (groupId, articleURL) => {
     }
     // debugger
     fetch(API_ROOT + `/groups/${groupId}/discussions`, configObj)
-      .then(resp => {
-        if (resp.status === 424) {
-          debugger
-          // throw new Error("SOMETHING WENT WRONG")
-          dispatch({type: "ADD_DISCUSSION_FAIL"})
-          alert("Please select at least one interest to get article recommendations")
-        } else {
-          return resp.json()
-        }        
-      })
-      .then((discussion) => {
-        debugger
-        if (discussion.article) {
-          dispatch({ 
-            type: 'ADD_NEW_DISCUSSION', 
-            discussion
-          })    
-        } else {
-          dispatch({type: "ADD_DISCUSSION_FAIL"})
-        }
-      })
-      .catch(err => {
-        // alert(err.message)
-        debugger
-        dispatch({type: "ADD_DISCUSSION_FAIL"})
-        alert("something went wrong, please try again later")
-      })
+      // .then(resp => {
+      //   if (resp.status === 424) {
+      //     debugger
+      //     // throw new Error("SOMETHING WENT WRONG")
+      //     dispatch({type: "ADD_DISCUSSION_FAIL"})
+      //     alert("Please select at least one interest to get article recommendations")
+      //   } else {
+      //     return resp.json()
+      //   }        
+      // })
+      // .then((discussion) => {
+      //   debugger
+        // if (discussion.article) {
+        //   dispatch({ 
+        //     type: 'ADD_NEW_DISCUSSION', 
+        //     discussion
+        //   })    
+        // } 
+        // if (!discussion.article) {
+        //   dispatch({type: "ADD_DISCUSSION_FAIL"})
+        // }
+      // })
+      // .catch(err => {
+      //   // alert(err.message)
+      //   debugger
+      //   dispatch({type: "ADD_DISCUSSION_FAIL"})
+      //   alert("something went wrong, please try again later")
+      // })
   }
 }
 
@@ -295,6 +296,18 @@ export const zeroUnreadCount = (groupId, discussionId) => {
       //     response
       //   })
       // })
+  }
+}
+
+export const addDiscussionFromCable = (discussion) => {
+  // debugger
+  if (discussion.article) {
+    return { 
+      type: 'ADD_NEW_DISCUSSION', 
+      discussion
+    }    
+  } else {
+    return {type: "ADD_DISCUSSION_FAIL"}
   }
 }
 

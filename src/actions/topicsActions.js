@@ -121,3 +121,11 @@ export const addFactToNew = (selection, articleURL) => {
 	}
 }
 
+export const addFactFromCable = (response) => {
+	const fact = response.fact
+	return {
+		type: "ADD_FACT",
+		fact
+	}
+}
+

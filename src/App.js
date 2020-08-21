@@ -21,8 +21,9 @@ import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
 
 import { logIn } from "./actions/users.js"
-import { resetUnreadCount } from "./actions/discussionsActions.js"
+import { resetUnreadCount, addDiscussionFromCable } from "./actions/discussionsActions.js"
 import { toggleSidenav } from "./actions/sidenavActions.js"
+import { addFactFromCable } from "./actions/topicsActions.js"
 // import { isLoggedIn } from 
 
 class App extends Component {
@@ -68,7 +69,16 @@ class App extends Component {
     } else if (response.total_votes) {
       this.props.updateAccuracyScore(response)
     }
+  }
 
+  handleMiscItem = response => {
+    debugger
+    if (response.fact) {
+      this.props.addFactFromCable(response)
+    } 
+    else if (response.discussion) {
+      this.props.addDiscussionFromCable(response.discussion)
+    }
   }
 
   handleMainClick = () => {
@@ -121,6 +131,11 @@ class App extends Component {
                     onReceived={this.handleReviewedItem} 
                   />    
 
+                  <ActionCableConsumer 
+                    channel={{ channel: "MiscChannel", user: this.props.userId }}
+                    onReceived={this.handleMiscItem} 
+                  />    
+
                   <SideNav onSidenavToggle={this.handleSidenavToggle}/>
                   <main id="main-content" onClick={this.handleMainClick}>
                     <Route exact path="/"><Home/></Route>
@@ -156,7 +171,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav })(App);
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable })(App);
 
 
 
