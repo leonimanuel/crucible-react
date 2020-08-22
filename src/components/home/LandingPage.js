@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import splitRetain from "split-retain"
 import "./landing-page.css"
-
+import Claire from "./IMG-4792.JPG"
 class LandingPage extends Component {
 	componentDidMount() {
     // BLOB

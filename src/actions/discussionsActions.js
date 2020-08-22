@@ -132,10 +132,11 @@ export const addMessageToDiscussion = (message, userId) => {
   }
 }
 
-export const addCommentToDiscussion = comment => {
+export const addCommentToDiscussion = (comment, currrentUserId) => {
   return {
     type: "ADD_COMMENT_TO_DISCUSSION",
-    comment
+    comment,
+    currrentUserId
   }
 }
 

@@ -70,9 +70,13 @@ export default function userReducer(state = {
 			}
 
 		case "ADD_COMMENT_TO_DISCUSSION":
-			return {
-				...state,
-				dailyFactsComments: action.comment.user.daily_facts_comments
+			if (action.comment.user.id === action.currrentUserId) {
+				return {
+					...state,
+					dailyFactsComments: action.comment.user.daily_facts_comments
+				}
+			} else {
+				return state;
 			}
 
 		case "LOGIN_FAILED":

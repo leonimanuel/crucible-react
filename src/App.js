@@ -54,7 +54,7 @@ class App extends Component {
   handleReceivedComment = response => {
     debugger
     const { comment } = response;
-    this.props.addCommentToDiscussion(comment)   
+    this.props.addCommentToDiscussion(comment, this.props.userId)   
   }
 
   handleReadDiscussion = response => {
