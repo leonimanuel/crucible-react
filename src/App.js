@@ -15,6 +15,8 @@ import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
+import Control from "./containers/Control.js"
+
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
@@ -153,6 +155,7 @@ class App extends Component {
             }            
               <Route path="/login"><Login/></Route>
               <Route path="/signup"><SignUp/></Route> 
+              <Route path="/control"><Control/></Route> 
               <Route 
                 path="/:token/confirm-email"
                 render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
