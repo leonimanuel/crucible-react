@@ -15,7 +15,7 @@ class ArticleContent extends Component {
 
 	render() {
 		return (
-			<div id={this.props.id}>
+			<div id={this.props.id} onMouseUp={this.props.onHighlight}>
 				{this.props.discussion.article.content === "crucible tutorial" 
 					?
 						<React.Fragment>

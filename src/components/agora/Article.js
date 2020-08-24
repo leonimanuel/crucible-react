@@ -70,6 +70,7 @@ class Article extends Component {
 
 	handleTextSelect = e => {
 		// console.log(this)
+		debugger
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
@@ -323,7 +324,6 @@ class Article extends Component {
 	render() {
 		const dailysHit = this.props.dailyReviews >= 10 && this.props.dailyFactsComments >= 3
 		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit
-		debugger
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
@@ -346,7 +346,7 @@ class Article extends Component {
 								}
 							</div>
 						</div>
-						<div onMouseUp={this.handleTextSelect} id="article-content" onMouseDown={this.clearTextSelected}>							
+						<div id="article-content" onMouseDown={this.clearTextSelected}>							
 							<div id="article-info-container">
 								<div id="author-and-date-published">
 									<div id="article-author">{this.props.discussion.article.author}</div>
@@ -371,7 +371,7 @@ class Article extends Component {
 								</div>
 							</div>
 
-							<ArticleContent discussion={this.props.discussion}/>
+							<ArticleContent discussion={this.props.discussion} onHighlight={this.handleTextSelect} />
 						</div>						
 						
 						{this.state.textSelected 
