@@ -12,7 +12,7 @@ class FactDetailsPane extends Component {
 	render() {
 		const { fact } = this.props
 		return (
-			<div className="fact-details-pane">
+			<div className="fact-details-pane" id={this.props.id}>
 				<div id="fact-detail-buttons-container">
 					{fact.rephrase ? <button className="fact-detail-button" onClick={this.props.handleContentToggle}>{this.props.factText}</button> : null}
 					<button className="fact-detail-button" onClick={() => this.openFactSource(fact.url)}>go to source</button>

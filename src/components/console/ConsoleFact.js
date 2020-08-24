@@ -37,6 +37,12 @@ class ConsoleFact extends Component {
 				border = "2px solid red" 		
 		}
 
+		const factDetails = document.getElementById(`fact-details-${fact.id}`)		
+		if (factDetails) {
+			factDetails.style.maxHeight = this.state.showFactDetails ? "200px" : "0px"
+		}
+
+		
 		return (
 			<div 
 				className={`fact-box ${this.state.showFactDetails ? "expanded-fact" : "truncated-fact"}`}
@@ -52,17 +58,14 @@ class ConsoleFact extends Component {
 					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content }
 					<img className="show-more-fact-icon" src={ShowMoreIcon} alt="show-more-icon" width="30px"/>
 				</div>				
-			
-				{this.state.showFactDetails 
-					? 
+
 						<FactDetailsPane 
-							fact={fact} 
+							fact={fact}
+							id={`fact-details-${fact.id}`} 
 							factText={this.state.showOriginalFact ? "show rephrase" : "show o.g. fact"} 
 							handleContentToggle={this.toggleFactContent}
 						/> 
-					: 
-						null
-				}
+
 
 				{/**/}
 			</div>
