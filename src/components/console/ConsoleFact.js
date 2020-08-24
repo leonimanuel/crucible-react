@@ -22,6 +22,17 @@ class ConsoleFact extends Component {
 		this.setState({showOriginalFact: !this.state.showOriginalFact})
 	}
 
+	copyFact = () => {
+	  const el = document.createElement('textarea');
+	  el.value = this.props.fact.content;
+	  document.body.appendChild(el);
+	  el.select();
+	  document.execCommand('copy');
+	  document.body.removeChild(el);
+
+	  // window.open(url,'_blank');
+	};	
+
 	render() {
 		const { fact } = this.props;
 
@@ -64,6 +75,7 @@ class ConsoleFact extends Component {
 							id={`fact-details-${fact.id}`} 
 							factText={this.state.showOriginalFact ? "show rephrase" : "show o.g. fact"} 
 							handleContentToggle={this.toggleFactContent}
+							onCopy={this.copyFact}
 						/> 
 
 
