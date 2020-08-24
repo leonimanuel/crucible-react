@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import "./interests.css"
 import InterestCard from "./InterestCard.js"
-import { fetchInterests, updateSelectedInterests } from "../../actions/discussionsActions.js"
+import { updateSelectedInterests } from "../../actions/discussionsActions.js"
 
 class Interests extends Component {
-	componentDidMount() {
-		this.props.fetchInterests()
-	}
-
 	toggleSelect = (interest) => {
 		// debugger
 		this.props.updateSelectedInterests(interest)
@@ -40,4 +36,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchInterests, updateSelectedInterests })(Interests);
+export default connect(mapStateToProps, { updateSelectedInterests })(Interests);

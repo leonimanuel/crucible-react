@@ -7,6 +7,7 @@ import DiscussionsList from "./DiscussionsList.js"
 import MembersList from "./MembersList.js"
 // import GuestsList from "./GuestsList.js"
 import EditGroupPopup from "./EditGroupPopup.js"
+import { fetchInterests } from "../../actions/discussionsActions.js"
 
 // import ConsoleTopic from "./ConsoleTopic.js"
 
@@ -21,6 +22,9 @@ class GroupDetailsMenu extends Component {
 	// 	this.setState({renderInterests: true})
 	// }
 
+	componentDidMount() {
+		return this.props.group.name === "Feed" ? this.props.fetchInterests() : null
+	}
 	redirectToInterests = () => {
 		return <Redirect to={"/groups/interests"} />		
 	}
@@ -87,7 +91,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(GroupDetailsMenu);
+export default connect(mapStateToProps, { fetchInterests })(GroupDetailsMenu);
 
 
 
