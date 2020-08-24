@@ -15,8 +15,8 @@ class FactDetailsPane extends Component {
 			<div className="fact-details-pane" id={this.props.id}>
 				<div id="fact-detail-buttons-container">
 					{fact.rephrase ? <button className="fact-detail-button" onClick={this.props.handleContentToggle}>{this.props.factText}</button> : null}
-					<button className="fact-detail-button" onClick={() => this.openFactSource(fact.url)}>source</button>
 					<button className="fact-detail-button" onClick={this.props.onCopy}>copy</button>
+					<button className="fact-detail-button" onClick={() => this.openFactSource(fact.url)}>source</button>
 				</div>
 				<div className="fact-score">
 					<div className="fact-score-title">Logic:</div>

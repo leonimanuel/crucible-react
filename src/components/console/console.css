@@ -24,6 +24,13 @@
   overflow: hidden;
   text-overflow: ellipsis;	
   font-size: 1.1em;
+  display: flex;
+}
+
+.topic-badge {
+	margin-left: 2px;
+	font-size: 0.6em;
+	padding: 0px 3px;
 }
 
 .dragged-over {
@@ -170,7 +177,7 @@
 	border-radius: 3px;
 	background-color: white;
 	padding: 2px 5px;
-	color: #738598;
+	color: #2c3539;
 	outline: none;
 	cursor: pointer;	
 
