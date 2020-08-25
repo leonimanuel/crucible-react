@@ -24,6 +24,7 @@ class ConfirmEmail extends Component {
     fetch(API_ROOT + `/confirm-email/${token}`, configObj)
       .then(resp => resp.json)
       .then(data => {
+        debugger
         this.setState({confirmation: "success"})
 				this.props.logIn()
       })

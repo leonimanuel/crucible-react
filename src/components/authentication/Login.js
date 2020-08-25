@@ -42,11 +42,13 @@ class Login extends Component {
 		fetch(API_ROOT + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {
+				debugger
 				if (data.message) {
 					const loginWrapper = document.getElementById("login-wrapper");
 					loginWrapper.innerHTML = data.message
+					localStorage.setItem("token", data.auth_token)
 				}
-				if (data.error === "confirm email") {
+				else if (data.error === "confirm email") {
 					const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
 					resendConfirmationButton.style.display = "block"
 				}

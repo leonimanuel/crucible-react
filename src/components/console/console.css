@@ -37,6 +37,10 @@
 	background-color: darkcyan;
 }
 
+#extension-link-button {
+	cursor: pointer;
+}
+
 #console-fact-list-container {
 	/*border: 2px solid black;*/
 	max-height: 500px;
