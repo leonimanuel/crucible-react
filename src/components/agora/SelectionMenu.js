@@ -12,9 +12,14 @@ class SelectionMenu extends Component {
 
 	componentDidUpdate() {
 		if (this.state.selectionMenu === "post comment" && this.state.comment && this.state.facts.length) {
-			document.getElementById("comment-submit").disabled = false;
+			const commentSubmit = document.getElementById("comment-submit");
+			commentSubmit.disabled = false
+			// commentSubmit.style.backgroundColor = "grey"
+
 		} else if (this.state.selectionMenu === "post comment") {
-			document.getElementById("comment-submit").disabled = true;
+			const commentSubmit = document.getElementById("comment-submit");
+			commentSubmit.disabled = true
+			// commentSubmit.style.backgroundColor = "#0f4c75"
 		}
 	}
 
@@ -54,21 +59,21 @@ class SelectionMenu extends Component {
 	}
 
 	render() {
-		// debugger
-		// const { match } = this.props;
 		return (
 			<div>
 				<div id={this.props.id}>
 					<span id="selection-menu-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 					<div id="selection-options-wrapper">
-						<button id="post-comment-option" onClick={this.handleSelectionOption}>post comment</button>
-						<button id="collect-fact-option" onClick={this.handleSelectionOption}>add fact</button>
+						<div id="selection-buttons-wrapper">
+							<button className={`selection-button ${this.state.selectionMenu === "post comment" ? "selected" : null}`} id="post-comment-option" onClick={this.handleSelectionOption} style={{"border-radius": "5px 0px 0px 5px"}}>post comment</button>
+							<button className={`selection-button ${this.state.selectionMenu === "collect fact" ? "selected" : null}`} id="collect-fact-option" onClick={this.handleSelectionOption} style={{"border-radius": "0px 5px 5px 0px"}}>collect fact</button>
+						</div>						
 						{this.state.selectionMenu === "post comment"
 							?
 								<div id="new-comment-form-wrapper">
-									<form onSubmit={(e) => this.props.submitComment(e, this.state.comment, this.state.facts)} id="new-comment-form">
-										<div style={{"font-size": "1.1em"}}>Comment:</div>
-										<textarea className="selection-menu-textarea" id="comment-textarea" onChange={this.handleChange} value={this.state.comment} name="comment" cols="40" rows="5"></textarea> <br/>
+									<form className="selection-form" onSubmit={(e) => this.props.submitComment(e, this.state.comment, this.state.facts)} id="new-comment-form">
+										<div className="selection-textarea-label" style={{"font-size": "1.1em"}}>Comment:</div>
+										<textarea className="selection-menu-textarea" id="comment-textarea" onChange={this.handleChange} value={this.state.comment} name="comment" cols="40" rows="5" placeholder="Try to phrase your comment so that it makes sense as a standalone statement."></textarea> <br/>
 										<div id="comment-facts-container">
 											{this.state.facts.map(fact => <NewCommentFact key={fact.id} fact={fact}/>) }
 										</div>
@@ -82,15 +87,15 @@ class SelectionMenu extends Component {
 										>
 											DRAG SUPPORTING FACT HERE
 										</div>
-										<input id="comment-submit" type="submit" value="post" disabled="true"/>
+										<input className="selection-action-submit" id="comment-submit" type="submit" value="post comment" disabled="true"/>
 									</form>
 								</div>	
 							:
 								<div id="add-fact-form-wrapper">
-									<form onSubmit={(e) => this.props.collectFact(e, this.state.rephrase)} id="add-fact-form-form">
-										<div style={{"font-size": "1.1em"}}>Rephrase:</div>
-										<textarea className="selection-menu-textarea" id="rephrase-textarea" onChange={this.handleChange} value={this.state.rephrase} name="rephrase" cols="40" rows="5"></textarea> <br/>
-										<input id="rephrase-submit" type="submit" value="post" />
+									<form className="selection-form" onSubmit={(e) => this.props.collectFact(e, this.state.rephrase)} id="add-fact-form-form">
+										<div style={{"font-size": "1.1em"}}>Rephrase (optional):</div>
+										<textarea className="selection-menu-textarea" id="rephrase-textarea" onChange={this.handleChange} value={this.state.rephrase} name="rephrase" cols="40" rows="5" placeholder="If your selection does not make logical or grammatical sense as a standalone fact, or needs to be rephrased for another reason, do so here."></textarea> <br/>
+										<input className="selection-action-submit" id="rephrase-submit" type="submit" value="collect fact" />
 									</form>
 								</div>
 						}
@@ -99,8 +104,6 @@ class SelectionMenu extends Component {
 
 					<div id="arrow" data-popper-arrow></div>
 				</div>
-
-				<div id="collect-fact-button" onClick={this.props.collectFact}>+</div>			
 			</div>
 
 		)

@@ -120,19 +120,6 @@ class Article extends Component {
 		    },
 		  ],
 		});
-
-		const collectFactPopup = document.querySelector(`#collect-fact-button`)
-		createPopper(button, collectFactPopup, {
-			placement: "right",
-		  modifiers: [
-			    {
-			      name: 'offset',
-			      options: {
-			        offset: [0, 8],
-			      },
-			    },
-			  ],
-		})
 	}
 
 	renderCommentHighlights = (comments) => {
