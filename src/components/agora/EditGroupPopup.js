@@ -49,7 +49,6 @@ class editGroupPopup extends Component {
 	renderSuggestions = () => {
 		// debugger
 		return this.props.suggestionMembers.map(member => {
-			debugger
 				return (
 					<MemberSuggestion member={member} addToMemberBox={this.addToMemberBox} />
 				) 
@@ -89,13 +88,12 @@ class editGroupPopup extends Component {
 		if (this.state.groupName.toLowerCase() === "Feed".toLowerCase() || this.state.groupName.toLowerCase() === "Guest".toLowerCase()) {
 			this.setState({groupNameError: "Group name cannot be Feed or Guest"})
 		}
-		// else if (this.state.groupName && this.state.currentMembers.length) {
-		// 	// this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
-		// 	const { groupName, addedMembers, removedMembers } = this.state
-		// 	this.props.editGroup(this.props.group.id, groupName, addedMembers, removedMembers)
-		// 	this.props.closePopup()
-		// }
-		
+		else if (this.state.groupName && this.state.currentMembers.length) {
+			// this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+			const { groupName, addedMembers, removedMembers } = this.state
+			this.props.editGroup(this.props.group.id, groupName, addedMembers, removedMembers)
+			this.props.closePopup()
+		}
 	}
 
 	render() {

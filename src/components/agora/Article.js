@@ -323,7 +323,7 @@ class Article extends Component {
 
 	render() {
 		const dailysHit = this.props.dailyReviews >= 10 && this.props.dailyFactsComments >= 3
-		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit
+		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit || (this.props.discussion ? this.props.discussion.admin : true)
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 

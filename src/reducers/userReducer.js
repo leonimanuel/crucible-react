@@ -61,6 +61,13 @@ export default function userReducer(state = {
 				dailyReviews: action.response.daily_reviews
 			}
 
+		case "RESET_QUOTAS":
+			return {
+				...state,
+				dailyReviews: 0,
+				dailyFactsComments: 0				
+			}
+
 		case "UPDATE_ACCURACY_SCORE":
 			return {
 				...state,

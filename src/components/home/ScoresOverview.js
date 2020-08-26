@@ -75,9 +75,8 @@ class ScoresOverview extends Component {
 						
 						<div className="score-type-container" id="reach-scores-overview-container">
 							<div className="score-type-header" id="reach-score-header">Reach</div>
-							<div>Score: {this.props.reachScore}</div>
 							<div className="scores-content" id="reach-scores-content">
-								<div>Daily Streak: </div>
+								<div>Daily Quota: </div>
 								<div className="dailys-bar" id="daily-facts-comments-bar">
 									<div className="daily-reviews-notch"></div>
 									<div className="daily-reviews-notch"></div>
@@ -87,6 +86,7 @@ class ScoresOverview extends Component {
 								</div>
 								<div>{`${this.props.dailyFactsComments}/3`}</div>
 							</div>						
+							<div>Score: <b>{this.props.reachScore}</b></div>
 						</div>					
 
 						<div className="score-type-container" id="reputability-scores-overview-container">
@@ -101,7 +101,7 @@ class ScoresOverview extends Component {
 						<div className="score-type-container" id="review-scores-overview-container">
 							<div className="score-type-header" id="review-score-header">Reviews</div>
 							<div className="scores-content" id="review-scores-content">
-								<div>Daily Streak: </div>
+								<div>Daily Quota: </div>
 								<div className="dailys-bar" id="daily-reviews-bar">
 									<div className="daily-reviews-notch"></div>
 									<div className="daily-reviews-notch"></div>

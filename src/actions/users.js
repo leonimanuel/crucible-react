@@ -72,6 +72,12 @@ export const logOut = () => {
 	}
 }
 
+export const resetQuotas = () => {
+  return {
+    type: "RESET_QUOTAS"
+  }
+}
+
 // export const addTopics = (topics) => {
 // 	return {
 // 		type: "ADD_TOPICS",

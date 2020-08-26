@@ -22,7 +22,7 @@ import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
 
-import { logIn } from "./actions/users.js"
+import { logIn, resetQuotas } from "./actions/users.js"
 import { resetUnreadCount, addDiscussionFromCable } from "./actions/discussionsActions.js"
 import { toggleSidenav } from "./actions/sidenavActions.js"
 import { addFactFromCable } from "./actions/topicsActions.js"
@@ -80,6 +80,8 @@ class App extends Component {
     } 
     else if (response.discussion) {
       this.props.addDiscussionFromCable(response.discussion)
+    } else if (response.quotas) {
+      this.props.resetQuotas()
     }
   }
 
@@ -174,7 +176,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable })(App);
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable, resetQuotas })(App);
 
 
 
