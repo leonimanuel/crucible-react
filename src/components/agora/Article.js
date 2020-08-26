@@ -328,6 +328,8 @@ class Article extends Component {
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
+						{this.props.discussion.article.article_type === "news" ? <div className="daily-hit-tag" id="daily-news-tag" style={{"background-color": "cadetblue"}}>daily news hit</div> : null}
+						{this.props.discussion.article.article_type === "thinker" ? <div className="daily-hit-tag" id="daily-opinion-tag" style={{"background-color": "#0f4c75"}}>daily opinion hit</div> : null}
 						<div id="title-and-forum-button">
 							<a href={this.props.discussion.article_url} target="_blank" rel="noopener noreferrer">
 								<div id="article-title">{this.props.discussion.article.title}</div>

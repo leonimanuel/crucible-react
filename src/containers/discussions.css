@@ -48,9 +48,23 @@
 	/*overflow: scroll;*/
   /*font-family: Georgia, sans-serif;*/
   font-family: 'Abel', sans-serif; 
+  text-align: left;
   /*font-family: 'Roboto Mono', monospace;*/
   /*font-family: 'Montserrat', sans-serif;*/
   /*font-family: 'Krona One', sans-serif;*/
+  position: relative;
+}
+
+.daily-hit-tag {
+  /*border: 2px solid gold;*/
+  border-radius: 5px;
+  /*background-color: cadetblue;*/
+  color: white;
+  font-weight: bold;
+  padding: 0 3px;
+  position: absolute;
+  top: -15px;
+  font-size: 0.9em;
 }
 
 #title-and-forum-button {
