@@ -57,7 +57,7 @@
 
 .daily-hit-tag {
   /*border: 2px solid gold;*/
-  border-radius: 5px;
+  border-radius: 2px;
   /*background-color: cadetblue;*/
   color: white;
   font-weight: bold;
@@ -182,7 +182,7 @@
   padding: 4px 8px;
   font-size: 13px;
   border-radius: 4px;
-  max-width: 200px;
+  max-width: 500px;
   /*display: none;  */
 }
 

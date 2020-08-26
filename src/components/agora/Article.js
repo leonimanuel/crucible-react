@@ -261,8 +261,16 @@ class Article extends Component {
 		this.setState({...this.state, textSelected: false, span: ""})
 	}
 
-	handleCollectFact = () => {
-		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url)
+	handleCollectFact = (e, rephrase) => {
+		debugger
+		e.preventDefault();
+		this.props.addFactToNew(this.state.span.innerText, this.props.discussion.article_url, rephrase)
+		this.setState({textSelected: false})
+			let span = document.getElementById(this.state.span.id);
+			let parent = span.parentNode;
+			parent.insertBefore(span.firstChild, span);
+			parent.removeChild(span)
+			parent.normalize()
 	}
 
 	clearTextSelected = (e) => {            //!document.getElementById("comment-textarea").value
@@ -379,7 +387,7 @@ class Article extends Component {
 						{this.state.textSelected 
 							? <SelectionMenu id="selection-popup" 
 									selection={this.state.span.innerText} 
-									submit={this.handleSubmitComment} 
+									submitComment={this.handleSubmitComment} 
 									collectFact={this.handleCollectFact} 
 									closePopup={this.clearTextSelected} /> 
 							: null

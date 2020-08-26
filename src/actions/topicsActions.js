@@ -89,8 +89,7 @@ export const moveFact = (factId, originTopicName, destinationTopicName) => {
   }
 }
 
-export const addFactToNew = (selection, articleURL) => {
-
+export const addFactToNew = (selection, articleURL, rephrase) => {
 	return (dispatch) => {
 		dispatch({type: "POST_FACT"})
 		let configObj = {
@@ -102,14 +101,15 @@ export const addFactToNew = (selection, articleURL) => {
 			},
 			body: JSON.stringify({
 					"selected_text": selection,
-					"selection_url": articleURL			
+					"selection_url": articleURL,
+					"rephrase": rephrase	
 			})
 		}
-		// debugger
+		debugger
 		fetch(API_ROOT + "/facts", configObj)
 			.then(resp => resp.json())
 			.then(fact => {
-				// debugger
+				debugger
 				dispatch({
 					type: "ADD_FACT",
 					fact
