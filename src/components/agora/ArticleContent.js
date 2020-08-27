@@ -3,6 +3,13 @@ import { connect } from "react-redux"
 // import { v4 as uuidv4 } from 'uuid';
 
 class ArticleContent extends Component {
+	componentDidMount() {
+		const articleContent = document.getElementById("article-text-content")
+		if (articleContent.style.fontSize !== "1em") {
+			articleContent.style.fontSize = "1em"
+		}
+	}
+
 	createContent = () => {
 		let parser = new DOMParser();
 		let doc = parser.parseFromString(this.props.discussion.article.content, "text/html")
@@ -15,7 +22,7 @@ class ArticleContent extends Component {
 
 	render() {
 		return (
-			<div id={this.props.id} onMouseUp={this.props.onHighlight}>
+			<div id={this.props.id} onMouseUp={this.props.onHighlight}>		
 				{this.props.discussion.article.content === "crucible tutorial" 
 					?
 						<React.Fragment>

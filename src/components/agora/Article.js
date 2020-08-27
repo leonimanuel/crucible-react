@@ -70,7 +70,6 @@ class Article extends Component {
 
 	handleTextSelect = e => {
 		// console.log(this)
-		debugger
 		e.preventDefault()
 		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
 			let range = window.getSelection().getRangeAt(0);
@@ -139,7 +138,6 @@ class Article extends Component {
 
 			let selectedText = range.extractContents();		
 			let span = document.createElement("span");
-			debugger
 			const author = [...this.props.members, ...this.props.guests].find(p => p.id === comment.user_id)
 			span.style.backgroundColor = author.color;
 			span.classList.add("comment-highlight")
@@ -292,6 +290,17 @@ class Article extends Component {
 		})
 	}
 
+	adjustFontSize = (direction) => {
+		const articleContent = document.getElementById("article-text-content")
+		let currentSizeInt = parseFloat(articleContent.style.fontSize.split("em")) 
+		debugger
+		// if (direction === "+") {
+		// 	articleContent.style.fontSize = 
+		// }
+		articleContent.style.fontSize = direction === "+" ? `${currentSizeInt + 0.1}em` : `${currentSizeInt - 0.1}em`
+		// articleContent.style.fontSize = direction === "+" ? 
+	}
+
 	handleAddGuests = () => {
 		this.setState({
 			renderAddGuestsPopup: true
@@ -323,6 +332,10 @@ class Article extends Component {
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
 					<div id="article-wrapper" className="draw" >
+						<div id="font-size-buttons-wrapper">
+							<button onClick={() => this.adjustFontSize("+")}>+</button>
+							<button onClick={() => this.adjustFontSize("-")}>-</button>
+						</div>		
 						{this.props.discussion.article.article_type === "news" ? <div className="daily-hit-tag" id="daily-news-tag" style={{"background-color": "cadetblue"}}>daily news hit</div> : null}
 						{this.props.discussion.article.article_type === "thinker" ? <div className="daily-hit-tag" id="daily-opinion-tag" style={{"background-color": "#0f4c75"}}>daily opinion hit</div> : null}
 						<div id="title-and-forum-button">
@@ -368,7 +381,7 @@ class Article extends Component {
 								</div>
 							</div>
 
-							<ArticleContent discussion={this.props.discussion} onHighlight={this.handleTextSelect} />
+							<ArticleContent id="article-text-content" discussion={this.props.discussion} onHighlight={this.handleTextSelect} />
 						</div>						
 						
 						{this.state.textSelected 

@@ -55,6 +55,26 @@
   position: relative;
 }
 
+.article-text-content {
+  position: relative;
+}
+
+#font-size-buttons-wrapper {
+  position: absolute;
+  top: 20px;
+  left: -30px;
+  display: flex;
+  flex-direction: column;
+  /*border: 2px solid green;*/
+}
+
+#font-size-buttons-wrapper button {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  background-color: none;
+  border: none;
+  cursor: pointer;
+}
 .daily-hit-tag {
   /*border: 2px solid gold;*/
   border-radius: 2px;
