@@ -15,7 +15,7 @@ class Home extends Component {
 			<div id="home-wrapper">
 				<DiscussionsOverview  />
 				<ReviewsOverview  />
-				<BriefingsOverview  />
+				{<BriefingsOverview  />}
 				<ScoresOverview  />
 			</div>
 

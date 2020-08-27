@@ -4,7 +4,7 @@ class BriefingItem extends Component {
 
 	render() {
 		return (
-			<div className={`briefing-item ${this.props.class}`}>
+			<div className={`briefing-item ${this.props.class}`} id={this.props.id}>
 				<div id="briefing-poster">
 					<img className="briefing-poster-image" src="https://i.ibb.co/WGtMN5f/pew-research-center-logo.png" alt=""/>				
 				</div>

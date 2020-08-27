@@ -112,13 +112,31 @@
 #overview-briefings-container {
 	/*max-height: 200px;*/
 	/*border: 2px solid green;*/
+	position: relative;
+}
+
+#overview-briefings-container .arrow {
+	top: 50px;
+	position: absolute;
+	font-size: 4em;
+	transition: .2s;
+	cursor: pointer;
+}
+
+.prev {
+	left: 5px;
+}
+
+.next {
+	right: 5px;
 }
 
 .overview-selected-briefing {
 	/*border: 2px solid red;*/
 	max-height: 100%;
 	display: flex;
-
+	/*border: 2px solid green;*/
+	margin: 5px;
 	/*align-items: center;*/
 }
 
@@ -128,11 +146,11 @@
 
 .briefing-name {
 	font-weight: bold;
-	font-size: .7em;
+	/*font-size: .7em;*/
 }
 
 .briefing-description {
-	font-size: .5em;
+	font-size: .9em;
 }
 
 .briefing-organization {
@@ -142,7 +160,7 @@
 
 .briefing-poster-image {
 	/*width: 80px;*/
-	height: 80px;
+	/*height: 80px;*/
 	margin: 0 10px;
 }
 
@@ -150,6 +168,8 @@
 	border: 1px solid black;
 	width: 30px;
 }
+
+
 
 
 /*REVIEWS OVERVIEW*/
@@ -230,3 +250,8 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+
+
+
+

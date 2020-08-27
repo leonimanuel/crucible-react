@@ -46,7 +46,7 @@ class IntelControl extends Component {
 	      Authorization: localStorage.getItem("token")				
 			},
 			body: JSON.stringify({
-				title: this.state.name,
+				name: this.state.name,
 				description: this.state.description,
 				organization: this.state.organization,
 				url: this.state.url,
