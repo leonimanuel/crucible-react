@@ -252,6 +252,10 @@
 
 }
 
+.comment-popup {
+  max-width: 200px;
+}
+
 .comment-content {
   /*border: 1px solid black;*/
   border-radius: 10px;

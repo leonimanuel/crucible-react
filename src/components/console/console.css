@@ -25,6 +25,7 @@
   text-overflow: ellipsis;	
   font-size: 1.1em;
   display: flex;
+  cursor: pointer;
 }
 
 .topic-badge {

@@ -67,6 +67,10 @@ class BriefingsOverview extends Component {
 		this.setState({showArrows: false})
 	}	
 
+	openBriefing = (briefingURL) => {
+		window.open(briefingURL)
+	}
+
 	render() {
 		const { briefings } = this.props
 		const { briefingPosition } = this.state 
@@ -77,7 +81,7 @@ class BriefingsOverview extends Component {
 			<div id="briefings-overview" className="overview-wrapper" onMouseEnter={this.showArrows} onMouseLeave={this.hideArrows}>
 				<div className="overview-header" id="briefings-overview-header" >Intel</div>
 				<div className="overview-content-container" id="overview-briefings-container" >
-				  {briefings.length ? <BriefingItem briefing={briefings[briefingPosition] ? briefings[briefingPosition] : briefings[0]} backgroundColor={this.state.randomColor} class="overview-selected-briefing" id="briefing-slide"/> : null}
+				  {briefings.length ? <BriefingItem briefing={briefings[briefingPosition] ? briefings[briefingPosition] : briefings[0]} onBriefingSelect={this.openBriefing} backgroundColor={this.state.randomColor} class="overview-selected-briefing" id="briefing-slide"/> : null}
 
 				  <div className="prev arrow" id="prev-arrow" onClick={this.handlePrevSlide} style={{opacity: this.state.showArrows ? "1" : "0"}}>&#10094;</div>
 				  <div className="next arrow" id="next-arrow" onClick={this.handleNextSlide} style={{opacity: this.state.showArrows ? "1" : "0"}}>&#10095;</div>

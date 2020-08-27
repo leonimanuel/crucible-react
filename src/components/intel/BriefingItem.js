@@ -12,7 +12,7 @@ class BriefingItem extends Component {
 	render() {
 		const { briefing } = this.props
 		return (
-			<div className={`briefing-item ${this.props.class}`} id={this.props.id}>
+			<div className={`briefing-item ${this.props.class}`} id={this.props.id} onClick={() => this.props.onBriefingSelect(briefing.url)}>
 				<div id="briefing-poster" >
 					<div className="briefing-poster-image" id="briefing-poster-image" style={{"background-color": this.props.backgroundColor}}>
 						<div className="briefing-organization">{briefing.organization}</div>

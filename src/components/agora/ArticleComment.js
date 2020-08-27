@@ -28,7 +28,7 @@ class ArticleComment extends Component {
 		}
 
 		return (
-			<div id={this.props.id} className="popup" style={{border: border}}>
+			<div id={this.props.id} className="popup comment-popup" style={{border: border}}>
 				<div className="comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>
 				<div className="comment-content">{comment.content}</div>
 				
