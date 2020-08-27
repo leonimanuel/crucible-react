@@ -128,7 +128,7 @@ class ReviewItemsWrapper extends Component {
 						if (selectionCommentTotal < 10) {
 							return (
 								<React.Fragment>
-									<div id="review-question">Does this comment respond logically to the article selection?</div>
+									<div id="review-question">Does this comment respond logically to the selection?</div>
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
 									<div id="selected-item">
