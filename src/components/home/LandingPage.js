@@ -77,7 +77,8 @@ class LandingPage extends Component {
 	render() { 	
 		return (
 			<div id="landing-page">
-				<h3 id="welcome-header">Welcome to Crucible</h3>
+				<h3 id="welcome-header">Welcome to Crucible   <span style={{"background-color": "gold", "border-radius": "5px", "font-size": "0.7em", "padding": "0 5px", "color": "black"}}>beta for Chrome</span></h3>
+
 				<div id="main-text">
 					{this.renderText()}
 				</div>
