@@ -73,7 +73,7 @@ class SideNav extends Component {
 							className={`section-tab ${this.state.section === "agora" ? "selected-section" : "unselected-section"}`} 
 							onClick={this.handleTabClick} 
 						>
-							Forum
+							Groups
 							{this.calculateTotalUnreads()}
 						</div>					
 						

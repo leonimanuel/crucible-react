@@ -91,12 +91,16 @@ class Login extends Component {
 				<div id="login-wrapper" className="auth-wrapper">
 					<h1 className="auth-header">Login</h1>
 					<form className="auth-form" onSubmit={this.handleSubmit}>
-						<label>Email: </label>
-						<input type="email" name="email" onChange={this.handleChange} value={this.state.email}/>
-						<br/>
-						<label>Password: </label>
-						<input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
-						<br/>
+						<div>
+							<label>Email: </label>
+							<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
+						</div>
+
+						<div>
+							<label>Password: </label>
+							<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
+						</div>
+						
 						<div id="error-box" style={{color: "red"}}></div>
 						<button id='resend-confirmation-button' onClick={this.resendConfirmation} style={{display: "none"}}>resend confirmation email</button>
 						<input className="auth-button" type="submit" value="Log in"/>

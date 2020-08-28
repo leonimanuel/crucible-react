@@ -7,6 +7,7 @@ import IntelControl from "../components/control/IntelControl.js"
 
 class Control extends Component {
 	render() {
+    debugger
     let blob = document.getElementById("blob")
     if (blob) blob.style.display = "none"   		
 		return (
@@ -15,7 +16,7 @@ class Control extends Component {
 					?						
 						<IntelControl />
 					: 
-						<Redirect to="/"/>
+						this.props.user ? <Redirect to="/"/> : null
 				}	
 			</div>
 		)

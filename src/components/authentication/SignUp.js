@@ -27,43 +27,40 @@ class SignUp extends Component {
 		let errorBox = document.getElementById("handle-error-box")
 		if (this.state.handle.match(/\W/)) {
 			errorBox.innerText = "handle should only include letters, numbers, or underscores"
-			return 
 		} else {
 			errorBox.innerText = ""
-		}
-		debugger
-		let configObj = {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json"
-			},
-			body: JSON.stringify({
-				name: this.state.name,
-				lastName: this.state.lastName,
-				handle: this.state.handle,
-				email: this.state.email,
-				password: this.state.password
-			})
-		}
+			let configObj = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json"
+				},
+				body: JSON.stringify({
+					name: this.state.name,
+					lastName: this.state.lastName,
+					handle: this.state.handle,
+					email: this.state.email,
+					password: this.state.password
+				})
+			}
 
-		fetch(API_ROOT + "/users", configObj)
-			.then(resp => resp.json())
-			.then(data => {
-				if (data.message) {
-					localStorage.setItem("token", data.auth_token)
-					debugger
-					this.setState({submitted: "success"})
-				} 
-				else if (data.error) {
-					const errorBox = document.getElementById("error-box");
-					errorBox.innerText = data.error;
-				}
-				else {
-					alert(data.error.user_authentication)
-				}
-			})
-			.catch(err => alert(err.message))
+			fetch(API_ROOT + "/users", configObj)
+				.then(resp => resp.json())
+				.then(data => {
+					if (data.message) {
+						localStorage.setItem("token", data.auth_token)
+						this.setState({submitted: "success"})
+					} 
+					else if (data.error) {
+						const errorBox = document.getElementById("error-box");
+						errorBox.innerText = data.error;
+					}
+					else {
+						alert(data.error.user_authentication)
+					}
+				})
+				.catch(err => alert(err.message))
+		}
 	}
 
 	render() {
