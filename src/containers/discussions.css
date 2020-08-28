@@ -416,3 +416,33 @@
   left: -4px;
 }
 
+
+
+#fact-grading-illustration {
+  display :flex;
+  justify-content: center;
+}
+
+.ex-factbox-wrapper {
+  text-align: center;
+}
+
+.ex-factbox {
+  width: 100px;
+  height: 65px;
+  border: 2px solid black;
+  margin: 0 20px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+
+
+
+
+
+

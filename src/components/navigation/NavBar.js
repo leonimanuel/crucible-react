@@ -92,7 +92,9 @@ class NavBar extends Component {
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">											
-					<Link className="nav-link section-nav-link" to="/" >Home</Link>
+					<Link style={{"margin-right": "10px"}} className="nav-link section-nav-link" to="/" >Home</Link>
+					{this.props.discussion ? <Link className="nav-link section-nav-link" to={`/groups/Feed/discussions/${this.props.discussion.slug}-${this.props.discussion.id}`} >Guide</Link> : null}
+					
 				</div>
 				
 				{this.props.user && this.props.history.location.pathname.includes("/groups") 
@@ -159,7 +161,8 @@ const mapStateToProps = state => {
 		user: state.users.user,
 		dailyReviews: state.users.dailyReviews,
 		dailyFactsComments: state.users.dailyFactsComments,
-		accuracyScore: state.users.userAccuracyScore		
+		accuracyScore: state.users.userAccuracyScore,
+		discussion: state.discussions.allDiscussions.find(d => d.name === "Getting Started with Crucible")		
 	}
 }
 

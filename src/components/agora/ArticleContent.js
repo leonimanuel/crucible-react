@@ -59,6 +59,21 @@ class ArticleContent extends Component {
 								<br/>
 								Anytime you collect a fact or post a comment it gets submitted for peer review. Who are your peers? Your fellow Crucible members. It is everyone’s shared responsibility to burn the weak facts away so that the true, important may shine through. Accordingly, once it has been reviewed by enough peers, each fact and comment is graded and labeled for everyone to see whether it held up to scrutiny. 
 							</p>
+							<div id="fact-grading-illustration">
+								<div className="ex-factbox-wrapper">
+									<div className="ex-factbox" id="ex-factbox-1" style={{"border-color": "#ff9234"}}>Fact 1</div>
+									<div className="grade-label" style={{"color": "#ff9234"}}>pending</div>
+								</div>
+								<div className="ex-factbox-wrapper">
+									<div className="ex-factbox" id="ex-factbox-2" style={{"border-color": "green"}}>Fact 2</div>
+									<div className="grade-label" style={{"color": "green"}}>pass</div>
+								</div>
+								<div className="ex-factbox-wrapper">
+									<div className="ex-factbox" id="ex-factbox-3" style={{"border-color": "red"}}>Fact 3</div>
+									<div className="grade-label" style={{"color": "red"}}>fail</div>
+								</div>
+
+							</div>
 							<p>Additionally, any time someone reviews a comment you posted or fact you’ve added to Crucible, your overall accuracy score gets updated. This is a measure of your overall reputability when it comes to collecting and sharing accurate, high-quality information and will be available for all users to see. If you see the gold bar at the top flash green or red, that was someone reviewing one of your facts. To see a detailed breakdown of a fact's review performance, click on it in the Fact section. <i>Note: only facts that you’ve collected from outside Crucible (new facts), not facts you’ve collected from peers’ comments, affect your accuracy score.</i></p>
 							<p>Reviewing your peers’ content is a straightforward process: on the home page, in the Review section, simply follow the prompts to make a review decision without personal or political bias. Every review brings you closer to hitting your daily review quota and earns you points. Your fair and unbiased review is critical to the health of the Crucible fact ecosystem. </p>
 							

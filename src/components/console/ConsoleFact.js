@@ -41,11 +41,11 @@ class ConsoleFact extends Component {
 
 		let border
 		if (fact.review_status === "pending") {
-			border = "2px solid #ff9234" //yellow
+			border = "3px solid #ff9234" //yellow
 		} else if (fact.review_status === "pass") {
-				border = "2px solid green" 		
+				border = "3px solid green" 		
 		} else {
-				border = "2px solid red" 		
+				border = "3px solid red" 		
 		}
 
 		const factDetails = document.getElementById(`fact-details-${fact.id}`)		
