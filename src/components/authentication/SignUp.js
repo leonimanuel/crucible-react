@@ -24,7 +24,14 @@ class SignUp extends Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		console.log("submitting login info")
-		
+		let errorBox = document.getElementById("handle-error-box")
+		if (this.state.handle.match(/\W/)) {
+			errorBox.innerText = "handle should only include letters, numbers, or underscores"
+			return 
+		} else {
+			errorBox.innerText = ""
+		}
+		debugger
 		let configObj = {
 			method: "POST",
 			headers: {
@@ -68,21 +75,31 @@ class SignUp extends Component {
 							<React.Fragment>
 								<h1 className="auth-header">Sign Up</h1>
 								<form className="auth-form" id="sign-up-form" onSubmit={this.handleSubmit}>
-									<label>First Name: </label>
-									<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>
-									<br/>
-									<label>Last Name: </label>
-									<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
-									<br/>
-									<label>Handle: </label>
-									<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
-									<br/>						
-									<label>Email: </label>
-									<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>
-									<br/>
-									<label>Password: </label>
-									<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>
-									<br/>
+									<div>
+										<label>First Name: </label>
+										<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>						
+									</div>
+									
+									<div>
+										<label>Last Name: </label>
+										<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>										
+									</div>
+
+									<div>
+										<label>Handle: </label>
+										<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
+									</div>
+									<div id="handle-error-box" style={{color: "red", "font-size": "0.8em", width: "80%"}}></div>										
+									
+									<div>
+										<label>Email: </label>
+										<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
+									</div>
+
+									<div>
+										<label>Password: </label>
+										<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
+									</div>
 									<div id="error-box" style={{color: "red"}}></div>
 									<input className="auth-button" type="submit" value="Sign up"/>
 								</form>
