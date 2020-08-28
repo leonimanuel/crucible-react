@@ -93,7 +93,7 @@ class NavBar extends Component {
 			<div id="nav-wrapper">
 				<div id="menu-options">											
 					<Link style={{"margin-right": "10px"}} className="nav-link section-nav-link" to="/" >Home</Link>
-					{this.props.discussion ? <Link className="nav-link section-nav-link" to={`/groups/Feed/discussions/${this.props.discussion.slug}-${this.props.discussion.id}`} >Guide</Link> : null}
+					{this.props.user && this.props.discussion ? <Link className="nav-link section-nav-link" to={`/groups/Feed/discussions/${this.props.discussion.slug}-${this.props.discussion.id}`} >Guide</Link> : null}
 					
 				</div>
 				
@@ -145,7 +145,7 @@ class NavBar extends Component {
 							</div>
 						: 
 						<div>
-							<Link className="nav-link" to="/login" >Login</Link>
+							<Link className="nav-link" to="/login" style={{"margin-right": "10px"}}>Login</Link>
 							<Link className="nav-link" to="/signup" >Signup</Link>
 						</div>
 					} 										

@@ -189,3 +189,19 @@
 	/*font-size: 0.9em;*/
 }
 
+.fact-arrow-wrapper {
+	/*border: 2px solid green;*/
+	text-align: center;
+	position: absolute;
+	left: 70px;
+	bottom: 5px;
+}
+
+.fact-arrow {
+  border: solid grey;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 8px;
+  font-size: 2em;
+  transition: .3s;  
+}

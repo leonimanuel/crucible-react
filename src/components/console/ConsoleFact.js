@@ -6,7 +6,8 @@ import FactDetailsPane from "./FactDetailsPane.js"
 class ConsoleFact extends Component {
 	state = {
 		showFactDetails: false,
-		showOriginalFact: false
+		showOriginalFact: false,
+		showArrow: false
 	}
 
 	startDrag = e => {
@@ -33,6 +34,10 @@ class ConsoleFact extends Component {
 	  // window.open(url,'_blank');
 	};	
 
+	toggleArrow = (bool) => {
+		this.setState({showArrow: bool})
+	}
+
 	render() {
 		const { fact } = this.props;
 
@@ -53,7 +58,7 @@ class ConsoleFact extends Component {
 			factDetails.style.maxHeight = this.state.showFactDetails ? "200px" : "0px"
 		}
 
-		
+		const arrowRotation = this.state.showFactDetails ? "-135deg" : "45deg"
 		return (
 			<div 
 				className={`fact-box ${this.state.showFactDetails ? "expanded-fact" : "truncated-fact"}`}
@@ -65,9 +70,12 @@ class ConsoleFact extends Component {
 	 				draggable 
 	 				onDragStart={this.startDrag}
 	 				onClick={this.toggleFactDetailPane}
+	 				onMouseEnter={() => this.toggleArrow(true)}
+	 				onMouseLeave={() => this.toggleArrow(false)}
 				>
 					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content }
-					<img className="show-more-fact-icon" src={ShowMoreIcon} alt="show-more-icon" width="30px"/>
+					{/*<img className="show-more-fact-icon" src={ShowMoreIcon} alt="show-more-icon" width="30px"/>*/}
+					{this.state.showArrow ? <div className="fact-arrow-wrapper"><i class={`fact-arrow`} style={{"transform": `rotate(${arrowRotation})`, "-webkit-transform": `rotate(${arrowRotation})`}}></i></div> : null}
 				</div>				
 
 						<FactDetailsPane 

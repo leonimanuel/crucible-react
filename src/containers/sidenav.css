@@ -85,6 +85,11 @@
 	padding-bottom: 20px ;
 }
 
+#members-list {
+	max-height: 100px;
+	overflow: scroll;
+}
+
 .sidenav-item {
 	display: flex;
 	justify-content: space-between;
