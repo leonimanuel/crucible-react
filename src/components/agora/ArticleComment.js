@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 
+import SupportingFact from "./SupportingFact.js"
+
 class ArticleComment extends Component {
 	startDrag = e => {
 		console.log("dragging")
@@ -45,7 +47,7 @@ class ArticleComment extends Component {
 									null
 							}
 
-							<div className="comment-fact">{fact.content}</div>
+							<SupportingFact fact={fact}/>
 						</div>
 					) 
 				}) : null}

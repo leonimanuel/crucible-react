@@ -71,7 +71,8 @@ class Article extends Component {
 	handleTextSelect = e => {
 		// console.log(this)
 		e.preventDefault()
-		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().toString().length > 0) {
+		if (e.target === window.getSelection().baseNode.parentNode && window.getSelection().baseNode.parentNode.tagName !== "SPAN" && window.getSelection().toString().length > 0) {
+			debugger
 			let range = window.getSelection().getRangeAt(0);
 			let startOffset = range.startOffset
 			let endOffset = range.endOffset
@@ -217,7 +218,7 @@ class Article extends Component {
 		}, () => {
 			span.style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
 			this.newCommentPopper(comment)
-			document.querySelector(`#comment-popup`).style.border = this.state.highlightClicked === true ? "2px solid gold" : ""
+			document.querySelector(`#comment-popup`).style.boxShadow = this.state.highlightClicked === true ? "0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12)" : ""
 		})
 	}
 
