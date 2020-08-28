@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { submitDecision, fetchItemsForReview } from "../../actions/reviewsActions.js"
+import { submitDecision, fetchItemsForReview, resetItemUnderReview } from "../../actions/reviewsActions.js"
 
 class ReviewItemsWrapper extends Component {
 	chooseQuestion = (selectedItem) => {
@@ -17,6 +17,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Is this rephrasing an accurate reflection of the factual information in the source text?</div>
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">good</button>
 									<button onClick={(e) => this.handleDecision(e, "phrasing")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">problematic</button>
+									<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">rephrase: </span> {selectedItem.rephrase_content}</div>
 										<div><span className="item-bullet">original: </span> {selectedItem.fact_content}</div>
@@ -79,6 +80,7 @@ class ReviewItemsWrapper extends Component {
 								<div id="review-question">Is this logically a fact?</div>
 								<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button green-decision" data-validity="valid" id="valid-button">valid</button>
 								<button onClick={(e) => this.handleDecision(e, "logic")} className="review-decision-button red-decision" data-validity="invalid" id="invalid-button">invalid</button>
+								<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 								<div id="selected-item"><span className="item-bullet">fact: </span>{selectedItem.content}</div>
 							</React.Fragment>
 						) 
@@ -93,6 +95,7 @@ class ReviewItemsWrapper extends Component {
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
+								<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 								<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
 								<textarea id="holdtext" style={{display: "none"}}></textarea>
 							</React.Fragment>
@@ -108,6 +111,7 @@ class ReviewItemsWrapper extends Component {
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
+								<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 								<div id="selected-item"><span className="item-bullet">fact: </span><span id="fact-content">{selectedItem.content}</span></div>
 								<textarea id="holdtext" style={{display: "none"}}></textarea>									
 							</React.Fragment>
@@ -131,6 +135,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Does this comment respond logically to the selection?</div>
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
 									<button onClick={(e) => this.handleDecision(e, "selection_comment")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
+									<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">selection: </span>{selectedItem.selection}</div>
 										<br/>
@@ -161,6 +166,7 @@ class ReviewItemsWrapper extends Component {
 									<div id="review-question">Does this fact support this comment?</div>
 									<button onClick={(e) => this.handleDecision(e, "comment_fact")} className="review-decision-button green-decision" data-validity="valid" >Yes</button>
 									<button onClick={(e) => this.handleDecision(e, "comment_fact")} className="review-decision-button red-decision" data-validity="invalid" >No</button>
+									<button className="review-decision-button skip-decision" onClick={this.skipReview}>skip</button>
 									<div id="selected-item">
 										<div><span className="item-bullet">comment: </span>{selectedItem.comment_content}</div>
 										<br/>
@@ -235,6 +241,10 @@ class ReviewItemsWrapper extends Component {
 		this.props.submitDecision(this.props.selectedItem, questionType, decision)
 	}
 
+	skipReview = () => {
+		this.props.resetItemUnderReview(null)
+	}
+
 	render() {
 		return (
 			<div id="review-items-wrapper">
@@ -265,7 +275,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { submitDecision, fetchItemsForReview })(ReviewItemsWrapper);
+export default connect(mapStateToProps, { submitDecision, fetchItemsForReview, resetItemUnderReview })(ReviewItemsWrapper);
 
 
 

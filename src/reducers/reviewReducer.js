@@ -28,6 +28,11 @@ export default function userReducer(state = {
 				allReviewItems: state.allReviewItems				
 			}
 
+		case "SKIP_REVIEW":
+			return {
+				itemUnderReview: state.allReviewItems.shift(),
+				allReviewItems: state.allReviewItems				
+			}
 
 		case "UPDATE_ITEM_SCORE":
 			const votedItem = state.allReviewItems.find(item => item.id === action.itemId)

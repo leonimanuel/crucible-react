@@ -59,9 +59,15 @@ export const submitDecision = (selectedItem, questionType, decision) => {
 }
 
 export const resetItemUnderReview = (response) => {
-  return {
-    type: "RESET_ITEM_UNDER_REVIEW",
-    response
+  if (!response) {
+    return {
+      type: "SKIP_REVIEW",
+    }
+  } else {
+    return {
+      type: "RESET_ITEM_UNDER_REVIEW",
+      response
+    }    
   }
 }
 

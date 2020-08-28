@@ -68,18 +68,20 @@
 	color: white;
 	font-weight: bold;
 	margin: 0 5px;
+	cursor: pointer;
 }
 
 .green-decision {
 	background-color: green;
-	cursor: pointer;
 }
 
 .red-decision {
 	background-color: red;
-	cursor: pointer;
 }
 
+.skip-decision {
+	background-color: grey;
+}
 
 .item-bullet {
 	font-weight: bold
