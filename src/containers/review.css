@@ -2,7 +2,7 @@
 	/*border: 2px solid green;*/
 	/*border-radius: 10px;*/
 	/*padding: 10px;*/
-	/*background-color: cadetblue;*/
+	background-color: #0f4c75;
 
 	display: flex;
 	flex-direction: column;
@@ -20,10 +20,10 @@
 	/*border: 3px solid yellow;*/
 	/*border-top: 3px solid white;*/
 	margin-top: 10px;
-	height: 200px;
+	/*height: 400px;*/
+	/*max-height: 400px;*/
 	overflow: scroll;
 	position: relative;
-
 
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -31,7 +31,8 @@
   -ms-filter: blur(5px);
   filter: blur(5px);
   
-  background-color: #ccc;
+  /*background-color: #ccc;*/
+  /*background-color: #ccc;*/
 }
 
 #review-question {
@@ -40,6 +41,8 @@
 	margin: 0 10%;
 	text-align: left;
 	margin-bottom: 10px;
+	color: white;
+	margin-top: 10px;
 }
 
 #selected-item {
@@ -54,10 +57,13 @@
 
 .review-item {
 	/*width: 80%;*/
-	border: 2px solid black;
+	/*border-top: 2px solid white;*/
+	border-bottom: 2px solid white;
+	color: white;
 	border-radius: 5px;
 	/*background-color: silver;*/
-	margin: 2px 0;
+	margin: 10px 0;
+	padding: 5px;
 }
 
 .review-decision-button {
@@ -113,14 +119,10 @@
 }
 
 .copy-and-go-button {
-	background-color: whitesmoke;
+/*	background-color: whitesmoke;
 	padding: 5px;
 	border: none;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-              0 2px 2px rgba(0,0,0,0.12), 
-              0 4px 4px rgba(0,0,0,0.12), 
-              0 8px 8px rgba(0,0,0,0.12),
-              0 16px 16px rgba(0,0,0,0.12);
-
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);
+*/
   cursor: pointer;
 }

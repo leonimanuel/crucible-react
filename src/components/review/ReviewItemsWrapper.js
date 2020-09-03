@@ -91,7 +91,7 @@ class ReviewItemsWrapper extends Component {
 							<React.Fragment>
 								<div id="review-question">
 									Is this fact taken in context? 
-									<button className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
+									<button style={{"margin-left": "10px"}} className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)} >Copy fact and go to source</button>
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button green-decision" data-validity="valid" id="in-context-button">in context</button>
 								<button onClick={(e) => this.handleDecision(e, "context")} className="review-decision-button red-decision" data-validity="invalid" id="out-of-context-button">out of context</button>
@@ -107,7 +107,7 @@ class ReviewItemsWrapper extends Component {
 							<React.Fragment>
 								<div id="review-question">
 									Does this fact come from a credible source, or is it attributed to one? 
-									<button className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
+									<button style={{"margin-left": "10px"}}  className="copy-and-go-button" onClick={() => this.copyAndOpen(selectedItem.content, selectedItem.url)}>Copy fact and go to source</button>
 								</div>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button green-decision" data-validity="valid" id="credible-button">credible</button>
 								<button onClick={(e) => this.handleDecision(e, "credibility")} className="review-decision-button red-decision" data-validity="invalid" id="not-credible-button">not credible</button>
@@ -257,9 +257,14 @@ class ReviewItemsWrapper extends Component {
 					</div>
 				</div>
 				<div id="pending-reviews-wrapper">
-					<div id="reviews-blanket"></div>
+					{/*<div id="reviews-blanket"></div>*/}
 					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
 				</div>
+
+				{this.props.context === "pregame" 
+					? <button id="proceed-to-game-button" onClick={this.props.handleProceed} disabled={this.props.disableProceed}>Proceed</button>
+					: null
+				}
 			</div>
 
 		)

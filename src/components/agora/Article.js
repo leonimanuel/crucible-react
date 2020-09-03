@@ -419,8 +419,7 @@ class Article extends Component {
 							</div>
 						: 
 							<React.Fragment>
-								<ReviewItemsWrapper context = "pregame"/>
-								<button id="proceed-to-game-button" onClick={this.showGame} disabled={disableProceed}>Proceed</button>												
+								<ReviewItemsWrapper context="pregame" handleProceed={this.showGame} disableProceed={disableProceed}/>																			
 							</React.Fragment>
 					: 
 					<h3>Loading</h3>
