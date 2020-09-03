@@ -28,7 +28,7 @@ class ArticleContent extends Component {
 						<React.Fragment>
 							<p>
 								<span style={{"font-weight": "bold"}}>
-									Groups & Discussions 
+									Groups
 								</span> 
 								<br/>
 								Right now, you’re inside of a discussion. Access all your discussions, organized by groups, in the "Groups" section of the sidebar to the left. Here, you can create, edit and view the groups you're a member of. Every Crucible member starts off with two groups: <i>Feed</i>, where you can find recommended discussions from Crucible, and <i>Guest</i>, which shows all the discussions in which you are a guest but not a member. You’re reading this discussion’s article and in the top-right corner you’ll find a button to open and close this discussion’s forum, where you can freely discuss the discussion’s article with all the other people in the group to which this discussion belongs as well as any guests. Go ahead, try giving it a click.								

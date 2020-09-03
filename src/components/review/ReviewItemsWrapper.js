@@ -256,10 +256,10 @@ class ReviewItemsWrapper extends Component {
 						}					
 					</div>
 				</div>
-				{/*<div id="pending-reviews-wrapper">
-						<div id="reviews-blanket"></div>
-						{this.props.items ? this.renderReviewItems(this.props.items) : null}							
-					</div>*/}
+				<div id="pending-reviews-wrapper">
+					<div id="reviews-blanket"></div>
+					{this.props.items ? this.renderReviewItems(this.props.items) : null}							
+				</div>
 			</div>
 
 		)

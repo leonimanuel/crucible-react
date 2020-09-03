@@ -15,6 +15,7 @@ import SelectionMenu from "./SelectionMenu.js"
 import ArticleContent from "./ArticleContent.js"
 import AddListItemButton from "./AddListItemButton.js"
 import AddGuestsPopup from "./AddGuestsPopup.js"
+import ReviewItemsWrapper from "../review/ReviewItemsWrapper.js"
 
 class Article extends Component {
 	constructor(props) {
@@ -32,6 +33,7 @@ class Article extends Component {
 			textSelected: false,
 			forumHovered: false,
 			renderAddGuestsPopup: false,
+			showGame: false
 			// participants: []
 		}
 	}
@@ -322,6 +324,10 @@ class Article extends Component {
 		})
 	}
 
+	showGame = () => {
+		this.setState({showGame: true})
+	}
+
 	closeAddGuestsPopup = () => {
 		this.setState({...this.state, renderAddGuestsPopup: false})
 	}
@@ -329,84 +335,93 @@ class Article extends Component {
 	render() {
 		const dailysHit = this.props.dailyReviews >= 10 && this.props.dailyFactsComments >= 3
 		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit || (this.props.discussion ? this.props.discussion.admin : true)
+		const disableProceed = this.props.dailyReviews >= 10 ? false : true
+		debugger
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
-					<div id="article-wrapper" className="draw" >
-						<div id="font-size-buttons-wrapper">
-							<button onClick={() => this.adjustFontSize("+")}>+</button>
-							<button onClick={() => this.adjustFontSize("-")}>-</button>
-						</div>		
-						{this.props.discussion.article.article_type === "news" ? <div className="daily-hit-tag" id="daily-news-tag" style={{"background-color": "cadetblue"}}>daily news hit</div> : null}
-						{this.props.discussion.article.article_type === "thinker" ? <div className="daily-hit-tag" id="daily-opinion-tag" style={{"background-color": "#0f4c75"}}>daily opinion hit</div> : null}
-						<div id="title-and-forum-button">
-							<a href={this.props.discussion.article_url} target="_blank" rel="noopener noreferrer">
-								<div id="article-title">{this.props.discussion.article.title}</div>
-							</a>
-							<div 
-								id="show-forum-button" 
-								onClick={forumUnlocked ? this.props.onForumClick : null}
-								onMouseEnter={forumUnlocked ? null : this.onForumHoverStart}
-								onMouseLeave={forumUnlocked ? null : this.onForumHoverEnd}
-								style={{"background-color": forumUnlocked ? "gold" : "silver"}}
-							>
-								<div id="show-forum-button-text">Forum</div>
-								{this.props.discussion.unread_messages_count
-									? <div id="forum-badge" className="badge">{this.props.discussion.unread_messages_count}</div>
+					this.props.discussion.game && this.state.showGame
+						?
+							<div id="article-wrapper" className="draw" >
+								<div id="font-size-buttons-wrapper">
+									<button onClick={() => this.adjustFontSize("+")}>+</button>
+									<button onClick={() => this.adjustFontSize("-")}>-</button>
+								</div>		
+								{this.props.discussion.article.article_type === "news" ? <div className="daily-hit-tag" id="daily-news-tag" style={{"background-color": "cadetblue"}}>daily news hit</div> : null}
+								{this.props.discussion.article.article_type === "thinker" ? <div className="daily-hit-tag" id="daily-opinion-tag" style={{"background-color": "#0f4c75"}}>daily opinion hit</div> : null}
+								<div id="title-and-forum-button">
+									<a href={this.props.discussion.article_url} target="_blank" rel="noopener noreferrer">
+										<div id="article-title">{this.props.discussion.article.title}</div>
+									</a>
+									<div 
+										id="show-forum-button" 
+										onClick={forumUnlocked ? this.props.onForumClick : null}
+										onMouseEnter={forumUnlocked ? null : this.onForumHoverStart}
+										onMouseLeave={forumUnlocked ? null : this.onForumHoverEnd}
+										style={{"background-color": forumUnlocked ? "gold" : "silver"}}
+									>
+										<div id="show-forum-button-text">Forum</div>
+										{this.props.discussion.unread_messages_count
+											? <div id="forum-badge" className="badge">{this.props.discussion.unread_messages_count}</div>
+											: null
+										}
+									</div>
+								</div>
+								<div id="article-content" onMouseDown={this.clearTextSelected}>							
+									<div id="article-info-container">
+										<div id="author-and-date-published">
+											<div id="article-author">{this.props.discussion.article.author}</div>
+											<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
+										</div>
+										<div id="participants-wrapper">
+											<div id="participants-header-wrapper">
+												<div id="participants-header">Participants</div>
+												<AddListItemButton id="add-guests-button" buttonAction={this.handleAddGuests} fill="cadetblue"/>
+											</div>
+											{this.props.members.map(m => <div className="discussion-participant discussion-member" style={{backgroundColor: m.color}}>{m.id === this.props.userId ? "You" : m.name}</div>)}
+											{this.props.guests.map(g => {
+												return (
+													<div className="discussion-participant discussion-guest" style={{backgroundColor: g.color}}>
+														{g.id === this.props.userId ? "You" : g.name}
+														<div className="guest-marker">guest</div>
+													</div>
+												)
+											}) 
+											}
+
+										</div>
+									</div>
+
+									<ArticleContent id="article-text-content" discussion={this.props.discussion} onHighlight={this.handleTextSelect} />
+								</div>						
+								
+								{this.state.textSelected 
+									? <SelectionMenu id="selection-popup" 
+											selection={this.state.span.innerText} 
+											submitComment={this.handleSubmitComment} 
+											collectFact={this.handleCollectFact} 
+											closePopup={this.clearTextSelected} /> 
 									: null
 								}
+								{this.state.hoverSelectionComment || this.state.highlightClicked
+									? <ArticleComment 
+											id="comment-popup" 
+											comment={this.state.hoverSelectionComment} /> 
+									: null
+								}
+								{this.state.forumHovered
+									? <div id="forum-lock-popup" className="popup">
+											Make at least one comment on this article or hit your daily quotas to access the forum.
+										</div>
+									:
+										null
+								}
 							</div>
-						</div>
-						<div id="article-content" onMouseDown={this.clearTextSelected}>							
-							<div id="article-info-container">
-								<div id="author-and-date-published">
-									<div id="article-author">{this.props.discussion.article.author}</div>
-									<div id="article-publish-date">{this.props.discussion.article.date_published}</div>
-								</div>
-								<div id="participants-wrapper">
-									<div id="participants-header-wrapper">
-										<div id="participants-header">Participants</div>
-										<AddListItemButton id="add-guests-button" buttonAction={this.handleAddGuests} fill="cadetblue"/>
-									</div>
-									{this.props.members.map(m => <div className="discussion-participant discussion-member" style={{backgroundColor: m.color}}>{m.id === this.props.userId ? "You" : m.name}</div>)}
-									{this.props.guests.map(g => {
-										return (
-											<div className="discussion-participant discussion-guest" style={{backgroundColor: g.color}}>
-												{g.id === this.props.userId ? "You" : g.name}
-												<div className="guest-marker">guest</div>
-											</div>
-										)
-									}) 
-									}
-
-								</div>
-							</div>
-
-							<ArticleContent id="article-text-content" discussion={this.props.discussion} onHighlight={this.handleTextSelect} />
-						</div>						
-						
-						{this.state.textSelected 
-							? <SelectionMenu id="selection-popup" 
-									selection={this.state.span.innerText} 
-									submitComment={this.handleSubmitComment} 
-									collectFact={this.handleCollectFact} 
-									closePopup={this.clearTextSelected} /> 
-							: null
-						}
-						{this.state.hoverSelectionComment || this.state.highlightClicked
-							? <ArticleComment 
-									id="comment-popup" 
-									comment={this.state.hoverSelectionComment} /> 
-							: null
-						}
-						{this.state.forumHovered
-							? <div id="forum-lock-popup" className="popup">
-									Make at least one comment on this article or hit your daily streaks to access the forum.
-								</div>
-							:
-								null
-						}
-					</div>				
+						: 
+							<React.Fragment>
+								<ReviewItemsWrapper context = "pregame"/>
+								<button id="proceed-to-game-button" onClick={this.showGame} disabled={disableProceed}>Proceed</button>												
+							</React.Fragment>
 					: 
 					<h3>Loading</h3>
 				}

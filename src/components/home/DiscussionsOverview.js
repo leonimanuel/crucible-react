@@ -21,8 +21,8 @@ class DiscussionsOverview extends Component {
 				<div id="new-discussion-instructions">
 					<div><b>To start a new discussion:</b></div>
 					<ul >
-						<li>For a recommended discussion, open Feed in the Forum section of the sidebar and click the add button</li>
-						<li>To create a new discussion with friends, find the desired group in Forum and click the add button or <a className="extension-link" href="https://chrome.google.com/webstore/category/extensions" target="_blank">use the extension</a></li>
+						<li>For a recommended discussion, open Feed in the Groups section of the sidebar and click the add button</li>
+						<li>To create a new discussion with friends, find the desired group in Groups and click the add button or <a className="extension-link" href="https://chrome.google.com/webstore/category/extensions" target="_blank">use the extension</a></li>
 					</ul>					
 				</div>
 			)
