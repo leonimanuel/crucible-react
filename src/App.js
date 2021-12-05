@@ -15,12 +15,14 @@ import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
+import Database from "./containers/Database.js"
 import Control from "./containers/Control.js"
 
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
+import Pitch from "./Pitch.js"
 
 import { logIn, resetQuotas } from "./actions/users.js"
 import { resetUnreadCount, addDiscussionFromCable } from "./actions/discussionsActions.js"
@@ -145,7 +147,8 @@ class App extends Component {
                     <Route exact path="/"><Home/></Route>
                     <Route path="/console"><Console/></Route>
                     <Route path="/review"><Review/></Route>
-                    <Route path="/groups"><Groups/></Route>           
+                    <Route path="/groups"><Groups/></Route>  
+                    <Route path="/database"><Database/></Route>  
                     <FeedbackButton />
                   </main>
                 </div>
@@ -162,6 +165,8 @@ class App extends Component {
                 path="/:token/confirm-email"
                 render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
               </Route> 
+          
+            <Route path="/v2-brief"><Pitch /></Route>
           </div>      
         </LastLocationProvider>
       </Router>

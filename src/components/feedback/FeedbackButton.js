@@ -12,13 +12,27 @@ class FeedbackButton extends Component {
 	}
 
 	toggleFeedbackForm = () => {
-		this.setState({renderFeedbackForm: !this.state.renderFeedbackForm}, () => {
-			let button = document.querySelector("#feedback-button");
-			let popup = document.querySelector("#feedback-form-popup")
-			createPopper(button, popup, {
-			  placement: 'right',
-			});					
-		})
+		let configObj = {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: localStorage.getItem("token")
+			}
+		}
+
+		fetch(API_ROOT + "/feed", configObj)
+			.then(resp => resp.json())
+			.then(data => {
+				debugger
+			})				
+		// this.setState({renderFeedbackForm: !this.state.renderFeedbackForm}, () => {
+		// 	let button = document.querySelector("#feedback-button");
+		// 	let popup = document.querySelector("#feedback-form-popup")
+		// 	createPopper(button, popup, {
+		// 	  placement: 'right',
+		// 	});					
+		// })
 	}
 
 	submitFeedback = (feedback) => {

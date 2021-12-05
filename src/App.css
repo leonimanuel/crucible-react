@@ -83,3 +83,9 @@ textarea {
   resize: none;
 }
 
+#pitch-wrapper {
+  z-index: 3;
+}
+
+
+

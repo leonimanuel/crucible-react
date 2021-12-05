@@ -246,12 +246,19 @@ class ReviewItemsWrapper extends Component {
 	}
 
 	render() {
+		const selectedItem = {
+			type: "FactsComment",
+			comment_fact_upvotes: 2,
+			comment_fact_downvotes: 3,
+			comment_content: "It's no surprise, given the dramatic shortage of teachers of the years",
+			fact_content: "The share of schools that were trying to fill a vacancy but couldn’t tripled from the 2011–2012 to 2015–2016 school years (increasing from 3.1 to 9.4 percent), and in the same period the share of schools that found it very difficult to fill a vacancy nearly doubled (from 19.7 to 36.2 percent)."
+		}
 		return (
 			<div id="review-items-wrapper">
 				<div id="review-question-wrapper">
 					<div id="review-extra-container">
 						{this.props.selectedItem 
-							? <div>{this.chooseQuestion(this.props.selectedItem)}</div> 
+							? <div>{this.chooseQuestion(selectedItem)}</div> 
 							: <button id="load-more-reviews-button" onClick={this.props.fetchItemsForReview}>Load more facts for review</button> 
 						}					
 					</div>

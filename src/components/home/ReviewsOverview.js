@@ -16,3 +16,17 @@ class ReviewsOverview extends Component {
 }
 
 export default (ReviewsOverview);
+
+// import React, { Component } from 'react';
+
+// class Jobs extends Component {
+
+// 	render() {
+// 		return (
+// 			<div id="reviews-overview" className="overview-wrapper">
+// 			</div>
+// 		)
+// 	}
+// }
+
+// export default Jobs;

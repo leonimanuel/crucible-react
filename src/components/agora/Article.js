@@ -325,6 +325,7 @@ class Article extends Component {
 	}
 
 	showGame = () => {
+		debugger
 		this.setState({showGame: true})
 	}
 
@@ -335,12 +336,12 @@ class Article extends Component {
 	render() {
 		const dailysHit = this.props.dailyReviews >= 10 && this.props.dailyFactsComments >= 3
 		const forumUnlocked =  !!this.props.comments.filter(c => c.user_id === this.props.userId).length || dailysHit || (this.props.discussion ? this.props.discussion.admin : true)
-		const disableProceed = this.props.dailyReviews >= 10 ? false : true
+		const disableProceed = this.props.dailyReviews >= 10 ? false : false
 		debugger
 		return (
 			<div id="article-outer-container">
 				{this.props.discussion && this.props.discussion.article ? 
-					this.props.discussion.game && this.state.showGame
+					this.state.showGame
 						?
 							<div id="article-wrapper" className="draw" >
 								<div id="font-size-buttons-wrapper">

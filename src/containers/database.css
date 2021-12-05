@@ -1,0 +1,24 @@
+#database-header {
+	font-size: 3em;
+}
+
+#database-facts-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	/*border: 2px solid black;*/
+	width: 90%;
+	margin: 0 auto;
+}
+
+.database-fact {
+	border: 2px solid green;
+	height: 5em;
+	overflow: hidden;
+	width: 200px;
+	margin: 10px;
+	text-align: justify;
+	padding: 5px;
+
+	background-color: white;
+	border-radius: 10px;
+}
