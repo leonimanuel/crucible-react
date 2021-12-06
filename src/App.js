@@ -15,6 +15,7 @@ import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
 import Groups from "./containers/Groups.js"
+import Timeline from "./containers/Timeline.js"
 import Database from "./containers/Database.js"
 import Control from "./containers/Control.js"
 
@@ -147,7 +148,7 @@ class App extends Component {
                     <Route exact path="/"><Home/></Route>
                     <Route path="/console"><Console/></Route>
                     <Route path="/review"><Review/></Route>
-                    <Route path="/groups"><Groups/></Route>  
+                    <Route path="/groups"><Timeline/></Route>  
                     <Route path="/database"><Database/></Route>  
                     <FeedbackButton />
                   </main>

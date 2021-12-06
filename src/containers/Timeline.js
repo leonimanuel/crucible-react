@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { v4 as uuidv4 } from 'uuid';
 import { API_ROOT } from "../constants"
 
-import SupportingFact from "../components/agora/SupportingFact.js"
+import TimelineFact from "../components/timeline/TimelineFact.js"
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 import "./timeline.css"
@@ -16,12 +16,12 @@ class Timeline extends Component {
 	}
 
 	showTimelineItem = (activity) => {
-		debugger
+		// debugger
 		switch (activity.item.type) {
 			case "fact":
 				return (
 					// <div>{activity.item.content}</div>
-					<SupportingFact fact={activity.item.object}/>
+					<TimelineFact fact={activity.item.object}/>
 				)
 
 			default:
