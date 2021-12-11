@@ -38,7 +38,7 @@ class Login extends Component {
 				password: this.state.password
 			})
 		}
-
+		debugger
 		fetch(API_ROOT + "/authenticate", configObj)
 			.then(resp => resp.json())
 			.then(data => {

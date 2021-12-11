@@ -1,0 +1,50 @@
+#timeline-wrapper {
+	// border: 2px solid yellow;
+
+  width: 50%;
+  height: 100%;
+  margin-top: 10px;	
+  display: flex;
+  flex-direction: column;
+	justify-content: center;
+  /*background-color: gold;
+  /*border: 2px solid red;*/
+  // background-color: white;
+  z-index: 1;
+
+  .timeline-item-container {
+  	// border: 2px solid red;
+  	margin: 5px;
+
+  	.timeline-item-header {
+  		// border: 2px solid purple;
+  		display: flex;
+  		margin-left: 10px;
+  	}
+
+    .timeline-item {
+      border-radius: 10px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+      background-color: white;
+      text-align: left;
+      padding: 2%;
+      // background-color: whitesmoke;
+    }
+
+
+		.timeline-fact {
+		  // border: 2px solid black;
+		  // margin-left: 15px;
+		}  	
+  }
+
+  .timeline-comment {
+  }
+
+  .timeline-comment-highlight {
+    font-weight: bold;
+    background-color: #FBF46D; //yellow
+    // opacity: 0.5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+  }
+}

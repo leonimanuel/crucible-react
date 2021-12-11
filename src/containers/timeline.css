@@ -1,5 +1,8 @@
 #timeline-wrapper {
-  width: 100%;
+	border: 2px solid yellow;
+
+  width: 50%;
+  height: 100%;
   margin-top: 10px;	
   display: flex;
   flex-direction: column;

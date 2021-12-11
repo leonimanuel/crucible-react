@@ -4,11 +4,13 @@ import { useLastLocation } from 'react-router-last-location';
 import { connect } from "react-redux"
 import { v4 as uuidv4 } from 'uuid';
 import { API_ROOT } from "../constants"
+import "./timeline.scss"
 
 import TimelineFact from "../components/timeline/TimelineFact.js"
+import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
+import TimelineComment from "../components/timeline/TimelineComment.js"
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
-import "./timeline.css"
 
 class Timeline extends Component {
 	state = {
@@ -17,12 +19,25 @@ class Timeline extends Component {
 
 	showTimelineItem = (activity) => {
 		// debugger
+		const resource = activity.item.object
 		switch (activity.item.type) {
 			case "fact":
 				return (
 					// <div>{activity.item.content}</div>
-					<TimelineFact fact={activity.item.object}/>
+					<div className="timeline-item-container">
+						<TimelineItemHeader actor={activity.actor}/>
+						<TimelineFact fact={resource}/>
+					</div>
 				)
+
+			case "comment":
+				return (
+					<div className="timeline-item-container">
+						<TimelineItemHeader actor={activity.actor}/>
+						<TimelineComment comment={resource}/>
+					</div>					
+				) 
+
 
 			default:
 				return <div>Item type not found</div>
