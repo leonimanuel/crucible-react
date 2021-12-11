@@ -23,11 +23,6 @@ class TimelineComment extends Component {
 		return context
 	}
 
-	handleArticleClick = e => {
-		e.preventDefault()
-		window.open(this.props.comment.article_url,'_blank')
-	}
-
 
 	render() {		
 		const { comment } = this.props
@@ -48,9 +43,6 @@ class TimelineComment extends Component {
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>				
 				<div className="timeline-comment-content">{comment.content}</div>
-				<div className="timeline-comment-article-title">
-					<a href={comment.article_url} onClick={this.handleArticleClick}>{comment.article_title}</a>
-				</div> 
 				
 				{comment.facts ? comment.facts.map(fact => {
 					return (

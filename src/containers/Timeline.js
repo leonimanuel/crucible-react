@@ -42,10 +42,10 @@ class Timeline extends Component {
 					<div className="timeline-item-container">
 						<TimelineItemHeader actor={activity.actor}/>
 						<div className="timeline-item-content-container">
-							<TimelineComment comment={resource}/>
-							<div className="timeline-comment-article-title">
+							<div className="timeline-item-article-title">
 								<a href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
-							</div> 						
+							</div> 							
+							<TimelineComment comment={resource}/>						
 						</div>								
 					</div>			
 				) 
