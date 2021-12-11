@@ -23,7 +23,6 @@ class Timeline extends Component {
 	}
 
 	showTimelineItem = (activity) => {
-		// debugger
 		const resource = activity.item.object
 		switch (activity.item.type) {
 			case "fact":
@@ -43,9 +42,9 @@ class Timeline extends Component {
 						<TimelineItemHeader actor={activity.actor}/>
 						<div className="timeline-item-content-container">
 							<div className="timeline-item-article-title">
-								<a href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
+								<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
 							</div> 							
-							<TimelineComment comment={resource}/>						
+							<TimelineComment comment={resource} />						
 						</div>								
 					</div>			
 				) 

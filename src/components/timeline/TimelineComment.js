@@ -25,7 +25,7 @@ class TimelineComment extends Component {
 
 
 	render() {		
-		const { comment } = this.props
+		const { comment, dummy } = this.props
 
 		let border
 		// if (comment.review_status === "pending" || 
@@ -39,28 +39,33 @@ class TimelineComment extends Component {
 		// }
 
 		return (
-			<div className="timeline-comment timeline-item" style={{border: border}}>
+			<div className={`timeline-comment timeline-item`} style={{border: border }}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
-				<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>				
-				<div className="timeline-comment-content">{comment.content}</div>
-				
-				{comment.facts ? comment.facts.map(fact => {
-					return (
-						<div className="comment-fact-wrapper">
-							{this.props.userId !== comment.user_id && !this.props.userFacts.find(f => f.id === fact.id)
-								? 
-									<button 
-										className="add-comment-fact-button" 
-										onClick={() => this.handleAddFact(fact)}
-									>+</button>
-								: 
-									null
-							}
+				<div className="timeline-comment-context-wrapper">
+					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
+					{/*<div className="context-lip"></div>*/}
+				</div>
+				<div className="timeline-comment-content-wrapper">
+					<div className="timeline-comment-content">{comment.content}</div>
+					
+					{comment.facts ? comment.facts.map(fact => {
+						return (
+							<div className="comment-fact-wrapper">
+								{this.props.userId !== comment.user_id && !this.props.userFacts.find(f => f.id === fact.id)
+									? 
+										<button 
+											className="add-comment-fact-button" 
+											onClick={() => this.handleAddFact(fact)}
+										>+</button>
+									: 
+										null
+								}
 
-							<SupportingFact fact={fact}/>
-						</div>
-					) 
-				}) : null}
+								<SupportingFact fact={fact}/>
+							</div>
+						) 
+					}) : null}
+				</div>
 			</div>
 		)
 	}
