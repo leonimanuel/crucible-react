@@ -17,25 +17,37 @@ class Timeline extends Component {
 		timeline_activities: []
 	}
 
+	handleArticleClick = (e, resource) => {
+		e.preventDefault()
+		window.open(resource.article_url,'_blank')
+	}
+
 	showTimelineItem = (activity) => {
 		// debugger
 		const resource = activity.item.object
 		switch (activity.item.type) {
 			case "fact":
 				return (
-					// <div>{activity.item.content}</div>
 					<div className="timeline-item-container">
 						<TimelineItemHeader actor={activity.actor}/>
-						<TimelineFact fact={resource}/>
+						<div className="timeline-item-content-container">							
+							<TimelineFact fact={resource}/>
+						</div>						
 					</div>
 				)
 
 			case "comment":
+				debugger
 				return (
 					<div className="timeline-item-container">
 						<TimelineItemHeader actor={activity.actor}/>
-						<TimelineComment comment={resource}/>
-					</div>					
+						<div className="timeline-item-content-container">
+							<TimelineComment comment={resource}/>
+							<div className="timeline-comment-article-title">
+								<a href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
+							</div> 						
+						</div>								
+					</div>			
 				) 
 
 
@@ -65,7 +77,7 @@ class Timeline extends Component {
 	render() {
 		return (
 			<div id="timeline-wrapper">
-				{this.state.timeline_activities.map(activity => this.showTimelineItem(activity))}
+					{this.state.timeline_activities.map(activity => this.showTimelineItem(activity))}
 			</div>
 		)
 	}

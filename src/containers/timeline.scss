@@ -13,33 +13,39 @@
   z-index: 1;
 
   .timeline-item-container {
-  	// border: 2px solid red;
+  	border: 2px solid red;
   	margin: 5px;
 
   	.timeline-item-header {
-  		// border: 2px solid purple;
+  		border: 2px solid purple;
   		display: flex;
   		margin-left: 10px;
   	}
 
-    .timeline-item {
+    .timeline-item-content-container {
+      border: 2px solid blue;
       border-radius: 10px;
       box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
       background-color: white;
       text-align: left;
-      padding: 2%;
-      // background-color: whitesmoke;
+           
+      .timeline-item {
+        border: 2px solid green;
+        padding: 2%;
+        // background-color: whitesmoke;
+      }
+
+
+      .timeline-fact {
+        // border: 2px solid black;
+        // margin-left: 15px;
+      }   
     }
 
+    .timeline-comment {
+    }    
 
-		.timeline-fact {
-		  // border: 2px solid black;
-		  // margin-left: 15px;
-		}  	
-  }
-
-  .timeline-comment {
-  }
+    }
 
   .timeline-comment-highlight {
     font-weight: bold;
