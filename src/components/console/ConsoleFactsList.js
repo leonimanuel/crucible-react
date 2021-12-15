@@ -4,6 +4,7 @@ import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
 	render() {
+		debugger
 		return (
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>

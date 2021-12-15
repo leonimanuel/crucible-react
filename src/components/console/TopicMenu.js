@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import ConsoleTopicsList from "./ConsoleTopicsList.js"
+import { selectTopic } from "../../actions/topicsActions.js"
 
 class TopicMenu extends Component {
+	componentDidMount() {
+		this.props.selectTopic(this.props.newFactsTopic)
+	}
+
 	render() {
 		return (
 			<div id="console-topic-menu-container">
@@ -16,8 +21,14 @@ class TopicMenu extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+  return {
+    topics: state.topics.topics,
+    newFactsTopic: state.topics.topics.find(topic => topic.name == "New Facts")
+  }
+}
 
-export default connect(state => ({topics: state.topics.topics}))(TopicMenu);
+export default connect(mapStateToProps, { selectTopic })(TopicMenu);
 
 
 
