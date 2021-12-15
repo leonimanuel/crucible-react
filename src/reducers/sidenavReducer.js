@@ -1,6 +1,6 @@
 export default function sidenavReducer(state = {
-	showDetailPane: false,
-	sidenavOpen: false
+	showDetailPane: true,
+	sidenavOpen: true
 }, action) {
 	switch(action.type) {
 		case "SHOW_DETAIL_PANE":

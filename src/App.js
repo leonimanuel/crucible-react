@@ -33,7 +33,7 @@ import { addFactFromCable } from "./actions/topicsActions.js"
 
 class App extends Component {
   state = {
-    sidenavOpen: false
+    sidenavOpen: true
   }
 
   componentDidMount() {
@@ -143,10 +143,11 @@ class App extends Component {
                     onReceived={this.handleMiscItem} 
                   />    
 
-                  <SideNav onSidenavToggle={this.handleSidenavToggle}/>
+                  
                   <main id="main-content" onClick={this.handleMainClick}>
+                    <SideNav onSidenavToggle={this.handleSidenavToggle}/>
                     <Route exact path="/"><Home/></Route>
-                    <Route path="/console"><Console/></Route>
+                    {<Route path="/console"><Console/></Route>}
                     <Route path="/review"><Review/></Route>
                     <Route path="/groups"><Timeline/></Route>  
                     <Route path="/database"><Database/></Route>  

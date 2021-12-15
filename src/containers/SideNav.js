@@ -12,7 +12,7 @@ class SideNav extends Component {
 		super(props);
 		this.state = {
 			// open: this.props.sidenavOpen,
-			section: ""
+			section: "agora"
 		}
 	}
 	// state = {
@@ -23,11 +23,11 @@ class SideNav extends Component {
 
 	componentDidMount() {
 		// debugger
-
+		this.props.fetchTopics()
 		// console.log("mounted sidenav")
-		let sideNav = document.getElementById("side-nav")
-		let sectionTabs = document.getElementById("sections-list")
-		sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
+		// let sideNav = document.getElementById("side-nav")
+		// let sectionTabs = document.getElementById("sections-list")
+		// sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
 	}
 
 	handleTabClick = e => {
@@ -39,16 +39,16 @@ class SideNav extends Component {
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")
 		if (this.props.sidenavOpen === true && this.state.section === e.target.id) {
-			sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`			
+			// sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`			
 			// this.setState({open: !this.state.open})
-			this.props.onSidenavToggle(!this.props.sidenavOpen)
+			// this.props.onSidenavToggle(!this.props.sidenavOpen)
 		} else if (this.props.sidenavOpen === true && this.state.section !== e.target.id) {
 			this.setState({section: e.target.id,})
 		} else if (this.props.sidenavOpen === false) {
 			this.setState({section: e.target.id})
-			sideNav.style = `left: 0px`
+			// sideNav.style = `left: 0px`
 			// this.setState({open: !this.state.open})
-			this.props.onSidenavToggle(!this.props.sidenavOpen)
+			// this.props.onSidenavToggle(!this.props.sidenavOpen)
 		}
 	}
 

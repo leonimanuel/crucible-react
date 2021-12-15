@@ -8,10 +8,10 @@ class MainPane extends Component {
 		// console.log("mounted MainPane")
 	}
 	render() {
-		let mainPane = document.querySelector("#sidenav-main-pane")
-		if (this.props.section) {
-			mainPane.style = "width: 100px"
-		}
+		// let mainPane = document.querySelector("#sidenav-main-pane")
+		// if (this.props.section) {
+		// 	mainPane.style = "width: 100px"
+		// }
 
 		return (
 			<div id="sidenav-main-pane">

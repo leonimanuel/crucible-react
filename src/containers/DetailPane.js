@@ -13,7 +13,7 @@ class DetailPane extends Component {
 				(this.props.parentTopic && this.props.section === "console")) {
 				detailPane.style = "width: 200px"
 			} else {
-				detailPane.style = "width: 0px"
+				// detailPane.style = "width: 0px"
 			}			
 		}
 		return (
