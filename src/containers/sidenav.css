@@ -1,10 +1,11 @@
 #side-nav {
 	/*position: absolute;*/
-	border: 2px solid red;
+	/*border: 2px solid red;*/
 	/*float: left;*/
 	/*top: 0;*/
 	/*bottom: 0px;*/
-	/*width: 200px;*/
+	/*width: 30%;*/
+	/*max-width: 25%;*/
 	/*left: -100px;*/
 	/*height: %;*/
 /*	background-color: silver;*/

@@ -36,7 +36,6 @@ class Timeline extends Component {
 				)
 
 			case "comment":
-				debugger
 				return (
 					<div className="timeline-item-container">
 						<TimelineItemHeader actor={activity.actor}/>

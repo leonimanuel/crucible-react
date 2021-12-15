@@ -1,20 +1,24 @@
 #timeline-wrapper {
 	// border: 2px solid yellow;
 
-  width: 50%;
-  height: 100%;
-  margin-top: 10px;	
+  // width: 50%;
+  // height: 400px;
+  // margin-top: 10px;	
   display: flex;
   flex-direction: column;
-	justify-content: center;
+	// justify-content: center; //WILL CUT OFF TOP OF SCROLL
   /*background-color: gold;
   /*border: 2px solid red;*/
   // background-color: white;
   z-index: 1;
+  overflow: scroll;
+
+  min-width: 350px;
 
   .timeline-item-container {
   	// border: 2px solid red;
   	margin: 5px;
+
 
   	.timeline-item-header {
   		// border: 2px solid purple;
