@@ -1,0 +1,14 @@
+#social-container {
+  /*flex-grow: 50%;*/
+  min-width: 25%;  
+  border: 2px solid green;
+  // background-color: slategrey;
+  /*height: 500px;*/
+  /*width: 100000px;*/
+  /*display: none;*/
+  z-index: 0; /*WILL DISSAPEAR WITHOUT THIS*/
+
+  #chat-header-container {
+  	border: 2px solid grey;
+  }
+}

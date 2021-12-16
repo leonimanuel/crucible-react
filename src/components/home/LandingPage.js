@@ -6,10 +6,10 @@ import Claire from "./IMG-4792.JPG"
 class LandingPage extends Component {
 	componentDidMount() {
     // BLOB
-    let blob = document.querySelector("#blob")
-		blob.style.width = "100%"
-		blob.style.height = "100%"		
-		blob.style.borderRadius = "0px";
+  //   let blob = document.querySelector("#blob")
+		// blob.style.width = "100%"
+		// blob.style.height = "100%"		
+		// blob.style.borderRadius = "0px";
 
 		let wordArray = document.querySelectorAll(".welcome-word")
 		let nodeToJsArr = []

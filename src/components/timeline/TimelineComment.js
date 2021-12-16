@@ -5,6 +5,8 @@ import parse from "html-react-parser";
 
 import SupportingFact from "../agora/SupportingFact.js"
 
+import { selectComment } from "../../actions/commentsActions.js"
+
 class TimelineComment extends Component {
 	startDrag = e => {
 		console.log("dragging")
@@ -16,13 +18,16 @@ class TimelineComment extends Component {
 		this.props.addFactFromComment(fact, this.props.comment.user_id);
 	}
 
+	handleSelectComment = () => {
+		this.props.selectComment(this.props.comment, this.props.userId)
+	}
+
 	generateContext = () => {
 		const { comment } = this.props
 		const context = comment.node_text.replace(comment.selection, `<span class="timeline-comment-highlight">${comment.selection}</span>`)
 		debugger
 		return context
 	}
-
 
 	render() {		
 		const { comment, dummy } = this.props
@@ -39,7 +44,7 @@ class TimelineComment extends Component {
 		// }
 
 		return (
-			<div className={`timeline-comment timeline-item`} style={{border: border }}>
+			<div className={`timeline-comment timeline-item`} style={{border: border }} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context-wrapper">
 					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
@@ -78,7 +83,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { addFactFromComment })(TimelineComment);
+export default connect(mapStateToProps, { addFactFromComment, selectComment })(TimelineComment);
 
 
 

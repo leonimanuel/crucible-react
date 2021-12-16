@@ -15,12 +15,12 @@ class ScoresOverview extends Component {
 		let app = document.querySelector(".App");
 		app.style.backgroundColor = "whitesmoke"
 
-		let blob = document.getElementById("blob")
-		// blob.style.visibility = "visible"
-		blob.style.opacity = "1"
-		blob.style.width = "80%"
-		blob.style.height = "80%"		
-		blob.style.borderRadius = "600px 0px 0px 0px"			
+		// let blob = document.getElementById("blob")
+		// // blob.style.visibility = "visible"
+		// blob.style.opacity = "1"
+		// blob.style.width = "80%"
+		// blob.style.height = "80%"		
+		// blob.style.borderRadius = "600px 0px 0px 0px"			
 	}
 
 	updateDailyReviewsBar = (delay) => {

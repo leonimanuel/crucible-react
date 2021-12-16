@@ -9,6 +9,7 @@ import "./timeline.scss"
 import TimelineFact from "../components/timeline/TimelineFact.js"
 import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
 import TimelineComment from "../components/timeline/TimelineComment.js"
+
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 

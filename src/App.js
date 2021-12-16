@@ -18,6 +18,7 @@ import Groups from "./containers/Groups.js"
 import Timeline from "./containers/Timeline.js"
 import Database from "./containers/Database.js"
 import Control from "./containers/Control.js"
+import Social from "./components/social/Social.js"
 
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
@@ -107,7 +108,7 @@ class App extends Component {
         <LastLocationProvider>
           <div className="App">
 
-            <div id="blob"></div>
+            {/*<div id="blob"></div>*/}
             <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
             
             {this.props.userId 
@@ -152,7 +153,7 @@ class App extends Component {
                     <Route path="/groups"><Timeline/></Route>  
                     <Route path="/database"><Database/></Route>  
                     
-                    <div id="social-container">HELLO</div>
+                    <Social />
                     <FeedbackButton />
                   </main>
                 </div>
