@@ -9,6 +9,25 @@
   z-index: 0; /*WILL DISSAPEAR WITHOUT THIS*/
 
   #chat-header-container {
-  	border: 2px solid grey;
+		// background-color: #dddddd;
+		background-color: #30475E;
+		font-size: 1.5em;
+		font-family: 'Krona One', sans-serif;
+		padding: 5px 0;
+		/*border: 2px solid gold;*/
+		border-radius: 10px 10px 0 0;
   }
+
+	#chat-messages-container {
+		/*height: 75%;*/
+		height: 300px;
+		border: 2px solid green;
+		overflow: scroll;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		/*justify-content: center;*/
+		align-items: center;
+	  background-color: #77abae;
+	}  
 }

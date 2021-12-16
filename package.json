@@ -21,6 +21,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "split-retain": "^1.0.1",
+    "stream-chat": "^5.0.1",
     "uuid": "^8.3.0"
   },
   "scripts": {

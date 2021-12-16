@@ -25,7 +25,6 @@ class TimelineComment extends Component {
 	generateContext = () => {
 		const { comment } = this.props
 		const context = comment.node_text.replace(comment.selection, `<span class="timeline-comment-highlight">${comment.selection}</span>`)
-		debugger
 		return context
 	}
 
