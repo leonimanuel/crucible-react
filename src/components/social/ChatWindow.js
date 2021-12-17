@@ -27,7 +27,7 @@ class ChatWindow extends Component {
 	}
 
 	render() {
-		const { selectedComment, messages } = this.props
+		const { selectedComment, messages, currentUserId } = this.props
 		return (
 			<div>
 				<div id="chat-header-container">
@@ -35,7 +35,7 @@ class ChatWindow extends Component {
 				</div>
 
 				<div id="chat-messages-container">
-					{messages.map(message => <CommentMessage message={message}/>)}
+					{messages.map((message, index) => <CommentMessage message={message} index={index} messages={messages} currentUserId={currentUserId}/>)}
 				</div>
 
 				<ChatMessageForm comment={selectedComment}/>
