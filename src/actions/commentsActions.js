@@ -1,18 +1,14 @@
 import { StreamChat } from 'stream-chat';
 import { API_ROOT } from "../constants";
 
-export const selectComment = (comment, currentUserId) => {
-  return {
-    type: "SELECT_COMMENT",
-    comment,
-    currentUserId
-  }
-}
+export const selectComment = (comment, userId) => {
+  return dispatch => {
+    dispatch({
+	    type: "SELECT_COMMENT",
+	    comment,
+	    userId
+    });
 
-export const getMessagesFromStream = (commentID, userID) => {
-	return dispatch => {
-		dispatch({type: "RETRIEVING_STREAM_MESSAGES"})
-	 	
 	 	let configObj = {
 	    method: "GET",
 	    headers: {
@@ -24,7 +20,8 @@ export const getMessagesFromStream = (commentID, userID) => {
 	  fetch(API_ROOT + `/chats/authenticate`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
-	      const userIdString = userID.toString()
+	      const commentID = comment.id
+	      const userIdString = userId.toString()
 	      const commentIdString = commentID.toString()
 
 	      const client = StreamChat.﻿getInstance﻿(﻿﻿"37zxvpg2wqvj")﻿
@@ -39,6 +36,7 @@ export const getMessagesFromStream = (commentID, userID) => {
           messages
         })   				
 	   })
-	    .catch(err => alert(err.message))		
-	}
+	    .catch(err => alert(err.message))	
+
+  }
 }
