@@ -8,6 +8,11 @@ export default function messagesReducer(state = {
 				messages: action.messages
 			}
 
+		case "ADD_NEW_MESSAGE":
+			return {
+				...state,
+				messages: [...state.messages, action.event.message]
+			}
 		
 		default: 
 			return state

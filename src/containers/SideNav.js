@@ -12,7 +12,7 @@ class SideNav extends Component {
 		super(props);
 		this.state = {
 			// open: this.props.sidenavOpen,
-			section: "agora"
+			section: "console"
 		}
 	}
 	// state = {

@@ -2,7 +2,6 @@ import React from 'react';
 
 const CommentMessage = (props) => {
 	const { message, messages, index, currentUserId } = props
-	debugger
 	return (
 		<div 
 			key={index} 

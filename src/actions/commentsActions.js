@@ -17,7 +17,7 @@ export const selectComment = (comment, userId) => {
 	      Authorization: localStorage.getItem("token")
 	    }
 	  }
-	  fetch(API_ROOT + `/chats/authenticate`, configObj)
+	  fetch(API_ROOT + `/chats/authenticate/${comment.id}`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
 	      const commentID = comment.id
@@ -26,10 +26,18 @@ export const selectComment = (comment, userId) => {
 
 	      const client = StreamChat.﻿getInstance﻿(﻿﻿"37zxvpg2wqvj")﻿
 				await client.﻿connectUser﻿({ id: userIdString}﻿, data.token)
-				const channel = client.channel('comment-discussion', commentIdString); 				
+				const channel = client.channel('comment-discussion', commentIdString); 	
+				// await channel.addMembers([`${userIdString}`]);			
 				const state = await channel.watch(); 
-
 				const messages = state.messages
+				channel.on(event => { 
+			    if (event.type == "message.new") {
+			    	dispatch({
+			    		type: "ADD_NEW_MESSAGE",
+			    		event
+			    	})
+			    }
+				});
 
         dispatch({ 
           type: 'SET_MESSAGES', 
