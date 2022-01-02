@@ -67,10 +67,31 @@ export const selectComment = (comment, userId) => {
         // watch for new messages
 				channel.on(event => { 
 			    if (event.type == "message.new") { //if somone sends a new message while watching channel
-			    	dispatch({
-			    		type: "ADD_NEW_MESSAGE",
-			    		event
-			    	})
+			    	const message = event.message
+			    	if (message.comment_id) {
+		        	let configObj = { 
+		        		method: "POST", 
+		        		headers: HEADERS, 
+		        		body: JSON.stringify({commentIds: [message.comment_id]})
+		        	}
+
+		        	fetch(API_ROOT + `/chats/supportify`, configObj)
+		        		.then(resp => resp.json())
+		        		.then(comments => {
+		        			message["comment"] = comments[0]
+					       
+						    	dispatch({
+						    		type: "ADD_NEW_MESSAGE",
+						    		message
+						    	})   
+		        		})
+		      			.catch(err => alert(err.message)) 			    		
+			    	} else {
+				    	dispatch({
+				    		type: "ADD_NEW_MESSAGE",
+				    		event
+				    	})
+			    	}
 			    }
 				});				
 	   })
