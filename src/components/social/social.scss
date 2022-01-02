@@ -1,7 +1,8 @@
 #social-container {
   /*flex-grow: 50%;*/
   min-width: 25%;  
-  border: 2px solid black;
+  // border: 2px solid black;
+  border-radius: 10px 0px 0 0;
   // background-color: slategrey;
   /*height: 500px;*/
   /*width: 100000px;*/
@@ -11,27 +12,32 @@
   // overflow: hidden;
   display: flex;
   flex-direction: column;
+	background-color: #dddddd; // light grey
 
   #chat-header-container {
 		// background-color: #dddddd;
-		background-color: #30475E;
+		// background-color: #30475E; // dark blue
+		// background-color: #dddddd; // light grey
 		font-size: 1.5em;
 		font-family: 'Krona One', sans-serif;
 		padding: 5px 0;
 		/*border: 2px solid gold;*/
-		border-radius: 10px 10px 0 0;
+		// border-radius: 10px 0px 0 0;
+		overflow: hidden;
   }
 
 	#chat-messages-container {
 		/*height: 75%;*/
 		// height: 300px;
-		border: 2px solid green;
+		border-left: 2px solid #dddddd;
+		border-right: 2px solid #dddddd;
+
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		/*justify-content: center;*/
 		align-items: center;
-	  // background-color: #77abae;
+	  background-color: snow;
 	  // max-height: 100%;
 		overflow: scroll;
 
@@ -99,15 +105,43 @@
 		}	
 	}
 
-	#chat-fact-dropzone {
-	  text-align: center;
-	  border: 2px solid grey;
-	  border-radius: 5px;
-	  color: grey;
-	  font-weight: bold;
+	#newMessageForm {
+		// background-color: #dddddd;
+		border-radius: 0 0 10px 10px ;
 
-	  margin: 20px 5px;
-	  padding: 10px 0;
-	  /*height: 20px;*/
+		#message-input-div {
+			border-radius: 5px;
+			/*width: 70%;*/
+			flex: 1;
+			margin: 0 5px;
+			text-align: left;
+		  outline: none;
+		  padding: 3px;
+
+			// max-width: 100px;
+			background-color: white;
+			font-size: 1em;
+			max-height: 150px;
+			overflow: scroll;
+			/*overflow-wrap: break-word;  */
+		}
+
+		#chat-fact-dropzone {
+		  text-align: center;
+		  border: 2px dashed grey;
+		  border-radius: 5px;
+		  color: grey;
+		  font-weight: bold;
+
+		  margin: 10px 5px;
+		  padding: 20px 0;
+		  /*height: 20px;*/
+		}
+
+		#chat-fact-dropzone.dragged-over {
+			background-color: grey;
+			color: white;
+			border-color: white;
+		}		
 	}
 }

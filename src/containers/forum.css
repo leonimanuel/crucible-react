@@ -85,15 +85,12 @@
   border-radius: 15px 15px 15px 0px;
 
 }
-
+/*
 #newMessageForm {
 	background-color: #dddddd;
 	border-radius: 0 0 10px 10px ;
-/*border: 2px solid black;*/
-	/*align-self: baseline*/
-	/*text-align: center*/
 }
-
+*/
 #message-input {
 	width: 95%;
 	border: none;
@@ -116,9 +113,8 @@
 	max-width: 100%;
 }
 
-#message-input-div {
+/*#message-input-div {
 	border-radius: 5px;
-	/*width: 70%;*/
 	flex: 1;
 	margin: 0 5px;
 	text-align: left;
@@ -128,8 +124,7 @@
 	max-width: 100px;
 	background-color: white;
 	font-size: 1em;
-	/*overflow-wrap: break-word;  */
-}
+}*/
 
 #message-submit-button {
 	border: none;

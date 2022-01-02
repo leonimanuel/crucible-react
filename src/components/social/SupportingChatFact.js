@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// This component is specifically for facts in the Chat Drop Zone
 class SupportingChatFact extends Component {
 	render() {
 		const { fact } = this.props;

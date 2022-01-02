@@ -82,11 +82,12 @@ class ChatMessageForm extends Component {
   }
 
   render = () => {
-    // let messageInput = document.getElementById("message-input")
-    // // debugger
-    // if (messageInput) {
-    //   messageInput.style = `height: ${messageInput.scrollHeight}px`
-    // }
+    let messageInput = document.getElementById("message-input-div")
+    // debugger
+    if (messageInput) {
+      // messageInput.style = `height: ${messageInput.scrollHeight}px`
+      console.log(messageInput.clientHeight)
+    }
     return (
       <div id="newMessageForm">
         <form id="message-form" onSubmit={this.handleSubmit}>
