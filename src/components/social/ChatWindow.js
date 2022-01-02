@@ -29,7 +29,7 @@ class ChatWindow extends Component {
 	render() {
 		const { selectedComment, messages, currentUserId } = this.props
 		return (
-			<div>
+			<React.Fragment>
 				<div id="chat-header-container">
 					{selectedComment.content}
 				</div>
@@ -43,7 +43,7 @@ class ChatWindow extends Component {
 {/*				<ForumMessages groupId={discussion.group_id} discussionId={discussion.id} messages={this.props.messages} currentUserId={this.props.currentUserId}/>
 
 				<ForumMessageForm discussion={discussion} /> */}
-			</div>
+			</React.Fragment>
 		)
 	}
 }

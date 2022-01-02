@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 
+import SupportingChatFact from "./SupportingChatFact.js"
+
 class ChatMessageForm extends Component {
   state = {
     text: '',
+    draggedOver: false,    
+    facts: []
   }
 
   handleChange = e => {
@@ -44,6 +48,33 @@ class ChatMessageForm extends Component {
     messageInput.innerHTML = ""
   }
 
+  allowDrop = e => {
+    e.preventDefault();
+  }
+
+  handleDragEnter = e => {
+    this.setState({...this.state, draggedOver: true })
+  }
+
+  handleDragLeave = e => {
+    this.setState({...this.state, draggedOver: false })
+  }
+
+  drop = e => {
+    e.preventDefault();
+    console.log(JSON.parse(e.dataTransfer.getData("object")))
+    let transferObj = JSON.parse(e.dataTransfer.getData("object"))
+    this.setState({
+      ...this.state,
+      facts: [...this.state.facts, transferObj.fact],
+      draggedOver: false
+    })
+  }
+
+  handleRemoveFact = (factId) => { //removes fact from new chat fact array
+    this.setState({facts: this.state.facts.filter(fact => fact.id != factId)})
+  }
+
   render = () => {
     // let messageInput = document.getElementById("message-input")
     // // debugger
@@ -61,6 +92,21 @@ class ChatMessageForm extends Component {
           </div>
           <input id="message-submit-button" type="submit" />
         </form>
+      
+        <div id="comment-facts-container">
+          {this.state.facts.map(fact => <SupportingChatFact key={fact.id} fact={fact} sendRemoval={(factId) => this.handleRemoveFact(factId)}/>)}
+        </div>
+      
+        <div 
+          id="chat-fact-dropzone" 
+          onDragOver={this.allowDrop} 
+          onDragEnter={this.handleDragEnter}
+          onDragLeave={this.handleDragLeave}
+          onDrop={this.drop}
+          className={this.state.draggedOver ? "dragged-over" : "" }
+        >
+          Drag facts here to support your message. messages supported by facts earn credit.
+        </div>        
       </div>
     );
   };
