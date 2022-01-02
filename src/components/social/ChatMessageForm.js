@@ -114,7 +114,7 @@ class ChatMessageForm extends Component {
               onDrop={this.drop}
               className={this.state.draggedOver ? "dragged-over" : "" }
             >
-              Drag facts here to support your message. messages supported by facts earn credit.
+              Drag your facts here to support your message. messages supported by facts earn credit.
             </div>       
           :
             null         

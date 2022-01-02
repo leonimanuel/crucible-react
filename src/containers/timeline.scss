@@ -18,7 +18,24 @@
   .timeline-item-container {
   	// border: 2px solid red;
   	margin: 5px;
+    margin-right: 0;
+    display: flex;
 
+    .timeline-item-spacer {
+      // border: 2px solid orange;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // width: 20px;
+
+      .timeline-spacer-line {
+        // margin: auto;
+        width: 20px;
+        border: 1px solid #0f4c75;
+        visibility: hidden;
+        // height: 0px;      
+      }
+    }
 
   	.timeline-item-header {
   		// border: 2px solid purple;

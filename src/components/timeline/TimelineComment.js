@@ -29,9 +29,9 @@ class TimelineComment extends Component {
 	}
 
 	render() {		
-		const { comment, dummy } = this.props
+		const { comment, dummy } = this.props;
 
-		let border
+		// let border
 		// if (comment.review_status === "pending" || 
 		// 		comment.facts_comments_reviews.some(comment_fact => comment_fact.review_status === "pending")) {
 		// 		border = "3px solid #ff9234"
@@ -43,7 +43,8 @@ class TimelineComment extends Component {
 		// }
 
 		return (
-			<div className={`timeline-comment timeline-item`} style={{border: border }} onClick={this.handleSelectComment}>
+			<div id={`timeline-comment-${comment.id}`} key={comment.id}
+			 	className={`timeline-comment timeline-item`} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context-wrapper">
 					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
@@ -78,7 +79,7 @@ class TimelineComment extends Component {
 const mapStateToProps = state => {
 	return {
 		userId: state.users.userId,
-		userFacts: state.topics.facts 
+		userFacts: state.topics.facts
 	}
 }
 
