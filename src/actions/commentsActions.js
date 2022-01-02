@@ -1,5 +1,5 @@
 import { StreamChat } from 'stream-chat';
-import { API_ROOT } from "../constants";
+import { API_ROOT, HEADERS } from "../constants";
 
 export const selectComment = (comment, userId) => {
   return dispatch => {
@@ -30,19 +30,49 @@ export const selectComment = (comment, userId) => {
 				// await channel.addMembers([`${userIdString}`]);			
 				const state = await channel.watch(); 
 				const messages = state.messages
+
+				// set existing channel messages in state
+        const supportedMessages = messages.filter(m => m.comment_id)
+        if (supportedMessages.length) {
+        	let configObj = { 
+        		method: "POST", 
+        		headers: HEADERS, 
+        		body: JSON.stringify({commentIds: supportedMessages.map(m => m.comment_id)})
+        	}
+
+        	fetch(API_ROOT + `/chats/supportify`, configObj)
+        		.then(resp => resp.json())
+        		.then(comments => {
+        			debugger
+        			messages.map(m => {
+        				if (m.comment_id) {
+        					m["comment"] = comments.find(c => c.id == m.comment_id)
+        				}
+        			})
+			        
+			        dispatch({ 
+			          type: 'SET_MESSAGES', 
+			          messages
+			        })     
+        		})
+      			.catch(err => alert(err.message))     			
+
+        } else {
+	        dispatch({ 
+	          type: 'SET_MESSAGES', 
+	          messages
+	        }) 
+        }  
+
+        // watch for new messages
 				channel.on(event => { 
-			    if (event.type == "message.new") {
+			    if (event.type == "message.new") { //if somone sends a new message while watching channel
 			    	dispatch({
 			    		type: "ADD_NEW_MESSAGE",
 			    		event
 			    	})
 			    }
-				});
-
-        dispatch({ 
-          type: 'SET_MESSAGES', 
-          messages
-        })   				
+				});				
 	   })
 	    .catch(err => alert(err.message))	
 

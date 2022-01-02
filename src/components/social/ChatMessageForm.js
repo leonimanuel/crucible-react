@@ -23,6 +23,7 @@ class ChatMessageForm extends Component {
   }
 
   handleSubmit = e => {
+    const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
     let configObj = {
@@ -34,7 +35,8 @@ class ChatMessageForm extends Component {
       },
       body: JSON.stringify({
         text: this.state.text,
-        userId: this.props.userId
+        userId: this.props.userId,
+        factIds: factIDs
       })
     }
     fetch(`${API_ROOT}/comments/${this.props.comment.id}/messages`, configObj)
@@ -43,7 +45,7 @@ class ChatMessageForm extends Component {
         debugger
       })
     
-    this.setState({ text: '' });
+    this.setState({ text: '', facts: [] });
     let messageInput = document.getElementById("message-input-div")
     messageInput.innerHTML = ""
   }
