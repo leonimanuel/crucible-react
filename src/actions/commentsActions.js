@@ -89,7 +89,7 @@ export const selectComment = (comment, userId) => {
 			    	} else {
 				    	dispatch({
 				    		type: "ADD_NEW_MESSAGE",
-				    		event
+				    		message
 				    	})
 			    	}
 			    }

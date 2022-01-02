@@ -8,16 +8,15 @@ const CommentMessage = (props) => {
 	const { message, messages, index, currentUserId } = props
 
 	const handleAddFact = (fact) => {
-		console.log("executing handleAddFact")
 		props.addFactFromComment(fact, props.message.comment.user_id);
 	}
-
+	if (!message) {
+		debugger
+	}
+	
 	return (
-		<div 
-			key={index} 
-			className={`message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} `}
-		>
-			{message.user.id !== currentUserId.toString() && (index !== 0 && message.user.id !== props.messages[index-1].user.id)
+		<div key={index} className={`message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} `} >
+			{message.user.id !== currentUserId.toString() && (index !== 0 && message.user.id !== messages[index-1].user.id)
 				? <div className="chat-message-user-name">{message.user.handle}</div> 
 				: null
 			}

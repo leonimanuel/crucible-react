@@ -22,8 +22,12 @@ class ChatWindow extends Component {
 		)
 	}
 
-	componentDidUpdate() {
-
+	componentDidUpdate(nextProps, nextState) {
+		if (this.props.messages.length != nextProps.messages.length) {
+			let messagesContainer = document.getElementById("chat-messages-container");
+			// messagesContainer.scrollTo(0, messagesContainer.scrollHeight)
+			messagesContainer.scrollTo({top: messagesContainer.scrollHeight, left: 100, behavior: 'smooth'});
+		}
 	}
 
 	render() {
