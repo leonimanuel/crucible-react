@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { submitDecision, fetchItemsForReview, resetItemUnderReview } from "../../actions/reviewsActions.js"
+import { submitDecision, resetItemUnderReview } from "../../actions/reviewsActions.js"
 
 class TimelineReviewItem extends Component {
 	chooseQuestion = (selectedItem) => {
 		selectedItem["type"] = this.props.type
-		debugger
 		switch (selectedItem.type) {
 			case "FactRephrase":
 				const factRephraseQuestionTypes = ["phrasing"]
@@ -44,21 +43,21 @@ class TimelineReviewItem extends Component {
 				while (valid === false) {
 					selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
 					if (selectedFactQuestionType === "logic") {
-						if (selectedItem.logic_upvotes + selectedItem.logic_downvotes >= 10 || selectedItem.review_types.includes("logic")) {
+						if (selectedItem.logic_upvotes + selectedItem.logic_downvotes >= 10) { // || selectedItem.review_types.includes("logic")
 							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
 						} else {
 							valid = true
 						}
 					}
 					else if (selectedFactQuestionType === "context") {
-						if (selectedItem.context_upvotes + selectedItem.context_downvotes >= 10 || selectedItem.review_types.includes("context")) {
+						if (selectedItem.context_upvotes + selectedItem.context_downvotes >= 10) { // || selectedItem.review_types.includes("context")
 							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
 						} else {
 							valid = true
 						}
 					}
 					else if (selectedFactQuestionType === "credibility") {
-						if (selectedItem.credibility_upvotes + selectedItem.credibility_downvotes >= 10 || selectedItem.review_types.includes("credibility")) {
+						if (selectedItem.credibility_upvotes + selectedItem.credibility_downvotes >= 10) { // || selectedItem.review_types.includes("credibility")
 							selectedFactQuestionType = factQuestionTypes[Math.floor(Math.random() * factQuestionTypes.length)]
 						} else {
 							valid = true
@@ -73,7 +72,6 @@ class TimelineReviewItem extends Component {
 				// } else {
 				// 	selectedFactQuestionType = "credibility"
 				// }
-				// debugger
 				switch(selectedFactQuestionType) {
 					case "logic":
 						return (
@@ -129,7 +127,6 @@ class TimelineReviewItem extends Component {
 
 				const commentQuestionTypes = ["selection_comment"]
 				let selectedCommentQuestionType = commentQuestionTypes[Math.floor(Math.random() * commentQuestionTypes.length)]
-				debugger
 				switch (selectedCommentQuestionType) {
 					case "selection_comment":
 						const selectionCommentTotal = selectedItem.selection_comment_upvotes + selectedItem.selection_comment_downvotes
@@ -148,7 +145,6 @@ class TimelineReviewItem extends Component {
 								</React.Fragment>									
 							)
 						} else {
-							debugger
 							this.chooseQuestion(this.props.selectedItem)
 						}
 						break
@@ -159,6 +155,7 @@ class TimelineReviewItem extends Component {
 				break
 
 			case "FactsComment":
+				debugger
 				const commentFactQuestionTypes = ["comment_fact"]
 				let selectedCommentFactQuestionType = commentFactQuestionTypes[Math.floor(Math.random() * commentFactQuestionTypes.length)]
 				switch (selectedCommentFactQuestionType) {
@@ -179,7 +176,6 @@ class TimelineReviewItem extends Component {
 								</React.Fragment>									
 							)
 						} else {
-							debugger
 							this.chooseQuestion(this.props.selectedItem)
 						}
 						break
@@ -246,7 +242,10 @@ class TimelineReviewItem extends Component {
 	}
 
 	skipReview = () => {
-		this.props.resetItemUnderReview(null)
+		// this.props.resetItemUnderReview(null)
+    const reviewOverlay = document.getElementById(`review-item-${this.props.selectedItem.type}-${this.props.selectedItem.id}`)
+    reviewOverlay.style.opacity = 0.0
+    setTimeout(() => reviewOverlay.classList.add("reviewed"), 300)		
 	}
 
 	render() {
@@ -278,7 +277,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { submitDecision, fetchItemsForReview, resetItemUnderReview })(TimelineReviewItem);
+export default connect(mapStateToProps, { submitDecision })(TimelineReviewItem);
 
 
 

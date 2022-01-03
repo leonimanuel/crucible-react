@@ -63,7 +63,6 @@ export const submitDecision = (selectedItem, questionType, decision) => {
 
     const reviewOverlay = document.getElementById(`review-item-${selectedItem.type}-${selectedItem.id}`)
     reviewOverlay.style.opacity = 0.0
-
     setTimeout(() => reviewOverlay.classList.add("reviewed"), 300)
   }
 }

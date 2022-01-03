@@ -148,7 +148,7 @@
 
 // REVIEW STUFF
 .review-items-overlay {
-  opacity: 1;
+  opacity: 0.98;
   transition: opacity 0.3s;
   &.reviewed {
     display: none;
