@@ -42,7 +42,7 @@ export const submitDecision = (selectedItem, questionType, decision) => {
       })
     }
 
-    // fetch(API_ROOT + `/review`, configObj)
+    fetch(API_ROOT + `/review`, configObj)
     //   .then(resp => resp.json())
     //   .then((response) => {
     //     // const item  = response.item
@@ -62,7 +62,9 @@ export const submitDecision = (selectedItem, questionType, decision) => {
     // })    
 
     const reviewOverlay = document.getElementById(`review-item-${selectedItem.type}-${selectedItem.id}`)
-    reviewOverlay.style.display = "none"
+    reviewOverlay.style.opacity = 0.0
+
+    setTimeout(() => reviewOverlay.classList.add("reviewed"), 300)
   }
 }
 
