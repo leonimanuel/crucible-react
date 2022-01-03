@@ -15,7 +15,7 @@ const CommentMessage = (props) => {
 	}
 	
 	return (
-		<div key={index} className={`message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} `} >
+		<div key={index} className={`chat-message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} `} >
 			{message.user.id !== currentUserId.toString() && (index !== 0 && message.user.id !== messages[index-1].user.id)
 				? <div className="chat-message-user-name">{message.user.handle}</div> 
 				: null
