@@ -29,7 +29,7 @@ class Timeline extends Component {
 	showTimelineItem = (activity) => {
 		const resource = activity.item.object
 		switch (activity.item.type) {
-			case "fact":
+			case "Fact":
 				return (
 					<div className="timeline-item-container">
 						<TimelineItemHeader actor={activity.actor}/>
@@ -40,7 +40,7 @@ class Timeline extends Component {
 					</div>
 				)
 
-			case "comment":
+			case "Comment":
 				debugger
 				return (
 					<div className="timeline-item-container">
@@ -52,7 +52,7 @@ class Timeline extends Component {
 								</div> 							
 								<TimelineComment comment={resource} />						
 							</div>
-							{resource.facts_comments_reviews[0].review_status == "pending" && !!activity.item.reviewable ? <TimelineReviewItem selectedItem={resource} type="Comment" /> : null}
+							{resource.facts_comments_reviews[0].review_status == "pending" && !!activity.item.reviewable ? <TimelineReviewItem selectedItem={resource} type={activity.item.type} /> : null}
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>

@@ -258,7 +258,7 @@ class TimelineReviewItem extends Component {
 		// 	fact_content: "The share of schools that were trying to fill a vacancy but couldn’t tripled from the 2011–2012 to 2015–2016 school years (increasing from 3.1 to 9.4 percent), and in the same period the share of schools that found it very difficult to fill a vacancy nearly doubled (from 19.7 to 36.2 percent)."
 		// }
 		return (
-			<div className="review-items-overlay">
+			<div className="review-items-overlay" id={`review-item-${this.props.type}-${this.props.selectedItem.id}`}>
 				<div className="review-question-wrapper">
 					<div className="review-extra-container">
 						<div>{this.chooseQuestion(this.props.selectedItem)}</div> 

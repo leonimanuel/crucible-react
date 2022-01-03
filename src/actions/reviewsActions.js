@@ -25,7 +25,6 @@ export const fetchItemsForReview = () => {
 }
 
 export const submitDecision = (selectedItem, questionType, decision) => {
-  debugger
   return dispatch => {
     let configObj = {
       method: "POST",
@@ -42,20 +41,28 @@ export const submitDecision = (selectedItem, questionType, decision) => {
         subjectId: selectedItem.subject_id
       })
     }
-    debugger
-    fetch(API_ROOT + `/review`, configObj)
-     //  .then(resp => resp.json())
-     //  .then((response) => {
-     //    const item  = response.item
-     //    const dailyReviews  = response.daily_reviews
-     //    debugger
-     //    dispatch({
-     //      type: "RESET_ITEM_UNDER_REVIEW",
-     //      item,
-     //      dailyReviews
-     //    })
-     // })
-     //  .catch(err => alert(err.message))
+
+    // fetch(API_ROOT + `/review`, configObj)
+    //   .then(resp => resp.json())
+    //   .then((response) => {
+    //     // const item  = response.item
+    //     // const dailyReviews  = response.daily_reviews
+    //     // debugger
+    //     // dispatch({
+    //     //   type: "RESET_ITEM_UNDER_REVIEW",
+    //     //   item,
+    //     //   dailyReviews
+    //     // })
+    //   })
+    //   .catch(err => alert(err.message))
+
+    // dispatch({
+    //   type: "UPDATE_ACTIVITY_REVIEWABLE",
+    //   selectedItem
+    // })    
+
+    const reviewOverlay = document.getElementById(`review-item-${selectedItem.type}-${selectedItem.id}`)
+    reviewOverlay.style.display = "none"
   }
 }
 
