@@ -9,6 +9,7 @@ import "./timeline.scss"
 import TimelineFact from "../components/timeline/TimelineFact.js"
 import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
 import TimelineComment from "../components/timeline/TimelineComment.js"
+import TimelineReviewItem from "../components/timeline/TimelineReviewItem.js"
 
 import { setActivities } from "../actions/timelineActions.js"
 
@@ -50,10 +51,12 @@ class Timeline extends Component {
 								</div> 							
 								<TimelineComment comment={resource} />						
 							</div>
+							{resource.facts_comments_reviews[0].review_status == "pending" ? <TimelineReviewItem resource={resource} type="Comment" /> : null}
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
-						</div>								
+						</div>
+
 					</div>			
 				) 
 

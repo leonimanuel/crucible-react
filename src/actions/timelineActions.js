@@ -22,7 +22,6 @@ export const setActivities = () => {
 					type: "SET_ACTIVITIES",
 					activities
 				})
-				// this.setState({timeline_activities: activities})
 			})	
 	}		
 }
