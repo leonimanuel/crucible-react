@@ -25,6 +25,7 @@ export const fetchItemsForReview = () => {
 }
 
 export const submitDecision = (selectedItem, questionType, decision) => {
+  debugger
   return dispatch => {
     let configObj = {
       method: "POST",

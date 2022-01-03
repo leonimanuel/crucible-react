@@ -51,7 +51,7 @@ class Timeline extends Component {
 								</div> 							
 								<TimelineComment comment={resource} />						
 							</div>
-							{resource.facts_comments_reviews[0].review_status == "pending" ? <TimelineReviewItem resource={resource} type="Comment" /> : null}
+							{resource.facts_comments_reviews[0].review_status == "pending" ? <TimelineReviewItem selectedItem={resource} type="Comment" /> : null}
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>

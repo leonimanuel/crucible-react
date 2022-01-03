@@ -125,6 +125,8 @@ class TimelineReviewItem extends Component {
 				break
 
 			case "Comment":
+				selectedItem["subject_id"] = selectedItem.user.id // used later in submitDecision()
+
 				const commentQuestionTypes = ["selection_comment"]
 				let selectedCommentQuestionType = commentQuestionTypes[Math.floor(Math.random() * commentQuestionTypes.length)]
 				debugger
@@ -259,7 +261,7 @@ class TimelineReviewItem extends Component {
 			<div className="review-items-overlay">
 				<div className="review-question-wrapper">
 					<div className="review-extra-container">
-						<div>{this.chooseQuestion(this.props.resource)}</div> 
+						<div>{this.chooseQuestion(this.props.selectedItem)}</div> 
 					</div>
 				</div>
 			</div>
