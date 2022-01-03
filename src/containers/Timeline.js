@@ -10,6 +10,8 @@ import TimelineFact from "../components/timeline/TimelineFact.js"
 import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
 import TimelineComment from "../components/timeline/TimelineComment.js"
 
+import { setActivities } from "../actions/timelineActions.js"
+
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 
@@ -63,26 +65,13 @@ class Timeline extends Component {
 	}
 
 	componentDidMount() {
-		let configObj = {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-				Authorization: localStorage.getItem("token")
-			}
-		}
-
-		fetch(API_ROOT + "/timeline", configObj)
-			.then(resp => resp.json())
-			.then(activities => {
-				this.setState({timeline_activities: activities})
-			})			
+		this.props.setActivities()
 	}
 
 	render() {
 		return (
 			<div id="timeline-wrapper">
-					{this.state.timeline_activities.map(activity => this.showTimelineItem(activity))}
+					{this.props.timeline_activities.map(activity => this.showTimelineItem(activity))}
 			</div>
 		)
 	}
@@ -90,13 +79,14 @@ class Timeline extends Component {
 
 const mapStateToProps = state => {
 	return {
-		selectedComment: state.comments.selectedComment		
+		selectedComment: state.comments.selectedComment,
+		timeline_activities: state.timeline.activities
 	}
 }
 
 
 
-export default withRouter(connect(mapStateToProps)(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities })(Timeline));
 
 
 

@@ -8,6 +8,7 @@ import reviewReducer from "./reviewReducer.js"
 import briefingsReducer from "./briefingsReducer.js"
 import commentsReducer from "./commentsReducer.js"
 import messagesReducer from "./messagesReducer.js"
+import timelineReducer from "./timelineReducer.js"
 
 export default combineReducers({
 	users: userReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
 	review: reviewReducer,
 	briefings: briefingsReducer,
 	comments: commentsReducer,
-	messages: messagesReducer
+	messages: messagesReducer,
+	timeline: timelineReducer
 })
