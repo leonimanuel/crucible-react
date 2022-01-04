@@ -10,20 +10,17 @@ const CommentMessage = (props) => {
 	const handleAddFact = (fact) => {
 		props.addFactFromComment(fact, props.message.comment.user_id);
 	}
-	if (!message) {
-		debugger
-	}
-	
+
 	return (
-		<div key={index} className={`chat-message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} `} >
-			{message.user.id !== currentUserId.toString() && (index !== 0 && message.user.id !== messages[index-1].user.id)
-				? <div className="chat-message-user-name">{message.user.handle}</div> 
+		<div key={index} className={`chat-message-wrapper ${message.user.id === currentUserId.toString() ? "sent" : "received"} ${index !== 0 && message.user.id === messages[index-1].user.id ? "trailing-message" : null}`} >
+			{message.user.id !== currentUserId.toString() && (index === 0 || (index !== 0 && message.user.id !== messages[index-1].user.id))
+				? <div className="chat-message-user-name">{message.user.handle ? message.user.handle : "unavailable"}</div> 
 				: null
 			}
 			
 			{ !message.comment_id
 				?
-					<div className={`chat-message-text ${message.type === "comment" ? "comment-message" : null}`}>
+					<div className={`chat-message-text ${message.type === "comment" ? "comment-message" : null} `}>
 						{message.text}
 						{message.type === "comment" ? <span className="comment-label">comment</span> : null}
 					</div>					

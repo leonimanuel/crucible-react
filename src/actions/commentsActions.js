@@ -43,7 +43,6 @@ export const selectComment = (comment, userId) => {
         	fetch(API_ROOT + `/chats/supportify`, configObj)
         		.then(resp => resp.json())
         		.then(comments => {
-        			debugger
         			messages.map(m => {
         				if (m.comment_id) {
         					m["comment"] = comments.find(c => c.id == m.comment_id)
