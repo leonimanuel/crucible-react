@@ -54,7 +54,7 @@ class Timeline extends Component {
 							</div>
 							{resource.facts_comments_reviews[0].review_status == "pending" 
 								&& !!activity.item.reviewable
-								&& index % 3 === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
+								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
