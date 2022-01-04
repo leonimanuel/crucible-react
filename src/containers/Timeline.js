@@ -26,7 +26,7 @@ class Timeline extends Component {
 		window.open(resource.article_url,'_blank')
 	}
 
-	showTimelineItem = (activity) => {
+	showTimelineItem = (activity, index) => {
 		const resource = activity.item.object
 		switch (activity.item.type) {
 			case "Fact":
@@ -52,7 +52,9 @@ class Timeline extends Component {
 								</div> 							
 								<TimelineComment comment={resource} />						
 							</div>
-							{resource.facts_comments_reviews[0].review_status == "pending" && !!activity.item.reviewable ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
+							{resource.facts_comments_reviews[0].review_status == "pending" 
+								&& !!activity.item.reviewable
+								&& index % 3 === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
@@ -75,7 +77,7 @@ class Timeline extends Component {
 	render() {
 		return (
 			<div id="timeline-wrapper">
-					{this.props.timeline_activities.map(activity => this.showTimelineItem(activity))}
+					{this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))}
 			</div>
 		)
 	}
