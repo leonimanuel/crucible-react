@@ -55,6 +55,7 @@
 
 #sections-list {
 	padding-top: 5px;
+	/*visibility: hidden;*/
 }
 
 #group-details-menu, #console-window {

@@ -48,20 +48,22 @@ class PositionForm extends Component {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
+        comment_type: "position",
         text: this.state.text,
-        userId: this.props.userId,
         factIds: factIDs
       })
     }
-    fetch(`${API_ROOT}/comments/positions`, configObj)
+    fetch(`${API_ROOT}/comments`, configObj)
       .then(resp => resp.json())
       .then((data) => {
-        debugger
+        alert("position created!")
+        let messageInput = document.getElementById("position-input-div")
+        messageInput.innerHTML = ""
       })
+      .catch(err => alert(err))
     
     this.setState({ text: '', facts: [] });
-    let messageInput = document.getElementById("message-input-div")
-    messageInput.innerHTML = ""
+
   }
 
   allowDrop = e => {
@@ -113,7 +115,7 @@ class PositionForm extends Component {
               onKeyPress={this.handleChange}   
             >
             </div>
-            <input id="position-submit-button" type="submit" value="create position" disabled="true" />
+            <input id="position-submit-button" type="submit" value="publish position" disabled="true" />
           </form>
         
           <div id="comment-facts-container">

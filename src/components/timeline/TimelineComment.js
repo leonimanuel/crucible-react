@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 import parse from "html-react-parser";
 
+import TimelineCommentContent from "./TimelineCommentContent.js"
 import SupportingFact from "../agora/SupportingFact.js"
 
 import { selectComment } from "../../actions/commentsActions.js"
@@ -11,11 +12,6 @@ class TimelineComment extends Component {
 	startDrag = e => {
 		console.log("dragging")
 		e.dataTransfer.setData("object", JSON.stringify({fact: this.props.fact}))
-	}
-
-	handleAddFact = (fact) => {
-		console.log("executing handleAddFact")
-		this.props.addFactFromComment(fact, this.props.comment.user_id);
 	}
 
 	handleSelectComment = () => {
@@ -50,27 +46,7 @@ class TimelineComment extends Component {
 					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
 					{/*<div className="context-lip"></div>*/}
 				</div>
-				<div className="timeline-comment-content-wrapper">
-					<div className="timeline-comment-content">{comment.content}</div>
-					
-					{comment.facts ? comment.facts.map(fact => {
-						return (
-							<div className="comment-fact-wrapper">
-								{this.props.userId !== comment.user_id && !this.props.userFacts.find(f => f.id === fact.id)
-									? 
-										<button 
-											className="add-comment-fact-button" 
-											onClick={() => this.handleAddFact(fact)}
-										>+</button>
-									: 
-										null
-								}
-
-								<SupportingFact fact={fact}/>
-							</div>
-						) 
-					}) : null}
-				</div>
+				<TimelineCommentContent comment={comment}/>
 			</div>
 		)
 	}
@@ -78,8 +54,7 @@ class TimelineComment extends Component {
 
 const mapStateToProps = state => {
 	return {
-		userId: state.users.userId,
-		userFacts: state.topics.facts
+		userId: state.users.userId
 	}
 }
 
