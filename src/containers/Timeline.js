@@ -10,6 +10,7 @@ import TimelineFact from "../components/timeline/TimelineFact.js"
 import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
 import TimelineComment from "../components/timeline/TimelineComment.js"
 import TimelineReviewItem from "../components/timeline/TimelineReviewItem.js"
+import PositionForm from "../components/position/PositionForm.js"
 
 import { setActivities } from "../actions/timelineActions.js"
 
@@ -78,8 +79,12 @@ class Timeline extends Component {
 	render() {
 		return (
 			<div id="timeline-wrapper">
+				<div id="timeline-items-wrapper">
+					<PositionForm />
+					<div id="timeline-divider"></div>					
 					{this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))}
-			</div>
+				</div>
+			</div>				
 		)
 	}
 }

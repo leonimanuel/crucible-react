@@ -2,13 +2,27 @@ import React, { Component } from 'react';
 import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 
-import SupportingChatFact from "./SupportingChatFact.js"
+import SupportingChatFact from "../social/SupportingChatFact.js"
 
-class ChatMessageForm extends Component {
+class PositionForm extends Component {
   state = {
     text: '',
     draggedOver: false,    
     facts: []
+  }
+
+  componentDidUpdate() {
+    const commentSubmit = document.getElementById("position-submit-button");
+    if (commentSubmit) {
+      if (this.state.facts.length) {      
+        commentSubmit.disabled = false
+        // commentSubmit.style.backgroundColor = "grey"
+
+      } else {
+        commentSubmit.disabled = true
+        // commentSubmit.style.backgroundColor = "#0f4c75"
+      }
+    }
   }
 
   handleChange = e => {
@@ -39,7 +53,7 @@ class ChatMessageForm extends Component {
         factIds: factIDs
       })
     }
-    fetch(`${API_ROOT}/comments/${this.props.comment.id}/messages`, configObj)
+    fetch(`${API_ROOT}/comments/positions`, configObj)
       .then(resp => resp.json())
       .then((data) => {
         debugger
@@ -89,40 +103,45 @@ class ChatMessageForm extends Component {
       console.log(messageInput.clientHeight)
     }
     return (
-      <div className="newMessageForm">
-        <form id="message-form" onSubmit={this.handleSubmit}>
-          <div 
-            id="message-input-div" 
-            contentEditable="true"
-            onKeyPress={this.handleChange}   
-          >
-          </div>
-          <input id="message-submit-button" type="submit" />
-        </form>
-      
-        <div id="comment-facts-container">
-          {this.state.facts.map(fact => <SupportingChatFact key={fact.id} fact={fact} sendRemoval={(factId) => this.handleRemoveFact(factId)}/>)}
-        </div>
-      
-        { this.state.facts.length <= 2 
-          ?
+      <div id="position-form-wrapper">      
+        <div id="position-form-container"> 
+          <form id="position-form" onSubmit={this.handleSubmit}>
             <div 
-              id="chat-fact-dropzone" 
-              onDragOver={this.allowDrop} 
-              onDragEnter={this.handleDragEnter}
-              onDragLeave={this.handleDragLeave}
-              onDrop={this.drop}
-              className={this.state.draggedOver ? "dragged-over" : "" }
+              id="position-input-div" 
+              contentEditable="true"
+              dataPlaceholder="Start a Position"
+              onKeyPress={this.handleChange}   
             >
-              Drag your facts here to support your message. messages supported by facts earn credit.
-            </div>       
-          :
-            null         
-        }
-  
+            </div>
+            <input id="position-submit-button" type="submit" value="create position" disabled="true" />
+          </form>
+        
+          <div id="comment-facts-container">
+            {this.state.facts.map(fact => <SupportingChatFact key={fact.id} fact={fact} sendRemoval={(factId) => this.handleRemoveFact(factId)}/>)}
+          </div>
+        
+          { this.state.facts.length <= 4 
+            ?
+              <div 
+                id="chat-fact-dropzone" 
+                onDragOver={this.allowDrop} 
+                onDragEnter={this.handleDragEnter}
+                onDragLeave={this.handleDragLeave}
+                onDrop={this.drop}
+                className={this.state.draggedOver ? "dragged-over" : "" }
+              >
+                Support your position with facts by dragging them here from the left. The more facts you use (up to 5), the stronger your position.
+              </div>       
+            :
+              null         
+          }
+        </div>
+        
+        <div className="timeline-item-spacer">
+        </div>    
       </div>
     );
   };
 }
 
-export default connect(state => ({userId: state.users.userId}))(ChatMessageForm);
+export default connect(state => ({userId: state.users.userId}))(PositionForm);
