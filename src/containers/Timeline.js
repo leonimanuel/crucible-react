@@ -18,7 +18,8 @@ import { setActivities } from "../actions/timelineActions.js"
 
 class Timeline extends Component {
 	state = {
-		timeline_activities: []
+		// pagination: 5,
+		// page_offset: 0 
 	}
 
 	handleArticleClick = (e, resource) => {
