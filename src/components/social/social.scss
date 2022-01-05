@@ -1,5 +1,6 @@
 #social-container {
   min-width: 25%;  
+  // width: 500px;
   // border: 2px solid black;
   border-radius: 10px;
   // background-color: slategrey;
@@ -150,6 +151,10 @@
 			overflow: scroll;
 			/*overflow-wrap: break-word;  */
 			border-radius: 2px solid blue;
+		}
+
+		#message-submit-button {
+			background-color: lightblue;
 		}
 
 		#chat-fact-dropzone {

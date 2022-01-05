@@ -25,7 +25,7 @@ class TimelineFact extends Component {
 		// 		border = "3px solid red" 		
 		// }
 		return (
-			<div className="timeline-fact timeline-item">
+			<div className="timeline-fact-wrapper">
 				{this.props.userId !== fact.user_id && !this.props.userFacts.find(f => f.id === fact.id)
 					? 
 						<button 
@@ -36,7 +36,7 @@ class TimelineFact extends Component {
 						null
 				}
 
-				<div className="timeline-fact timeline-item" style={{border: border}}>
+				<div className="timeline-fact-content" style={{border: border}}>
 					{/*parse(innerHTML)*/}
 					{fact.content}
 				</div>

@@ -11,7 +11,7 @@ class DetailPane extends Component {
 		if (detailPane) {
 			if ((this.props.selectedGroupId && this.props.section === "agora") || 
 				(this.props.parentTopic && this.props.section === "console")) {
-				detailPane.style = "width: 200px"
+				// detailPane.style = "width: 200px"
 			} else {
 				// detailPane.style = "width: 0px"
 			}			

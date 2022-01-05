@@ -1,4 +1,6 @@
 #timeline-wrapper {
+  // border: 2px solid purple;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
 
@@ -150,7 +152,8 @@
 
     .timeline-item-subcontainer {
       position: relative;
-     
+      // border: 2px solid silver;
+      width: 100%; // important for keeping items the right width
     }
 
     .timeline-item-spacer {
@@ -190,17 +193,6 @@
         a {
           color: black
         }
-      }
-
-      .timeline-item {
-        // border: 2px solid green;
-        // background-color: whitesmoke;
-      }
-
-
-      .timeline-fact {
-        // border: 2px solid black;
-        // margin-left: 15px;
       }
 
       .timeline-comment {
@@ -265,7 +257,11 @@
 
 .timeline-comment-content-wrapper {
   padding: 10px;
-  background-color: lightblue;
+  background-color: lightblue; // this color indicates that it is a regular comment
+
+  &.timeline-position {
+    background-color: gold; // this color indicates that it is a position
+  }
 
 }
 

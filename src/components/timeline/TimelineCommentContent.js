@@ -20,7 +20,7 @@ class TimelineCommentContent extends Component {
 	render() {
 		const { comment } = this.props
 		return (
-			<div className="timeline-comment-content-wrapper">
+			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				
 				{comment.facts ? comment.facts.map(fact => {
 					return (

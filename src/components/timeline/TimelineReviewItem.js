@@ -155,7 +155,6 @@ class TimelineReviewItem extends Component {
 				break
 
 			case "FactsComment":
-				debugger
 				const commentFactQuestionTypes = ["comment_fact"]
 				let selectedCommentFactQuestionType = commentFactQuestionTypes[Math.floor(Math.random() * commentFactQuestionTypes.length)]
 				switch (selectedCommentFactQuestionType) {

@@ -147,10 +147,11 @@ class App extends Component {
                   
                   <main id="main-content" onClick={this.handleMainClick}>
                     <SideNav onSidenavToggle={this.handleSidenavToggle}/>
-                    <Route exact path="/"><Home/></Route>
+                    {/*<Route exact path="/"><Home/></Route>*/}
+                    <Route exact path="/"><Timeline/></Route>
                     {<Route path="/console"><Console/></Route>}
                     <Route path="/review"><Review/></Route>
-                    <Route path="/groups"><Timeline/></Route>  
+                    {/*<Route path="/groups"><Timeline/></Route>*/}  
                     <Route path="/database"><Database/></Route>  
                     
                     <Social />

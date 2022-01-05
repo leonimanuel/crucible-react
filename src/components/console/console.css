@@ -7,10 +7,12 @@
 #console-window {
 	/*border: 2px solid red;*/
 	/*width: 20%;*/
-	max-width: 200px;
+	/*max-width: 200px;*/
 	display: flex;
 	/*height: 500px;*/
 	flex-direction: column;
+	padding: 0 10px;
+	color: black;
 }
 
 #console-topics-container {
@@ -94,6 +96,7 @@
 
 
 #console-window-title {
+	/*border: 2px solid magenta;*/
 	font-size: 1.5em;
 	text-decoration: bold;
   white-space: nowrap;
@@ -120,7 +123,9 @@
 }
 
 .fact-details-pane {
-	background-color: #2c3539;
+	/*background-color: #2c3539;*/
+	background-color: #30475E;
+	color: white;
 	/*display: none;*/
 	max-height: 0px;
 	transition: .3s;

@@ -43,7 +43,7 @@ main {
   /*flex-basis: 100%;*/
   max-height: 93vh;
   display: flex;
-  justify-content: space-around;
+  /*justify-content: space-around;*/
   margin: 1vh;
 }
 

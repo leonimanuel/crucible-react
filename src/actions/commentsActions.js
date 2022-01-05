@@ -20,6 +20,7 @@ export const selectComment = (comment, userId) => {
 	  fetch(API_ROOT + `/chats/authenticate/${comment.id}`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
+	      debugger
 	      const commentID = comment.id
 	      const userIdString = userId.toString()
 	      const commentIdString = commentID.toString()

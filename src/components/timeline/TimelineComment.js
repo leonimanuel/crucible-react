@@ -46,7 +46,7 @@ class TimelineComment extends Component {
 					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
 					{/*<div className="context-lip"></div>*/}
 				</div>
-				<TimelineCommentContent comment={comment}/>
+				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>
 			</div>
 		)
 	}

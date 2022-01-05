@@ -17,6 +17,7 @@ class MainPane extends Component {
 			<div id="sidenav-main-pane">
 				{this.props.section === "console" ? <TopicMenu /> : null}
 				{this.props.section === "agora" ? <AgoraMenu /> : null}
+				<div>HI THERE BUDDY</div>
 			</div>
 
 		)
