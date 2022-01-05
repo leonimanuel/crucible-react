@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchTopics } from "../actions/topicsActions.js" 
 
-import "./sidenav.css"
+import "./sidenav.scss"
 import MainPane from "./MainPane.js"
 import DetailPane from "./DetailPane.js"
 // import { hideDetailPane } from "../actions/sidenavActions.js"
@@ -62,11 +62,11 @@ class SideNav extends Component {
 		// debugger
 		return (
 			<div id="side-nav" >
-				<MainPane section={this.state.section} />
+				<MainPane section={this.state.section} tabClick={this.handleTabClick} section={this.state.section} />
 				<DetailPane section={this.state.section} /> 
 				
 				<div id="sections-list">
-					<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Facts</div>
+					{/*<div id="console" className={`section-tab ${this.state.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.handleTabClick}>Facts</div>*/}
 					<div>
 						<div 
 							id="agora" 

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import "./sidenav.css"
+import "./sidenav.scss"
 import GroupDetailsMenu from "../components/agora/GroupDetailsMenu.js"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
 
