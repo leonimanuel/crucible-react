@@ -5,6 +5,7 @@ import { selectTopic } from "../../actions/topicsActions.js"
 
 class TopicMenu extends Component {
 	componentDidMount() {
+		// debugger
 		this.props.selectTopic(this.props.newFactsTopic)
 	}
 
@@ -22,6 +23,7 @@ class TopicMenu extends Component {
 }
 
 const mapStateToProps = state => {
+  // debugger
   return {
     topics: state.topics.topics,
     newFactsTopic: state.topics.topics.find(topic => topic.name == "New Facts")

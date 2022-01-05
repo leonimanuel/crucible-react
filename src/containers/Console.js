@@ -30,10 +30,9 @@ class Console extends Component {
   
 	render() {
 		// this.fetchFacts()
-    debugger
 		return (
 			<div id="console-container">
-				<TopicMenu topics={this.props.topics} />
+				<TopicMenu topics={this.props.topics}/>
 				<ConsoleWindow />
 			</div>
 		)
@@ -42,7 +41,7 @@ class Console extends Component {
 
 const mapStateToProps = state => {
   return {
-    topics: state.topics,
+    topics: state.topics.topics,
     // parentTopic: state.parentTopic
   }
 }

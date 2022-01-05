@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
+
 import "./sidenav.css"
 import TopicMenu from "../components/console/TopicMenu.js"
 import AgoraMenu from "../components/agora/AgoraMenu.js"
@@ -12,10 +14,10 @@ class MainPane extends Component {
 		// if (this.props.section) {
 		// 	mainPane.style = "width: 100px"
 		// }
-
+		debugger
 		return (
 			<div id="sidenav-main-pane">
-				{this.props.section === "console" ? <TopicMenu /> : null}
+				{this.props.section === "console" && this.props.topics.length ? <TopicMenu /> : null}
 				{this.props.section === "agora" ? <AgoraMenu /> : null}
 				<div>HI THERE BUDDY</div>
 			</div>
@@ -24,5 +26,10 @@ class MainPane extends Component {
 	}
 }
 
+const mapStateToProps = state => {
+  return {
+    topics: state.topics.topics,
+  }
+}
 
-export default MainPane
+export default connect(mapStateToProps)(MainPane);
