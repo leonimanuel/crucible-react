@@ -15,14 +15,11 @@ const Reply = (props) => {
 
 	return (
 		<div className="reply-container">
-			{reply.user.id !== currentUserId
-				? <div className="reply-user-name">{reply.user.handle ? reply.user.handle : "unavailable"}</div> 
-				: null
-			}
+			<div className="reply-user-handle">{reply.user.handle ? reply.user.handle : "unavailable"}</div> 
 
 			{!reply.reply_comment
 				?
-					<div>{reply.content}</div>
+					<div className="reply-text">{reply.content}</div>
 				:
 					<div className="timeline-comment-content-wrapper">
 						<div className="timeline-comment-content">{reply.reply_comment.content}</div>

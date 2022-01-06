@@ -58,12 +58,13 @@ class Timeline extends Component {
 								<div className="timeline-item-article-title">
 									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
 								</div> 							
-								<TimelineComment comment={resource} />						
+								<TimelineComment comment={resource} />
+								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 							{resource.facts_comments_reviews[0].review_status == "pending" 
 								&& !!activity.item.reviewable
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
-							<RepliesContainer comment={resource} index={index}/>
+							
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
@@ -78,12 +79,13 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader actor={activity.actor}/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineCommentContent comment={resource} position={true} />						
+								<TimelineCommentContent comment={resource} position={true} />
+								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 							{resource.facts_comments_reviews[0].review_status == "pending" 
 								&& !!activity.item.reviewable
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
-							<RepliesContainer comment={resource} index={index}/>
+							
 						</div>
 						<div className="timeline-item-spacer">
 							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>

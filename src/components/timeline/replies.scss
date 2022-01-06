@@ -1,0 +1,102 @@
+.replies-container {
+  .replies-header {
+    font-size: 1.3em;
+    margin-top: 10px;
+  }
+
+  .create-first-reply-button {
+    // background-color: #30475E;
+    font-weight: bold;
+    margin-top: 10px;
+
+    &:hover {
+      color: purple;
+      cursor: pointer;
+    }
+
+  }
+
+  .reply-container {
+    // border: 2px solid purple;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    text-align: left;
+
+    background-color: #EAEAEA; //light grey
+
+    .reply-user-handle {
+      font-weight: bold;
+    }
+  }
+}
+
+.reply-form {
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: #30475E;
+
+  .reply-form-subcontainer {
+    // border: 2px solid red;
+    border-radius: 0 0 10px 10px ;
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: 100%;
+
+
+    .reply-input-div {
+      border-radius: 5px;
+      /*width: 70%;*/
+      flex: 1;
+      margin: 0 5px;
+      text-align: left;
+      outline: none;
+      padding: 3px;
+
+      // max-width: 100px;
+      background-color: white;
+      font-size: 1em;
+      max-height: 150px;
+      overflow: scroll;
+      /*overflow-wrap: break-word;  */
+      border-radius: 2px solid blue;
+    }
+
+    .reply-submit-button {
+      background-color: lightblue;
+      border: none;
+      border-radius: 5px;
+      padding: 5px;
+      font-weight: bold;
+      cursor: pointer;    
+    } 
+  }
+
+  .reply-fact-dropzone {
+    border: 2px solid red;
+    text-align: center;
+    border: 2px dashed lightgrey;
+    border-radius: 5px;
+    color: lightgrey;
+    font-weight: bold;
+
+    margin: 10px 5px;
+    padding: 20px 0;
+    /*height: 20px;*/
+  }
+
+  .reply-fact-dropzone.dragged-over {
+    background-color: lightgrey;
+    color: #30475E;
+    border-color: lightgrey;
+  }    
+}
+
+
+
+
+
+
+

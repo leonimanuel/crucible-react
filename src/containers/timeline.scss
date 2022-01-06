@@ -1,5 +1,5 @@
 #timeline-wrapper {
-  border: 2px solid purple;
+  // border: 2px solid purple;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -152,7 +152,7 @@
 
     .timeline-item-subcontainer {
       position: relative;
-      border: 2px solid silver;
+      // border: 2px solid silver;
       width: 100%; // important for keeping items the right width
     }
 
@@ -179,7 +179,7 @@
   	}
 
     .timeline-item-content-container {
-      border: 2px solid blue;
+      // border: 2px solid blue;
       border-radius: 10px;
       box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
       background-color: white;
@@ -359,69 +359,4 @@
     cursor: pointer;
   }
 }
-
-.reply-form {
-  .reply-form-subcontainer {
-    // border: 2px solid red;
-    border-radius: 0 0 10px 10px ;
-    display: flex;
-    margin: 10px;
-    justify-content: space-between;
-    align-items: flex-end;
-    max-width: 100%;
-
-
-    .reply-input-div {
-      border-radius: 5px;
-      /*width: 70%;*/
-      flex: 1;
-      margin: 0 5px;
-      text-align: left;
-      outline: none;
-      padding: 3px;
-
-      // max-width: 100px;
-      background-color: white;
-      font-size: 1em;
-      max-height: 150px;
-      overflow: scroll;
-      /*overflow-wrap: break-word;  */
-      border-radius: 2px solid blue;
-    }
-
-    .reply-submit-button {
-      background-color: lightblue;
-      border: none;
-      border-radius: 5px;
-      padding: 5px;
-      font-weight: bold;
-      cursor: pointer;    
-    } 
-  }
-
-  .reply-fact-dropzone {
-    border: 2px solid red;
-    text-align: center;
-    border: 2px dashed lightgrey;
-    border-radius: 5px;
-    color: lightgrey;
-    font-weight: bold;
-
-    margin: 10px 5px;
-    padding: 20px 0;
-    /*height: 20px;*/
-  }
-
-  .reply-fact-dropzone.dragged-over {
-    background-color: lightgrey;
-    color: #30475E;
-    border-color: lightgrey;
-  }    
-}
-
-
-
-
-
-
 
