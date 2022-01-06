@@ -1,11 +1,60 @@
 import React from 'react';
+import { connect } from "react-redux"
+
+import { addFactFromComment } from "../../actions/discussionsActions.js"
+
+import SupportingFact from "../agora/SupportingFact.js"
+
 
 const Reply = (props) => {
+	const { reply, currentUserId } = props
+
+	const handleAddFact = (fact) => {
+		props.addFactFromComment(fact, props.message.comment.user_id);
+	}
+
 	return (
 		<div className="reply-container">
-			{props.reply.content}
+			{reply.user.id !== currentUserId
+				? <div className="reply-user-name">{reply.user.handle ? reply.user.handle : "unavailable"}</div> 
+				: null
+			}
+
+			{!reply.reply_comment
+				?
+					<div>{reply.content}</div>
+				:
+					<div className="timeline-comment-content-wrapper">
+						<div className="timeline-comment-content">{reply.reply_comment.content}</div>
+						
+						{reply.reply_comment_facts ? reply.reply_comment_facts.map(fact => {
+							return (
+								<div className="comment-fact-wrapper">
+									{currentUserId !== reply.user.id && !props.userFacts.find(f => f.id === fact.id)
+										? 
+											<button 
+												className="add-comment-fact-button" 
+												onClick={() => handleAddFact(fact)}
+											>+</button>
+										: 
+											null
+									}
+
+									<SupportingFact fact={fact}/>
+								</div>
+							) 
+						}) : null}
+					</div>						
+
+			}
 		</div>
 	)
 }
 
-export default Reply;
+const mapStateToProps = state => {
+	return {
+		userFacts: state.topics.facts 
+	}
+}
+
+export default connect(mapStateToProps, { addFactFromComment })(Reply);

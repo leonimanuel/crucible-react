@@ -10,7 +10,7 @@ const RepliesContainer = (props) => {
 	return (
 		<div className="replies-container">
 			<div className="replies-wrapper" key={comment.id}>
-				{props.replies.map(reply => <Reply reply={reply}/>)}
+				{props.replies.map(reply => <Reply comment={comment} reply={reply}/>)}
 			</div>
 			<ReplyForm comment={comment} index={props.index}/>
 		</div>
@@ -19,7 +19,8 @@ const RepliesContainer = (props) => {
 
 const mapStateToProps = (state, props) => {
 	return {
-		replies: state.timeline.replies.filter(reply => reply.comment_id === props.comment.id)
+		replies: state.timeline.replies.filter(reply => reply.comment_id === props.comment.id),
+		currentUserId: state.users.userId
 	}
 }
 
