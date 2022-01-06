@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
+import { createReply } from "../../actions/timelineActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 
@@ -26,27 +27,13 @@ class ReplyForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
-    let configObj = {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        text: this.state.text,
-        userId: this.props.userId,
-        factIds: factIDs
-      })
-    }
-    fetch(`${API_ROOT}/comments/${this.props.comment.id}/replies`, configObj)
-      .then(resp => resp.json())
-      .then((data) => {
-        debugger
-      })
-    
+    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.clearReplyForm)
+  }
+
+  clearReplyForm = () => {
+    debugger
     this.setState({ text: '', facts: [] });
-    let messageInput = document.getElementById("message-input-div")
+    let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
     messageInput.innerHTML = ""
   }
 
@@ -82,17 +69,12 @@ class ReplyForm extends Component {
   }
 
   render = () => {
-    let messageInput = document.getElementById("message-input-div")
-    // debugger
-    if (messageInput) {
-      // messageInput.style = `height: ${messageInput.scrollHeight}px`
-      console.log(messageInput.clientHeight)
-    }
     return (
-      <div className="reply-form">
+      <div className="reply-form" >
         <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
           <div 
             className="reply-input-div"
+            id={`reply-input-div-${this.props.index}`}
             contentEditable="true"
             onKeyPress={this.handleChange}   
           >
@@ -124,4 +106,4 @@ class ReplyForm extends Component {
   };
 }
 
-export default connect(state => ({userId: state.users.userId}))(ReplyForm);
+export default connect(state => ({userId: state.users.userId}), { createReply })(ReplyForm);

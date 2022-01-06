@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { connect } from "react-redux"
+
 import Reply from "./Reply.js"
 import ReplyForm from "./ReplyForm.js"
 
@@ -8,11 +10,17 @@ const RepliesContainer = (props) => {
 	return (
 		<div className="replies-container">
 			<div className="replies-wrapper" key={comment.id}>
-				{comment.replies.map(reply => <Reply reply={reply}/>)}
+				{props.replies.map(reply => <Reply reply={reply}/>)}
 			</div>
-			<ReplyForm comment={comment}/>
+			<ReplyForm comment={comment} index={props.index}/>
 		</div>
 	)
 }
 
-export default RepliesContainer;
+const mapStateToProps = (state, props) => {
+	return {
+		replies: state.timeline.replies.filter(reply => reply.comment_id === props.comment.id)
+	}
+}
+
+export default connect(mapStateToProps)(RepliesContainer);
