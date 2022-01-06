@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Reply from "./Reply.js"
-import ChatMessageForm from "../social/ChatMessageForm.js"
+import ReplyForm from "./ReplyForm.js"
 
 const RepliesContainer = (props) => {
 	const { comment } = props
@@ -10,7 +10,7 @@ const RepliesContainer = (props) => {
 			<div className="replies-wrapper" key={comment.id}>
 				{comment.replies.map(reply => <Reply reply={reply}/>)}
 			</div>
-			<ChatMessageForm comment={comment}/>
+			<ReplyForm comment={comment}/>
 		</div>
 	)
 }
