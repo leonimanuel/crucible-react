@@ -19,7 +19,7 @@ class MainPane extends Component {
 				<div id="console" className={`section-tab ${this.props.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}>Facts</div>
 				{this.props.section === "console" && this.props.topics.length ? <TopicMenu /> : null}
 				
-				<div id="activity" className={`section-tab ${this.props.section === "activity" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}>Activity</div>
+				<div id="notifications" className={`section-tab ${this.props.section === "notifications" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}>Notifications</div>
 
 				{/*this.props.section === "agora" ? <AgoraMenu /> : null*/}
 				

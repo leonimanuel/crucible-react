@@ -3,23 +3,26 @@ import { connect } from "react-redux"
 
 import "./sidenav.scss"
 import GroupDetailsMenu from "../components/agora/GroupDetailsMenu.js"
+import NotificationDetailsMenu from "../components/notifications/NotificationDetailsMenu.js"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
 
 class DetailPane extends Component {
 	render() {
-		let detailPane = document.querySelector("#sidenav-details-pane")
-		if (detailPane) {
-			if ((this.props.selectedGroupId && this.props.section === "agora") || 
-				(this.props.parentTopic && this.props.section === "console")) {
-				// detailPane.style = "width: 200px"
-			} else {
-				// detailPane.style = "width: 0px"
-			}			
-		}
+		// let detailPane = document.querySelector("#sidenav-details-pane")
+		// if (detailPane) {
+		// 	if ((this.props.selectedGroupId && this.props.section === "agora") || 
+		// 		(this.props.parentTopic && this.props.section === "console")) {
+		// 		// detailPane.style = "width: 200px"
+		// 	} else {
+		// 		// detailPane.style = "width: 0px"
+		// 	}			
+		// }
+		debugger
 		return (
 			<div id="sidenav-details-pane">
 				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
-				{this.props.section === "agora" && this.props.selectedGroupId ? <GroupDetailsMenu /> : null}
+				{this.props.section === "notifications" ? <NotificationDetailsMenu /> : null}
+				{/*this.props.section === "agora" && this.props.selectedGroupId ? <GroupDetailsMenu /> : null*/}
 			</div>
 		)
 	}

@@ -18,15 +18,15 @@ const RepliesContainer = (props) => {
 						<div className="replies-wrapper" key={comment.id}>
 							{props.replies.map(reply => <Reply comment={comment} reply={reply}/>)}
 						</div>
-						<ReplyForm comment={comment} index={props.index}/>				
 					</React.Fragment>
-				: 
-					<React.Fragment>
-						{stateShowReplyForm 
-							? <ReplyForm comment={comment} index={props.index}/> 
-							: <div className="create-first-reply-button" onClick={() => setStateShowReplyForm(true)}>Reply</div>}
-					</React.Fragment>
+				: null
 			}
+			
+			<React.Fragment>
+				{stateShowReplyForm 
+					? <ReplyForm comment={comment} index={props.index}/> 
+					: <div className="create-first-reply-button" onClick={() => setStateShowReplyForm(true)}>Reply</div>}
+			</React.Fragment>			
 		</div>
 	)
 }
