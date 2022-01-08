@@ -14,6 +14,7 @@ import TimelineReviewItem from "../components/timeline/TimelineReviewItem.js"
 import PositionForm from "../components/position/PositionForm.js"
 import RepliesContainer from "../components/timeline/RepliesContainer.js"
 import { setActivities } from "../actions/timelineActions.js"
+import { clearNotificationActivity } from "../actions/notificationsActions.js"
 
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
@@ -108,8 +109,18 @@ class Timeline extends Component {
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
 					<PositionForm />
-					<div id="timeline-divider"></div>					
-					{this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))}
+					<div id="timeline-divider-wrapper">
+						{!!this.props.selectedNotificationActivity ? <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div> : null}
+						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			
+					</div>		
+					
+					{
+						!!this.props.selectedNotificationActivity 
+							? 
+								this.showTimelineItem(this.props.selectedNotificationActivity, 0)								
+							:
+								this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+					}
 				</div>
 			</div>				
 		)
@@ -119,13 +130,14 @@ class Timeline extends Component {
 const mapStateToProps = state => {
 	return {
 		selectedComment: state.comments.selectedComment,
-		timeline_activities: state.timeline.activities
+		timeline_activities: state.timeline.activities,
+		selectedNotificationActivity: state.notifications.selectedNotificationActivity
 	}
 }
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity })(Timeline));
 
 
 

@@ -3,6 +3,22 @@
 	border: 2px solid green;
 
 	.notification-container {
-		border: 2px solid green;
+		// border: 2px solid green;
+		border-radius: 5px;
+		margin: 5px;
+		padding: 5px;
+		// max-height: 3em;
+		
+		// white-space: nowrap;
+		// overflow: hidden;
+		// text-overflow: ellipsis;
+	
+		&.read {
+			background-color: lightgrey;
+		}
+
+		&.unread {
+			background-color: lightblue;
+		}
 	}
 }

@@ -136,12 +136,37 @@
 
   min-width: 350px;
 
-  #timeline-divider {
-    width: 80%;
-    height: 20px;
-    border-top: 1px solid grey;
-    border-radius: 10px;
-    margin: 10px auto;
+  #timeline-divider-wrapper {
+    display: flex;
+
+    #back-to-timeline-button {
+      // border: 2px solid green;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    #timeline-divider {
+
+      width: 90%;
+      height: 20px;
+      // border-top: 1px solid grey;
+      border: 2px solid red;
+      // border-radius: 10px;
+      // margin: 10px auto;
+      display: flex;
+      flex-direcction: column;
+      justify-content: space-around;
+
+      display: none;
+
+    
+      #timeline-divider-line {
+        border-top: 1px solid grey;
+        width: 100%;
+        height: 20px;        
+      }
+    }
+
   }
 
   .timeline-item-container {

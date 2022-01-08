@@ -5,7 +5,7 @@ import ConsoleFactsList from "./ConsoleFactsList.js"
 
 class ConsoleWindow extends Component {
 	componentWillUnmount() {
-		debugger
+		// debugger
 	}
 
 	render() {
