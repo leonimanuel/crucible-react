@@ -40,6 +40,7 @@ export const setNotifications = (userId) => {
 }
 
 export const readNotification = (objectId, objectType, notifId, userId) => {
+	debugger
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"

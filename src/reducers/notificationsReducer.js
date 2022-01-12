@@ -8,26 +8,42 @@ export default function notificationsReducer(state = {
 	switch(action.type) {
 		case "SET_NOTIFICATIONS":
 			// debugger
-			const notification_groups = action.notifications.results
+			const notificationGroupsArray = action.notifications.results
+			const sortedNotificationGroupsArray = notificationGroupsArray.sort(function(a,b) {
+			  // Turn your strings into dates, and then subtract them
+			  // to get a value that is either negative, positive, or zero.
+			  return new Date(b.created_at) - new Date(a.created_at);
+			});
 			return {
 				...state,
-				notification_groups: notification_groups,
+				notification_groups: sortedNotificationGroupsArray,
 				unread_notifications_count: action.notifications.unread,
 				unread_notifications_count: action.notifications.unseen,
 			}
 		
 		case "READ_NOTIFICATION":			
 			const notificationGroups = state.notification_groups
-			const selectedNotificationGroup = state.notification_groups.find(n => n.id === action.notifId)
+			const selectedNotificationGroup = notificationGroups.find(n => n.id === action.notifId)
 
-			const selectionIndex = notificationGroups.indexOf(selectedNotificationGroup)
-			notificationGroups[selectionIndex].is_read = true
+			const modifiedNotificationGroup = selectedNotificationGroup
+			modifiedNotificationGroup.is_read = true
+
+			const newNotificationGroups = notificationGroups.filter(n => n.id !== modifiedNotificationGroup.id)
+
+			const sortedNotificationGroups = [...newNotificationGroups, modifiedNotificationGroup].sort(function(a,b) {
+			  // Turn your strings into dates, and then subtract them
+			  // to get a value that is either negative, positive, or zero.
+			  return new Date(b.created_at) - new Date(a.created_at);
+			});
+
+			// const selectionIndex = notificationGroups.indexOf(selectedNotificationGroup)
+			// notificationGroups[selectionIndex].is_read = true
 
 			// const updatedNotificationGroups = state.notification_groups.filter(n => n.id !== action.notifId)
 			debugger
 			return {
 				...state,
-				notification_groups: notificationGroups,
+				notification_groups: sortedNotificationGroups,
 				unread_notifications_count: state.unread_notifications_count - 1
 			}
 
