@@ -20,7 +20,7 @@
 }
 
 .topic-box {
-	/*border: 2px solid green;*/
+	border: 2px solid green;
 	text-align: left;
   white-space: nowrap;
   overflow: hidden;

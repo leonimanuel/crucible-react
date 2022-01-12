@@ -59,6 +59,13 @@ export const logIn = () => {
             type: "ADD_BRIEFINGS",
             briefings
           })
+
+          if (data.notifications) {
+            dispatch({
+              type: "SET_NOTIFICATIONS",
+              notifications: data.notifications
+            })        
+          }  
         } else {
           dispatch({type: "LOGIN_FAILED"})
         }

@@ -16,10 +16,19 @@ class MainPane extends Component {
 		// }
 		return (
 			<div id="sidenav-main-pane">
-				<div id="console" className={`section-tab ${this.props.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}>Facts</div>
+				<div id="console" className={`section-tab ${this.props.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}
+				>
+					Facts 
+				</div>
 				{this.props.section === "console" && this.props.topics.length ? <TopicMenu /> : null}
 				
-				<div id="notifications" className={`section-tab ${this.props.section === "notifications" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}>Notifications</div>
+				<div 
+					id="notifications" 
+					className={`section-tab ${this.props.section === "notifications" ? "selected-section" : "unselected-section"}`} 
+					onClick={this.props.tabClick}
+					>
+						Notifications {<div className="sidenav-badge topic-badge badge">{this.props.unreadNotificationsCount}</div>}
+					</div>
 
 				{/*this.props.section === "agora" ? <AgoraMenu /> : null*/}
 				
@@ -32,7 +41,12 @@ class MainPane extends Component {
 const mapStateToProps = state => {
   return {
     topics: state.topics.topics,
+    unreadNotificationsCount: state.notifications.unreadNotificationsCount
   }
 }
 
 export default connect(mapStateToProps)(MainPane);
+
+
+
+

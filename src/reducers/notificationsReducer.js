@@ -1,8 +1,8 @@
 export default function notificationsReducer(state = {
 	notification_groups: [],
 	notification_group_activities: [],
-	unread_notifications_count: 0,
-	unseen_notifications_count: 0,
+	unreadNotificationsCount: "",
+	unseen_notifications_count: "",
 	selectedNotificationActivity: ""
 }, action) {
 	switch(action.type) {
@@ -17,8 +17,8 @@ export default function notificationsReducer(state = {
 			return {
 				...state,
 				notification_groups: sortedNotificationGroupsArray,
-				unread_notifications_count: action.notifications.unread,
-				unread_notifications_count: action.notifications.unseen,
+				unreadNotificationsCount: action.notifications.unread,
+				unseen_notifications_count: action.notifications.unseen,
 			}
 		
 		case "READ_NOTIFICATION":			
@@ -40,11 +40,10 @@ export default function notificationsReducer(state = {
 			// notificationGroups[selectionIndex].is_read = true
 
 			// const updatedNotificationGroups = state.notification_groups.filter(n => n.id !== action.notifId)
-			debugger
 			return {
 				...state,
 				notification_groups: sortedNotificationGroups,
-				unread_notifications_count: state.unread_notifications_count - 1
+				unreadNotificationsCount: state.unread_notifications_count - 1
 			}
 
 		case "SET_NOTIFICATION_ACTIVITY":
