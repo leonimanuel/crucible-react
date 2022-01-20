@@ -1,7 +1,14 @@
 export default function briefingsReducer(state = {
-	allBriefings: []
+	allBriefings: [],
+	articles: []
 }, action) {
 	switch(action.type) {
+		case "SET_ARTICLES":
+			return {
+				...state,
+				articles: action.articles
+			}
+
 		case "ADD_BRIEFINGS":
 			const shuffledBriefings = shuffle(action.briefings)
 			return {

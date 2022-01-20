@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { LastLocationProvider } from 'react-router-last-location';
 import { connect } from "react-redux"
 import { ActionCableConsumer } from "react-actioncable-provider";
-import { addMessageToDiscussion } from "./actions/discussionsActions.js"
-import { addCommentToDiscussion } from "./actions/discussionsActions.js"
+import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
-import LandingPage from "./components/home/LandingPage.js"
+import { getArticleRecommendations } from "./actions/briefingsActions.js"
+import { API_ROOT } from "./constants"
 
+import LandingPage from "./components/home/LandingPage.js"
 import SideNav from "./containers/SideNav.js"
 import Home from "./containers/Home.js"
 import NavBar from "./components/navigation/NavBar.js"
@@ -19,6 +20,7 @@ import Timeline from "./containers/Timeline.js"
 import Database from "./containers/Database.js"
 import Control from "./containers/Control.js"
 import Social from "./components/social/Social.js"
+import ArticlesContainer from "./components/articles/ArticlesContainer.js"
 
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
@@ -39,6 +41,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.logIn()
+    this.props.getArticleRecommendations()
   }
 
   handleUnreadUpdate = (response) => {
@@ -148,13 +151,14 @@ class App extends Component {
                   <main id="main-content" onClick={this.handleMainClick}>
                     <SideNav onSidenavToggle={this.handleSidenavToggle}/>
                     {/*<Route exact path="/"><Home/></Route>*/}
-                    <Route exact path="/"><Timeline/></Route>
+                    <Timeline/>
                     {<Route path="/console"><Console/></Route>}
                     <Route path="/review"><Review/></Route>
                     {/*<Route path="/groups"><Timeline/></Route>*/}  
                     <Route path="/database"><Database/></Route>  
                     
-                    <Social />
+                    {/*<Social />*/}
+                    <ArticlesContainer />
                     <FeedbackButton />
                   </main>
                 </div>
@@ -187,7 +191,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable, resetQuotas })(App);
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable, resetQuotas, getArticleRecommendations })(App);
 
 
 

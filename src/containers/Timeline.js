@@ -3,6 +3,7 @@ import { Route, withRouter, Redirect } from "react-router-dom";
 import { useLastLocation } from 'react-router-last-location';
 import { connect } from "react-redux"
 import { v4 as uuidv4 } from 'uuid';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { API_ROOT } from "../constants"
 import "./timeline.scss"
 
@@ -24,6 +25,10 @@ class Timeline extends Component {
 		// pagination: 5,
 		// page_offset: 0 
 	}
+
+	componentDidMount() {
+		this.props.setActivities(0);
+	}	
 
 	handleArticleClick = (e, resource) => {
 		e.preventDefault()
@@ -100,8 +105,17 @@ class Timeline extends Component {
 
 	}
 
-	componentDidMount() {
-		this.props.setActivities()
+
+	fetchMoreActivities = () => {
+		alert("fetching more activities");
+		const activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
+		this.props.setActivities(activityId);
+
+	}
+
+	refresh = () => {
+		debugger
+		alert("refreshing")
 	}
 
 	render() {
@@ -113,14 +127,28 @@ class Timeline extends Component {
 						{!!this.props.selectedNotificationActivity ? <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div> : null}
 						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			
 					</div>		
-					
-					{
-						!!this.props.selectedNotificationActivity 
-							? 
-								this.showTimelineItem(this.props.selectedNotificationActivity, 0)								
-							:
-								this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
-					}
+
+					<InfiniteScroll
+					  dataLength={this.props.timeline_activities.length}
+					  next={this.fetchMoreActivities}
+					  hasMore={true}
+					  loader={<h4>Loading...</h4>}
+					  endMessage={
+					    <p style={{ textAlign: 'center' }}>
+					      <b>Yay! You have seen it all</b>
+					    </p>
+					  }
+					  scrollableTarget="timeline-items-wrapper"
+
+					>
+						{
+							!!this.props.selectedNotificationActivity 
+								? 
+									this.showTimelineItem(this.props.selectedNotificationActivity, 0)								
+								:
+									this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+						}
+					</InfiniteScroll>
 				</div>
 			</div>				
 		)

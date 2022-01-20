@@ -27,7 +27,7 @@ class MainPane extends Component {
 					className={`section-tab ${this.props.section === "notifications" ? "selected-section" : "unselected-section"}`} 
 					onClick={this.props.tabClick}
 					>
-						Notifications {<div className="sidenav-badge topic-badge badge">{this.props.unreadNotificationsCount}</div>}
+						Notifications {this.props.unreadNotificationsCount ? <div className="sidenav-badge topic-badge badge">{this.props.unreadNotificationsCount}</div> : null}
 					</div>
 
 				{/*this.props.section === "agora" ? <AgoraMenu /> : null*/}

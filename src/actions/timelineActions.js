@@ -1,6 +1,6 @@
 import { API_ROOT } from "../constants"
 
-export const setActivities = () => {
+export const setActivities = (activityId) => {
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_ACTIVITIES"
@@ -15,10 +15,11 @@ export const setActivities = () => {
 			}
 		}
 
-		fetch(API_ROOT + "/timeline", configObj)
+		fetch(API_ROOT + `/timeline/${activityId}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {
-				const replies = activities.map(a => a.item.object.replies ? a.item.object.replies : null).flat()
+				// debugger
+				const replies = activities.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
 				dispatch({
 					type: "SET_ACTIVITIES",
 					activities

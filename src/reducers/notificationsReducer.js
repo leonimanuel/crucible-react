@@ -43,7 +43,7 @@ export default function notificationsReducer(state = {
 			return {
 				...state,
 				notification_groups: sortedNotificationGroups,
-				unreadNotificationsCount: state.unread_notifications_count - 1
+				unreadNotificationsCount: state.unreadNotificationsCount === 0 ? state.unreadNotificationsCount : state.unreadNotificationsCount - 1
 			}
 
 		case "SET_NOTIFICATION_ACTIVITY":
