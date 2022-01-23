@@ -9,6 +9,7 @@ import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActi
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
 import { API_ROOT } from "./constants"
 
+
 import LandingPage from "./components/home/LandingPage.js"
 import SideNav from "./containers/SideNav.js"
 import Home from "./containers/Home.js"
@@ -148,7 +149,8 @@ class App extends Component {
                   />    
 
                   
-                  <main id="main-content" onClick={this.handleMainClick}>
+                  <main id="main-content" onClick={this.handleMainClick}>               
+
                     <SideNav onSidenavToggle={this.handleSidenavToggle}/>
                     {/*<Route exact path="/"><Home/></Route>*/}
                     <Timeline/>

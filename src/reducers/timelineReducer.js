@@ -4,15 +4,14 @@ export default function timelineReducer(state = {
 }, action) {
 	switch(action.type) {
 		case "SET_ACTIVITIES":
-			debugger
 
-			const sortedActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
+			const sortedTimelineActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
 			
 			return {
 				...state,
-				activities: [...state.activities, ...sortedActivities]
+				activities: [...state.activities, ...sortedTimelineActivities]
 			}
-		
+
 		case "SET_REPLIES":
 			return {
 				...state,

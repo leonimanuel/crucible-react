@@ -10,6 +10,7 @@ import commentsReducer from "./commentsReducer.js"
 import messagesReducer from "./messagesReducer.js"
 import timelineReducer from "./timelineReducer.js"
 import notificationsReducer from "./notificationsReducer.js"
+import networkReducer from "./networkReducer.js"
 
 export default combineReducers({
 	users: userReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
 	comments: commentsReducer,
 	messages: messagesReducer,
 	timeline: timelineReducer,
-	notifications: notificationsReducer
+	notifications: notificationsReducer,
+	network: networkReducer
 })

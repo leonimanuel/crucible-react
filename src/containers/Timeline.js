@@ -16,6 +16,7 @@ import PositionForm from "../components/position/PositionForm.js"
 import RepliesContainer from "../components/timeline/RepliesContainer.js"
 import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity } from "../actions/notificationsActions.js"
+import { clearSelectedContact } from "../actions/networkActions.js"
 
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
@@ -118,13 +119,25 @@ class Timeline extends Component {
 		alert("refreshing")
 	}
 
+	renderDivider = () => {
+		let divider = ""
+		if (this.props.selectedNotificationActivity) {
+			divider = <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div>
+		} 
+		if (this.props.selectedContact) {
+			divider = <div id="back-to-timeline-button" onClick={this.props.clearSelectedContact}>{"⬅ back to timeline"}</div>
+		}
+
+		return divider
+	}
+
 	render() {
 		return (
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
-					<PositionForm />
+					{!this.props.selectedContact ? <PositionForm /> : <div>{this.props.selectedContact.handle}</div>}
 					<div id="timeline-divider-wrapper">
-						{!!this.props.selectedNotificationActivity ? <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div> : null}
+						{this.renderDivider()}
 						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			
 					</div>		
 
@@ -146,7 +159,11 @@ class Timeline extends Component {
 								? 
 									this.showTimelineItem(this.props.selectedNotificationActivity, 0)								
 								:
-									this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+									!!this.props.contactFeed.length 
+										? 
+											this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))
+										:
+											this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
 						}
 					</InfiniteScroll>
 				</div>
@@ -159,13 +176,15 @@ const mapStateToProps = state => {
 	return {
 		selectedComment: state.comments.selectedComment,
 		timeline_activities: state.timeline.activities,
-		selectedNotificationActivity: state.notifications.selectedNotificationActivity
+		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
+		selectedContact: state.network.selectedContact,
+		contactFeed: state.network.contactFeed
 	}
 }
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, clearSelectedContact })(Timeline));
 
 
 

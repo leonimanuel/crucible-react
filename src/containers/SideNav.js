@@ -32,9 +32,9 @@ class SideNav extends Component {
 
 	handleTabClick = e => {
 		// this.setState({section: e.target.id})
-		if (this.state.section !== e.target.id) {
-			this.props.fetchTopics()
-		}
+		// if (this.state.section !== e.target.id) {
+		// 	this.props.fetchTopics()
+		// }
 		
 		let sideNav = document.getElementById("side-nav")
 		let sectionTabs = document.getElementById("sections-list")

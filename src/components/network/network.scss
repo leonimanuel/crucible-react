@@ -1,0 +1,54 @@
+#network-menu-container {
+	// border: 2px solid green;
+	color: black;
+
+	#network-menu-header {
+		// border: 2px solid purple;
+		color: black;
+	}
+
+	#network-options {
+		display: flex;
+		justify-content: space-around;
+	
+		.network-option.selected  {
+			border-bottom: 2px solid black;
+		}
+	}
+
+	.network-contact-container {
+		border: 2px solid black;
+		margin: 5px 0;
+	}
+}
+
+#network-modal-container {
+	// border: 2px solid green;
+
+	#network-search-form {
+		// border: 2px solid purple;
+		display: flex;
+		justify-content: center;
+
+		#network-search-input {
+			// border: 2px solid red;
+			width: 200px;
+			outline-width: 0;
+
+		  padding: 5px;
+		  border: 3px solid #0f4c75;
+		  border-radius: 5px 0 0 5px;
+		  border-right: none;
+		  // margin: 8px 0;
+		  // box-sizing: border-box;			
+		}
+
+		#network-search-submit-button {
+			border: none;
+			background-color: #0f4c75;
+			border-radius: 0 5px 5px 0;
+			color: white;
+			cursor: pointer;
+		}
+	}
+}
