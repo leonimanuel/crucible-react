@@ -1,6 +1,7 @@
 export default function timelineReducer(state = {
 	activities: [],
-	replies: []
+	replies: [],
+	timelineType: ""
 }, action) {
 	switch(action.type) {
 		case "SET_ACTIVITIES":
@@ -9,7 +10,14 @@ export default function timelineReducer(state = {
 			
 			return {
 				...state,
-				activities: [...state.activities, ...sortedTimelineActivities]
+				activities: [...state.activities, ...sortedTimelineActivities],
+				timelineType: "feed"
+			}
+
+		case "SET_TIMELINE_TYPE":
+			return {
+				...state,
+				timelineType: action.timelineType			
 			}
 
 		case "SET_REPLIES":

@@ -51,6 +51,11 @@ export const showSelectedContact = (contactId) => {
 	  		contact: data.contact,
 	  		activities: data.feed_items  
 	  	})
+
+	  	dispatch({
+	  		type: "SET_TIMELINE_TYPE",
+	  		timelineType: "member"
+	  	})
 	  })
 	  .catch(err => alert(err))
 	}	
@@ -61,5 +66,10 @@ export const clearSelectedContact = () => {
 		dispatch({
 			type: "CLEAR_SELECTED_CONTACT"
 		})	
+
+		dispatch({
+			type: "SET_TIMELINE_TYPE",
+			timelineType: "feed"
+		})			
 	}			
 }

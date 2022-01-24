@@ -71,6 +71,11 @@ export const readNotification = (objectId, objectType, notifId, userId) => {
 						notifId
 					})
 
+					dispatch({
+						type: "SET_TIMELINE_TYPE",
+						timelineType: "notification"
+					})
+
 					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[﻿﻿notifId]﻿ }) 					
 
 
@@ -88,6 +93,11 @@ export const clearNotificationActivity = () => {
 	return (dispatch) => {
 		dispatch({
 			type: "CLEAR_NOTIFICATION_ACTIVITY"
+		})
+
+		dispatch({
+			type: "SET_TIMELINE_TYPE",
+			timelineType: "feed"
 		})	
 	}			
 }

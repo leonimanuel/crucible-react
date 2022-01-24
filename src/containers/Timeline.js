@@ -120,15 +120,22 @@ class Timeline extends Component {
 	}
 
 	renderDivider = () => {
-		let divider = ""
-		if (this.props.selectedNotificationActivity) {
-			divider = <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div>
-		} 
-		if (this.props.selectedContact) {
-			divider = <div id="back-to-timeline-button" onClick={this.props.clearSelectedContact}>{"⬅ back to timeline"}</div>
-		}
+		switch (this.props.timelineType) {
+			case "notification": return <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div>
+			case "member": return <div id="back-to-timeline-button" onClick={this.props.clearSelectedContact}>{"⬅ back to timeline"}</div>
 
-		return divider
+			default: return
+		}
+	}
+
+	renderTimelineContent = () => {
+		switch (this.props.timelineType) {
+			case "feed": return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
+			case "notification": return this.showTimelineItem(this.props.selectedNotificationActivity, 0);
+			case "member": return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index));
+
+			default: return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
+		}
 	}
 
 	render() {
@@ -154,17 +161,7 @@ class Timeline extends Component {
 					  scrollableTarget="timeline-items-wrapper"
 
 					>
-						{
-							!!this.props.selectedNotificationActivity 
-								? 
-									this.showTimelineItem(this.props.selectedNotificationActivity, 0)								
-								:
-									!!this.props.contactFeed.length 
-										? 
-											this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))
-										:
-											this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
-						}
+						{this.renderTimelineContent()}
 					</InfiniteScroll>
 				</div>
 			</div>				
@@ -178,7 +175,8 @@ const mapStateToProps = state => {
 		timeline_activities: state.timeline.activities,
 		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
 		selectedContact: state.network.selectedContact,
-		contactFeed: state.network.contactFeed
+		contactFeed: state.network.contactFeed,
+		timelineType: state.timeline.timelineType
 	}
 }
 
