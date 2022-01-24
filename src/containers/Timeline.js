@@ -14,6 +14,8 @@ import TimelineCommentContent from "../components/timeline/TimelineCommentConten
 import TimelineReviewItem from "../components/timeline/TimelineReviewItem.js"
 import PositionForm from "../components/position/PositionForm.js"
 import RepliesContainer from "../components/timeline/RepliesContainer.js"
+import MemberCard from "../components/timeline/MemberCard.js"
+
 import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity } from "../actions/notificationsActions.js"
 import { clearSelectedContact } from "../actions/networkActions.js"
@@ -28,7 +30,7 @@ class Timeline extends Component {
 	}
 
 	componentDidMount() {
-		this.props.setActivities(0);
+		// this.props.setActivities(0);
 	}	
 
 	handleArticleClick = (e, resource) => {
@@ -48,10 +50,7 @@ class Timeline extends Component {
 							<div className="timeline-item-content-container">							
 								<TimelineFact fact={resource}/>
 							</div>
-						</div>
-						<div className="timeline-item-spacer">
-							<div key={resource.id} className="timeline-spacer-line"></div>
-						</div>						
+						</div>				
 					</div>
 				)
 
@@ -73,9 +72,6 @@ class Timeline extends Component {
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 							
 						</div>
-						<div className="timeline-item-spacer">
-							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
-						</div>
 					</div>			
 				) 
 
@@ -93,9 +89,6 @@ class Timeline extends Component {
 								&& !!activity.item.reviewable
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 							
-						</div>
-						<div className="timeline-item-spacer">
-							<div key={resource.id} className="timeline-spacer-line" style={{visibility: this.props.selectedComment.id == resource.id ? "visible" : "hidden" }}></div>
 						</div>
 					</div>			
 				) 
@@ -142,7 +135,7 @@ class Timeline extends Component {
 		return (
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
-					{!this.props.selectedContact ? <PositionForm /> : <div>{this.props.selectedContact.handle}</div>}
+					{!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> }
 					<div id="timeline-divider-wrapper">
 						{this.renderDivider()}
 						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			

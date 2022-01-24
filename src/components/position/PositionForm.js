@@ -138,9 +138,6 @@ class PositionForm extends Component {
               null         
           }
         </div>
-        
-        <div className="timeline-item-spacer">
-        </div>    
       </div>
     );
   };
