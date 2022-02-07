@@ -1,10 +1,25 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 
+import {getMemberConnectionStatus} from "../../actions/networkActions.js"
 // import { connect } from 'getstream';
 
 const MemberCard = (props) => {
-	debugger
+	const [stateMemberHandle, setStateMemberHandle] = useState("");
+
+	useEffect(() => {
+		// if (stateMemberHandle == "") {
+		// 	alert("getting member connection status")
+		// 	props.getMemberConnectionStatus();
+		// 	setStateMemberHandle(props.member.handle);
+		// }
+
+		// if (stateMemberHandle != props.member.handle) {
+		// 	alert("getting member connection status")
+		// 	props.getMemberConnectionStatus();
+		// 	setStateMemberHandle(props.member.handle)			
+		// }
+	}); //empty array should ensure that useEffect runs only once
 
 	const fc_ratio = props.member.fact_comment_ratio
 	return (
@@ -58,4 +73,4 @@ const MemberCard = (props) => {
 }
 
 
-export default connect()(MemberCard);
+export default connect(null, {getMemberConnectionStatus})(MemberCard);

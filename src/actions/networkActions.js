@@ -1,4 +1,7 @@
 import { API_ROOT } from "../constants"
+import { connect } from 'getstream';
+
+let client = "" //for stream
 
 export const fetchContacts = (contactType) => {
 	return (dispatch) => {
@@ -18,7 +21,6 @@ export const fetchContacts = (contactType) => {
 	  fetch(API_ROOT + `/contacts/index/${contactType}`, configObj)
 	  .then(resp => resp.json())
 	  .then(contacts => {
-	  	debugger
 	  	dispatch({
 	  		type: `SET_NETWORK_${contactType.toUpperCase()}`,
 	  		contacts: contacts
@@ -46,7 +48,6 @@ export const showSelectedContact = (contactId) => {
 	  fetch(API_ROOT + `/contacts/${contactId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
-	  	debugger
 	  	dispatch({
 	  		type: "SET_SELECTED_CONTACT",
 	  		contact: data.contact,
@@ -74,3 +75,49 @@ export const clearSelectedContact = () => {
 		})			
 	}			
 }
+
+export const getMemberConnectionStatus = () => {
+	return (dispatch) => {
+		debugger
+		dispatch({
+			type: "FETCHING_USER_TOKEN"
+		})	
+
+	 	let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+
+	  debugger
+	  fetch(API_ROOT + `/feed/token`, configObj)
+	    .then(resp => resp.json())
+	    .then((data) => {
+	    	debugger
+				client = connect('37zxvpg2wqvj', data.token, '1155294'); // client is declared at top of file
+				const userFollowStats = client.feed('user', `${data.user.id}`).followStats() 
+				debugger
+				// const user_notification_feed = client.feed('notification', `${userId}`);		
+
+			})  
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

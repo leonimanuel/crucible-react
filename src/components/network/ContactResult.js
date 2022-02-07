@@ -1,6 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+
 import { showSelectedContact } from "../../actions/networkActions.js"
+
 
 // import { connect } from 'getstream';
 
@@ -14,7 +17,9 @@ const ContactResult = (props) => {
 				 props.onContactSelect()
 			}}
 			>	 
-				{props.contact.handle}
+			<Link to={`/profiles/${props.contact.id}`} >
+				{props.contact.handle}	
+			</Link>				
 		</div>
 	)
 }

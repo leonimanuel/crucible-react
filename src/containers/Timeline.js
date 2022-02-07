@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Redirect } from "react-router-dom";
+import { Route, withRouter, Redirect, Link } from "react-router-dom";
 import { useLastLocation } from 'react-router-last-location';
 import { connect } from "react-redux"
 import { v4 as uuidv4 } from 'uuid';
@@ -18,13 +18,14 @@ import MemberCard from "../components/timeline/MemberCard.js"
 
 import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity } from "../actions/notificationsActions.js"
-import { clearSelectedContact } from "../actions/networkActions.js"
+import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 
 class Timeline extends Component {
 	state = {
+		location: this.props.location.pathname,
 		// pagination: 5,
 		// page_offset: 0 
 	}
@@ -32,6 +33,15 @@ class Timeline extends Component {
 	componentDidMount() {
 		this.props.setActivities(0);
 	}	
+
+	componentDidUpdate(previousProps, previousState) {
+		if (this.props.location.pathname !== this.state.location) {
+			this.setState({location: this.props.location.pathname})
+
+			alert("whoa how about that route change")
+		}
+		// debugger
+	}
 
 	handleArticleClick = (e, resource) => {
 		e.preventDefault()
@@ -112,32 +122,40 @@ class Timeline extends Component {
 		alert("refreshing")
 	}
 
-	renderDivider = () => {
-		switch (this.props.timelineType) {
-			case "notification": return <div id="back-to-timeline-button" onClick={this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div>
-			case "member": return <div id="back-to-timeline-button" onClick={this.props.clearSelectedContact}>{"⬅ back to timeline"}</div>
+	// renderDivider = () => {
+	// 	switch (this.props.timelineType) {
+	// 		case "notification": return <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link> 
+	// 		case "profiles": return <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearSelectedContact}>{"⬅ back to timeline"}</div></Link> 
 
-			default: return
-		}
-	}
+	// 		default: return
+	// 	}
+	// }
 
-	renderTimelineContent = () => {
-		switch (this.props.timelineType) {
-			case "feed": return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
-			case "notification": return this.showTimelineItem(this.props.selectedNotificationActivity, 0);
-			case "member": return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index));
+	// renderTimelineContent = () => {
+		
+	// 	switch (this.props.timelineType) {
+	// 		case "feed": return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
+	// 		case "notification": return this.showTimelineItem(this.props.selectedNotificationActivity, 0);
+	// 		case "member": return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index));
 
-			default: return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
-		}
-	}
+	// 		default: return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
+	// 	}
+	// }
 
 	render() {
 		return (
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
-					{!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> }
+					<Route path="/profiles/:id" render={() => <MemberCard member={this.props.selectedContact} />  } />			
+					<Route exact path="/" render={() => <PositionForm /> } />						
+
+					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">
-						{this.renderDivider()}
+						<Route path="/profiles/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearSelectedContact}>{"⬅ back to timeline"}</div></Link> } />						
+						<Route path="/posts/:id" render={ <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link>  } />						
+
+
+						{/*this.renderDivider()*/}
 						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			
 					</div>		
 
@@ -154,7 +172,22 @@ class Timeline extends Component {
 					  scrollableTarget="timeline-items-wrapper"
 
 					>
-						{this.renderTimelineContent()}
+						<Route 
+							path="/profiles/:id" 
+							render={(matchProps) => {
+								debugger
+								return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
+							}} 
+						/>
+
+						<Route path="/" 
+							render={(matchProps) => {
+								debugger
+								return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+							}} 
+						/>
+
+						{/*this.renderTimelineContent()*/}
 					</InfiniteScroll>
 				</div>
 			</div>				
@@ -175,7 +208,7 @@ const mapStateToProps = state => {
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, clearSelectedContact })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, clearSelectedContact, showSelectedContact })(Timeline));
 
 
 

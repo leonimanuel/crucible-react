@@ -29,7 +29,7 @@ const NetworkMenu = (props) => {
 
 	const handlePresentContact = (contactId) => {
 		// alert(contactId)
-		props.showSelectedContact(contactId)
+		// props.showSelectedContact(contactId)
 	}
 	
 	
