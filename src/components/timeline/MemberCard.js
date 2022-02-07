@@ -5,6 +5,8 @@ import { connect } from "react-redux"
 
 const MemberCard = (props) => {
 	debugger
+
+	const fc_ratio = props.member.fact_comment_ratio
 	return (
 		<div id="member-card-container">	 
 			<div id="member-card-handle-wrapper">
@@ -17,7 +19,7 @@ const MemberCard = (props) => {
 						<div className="member-card-stat-label">
 							F/C
 						</div>
-						<div className="member-card-stat-value">
+						<div className="member-card-stat-value" style={{color: fc_ratio >= 1 ? "green" : (fc_ratio < 1 && fc_ratio >= 0.5) ? "gold" : "red"}}>
 							{props.member.fact_comment_ratio}
 						</div>																								
 					</div>
