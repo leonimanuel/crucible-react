@@ -5,12 +5,49 @@
   flex-direction: column;
 
   #member-card-container {
-    border: 1px solid grey;
+    border: 1px solid black;
     background-color: white;
     border-radius: 10px;
     // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin: 5px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+
+    #member-card-handle-wrapper {
+      display: flex;
+
+      margin-bottom: 10px;
+      // outline: 2px solid black;
+    
+      #member-card-handle {
+        font-size: 2em;
+      }
+    }
+
+    #member-card-details-wrapper {
+      #member-card-stats-wrapper {
+        display: flex;
+        // outline: 2px solid red;
+
+        .member-card-stat-item {
+          // outline: 2px solid blue;
+          margin: 0 20px;
+          margin-left: 0;
+          font-size: 1.2em;
+
+          .member-card-stat-label {
+            // font-weight: bold;
+          }
+
+          .member-card-stat-value {
+            font-weight: bold;
+          }      
+        }
+      }
+    }
   }
 
   #position-form-wrapper {

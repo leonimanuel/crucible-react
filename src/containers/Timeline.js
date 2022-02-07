@@ -30,7 +30,7 @@ class Timeline extends Component {
 	}
 
 	componentDidMount() {
-		// this.props.setActivities(0);
+		this.props.setActivities(0);
 	}	
 
 	handleArticleClick = (e, resource) => {
