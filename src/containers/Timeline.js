@@ -175,14 +175,12 @@ class Timeline extends Component {
 						<Route 
 							path="/profiles/:id" 
 							render={(matchProps) => {
-								debugger
 								return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
 							}} 
 						/>
 
 						<Route path="/" 
 							render={(matchProps) => {
-								debugger
 								return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
 							}} 
 						/>

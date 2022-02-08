@@ -18,10 +18,35 @@
 
     #member-card-handle-wrapper {
       display: flex;
-
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 10px;
       // outline: 2px solid black;
     
+      #follow-status-wrapper {
+        // outline: 2px solid black;
+      
+        #follow-status-button {
+          border: none;
+          border-radius: 20px;
+          font-size: 1.2em;
+          padding: 5px 10px;
+          cursor: pointer;
+        }
+
+        #follow-status-button.following-state {
+          border: 2px solid transparent;
+          background-color: #0f4c75;
+          color: white;
+        }
+
+        #follow-status-button.following-hover {
+          border: 2px solid #0f4c75;
+          background-color: white;
+          color: black;
+        }        
+      }
+
       #member-card-handle {
         font-size: 2em;
       }

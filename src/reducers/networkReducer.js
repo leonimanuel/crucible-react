@@ -32,6 +32,15 @@ export default function networkReducer(state = {
 				contactFeed: []
 			}
 
+		case "CHANGE_MEMBER_FOLLOW_STATUS":
+			let selectedContact = state.selectedContact
+			selectedContact["is_following"] = action.followStatus
+			debugger
+			return {
+				...state,
+				selectedContact: selectedContact
+			}
+
 		default: 
 			return state
 	}

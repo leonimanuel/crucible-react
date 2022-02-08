@@ -78,7 +78,6 @@ export const clearSelectedContact = () => {
 
 export const getMemberConnectionStatus = () => {
 	return (dispatch) => {
-		debugger
 		dispatch({
 			type: "FETCHING_USER_TOKEN"
 		})	
@@ -92,14 +91,11 @@ export const getMemberConnectionStatus = () => {
 	    }
 	  }
 
-	  debugger
 	  fetch(API_ROOT + `/feed/token`, configObj)
 	    .then(resp => resp.json())
 	    .then((data) => {
-	    	debugger
 				client = connect('37zxvpg2wqvj', data.token, '1155294'); // client is declared at top of file
 				const userFollowStats = client.feed('user', `${data.user.id}`).followStats() 
-				debugger
 				// const user_notification_feed = client.feed('notification', `${userId}`);		
 
 			})  
@@ -107,7 +103,37 @@ export const getMemberConnectionStatus = () => {
 }
 
 
+export const changeMemberFollow = (memberId, newFollowBool) => {
+	return (dispatch) => {
+		dispatch({
+			type: "UPDATING_MEMBER_FOLLOW"
+		})	
 
+	 	let configObj = {
+	    method: "PUT",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }, 
+	    body: JSON.stringify({
+	      willFollow: newFollowBool,
+	      memberId: memberId
+	    })	    
+	  }
+
+	  fetch(API_ROOT + `/feed/followship`, configObj)
+	    .then(resp => resp.json())
+	    .then((data) => {
+				dispatch({
+					type: "CHANGE_MEMBER_FOLLOW_STATUS",
+					followStatus: data.is_following
+				})
+				// const user_notification_feed = client.feed('notification', `${userId}`);		
+
+			})  
+	}
+}
 
 
 

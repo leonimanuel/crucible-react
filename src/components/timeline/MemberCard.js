@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 
-import {getMemberConnectionStatus} from "../../actions/networkActions.js"
+import {getMemberConnectionStatus, changeMemberFollow} from "../../actions/networkActions.js"
 // import { connect } from 'getstream';
 
 const MemberCard = (props) => {
 	const [stateMemberHandle, setStateMemberHandle] = useState("");
+	const [stateFollowStatusButtonHover, setStateFollowStatusButtonHover] = useState(false)
 
 	useEffect(() => {
 		// if (stateMemberHandle == "") {
@@ -21,24 +22,44 @@ const MemberCard = (props) => {
 		// }
 	}); //empty array should ensure that useEffect runs only once
 
+	const renderButtonText = () => {
+		if (props.member.is_following) {
+			return stateFollowStatusButtonHover ? "unfollow" : "following"
+		} else {
+			return "follow"
+		}
+	}
+
+	const handleFollowUpdate = () => {
+		props.changeMemberFollow(props.member.id, !props.member.is_following)
+	}
+
 	const fc_ratio = props.member.fact_comment_ratio
 	return (
 		<div id="member-card-container">	 
 			<div id="member-card-handle-wrapper">
 				<div id="member-card-handle">{props.member.handle}</div> 
+				<div id="follow-status-wrapper">
+					<button 
+						id="follow-status-button" 
+						class={
+							`${(props.member.is_following && !stateFollowStatusButtonHover) ? "following-state" : 
+							(props.member.is_following && stateFollowStatusButtonHover) ? "following-hover" : 
+							(!props.member.is_following && !stateFollowStatusButtonHover) ? "not-following-state" : 
+							(!props.member.is_following && stateFollowStatusButtonHover) ? "not-following-hover" : "" 
+							}`
+						}
+						onMouseEnter={() => setStateFollowStatusButtonHover(true)} 
+						onMouseLeave={() => setStateFollowStatusButtonHover(false)}
+						onClick={handleFollowUpdate}
+					>
+						{renderButtonText()}
+					</button>
+				</div>
 			</div>
 			
 			<div id="member-card-details-wrapper">
 				<div id="member-card-stats-wrapper">
-					<div className="member-card-stat-item">
-						<div className="member-card-stat-label">
-							F/C
-						</div>
-						<div className="member-card-stat-value" style={{color: fc_ratio >= 1 ? "green" : (fc_ratio < 1 && fc_ratio >= 0.5) ? "gold" : "red"}}>
-							{props.member.fact_comment_ratio}
-						</div>																								
-					</div>
-
 					<div className="member-card-stat-item">	
 						<div className="member-card-stat-label">
 							Comments
@@ -65,6 +86,15 @@ const MemberCard = (props) => {
 							{props.member.facts_count}
 						</div>		
 					</div>
+
+					<div className="member-card-stat-item">
+						<div className="member-card-stat-label">
+							F/C
+						</div>
+						<div className="member-card-stat-value" style={{color: fc_ratio >= 1 ? "green" : (fc_ratio < 1 && fc_ratio >= 0.5) ? "gold" : "red"}}>
+							{props.member.fact_comment_ratio}
+						</div>																								
+					</div>					
 				</div>
 			</div>
 
@@ -73,4 +103,4 @@ const MemberCard = (props) => {
 }
 
 
-export default connect(null, {getMemberConnectionStatus})(MemberCard);
+export default connect(null, {getMemberConnectionStatus, changeMemberFollow})(MemberCard);
