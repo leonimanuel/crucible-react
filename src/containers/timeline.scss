@@ -55,21 +55,26 @@
     #member-card-details-wrapper {
       #member-card-stats-wrapper {
         display: flex;
+        // flex-direction: row;
+        justify-content: space-between;
         // outline: 2px solid red;
+        .stats-section {
+          display: flex;
+          
+          .member-card-stat-item {
+            // outline: 2px solid blue;
+            margin: 0 20px;
+            margin-left: 0;
+            font-size: 1.2em;
 
-        .member-card-stat-item {
-          // outline: 2px solid blue;
-          margin: 0 20px;
-          margin-left: 0;
-          font-size: 1.2em;
+            .member-card-stat-label {
+              // font-weight: bold;
+            }
 
-          .member-card-stat-label {
-            // font-weight: bold;
+            .member-card-stat-value {
+              font-weight: bold;
+            }      
           }
-
-          .member-card-stat-value {
-            font-weight: bold;
-          }      
         }
       }
     }

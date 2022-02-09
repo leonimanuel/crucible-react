@@ -146,7 +146,7 @@ class Timeline extends Component {
 		return (
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
-					<Route path="/profiles/:id" render={() => <MemberCard member={this.props.selectedContact} />  } />			
+					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />			
 					<Route exact path="/" render={() => <PositionForm /> } />						
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
