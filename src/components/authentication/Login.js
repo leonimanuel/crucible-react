@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
-import "./auth.css"
+import "./auth.scss"
 
 class Login extends Component {
 	state = {
