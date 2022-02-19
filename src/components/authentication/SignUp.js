@@ -56,11 +56,30 @@ class SignUp extends Component {
 						errorBox.innerText = data.error;
 					}
 					else {
-						alert(data.error.user_authentication)
+						alert(data.error)
 					}
 				})
 				.catch(err => alert(err.message))
 		}
+	}
+
+	resendConfirmation = () => {
+	  let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+	  // debugger
+	  fetch(API_ROOT + `/resend-confirmation-email`, configObj)
+	  	.then(resp => resp.json())
+	  	.then(data => {
+	  		const confirmationMessage = document.getElementById("confirmation-sent-message");
+	  		debugger
+	  		confirmationMessage.innerText = "confirmation email re-sent"
+	  	}) 		
 	}
 
 	render() {
@@ -102,7 +121,12 @@ class SignUp extends Component {
 								</form>
 							</React.Fragment>
 						:
-							<div>Please check your email for a link to verify your account</div>
+							<React.Fragment>
+								<div id="confirmation-sent-message">Please check your email for a link to verify your account</div>
+								<button id='resend-confirmation-button' onClick={this.resendConfirmation}>resend confirmation email</button>
+							</React.Fragment>
+							
+
 					}
 				</div>					
 		)

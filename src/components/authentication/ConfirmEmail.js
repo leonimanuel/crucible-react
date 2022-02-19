@@ -9,7 +9,7 @@ class ConfirmEmail extends Component {
 		confirmation: "pending"
 	}
 
-	componentDidMount() {
+	componentDidMount = async () => {
     debugger
     const token = this.props.match.params.token
     let configObj = {
@@ -21,16 +21,15 @@ class ConfirmEmail extends Component {
       }
     }
 
-    fetch(API_ROOT + `/confirm-email/${token}`, configObj)
-      .then(resp => resp.json)
-      .then(data => {
-        debugger
-        this.setState({confirmation: "success"})
-				this.props.logIn()
-      })
-      .catch(err => {
-      	alert(err)
-      })  
+    try {
+      let response = await fetch(API_ROOT + `/confirm-email/${token}`, configObj)
+      if (response.status == 200) {
+        this.setState({confirmation: "success"});
+        this.props.logIn()
+      }
+    } catch (error) {
+      alert(error)
+    }
 	}
 
 	render() {

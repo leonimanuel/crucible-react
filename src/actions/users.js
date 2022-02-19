@@ -2,6 +2,7 @@ import { API_ROOT } from "../constants"
 
 export const logIn = () => {
 	return (dispatch) => {
+    debugger
     let configObj = {
       method: "GET",
       headers: {

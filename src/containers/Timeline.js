@@ -37,8 +37,6 @@ class Timeline extends Component {
 	componentDidUpdate(previousProps, previousState) {
 		if (this.props.location.pathname !== this.state.location) {
 			this.setState({location: this.props.location.pathname})
-
-			alert("whoa how about that route change")
 		}
 		// debugger
 	}

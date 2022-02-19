@@ -4,21 +4,71 @@
 
 	#network-menu-header {
 		// border: 2px solid purple;
-		color: black;
+		// color: black;
 	}
 
 	#network-options {
 		display: flex;
 		justify-content: space-around;
-	
-		.network-option.selected  {
-			border-bottom: 2px solid black;
+		// border-top: 2px solid grey;
+
+		.network-option {
+			font-size: 1.5em;
+			cursor: pointer;
+
+			&.selected {
+				border-bottom: 2px solid black;
+				font-weight: bold;				
+			}
 		}
 	}
 
-	.network-contact-container {
-		border: 2px solid black;
-		margin: 5px 0;
+	#search-crucible-network-button {
+		// text-align: left;
+		// outline: 2px solid green;
+		margin: 10px 5px;
+		border-radius: 5px;
+		font-size: 1em;
+		padding: 5px 0;
+		// color: black;
+		padding-left: 5px;
+		cursor: pointer;
+		background-color: #0f4c75;
+		color: white;
+		font-weight: bold;
+		border: 2px solid transparent;
+		
+		&:hover {
+			background-color: white;
+			color: #0f4c75;		
+			border: 2px solid #0f4c75;
+	
+		}
+
+
+	}
+
+	#network-cards-wrapper {
+		// outline: 2px solid green;
+		border-top: 1.5px solid black;
+		overflow: scroll;
+		max-height: 100%;
+
+		.network-contact-container {
+			border-bottom: 1.5px solid black;
+			// outline: 1px solid black;
+			text-align: left;
+			margin-bottom: 10px 0;
+			font-size: 1.5em;
+			padding: 5px 0;
+			// color: black;
+			padding-left: 5px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #F0F0F0; // light grey
+			}
+		}
 	}
 }
 

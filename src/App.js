@@ -26,6 +26,7 @@ import ArticlesContainer from "./components/articles/ArticlesContainer.js"
 import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
+import ResetPassword from "./components/authentication/ResetPassword.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
 import Pitch from "./Pitch.js"
 
@@ -176,6 +177,11 @@ class App extends Component {
               <Route 
                 path="/:token/confirm-email"
                 render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+              </Route> 
+
+              <Route 
+                path="/reset-password/:token"
+                render={routerProps => this.props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
               </Route> 
           
             <Route path="/v2-brief"><Pitch /></Route>

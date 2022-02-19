@@ -45,20 +45,25 @@ const NetworkMenu = (props) => {
 	const selectedContacts = stateNetworkOption == "following" ? props.followingContacts : props.followersContacts
 	return (
 		<div id="network-menu-container">
-			<div id="network-menu-header-wrapper">
-			  <Popup trigger={<div id="network-menu-header">Network trigger</div>} position="right center" modal>
-			    { close => <NetworkModal handleContactSelect={() => close()}/> }
-			  </Popup>				
-
-			</div>
+			{/*<div id="network-menu-header-wrapper">
+							Network	
+						</div>*/}
 			<div id="network-options">
 				<div className={`network-option ${stateNetworkOption == "following" ? "selected" : ""}`} data-type="following" id="following-network-option" onClick={selectNetworkOption}>Following</div>
 				<div className={`network-option ${stateNetworkOption == "followers" ? "selected" : ""}`} data-type="followers" id="followers-network-option" onClick={selectNetworkOption}>Followers</div>
 			</div>
 			
-			{
-				selectedContacts.map((nc, index) => <NetworkContact contact={nc} key={index} index={index} handleSelectContact={handlePresentContact} />) 
-			}
+			<div id={`search-crucible-network-button`}>	 
+			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="right center" modal>
+			    { close => <NetworkModal handleContactSelect={() => close()}/> }
+			  </Popup>								
+			</div>
+
+			<div id="network-cards-wrapper">
+				{
+					selectedContacts.map((nc, index) => <NetworkContact contact={nc} key={index} index={index} handleSelectContact={handlePresentContact} />) 
+				}
+			</div>
 		</div>
 	)
 }
