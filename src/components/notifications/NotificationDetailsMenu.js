@@ -22,7 +22,7 @@ const NotificationDetailsMenu = (props) => {
 				<div id="notification-menu-header">Notifications</div>
 			</div>
 			
-			{
+			{props.notification_groups.length ? 
 				props.notification_groups.map((n, index) => {
 					return (
 						<Notification 
@@ -33,6 +33,8 @@ const NotificationDetailsMenu = (props) => {
 						/>
 					)
 				}) 
+				:
+				<div id="notifications-prompt" className="sidenav-onboarding-prompt">Notifications involving your posts, comments or other activities will appear here</div>
 			}
 		</div>
 	)

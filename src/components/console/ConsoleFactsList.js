@@ -8,7 +8,14 @@ class ConsoleFactsList extends Component {
 			<div id="console-fact-list-container">
 				<div className="console-facts-title console-section-title">Facts</div>
 				<div id="console-facts-container">
-					{this.props.facts ? this.props.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) : null}
+					{this.props.facts.length ? 
+						this.props.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) 
+						: 
+						<React.Fragment>
+							<div id="facts-prompt" className="sidenav-onboarding-prompt">facts added to Crucible, either through the extension or in-app, will appear here.</div>
+							<a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1" target="_blank"><button id="extension-link-button">Collect New Facts</button></a>							
+						</React.Fragment>
+					}
 				</div>
 			</div>
 		)

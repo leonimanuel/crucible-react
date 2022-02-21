@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import './App.css';
+import './App.scss';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { LastLocationProvider } from 'react-router-last-location';
 import { connect } from "react-redux"

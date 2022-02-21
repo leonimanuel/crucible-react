@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../components/console/console.css"
+import "../components/console/console.scss"
 
 import { API_ROOT } from "../constants"
 import { connect } from "react-redux"

@@ -21,13 +21,11 @@ export const setNotifications = (userId) => {
 	  fetch(API_ROOT + `/feed/notifications`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
-	    	debugger
 				client = connect('37zxvpg2wqvj', data.token, '1155294'); // client is declared at top of file
 
 				const user_notification_feed = client.feed('notification', `${userId}`);
 
 				const subscription = user_notification_feed.subscribe(function (data) {
-					debugger
 					alert("new notification! please reload to see for now")						
 				})				
 

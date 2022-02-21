@@ -20,7 +20,7 @@ class MainPane extends Component {
 				>
 					Facts 
 				</div>
-				{this.props.section === "console" && this.props.topics.length ? <TopicMenu /> : null}
+				{<TopicMenu display={this.props.section === "console" && this.props.topics.length ? true : false} />}
 				
 				<div 
 					id="notifications" 

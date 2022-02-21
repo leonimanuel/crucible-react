@@ -60,8 +60,17 @@ const NetworkMenu = (props) => {
 			</div>
 
 			<div id="network-cards-wrapper">
-				{
+				{selectedContacts.length ? 
 					selectedContacts.map((nc, index) => <NetworkContact contact={nc} key={index} index={index} handleSelectContact={handlePresentContact} />) 
+					
+					: stateNetworkOption == "following" ?					
+					<div id="following-prompt" className="sidenav-onboarding-prompt">
+						Use the search button above to find Crucible members whose activity you want to follow.
+					</div>
+					:
+					<div id="followers-prompt" className="sidenav-onboarding-prompt">
+						Users that follow your activity will apear here.
+					</div>					
 				}
 			</div>
 		</div>

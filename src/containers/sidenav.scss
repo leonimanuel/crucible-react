@@ -1,3 +1,5 @@
+$base-color-dark-blue: #0f4c75;
+
 #side-nav {
 	/*position: absolute;*/
 	/*border: 2px solid red;*/
@@ -32,9 +34,14 @@
 }
 
 #console-topic-menu-container, #agora-menu {
-	padding: 20px 5px;
+	background-color: $base-color-dark-blue;
+	// padding: 20px 5px;
+	max-height: 200px;
+	z-index: -10;
 	/*width: 90px;*/
 	/*color: red;*/
+	overflow: hidden;
+	transition: max-height 0.5s
 }
 
 #sidenav-details-pane {
@@ -51,6 +58,12 @@
 	overflow: scroll;
 	border-radius: 0px 10px 10px 0px;
 	border: 1px solid #738598;
+
+	.sidenav-onboarding-prompt {
+		color: black;
+		text-align: left;
+		font-style: italic;
+	}
 }
 
 #sections-list {
@@ -261,6 +274,19 @@
   font-size: 1.1em;
   display: flex;
   cursor: pointer;	
+
+	&.selected-section {
+		background-color: $base-color-dark-blue;
+		// text-decoration: underline;
+		// border: 2px solid black;
+		// border-left: none;
+	}
+
+	&.unselected-section {
+		/*background-color: gold*/
+		// background-color: silver;
+		/*border-left: 4px solid gold;*/
+	}  
 }
 
 
@@ -350,18 +376,6 @@
 #new-discussion-popup-title {
 	font-size: 1.5em;
 	margin-bottom: 10px;
-}
-
-.selected-section {
-	background-color: #FFDF00;
-	// border: 2px solid black;
-	// border-left: none;
-}
-
-.unselected-section {
-	/*background-color: gold*/
-	// background-color: silver;
-	/*border-left: 4px solid gold;*/
 }
 
 /*DISCUSSION ITEM LOADING ANIMATION*/
