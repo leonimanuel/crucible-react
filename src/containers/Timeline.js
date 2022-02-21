@@ -179,7 +179,16 @@ class Timeline extends Component {
 
 						<Route path="/" 
 							render={(matchProps) => {
-								return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+								if (this.props.timeline_activities.length) {
+									return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+								} else {
+									return (
+										<div id="timeline-prompt" className="sidenav-onboarding-prompt">
+											Activities of members you follow will appear here
+										</div>
+									) 
+								}
+								
 							}} 
 						/>
 

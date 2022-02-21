@@ -19,11 +19,11 @@ export const addNewTopic = (parentId, topicName) => {
     fetch(API_ROOT + `/topics`, configObj)
       .then(resp => resp.json())
       .then((topic) => {
-				alert("please reload the page to see new topic (temporary)")				
-    //     dispatch({ 
-				// 	type: 'ADD_TOPIC', 
-				// 	topic
-				// })
+				// alert("please reload the page to see new topic (temporary)")				
+        dispatch({ 
+					type: 'ADD_NEW_TOPIC', 
+					topic
+				})
      })
       .catch(err => alert(err.message))
 	}

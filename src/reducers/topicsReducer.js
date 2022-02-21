@@ -6,7 +6,7 @@ export default function topicsReducer(state = {
 	topics: [],
 	facts: [],
 	parentTopic: "",
-	b: ""
+
 }, action) {
 	switch (action.type) {
 		case "LOAD_FACTS":
@@ -17,11 +17,16 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_TOPICS":
-			// debugger
 			console.log("adding topics")
 			return {
 				...state,
 				topics: action.topics
+			}
+
+		case "ADD_NEW_TOPIC":
+			return {
+				...state,
+				topics: [...state.topics, action.topic]
 			}
 
 		case "SELECT_TOPIC":

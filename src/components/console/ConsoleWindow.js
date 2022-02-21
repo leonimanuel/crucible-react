@@ -13,15 +13,25 @@ class ConsoleWindow extends Component {
 		return (
 			<div id="console-window">
 				<div id="console-window-title">{this.props.parentTopic ? this.props.parentTopic.name : "NONE"}</div>
-					{this.props.parentTopic.name === "New Facts" ? null : <ConsoleTopicsList topics={this.props.parentTopic.children} parentId={this.props.parentTopic.id}/>}
+					{this.props.parentTopic.name === "New Facts" ? null 
+						: <ConsoleTopicsList 
+						topics={this.props.topics.filter(topic => topic.parent_id == this.props.parentTopic.id)} 
+						parentId={this.props.parentTopic.id}/>
+					}
 					<ConsoleFactsList  />
 			</div>
 		)			
 	}
 }
 
+const mapStateToProps = state => {
+	return {
+		topics: state.topics.topics,
+		parentTopic: state.topics.parentTopic
+	}
+}
 
-export default connect(state => ({parentTopic: state.topics.parentTopic}))(ConsoleWindow);
+export default connect(mapStateToProps)(ConsoleWindow);
 
 
 

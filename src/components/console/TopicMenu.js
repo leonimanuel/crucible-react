@@ -13,7 +13,7 @@ class TopicMenu extends Component {
 		return (
 			<div id="console-topic-menu-container" style={{"max-height": this.props.display ? "200px" : 0}}>
 				<div id="console-topics-container">
-					{this.props.topics ? <ConsoleTopicsList topics={this.props.topics} /> : null} 
+					{this.props.topics ? <ConsoleTopicsList topics={this.props.topics.filter(t => !t.parent_id)} /> : null} 
 				</div>
 				{/*<div>collect facts with the <a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1" target="_blank">Crucible chrome extension</a></div>*/}
 			</div>
