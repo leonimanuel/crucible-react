@@ -214,6 +214,16 @@
 
   min-width: 350px;
 
+  #timeline-prompt {
+    font-size: 1.5em;
+    font-style: italic;
+
+    #timeline-prompt-popup-trigger {
+      color: blue;
+      cursor: pointer;
+    }
+  }
+
   #timeline-divider-wrapper {
     display: flex;
 

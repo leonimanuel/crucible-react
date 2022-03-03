@@ -8,7 +8,6 @@ import { showSelectedContact } from "../../actions/networkActions.js"
 // import { connect } from 'getstream';
 
 const ContactResult = (props) => {
-	debugger
 	return (
 		<div 
 			className={`contact-result-container`} 

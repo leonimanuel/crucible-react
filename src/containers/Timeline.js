@@ -20,6 +20,10 @@ import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import NetworkModal from "../components/network/NetworkModal.js"
+
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 
@@ -177,14 +181,17 @@ class Timeline extends Component {
 							}} 
 						/>
 
-						<Route path="/" 
+						<Route exact path="/" 
 							render={(matchProps) => {
 								if (this.props.timeline_activities.length) {
 									return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
 								} else {
 									return (
 										<div id="timeline-prompt" className="sidenav-onboarding-prompt">
-											Activities of members you follow will appear here
+										  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other Crucible members </span>} position="right center" modal>
+										    { close => <NetworkModal handleContactSelect={() => close()}/> }
+										  </Popup>															
+										   to view their activity here!
 										</div>
 									) 
 								}
@@ -199,6 +206,14 @@ class Timeline extends Component {
 		)
 	}
 }
+
+										  // <Popup trigger={<span id="timeline-prompt-content">follow other Crucible members</span> to view their activity here!} position="right center" modal>
+										  //   { close => <NetworkModal handleContactSelect={() => close()}/> }
+										  // </Popup>		
+
+
+				
+
 
 const mapStateToProps = state => {
 	return {
