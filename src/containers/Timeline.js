@@ -17,7 +17,7 @@ import RepliesContainer from "../components/timeline/RepliesContainer.js"
 import MemberCard from "../components/timeline/MemberCard.js"
 
 import { setActivities } from "../actions/timelineActions.js"
-import { clearNotificationActivity } from "../actions/notificationsActions.js"
+import { clearNotificationActivity, showPost } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 
 import Popup from 'reactjs-popup';
@@ -36,13 +36,19 @@ class Timeline extends Component {
 
 	componentDidMount() {
 		this.props.setActivities(0);
+		if (this.props.location.pathname.includes("posts") && !this.props.selectedNotificationActivity) {
+			let locationParams = this.props.location.pathname.split("/").filter(i => i)
+			const postObjType = locationParams[1]
+			const postObjId = locationParams[2]
+			this.props.showPost(postObjType, postObjId)
+		} 		
 	}	
 
 	componentDidUpdate(previousProps, previousState) {
-		if (this.props.location.pathname !== this.state.location) {
+		// debugger
+		if (this.props.location.pathname !== this.state.location) { // no idea what the point of this is
 			this.setState({location: this.props.location.pathname})
 		}
-		// debugger
 	}
 
 	handleArticleClick = (e, resource) => {
@@ -154,7 +160,7 @@ class Timeline extends Component {
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">
 						<Route path="/profiles/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearSelectedContact}>{"⬅ back to timeline"}</div></Link> } />						
-						<Route path="/posts/:id" render={ <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link>  } />						
+						{<Route path="/posts/:notificationType/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link>  } />						}
 
 
 						{/*this.renderDivider()*/}
@@ -179,6 +185,14 @@ class Timeline extends Component {
 							render={(matchProps) => {
 								return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
 							}} 
+						/>
+
+
+						<Route 
+							path="/posts/:notificationType/:id"
+							render={(matchProps) => {
+								return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
+							}}
 						/>
 
 						<Route exact path="/" 
@@ -228,7 +242,7 @@ const mapStateToProps = state => {
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, clearSelectedContact, showSelectedContact })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, clearSelectedContact, showSelectedContact })(Timeline));
 
 
 

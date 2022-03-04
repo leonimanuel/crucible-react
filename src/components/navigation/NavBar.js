@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
 import "./navigation.css"
 
+import Popup from 'reactjs-popup';
+
 import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
 
@@ -133,7 +135,8 @@ class NavBar extends Component {
 				}
 
 				<div id="profile-options">
-					{ this.props.userName 
+					{ 
+						this.props.userName 
 						? 
 							<div className="dropdown">
 								<div className="nav-link user-dropdown">{this.props.userName}</div>
@@ -146,7 +149,10 @@ class NavBar extends Component {
 							<Link className="nav-link" to="/login" style={{"margin-right": "10px"}}>Login</Link>
 							<Link className="nav-link" to="/signup" >Signup</Link>
 						</div>
-					} 										
+				}
+{/*				  <Popup trigger={<span id="timeline-prompt-popup-trigger">{this.props.userName}</span>} position="right center" modal>
+				    { close => <div handleContactSelect={() => close()}>Manage your account</div> }
+				  </Popup>*/}															
 				</div>
 			</div>
 		)

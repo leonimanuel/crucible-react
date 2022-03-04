@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 // import { connect } from 'getstream';
 
 
@@ -12,12 +13,14 @@ const Notification = (props) => {
 
 	return (
 		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group.id)}>
-			{`${latest_actor} ${additional_actor_count ? `and ${additional_actor_count} others` : ""} 
-			replied to your comment: `}
+			<Link to={`/posts/${notificationObject.type}/${notificationObject.id}`} >
+				{`${latest_actor} ${additional_actor_count ? `and ${additional_actor_count} others` : ""} 
+				replied to your comment: `}
 
-			<span className="notification-target" >
-				{notificationObject.content}			
-			</span> 			 
+				<span className="notification-target" >
+					{notificationObject.content}			
+				</span> 			
+			</Link>			 
 		</div>
 	)
 }

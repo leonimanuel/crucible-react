@@ -87,6 +87,46 @@ export const readNotification = (objectId, objectType, notifId, userId) => {
 	}			
 }
 
+export const showPost = (postObjType, postObjId) => {
+	return (dispatch) => {
+		dispatch({
+			type: "LOADING_NOTIFICATION_TARGET"
+		})
+
+	 	let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+	  if (postObjType == "Comment" || postObjType == "Position") {
+		  fetch(API_ROOT + `/comments/${postObjId}`, configObj)
+		    .then(resp => {
+		    	return resp.json()
+		    	// debugger
+		    })
+		    .then(activity => {
+				  // debugger
+					dispatch({
+						type: "SET_NOTIFICATION_ACTIVITY",
+						activity
+					})
+
+					dispatch({
+						type: "SET_TIMELINE_TYPE",
+						timelineType: "notification"
+					})
+		    })
+		    .catch(err => alert(err))
+
+	  } else {
+	  	alert("no handling for this resource type yet")
+	  }				
+	}
+}
+
 export const clearNotificationActivity = () => {
 	return (dispatch) => {
 		dispatch({
