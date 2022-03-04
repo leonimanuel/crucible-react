@@ -35,10 +35,20 @@ export default function networkReducer(state = {
 		case "CHANGE_MEMBER_FOLLOW_STATUS":
 			let selectedContact = state.selectedContact
 			selectedContact["is_following"] = action.followStatus
-			debugger
+
+
+			// Add/remove member from "following" list based on user action
+			let followingContacts = state.followingContacts
+			if (action.followStatus == true) {
+				followingContacts = followingContacts.find(m => m.id == selectedContact.id) ? followingContacts : [...followingContacts, selectedContact]
+			} else if (action.followStatus == false) {
+				followingContacts = followingContacts.filter(m => m.id != selectedContact.id)
+			}
+
 			return {
 				...state,
-				selectedContact: selectedContact
+				selectedContact: selectedContact,
+				followingContacts: followingContacts
 			}
 
 		default: 
