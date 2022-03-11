@@ -54,6 +54,7 @@ export const addFactFromComment = (fact, authorId) => {
         Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
+        rephrase: fact.rephrase ? fact.rephrase.content : null,
         factId: fact.id,
         authorId: authorId
       })

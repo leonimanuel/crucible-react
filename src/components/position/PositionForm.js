@@ -132,7 +132,7 @@ class PositionForm extends Component {
                 onDrop={this.drop}
                 className={this.state.draggedOver ? "dragged-over" : "" }
               >
-                Support your position with facts by dragging them here from the left.<br /> The more facts you use (up to 5), the stronger your position.
+                Support your position with facts by dragging them here from your factbank.
               </div>       
             :
               null         

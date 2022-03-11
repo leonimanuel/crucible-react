@@ -66,7 +66,7 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader actor={activity.actor}/>
 							<div className="timeline-item-content-container">							
-								<TimelineFact fact={resource}/>
+								<TimelineFact fact={resource.fact}/>
 							</div>
 						</div>				
 					</div>
@@ -119,7 +119,7 @@ class Timeline extends Component {
 
 
 	fetchMoreActivities = () => {
-		alert("fetching more activities");
+		console.log("fetching more activities");
 		const activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
 		this.props.setActivities(activityId);
 

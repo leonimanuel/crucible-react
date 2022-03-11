@@ -308,6 +308,20 @@
         }
       }
 
+      .timeline-fact-wrapper {
+        position: relative;
+        outline: 1px solid purple;
+        margin-top: 10px;
+
+        .original-vs-rephrase-indicator {
+          position: absolute;
+          top: -20px;
+
+          font-style: italic;
+          cursor: pointer;
+        }
+      }
+
       .timeline-comment {
         // position: relative;
         // border: 2px solid red;

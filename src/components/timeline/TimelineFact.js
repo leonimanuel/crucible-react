@@ -6,16 +6,24 @@ import { addFactFromComment } from "../../actions/discussionsActions.js"
 import TimelineItemHeader from "./TimelineItemHeader.js"
 
 class TimelineFact extends Component {
+	state = {
+		showOriginalFact: false,
+	}	
+
 	handleAddFact = (fact) => {
 		console.log("executing handleAddFact")
 		// debugger
 		this.props.addFactFromComment(fact, fact.collector_id);
 	}	
 
+	toggleFactRephrase = () => this.setState({showOriginalFact: !this.state.showOriginalFact})
+
+
 	render() {
+		
 		const { fact } = this.props;
 		
-		const innerHTML = (fact.node_text) ? `<span>${fact.node_text.replace(fact.content, `<span style="font-weight: bold">${fact.content}</span>`)}</span>` : `<span>${fact.content}</span>`
+		// const innerHTML = (fact.node_text) ? `<span>${fact.node_text.replace(fact.content, `<span style="font-weight: bold">${fact.content}</span>`)}</span>` : `<span>${fact.content}</span>`
 		let border
 		// if (fact.review_status === "pending") {
 		// 	border = "3px solid #ff9234" //yellow
@@ -26,7 +34,7 @@ class TimelineFact extends Component {
 		// }
 		return (
 			<div className="timeline-fact-wrapper">
-				{this.props.userId !== fact.user_id && !this.props.userFacts.find(f => f.id === fact.id)
+				{!this.props.userFacts.find(f => f.id === fact.id)
 					? 
 						<button 
 							className="add-comment-fact-button" 
@@ -36,9 +44,14 @@ class TimelineFact extends Component {
 						null
 				}
 
+				<div className="original-vs-rephrase-indicator" onClick={this.toggleFactRephrase}>
+					show {this.state.showOriginalFact ? "rephrase" : "original"}
+				</div>
+
 				<div className="timeline-fact-content" style={{border: border}}>
 					{/*parse(innerHTML)*/}
-					{fact.content}
+					{/*fact.content*/}
+					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 				</div>
 			</div>			
 		)

@@ -48,11 +48,11 @@ export const logIn = () => {
             members
           })
         
-          const itemsObj = data.review
-          dispatch({
-            type: "ADD_REVIEW_ITEMS",
-            itemsObj
-          })
+          // const itemsObj = data.review
+          // dispatch({
+          //   type: "ADD_REVIEW_ITEMS",
+          //   itemsObj
+          // })
 
           const briefings = user.briefings
           dispatch({
