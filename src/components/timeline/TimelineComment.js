@@ -15,7 +15,7 @@ class TimelineComment extends Component {
 	}
 
 	handleSelectComment = () => {
-		this.props.selectComment(this.props.comment, this.props.userId)
+		// this.props.selectComment(this.props.comment, this.props.userId)
 	}
 
 	generateContext = () => {

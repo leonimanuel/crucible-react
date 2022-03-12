@@ -64,7 +64,7 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader actor={activity.actor}/>
+							<TimelineItemHeader time={activity.time} actor={activity.actor} type="collected a new fact"/>
 							<div className="timeline-item-content-container">							
 								<TimelineFact fact={resource.fact}/>
 							</div>
@@ -77,7 +77,7 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader actor={activity.actor}/>
+							<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
 								<div className="timeline-item-article-title">
 									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
@@ -85,7 +85,7 @@ class Timeline extends Component {
 								<TimelineComment comment={resource} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
-							{resource.facts_comments_reviews[0].review_status == "pending" 
+							{false && resource.facts_comments_reviews[0].review_status == "pending" 
 								&& !!activity.item.reviewable
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 							
@@ -98,12 +98,12 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader actor={activity.actor}/>
+							<TimelineItemHeader time={activity.time} actor={activity.actor} type="created a new position"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
 								<TimelineCommentContent comment={resource} position={true} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
-							{resource.facts_comments_reviews[0].review_status == "pending" 
+							{false && resource.facts_comments_reviews[0].review_status == "pending" 
 								&& !!activity.item.reviewable
 								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 							
@@ -167,10 +167,14 @@ class Timeline extends Component {
 						<div id="timeline-divider"> <div id="timeline-divider-line"></div> </div>			
 					</div>		
 
+					<div id="new-position-container">
+						{this.props.newPositions.map((position, index) => this.showTimelineItem(position, index))}
+					</div>
+
 					<InfiniteScroll
 					  dataLength={this.props.timeline_activities.length}
 					  next={this.fetchMoreActivities}
-					  hasMore={true}
+					  hasMore={this.props.hasMore}
 					  loader={<h4>Loading...</h4>}
 					  endMessage={
 					    <p style={{ textAlign: 'center' }}>
@@ -233,10 +237,12 @@ const mapStateToProps = state => {
 	return {
 		selectedComment: state.comments.selectedComment,
 		timeline_activities: state.timeline.activities,
+		newPositions: state.timeline.newPositions,
 		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
 		selectedContact: state.network.selectedContact,
 		contactFeed: state.network.contactFeed,
-		timelineType: state.timeline.timelineType
+		timelineType: state.timeline.timelineType,
+		hasMore: state.timeline.hasMore
 	}
 }
 

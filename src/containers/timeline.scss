@@ -1,6 +1,6 @@
 #timeline-wrapper {
   // border: 2px solid purple;
-  outline: 2px solid red;
+  // outline: 2px solid red;
   margin: 0 20px;
   flex-grow: 2;
   display: flex;
@@ -137,57 +137,6 @@
         font-weight: bold;
         cursor: pointer;
       }
-    }
-
-    .chat-fact:hover .remove-fact-button {
-      display: block;
-    }
-
-    .chat-fact {
-      position: relative;
-      margin: 5px 20px;
-      // max-width: 90%;
-
-      text-align: left;
-      background-color: whitesmoke;
-      border: 2px solid black;
-      border-radius: 10px;
-      padding: 5px;
-      font-size: 0.8em;
-
-      .remove-fact-button {
-        display: none;
-        position: absolute;
-        top: -10px;
-        right: 0px;   
-        font-size: 1em;
-
-        border-radius: 20px;
-        padding: 0 5px;
-        cursor: pointer;
-
-        background-color: snow;
-        color: #BD4B4B;
-        border: 1px solid #BD4B4B;
-      } 
-    }
-
-    #chat-fact-dropzone {
-      text-align: center;
-      border: 2px dashed grey;
-      border-radius: 5px;
-      color: grey;
-      font-weight: bold;
-
-      margin: 10px;
-      padding: 20px;
-      /*height: 20px;*/
-    }
-
-    #chat-fact-dropzone.dragged-over {
-      background-color: grey;
-      color: white;
-      border-color: grey;
     } 
 
     .timeline-item-spacer {
@@ -198,7 +147,7 @@
 }
 
 #timeline-items-wrapper {
-	// border: 2px solid yellow;
+	outline: 2px solid red;
 
   // width: 50%;
   // height: 400px;
@@ -258,8 +207,10 @@
   }
 
   .timeline-item-container {
-  	// border: 2px solid green;
+  	outline: 2px solid green;
+    // border: 2px solid green;
   	margin: 5px;
+    margin-bottom: 20px;
     // margin-right: 0;
     display: flex;
 
@@ -288,7 +239,13 @@
   	.timeline-item-header {
   		// border: 2px solid purple;
   		display: flex;
+      justify-content: space-between;
   		margin-left: 10px;
+
+      .item-header-username {
+        font-weight: bold;
+        cursor: pointer;
+      }
   	}
 
     .timeline-item-content-container {
@@ -385,6 +342,7 @@
 .timeline-comment-content-wrapper {
   padding: 10px;
   background-color: lightblue; // this color indicates that it is a regular comment
+  border-radius: 10px;
 
   &.timeline-position {
     background-color: gold; // this color indicates that it is a position
@@ -487,3 +445,53 @@
   }
 }
 
+.chat-fact:hover .remove-fact-button {
+  display: block;
+}
+
+.chat-fact {
+  position: relative;
+  margin: 5px 20px;
+  // max-width: 90%;
+
+  text-align: left;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 0.8em;
+
+  .remove-fact-button {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: 0px;   
+    font-size: 1em;
+
+    border-radius: 20px;
+    padding: 0 5px;
+    cursor: pointer;
+
+    background-color: snow;
+    color: #BD4B4B;
+    border: 1px solid #BD4B4B;
+  } 
+}
+
+#chat-fact-dropzone {
+  text-align: center;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  color: grey;
+  font-weight: bold;
+
+  margin: 10px;
+  padding: 20px;
+  /*height: 20px;*/
+}
+
+#chat-fact-dropzone.dragged-over {
+  background-color: grey;
+  color: white;
+  border-color: grey;
+}

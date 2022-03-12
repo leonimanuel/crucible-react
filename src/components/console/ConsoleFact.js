@@ -45,13 +45,13 @@ class ConsoleFact extends Component {
 		// const factDownvotes = fact.logic_downvotes + fact.context_downvotes + fact.credibility_downvotes
 
 		let border
-		if (fact.review_status === "pending") {
-			border = "3px solid #ff9234" //yellow
-		} else if (fact.review_status === "pass") {
-				border = "3px solid green" 		
-		} else {
-				border = "3px solid red" 		
-		}
+		// if (fact.review_status === "pending") {
+		// 	border = "3px solid #ff9234" //yellow
+		// } else if (fact.review_status === "pass") {
+		// 		border = "3px solid green" 		
+		// } else {
+		// 		border = "3px solid red" 		
+		// }
 
 		const factDetails = document.getElementById(`fact-details-${fact.id}`)		
 		if (factDetails) {

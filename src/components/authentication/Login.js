@@ -69,7 +69,6 @@ class Login extends Component {
 				// debugger
 				if (response.status == 200) {
 					let data = await response.json()
-					debugger
 					const loginWrapper = document.getElementById("login-wrapper");
 					loginWrapper.innerText = "successfully logged in!"
 					localStorage.setItem("token", data.auth_token)				

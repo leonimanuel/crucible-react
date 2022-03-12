@@ -99,3 +99,65 @@ export const selectComment = (comment, userId) => {
 
   }
 }
+
+export const submitPosition = (text, factIDs) => {
+  return async dispatch => {
+  	dispatch({type: "SUBMITTING_POSITION"})
+
+	  let configObj = {
+	    method: 'POST',
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    },
+	    body: JSON.stringify({
+	      comment_type: "position",
+	      text: text,
+	      factIds: factIDs
+	    })
+	  }
+	  
+	  try {
+		  let res = await fetch(`${API_ROOT}/comments`, configObj);
+		  if (res.status == 201) {
+		  	let newPositionActivity = await res.json()
+		  	dispatch({
+		  		type: "ADD_NEW_POSITION",
+		  		position: newPositionActivity
+		  	})
+		  } else {
+		  	debugger
+		  }
+	  } catch (error) {
+	  	alert(error)
+	  }
+
+	  fetch(`${API_ROOT}/comments`, configObj)
+	    .then(resp => resp.json())
+	    .then((data) => {
+	      
+	      let messageInput = document.getElementById("position-input-div")
+	      messageInput.innerHTML = ""
+	    })
+	    .catch(err => alert(err))	
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 export default function timelineReducer(state = {
 	activities: [],
+	newPositions: [],
+	hasMore: true,
 	replies: [],
 	timelineType: ""
 }, action) {
@@ -11,7 +13,8 @@ export default function timelineReducer(state = {
 			return {
 				...state,
 				activities: [...state.activities, ...sortedTimelineActivities],
-				timelineType: "feed"
+				timelineType: "feed",
+				hasMore: action.activities.length ? true : false
 			}
 
 		case "SET_TIMELINE_TYPE":
@@ -31,6 +34,13 @@ export default function timelineReducer(state = {
 				...state,
 				replies: [...state.replies, action.reply]
 			}					
+
+		case "ADD_NEW_POSITION":
+			debugger
+			return {
+				...state,
+				newPositions: [action.position, ...state.newPositions]
+			}
 		// case "UPDATE_ACTIVITY_REVIEWABLE":
 		// 	const reviewedItem = state.activities.find(a => a.item.object.id == action.selectedItem.id && a.item.type == action.selectedItem.type)
 		// 	const reviewedItemIndex = state.activities.indexOf(reviewedItem)

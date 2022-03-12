@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
+import { submitPosition } from "../../actions/commentsActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 
@@ -39,31 +40,10 @@ class PositionForm extends Component {
   handleSubmit = e => {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
-    
-    let configObj = {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        comment_type: "position",
-        text: this.state.text,
-        factIds: factIDs
-      })
-    }
-    fetch(`${API_ROOT}/comments`, configObj)
-      .then(resp => resp.json())
-      .then((data) => {
-        alert("position created!")
-        let messageInput = document.getElementById("position-input-div")
-        messageInput.innerHTML = ""
-      })
-      .catch(err => alert(err))
+
+    this.props.submitPosition(this.state.text, factIDs)
     
     this.setState({ text: '', facts: [] });
-
   }
 
   allowDrop = e => {
@@ -112,7 +92,7 @@ class PositionForm extends Component {
               id="position-input-div" 
               contentEditable="true"
               dataPlaceholder="Start a Position"
-              onKeyPress={this.handleChange}   
+              onKeyUp={this.handleChange}   
             >
             </div>
             <input id="position-submit-button" type="submit" value="publish position" disabled="true" />
@@ -132,7 +112,7 @@ class PositionForm extends Component {
                 onDrop={this.drop}
                 className={this.state.draggedOver ? "dragged-over" : "" }
               >
-                Support your position with facts by dragging them here from your factbank.
+                Support your position with facts by dragging them here from your fact bank.
               </div>       
             :
               null         
@@ -143,4 +123,4 @@ class PositionForm extends Component {
   };
 }
 
-export default connect(state => ({userId: state.users.userId}))(PositionForm);
+export default connect(state => ({userId: state.users.userId}), { submitPosition })(PositionForm);
