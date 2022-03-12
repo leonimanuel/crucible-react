@@ -12,7 +12,7 @@ class ConsoleFact extends Component {
 
 	startDrag = e => {
 		console.log("dragging")
-		e.dataTransfer.setData("object", JSON.stringify({parentTopic: this.props.parentTopic, fact: this.props.fact}))
+		e.dataTransfer.setData("object", JSON.stringify({parentTopic: this.props.parentTopic, fact: this.props.fact, origin: "factbank"}))
 	}
 
 	toggleFactDetailPane = () => {
