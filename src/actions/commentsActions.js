@@ -132,15 +132,6 @@ export const submitPosition = (text, factIDs) => {
 	  } catch (error) {
 	  	alert(error)
 	  }
-
-	  fetch(`${API_ROOT}/comments`, configObj)
-	    .then(resp => resp.json())
-	    .then((data) => {
-	      
-	      let messageInput = document.getElementById("position-input-div")
-	      messageInput.innerHTML = ""
-	    })
-	    .catch(err => alert(err))	
   }
 }
 

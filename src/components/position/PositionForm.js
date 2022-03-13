@@ -43,7 +43,7 @@ class PositionForm extends Component {
     e.preventDefault();
 
     const factIDs = this.state.facts.map(fact => fact.id)
-
+    
     if (this.state.text && factIDs.length) {
       this.props.submitPosition(this.state.text, factIDs)    
       this.setState({ text: '', facts: [] });
