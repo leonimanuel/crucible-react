@@ -16,11 +16,9 @@ class ReplyForm extends Component {
   handleChange = e => {
     e.persist()
     this.setState({ text: e.target.innerText }, () => {
-      if (e.key === "Enter") { 
-        // debugger
-        this.handleSubmit(e) 
-        // e.target.innerHTML = ""
-      }
+      // if (e.key === "Enter") { 
+      //   this.handleSubmit(e) 
+      // }
     });
   }
 

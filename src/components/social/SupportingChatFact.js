@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 // This component is specifically for facts in the Chat Drop Zone
 class SupportingChatFact extends Component {
 	state = {
-		factPosition: ""
+		factPosition: "",
+		showOriginalFact: false
 	}
 
 	startDrag = e => {
@@ -25,6 +26,9 @@ class SupportingChatFact extends Component {
 		// e.target.style.height = "50px"
 		// e.target.style.display = "block"
 	}
+
+	toggleFactRephrase = () => this.setState({showOriginalFact: !this.state.showOriginalFact})
+
 	render() {
 		const { fact } = this.props;
 		let border
@@ -43,7 +47,16 @@ class SupportingChatFact extends Component {
  				onDragStart={this.startDrag}			
  				onDragEnd={this.endDrag}
 			>
-					{fact.content}
+				<div className="original-vs-rephrase-indicator" onClick={this.toggleFactRephrase}>
+					show {this.state.showOriginalFact ? "rephrase" : "original"}
+				</div>
+
+				<div className="timeline-fact-content" style={{border: border}}>
+					{/*parse(innerHTML)*/}
+					{/*fact.content*/}
+					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
+				</div>
+
 				<div className="remove-fact-button" onClick={() => this.props.sendRemoval(fact.id)}>✕ {fact.id}</div>
 			</div>
 		)

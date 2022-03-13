@@ -23,7 +23,7 @@ class FactDropzone extends Component {
     e.target.dataset.dragged_over = "false"
     // console.log(JSON.parse(e.dataTransfer.getData("object")))
     let transferObj = JSON.parse(e.dataTransfer.getData("object"))
-    
+    debugger
     if (transferObj.origin == "factbank") {
       if (this.props.facts.find(fact => fact.id == transferObj.fact.id)) {        
         return alert("you've already added this fact.")
