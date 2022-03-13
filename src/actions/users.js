@@ -1,7 +1,7 @@
 import { API_ROOT } from "../constants"
 
 export const logIn = () => {
-	return (dispatch) => {
+	return async (dispatch) => {
     let configObj = {
       method: "GET",
       headers: {
@@ -11,15 +11,16 @@ export const logIn = () => {
       }
     }
     // debugger
-    fetch(API_ROOT + `/users/GETUSER`, configObj)
-      .then(resp => resp.json())
-      .then((data) => {
+    try {
+      let resp = await fetch(API_ROOT + `/users/GETUSER`, configObj)
+      if (resp.status == 200) {
+        let data = await resp.json()
         const user = data.user
         if (user) {
-					dispatch({
-						type: "LOG_IN",
-						user
-					});
+          dispatch({
+            type: "LOG_IN",
+            user
+          });
           
           let facts = user.facts
           dispatch({
@@ -69,7 +70,11 @@ export const logIn = () => {
         } else {
           dispatch({type: "LOGIN_FAILED"})
         }
-      })
+      } 
+    } catch (error) {
+      alert(error)
+    }
+
 	}
 }
 

@@ -7,6 +7,7 @@
 export default function userReducer(state = {
 	isLoggedIn: false,
 	loginFailed: false,
+	isConfirmed: false,
 	userName: "",
 	userEmail: "",
 	userId: "",
@@ -27,6 +28,7 @@ export default function userReducer(state = {
 			return {
 				...state,
 				isLoggedIn: true, //necessary?
+				isConfirmed: action.user.email_confirmed,
 				loginFailed: false,
 				userName: action.user.name,
 				userEmail: action.user.email,

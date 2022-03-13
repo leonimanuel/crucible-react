@@ -105,6 +105,26 @@ class App extends Component {
     this.props.toggleSidenav(bool)
   }
 
+  resendConfirmation = () => {
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    // debugger
+    fetch(API_ROOT + `/resend-confirmation-email`, configObj)
+      .then(resp => resp.json())
+      .then(data => {
+        const confirmationMessage = document.getElementById("confirmation-sent-message");
+        debugger
+        confirmationMessage.innerText = "confirmation email re-sent"
+      })    
+  }
+
+
   render() {
     let blob = document.getElementById("blob")
     if (blob) blob.style.opacity = "1"    
@@ -116,7 +136,14 @@ class App extends Component {
             {/*<div id="blob"></div>*/}
             <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
             
-            {this.props.userId 
+            {this.props.userId && !this.props.isConfirmed
+              ?
+              <div className="auth-wrapper">
+                <div id="confirmation-sent-message">Please check your email for a link to verify your account</div>
+                <button id='resend-confirmation-button' onClick={this.resendConfirmation}>resend confirmation email</button>
+              </div>
+              :               
+              this.props.userId
               ?
                 <div>
                   <ActionCableConsumer 
@@ -195,6 +222,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     userId: state.users.userId,
+    isConfirmed: state.users.isConfirmed,
     loginFailed: state.users.loginFailed
   }
 }
