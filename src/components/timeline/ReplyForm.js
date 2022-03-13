@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createReply } from "../../actions/timelineActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
+import FactDropzone from "./FactDropzone.js"
 
 class ReplyForm extends Component {
   state = {
@@ -37,36 +38,9 @@ class ReplyForm extends Component {
     messageInput.innerHTML = ""
   }
 
-  allowDrop = e => {
-    e.preventDefault();
-  }
-
-  handleDragEnter = e => {
-    this.setState({...this.state, draggedOver: true })
-  }
-
-  handleDragLeave = e => {
-    this.setState({...this.state, draggedOver: false })
-  }
-
-  drop = e => {
-    e.preventDefault();
-    console.log(JSON.parse(e.dataTransfer.getData("object")))
-    let transferObj = JSON.parse(e.dataTransfer.getData("object"))
-    if (this.state.facts.find(fact => fact.id == transferObj.fact.id)) {
-      alert("you've already added this fact.")
-    } else {
-      this.setState({
-        ...this.state,
-        facts: [...this.state.facts, transferObj.fact],
-        draggedOver: false
-      })
-    }
-  }
-
-  handleRemoveFact = (factId) => { //removes fact from new chat fact array
-    this.setState({facts: this.state.facts.filter(fact => fact.id != factId)})
-  }
+  updateFacts = (facts) => {
+    this.setState({facts: facts})
+  }  
 
   render = () => {
     return (
@@ -76,30 +50,13 @@ class ReplyForm extends Component {
             className="reply-input-div"
             id={`reply-input-div-${this.props.index}`}
             contentEditable="true"
-            onKeyPress={this.handleChange}   
+            onKeyUp={this.handleChange}   
           >
           </div>
           <input className="reply-submit-button" type="submit" />
         </form>
       
-        <div id="comment-facts-container">
-          {this.state.facts.map(fact => <SupportingChatFact key={fact.id} fact={fact} sendRemoval={(factId) => this.handleRemoveFact(factId)}/>)}
-        </div>
-      
-        { this.state.facts.length <= 2 
-          ?
-            <div 
-              onDragOver={this.allowDrop} 
-              onDragEnter={this.handleDragEnter}
-              onDragLeave={this.handleDragLeave}
-              onDrop={this.drop}
-              className={`reply-fact-dropzone ${this.state.draggedOver ? "dragged-over" : ""}`}
-            >
-              Drag your facts here to support your message. messages supported by facts earn credit.
-            </div>       
-          :
-            null         
-        }
+        <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>
   
       </div>
     );
