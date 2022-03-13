@@ -19,6 +19,16 @@ class TimelineCommentContent extends Component {
 
 	render() {
 		const { comment } = this.props
+		let sortedCommentFacts = []
+		
+		if (comment.fact_order.length == comment.facts.length) {
+			comment.fact_order.map((factId, index) => {
+				sortedCommentFacts.push(comment.facts.find(fact => fact.id == factId))
+			})
+
+			comment.facts = sortedCommentFacts
+		}
+
 		return (
 			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				

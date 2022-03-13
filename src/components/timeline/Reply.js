@@ -7,10 +7,20 @@ import SupportingFact from "../agora/SupportingFact.js"
 
 
 const Reply = (props) => {
-	const { reply, currentUserId } = props
 
 	const handleAddFact = (fact) => {
 		props.addFactFromComment(fact, props.message.comment.user_id);
+	}
+
+	const { reply, currentUserId } = props
+	
+	let sortedCommentFacts = []
+	if (reply.reply_comment && reply.reply_comment.fact_order.length == reply.reply_comment_facts.length) {
+		reply.reply_comment.fact_order.map((factId, index) => {
+			sortedCommentFacts.push(reply.reply_comment_facts.find(fact => fact.id == factId))
+		})
+
+		reply.reply_comment_facts = sortedCommentFacts
 	}
 
 	return (
