@@ -11,6 +11,10 @@ class TimelineFact extends Component {
 		showContext: true
 	}	
 
+	componentDidMount() {
+		if (!!this.props.fact.rephrase) {this.setState({showContext: false})}
+	}
+
 	handleAddFact = (fact) => {
 		console.log("executing handleAddFact")
 		// debugger
