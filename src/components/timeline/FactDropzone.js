@@ -3,24 +3,32 @@ import React, { Component } from 'react';
 import SupportingChatFact from "../social/SupportingChatFact.js"
 
 class FactDropzone extends Component {
+  state = {
+    draggedOver: false
+  }
+
   allowDrop = e => {
     e.preventDefault();
-    e.target.dataset.dragged_over = "true"
+    // this.setState({draggedOver: true})
+    e.target.dataset.dragged_over = true
   }
 
   handleDragEnter = e => {
     e.persist();
-    e.target.dataset.dragged_over = "true"
+    // this.setState({draggedOver: true})
+    e.target.dataset.dragged_over = true
   }
 
   handleDragLeave = e => {
     e.persist();
-    e.target.dataset.dragged_over = "false"
+    // this.setState({draggedOver: false})
+    e.target.dataset.dragged_over = false
   }
 
   drop = e => {
     e.preventDefault();
-    e.target.dataset.dragged_over = "false"
+    // this.setState({draggedOver: false})
+    e.target.dataset.dragged_over = false
     // console.log(JSON.parse(e.dataTransfer.getData("object")))
     let transferObj = JSON.parse(e.dataTransfer.getData("object"))
     debugger
@@ -87,7 +95,7 @@ class FactDropzone extends Component {
           {
             this.props.facts.map(fact => {
               return (
-                <React.Fragment>
+                <div className="supporting-fact-wrapper">
                   <SupportingChatFact 
                   	key={fact.id} 
                   	fact={fact} 
@@ -98,7 +106,7 @@ class FactDropzone extends Component {
                   <div 
                     className="fact-dropslot"
                     data-preceding_fact_id={fact.id}
-                    data-dragged_over="false"
+                    data-dragged_over={this.state.draggedOver}
                     onDragOver={this.allowDrop} 
                     onDragEnter={this.handleDragEnter}
                     onDragLeave={this.handleDragLeave}
@@ -106,7 +114,9 @@ class FactDropzone extends Component {
                   >
                     {/*`after fact ${fact.id}`*/}
                   </div>
-                </React.Fragment>
+
+                  {/*<div className="dropslot-spacer" style={{height: this.state.draggedOver ? "50px" : "10px"}}>dropslot spacer</div>*/}
+                </div>
               )                      
             })
           }
