@@ -24,30 +24,6 @@
       justify-content: space-between;
       margin-bottom: 10px;
       // outline: 2px solid black;
-    
-      #follow-status-wrapper {
-        // outline: 2px solid black;
-      
-        #follow-status-button {
-          border: none;
-          border-radius: 20px;
-          font-size: 1.2em;
-          padding: 5px 10px;
-          cursor: pointer;
-        }
-
-        #follow-status-button.following-state {
-          border: 2px solid transparent;
-          background-color: #0f4c75;
-          color: white;
-        }
-
-        #follow-status-button.following-hover {
-          border: 2px solid #0f4c75;
-          background-color: white;
-          color: black;
-        }        
-      }
 
       #member-card-handle {
         font-size: 2em;
@@ -270,13 +246,61 @@
         // outline: 1px solid purple;
         margin-top: 10px;
 
-        .original-vs-rephrase-indicator {
+        .timeline-fact-options-wrapper {
           position: absolute;
           top: -20px;
-
-          font-style: italic;
-          cursor: pointer;
+          display: flex;
+        
+          & > div {
+            margin: 0 5px;
+            font-style: italic;
+            cursor: pointer;    
+            
+            &:hover {color: blue}        
+          }
         }
+
+        .original-vs-rephrase-indicator {
+          // position: absolute;
+          // top: -20px;
+
+          // font-style: italic;
+          // cursor: pointer;
+        }
+
+        .timeline-fact-context-wrapper {
+          // border: 2px solid green;
+          position: relative;
+
+          .timeline-fact-context {
+            // border: 2px solid red;
+            // font-size: .8em;
+            padding: 5px;
+            padding-bottom: 10px;
+            background-color: #F3F1F5;
+            border-radius: 10px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+            .timeline-fact-highlight {
+              // font-weight: bold;
+              // font-size: 1em;
+              background-color: #FBF46D; //yellow
+              // opacity: 0.5;
+              // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+              box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            }
+          }
+
+          .context-lip {
+            position: absolute;
+            z-index: 2;
+            bottom: -20px;
+            border: 1px solid black;
+            height: 20px;
+            background-color: #F3F1F5;
+            border-radius: 10px;
+          }
+        }        
       }
 
       .timeline-comment {

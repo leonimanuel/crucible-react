@@ -135,13 +135,42 @@ export const changeMemberFollow = (memberId, newFollowBool) => {
 	}
 }
 
+export const fetchMembers = async (searchVal) => {
+  return async (dispatch) => {
+  	dispatch({type: "FETCHING RECOMMENDATIONS"})
 
+	  let configObj = {
+	    method: 'GET',
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+	  
+	  try {
+	  	let response = ""
+	  	if (!searchVal) {
+	  		let response = await fetch(`${API_ROOT}/contacts/recommendations`, configObj)	
+	  	} else {
+	  		let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}`, configObj)
+	  	}
+	  	
+	  	if (response.status == 200) {
+	  		let members = await response.json()
 
+	  		dispatch({
+	  			type: "SET_MEMBER_RECOMMENDATIONS",
+	  			members: members
+	  		})
 
-
-
-
-
+	  		// setStateRecommendations(members)
+	  	}
+	  } catch (error) {
+	  	console.log(error)
+	  }  
+  }
+}
 
 
 

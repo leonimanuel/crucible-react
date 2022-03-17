@@ -47,7 +47,6 @@ class App extends Component {
   }
 
   handleUnreadUpdate = (response) => {
-    debugger
     if (!response.total_unreads) { //special case for chrome extension
       if (response.sender_id !== this.props.userId) {
         this.props.resetUnreadCount(response)      
@@ -136,6 +135,12 @@ class App extends Component {
             {/*<div id="blob"></div>*/}
             <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
             
+            <Route 
+              path="/confirm-email/:token"
+              render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+            </Route> 
+
+
             {this.props.userId && !this.props.isConfirmed
               ?
               <div className="auth-wrapper">
@@ -201,10 +206,7 @@ class App extends Component {
               <Route path="/login"><Login/></Route>
               <Route path="/signup"><SignUp/></Route> 
               <Route path="/control"><Control/></Route> 
-              <Route 
-                path="/:token/confirm-email"
-                render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
-              </Route> 
+
 
               <Route 
                 path="/reset-password/:token"

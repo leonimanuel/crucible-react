@@ -10,7 +10,6 @@ export const logIn = () => {
         Authorization: localStorage.getItem("token")
       }
     }
-    // debugger
     try {
       let resp = await fetch(API_ROOT + `/users/GETUSER`, configObj)
       if (resp.status == 200) {

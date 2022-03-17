@@ -2,6 +2,8 @@ export default function networkReducer(state = {
 	followingContacts: [],
 	followersContacts: [],
 	selectedContact: "",
+	memberResults: [],
+	memberFollowingStatus: [],
 	contactFeed: []
 }, action) {
 	switch(action.type) {
@@ -49,6 +51,22 @@ export default function networkReducer(state = {
 				...state,
 				selectedContact: selectedContact,
 				followingContacts: followingContacts
+			}
+
+		case "SET_MEMBER_RESULTS":
+			let members = action.members.map(member => {
+				member["type"] = "recommendation"
+				return member
+			})
+
+			let memberFollowingStatus = members.map(member => {
+				return {memberId: member.id, isFollowing: member.is_following}
+			})
+
+			return {
+				...state,
+				memberResults: members,
+				memberFollowingStatus: memberFollowingStatus
 			}
 
 		default: 

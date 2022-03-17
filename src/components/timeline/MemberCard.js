@@ -1,61 +1,18 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 
-import {getMemberConnectionStatus, changeMemberFollow} from "../../actions/networkActions.js"
+// import {getMemberConnectionStatus, changeMemberFollow} from "../../actions/networkActions.js"
 // import { connect } from 'getstream';
 
+import FollowButton from "../network/FollowButton.js"
+
 const MemberCard = (props) => {
-	const [stateMemberHandle, setStateMemberHandle] = useState("");
-	const [stateFollowStatusButtonHover, setStateFollowStatusButtonHover] = useState(false)
-
-	useEffect(() => {
-		// if (stateMemberHandle == "") {
-		// 	alert("getting member connection status")
-		// 	props.getMemberConnectionStatus();
-		// 	setStateMemberHandle(props.member.handle);
-		// }
-
-		// if (stateMemberHandle != props.member.handle) {
-		// 	alert("getting member connection status")
-		// 	props.getMemberConnectionStatus();
-		// 	setStateMemberHandle(props.member.handle)			
-		// }
-	}); //empty array should ensure that useEffect runs only once
-
-	const renderButtonText = () => {
-		if (props.member.is_following) {
-			return stateFollowStatusButtonHover ? "unfollow" : "following"
-		} else {
-			return "follow"
-		}
-	}
-
-	const handleFollowUpdate = () => {
-		props.changeMemberFollow(props.member.id, !props.member.is_following)
-	}
-
 	const fc_ratio = props.member.fact_comment_ratio
 	return (
 		<div id="member-card-container">	 
 			<div id="member-card-handle-wrapper">
 				<div id="member-card-handle">{props.member.handle}</div> 
-				<div id="follow-status-wrapper">
-					<button 
-						id="follow-status-button" 
-						class={
-							`${(props.member.is_following && !stateFollowStatusButtonHover) ? "following-state" : 
-							(props.member.is_following && stateFollowStatusButtonHover) ? "following-hover" : 
-							(!props.member.is_following && !stateFollowStatusButtonHover) ? "not-following-state" : 
-							(!props.member.is_following && stateFollowStatusButtonHover) ? "not-following-hover" : "" 
-							}`
-						}
-						onMouseEnter={() => setStateFollowStatusButtonHover(true)} 
-						onMouseLeave={() => setStateFollowStatusButtonHover(false)}
-						onClick={handleFollowUpdate}
-					>
-						{renderButtonText()}
-					</button>
-				</div>
+				<FollowButton member={props.member} />					
 			</div>
 			
 			<div id="member-card-details-wrapper">
@@ -124,4 +81,18 @@ const MemberCard = (props) => {
 }
 
 
-export default connect(null, {getMemberConnectionStatus, changeMemberFollow})(MemberCard);
+export default connect(null, {/*getMemberConnectionStatus, changeMemberFollow*/})(MemberCard);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
