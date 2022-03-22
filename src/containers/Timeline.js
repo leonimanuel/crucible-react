@@ -35,7 +35,7 @@ class Timeline extends Component {
 	}
 
 	componentDidMount() {
-		// this.props.setActivities(0);
+		this.props.setActivities(0);
 		if (this.props.location.pathname.includes("posts") && !this.props.selectedNotificationActivity) {
 			let locationParams = this.props.location.pathname.split("/").filter(i => i)
 			const postObjType = locationParams[1]
