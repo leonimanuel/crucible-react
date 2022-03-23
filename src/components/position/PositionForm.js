@@ -3,9 +3,9 @@ import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { submitPosition } from "../../actions/commentsActions.js"
 
-
 import SupportingChatFact from "../social/SupportingChatFact.js"
 import FactDropzone from "../timeline/FactDropzone.js"
+import TagsContainer from "../network/TagsContainer.js"
 
 class PositionForm extends Component {
   state = {
@@ -13,7 +13,8 @@ class PositionForm extends Component {
     draggedOver: false,    
     facts: [
       {"id":6,"content":"U.S. Customs and Border Protection had contracted with MSAB, a Swedish company specializing in digital device cracking, to purchase vehicle forensics kits manufactured by Berla","rephrase":null,"url":"https://theintercept.com/2021/11/18/bill-warrantless-searches-car-data-police/","logic_upvotes":0,"logic_downvotes":0,"context_upvotes":0,"context_downvotes":0,"credibility_upvotes":0,"credibility_downvotes":0,"review_status":"pending","topic_id":1},{"id":9,"content":"After Hurricane Harvey devastated Houston in 2017, voters approved a $2.5 billion bond to fund more than 500 flood-control projects around the county","rephrase":null,"url":"https://www.nytimes.com/2021/12/03/climate/climate-change-infrastructure-bill.html","logic_upvotes":0,"logic_downvotes":0,"context_upvotes":0,"context_downvotes":0,"credibility_upvotes":0,"credibility_downvotes":0,"review_status":"pending","topic_id":1},{"id":24,"content":"A widespread urban center more than 12 miles across, Caracol at its high point (A.D. 250 to 950) held at least 100,000 inhabitants.","rephrase":null,"url":"https://www.nationalgeographic.com/travel/article/explore-the-palaces-and-tombs-of-these-lost-cities-across-the-americas","logic_upvotes":0,"logic_downvotes":0,"context_upvotes":0,"context_downvotes":0,"credibility_upvotes":0,"credibility_downvotes":0,"review_status":"pending","topic_id":1}
-    ]
+    ],
+    tags: []
   }
 
   componentDidUpdate() {
@@ -54,6 +55,10 @@ class PositionForm extends Component {
     this.setState({facts: facts})
   }
 
+  handleTagsUpdate = (tags) => {
+    this.setState({tags: tags})
+  }
+
   render = () => {
     let messageInput = document.getElementById("message-input-div")
     // debugger
@@ -75,8 +80,9 @@ class PositionForm extends Component {
             <input id="position-submit-button" type="submit" value="publish position" disabled="true" />
           </form>
 
-          <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>
-        </div>
+          <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>          
+        <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>   
+        </div>        
       </div>
     );
   };
