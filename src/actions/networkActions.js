@@ -103,7 +103,7 @@ export const getMemberConnectionStatus = () => {
 }
 
 
-export const changeMemberFollow = (memberId, newFollowBool) => {
+export const changeMemberFollow = (member, newFollowBool) => {
 	return (dispatch) => {
 		dispatch({
 			type: "UPDATING_MEMBER_FOLLOW"
@@ -118,7 +118,7 @@ export const changeMemberFollow = (memberId, newFollowBool) => {
 	    }, 
 	    body: JSON.stringify({
 	      willFollow: newFollowBool,
-	      memberId: memberId
+	      memberId: member.id
 	    })	    
 	  }
 
@@ -127,7 +127,8 @@ export const changeMemberFollow = (memberId, newFollowBool) => {
 	    .then((data) => {
 				dispatch({
 					type: "CHANGE_MEMBER_FOLLOW_STATUS",
-					followStatus: data.is_following
+					followStatus: data.is_following,
+					member: member
 				})
 				// const user_notification_feed = client.feed('notification', `${userId}`);		
 
@@ -135,9 +136,9 @@ export const changeMemberFollow = (memberId, newFollowBool) => {
 	}
 }
 
-export const fetchMembers = async (searchVal) => {
+export const fetchMemberRecommendations = (searchVal) => {
   return async (dispatch) => {
-  	dispatch({type: "FETCHING RECOMMENDATIONS"})
+  	dispatch({type: "FETCHING_MEMBER_RECOMMENDATIONS"})
 
 	  let configObj = {
 	    method: 'GET',
@@ -149,22 +150,13 @@ export const fetchMembers = async (searchVal) => {
 	  }
 	  
 	  try {
-	  	let response = ""
-	  	if (!searchVal) {
-	  		let response = await fetch(`${API_ROOT}/contacts/recommendations`, configObj)	
-	  	} else {
-	  		let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}`, configObj)
-	  	}
-	  	
+  		let response = await fetch(`${API_ROOT}/contacts/recommendations`, configObj)	
 	  	if (response.status == 200) {
 	  		let members = await response.json()
-
 	  		dispatch({
 	  			type: "SET_MEMBER_RECOMMENDATIONS",
 	  			members: members
 	  		})
-
-	  		// setStateRecommendations(members)
 	  	}
 	  } catch (error) {
 	  	console.log(error)
@@ -172,7 +164,47 @@ export const fetchMembers = async (searchVal) => {
   }
 }
 
+// export const fetchMemberSearches = (searchVal) => {
+//   return async (dispatch) => {
+//   	dispatch({type: "FETCHING_MEMBER_SEARCH_RESULTS"})
 
+// 	  let configObj = {
+// 	    method: 'GET',
+// 	    headers: {
+// 	      "Content-Type": "application/json",
+// 	      Accept: "application/json",
+// 	      Authorization: localStorage.getItem("token")
+// 	    }
+// 	  }
+	  
+// 	  try {
+//   		let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}`, configObj)
+// 	  	if (response.status == 200) {
+// 	  		let members = await response.json()
+// 	  		dispatch({
+// 	  			type: "SET_MEMBER_SEARCH_RESULTS",
+// 	  			members: members
+// 	  		})
+// 	  	}
+// 	  } catch (error) {
+// 	  	console.log(error)
+// 	  }  
+//   }
+// }
 
+export const setSearchedMembersFollowStatuses = (searchedMembersFollowStatuses) => {
+	debugger
+	return {
+		type: "SET_MEMBER_SEARCH_RESULTS_FOLLOWING_STATUS",
+		searchedMembersFollowStatuses: searchedMembersFollowStatuses
+	}
+}
+
+export const clearRecommendationsAndSearches = () => {
+	debugger
+	return {
+		type: "CLEAR_RECOMMENDATIONS_AND_SEARCHES"
+	}
+}
 
 

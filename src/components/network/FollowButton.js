@@ -9,7 +9,7 @@ const FollowButton = (props) => {
   const [stateFollowStatusButtonHover, setStateFollowStatusButtonHover] = useState(false)
 
   const renderButtonText = () => {
-    if (props.member.is_following) {
+    if (props.followStatus) {
       return stateFollowStatusButtonHover ? "unfollow" : "following"
     } else {
       return "follow"
@@ -17,7 +17,7 @@ const FollowButton = (props) => {
   }
 
   const handleFollowUpdate = () => {
-    props.changeMemberFollow(props.member.id, !props.member.is_following)
+    props.changeMemberFollow(props.member, !props.followStatus)
   }  
 
   return (
@@ -25,10 +25,10 @@ const FollowButton = (props) => {
       <button 
         className={
           `follow-status-button 
-          ${(props.member.is_following && !stateFollowStatusButtonHover) ? "following-state" : 
-          (props.member.is_following && stateFollowStatusButtonHover) ? "following-hover" : 
-          (!props.member.is_following && !stateFollowStatusButtonHover) ? "not-following-state" : 
-          (!props.member.is_following && stateFollowStatusButtonHover) ? "not-following-hover" : "" 
+          ${(props.followStatus && !stateFollowStatusButtonHover) ? "following-state" : 
+          (props.followStatus && stateFollowStatusButtonHover) ? "following-hover" : 
+          (!props.followStatus && !stateFollowStatusButtonHover) ? "not-following-state" : 
+          (!props.followStatus && stateFollowStatusButtonHover) ? "not-following-hover" : "" 
           }`
         }
         onMouseEnter={() => setStateFollowStatusButtonHover(true)} 
@@ -41,11 +41,7 @@ const FollowButton = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    memberFollowingStatus: state.network.memberFollowingStatus
-  }
-}
 
 
-export default connect(mapStateToProps, { changeMemberFollow })(FollowButton);
+
+export default connect(null, { changeMemberFollow })(FollowButton);

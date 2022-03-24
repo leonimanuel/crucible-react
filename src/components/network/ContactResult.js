@@ -9,6 +9,7 @@ import FollowButton from "./FollowButton.js"
 // import { connect } from 'getstream';
 
 const ContactResult = (props) => {
+	let followStatusObj = props.membersFollowStatuses.find(i => i.memberId == props.contact.id )
 	return (
 		<div 
 			className={`contact-result-container`} 
@@ -24,10 +25,16 @@ const ContactResult = (props) => {
 
 					{props.contact.handle}	
 				</Link>			
-				<FollowButton member={props.contact}/>	
+				
+				{followStatusObj ? <FollowButton member={ props.contact} followStatus={followStatusObj.isFollowing}/> : null	}
 		</div>
 	)
 }
 
+const mapStateToProps = state => {
+  return {
+    membersFollowStatuses: state.network.membersFollowStatuses
+  }
+}
 
-export default connect(null, { showSelectedContact })(ContactResult);
+export default connect(mapStateToProps, { showSelectedContact })(ContactResult);

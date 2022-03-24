@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./network.scss"
 import { connect } from "react-redux"
-import { fetchContacts, showSelectedContact } from "../../actions/networkActions.js"
+import { fetchContacts, showSelectedContact, clearRecommendationsAndSearches } from "../../actions/networkActions.js"
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -19,7 +19,7 @@ const NetworkMenu = (props) => {
 		// if (!props.networkContacts && !stateMounted) { // if there are no notifications already stored
 		if (!stateMounted) { // if there are no notifications already stored
 			console.log("FETCHING CONTACTS")
-			// props.fetchContacts(stateNetworkOption)
+			props.fetchContacts(stateNetworkOption)
 
 			setStateMounted(true) // SUPER IMPORTANT TO AVOID INFINITE API CALLS
 		}
@@ -55,7 +55,7 @@ const NetworkMenu = (props) => {
 			
 			<div id={`search-crucible-network-button`}>	 
 			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="right center" modal>
-			    { close => <NetworkModal handleContactSelect={() => close()}/> }
+			    { close => <NetworkModal handleContactSelect={() => close()} /> }
 			  </Popup>								
 			</div>
 
@@ -86,4 +86,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchContacts, showSelectedContact })(NetworkMenu);
+export default connect(mapStateToProps, { fetchContacts, showSelectedContact, clearRecommendationsAndSearches })(NetworkMenu);

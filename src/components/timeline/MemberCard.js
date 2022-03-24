@@ -12,7 +12,7 @@ const MemberCard = (props) => {
 		<div id="member-card-container">	 
 			<div id="member-card-handle-wrapper">
 				<div id="member-card-handle">{props.member.handle}</div> 
-				<FollowButton member={props.member} />					
+				<FollowButton member={props.member} followStatus={props.membersFollowStatuses.find(i => i.memberId == props.member.id ).isFollowing } />					
 			</div>
 			
 			<div id="member-card-details-wrapper">
@@ -80,8 +80,13 @@ const MemberCard = (props) => {
 	)
 }
 
+const mapStateToProps = state => {
+  return {
+    membersFollowStatuses: state.network.membersFollowStatuses
+  }
+}
 
-export default connect(null, {/*getMemberConnectionStatus, changeMemberFollow*/})(MemberCard);
+export default connect(mapStateToProps, {/*getMemberConnectionStatus, changeMemberFollow*/})(MemberCard);
 
 
 

@@ -2,8 +2,9 @@ export default function networkReducer(state = {
 	followingContacts: [],
 	followersContacts: [],
 	selectedContact: "",
-	memberResults: [],
-	memberFollowingStatus: [],
+	recommendedMembers: [],
+	// searchedMembers: [],
+	membersFollowStatuses: [],
 	contactFeed: []
 }, action) {
 	switch(action.type) {
@@ -20,11 +21,14 @@ export default function networkReducer(state = {
 			}			
 
 		case "SET_SELECTED_CONTACT":
+			// debugger
 			const sortedUserActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
 			return {
 				...state,
 				selectedContact: action.contact,
-				contactFeed: [...sortedUserActivities]
+				contactFeed: [...sortedUserActivities],
+				membersFollowStatuses: [...state.membersFollowStatuses.filter(i => i.memberId != action.contact.id), {memberId: action.contact.id, isFollowing: action.contact.is_following}]
+
 			}
 
 		case "CLEAR_SELECTED_CONTACT":
@@ -35,38 +39,81 @@ export default function networkReducer(state = {
 			}
 
 		case "CHANGE_MEMBER_FOLLOW_STATUS":
+			
 			let selectedContact = state.selectedContact
-			selectedContact["is_following"] = action.followStatus
-
+			if (action.member.id == selectedContact.id) {
+				selectedContact["is_following"] = action.followStatus
+			}
 
 			// Add/remove member from "following" list based on user action
 			let followingContacts = state.followingContacts
+			let memberInQuestion = (action.member.id == selectedContact.id) ? selectedContact : action.member
 			if (action.followStatus == true) {
-				followingContacts = followingContacts.find(m => m.id == selectedContact.id) ? followingContacts : [...followingContacts, selectedContact]
+				memberInQuestion["type"] = "following"
+				followingContacts = followingContacts.find(m => m.id == memberInQuestion.id) ? followingContacts : [...followingContacts, memberInQuestion]
 			} else if (action.followStatus == false) {
-				followingContacts = followingContacts.filter(m => m.id != selectedContact.id)
+				followingContacts = followingContacts.filter(m => m.id != memberInQuestion.id)
 			}
+
+			let newMemberFollowStatus = {memberId: action.member.id, isFollowing: action.followStatus}
+			let updatedMembersFollowStatuses = (
+				[...state.membersFollowStatuses.filter(i => i.memberId != action.member.id), newMemberFollowStatus]
+			) 
 
 			return {
 				...state,
 				selectedContact: selectedContact,
-				followingContacts: followingContacts
+				followingContacts: followingContacts,
+				membersFollowStatuses: updatedMembersFollowStatuses
 			}
 
-		case "SET_MEMBER_RESULTS":
-			let members = action.members.map(member => {
+		case "SET_MEMBER_RECOMMENDATIONS":
+			let recommendedMembers = action.members.map(member => {
 				member["type"] = "recommendation"
 				return member
 			})
 
-			let memberFollowingStatus = members.map(member => {
+			let recommendedMembersFollowingStatus = recommendedMembers.map(member => {
 				return {memberId: member.id, isFollowing: member.is_following}
 			})
 
 			return {
 				...state,
-				memberResults: members,
-				memberFollowingStatus: memberFollowingStatus
+				recommendedMembers: recommendedMembers,
+				membersFollowStatuses: recommendedMembersFollowingStatus
+			}
+
+
+		// case "SET_MEMBER_SEARCH_RESULTS":
+		// 	let searchedMembers = action.members.map(member => {
+		// 		member["type"] = "searched"
+		// 		return member
+		// 	})
+
+		// 	let searchedMembersFollowingStatus = searchedMembers.map(member => {
+		// 		return {memberId: member.id, isFollowing: member.is_following}
+		// 	})
+
+		// 	return {
+		// 		...state,
+		// 		searchedMembers: searchedMembers,
+		// 		membersFollowStatuses: searchedMembersFollowingStatus,
+		// 		recommendedMembers: []
+		// 	}
+
+		case "SET_MEMBER_SEARCH_RESULTS_FOLLOWING_STATUS":
+			return {
+				...state,
+				membersFollowStatuses: [...state.membersFollowStatuses, ...action.searchedMembersFollowStatuses],
+				recommendedMembers: []
+			}
+
+
+		case "CLEAR_RECOMMENDATIONS_AND_SEARCHES":
+			return {
+				...state,
+				recommendedMembers: [],
+				searchedMembers: []	
 			}
 
 		default: 
