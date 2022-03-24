@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchTopics } from "../actions/topicsActions.js" 
+import { setNotifications } from "../actions/notificationsActions.js" 
 
 import "./sidenav.scss"
 import MainPane from "./MainPane.js"
@@ -23,7 +24,8 @@ class SideNav extends Component {
 
 	componentDidMount() {
 		// debugger
-		this.props.fetchTopics()
+		this.props.fetchTopics();
+		this.props.setNotifications(this.props.userId);
 		// console.log("mounted sidenav")
 		// let sideNav = document.getElementById("side-nav")
 		// let sectionTabs = document.getElementById("sections-list")
@@ -89,7 +91,8 @@ const mapStateToProps = state => {
 	// debugger
 	return {
 		discussions: state.discussions.allDiscussions,
-		sidenavOpen: state.sidenav.sidenavOpen
+		sidenavOpen: state.sidenav.sidenavOpen,
+		userId: state.users.userId
 		// unreadMessageCount: state.groups.map
 		// selectedGroup: state.sidenav.selectedGroup,
 		// parentTopic: state.topics.parentTopic,
@@ -99,6 +102,6 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchTopics })(SideNav)
+export default connect(mapStateToProps, { fetchTopics, setNotifications })(SideNav)
 
 

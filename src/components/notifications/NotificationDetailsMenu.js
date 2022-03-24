@@ -8,13 +8,13 @@ import Notification from "./Notification.js"
 const NotificationDetailsMenu = (props) => {
 	const [stateMounted, setStateMounted] = useState(false);
 
-	useEffect(() => {
-		if (!props.notification_groups.length && !stateMounted) { // if there are no notifications alread stored
-			props.setNotifications(props.userId)
+	// useEffect(() => {
+	// 	if (!props.notification_groups.length && !stateMounted) { // if there are no notifications alread stored
+	// 		// props.setNotifications(props.userId)
 
-			setStateMounted(true) // SUPER IMPORTANT TO AVOID INFINITE API CALLS
-		}
-	})
+	// 		setStateMounted(true) // SUPER IMPORTANT TO AVOID INFINITE API CALLS
+	// 	}
+	// })
 
 	return (
 		<div id="notification-details-menu-container">
