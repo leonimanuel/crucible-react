@@ -32,7 +32,6 @@ class TimelineFact extends Component {
 	}
 
 	render() {
-		debugger
 		const { fact } = this.props;
 		
 		// const innerHTML = (fact.node_text) ? `<span>${fact.node_text.replace(fact.content, `<span style="font-weight: bold">${fact.content}</span>`)}</span>` : `<span>${fact.content}</span>`

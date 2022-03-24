@@ -14,6 +14,7 @@ export default function notificationsReducer(state = {
 			  // to get a value that is either negative, positive, or zero.
 			  return new Date(b.created_at) - new Date(a.created_at);
 			});
+
 			return {
 				...state,
 				notification_groups: sortedNotificationGroupsArray,

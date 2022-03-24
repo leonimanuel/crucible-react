@@ -100,7 +100,7 @@ export const selectComment = (comment, userId) => {
   }
 }
 
-export const submitPosition = (text, factIDs) => {
+export const submitPosition = (text, factIDs, tags) => {
   return async dispatch => {
   	dispatch({type: "SUBMITTING_POSITION"})
 
@@ -114,7 +114,8 @@ export const submitPosition = (text, factIDs) => {
 	    body: JSON.stringify({
 	      comment_type: "position",
 	      text: text,
-	      factIds: factIDs
+	      factIds: factIDs,
+	      tags: tags
 	    })
 	  }
 	  

@@ -29,6 +29,7 @@ export const setNotifications = (userId) => {
 					alert("new notification! please reload to see for now")						
 				})				
 
+				debugger
 				dispatch({
 					type: "SET_NOTIFICATIONS",
 					notifications: data.notifications

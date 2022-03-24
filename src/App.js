@@ -151,35 +151,38 @@ class App extends Component {
               this.props.userId
               ?
                 <div>
-                  <ActionCableConsumer 
-                    channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
-                    onReceived={this.handleUnreadUpdate} 
-                  />          
+                  {/*
+                    <ActionCableConsumer 
+                      channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
+                      onReceived={this.handleUnreadUpdate} 
+                    />          
 
-                  <ActionCableConsumer 
-                    channel={{ channel: "MessagesChannel", user: this.props.userId }}
-                    onReceived={this.handleReceivedMessage} 
-                  />
+                    <ActionCableConsumer 
+                      channel={{ channel: "MessagesChannel", user: this.props.userId }}
+                      onReceived={this.handleReceivedMessage} 
+                    />
 
-                  <ActionCableConsumer 
-                    channel={{ channel: "CommentsChannel" }}
-                    onReceived={this.handleReceivedComment} 
-                  />            
+                    <ActionCableConsumer 
+                      channel={{ channel: "CommentsChannel" }}
+                      onReceived={this.handleReceivedComment} 
+                    />            
 
-                  <ActionCableConsumer 
-                    channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
-                    onReceived={this.handleReadDiscussion} 
-                  />    
+                    <ActionCableConsumer 
+                      channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
+                      onReceived={this.handleReadDiscussion} 
+                    />    
 
-                  <ActionCableConsumer 
-                    channel={{ channel: "ReviewsChannel", user: this.props.userId }}
-                    onReceived={this.handleReviewedItem} 
-                  />    
+                    <ActionCableConsumer 
+                      channel={{ channel: "ReviewsChannel", user: this.props.userId }}
+                      onReceived={this.handleReviewedItem} 
+                    />    
 
-                  <ActionCableConsumer 
-                    channel={{ channel: "MiscChannel", user: this.props.userId }}
-                    onReceived={this.handleMiscItem} 
-                  />    
+                    <ActionCableConsumer 
+                      channel={{ channel: "MiscChannel", user: this.props.userId }}
+                      onReceived={this.handleMiscItem} 
+                    />                      
+                  */}
+  
 
                   
                   <main id="main-content" onClick={this.handleMainClick}>               

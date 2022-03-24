@@ -7,7 +7,6 @@ export default function timelineReducer(state = {
 }, action) {
 	switch(action.type) {
 		case "SET_ACTIVITIES":
-			debugger
 			const sortedTimelineActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
 			
 			return {

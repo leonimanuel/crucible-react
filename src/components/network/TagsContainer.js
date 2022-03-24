@@ -42,9 +42,7 @@ const TagsContainer = (props) => {
 			currentSearchVal = searchVal
   		
   		setTimeout(async () => {				
-				debugger
 				if (currentSearchVal === prevSearchVal) {
-					debugger
 				  try {
 				  	let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}?tags=true`, configObj);
 				  	if (response.status == 200) {
@@ -86,8 +84,9 @@ const TagsContainer = (props) => {
   };
 
   return (
-    <div className="app">
+    <div className="tags-container">
       <div>
+        <span>tag users:</span>
         <ReactTags
           tags={props.tags}
           suggestions={searchResults}
@@ -99,6 +98,7 @@ const TagsContainer = (props) => {
           inputFieldPosition="top"
           autocomplete
           placeholder="notify peers about your post"
+          autofocus={false}
         />
       </div>
     </div>

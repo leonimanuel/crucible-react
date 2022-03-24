@@ -8,10 +8,12 @@
 		margin: 5px;
 		padding: 5px;
 		// max-height: 3em;
+		text-align: left;
+
 		
 		// white-space: nowrap;
 		// overflow: hidden;
-		// text-overflow: ellipsis;
+		text-overflow: ellipsis;
 	
 		&.read {
 			background-color: lightgrey;
@@ -19,6 +21,15 @@
 
 		&.unread {
 			background-color: lightblue;
+		}
+
+		.notification-target {
+		   overflow: hidden;
+		   text-overflow: ellipsis;
+		   display: -webkit-box;
+		   -webkit-line-clamp: 2; /* number of lines to show */
+		           line-clamp: 2; 
+		   -webkit-box-orient: vertical;
 		}
 	}
 }
