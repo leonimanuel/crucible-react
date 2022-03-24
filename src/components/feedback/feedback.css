@@ -1,7 +1,7 @@
 #feedback-button {
 	position: absolute;
 	bottom: 20px;
-	left: 10px;
+	right: 20px;
 
 	border: 4px solid gold;
 	padding: 10px;
@@ -11,10 +11,12 @@
 	cursor: pointer;
 
 	z-index: 2;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #feedback-icon {
 	width: 50px;
+	color: white;
 }
 
 #feedback-form-popup {
@@ -34,7 +36,7 @@
 #feedback-input {
 	border-radius: 5px;
 	font-family: 'Abel', sans-serif; 
-	/*font-size: 1em;*/
+	font-size: 1em;
 }
 
 

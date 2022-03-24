@@ -15,7 +15,7 @@ class FeedbackForm extends Component {
 				<textarea 
 					name="feedback" id="feedback-input" cols="50" rows="3" 
 					onChange={this.handleChange} value={this.state.feedback}
-					placeholder="Please submit any questions or comments here. Your feedback will be sent to the Crucible team as an email.">
+					placeholder="Please submit any questions or comments here. Your message will be sent to the Crucible team as an email.">
 				</textarea>
 				
 				<button 

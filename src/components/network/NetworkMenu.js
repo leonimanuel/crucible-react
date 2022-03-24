@@ -19,7 +19,7 @@ const NetworkMenu = (props) => {
 		// if (!props.networkContacts && !stateMounted) { // if there are no notifications already stored
 		if (!stateMounted) { // if there are no notifications already stored
 			console.log("FETCHING CONTACTS")
-			props.fetchContacts(stateNetworkOption)
+			// props.fetchContacts(stateNetworkOption)
 
 			setStateMounted(true) // SUPER IMPORTANT TO AVOID INFINITE API CALLS
 		}

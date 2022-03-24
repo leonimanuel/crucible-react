@@ -93,6 +93,7 @@ class NavBar extends Component {
 			<div id="nav-wrapper">
 				<div id="menu-options">											
 					<Link style={{"margin-right": "10px"}} className="nav-link section-nav-link" to="/" >Home</Link>
+					<a className="nav-link" href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1" target="_blank">Extension</a>
 					{this.props.user && this.props.discussion ? <Link className="nav-link section-nav-link" to={`/groups/Feed/discussions/${this.props.discussion.slug}-${this.props.discussion.id}`} >Guide</Link> : null}
 					
 				</div>

@@ -11,28 +11,14 @@ class FeedbackButton extends Component {
 		renderFeedbackForm: false
 	}
 
-	toggleFeedbackForm = () => {
-		let configObj = {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-				Authorization: localStorage.getItem("token")
-			}
-		}
-
-		fetch(API_ROOT + "/feed", configObj)
-			.then(resp => resp.json())
-			.then(data => {
-				debugger
-			})				
-		// this.setState({renderFeedbackForm: !this.state.renderFeedbackForm}, () => {
-		// 	let button = document.querySelector("#feedback-button");
-		// 	let popup = document.querySelector("#feedback-form-popup")
-		// 	createPopper(button, popup, {
-		// 	  placement: 'right',
-		// 	});					
-		// })
+	toggleFeedbackForm = () => {		
+		this.setState({renderFeedbackForm: !this.state.renderFeedbackForm}, () => {
+			let button = document.querySelector("#feedback-button");
+			let popup = document.querySelector("#feedback-form-popup")
+			createPopper(button, popup, {
+			  placement: 'right',
+			});					
+		})
 	}
 
 	submitFeedback = (feedback) => {
@@ -65,10 +51,10 @@ class FeedbackButton extends Component {
 		// }
 		return(
 			<React.Fragment>
+				{this.state.renderFeedbackForm ? <FeedbackForm handleFeedback={this.submitFeedback} /> : null}
 				<div id="feedback-button" onClick={this.toggleFeedbackForm}>
 					<img id="feedback-icon" src={FeedbackIcon} alt="feedback-icon"/>
 				</div>
-				{this.state.renderFeedbackForm ? <FeedbackForm handleFeedback={this.submitFeedback} /> : null}
 			</React.Fragment>
 		)
 	}

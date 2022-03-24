@@ -57,7 +57,7 @@ class SupportingChatFact extends Component {
 					{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 				</div>
 
-				<div className="remove-fact-button" onClick={() => this.props.sendRemoval(fact.id)}>✕ {fact.id}</div>
+				<div className="remove-fact-button" onClick={() => this.props.sendRemoval(fact.id)}>✕</div>
 			</div>
 		)
 	}
