@@ -52,7 +52,6 @@ class PositionForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     
     if (this.state.text && factIDs.length) {
-      debugger
       this.props.submitPosition(this.state.text, factIDs, this.state.tags.map(t => t.contact_id))    
       
     }

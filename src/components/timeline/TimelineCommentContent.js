@@ -5,6 +5,7 @@ import { addFactFromComment } from "../../actions/discussionsActions.js"
 import parse from "html-react-parser";
 
 import SupportingFact from "../agora/SupportingFact.js"
+import TaggedUsers from "./TaggedUsers.js"
 
 import { selectComment } from "../../actions/commentsActions.js"
 
@@ -30,6 +31,7 @@ class TimelineCommentContent extends Component {
 			comment.facts = sortedCommentFacts
 		}
 
+		debugger
 		return (
 			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				
@@ -50,16 +52,7 @@ class TimelineCommentContent extends Component {
 						</div>
 					) 
 				}) : null}
-				<div className="tagged-users-wrapper">
-					{this.props.tagged_users.length ? <span>tagged: </span> : null}
-					{this.props.tagged_users.map((u, index) => {
-						return (
-							<React.Fragment>
-								<span className="tagged-user"><Link className="tagged-user-link" to={`/profiles/${u.id}`}>{u.handle}</Link>{index == this.props.tagged_users.length-1 ? null : ","} </span>		
-							</React.Fragment>
-						)
-					})}
-				</div>
+				<TaggedUsers tagged_users={comment.tagged_users}/>
 			</div>
 		)
 	}
@@ -73,3 +66,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { addFactFromComment, selectComment })(TimelineCommentContent);
+
+

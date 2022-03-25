@@ -5,12 +5,14 @@ import { createReply } from "../../actions/timelineActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 import FactDropzone from "./FactDropzone.js"
+import TagsContainer from "../network/TagsContainer.js"
 
 class ReplyForm extends Component {
   state = {
     text: '',
     draggedOver: false,    
-    facts: []
+    facts: [],
+    tags: []
   }
 
   handleChange = e => {
@@ -26,11 +28,10 @@ class ReplyForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
-    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.clearReplyForm)
+    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
   }
 
   clearReplyForm = () => {
-    debugger
     this.setState({ text: '', facts: [] });
     let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
     messageInput.innerHTML = ""
@@ -38,6 +39,10 @@ class ReplyForm extends Component {
 
   updateFacts = (facts) => {
     this.setState({facts: facts})
+  }  
+
+  handleTagsUpdate = (tags) => {
+    this.setState({tags: tags})
   }  
 
   render = () => {
@@ -55,7 +60,7 @@ class ReplyForm extends Component {
         </form>
       
         <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>
-  
+        <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>
       </div>
     );
   };

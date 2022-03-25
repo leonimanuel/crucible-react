@@ -171,54 +171,60 @@ class Timeline extends Component {
 						{this.props.newPositions.map((position, index) => this.showTimelineItem(position, index))}
 					</div>
 
-					<InfiniteScroll
-					  dataLength={this.props.timeline_activities.length}
-					  next={this.fetchMoreActivities}
-					  hasMore={this.props.hasMore}
-					  loader={<h4>Loading...</h4>}
-					  endMessage={
-					    <p style={{ textAlign: 'center' }}>
-					      <b>Yay! You have seen it all</b>
-					    </p>
-					  }
-					  scrollableTarget="timeline-items-wrapper"
-
-					>
-						<Route 
-							path="/profiles/:id" 
-							render={(matchProps) => {
-								return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
-							}} 
-						/>
+					<Route 
+						path="/profiles/:id" 
+						render={(matchProps) => {
+							return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
+						}} 
+					/>
 
 
-						<Route 
-							path="/posts/:notificationType/:id"
-							render={(matchProps) => {
-								return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
-							}}
-						/>
+					<Route 
+						path="/posts/:notificationType/:id"
+						render={(matchProps) => {
+							return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
+						}}
+					/>
 
-						<Route exact path="/" 
-							render={(matchProps) => {
-								if (this.props.timeline_activities.length) {
-									return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
-								} else {
-									return (
-										<div id="timeline-prompt" className="sidenav-onboarding-prompt">
-										  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other Crucible members </span>} position="right center" modal>
-										    { close => <NetworkModal handleContactSelect={() => close()}/> }
-										  </Popup>															
-										   to view their activity here!
-										</div>
-									) 
-								}
-								
-							}} 
-						/>
+					<Route exact path="/"
+						render={(matchProps) => {
+							return (
+								<InfiniteScroll
+								  dataLength={this.props.timeline_activities.length}
+								  next={this.fetchMoreActivities}
+								  hasMore={this.props.hasMore}
+								  loader={<h4>Loading...</h4>}
+								  endMessage={
+								    <p style={{ textAlign: 'center' }}>
+								      <b>Yay! You have seen it all</b>
+								    </p>
+								  }
+								  scrollableTarget="timeline-items-wrapper"
 
-						{/*this.renderTimelineContent()*/}
-					</InfiniteScroll>
+								>
+
+									<Route exact path="/" 
+										render={(matchProps) => {
+											if (this.props.timeline_activities.length) {
+												return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+											} else {
+												return (
+													<div id="timeline-prompt" className="sidenav-onboarding-prompt">
+													  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other Crucible members </span>} position="right center" modal>
+													    { close => <NetworkModal handleContactSelect={() => close()}/> }
+													  </Popup>															
+													   to view their activity here!
+													</div>
+												) 
+											}
+										}} 
+									/>
+
+									{/*this.renderTimelineContent()*/}
+								</InfiniteScroll>
+							)
+						}}
+					/>				
 				</div>
 			</div>				
 		)

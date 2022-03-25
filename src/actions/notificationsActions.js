@@ -37,12 +37,12 @@ export const setNotifications = (userId) => {
 	}		
 }
 
-export const readNotification = (objectId, objectType, notifId, userId) => {
-	return (dispatch) => {
+export const readNotification = (objectId, objectType, notificationGroup, userId) => {
+	debugger
+	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
 		})
-
 	 	let configObj = {
 	    method: "GET",
 	    headers: {
@@ -58,6 +58,7 @@ export const readNotification = (objectId, objectType, notifId, userId) => {
 		    	// debugger
 		    })
 		    .then(activity => {
+				  let notifId = notificationGroup.id
 				  // debugger
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
@@ -80,14 +81,49 @@ export const readNotification = (objectId, objectType, notifId, userId) => {
 		    })
 		    .catch(err => alert(err))
 
-	  } else {
-	  	alert("no handling for this resource type yet")
+	  } 
+	  else if (objectType == "Reply") {
+  		try {
+  			let res = await fetch(API_ROOT + `/replies/${objectId}`, configObj)
+  			if (res.status == 200) {
+					let activity = await res.json()
+					let notifId = notificationGroup.id
+					dispatch({
+						type: "SET_NOTIFICATION_ACTIVITY",
+						activity
+					})
+					const replies = activity.item.object.replies ? activity.item.object.replies : null.flat().filter(r => !!r)
+					dispatch({
+						type: "SET_REPLIES",
+						replies
+					})
+
+
+					dispatch({
+						type: "READ_NOTIFICATION",
+						notifId
+					})
+
+					dispatch({
+						type: "SET_TIMELINE_TYPE",
+						timelineType: "notification"
+					})
+
+					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[﻿﻿notifId]﻿ })  				
+  			}
+  		} catch (error) {
+  			alert (error, "readNotification")
+  		}
+	  } 
+	  else {
+			alert("no handling for this resource type yet")
 	  }
 				
 	}			
 }
 
 export const showPost = (postObjType, postObjId) => {
+	debugger
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
@@ -121,7 +157,28 @@ export const showPost = (postObjType, postObjId) => {
 		    })
 		    .catch(err => alert(err))
 
-	  } else {
+	  }
+	  else if (postObjType == "Reply") {
+		  fetch(API_ROOT + `/replies/${postObjId}`, configObj)
+		    .then(resp => {
+		    	return resp.json()
+		    	// debugger
+		    })
+		    .then(activity => {
+				  // debugger
+					dispatch({
+						type: "SET_NOTIFICATION_ACTIVITY",
+						activity
+					})
+
+					dispatch({
+						type: "SET_TIMELINE_TYPE",
+						timelineType: "notification"
+					})
+		    })
+		    .catch(err => alert(err))	  	
+	  } 
+	  else {
 	  	alert("no handling for this resource type yet")
 	  }				
 	}

@@ -33,7 +33,7 @@ export const setActivities = (activityId) => {
 	}		
 }
 
-export const createReply = (text, comment_id, factIDs, clearReplyForm) => {
+export const createReply = (text, comment_id, factIDs, taggedUserIds, clearReplyForm) => {
 	return (dispatch) => {
 		dispatch({
 			type: "CREATING_REPLY"
@@ -48,7 +48,8 @@ export const createReply = (text, comment_id, factIDs, clearReplyForm) => {
       },
       body: JSON.stringify({
         text: text,
-        factIds: factIDs
+        factIds: factIDs,
+        taggedUserIds: taggedUserIds
       })
     }
     fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)

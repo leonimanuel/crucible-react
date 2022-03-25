@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 
 import SupportingFact from "../agora/SupportingFact.js"
-
+import TaggedUsers from "./TaggedUsers.js"
 
 const Reply = (props) => {
 
@@ -22,7 +22,6 @@ const Reply = (props) => {
 
 		reply.reply_comment_facts = sortedCommentFacts
 	}
-
 	return (
 		<div className="reply-container">
 			<div className="reply-user-handle">{reply.user.handle ? reply.user.handle : "unavailable"}</div> 
@@ -52,8 +51,8 @@ const Reply = (props) => {
 							) 
 						}) : null}
 					</div>						
-
 			}
+			<TaggedUsers tagged_users={reply.tagged_users}/>
 		</div>
 	)
 }

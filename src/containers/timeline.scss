@@ -363,16 +363,22 @@
   }
 }
 
-.tagged-user {
-  // margin: 0 2px;
+.tagged-users-wrapper {
+  margin-top: 10px;
+  
+  .tagged-user {
+    // margin: 0 2px;
 
-  .tagged-user-link {
-    color: blue;
-    font-weight: bold;
+    .tagged-user-link {
+      color: blue;
+      font-weight: bold;
 
-    &:hover { text-decoration: underline}
-  }
+      &:hover { text-decoration: underline}
+    }
+  }  
 }
+
+
 
 .timeline-comment-content-wrapper {
   outline: 2px solid red;

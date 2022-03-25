@@ -10,7 +10,6 @@ const Notification = (props) => {
 	const latest_actor = notification_group.activities[0].actor
 	const additional_actor_count = notification_group.actor_count - 1
 	const notificationObject = notification_group.group_object
-
 	const generateNotificationText = () => {
 		switch (notification_group.action_type) {
 			case "add_position":
@@ -23,7 +22,13 @@ const Notification = (props) => {
 				return (
 					`${latest_actor} ${additional_actor_count ? `and ${additional_actor_count} others` : ""} 
 				replied to your comment: `					
-				)				
+				)		
+
+			case "tag_user_on_reply":
+				return (
+					"HEY HOW YOU DOING BABY"
+				)
+					
 		}
 	}
 
@@ -32,7 +37,7 @@ const Notification = (props) => {
 	}
 
 	return (
-		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group.id)}>
+		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group)}>
 			<Link to={`/posts/${notificationObject.type}/${notificationObject.id}`} >
 				{generateNotificationText()}
 
