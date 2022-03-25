@@ -35,7 +35,7 @@ class Timeline extends Component {
 	}
 
 	componentDidMount() {
-		// this.props.setActivities(0);
+		this.props.setActivities(0);
 		if (this.props.location.pathname.includes("posts") && !this.props.selectedNotificationActivity) {
 			let locationParams = this.props.location.pathname.split("/").filter(i => i)
 			const postObjType = locationParams[1]
@@ -100,7 +100,7 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="created a new position"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineCommentContent comment={resource} position={true} />
+								<TimelineCommentContent comment={resource} position={true} tagged_users={activity.item.tagged_users}/>
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 							{false && resource.facts_comments_reviews[0].review_status == "pending" 

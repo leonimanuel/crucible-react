@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { Link } from "react-router-dom";
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 import parse from "html-react-parser";
 
@@ -49,6 +50,16 @@ class TimelineCommentContent extends Component {
 						</div>
 					) 
 				}) : null}
+				<div className="tagged-users-wrapper">
+					{this.props.tagged_users.length ? <span>tagged: </span> : null}
+					{this.props.tagged_users.map((u, index) => {
+						return (
+							<React.Fragment>
+								<span className="tagged-user"><Link className="tagged-user-link" to={`/profiles/${u.id}`}>{u.handle}</Link>{index == this.props.tagged_users.length-1 ? null : ","} </span>		
+							</React.Fragment>
+						)
+					})}
+				</div>
 			</div>
 		)
 	}
