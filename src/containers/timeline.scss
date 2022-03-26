@@ -2,7 +2,7 @@
   // border: 2px solid purple;
   // outline: 2px solid red;
   margin: 0 20px;
-  flex-grow: 2;
+  // flex-grow: 2;
   display: flex;
   flex-direction: column;
 
@@ -137,7 +137,7 @@
   z-index: 1;
   overflow: scroll;
 
-  min-width: 350px;
+  // min-width: 350px;
 
   #timeline-prompt {
     font-size: 1.5em;
@@ -381,7 +381,7 @@
 
 
 .timeline-comment-content-wrapper {
-  outline: 2px solid red;
+  // outline: 2px solid red;
 
   padding: 10px;
   background-color: lightblue; // this color indicates that it is a regular comment

@@ -51,8 +51,11 @@ main {
   /*flex-basis: 100%;*/
   max-height: 93vh;
   display: flex;
-  /*justify-content: space-around;*/
+  
   margin: 1vh;
+  justify-content: space-around;
+  // justify-content: center;
+
 }
 
 .App-logo {
@@ -97,6 +100,58 @@ textarea {
 #pitch-wrapper {
   z-index: 3;
 }
+
+
+
+
+// MEDIA QUERY STUFF
+@media (min-width: 300px) and (max-width: 750px) {
+  #timeline-wrapper { width: 600px; }
+  main > #side-nav, #articles-container { display: none; }  
+}
+
+@media (min-width: 751px) and (max-width: 850px) {
+  #side-nav {width: 250px; }
+  #timeline-wrapper { width: 450px; }
+  #articles-container {display: none;}
+}
+
+@media (min-width: 851px) and (max-width: 950px) {
+  #side-nav { width: 300px; }
+  #timeline-wrapper { width: 500px; }
+  #articles-container {display: none;}
+}
+
+@media (min-width: 951px) and (max-width: 1050px) {
+  #side-nav { width: 350px; }
+  #timeline-wrapper { width: 550px; }
+  #articles-container {display: none;}
+}
+
+@media (min-width: 1051px) and (max-width: 1200px) {
+  #side-nav { width: 350px; }
+  #timeline-wrapper { width: 650px; }
+  #articles-container {display: none;}
+}
+
+@media (min-width: 1201px) and (max-width: 1300px) {
+  #side-nav { width: 350px; }
+  #timeline-wrapper { width: 500px; }
+  #articles-container { width: 300px; }
+}
+
+@media (min-width: 1301px)  {
+  #side-nav { width: 350px; }
+  #timeline-wrapper { width: 600px; }
+  #articles-container { width: 300px; }
+}
+
+
+
+
+
+
+
 
 
 
