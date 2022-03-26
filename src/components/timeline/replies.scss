@@ -1,7 +1,11 @@
 .replies-container {
+  // display: flex;
+  // flex-direction: column;
+  
   .replies-header {
     font-size: 1.3em;
     margin-top: 10px;
+
   }
 
   .create-first-reply-button {
@@ -16,14 +20,25 @@
 
   }
 
-  .reply-container {
-    // border: 2px solid purple;
+  .replies-viewtoggle, .reply-container {
     border-radius: 10px;
     margin: 5px 0;
     padding: 5px 10px;
     text-align: left;
 
     background-color: #EAEAEA; //light grey
+  }
+
+  .replies-viewtoggle {
+    margin-bottom: 10px;
+    width: 150px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);  
+    color: blue;
+    cursor: pointer;
+  }
+
+  .reply-container {
+    // border: 2px solid purple;
 
     .reply-user-handle {
       font-weight: bold;
