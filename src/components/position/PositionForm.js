@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 import { submitPosition } from "../../actions/commentsActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
@@ -88,7 +89,10 @@ class PositionForm extends Component {
 
           <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>          
           {this.state.text || this.state.facts.length ? <div><TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/></div> : null}   
-        </div>        
+        </div>  
+        
+        {/*<p data-tip='This is a position' id="position-form-tooltip">?</p>
+        <ReactTooltip />*/}              
       </div>
     );
   };

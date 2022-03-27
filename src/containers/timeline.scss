@@ -1,3 +1,5 @@
+$base-color-dark-blue: #0f4c75;
+
 #timeline-wrapper {
   // border: 2px solid purple;
   // outline: 2px solid red;
@@ -61,6 +63,7 @@
   #position-form-wrapper {
     // border: 2px solid green;
     display: flex;
+    position: relative;
 
     #position-form-container {
       border: 1px solid grey;
@@ -114,6 +117,19 @@
         cursor: pointer;
       }
     } 
+
+    #position-form-tooltip {
+      position: absolute;
+      background-color: $base-color-dark-blue;
+      color: white;
+      font-weight: bold;
+      // border: 1px solid red;
+      border-radius: 20px;
+      padding: 1px 10px;
+      bottom: 0px;
+      right: 20px;
+      font-size: 1.2em;
+    }
 
     .timeline-item-spacer {
       // border: 2px solid orange;
