@@ -80,7 +80,7 @@ class PositionForm extends Component {
             <div 
               id="position-input-div" 
               contentEditable="true"
-              dataPlaceholder="Start a Position"
+              dataPlaceholder="Post a Position"
               onKeyUp={this.handleChange}   
             >
             </div>

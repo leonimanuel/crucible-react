@@ -1,6 +1,6 @@
 import { API_ROOT } from "../constants"
 
-export const setActivities = (activityId) => {
+export const setActivities = (activityId, handleLoad) => {
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_ACTIVITIES"
@@ -28,6 +28,8 @@ export const setActivities = (activityId) => {
 					type: "SET_REPLIES",
 					replies
 				})
+
+				handleLoad()
 			})
 			.catch(err => alert(err))	
 	}		

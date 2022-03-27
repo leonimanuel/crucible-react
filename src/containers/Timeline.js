@@ -30,12 +30,16 @@ import NetworkModal from "../components/network/NetworkModal.js"
 class Timeline extends Component {
 	state = {
 		location: this.props.location.pathname,
+		loadingActivities: false
 		// pagination: 5,
 		// page_offset: 0 
 	}
 
 	componentDidMount() {
-		this.props.setActivities(0);
+		this.setState({loadingActivities: true}, () => {
+			this.props.setActivities(0, this.handleLoad);
+		})
+		
 		if (this.props.location.pathname.includes("posts") && !this.props.selectedNotificationActivity) {
 			let locationParams = this.props.location.pathname.split("/").filter(i => i)
 			const postObjType = locationParams[1]
@@ -49,6 +53,10 @@ class Timeline extends Component {
 		if (this.props.location.pathname !== this.state.location) { // no idea what the point of this is
 			this.setState({location: this.props.location.pathname})
 		}
+	}
+
+	handleLoad = () => {
+		this.setState({loadingActivities: false})
 	}
 
 	handleArticleClick = (e, resource) => {
@@ -171,6 +179,16 @@ class Timeline extends Component {
 						{this.props.newPositions.map((position, index) => this.showTimelineItem(position, index))}
 					</div>
 
+					{
+						this.state.loadingActivities ? 
+						<React.Fragment>
+							<div className="spinner">
+							  <div className="rect1"></div><div className="rect2"></div><div className="rect3"></div><div className="rect4"></div><div className="rect5"></div>
+							</div> 									
+						</React.Fragment>
+						: null 
+					}
+
 					<Route 
 						path="/profiles/:id" 
 						render={(matchProps) => {
@@ -207,7 +225,7 @@ class Timeline extends Component {
 										render={(matchProps) => {
 											if (this.props.timeline_activities.length) {
 												return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
-											} else {
+											} else if (!this.state.loadingActivities) {
 												return (
 													<div id="timeline-prompt" className="sidenav-onboarding-prompt">
 													  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other Crucible members </span>} position="right center" modal>
