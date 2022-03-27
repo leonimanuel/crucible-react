@@ -129,7 +129,7 @@ class Timeline extends Component {
 	fetchMoreActivities = () => {
 		console.log("fetching more activities");
 		const activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
-		this.props.setActivities(activityId);
+		this.props.setActivities(activityId, this.handleLoad);
 
 	}
 
@@ -178,16 +178,6 @@ class Timeline extends Component {
 					<div id="new-position-container">
 						{this.props.newPositions.map((position, index) => this.showTimelineItem(position, index))}
 					</div>
-
-					{
-						this.state.loadingActivities ? 
-						<React.Fragment>
-							<div className="spinner">
-							  <div className="rect1"></div><div className="rect2"></div><div className="rect3"></div><div className="rect4"></div><div className="rect5"></div>
-							</div> 									
-						</React.Fragment>
-						: null 
-					}
 
 					<Route 
 						path="/profiles/:id" 
@@ -244,6 +234,15 @@ class Timeline extends Component {
 						}}
 					/>				
 				</div>
+				{
+					this.state.loadingActivities ? 
+					<React.Fragment>
+						<div className="spinner">
+						  <div className="rect1"></div><div className="rect2"></div><div className="rect3"></div><div className="rect4"></div><div className="rect5"></div>
+						</div> 									
+					</React.Fragment>
+					: null 
+				}				
 			</div>				
 		)
 	}
