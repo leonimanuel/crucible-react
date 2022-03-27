@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import "./navigation.css"
 
 import Popup from 'reactjs-popup';
+import UserConfigModal from "../control/UserConfigModal.js"
 
 import { logOut } from "../../actions/users.js"
 import { API_ROOT } from "../../constants"
@@ -144,6 +145,11 @@ class NavBar extends Component {
 								<div className="dropdown-content">
 									<Link to="/"><div className="nav-link dropdown-item" onClick={this.handleLogOut}>Logout</div></Link>
 									<Link to={`/profiles/${this.props.user.id}`}><div className="nav-link dropdown-item">View Profile</div></Link>
+			  					<button className="nav-link dropdown-item">
+									  <Popup trigger={<div id="edit-user-header">Edit Profile</div>} position="right center" modal>
+									    { close => <UserConfigModal user={this.props.user} closeModal={() => close()} /> }
+									  </Popup>		
+			  					</button>									
 								</div>
 							</div>
 						: 

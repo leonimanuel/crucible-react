@@ -45,6 +45,20 @@ export default function userReducer(state = {
 				user: action.user
 			}
 		
+		case "UPDATE_USER":
+			let user = state.user
+			user["name"] = action.user.name
+			user["email"] = action.user.email
+			user["handle"] = action.user.handle
+
+			return {
+				...state,
+				userName: action.user.name,
+				userEmail: action.user.email,
+				userEmail: action.user.email,
+				user: user
+			}
+
 		case "LOG_OUT":
 			return {
 				...state,

@@ -8,7 +8,6 @@ import { API_ROOT } from "../../constants"
 class SignUp extends Component {
 	state = {
 		name: "",
-		lastName: "",
 		handle: "",
 		email: "",
 		password: "",
@@ -37,7 +36,6 @@ class SignUp extends Component {
 				},
 				body: JSON.stringify({
 					name: this.state.name,
-					lastName: this.state.lastName,
 					handle: this.state.handle,
 					email: this.state.email,
 					password: this.state.password
@@ -94,11 +92,6 @@ class SignUp extends Component {
 									<div>
 										<label>First Name: </label>
 										<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>						
-									</div>
-									
-									<div>
-										<label>Last Name: </label>
-										<input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>										
 									</div>
 
 									<div>

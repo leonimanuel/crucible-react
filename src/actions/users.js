@@ -77,6 +77,40 @@ export const logIn = () => {
 	}
 }
 
+export const updateUserProfile = (user, closeModal) => {
+  return async (dispatch) => {
+    let configObj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }, body: JSON.stringify({
+        name: user.name,
+        handle: user.handle,
+        email: user.email
+      })
+    }
+
+    try {
+      let res = await fetch(API_ROOT + `/users/${user.id}`, configObj)
+      if (res.status == 200) {
+        dispatch(({
+          type: "UPDATE_USER",
+          user: user
+        }))
+
+        closeModal()
+      } else {
+        alert("can't update profile")
+      }
+    } catch (error) {
+      alert(error + "can't update profile")
+    }
+  }
+
+}
+
 export const logOut = () => {
 	return {
 		type: "LOG_OUT"		
@@ -88,6 +122,8 @@ export const resetQuotas = () => {
     type: "RESET_QUOTAS"
   }
 }
+
+
 
 // export const addTopics = (topics) => {
 // 	return {
