@@ -31,7 +31,6 @@ class TimelineCommentContent extends Component {
 			comment.facts = sortedCommentFacts
 		}
 
-		debugger
 		return (
 			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				

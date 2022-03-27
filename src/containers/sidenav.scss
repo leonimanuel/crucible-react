@@ -19,7 +19,8 @@ $base-color-dark-blue: #0f4c75;
 
 #sidenav-main-pane {
 	/*display: none;*/
-	/*border: 3px solid green;*/
+	border: 1px solid green;
+	// padding-left: 5px;
 	/*width: 20px;*/
 	text-align: left;
 	justify-content: left;
@@ -29,10 +30,14 @@ $base-color-dark-blue: #0f4c75;
 	/*overflow: hidden;*/
 	border-radius: 10px 0px 0px 10px;
 	/*border-right: 2px solid gold;*/
+	overflow: hidden;
+	width: 150px;
 
 }
 
 #console-topic-menu-container, #agora-menu {
+	padding-left: 5px;
+
 	background-color: $base-color-dark-blue;
 	// padding: 20px 5px;
 	max-height: 200px;
@@ -141,6 +146,7 @@ $base-color-dark-blue: #0f4c75;
 }
 
 .section-tab-badge {
+	
 	position: absolute;
 	left: 15px;
 	bottom: -5px;
@@ -154,13 +160,14 @@ $base-color-dark-blue: #0f4c75;
 	/*flex-direction: column;*/
 	/*justify-content: flex-end;*/
 	align-items: baseline;
-	margin-bottom: 10px;
+	// margin-bottom: 10px;
 
 }
 
 .list-title {
 	font-size: 1.3em;
 	margin-right: 5px;
+	text-decoration: underline;
 	/*text-decoration: underline;*/
 }
 
@@ -267,6 +274,7 @@ $base-color-dark-blue: #0f4c75;
 	// color: black;
 	// font-weight: bold;
 	// cursor: pointer;
+	padding-left: 5px;
 	text-align: left;
   white-space: nowrap;
   overflow: hidden;
@@ -277,6 +285,7 @@ $base-color-dark-blue: #0f4c75;
 
 	&.selected-section {
 		background-color: $base-color-dark-blue;
+		font-weight: bold;
 		// text-decoration: underline;
 		// border: 2px solid black;
 		// border-left: none;

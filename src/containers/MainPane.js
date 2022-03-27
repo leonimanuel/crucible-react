@@ -18,7 +18,7 @@ class MainPane extends Component {
 			<div id="sidenav-main-pane">
 				<div id="console" className={`section-tab ${this.props.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}
 				>
-					Facts 
+					Fact Bank 
 				</div>
 				{<TopicMenu display={this.props.section === "console" && this.props.topics.length ? true : false} />}
 				
