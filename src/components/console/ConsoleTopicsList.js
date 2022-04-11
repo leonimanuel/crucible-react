@@ -31,7 +31,7 @@ class ConsoleTopicsList extends Component {
 			<div id="console-topics-list-container">
 				<div className="list-title-wrapper">
 					<div className="list-title">Topics</div>
-					<AddListItemButton id="add-topic-button" buttonAction={this.handleNewTopic} />
+					<AddListItemButton id="add-topic-button" buttonAction={this.handleNewTopic} fill="black" />
 				</div>
 				<div id="console-topics-container">
 					{this.props.topics ? this.props.topics.map(topic => <ConsoleTopic key={topic.id} topic={topic}/>) : null}
