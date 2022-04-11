@@ -27,7 +27,7 @@ class ConsoleFactsList extends Component {
 const mapStateToProps = state => {
 	return {
 		parentTopic: state.topics.parentTopic,
-		facts: state.topics.facts.filter(fact => fact.topic_id === state.topics.parentTopic.id)
+		facts: state.topics.facts.filter(fact => fact.topic_id === state.topics.parentTopic.id).sort((a, b) => new Date(b.collected_at) - new Date(a.collected_at))
 	}
 }
 
