@@ -81,7 +81,7 @@ class ConsoleFact extends Component {
 						<FactDetailsPane 
 							fact={fact}
 							id={`fact-details-${fact.id}`} 
-							factText={this.state.showOriginalFact ? "show rephrase" : "show o.g. fact"} 
+							factText={this.state.showOriginalFact ? "show rephrase" : "show original"} 
 							handleContentToggle={this.toggleFactContent}
 							onCopy={this.copyFact}
 						/> 

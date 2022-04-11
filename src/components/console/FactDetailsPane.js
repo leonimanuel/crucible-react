@@ -18,6 +18,9 @@ class FactDetailsPane extends Component {
 					<button className="fact-detail-button" onClick={this.props.onCopy}>copy</button>
 					<button className="fact-detail-button" onClick={() => this.openFactSource(fact.url)}>source</button>
 				</div>
+
+				{ /*
+
 				<div className="fact-score">
 					<div className="fact-score-title">Logic:</div>
 					<ScoreBar greenScore={fact.logic_upvotes} redScore={fact.logic_downvotes} type="individual" />
@@ -32,6 +35,10 @@ class FactDetailsPane extends Component {
 					<div className="fact-score-title">Credibility:</div>
 					<ScoreBar greenScore={fact.credibility_upvotes} redScore={fact.credibility_downvotes} type="individual" />
 				</div>
+				
+				*/ }
+
+
 			</div>
 		)
 	}
