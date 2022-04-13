@@ -38,7 +38,6 @@ export const setNotifications = (userId) => {
 }
 
 export const readNotification = (objectId, objectType, notificationGroup, userId) => {
-	debugger
 	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
@@ -123,7 +122,6 @@ export const readNotification = (objectId, objectType, notificationGroup, userId
 }
 
 export const showPost = (postObjType, postObjId) => {
-	debugger
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"

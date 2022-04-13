@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 class TaggedUsers extends Component {
 	render() {
-		debugger
 		return (
 			<div className="tagged-users-wrapper">
 				{this.props.tagged_users.length ? <span>tagged: </span> : null}
