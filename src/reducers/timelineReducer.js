@@ -25,7 +25,7 @@ export default function timelineReducer(state = {
 		case "SET_REPLIES":
 			return {
 				...state,
-				replies: action.replies
+				replies: [...state.replies, ...action.replies]
 			}		
 
 		case "ADD_NEW_REPLY":

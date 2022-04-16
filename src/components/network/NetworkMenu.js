@@ -13,7 +13,7 @@ import NetworkModal from "./NetworkModal.js"
 
 const NetworkMenu = (props) => {
 	const [stateMounted, setStateMounted] = useState(false);
-	const [stateNetworkOption, setStateNetworkOption] = useState("followers")
+	const [stateNetworkOption, setStateNetworkOption] = useState("following")
 
 	useEffect(() => {
 		// if (!props.networkContacts && !stateMounted) { // if there are no notifications already stored

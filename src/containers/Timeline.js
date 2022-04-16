@@ -201,7 +201,7 @@ class Timeline extends Component {
 								  dataLength={this.props.timeline_activities.length}
 								  next={this.fetchMoreActivities}
 								  hasMore={this.props.hasMore}
-								  loader={<h4>Loading...</h4>}
+								  loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null}
 								  endMessage={
 								    <p style={{ textAlign: 'center' }}>
 								      <b>Yay! You have seen it all</b>

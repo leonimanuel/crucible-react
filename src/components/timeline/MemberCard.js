@@ -12,7 +12,7 @@ const MemberCard = (props) => {
 		<div id="member-card-container">	 
 			<div id="member-card-handle-wrapper">
 				<div id="member-card-handle">{props.member.handle}</div> 
-				<FollowButton member={props.member} followStatus={props.membersFollowStatuses.find(i => i.memberId == props.member.id ).isFollowing } />					
+				{props.member.id == props.currentUserId ? null : <FollowButton member={props.member} followStatus={props.membersFollowStatuses.find(i => i.memberId == props.member.id ).isFollowing } />}
 			</div>
 			
 			<div id="member-card-details-wrapper">
@@ -82,7 +82,8 @@ const MemberCard = (props) => {
 
 const mapStateToProps = state => {
   return {
-    membersFollowStatuses: state.network.membersFollowStatuses
+    membersFollowStatuses: state.network.membersFollowStatuses,
+    currentUserId: state.users.user.id
   }
 }
 
