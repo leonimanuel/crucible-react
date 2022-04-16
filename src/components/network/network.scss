@@ -74,13 +74,18 @@
 
 #network-modal-container {
 	// border: 2px solid green;
-	outline: 2px solid red;
-	margin: 10px 20px;
+	background-color: white;
+	// outline: 2px solid red;
+	// margin: 10px 20px;
+	padding: 10px;
+	border-radius: 10px;
+	width: 100%;
 
 	.contact-result-container {
 		display: flex;
 		justify-content: space-between;
-
+		align-items: center;
+		padding: 2px;
 	}
 
 
@@ -256,6 +261,7 @@
 
 
 .contact-result-link {
-	font-weight: bold;
+	// font-weight: bold;
+	font-size: 1.2em;
 	cursor: pointer;
 }

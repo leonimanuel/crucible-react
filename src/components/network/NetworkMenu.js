@@ -54,7 +54,7 @@ const NetworkMenu = (props) => {
 			</div>
 			
 			<div id={`search-crucible-network-button`}>	 
-			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="right center" modal>
+			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="center" modal>
 			    { close => <NetworkModal handleContactSelect={() => close()} /> }
 			  </Popup>								
 			</div>
