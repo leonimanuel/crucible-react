@@ -55,7 +55,6 @@
 	/*margin: 0 10px;*/
 	color: white;
   text-decoration: none;
-  /*border: 1px solid purple;*/
   padding: 0 3px;
 
 }
@@ -64,7 +63,8 @@
   background-color: #0f4c75;
   cursor: pointer;
   color: white;
-  border-radius: 0px 0px 5px 5px;
+  /*border-radius: 0px 0px 5px 5px;*/
+  border: 1px solid white;
 }
 
 

@@ -145,11 +145,9 @@ class NavBar extends Component {
 								<div className="dropdown-content">
 									<Link to="/"><div className="nav-link dropdown-item" onClick={this.handleLogOut}>Logout</div></Link>
 									<Link to={`/profiles/${this.props.user.id}`}><div className="nav-link dropdown-item">View Profile</div></Link>
-			  					<button className="nav-link dropdown-item">
-									  <Popup trigger={<div id="edit-user-header">Edit Profile</div>} position="right center" modal>
-									    { close => <UserConfigModal user={this.props.user} closeModal={() => close()} /> }
-									  </Popup>		
-			  					</button>									
+								  <Popup trigger={<div className="nav-link dropdown-item">Edit Profile</div>} position="right center" modal>
+								    { close => <UserConfigModal user={this.props.user} closeModal={() => close()} /> }
+								  </Popup>												  
 								</div>
 							</div>
 						: 
