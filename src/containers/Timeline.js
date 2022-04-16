@@ -136,14 +136,18 @@ class Timeline extends Component {
 
 	handleNotificationLoad = (objectId, notificationType, notificationGroupId, userId) => {
 		if (!this.state.notificationReadOnLoad) {
-			this.setState({notificationReadOnLoad: true}, () => {
-				this.props.readNotification(objectId, notificationType, notificationGroupId, userId)  	
-			})
+			this.setState({notificationReadOnLoad: true}, () => { this.props.readNotification(objectId, notificationType, notificationGroupId, userId) })
 		}
 	}
 
+	handleBacktoTimeline = (previousTimelineType) => {
+		if (previousTimelineType == "network") { this.props.clearSelectedContact()}
+		else if (previousTimelineType == "post") {this.props.clearNotificationActivity()} 
+
+		this.setState({loadingActivities: true}, () => { this.props.setActivities(0, this.handleLoad) })
+	}
+
 	refresh = () => {
-		debugger
 		alert("refreshing")
 	}
 
@@ -156,8 +160,8 @@ class Timeline extends Component {
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">
-						<Route path="/profiles/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearSelectedContact}>{"⬅ back to timeline"}</div></Link> } />						
-						{<Route path="/posts/:notificationType/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link>  } />						}
+						<Route path="/profiles/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.handleBacktoTimeline("network")}>{"⬅ back to timeline"}</div></Link> } />						
+						{<Route path="/posts/:notificationType/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.handleBacktoTimeline("post")}>{"⬅ back to timeline"}</div></Link>  } />						}
 
 
 						{/*this.renderDivider()*/}
