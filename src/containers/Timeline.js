@@ -190,6 +190,9 @@ class Timeline extends Component {
 					<Route 
 						path="/posts/:notificationType/:id"
 						render={(matchProps) => {
+							// { notificationType, id} = matchProps.match.params
+							// debugger
+							// this.props.readNotification(id, notificationType, notificationGroup, props.userId)
 							return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
 						}}
 					/>

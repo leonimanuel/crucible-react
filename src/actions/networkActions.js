@@ -48,11 +48,18 @@ export const showSelectedContact = (contactId) => {
 	  fetch(API_ROOT + `/contacts/${contactId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
+	  	debugger
 	  	dispatch({
 	  		type: "SET_SELECTED_CONTACT",
 	  		contact: data.contact,
 	  		activities: data.feed_items  
 	  	})
+
+			const replies = data.feed_items.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
+	  	dispatch(({
+	  		type: "SET_REPLIES",
+	  		replies: replies
+	  	}))
 
 	  	dispatch({
 	  		type: "SET_TIMELINE_TYPE",
