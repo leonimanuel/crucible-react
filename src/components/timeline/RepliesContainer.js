@@ -23,7 +23,7 @@ const RepliesContainer = (props) => {
 						{
 							(showAllReplies || visibleReplies.length == props.replies.length) ? null : 
 							<div className="replies-viewtoggle" onClick={() => setShowAllReplies(true)}>
-								show all {props.replies.length} replies
+								show more replies
 							</div>
 						}
 

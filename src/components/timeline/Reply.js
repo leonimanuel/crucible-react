@@ -27,7 +27,6 @@ const Reply = (props) => {
 		reply.reply_comment_facts = sortedCommentFacts
 	}
 	
-	debugger
 	return (
 		<div className="reply-container">
 			<div className="reply-header">
