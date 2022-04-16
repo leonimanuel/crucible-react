@@ -32,7 +32,7 @@ class ReplyForm extends Component {
   }
 
   clearReplyForm = () => {
-    this.setState({ text: '', facts: [] });
+    this.setState({ text: '', facts: [], tags: [] });
     let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
     messageInput.innerHTML = ""
   }

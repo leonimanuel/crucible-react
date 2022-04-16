@@ -57,7 +57,6 @@ export const createReply = (text, comment_id, factIDs, taggedUserIds, clearReply
     fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
       .then(resp => resp.json())
       .then((reply) => {
-				debugger
 				dispatch({
 					type: "ADD_NEW_REPLY",
 					reply

@@ -106,12 +106,12 @@ textarea {
 
 
 // MEDIA QUERY STUFF
-@media (min-width: 300px) and (max-width: 750px) {
-  #timeline-wrapper { width: 600px; }
+@media (min-width: 300px) and (max-width: 900px) {
+  #timeline-wrapper { width: 700px; }
   main > #side-nav, #articles-container { display: none; }  
 }
 
-@media (min-width: 751px) and (max-width: 850px) {
+@media (min-width: 901px) and (max-width: 850px) {
   #side-nav {width: 300px; }
   #timeline-wrapper { width: 400px; }
   #articles-container {display: none;}
