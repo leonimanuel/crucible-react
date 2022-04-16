@@ -185,7 +185,6 @@ class Timeline extends Component {
 							for (const [key, value] of urlParams) {
 							    if (key == "notificationGroupId") {
 							    	const notificationGroupId = value
-							  		debugger
 							  		this.handleNotificationLoad(objectId, notificationType, notificationGroupId, this.props.userId)
 							  		
 							    }

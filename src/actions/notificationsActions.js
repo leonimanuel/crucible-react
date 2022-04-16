@@ -39,7 +39,6 @@ export const setNotifications = (userId) => {
 }
 
 export const readNotification = (objectId, objectType, notificationGroupId, userId) => {
-	debugger
 	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
@@ -149,6 +148,12 @@ export const showPost = (postObjType, postObjId) => {
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity
 					})
+
+					const replies = activity.item.object.replies.flat().filter(r => !!r)
+			  	dispatch(({
+			  		type: "SET_REPLIES",
+			  		replies: replies
+			  	}))					
 
 					dispatch({
 						type: "SET_TIMELINE_TYPE",
