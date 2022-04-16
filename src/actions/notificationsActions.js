@@ -38,7 +38,8 @@ export const setNotifications = (userId) => {
 	}		
 }
 
-export const readNotification = (objectId, objectType, notificationGroup, userId) => {
+export const readNotification = (objectId, objectType, notificationGroupId, userId) => {
+	debugger
 	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
@@ -58,7 +59,7 @@ export const readNotification = (objectId, objectType, notificationGroup, userId
 		    	// debugger
 		    })
 		    .then(activity => {
-				  let notifId = notificationGroup.id
+				  let notifId = notificationGroupId
 				  // debugger
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
@@ -87,7 +88,7 @@ export const readNotification = (objectId, objectType, notificationGroup, userId
   			let res = await fetch(API_ROOT + `/replies/${objectId}`, configObj)
   			if (res.status == 200) {
 					let activity = await res.json()
-					let notifId = notificationGroup.id
+					let notifId = notificationGroupId
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity

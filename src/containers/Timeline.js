@@ -17,7 +17,7 @@ import RepliesContainer from "../components/timeline/RepliesContainer.js"
 import MemberCard from "../components/timeline/MemberCard.js"
 
 import { setActivities } from "../actions/timelineActions.js"
-import { clearNotificationActivity, showPost } from "../actions/notificationsActions.js"
+import { clearNotificationActivity, showPost, readNotification } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 
 import Popup from 'reactjs-popup';
@@ -190,9 +190,15 @@ class Timeline extends Component {
 					<Route 
 						path="/posts/:notificationType/:id"
 						render={(matchProps) => {
-							// { notificationType, id} = matchProps.match.params
-							// debugger
-							// this.props.readNotification(id, notificationType, notificationGroup, props.userId)
+							const objectId = matchProps.match.params.id
+							const notificationType = matchProps.match.params.notificationType
+							const urlParams = new URLSearchParams(matchProps.location.search);
+							for (const [key, value] of urlParams) {
+							    if (key == "notificationGroupId") {
+							    	const notificationGroupId = value
+							  		this.props.readNotification(objectId, notificationType, notificationGroupId, this.props.userId)  	
+							    }
+							}							
 							return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
 						}}
 					/>
@@ -268,13 +274,14 @@ const mapStateToProps = state => {
 		selectedContact: state.network.selectedContact,
 		contactFeed: state.network.contactFeed,
 		timelineType: state.timeline.timelineType,
+		userId: state.users.userId,
 		hasMore: state.timeline.hasMore
 	}
 }
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, clearSelectedContact, showSelectedContact })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact })(Timeline));
 
 
 

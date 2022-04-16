@@ -23,9 +23,10 @@ export default function timelineReducer(state = {
 			}
 
 		case "SET_REPLIES":
+			const newReplies = action.replies.filter(r => !state.replies.find(sr => sr.id == r.id))
 			return {
 				...state,
-				replies: [...state.replies, ...action.replies]
+				replies: [...state.replies, ...newReplies]
 			}		
 
 		case "ADD_NEW_REPLY":

@@ -29,7 +29,7 @@ const NotificationDetailsMenu = (props) => {
 							notification_group={n} 
 							key={index} 
 							index={index} 
-							handleSelectNotification={(objectId, objectType, notificationGroup, userId) => props.readNotification(objectId, objectType, notificationGroup, props.userId)} 
+							handleSelectNotification={(objectId, objectType, notificationGroup, userId) => props.readNotification(objectId, objectType, notificationGroup.id, props.userId)} 
 						/>
 					)
 				}) 
