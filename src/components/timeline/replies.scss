@@ -40,8 +40,18 @@
   .reply-container {
     // border: 2px solid purple;
 
-    .reply-user-handle {
-      font-weight: bold;
+    .reply-header {
+      display: flex;
+      justify-content: space-between;
+
+      .reply-user-handle {
+        font-weight: bold;
+      }    
+
+      .reply-timestamp {
+        font-style: italic;
+        margin-left: 10px;
+      }
     }
   }
 }
