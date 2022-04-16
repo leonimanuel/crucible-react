@@ -1,5 +1,6 @@
-import { API_ROOT } from "../constants"
+import { API_ROOT, STREAM_CLIENT_ID, STREAM_APP_ID } from "../constants"
 import { connect } from 'getstream';
+
 
 let client = ""
 
@@ -21,7 +22,7 @@ export const setNotifications = (userId) => {
 	  fetch(API_ROOT + `/feed/notifications`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
-				client = connect('37zxvpg2wqvj', data.token, '1155294'); // client is declared at top of file
+				client = connect(STREAM_CLIENT_ID, data.token, STREAM_APP_ID); // client is declared at top of file
 
 				const user_notification_feed = client.feed('notification', `${userId}`);
 

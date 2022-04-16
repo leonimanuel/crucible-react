@@ -11,7 +11,6 @@ const Notification = (props) => {
 	const additional_actor_count = notification_group.actor_count - 1
 	const notificationObject = notification_group.group_object
 	const generateNotificationText = () => {
-		debugger
 		switch (notification_group.action_type) {
 			case "add_position":
 				return (
