@@ -30,7 +30,8 @@ import NetworkModal from "../components/network/NetworkModal.js"
 class Timeline extends Component {
 	state = {
 		location: this.props.location.pathname,
-		loadingActivities: false
+		loadingActivities: false,
+		notificationReadOnLoad: false
 		// pagination: 5,
 		// page_offset: 0 
 	}
@@ -133,6 +134,14 @@ class Timeline extends Component {
 
 	}
 
+	handleNotificationLoad = (objectId, notificationType, notificationGroupId, userId) => {
+		if (!this.state.notificationReadOnLoad) {
+			this.setState({notificationReadOnLoad: true}, () => {
+				this.props.readNotification(objectId, notificationType, notificationGroupId, userId)  	
+			})
+		}
+	}
+
 	refresh = () => {
 		debugger
 		alert("refreshing")
@@ -196,7 +205,9 @@ class Timeline extends Component {
 							for (const [key, value] of urlParams) {
 							    if (key == "notificationGroupId") {
 							    	const notificationGroupId = value
-							  		this.props.readNotification(objectId, notificationType, notificationGroupId, this.props.userId)  	
+							  		debugger
+							  		this.handleNotificationLoad(objectId, notificationType, notificationGroupId, this.props.userId)
+							  		
 							    }
 							}							
 							return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
@@ -275,7 +286,8 @@ const mapStateToProps = state => {
 		contactFeed: state.network.contactFeed,
 		timelineType: state.timeline.timelineType,
 		userId: state.users.userId,
-		hasMore: state.timeline.hasMore
+		hasMore: state.timeline.hasMore,
+		notification_groups: state.notifications.notification_groups
 	}
 }
 
