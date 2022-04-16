@@ -31,6 +31,7 @@ $base-color-dark-blue: #0f4c75;
 	border-radius: 10px 0px 0px 10px;
 	/*border-right: 2px solid gold;*/
 	overflow: hidden;
+	min-width: 100px;
 	width: 150px;
 
 }
@@ -52,6 +53,7 @@ $base-color-dark-blue: #0f4c75;
 	/*display: none;*/
 	/*border: 2px solid blue;*/
 	/*border-right: 3px solid #30475E;*/
+	min-width: 200px;
 	width: 100%;
 	/*width: 150px;*/
 	/*background-color: #708090;*/
