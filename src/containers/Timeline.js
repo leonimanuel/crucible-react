@@ -147,26 +147,6 @@ class Timeline extends Component {
 		alert("refreshing")
 	}
 
-	// renderDivider = () => {
-	// 	switch (this.props.timelineType) {
-	// 		case "notification": return <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearNotificationActivity}>{"⬅ back to timeline"}</div></Link> 
-	// 		case "profiles": return <Link to="/"><div id="back-to-timeline-button" onClick={() => this.props.clearSelectedContact}>{"⬅ back to timeline"}</div></Link> 
-
-	// 		default: return
-	// 	}
-	// }
-
-	// renderTimelineContent = () => {
-		
-	// 	switch (this.props.timelineType) {
-	// 		case "feed": return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
-	// 		case "notification": return this.showTimelineItem(this.props.selectedNotificationActivity, 0);
-	// 		case "member": return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index));
-
-	// 		default: return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index));
-	// 	}
-	// }
-
 	render() {
 		return (
 			<div id="timeline-wrapper">
@@ -267,14 +247,6 @@ class Timeline extends Component {
 		)
 	}
 }
-
-										  // <Popup trigger={<span id="timeline-prompt-content">follow other Crucible members</span> to view their activity here!} position="right center" modal>
-										  //   { close => <NetworkModal handleContactSelect={() => close()}/> }
-										  // </Popup>		
-
-
-				
-
 
 const mapStateToProps = state => {
 	return {
