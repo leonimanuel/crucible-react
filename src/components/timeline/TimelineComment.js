@@ -20,7 +20,7 @@ class TimelineComment extends Component {
 
 	generateContext = () => {
 		const { comment } = this.props
-		const context = comment.node_text.replace(comment.selection, `<span class="timeline-comment-highlight">${comment.selection}</span>`)
+		const context = comment.node_text.replace(comment.selection, `...<span class="timeline-comment-highlight">${comment.selection}</span>...`)
 		return context
 	}
 
@@ -43,7 +43,7 @@ class TimelineComment extends Component {
 			 	className={`timeline-comment timeline-item`} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context-wrapper">
-					<div className="timeline-comment-context">...{parse(this.generateContext())}...</div>
+					{comment.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext())}...</div> : null}
 					{/*<div className="context-lip"></div>*/}
 				</div>
 				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>

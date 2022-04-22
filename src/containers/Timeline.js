@@ -62,7 +62,7 @@ class Timeline extends Component {
 
 	handleArticleClick = (e, resource) => {
 		e.preventDefault()
-		window.open(resource.article_url,'_blank')
+		window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
 	}
 
 	showTimelineItem = (activity, index) => {
@@ -118,6 +118,22 @@ class Timeline extends Component {
 							
 						</div>
 					</div>			
+				) 
+
+			case "Article_share":
+				return (
+					<div className="timeline-item-container">
+						<div className="timeline-item-subcontainer">
+							<TimelineItemHeader time={activity.time} actor={activity.actor} type="shared an article"/>
+							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
+								<div className="timeline-item-article-title">
+									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
+								</div> 							
+								<TimelineComment comment={resource} />
+								<RepliesContainer comment={resource} index={index}/>						
+							</div>
+						</div>
+					</div>					
 				) 
 
 			default:

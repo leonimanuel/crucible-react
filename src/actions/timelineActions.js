@@ -18,7 +18,6 @@ export const setActivities = (activityId, handleLoad) => {
 		fetch(API_ROOT + `/timeline/${activityId}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {
-				// debugger
 				const replies = activities.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
 				dispatch({
 					type: "SET_ACTIVITIES",
