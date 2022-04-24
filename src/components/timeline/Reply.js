@@ -54,26 +54,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { addFactFromComment })(Reply);
-
-
-					// <div className="timeline-comment-content-wrapper">
-					// 	<div className="timeline-comment-content">{reply.reply_comment.content}</div>
-						
-					// 	{reply.reply_comment_facts ? reply.reply_comment_facts.map(fact => {
-					// 		return (
-					// 			<div className="comment-fact-wrapper">
-					// 				{currentUserId !== reply.user.id && !props.userFacts.find(f => f.id === fact.id)
-					// 					? 
-					// 						<button 
-					// 							className="add-comment-fact-button" 
-					// 							onClick={() => handleAddFact(fact)}
-					// 						>+</button>
-					// 					: 
-					// 						null
-					// 				}
-
-					// 				<SupportingFact fact={fact}/>
-					// 			</div>
-					// 		) 
-					// 	}) : null}
-					// </div>						

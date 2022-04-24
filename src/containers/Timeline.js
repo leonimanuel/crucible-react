@@ -68,7 +68,6 @@ class Timeline extends Component {
 	showTimelineItem = (activity, index) => {
 		const resource = activity.item.object
 		let review_resource = {}
-		debugger
 		switch (activity.item.type) {
 			case "Fact":
 				return (

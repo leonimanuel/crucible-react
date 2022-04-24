@@ -1,0 +1,71 @@
+$base-color-light-grey: #EAEAEA;
+$base-color-dark-blue: #0f4c75;
+
+#landing-page {
+	background-color: $base-color-dark-blue;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+
+	#landing-timeline-item {
+		width: 50%;
+		// background-color: green;
+	}
+
+	.timeline-item-subcontainer {
+		// background-color: red;
+
+		.timeline-item-header {
+			color: white;
+
+			.item-header-username {
+				color: white;
+			}
+		}
+
+		.timeline-item-content-container {
+			// background-color: transparent;
+		}
+	}
+
+	#new-landing-buttons-container {
+		// outline: 2px solid white;
+		height: 20%;
+		// margin-top: 40px;
+		display: flex;
+		justify-content: center;
+		/*border: 2px solid white;*/
+		// opacity: 0;
+		transition: .3s;
+
+		// margin-bottom: 20px;
+	}
+
+
+	.landing-button {
+		background-color: white;
+		// color: #0f4c75;
+		/*color: black;*/
+
+		font-size: 1.2em;
+		font-weight: bold;
+		padding: 5px;
+		margin: 0 20px;
+		cursor: pointer;	
+
+	/*  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+	              0 2px 2px rgba(0,0,0,0.12), 
+	              0 4px 4px rgba(0,0,0,0.12), 
+	              0 8px 8px rgba(0,0,0,0.12),
+	              0 16px 16px rgba(0,0,0,0.12);  */
+		/*border: 4px solid gold;*/
+		border: none;
+		border-radius: 5px;
+	}
+
+	.landing-button:hover {
+		background-color: gold;
+	}
+}
+

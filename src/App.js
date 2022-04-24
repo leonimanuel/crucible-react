@@ -10,7 +10,7 @@ import { getArticleRecommendations } from "./actions/briefingsActions.js"
 import { API_ROOT } from "./constants"
 
 
-import LandingPage from "./components/home/LandingPage.js"
+import NewLandingPage from "./components/home/NewLandingPage.js"
 import SideNav from "./containers/SideNav.js"
 import Home from "./containers/Home.js"
 import NavBar from "./components/navigation/NavBar.js"
@@ -202,7 +202,7 @@ class App extends Component {
                 </div>
               : 
                 <React.Fragment>
-                  <Route exact path="/" component={LandingPage} userId={this.props.userId}/>
+                  <Route exact path="/" component={NewLandingPage} userId={this.props.userId}/>
                   <Route path="/groups">{this.props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
                 </React.Fragment> 
             }            
