@@ -60,7 +60,7 @@ class Timeline extends Component {
 		this.setState({loadingActivities: false})
 	}
 
-	handleArticleClick = (e, resource) => {
+	handleArticleClick = (e, resource, actor) => {
 		e.preventDefault()
 		window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
 	}
@@ -68,6 +68,7 @@ class Timeline extends Component {
 	showTimelineItem = (activity, index) => {
 		const resource = activity.item.object
 		let review_resource = {}
+		debugger
 		switch (activity.item.type) {
 			case "Fact":
 				return (
@@ -208,7 +209,8 @@ class Timeline extends Component {
 							  		this.handleNotificationLoad(objectId, notificationType, notificationGroupId, this.props.userId)
 							  		
 							    }
-							}							
+							}		
+
 							return !!this.props.selectedNotificationActivity ? this.showTimelineItem(this.props.selectedNotificationActivity, 0) : "loading posts"
 						}}
 					/>

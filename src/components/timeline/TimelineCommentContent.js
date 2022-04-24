@@ -22,6 +22,10 @@ class TimelineCommentContent extends Component {
 	render() {
 		const { comment } = this.props
 		let sortedCommentFacts = []
+
+		if (!comment || !comment.fact_order || !comment.facts) {
+			debugger
+		}
 		
 		if (comment.fact_order.length == comment.facts.length) {
 			comment.fact_order.map((factId, index) => {

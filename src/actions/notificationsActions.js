@@ -136,6 +136,7 @@ export const showPost = (postObjType, postObjId) => {
 	      Authorization: localStorage.getItem("token")
 	    }
 	  }
+
 	  if (postObjType == "Comment" || postObjType == "Position") {
 		  fetch(API_ROOT + `/comments/${postObjId}`, configObj)
 		    .then(resp => {
@@ -143,7 +144,7 @@ export const showPost = (postObjType, postObjId) => {
 		    	// debugger
 		    })
 		    .then(activity => {
-				  // debugger
+				  debugger
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity

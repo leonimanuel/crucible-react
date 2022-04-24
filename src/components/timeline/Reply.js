@@ -5,6 +5,7 @@ import { addFactFromComment } from "../../actions/discussionsActions.js"
 
 import SupportingFact from "../agora/SupportingFact.js"
 import TaggedUsers from "./TaggedUsers.js"
+import TimelineComment from "./TimelineComment.js"
 
 import Moment from 'react-moment';
 import moment from 'moment-timezone';
@@ -39,29 +40,9 @@ const Reply = (props) => {
 				?
 					<div className="reply-text">{reply.content}</div>
 				:
-					<div className="timeline-comment-content-wrapper">
-						<div className="timeline-comment-content">{reply.reply_comment.content}</div>
-						
-						{reply.reply_comment_facts ? reply.reply_comment_facts.map(fact => {
-							return (
-								<div className="comment-fact-wrapper">
-									{currentUserId !== reply.user.id && !props.userFacts.find(f => f.id === fact.id)
-										? 
-											<button 
-												className="add-comment-fact-button" 
-												onClick={() => handleAddFact(fact)}
-											>+</button>
-										: 
-											null
-									}
-
-									<SupportingFact fact={fact}/>
-								</div>
-							) 
-						}) : null}
-					</div>						
+					<TimelineComment comment={reply.reply_comment} hideTaggedUsers={true}/>
 			}
-			<TaggedUsers tagged_users={reply.tagged_users}/>
+				<TaggedUsers tagged_users={reply.tagged_users}/>
 		</div>
 	)
 }
@@ -73,3 +54,26 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { addFactFromComment })(Reply);
+
+
+					// <div className="timeline-comment-content-wrapper">
+					// 	<div className="timeline-comment-content">{reply.reply_comment.content}</div>
+						
+					// 	{reply.reply_comment_facts ? reply.reply_comment_facts.map(fact => {
+					// 		return (
+					// 			<div className="comment-fact-wrapper">
+					// 				{currentUserId !== reply.user.id && !props.userFacts.find(f => f.id === fact.id)
+					// 					? 
+					// 						<button 
+					// 							className="add-comment-fact-button" 
+					// 							onClick={() => handleAddFact(fact)}
+					// 						>+</button>
+					// 					: 
+					// 						null
+					// 				}
+
+					// 				<SupportingFact fact={fact}/>
+					// 			</div>
+					// 		) 
+					// 	}) : null}
+					// </div>						
