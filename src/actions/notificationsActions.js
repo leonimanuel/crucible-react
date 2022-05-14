@@ -19,7 +19,7 @@ export const setNotifications = (userId) => {
 	    }
 	  }
 
-	  fetch(API_ROOT + `/feed/notifications`, configObj)
+	  fetch(API_ROOT + `/notifications`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
 				client = connect(STREAM_CLIENT_ID, data.token, STREAM_APP_ID); // client is declared at top of file
@@ -27,7 +27,8 @@ export const setNotifications = (userId) => {
 				const user_notification_feed = client.feed('notification', `${userId}`);
 
 				const subscription = user_notification_feed.subscribe(function (data) {
-					alert("new notification! please reload to see for now")						
+					console.log("new notification! please reload to see for now")
+					// debugger
 				})				
 
 				dispatch({
