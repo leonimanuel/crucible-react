@@ -294,6 +294,24 @@ $base-color-dark-blue: #0f4c75;
         }
       }
 
+      .add-comment-fact-button {
+        z-index: 5;
+        /*float: right;*/
+        background-color: steelblue;
+        color: white;
+        box-shadow: 0;
+        border: 1px solid white;
+        border-radius: 5px;
+        font-size: 1.3em;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        right: -10px;
+        top: -20px;
+
+        /*top: 10px;*/
+      }
+
       .original-vs-rephrase-indicator {
         // position: absolute;
         // top: -20px;

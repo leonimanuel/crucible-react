@@ -15,6 +15,11 @@
 		// white-space: nowrap;
 		// overflow: hidden;
 		text-overflow: ellipsis;
+		cursor: pointer;
+
+		.notification-description {
+			color: black;
+		}
 	
 		&.read {
 			background-color: lightgrey;
@@ -31,6 +36,10 @@
 		   -webkit-line-clamp: 2; /* number of lines to show */
 		           line-clamp: 2; 
 		   -webkit-box-orient: vertical;
+
+		   background-color: white;
+		   border-radius: 5px;
+		   padding: 2px;
 		}
 	}
 }
