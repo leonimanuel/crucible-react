@@ -18,6 +18,7 @@ class NewLandingPage extends Component {
 		const resource = activity.item.object 	
 		return (
 			<div id="landing-page">
+				{/*
 				<div className="timeline-item-container" id="landing-timeline-item">
 					<div className="timeline-item-subcontainer">
 						<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
@@ -30,6 +31,7 @@ class NewLandingPage extends Component {
 						</div>
 					</div>
 				</div>	
+				*/}
 
 				<div id="new-landing-buttons-container">
 					<Link to="/login"><button className="landing-button" id="landing-login-button">log in</button></Link>

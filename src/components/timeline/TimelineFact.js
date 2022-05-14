@@ -27,8 +27,12 @@ class TimelineFact extends Component {
 
 	generateContext = () => {
 		const { fact } = this.props
-		const context = fact.node_text.replace(fact.content, `<span class="timeline-fact-highlight">${fact.content}</span>`)
-		return context
+		if (fact.node_text) {
+			const context = fact.node_text.replace(fact.content, `<span class="timeline-fact-highlight">${fact.content}</span>`)
+			return context
+		}
+
+		return fact.content
 	}
 
 	render() {
@@ -43,6 +47,8 @@ class TimelineFact extends Component {
 		// } else {
 		// 		border = "3px solid red" 		
 		// }
+		// let ellipsis = fact.node_text ? "..." : null
+		let ellipsis = null
 		return (
 			<div className="timeline-fact-wrapper">
 				{!this.props.userFacts.find(f => f.id === fact.id)
@@ -57,6 +63,7 @@ class TimelineFact extends Component {
 
 				<div className="timeline-fact-options-wrapper">
 					<div className="show-context-indicator timeline-fact-option" onClick={this.toggleFactContext}> {this.state.showContext ? "hide" : "show"} context</div>	
+					<div className="show-context-indicator timeline-fact-option" onClick={() => window.open(fact.url,'_blank')}> source</div>	
 					{!this.state.showContext && !!fact.rephrase ? <div className="original-vs-rephrase-indicator timeline-fact-option" onClick={this.toggleFactRephrase}> show {this.state.showOriginalFact ? "rephrase" : "original"} </div> : null}					
 				</div>
 
@@ -64,7 +71,7 @@ class TimelineFact extends Component {
 					this.state.showContext 
 					?
 					<div className="timeline-fact-context-wrapper">
-						<div className="timeline-fact-context">...{parse(this.generateContext())}...</div>
+						<div className="timeline-fact-context">{ellipsis}{parse(this.generateContext())}{ellipsis}</div>
 						{/*<div className="context-lip"></div>*/}
 					</div>
 					:
@@ -74,6 +81,8 @@ class TimelineFact extends Component {
 						{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 					</div>					
 				}
+				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].split("www.")[1]}</a>
+
 			</div>			
 		)
 	}

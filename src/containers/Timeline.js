@@ -24,6 +24,9 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import NetworkModal from "../components/network/NetworkModal.js"
 
+import Moment from 'react-moment';
+import moment from 'moment-timezone';
+
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 
@@ -76,6 +79,7 @@ class Timeline extends Component {
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="collected a new fact"/>
 							<div className="timeline-item-content-container">							
 								<TimelineFact fact={resource.fact}/>
+								<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{resource.fact.created_at}</Moment>}</div>
 							</div>
 						</div>				
 					</div>
@@ -83,6 +87,7 @@ class Timeline extends Component {
 
 			case "Comment":
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
+				debugger
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
@@ -126,10 +131,10 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="shared an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
-								<div className="timeline-item-article-title">
+								<div className="timeline-item-article-title timeline-article-header">
 									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
 								</div> 							
-								<TimelineComment comment={resource} />
+								{resource.content ? <TimelineComment comment={resource} /> : null}
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>

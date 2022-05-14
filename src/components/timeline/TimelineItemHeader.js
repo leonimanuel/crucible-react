@@ -12,7 +12,7 @@ class TimelineItemHeader extends Component {
 	render() {
 		const { actor } = this.props
 		return (
-			<div className="timeline-item-header">
+			<div className={`timeline-item-header`}>
 				<div><span className="item-header-username"><Link to={`/profiles/${actor.id}`}>{actor.name}</Link> </span>{this.props.type}</div>
 				{<Moment fromNow>{this.props.time}</Moment>}
 			</div>
