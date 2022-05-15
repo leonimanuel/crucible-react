@@ -87,7 +87,6 @@ class Timeline extends Component {
 
 			case "Comment":
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
-				debugger
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">

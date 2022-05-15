@@ -17,7 +17,7 @@ const Notification = (props) => {
 		switch (notification_group.action_type) {
 			case "add_position":
 				notifTypeClassName = "add_position"
-				notifDescription = "created a new position"
+				notifDescription = " created a new position"
 				break
 
 			case "add_comment":
@@ -27,28 +27,26 @@ const Notification = (props) => {
 
 			case "create_reply":
 				notifTypeClassName = "create_reply"
-				notifDescription =  `${additional_actor_count ? `and ${additional_actor_count} others` : ""} replied to your comment: `
+				notifDescription =  ` ${additional_actor_count ? `and ${additional_actor_count} others` : ""} replied to ${props.currentUser.id == notificationObject.author.id ? "your" : `<b>${notificationObject.author.handle}</b>'s`} comment: `
 				break
 
 			case "tag_user_on_reply":
 				notifTypeClassName = "tag_user_on_reply"
-				notifDescription =  "  tagged you on a reply: "
+				notifDescription =  " tagged you on a reply: "
 				break
 
 			case "add_article_share":
-				debugger
 				notifTypeClassName = "add_article_share"
 				notifDescription =  " shared an article: "
 				break
 
-			default: debugger
+			default: 
+				notifTypeClassName = ""
+				notifDescription =  ""
+				break				
 		}
 
 		return <span className={`notification-description ${notifTypeClassName}`}><Link className="contact-result-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>
-	}
-
-	if (!notificationObject) {
-		debugger
 	}
 
 	return (
@@ -64,4 +62,10 @@ const Notification = (props) => {
 	)
 }
 
-export default Notification;
+const mapStateToProps = state => {
+	return {
+		currentUser: state.users.user
+	}
+}
+
+export default connect(mapStateToProps)(Notification);
