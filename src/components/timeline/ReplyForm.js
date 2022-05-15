@@ -8,6 +8,18 @@ import FactDropzone from "./FactDropzone.js"
 import TagsContainer from "../network/TagsContainer.js"
 
 class ReplyForm extends Component {
+  componentDidMount() {
+    let replyForms = document.querySelectorAll('.reply-input-div')
+    replyForms.forEach(replyForm => {
+      replyForm.addEventListener("paste", function(e) {
+          debugger
+          e.preventDefault();
+          var text = e.clipboardData.getData("text/plain");
+          document.execCommand("insertHTML", false, text);
+      });    
+    })
+  }
+
   state = {
     text: '',
     draggedOver: false,    
