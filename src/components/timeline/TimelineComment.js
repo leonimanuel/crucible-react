@@ -43,7 +43,7 @@ class TimelineComment extends Component {
 			 	className={`timeline-comment timeline-item`} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context-wrapper">
-					<div style={{"margin-top": "10px"}}><b>article excerpt:</b></div>
+					{comment.selection ? <div style={{"margin-top": "10px"}}><b>article excerpt:</b></div> : null }
 					{comment.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext())}...</div> : null}
 					{/*<div className="context-lip"></div>*/}
 				</div>

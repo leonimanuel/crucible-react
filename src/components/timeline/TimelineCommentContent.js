@@ -47,9 +47,9 @@ class TimelineCommentContent extends Component {
 
 		return (
 			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
-				<div><b>response:</b></div>
+				{comment.content ? <div><b>response:</b></div> : null}
 				<div className="timeline-comment-content">{comment.content}</div>				
-				<div style={{"margin-top": "10px"}}><b>supporting facts: </b></div>
+				{comment.facts.length ? <div style={{"margin-top": "10px"}}><b>supporting facts: </b></div> : null}
 				{comment.facts ? comment.facts.map(fact => {
 					return (
 						<div className="supporting-fact-container">							

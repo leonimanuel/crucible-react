@@ -29,7 +29,7 @@ export const logIn = () => {
 
           let groups = user.groups
           let groupMembers = user.group_members
-          // debugger
+          debugger
           dispatch({
             type: "LOAD_GROUPS",
             groups,

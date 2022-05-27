@@ -81,7 +81,7 @@ class TimelineFact extends Component {
 						{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 					</div>					
 				}
-				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].split("www.")[1]}</a>
+				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].replace("www.", "")}</a>
 
 			</div>			
 		)

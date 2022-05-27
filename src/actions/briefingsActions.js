@@ -26,7 +26,7 @@ export const getArticleRecommendations = () => {
     fetch(API_ROOT + "/interests/article_recommendations", configObj)
       .then(resp => resp.json())
       .then(articles => {
-        // debugger
+        debugger
         dispatch({
         	type: "SET_ARTICLES",
         	articles

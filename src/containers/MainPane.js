@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import "./sidenav.scss"
 import TopicMenu from "../components/console/TopicMenu.js"
 import AgoraMenu from "../components/agora/AgoraMenu.js"
+import Groups from "./Groups.js"
 
 class MainPane extends Component {
 	componentDidMount() {
@@ -37,6 +38,15 @@ class MainPane extends Component {
 					>
 						Network
 				</div>				
+
+				<div 
+					id="groups" 
+					className={`section-tab ${this.props.section === "groups" ? "selected-section" : "unselected-section"}`} 
+					onClick={this.props.tabClick}
+					>
+						Groups
+				</div>		
+				{<Groups display={this.props.section === "groups"} />}			
 
 				{/*this.props.section === "agora" ? <AgoraMenu /> : null*/}
 				

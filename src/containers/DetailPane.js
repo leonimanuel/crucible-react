@@ -6,6 +6,10 @@ import GroupDetailsMenu from "../components/agora/GroupDetailsMenu.js"
 import NotificationDetailsMenu from "../components/notifications/NotificationDetailsMenu.js"
 import ConsoleWindow from "../components/console/ConsoleWindow.js"
 import NetworkMenu from "../components/network/NetworkMenu.js"
+import Groups from "./Groups.js"
+// import GroupsList from "../components/agora/GroupsList.js"
+import AgoraMenu from "../components/agora/AgoraMenu.js"
+
 
 class DetailPane extends Component {
 	render() {
@@ -23,6 +27,7 @@ class DetailPane extends Component {
 				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
 				{this.props.section === "notifications" ? <NotificationDetailsMenu /> : null}
 				{this.props.section === "network" ? <NetworkMenu /> : null}
+				{this.props.section === "groups" ? <AgoraMenu /> : null}
 				{/*this.props.section === "agora" && this.props.selectedGroupId ? <GroupDetailsMenu /> : null*/}
 			</div>
 		)
