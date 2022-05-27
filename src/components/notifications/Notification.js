@@ -14,7 +14,7 @@ const Notification = (props) => {
 		let notifTypeClassName = ""
 		let notifDescription = ""
 
-		switch (notification_group.action_type) {
+		switch (notification_group.action_type ? notification_group.action_type : notification_group.verb) {
 			case "add_position":
 				notifTypeClassName = "add_position"
 				notifDescription = " created a new position"
@@ -40,6 +40,11 @@ const Notification = (props) => {
 				notifDescription =  " shared an article: "
 				break
 
+			case "create_group": 
+				notifTypeClassName = "added_to_group"
+				notifDescription =  " added you to a new group"
+				break			
+
 			default: 
 				notifTypeClassName = ""
 				notifDescription =  ""
@@ -55,7 +60,7 @@ const Notification = (props) => {
 				{generateNotificationText()}
 
 				<span className="notification-target" >
-					{notificationObject.content}		
+					{notification_group.verb == "create_group" ? notificationObject.name : notificationObject.content}		
 				</span> 			
 			</Link>			 
 		</div>

@@ -87,7 +87,7 @@ export const fetchUsers = (value, members, addedUsers) => {
 	}
 }
 
-export const addNewGroup = (groupName, members) => {
+export const addNewGroup = (groupName, members, isPrivate) => {
 	return (dispatch) => {
     let memberIds = members.map(member => member.id)
 
@@ -100,7 +100,8 @@ export const addNewGroup = (groupName, members) => {
       },
 			body: JSON.stringify({
 				groupName: groupName,
-				memberIds: memberIds
+				memberIds: memberIds,
+        private: isPrivate
 			})
     }
     // debugger

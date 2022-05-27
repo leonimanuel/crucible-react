@@ -16,7 +16,8 @@ class newGroupPopup extends Component {
 		groupName: "",
 		memberSearchVal: "",
 		addedMembers: [],
-		groupNameError: ""
+		groupNameError: "",
+		isPrivate: false
 	}
 
 	handleChange = (e) => {
@@ -66,6 +67,11 @@ class newGroupPopup extends Component {
 		})
 	}
 
+	handlePrivacyChange = (e) => {
+		this.setState({isPrivate: !this.state.isPrivate})
+		
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault()
 		debugger
@@ -74,7 +80,7 @@ class newGroupPopup extends Component {
 		}
 
 		else if (this.state.groupName && this.state.addedMembers.length) {
-			this.props.addNewGroup(this.state.groupName, this.state.addedMembers)
+			this.props.addNewGroup(this.state.groupName, this.state.addedMembers, this.state.isPrivate)
 			this.props.closePopup()
 		}
 		
@@ -101,6 +107,7 @@ class newGroupPopup extends Component {
 				<form id="new-group-form" onSubmit={this.handleSubmit}>
 					<div className="new-group-input-div"><b>Group Name (optional): </b><input type="text" name="groupName" onChange={this.handleChange}/></div>
 					<div style={{color: "red"}}>{this.state.groupNameError}</div>
+
 					<div className="new-group-input-div"><b>Members: </b><input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
 					
 					<div id="suggestions-box">
@@ -110,6 +117,13 @@ class newGroupPopup extends Component {
 					<div id="added-member-box">
 						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 					</div>
+
+		      <div onChange={this.handlePrivacyChange}>
+		        <input type="radio" value="public" name="privacy" checked={this.state.isPrivate === false}/> Public
+		        <input type="radio" value="private" name="privacy" checked={this.state.isPrivate === true}/> Private
+		      </div>
+
+
 					<input type="submit" value="Create Group" {...opts}
 					/>
 				</form>
