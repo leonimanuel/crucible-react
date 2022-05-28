@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 // import { showGroupDetails } from "../../actions/users.js"
 import { setSelectedGroup } from "../../actions/groups.js"
 // import { setSelectedGroup, calculateUnreadMessages } from "../../actions/groups.js"
@@ -23,10 +24,13 @@ class GroupsItem extends Component {
 
 	render() {
 		return (
-			<div className={`sidenav-item group-item detail-item-container ${this.props.discussions.some(d => !d.read) ? "unread-group-item" : null}`} onClick={this.handleGroupClick}>
-				<div>{this.props.group.name}</div>
-				<div>{this.calculateGroupUnreads()}</div>
-			</div>
+			<Link to={`/groups/${this.props.group.id}`} >
+				<div className={`sidenav-item group-item detail-item-container ${this.props.discussions.some(d => !d.read) ? "unread-group-item" : null}`} onClick={this.handleGroupClick}>			
+					<div>{this.props.group.name}</div>
+					<div>{this.calculateGroupUnreads()}</div>					
+				</div>
+			</Link>
+
 		)
 	}
 }

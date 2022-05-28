@@ -16,6 +16,9 @@ import PositionForm from "../components/position/PositionForm.js"
 import RepliesContainer from "../components/timeline/RepliesContainer.js"
 import MemberCard from "../components/timeline/MemberCard.js"
 
+import GroupCard from "../components/groups/GroupCard.js"
+
+
 import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity, showPost, readNotification } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
@@ -175,7 +178,8 @@ class Timeline extends Component {
 		return (
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
-					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />			
+					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
+					<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />
 					<Route exact path="/" render={() => <PositionForm /> } />						
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}

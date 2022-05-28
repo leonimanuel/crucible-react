@@ -86,10 +86,10 @@ class NavBar extends Component {
 
 
 	render() {
-		if (this.props.user && this.props.history.location.pathname.includes("/groups")) {
-			this.updateDailyReviewsBar(500);
-			this.updateDailyFactsCommentsBar(200)				
-		}
+		// if (this.props.user && this.props.history.location.pathname.includes("/groups")) {
+		// 	this.updateDailyReviewsBar(500);
+		// 	this.updateDailyFactsCommentsBar(200)				
+		// }
 		return (
 			<div id="nav-wrapper">
 				<div id="menu-options">											
