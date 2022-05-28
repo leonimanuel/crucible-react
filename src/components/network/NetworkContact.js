@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 const NetworkContact = (props) => {
 
 	return (
-		<div className={`network-contact-container`} onClick={() => props.handleSelectContact(props.contact.id)}>	 
+		<div className={`network-contact-container detail-item-container`} onClick={() => props.handleSelectContact(props.contact.id)}>	 
 			<Link to={`/profiles/${props.contact.id}`} >
 				{props.contact.handle}	
 			</Link>		

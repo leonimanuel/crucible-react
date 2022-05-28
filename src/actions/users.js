@@ -27,14 +27,6 @@ export const logIn = () => {
             facts
           })
 
-          let groups = user.groups
-          let groupMembers = user.group_members
-          dispatch({
-            type: "LOAD_GROUPS",
-            groups,
-            groupMembers
-          })
-
           let discussions = user.discussions
           dispatch({
             type: "ADD_DISCUSSIONS",

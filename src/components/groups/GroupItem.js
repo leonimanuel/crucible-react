@@ -23,7 +23,7 @@ class GroupsItem extends Component {
 
 	render() {
 		return (
-			<div className={`sidenav-item group-item ${this.props.discussions.some(d => !d.read) ? "unread-group-item" : null}`} onClick={this.handleGroupClick}>
+			<div className={`sidenav-item group-item detail-item-container ${this.props.discussions.some(d => !d.read) ? "unread-group-item" : null}`} onClick={this.handleGroupClick}>
 				<div>{this.props.group.name}</div>
 				<div>{this.calculateGroupUnreads()}</div>
 			</div>

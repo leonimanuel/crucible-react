@@ -17,10 +17,11 @@ export default function groupsReducer(state = {
 		// console.log("executing groupsReducer")
 		switch (action.type) {
 			case "LOAD_GROUPS":
+				const allGroupMembers = action.groups.map(group => group.members).flat()
 				return {
 					...state,
 					allGroups: action.groups,
-					allMembers: action.groupMembers
+					allMembers: allGroupMembers
 				}
 
 			case "SET_SELECTED_GROUP":
@@ -33,7 +34,7 @@ export default function groupsReducer(state = {
 				return {
 					...state,
 					allGroups: [...state.allGroups, action.group],
-					allMembers: [...state.allMembers, ...action.group.members]
+					allMembers: [...state.allMembers, action.group.members]
 				}
 
 			case "UPDATE_GROUP":

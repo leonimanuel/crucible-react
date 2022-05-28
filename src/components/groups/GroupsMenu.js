@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./groups.scss"
 import { connect } from "react-redux"
 // import ReactDOM from "react-dom"
 import { createPopper } from "@popperjs/core"
@@ -9,7 +10,13 @@ import GroupsList from "./GroupsList.js"
 // import { fetchUsers } from "../../actions/groups.js"
 import NewGroupPopup from "./NewGroupPopup.js"
 
-class AgoraMenu extends Component {
+import { loadGroups } from "../../actions/groups.js"
+
+class GroupsMenu extends Component {
+	componentDidMount() {
+		this.props.loadGroups()
+	}
+
 	state = {
 		renderNewGroupPopup: false
 	}
@@ -41,7 +48,7 @@ class AgoraMenu extends Component {
 	render() {
 		console.log(this.props.groups)
 		return (
-			<div id="agora-menu">
+			<div id="groups-menu">
 				<div id="groups-list" className="sidenav-list">
 					{this.props.groups 
 						? 
@@ -65,7 +72,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(AgoraMenu);
+export default connect(mapStateToProps, { loadGroups })(GroupsMenu);
 
 
 

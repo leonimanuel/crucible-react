@@ -8,6 +8,36 @@ import { API_ROOT } from "../constants"
 // 	}
 // }
 
+export const loadGroups = () => {
+  return async (dispatch) => {
+    // dispatch({"LOADING_GROUPS"})
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    try {
+      let response = await fetch(`${API_ROOT}/groups`, configObj) 
+      if (response.status == 200) {
+        let groups = await response.json()
+        dispatch({
+          type: "LOAD_GROUPS",
+          groups        
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }  
+
+  }  
+}
+
+
+
 export const setSelectedGroup = (group) => {
   return {
     type: "SET_SELECTED_GROUP",
@@ -108,7 +138,6 @@ export const addNewGroup = (groupName, members, isPrivate) => {
     fetch(API_ROOT + `/groups`, configObj)
       .then(resp => resp.json())
       .then((group) => {
-				debugger
         dispatch({ 
 					type: 'ADD_GROUP', 
 					group
