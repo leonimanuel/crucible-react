@@ -63,7 +63,7 @@ const NetworkModal = (props) => {
 	}
 
 	return (
-		<div id="network-modal-container">
+		<div id="network-modal-container" className="modal">
 	    <form id="network-search-form" onSubmit={handleSubmit}>
 	      <input id="network-search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
 	      <input id="network-search-submit-button" type="submit" value="search" />

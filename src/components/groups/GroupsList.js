@@ -9,10 +9,7 @@ class GroupsList extends Component {
 		// debugger
 		return (
 			<div id="groups-list" className="sidenav-list">
-				<div id="new-group-button" className="list-title-wrapper">
-					<div id="groups-list-title" className="list-title">Groups</div>
-					<AddListItemButton buttonAction={this.props.createGroup} fill="black" />
-				</div>
+
 				<div className="group-list-items-wrapper">
 					{this.props.groups.map(group => <GroupItem key={group.id} group={group} />)}
 				</div>
