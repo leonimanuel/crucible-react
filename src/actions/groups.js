@@ -118,7 +118,7 @@ export const fetchUsers = (value, members, addedUsers) => {
 }
 
 export const addNewGroup = (groupName, members, isPrivate) => {
-	return (dispatch) => {
+	return async (dispatch) => {
     let memberIds = members.map(member => member.id)
 
     let configObj = {
@@ -135,15 +135,21 @@ export const addNewGroup = (groupName, members, isPrivate) => {
 			})
     }
     // debugger
-    fetch(API_ROOT + `/groups`, configObj)
-      .then(resp => resp.json())
-      .then((group) => {
+    try {
+      let res = await fetch(API_ROOT + `/groups`, configObj)
+      if ((res.status == 200)) {
+        let group = await res.json()
         dispatch({ 
-					type: 'ADD_GROUP', 
-					group
-				})
-     })
-      .catch(err => alert(err.message))
+          type: 'ADD_GROUP', 
+          group
+        })
+      } else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error}`)
+      }
+    } catch (error) {
+      alert(error)
+    }
 	}
 }
 
