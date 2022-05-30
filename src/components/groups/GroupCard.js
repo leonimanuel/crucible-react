@@ -15,6 +15,7 @@ import 'reactjs-popup/dist/index.css';
 class GroupCard extends Component {
 	componentDidMount() {
 		this.props.loadSelectedGroup(this.props.groupId)
+		// this.props.getMembershipStatus(this.props.currentUserId)
 	}
 
 	render() {
@@ -25,7 +26,10 @@ class GroupCard extends Component {
 					group ?
 						<React.Fragment>
 							<div id="group-card-name-wrapper">
-								<div className="timeline-card-name"><img src={group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {group.name}</div>
+								<div id="name-and-membership-wrapper">
+									<div className="timeline-card-name"><img id="group-privacy-icon" src={group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {group.name}</div>
+						      <div id="group-membership-indicator">{group.isMember ? "member" : "join group"}</div>
+								</div>
 					      <Menu>
 					        <nav className="dropdown-nav">
 					          <ul className="nav">
@@ -75,6 +79,7 @@ class GroupCard extends Component {
 const mapStateToProps = state => {
   return {
     groups: state.groups.allGroups,
+    currentUserId: state.users.userId
     // members: state.groups.allMembers
   }
 }

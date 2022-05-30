@@ -28,6 +28,7 @@ export default function groupsReducer(state = {
 
 
 			case "SET_SELECTED_GROUP":
+				action.group_data.group["isMember"] = action.group_data.is_member
 				return {
 					...state,
 					selectedGroupId: action.group_data.group.id,
