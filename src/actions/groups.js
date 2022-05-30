@@ -53,7 +53,6 @@ export const loadSelectedGroup = (groupId) => {
     try {
       let res = await fetch(API_ROOT + `/groups/${groupId}`, configObj)
       if ((res.status == 200)) {
-        debugger
         let group_data = await res.json()
         dispatch({ 
           type: 'SET_SELECTED_GROUP', 
@@ -61,7 +60,8 @@ export const loadSelectedGroup = (groupId) => {
         })
       } else {
         let error = await res.json()
-        alert(`error: ${res.status}, ${error}`)
+        debugger
+        alert(`error: ${res.status}, ${error.message}`)
       }    
     } catch (error) {
       alert(error)
@@ -140,7 +140,7 @@ export const joinGroup = (groupId) => {
         })
       } else {
         let error = await res.json()
-        alert(`error: ${res.status}, ${error}`)
+        alert(`error: ${res.status}, ${error.message}`)
       }    
     } catch (error) {
       alert(error)
@@ -255,7 +255,7 @@ export const addNewGroup = (groupName, members, isPrivate) => {
         })
       } else {
         let error = await res.json()
-        alert(`error: ${res.status}, ${error}`)
+        alert(`error: ${res.status}, ${error.message}`)
       }
     } catch (error) {
       alert(error)
@@ -317,7 +317,7 @@ export const leaveGroup = (groupId) => {
         })
       } else {
         let error = await res.json()
-        alert(`error: ${res.status}, ${error}`)
+        alert(`error: ${res.status}, ${error.message}`)
       }    
     } catch (error) {
       alert(error)

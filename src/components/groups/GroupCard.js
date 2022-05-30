@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { loadSelectedGroup, leaveGroup } from "../../actions/groups.js"
+import { loadSelectedGroup, leaveGroup, joinGroup } from "../../actions/groups.js"
 
 import Menu from "../tools/Menu.js";
 import LoadingBar from "../tools/LoadingBar.js"
@@ -18,8 +18,20 @@ class GroupCard extends Component {
 		// this.props.getMembershipStatus(this.props.currentUserId)
 	}
 
+	componentDidUpdate(lastProps, nextProps) {
+		if (lastProps.groupId != this.props.groupId) {
+			// debugger
+			this.props.loadSelectedGroup(this.props.groupId)
+		}
+
+		if (this.props.selectedGroup.private && !this.props.isMemberOfSelectedGroup) {
+    	document.location.href="/";
+		}
+	}
+
 	render() {
-		let group = this.props.groups.find(group => group.id == this.props.groupId);
+		// let group = this.props.groups.find(group => group.id == this.props.groupId);
+		let group = this.props.selectedGroup;
 		return (
 			<div id="group-card-container" className="timeline-card-container">	 
 				{
@@ -33,7 +45,7 @@ class GroupCard extends Component {
 						      		?
 						      			<div id="group-membership-indicator">member</div>
 						      		:
-						      		group.private ? null : <button>join group</button>
+						      		group.private ? null : <button onClick={() => this.props.joinGroup(this.props.groupId)}>join group</button>
 						      }
 						      
 								</div>
@@ -70,13 +82,14 @@ class GroupCard extends Component {
 const mapStateToProps = state => {
   return {
     groups: state.groups.allGroups,
+    selectedGroup: state.groups.selectedGroup,
     isMemberOfSelectedGroup: state.groups.isMemberOfSelectedGroup,
     currentUserId: state.users.userId
     // members: state.groups.allMembers
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup })(GroupCard);
 
 
 

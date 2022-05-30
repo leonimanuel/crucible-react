@@ -20,7 +20,6 @@ const ContactResult = (props) => {
 					className="contact-result-link"
 					onClick={() => {
 						 props.showSelectedContact(props.contact.id);
-						 // props.onContactSelect()
 					}}					
 				>
 

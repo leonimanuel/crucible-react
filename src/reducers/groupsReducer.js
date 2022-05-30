@@ -4,6 +4,8 @@
 export default function groupsReducer(state = {
 	allGroups: [],
 	selectedGroupId: "",
+	selectedGroup: "",
+	selectedGroupMembers: [],
 	isMemberOfSelectedGroup: false,
 	selectedGroupFeed: [],
 	allMembers: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
@@ -29,13 +31,14 @@ export default function groupsReducer(state = {
 
 
 			case "SET_SELECTED_GROUP":
+				debugger
 				return {
 					...state,
 					selectedGroupId: action.group_data.group.id,
+					selectedGroup: action.group_data.group,
 					selectedGroupFeed: action.group_data.feed_items,
 					isMemberOfSelectedGroup: action.group_data.is_member,
-					allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
-					// allMembers: [...state.allMembers.filter(m => m.group_id !== state.selectedGroupId), ...action.group_data.group.members ]
+					// allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
 				}
 
 			case "SET_SELECTED_GROUP_MEMBERS":
@@ -45,7 +48,8 @@ export default function groupsReducer(state = {
 				})
 				return {
 					...state,
-					allMembers: [...state.allMembers.filter(m => m.group_id !== state.selectedGroupId), ...groupedMembers ]
+					selectedGroupMembers: groupedMembers
+					// allMembers: [...state.allMembers.filter(m => m.group_id !== state.selectedGroupId), ...groupedMembers ]
 				}
 
 			case "ADD_GROUP":
@@ -53,6 +57,13 @@ export default function groupsReducer(state = {
 					...state,
 					allGroups: [...state.allGroups, action.group],
 					allMembers: [...state.allMembers, action.group.members]
+				}
+
+			case "JOIN_SELECTED_GROUP":
+				return {
+					...state,
+					isMemberOfSelectedGroup: true,
+					allGroups: [...state.allGroups, state.selectedGroup]
 				}
 
 			case "UPDATE_GROUP":
