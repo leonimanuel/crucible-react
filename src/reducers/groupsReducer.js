@@ -4,6 +4,7 @@
 export default function groupsReducer(state = {
 	allGroups: [],
 	selectedGroupId: "",
+	isMemberOfSelectedGroup: false,
 	selectedGroupFeed: [],
 	allMembers: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
 	// discussions: [],
@@ -28,11 +29,11 @@ export default function groupsReducer(state = {
 
 
 			case "SET_SELECTED_GROUP":
-				action.group_data.group["isMember"] = action.group_data.is_member
 				return {
 					...state,
 					selectedGroupId: action.group_data.group.id,
 					selectedGroupFeed: action.group_data.feed_items,
+					isMemberOfSelectedGroup: action.group_data.is_member,
 					allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
 					// allMembers: [...state.allMembers.filter(m => m.group_id !== state.selectedGroupId), ...action.group_data.group.members ]
 				}
@@ -79,6 +80,12 @@ export default function groupsReducer(state = {
 					allMembers: [...state.allMembers.filter(m => !action.discussionData.members.find(am => am.id === m.id)), ...action.discussionData.members]
 				}
 
+			case "LEAVE_SELECTED_GROUP":
+				return {
+					...state,
+					isMemberOfSelectedGroup: false,
+					allGroups: state.allGroups.filter(group => group.id != action.groupId)
+				}
 
 			default:
 				return state;	

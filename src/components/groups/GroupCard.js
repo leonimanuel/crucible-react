@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { loadSelectedGroup } from "../../actions/groups.js"
+import { loadSelectedGroup, leaveGroup } from "../../actions/groups.js"
 
 import Menu from "../tools/Menu.js";
 import LoadingBar from "../tools/LoadingBar.js"
@@ -28,29 +28,20 @@ class GroupCard extends Component {
 							<div id="group-card-name-wrapper">
 								<div id="name-and-membership-wrapper">
 									<div className="timeline-card-name"><img id="group-privacy-icon" src={group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {group.name}</div>
-						      <div id="group-membership-indicator">{group.isMember ? "member" : "join group"}</div>
+						      {
+						      	this.props.isMemberOfSelectedGroup
+						      		?
+						      			<div id="group-membership-indicator">member</div>
+						      		:
+						      		group.private ? null : <button>join group</button>
+						      }
+						      
 								</div>
+					      
 					      <Menu>
 					        <nav className="dropdown-nav">
 					          <ul className="nav">
-					            <li>
-					              <a href='#' >All</a>
-					            </li>
-					            <li>
-					              <a href='#' >Not Submitted</a>
-					            </li>
-					            <li>
-					              <a href='#' >Accepted</a>
-					            </li>
-					            <li>
-					              <a href='#' >Rejected</a>
-					            </li>
-					            <li>
-					              <a href='#' >Under Review</a>
-					            </li>
-					            <li>
-					              <a href='#' >Waitlisted</a>
-					            </li>
+					            {this.props.isMemberOfSelectedGroup ? <li><div onClick={() => this.props.leaveGroup(this.props.groupId)}>leave group</div></li> : null}
 					          </ul>
 					        </nav>
 					      </Menu>
@@ -79,12 +70,13 @@ class GroupCard extends Component {
 const mapStateToProps = state => {
   return {
     groups: state.groups.allGroups,
+    isMemberOfSelectedGroup: state.groups.isMemberOfSelectedGroup,
     currentUserId: state.users.userId
     // members: state.groups.allMembers
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup })(GroupCard);
 
 
 

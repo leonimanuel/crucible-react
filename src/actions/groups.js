@@ -53,6 +53,7 @@ export const loadSelectedGroup = (groupId) => {
     try {
       let res = await fetch(API_ROOT + `/groups/${groupId}`, configObj)
       if ((res.status == 200)) {
+        debugger
         let group_data = await res.json()
         dispatch({ 
           type: 'SET_SELECTED_GROUP', 
@@ -114,6 +115,37 @@ export const loadGroupMembers = (groupId) => {
       alert(error)
     }
   }     
+}
+
+export const joinGroup = (groupId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "JOINING_SELECTED_GROUP"
+    })
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    try {
+      let res = await fetch(API_ROOT + `/groups/${groupId}/join-group`, configObj)
+      if ((res.status == 201)) {
+        dispatch({ 
+          type: 'JOIN_SELECTED_GROUP',
+          groupId: groupId
+        })
+      } else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error}`)
+      }    
+    } catch (error) {
+      alert(error)
+    }
+  }  
 }
 
 // export const setSelectedGroup = (group) => {
@@ -259,6 +291,37 @@ export const editGroup = (groupId, groupName, addedMembers, removedMembers) => {
         })
      })
       .catch(err => alert(err.message))
+  }  
+}
+
+export const leaveGroup = (groupId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "LEAVING_SELECTED_GROUP"
+    })
+
+    let configObj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    try {
+      let res = await fetch(API_ROOT + `/groups/${groupId}/leave-group`, configObj)
+      if ((res.status == 204)) {
+        dispatch({ 
+          type: 'LEAVE_SELECTED_GROUP',
+          groupId: groupId
+        })
+      } else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error}`)
+      }    
+    } catch (error) {
+      alert(error)
+    }
   }  
 }
 
