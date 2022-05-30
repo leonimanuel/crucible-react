@@ -36,14 +36,92 @@ export const loadGroups = () => {
   }  
 }
 
+export const loadSelectedGroup = (groupId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "LOADING_SELECTED_GROUP"
+    })
 
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    try {
+      let res = await fetch(API_ROOT + `/groups/${groupId}`, configObj)
+      if ((res.status == 200)) {
+        let group_data = await res.json()
+        dispatch({ 
+          type: 'SET_SELECTED_GROUP', 
+          group_data
+        })
+      } else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error}`)
+      }    
+    } catch (error) {
+      alert(error)
+    }
+  }   
+}
 
-export const setSelectedGroup = (group) => {
-  return {
-    type: "SET_SELECTED_GROUP",
-    group
-  }    
-} 
+export const loadGroupMembers = (groupId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "LOADING_GROUP_MEMBERS"
+    })
+    let configObj = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+
+    try {
+      let members_res = await fetch(API_ROOT + `/groups/${groupId}/users`, configObj)
+      if ((members_res.status == 200)) {
+        let members = await members_res.json()
+        dispatch({ 
+          type: 'SET_SELECTED_GROUP_MEMBERS', 
+          members: members,
+          groupId: groupId
+        })
+
+        try {
+          let followings_res = await fetch(API_ROOT + `/groups/${groupId}/followships`, configObj)
+          if ((followings_res.status == 200)) {
+            let memberFollowships = await followings_res.json();
+            dispatch({
+              type: "SET_GROUP_MEMBERS_FOLLOWING_STATUSES",
+              memberFollowships
+            })            
+          } else {
+            let error = await followings_res.json();
+          }
+        } catch (error) {
+          alert(error)
+        }
+      } else {
+        let error = await members_res.json()
+        alert(`error: ${members_res.status}, ${error}`)
+      }    
+    } catch (error) {
+      alert(error)
+    }
+  }     
+}
+
+// export const setSelectedGroup = (group) => {
+//   return {
+//     type: "SET_SELECTED_GROUP",
+//     group
+//   }    
+// } 
 
 export const updateGroupDiscussions = discussion => {
 	return {

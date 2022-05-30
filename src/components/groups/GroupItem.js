@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 // import { showGroupDetails } from "../../actions/users.js"
-import { setSelectedGroup } from "../../actions/groups.js"
+// import { setSelectedGroup } from "../../actions/groups.js"
 // import { setSelectedGroup, calculateUnreadMessages } from "../../actions/groups.js"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
 
 class GroupsItem extends Component {
-	handleGroupClick = () => {
-		this.props.setSelectedGroup(this.props.group)
-	}
+	// handleGroupClick = () => {
+	// 	this.props.setSelectedGroup(this.props.group)
+	// }
 
 	componentDidMount() {
 		// this.props.calculateUnreadMessages(this.props.discussions)
@@ -43,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 // export default connect(mapStateToProps, { setSelectedGroup, calculateUnreadMessages })(GroupsItem);
-export default connect(mapStateToProps, { setSelectedGroup })(GroupsItem);
+export default connect(mapStateToProps, { /*setSelectedGroup*/ })(GroupsItem);
 
 
 

@@ -72,15 +72,14 @@
 	}
 }
 
+.contact-result-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2px;
+}
+
 #network-modal-container {
-	.contact-result-container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 2px;
-	}
-
-
 	#network-search-form {
 		// border: 2px solid purple;
 		display: flex;

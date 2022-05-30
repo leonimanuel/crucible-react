@@ -10,6 +10,7 @@ import FollowButton from "./FollowButton.js"
 
 const ContactResult = (props) => {
 	let followStatusObj = props.membersFollowStatuses.find(i => i.memberId == props.contact.id )
+	debugger
 	return (
 		<div 
 			className={`contact-result-container`} 
@@ -19,7 +20,7 @@ const ContactResult = (props) => {
 					className="contact-result-link"
 					onClick={() => {
 						 props.showSelectedContact(props.contact.id);
-						 props.onContactSelect()
+						 // props.onContactSelect()
 					}}					
 				>
 

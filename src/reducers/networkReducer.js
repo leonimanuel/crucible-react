@@ -108,6 +108,15 @@ export default function networkReducer(state = {
 				recommendedMembers: []
 			}
 
+			case "SET_GROUP_MEMBERS_FOLLOWING_STATUSES":
+				let memberFollowships = action.memberFollowships.map(m => { 
+					return {memberId: m.id, isFollowing: m.is_following}
+				})
+
+				return {
+					...state,
+					membersFollowStatuses: [...state.membersFollowStatuses, ...memberFollowships]
+				}
 
 		case "CLEAR_RECOMMENDATIONS_AND_SEARCHES":
 			return {

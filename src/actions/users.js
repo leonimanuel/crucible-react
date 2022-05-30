@@ -32,12 +32,6 @@ export const logIn = () => {
             type: "ADD_DISCUSSIONS",
             discussions
           })
-
-          let members = user.group_members
-          dispatch({
-            type: "ADD_GROUP_MEMBERS",
-            members
-          })
         
           // const itemsObj = data.review
           // dispatch({

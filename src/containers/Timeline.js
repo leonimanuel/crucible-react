@@ -27,6 +27,8 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import NetworkModal from "../components/network/NetworkModal.js"
 
+import LoadingBar from "../components/tools/LoadingBar.js"
+
 import Moment from 'react-moment';
 import moment from 'moment-timezone';
 
@@ -265,9 +267,7 @@ class Timeline extends Component {
 				{
 					this.state.loadingActivities ? 
 					<React.Fragment>
-						<div className="spinner">
-						  <div className="rect1"></div><div className="rect2"></div><div className="rect3"></div><div className="rect4"></div><div className="rect5"></div>
-						</div> 									
+						<LoadingBar />
 					</React.Fragment>
 					: null 
 				}				

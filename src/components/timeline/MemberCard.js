@@ -9,9 +9,9 @@ import FollowButton from "../network/FollowButton.js"
 const MemberCard = (props) => {
 	const fc_ratio = props.member.fact_comment_ratio
 	return (
-		<div id="member-card-container">	 
+		<div id="member-card-container" className="timeline-card-container">	 
 			<div id="member-card-handle-wrapper">
-				<div id="member-card-handle">{props.member.handle}</div> 
+				<div id="member-card-handle" className="timeline-card-name">{props.member.handle}</div> 
 				{props.member.id == props.currentUserId ? null : <FollowButton member={props.member} followStatus={props.membersFollowStatuses.find(i => i.memberId == props.member.id ).isFollowing } />}
 			</div>
 			
