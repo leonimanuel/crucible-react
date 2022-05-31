@@ -102,9 +102,17 @@ export default function networkReducer(state = {
 		// 	}
 
 		case "SET_MEMBER_SEARCH_RESULTS_FOLLOWING_STATUS":
+			const membersFollowStatuses = [...state.membersFollowStatuses, ...action.searchedMembersFollowStatuses]
+			const uniqueArray = membersFollowStatuses.filter((value, index) => {
+			  const _value = JSON.stringify(value);
+			  return index === membersFollowStatuses.findIndex(obj => {
+			    return JSON.stringify(obj) === _value;
+			  });
+			});	
+
 			return {
 				...state,
-				membersFollowStatuses: [...state.membersFollowStatuses, ...action.searchedMembersFollowStatuses],
+				membersFollowStatuses: uniqueArray,
 				recommendedMembers: []
 			}
 

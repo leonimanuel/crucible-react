@@ -5,6 +5,7 @@ import { API_ROOT } from '../../constants';
 // import NetworkContact from "../network/NetworkContact.js"
 import ContactResult from "../network/ContactResult.js"
 import { loadGroupMembers, loadSelectedGroup } from "../../actions/groups.js"
+import { setSearchedMembersFollowStatuses } from "../../actions/networkActions.js"
 
 const GroupMembersModal = (props) => {
 	const [stateInput, setStateInput] = useState("")
@@ -53,8 +54,10 @@ const GroupMembersModal = (props) => {
     // }
 	}
 
+	let groupMemberIds = props.members.map(m => m.id)
+
 	return (
-		<div id="new-group-popup" className="modal">
+		<div id="group-members-popup" className="modal">
 	    <form id="group-member-search-form" onSubmit={handleSubmit} className="search-form">
 	      <input id="group-member-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
 	      <input id="group-member-search-submit-button" className="search-submit-button" type="submit" value="search" />
@@ -69,7 +72,15 @@ const GroupMembersModal = (props) => {
 
 			    <div id="group-member-search-results">
 			    	<h3>{stateSearchResults.length ? "Search Results" : ""}</h3>
-			    	{stateSearchResults.map(member => <ContactResult contact={member} />)}
+			    	{stateSearchResults.map(searchMember => {
+			    		
+			    		return (
+								<div className="group-member-search-result-wrapper">
+									<ContactResult contact={searchMember} />
+									{groupMemberIds.includes(searchMember.id) ? <span>member</span> : <button>invite</button> }
+								</div>
+		    			)
+			    	})}
 			    </div>	    	
 	    	</React.Fragment>
 	  	}
@@ -84,7 +95,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { loadGroupMembers, loadSelectedGroup })(GroupMembersModal);
+export default connect(mapStateToProps, { loadGroupMembers, loadSelectedGroup, setSearchedMembersFollowStatuses })(GroupMembersModal);
 
 
 
