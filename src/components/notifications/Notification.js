@@ -10,6 +10,10 @@ const Notification = (props) => {
 	const latest_actor = notification_group.activities[0].actor
 	const additional_actor_count = notification_group.actor_count - 1
 	const notificationObject = notification_group.group_object
+
+		let target_path = ""
+
+
 	const generateNotificationText = () => {
 		let notifTypeClassName = ""
 		let notifDescription = ""
@@ -18,11 +22,13 @@ const Notification = (props) => {
 			case "add_position":
 				notifTypeClassName = "add_position"
 				notifDescription = " created a new position"
+				target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
 				break
 
 			case "add_comment":
 				notifTypeClassName = "add_comment"
-				notifDescription = " tagged you on a post:"				
+				notifDescription = " tagged you on a post:"
+				target_path = `/posts/${notificationObject.type}/${notificationObject.id}`				
 				break
 
 			case "create_reply":
@@ -33,17 +39,27 @@ const Notification = (props) => {
 			case "tag_user_on_reply":
 				notifTypeClassName = "tag_user_on_reply"
 				notifDescription =  " tagged you on a reply: "
+				target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
 				break
 
 			case "add_article_share":
 				notifTypeClassName = "add_article_share"
 				notifDescription =  " shared an article: "
+				target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
 				break
 
 			case "create_group": 
 				notifTypeClassName = "added_to_group"
 				notifDescription =  " added you to a new group"
+				target_path = `/groups/${notificationObject.id}`
 				break			
+
+			case "create_group_join":
+				notifTypeClassName = "add_user_to_group"
+				notifDescription = " added you to a group"
+				target_path = `/groups/${notificationObject.id}`
+				break
+
 
 			default: 
 				notifTypeClassName = ""
@@ -56,11 +72,11 @@ const Notification = (props) => {
 
 	return (
 		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group)}>
-			<Link to={`/posts/${notificationObject.type}/${notificationObject.id}`} >
+			<Link to={target_path} >
 				{generateNotificationText()}
 
 				<span className="notification-target" >
-					{notification_group.action_type == "create_group" ? notificationObject.name : notificationObject.content}		
+					{notificationObject.content}
 				</span> 			
 			</Link>			 
 		</div>
