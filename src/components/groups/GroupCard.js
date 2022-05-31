@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { loadSelectedGroup, leaveGroup, joinGroup } from "../../actions/groups.js"
+import { loadSelectedGroup, leaveGroup, joinGroup, readGroupMembershipNotification } from "../../actions/groups.js"
 
 import Menu from "../tools/Menu.js";
 import LoadingBar from "../tools/LoadingBar.js"
@@ -13,12 +13,20 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 class GroupCard extends Component {
+	state = {
+		groupMembershipNotificationRead: false
+	}
+
 	componentDidMount() {
 		this.props.loadSelectedGroup(this.props.groupId)
 		// this.props.getMembershipStatus(this.props.currentUserId)
 	}
 
-	componentDidUpdate(lastProps, nextProps) {
+	componentDidUpdate(lastProps) {
+		if (lastProps.notificationGroups.length == 0 && this.props.notificationGroups.length != 0 && !this.state.groupMembershipNotificationRead) {
+			this.props.readGroupMembershipNotification(this.props.userId, this.props.notificationGroups, this.props.groupId);
+			this.setState({groupMembershipNotificationRead: true})
+		}
 		if (lastProps.groupId != this.props.groupId) {
 			// debugger
 			this.props.loadSelectedGroup(this.props.groupId)
@@ -85,12 +93,14 @@ const mapStateToProps = state => {
     selectedGroup: state.groups.selectedGroup,
     groupMembers: state.groups.selectedGroupMembers,
     isMemberOfSelectedGroup: state.groups.isMemberOfSelectedGroup,
-    currentUserId: state.users.userId
+    currentUserId: state.users.userId,
+    notificationGroups: state.notifications.notification_groups,
+    userId: state.users.userId
     // members: state.groups.allMembers
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupMembershipNotification })(GroupCard);
 
 
 

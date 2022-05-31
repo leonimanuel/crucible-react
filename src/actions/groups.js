@@ -1,4 +1,5 @@
-import { API_ROOT } from "../constants"
+import { API_ROOT, STREAM_CLIENT_ID, STREAM_APP_ID } from "../constants"
+import { markNotificationReadInStream } from "./notificationsActions.js"
 
 // export const loadGroups = (groups) => {
 // 	console.log("loading groups")
@@ -58,6 +59,7 @@ export const loadSelectedGroup = (groupId) => {
           type: 'SET_SELECTED_GROUP', 
           group_data
         })
+
       } else {
         let error = await res.json()
         alert(`error: ${res.status}, ${error.message}`)
@@ -66,6 +68,22 @@ export const loadSelectedGroup = (groupId) => {
       alert(error)
     }
   }   
+}
+
+export const readGroupMembershipNotification = (userId, notificationGroups, groupId) => {
+  let notification = notificationGroups.find(ng => ng.group_object.type ==  "Group" && ng.group_object.id == groupId)
+  
+  return (dispatch) => {
+    if (notification && !notification.is_read) {
+      let notificationGroupId = notification.id
+      markNotificationReadInStream(userId, notificationGroupId)
+
+      dispatch({
+        type: "READ_NOTIFICATION",
+        notificationGroupId
+      });
+    }
+  }
 }
 
 export const loadGroupMembers = (groupId) => {

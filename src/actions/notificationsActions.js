@@ -114,13 +114,6 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
   			alert (error, "readNotification")
   		}
 	  } 
-	  else if (objectType == "Group") {
-			dispatch({
-				type: "READ_NOTIFICATION",
-				notificationGroupId
-			})
-			const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
-		}	  
 	  else {
 			alert("no handling for this resource type yet")
 	  }
@@ -193,6 +186,34 @@ export const showPost = (postObjType, postObjId) => {
 	  else {
 	  	alert("no handling for this resource type yet")
 	  }				
+	}
+}
+
+export const markNotificationReadInStream = (userId, notificationGroupId) => {
+	if (!client) { initializeStreamClient() }
+	const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
+}
+
+const initializeStreamClient = async () => {
+	try {
+	 	let configObj = {
+	    method: "GET",
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }		
+
+		let res = await fetch(API_ROOT + `/feed/token`, configObj)
+		if (res.status == 200) {
+			let data = await res.json();
+			if (data.token) {
+				client = connect(STREAM_CLIENT_ID, data.token, STREAM_APP_ID); // client is declared at top of file
+			}
+		}
+	} catch (error) {
+		console.log(error)
 	}
 }
 
