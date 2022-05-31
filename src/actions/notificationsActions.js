@@ -59,7 +59,6 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 		    	// debugger
 		    })
 		    .then(activity => {
-				  let notifId = notificationGroupId
 				  // debugger
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
@@ -68,7 +67,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 
 					dispatch({
 						type: "READ_NOTIFICATION",
-						notifId
+						notificationGroupId
 					})
 
 					dispatch({
@@ -76,7 +75,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 						timelineType: "notification"
 					})
 
-					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[﻿﻿notifId]﻿ }) 					
+					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ })
 
 
 		    })
@@ -88,7 +87,6 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
   			let res = await fetch(API_ROOT + `/replies/${objectId}`, configObj)
   			if (res.status == 200) {
 					let activity = await res.json()
-					let notifId = notificationGroupId
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity
@@ -102,7 +100,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 
 					dispatch({
 						type: "READ_NOTIFICATION",
-						notifId
+						notificationGroupId
 					})
 
 					dispatch({
@@ -110,12 +108,19 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 						timelineType: "notification"
 					})
 
-					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[﻿﻿notifId]﻿ })  				
+					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
   			}
   		} catch (error) {
   			alert (error, "readNotification")
   		}
 	  } 
+	  else if (objectType == "Group") {
+			dispatch({
+				type: "READ_NOTIFICATION",
+				notificationGroupId
+			})
+			const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
+		}	  
 	  else {
 			alert("no handling for this resource type yet")
 	  }

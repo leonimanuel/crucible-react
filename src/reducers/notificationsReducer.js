@@ -24,7 +24,7 @@ export default function notificationsReducer(state = {
 		
 		case "READ_NOTIFICATION":			
 			const notificationGroups = state.notification_groups
-			const selectedNotificationGroup = notificationGroups.find(n => n.id === action.notifId)
+			const selectedNotificationGroup = notificationGroups.find(n => n.id === action.notificationGroupId)
 
 			const modifiedNotificationGroup = selectedNotificationGroup
 			modifiedNotificationGroup.is_read = true

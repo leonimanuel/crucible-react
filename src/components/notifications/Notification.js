@@ -10,13 +10,11 @@ const Notification = (props) => {
 	const latest_actor = notification_group.activities[0].actor
 	const additional_actor_count = notification_group.actor_count - 1
 	const notificationObject = notification_group.group_object
+	
+	let notifTypeClassName = ""
+	let notifDescription = ""
+	let target_path = ""
 
-		let target_path = ""
-
-
-	const generateNotificationText = () => {
-		let notifTypeClassName = ""
-		let notifDescription = ""
 
 		switch (notification_group.action_type) {
 			case "add_position":
@@ -67,14 +65,10 @@ const Notification = (props) => {
 				break				
 		}
 
-		return <span className={`notification-description ${notifTypeClassName}`}><Link className="contact-result-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>
-	}
-
 	return (
 		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group)}>
 			<Link to={target_path} >
-				{generateNotificationText()}
-
+				<span className={`notification-description ${notifTypeClassName}`}><Link className="contact-result-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>	
 				<span className="notification-target" >
 					{notificationObject.content}
 				</span> 			

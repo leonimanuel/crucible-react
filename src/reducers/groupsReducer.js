@@ -31,7 +31,6 @@ export default function groupsReducer(state = {
 
 
 			case "SET_SELECTED_GROUP":
-				debugger
 				return {
 					...state,
 					selectedGroupId: action.group_data.group.id,

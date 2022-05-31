@@ -60,7 +60,6 @@ export const loadSelectedGroup = (groupId) => {
         })
       } else {
         let error = await res.json()
-        debugger
         alert(`error: ${res.status}, ${error.message}`)
       }    
     } catch (error) {
