@@ -148,6 +148,38 @@ export const joinGroup = (groupId) => {
   }  
 }
 
+export const addUserToGroup = (groupId, newMemberId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "ADDING_MEMBER_TO_GROUP"
+    })
+
+    let configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    try {
+      let res = await fetch(API_ROOT + `/groups/${groupId}/add-group-member/${newMemberId}`, configObj)
+      if ((res.status == 201)) {
+        let newMember = await res.json();
+        dispatch({ 
+          type: 'ADD_MEMBER_TO_GROUP',
+          newMember
+        })
+      } else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error.message}`)
+      }    
+    } catch (error) {
+      alert(error)
+    }
+  }  
+}
+
 // export const setSelectedGroup = (group) => {
 //   return {
 //     type: "SET_SELECTED_GROUP",

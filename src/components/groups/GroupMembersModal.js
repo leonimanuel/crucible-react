@@ -4,7 +4,7 @@ import { API_ROOT } from '../../constants';
 
 // import NetworkContact from "../network/NetworkContact.js"
 import ContactResult from "../network/ContactResult.js"
-import { loadGroupMembers, loadSelectedGroup } from "../../actions/groups.js"
+import { loadGroupMembers, loadSelectedGroup, addUserToGroup } from "../../actions/groups.js"
 import { setSearchedMembersFollowStatuses } from "../../actions/networkActions.js"
 
 const GroupMembersModal = (props) => {
@@ -24,7 +24,7 @@ const GroupMembersModal = (props) => {
     e.preventDefault();
     
     // props.fetchMemberSearches(stateInput)
-
+    if (!stateInput) { setStateSearchResults([]) }
     // if (stateInput) {
 	  let configObj = {
 	    method: 'GET',
@@ -55,19 +55,18 @@ const GroupMembersModal = (props) => {
 	}
 
 	let groupMemberIds = props.members.map(m => m.id)
-
 	return (
 		<div id="group-members-popup" className="modal">
 	    <form id="group-member-search-form" onSubmit={handleSubmit} className="search-form">
-	      <input id="group-member-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
+	      <input id="group-member-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" />
 	      <input id="group-member-search-submit-button" className="search-submit-button" type="submit" value="search" />
 	    </form>				
 
 	    {
 	    	<React.Fragment>
-		    	<div id="group-member-recommendations">
+		    	<div id="group-member-recommendations" style={{display: stateSearchResults.length ? "none" : "block"}}>
 			    	<h3>{props.members.length ? "All Group Members" : ""}</h3>
-			    	{props.members.map(member => <ContactResult contact={member}/>)}
+			    	{props.members.map(member => <ContactResult contact={member} context="group" admin={member.id === props.group.admin.id}/>)}
 			    </div>
 
 			    <div id="group-member-search-results">
@@ -76,8 +75,8 @@ const GroupMembersModal = (props) => {
 			    		
 			    		return (
 								<div className="group-member-search-result-wrapper">
-									<ContactResult contact={searchMember} />
-									{groupMemberIds.includes(searchMember.id) ? <span>member</span> : <button>invite</button> }
+									<ContactResult contact={searchMember} context="group" admin={searchMember.id === props.group.admin.id}/>
+									{groupMemberIds.includes(searchMember.id) ? <span>member</span> : <button onClick={() => props.addUserToGroup(props.group.id, searchMember.id)}>invite</button> }
 								</div>
 		    			)
 			    	})}
@@ -95,7 +94,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { loadGroupMembers, loadSelectedGroup, setSearchedMembersFollowStatuses })(GroupMembersModal);
+export default connect(mapStateToProps, { loadGroupMembers, loadSelectedGroup, setSearchedMembersFollowStatuses, addUserToGroup })(GroupMembersModal);
 
 
 

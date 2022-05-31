@@ -60,7 +60,7 @@ class GroupCard extends Component {
 							</div>
 
 							<div id="group-card-members-wrapper">
-							  <Popup trigger={<span id="group-card-members-button">{group.member_count} members</span>} position="center" modal>
+							  <Popup trigger={<span id="group-card-members-button">{this.props.groupMembers.length ? this.props.groupMembers.length : group.member_count} members</span>} position="center" modal>
 						    	{ close => <GroupMembersModal 
 						    			group={group}
 						    			handleGroupMemberAdded={() => close()} 
@@ -83,6 +83,7 @@ const mapStateToProps = state => {
   return {
     groups: state.groups.allGroups,
     selectedGroup: state.groups.selectedGroup,
+    groupMembers: state.groups.selectedGroupMembers,
     isMemberOfSelectedGroup: state.groups.isMemberOfSelectedGroup,
     currentUserId: state.users.userId
     // members: state.groups.allMembers

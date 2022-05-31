@@ -26,6 +26,10 @@ const ContactResult = (props) => {
 					{props.contact.handle}	
 				</Link>			
 				
+				{
+					props.context == "group" && props.admin ? "admin" : null
+				}
+
 				{followStatusObj ? <FollowButton member={ props.contact} followStatus={followStatusObj.isFollowing}/> : null	}
 		</div>
 	)

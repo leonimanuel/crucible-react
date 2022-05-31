@@ -36,6 +36,7 @@ export default function groupsReducer(state = {
 					...state,
 					selectedGroupId: action.group_data.group.id,
 					selectedGroup: action.group_data.group,
+					selectedGroupMembers: [],
 					selectedGroupFeed: action.group_data.feed_items,
 					isMemberOfSelectedGroup: action.group_data.is_member,
 					// allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
@@ -46,6 +47,7 @@ export default function groupsReducer(state = {
 					member["group_id"] = action.groupId;
 					return member
 				})
+
 				return {
 					...state,
 					selectedGroupMembers: groupedMembers
@@ -64,6 +66,12 @@ export default function groupsReducer(state = {
 					...state,
 					isMemberOfSelectedGroup: true,
 					allGroups: [...state.allGroups, state.selectedGroup]
+				}
+
+			case "ADD_MEMBER_TO_GROUP":
+				return {
+					...state,
+					selectedGroupMembers: [...state.selectedGroupMembers, action.newMember]
 				}
 
 			case "UPDATE_GROUP":
