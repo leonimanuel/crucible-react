@@ -15,11 +15,16 @@ export default function notificationsReducer(state = {
 			  return new Date(b.created_at) - new Date(a.created_at);
 			});
 
+			// for each notificationGroup (notification) whose "group_object" field has a "group" field AND "action_type" is NOT "create_group" or "add_member_to_group", 
+			// HIDE it from the notifications menu. 
+
+			const groupNotificationsCount = notificationGroupsArray.filter(ng => ng.group_object.type ==  "Comment" && ng.group_object.group).length
+			debugger
 			return {
 				...state,
 				notification_groups: sortedNotificationGroupsArray,
-				unreadNotificationsCount: action.notifications.unread,
-				unseen_notifications_count: action.notifications.unseen,
+				unreadNotificationsCount: action.notifications.unread - groupNotificationsCount,
+				unseen_notifications_count: action.notifications.unseen
 			}
 		
 		case "READ_NOTIFICATION":			

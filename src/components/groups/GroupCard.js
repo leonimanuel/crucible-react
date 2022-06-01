@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { loadSelectedGroup, leaveGroup, joinGroup, readGroupMembershipNotification } from "../../actions/groups.js"
+import { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications } from "../../actions/groups.js"
 
 import Menu from "../tools/Menu.js";
 import LoadingBar from "../tools/LoadingBar.js"
@@ -24,7 +24,7 @@ class GroupCard extends Component {
 
 	componentDidUpdate(lastProps) {
 		if (lastProps.notificationGroups.length == 0 && this.props.notificationGroups.length != 0 && !this.state.groupMembershipNotificationRead) {
-			this.props.readGroupMembershipNotification(this.props.userId, this.props.notificationGroups, this.props.groupId);
+			this.props.readGroupNotifications(this.props.userId, this.props.notificationGroups, this.props.groupId);
 			this.setState({groupMembershipNotificationRead: true})
 		}
 		if (lastProps.groupId != this.props.groupId) {
@@ -100,7 +100,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupMembershipNotification })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications })(GroupCard);
 
 
 

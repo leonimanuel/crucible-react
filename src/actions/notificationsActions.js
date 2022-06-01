@@ -18,7 +18,6 @@ export const setNotifications = (userId) => {
 	      Authorization: localStorage.getItem("token")
 	    }
 	  }
-
 	  fetch(API_ROOT + `/notifications`, configObj)
 	    .then(resp => resp.json())
 	    .then(async (data) => {
@@ -143,7 +142,6 @@ export const showPost = (postObjType, postObjId) => {
 		    	// debugger
 		    })
 		    .then(activity => {
-				  debugger
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity

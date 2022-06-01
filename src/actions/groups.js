@@ -70,18 +70,21 @@ export const loadSelectedGroup = (groupId) => {
   }   
 }
 
-export const readGroupMembershipNotification = (userId, notificationGroups, groupId) => {
-  let notification = notificationGroups.find(ng => ng.group_object.type ==  "Group" && ng.group_object.id == groupId)
-  
+export const readGroupNotifications = (userId, notificationGroups, groupId) => {
+  let notifications = notificationGroups.filter(ng => (ng.group_object.type ==  "Group" && ng.group_object.id == groupId) || (ng.group_object.type ==  "Comment" && ng.group_object.group == groupId))
   return (dispatch) => {
-    if (notification && !notification.is_read) {
-      let notificationGroupId = notification.id
-      markNotificationReadInStream(userId, notificationGroupId)
+    if (notifications.length) {
+      notifications.forEach(notification => {
+        if (!notification.is_read) {
+          let notificationGroupId = notification.id
+          markNotificationReadInStream(userId, notificationGroupId)
 
-      dispatch({
-        type: "READ_NOTIFICATION",
-        notificationGroupId
-      });
+          dispatch({
+            type: "READ_NOTIFICATION",
+            notificationGroupId
+          });
+        }
+      })
     }
   }
 }

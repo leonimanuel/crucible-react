@@ -23,7 +23,7 @@ const NotificationDetailsMenu = (props) => {
 			</div>
 			
 			{props.notification_groups.length ? 
-				props.notification_groups.map((n, index) => {
+				props.notification_groups.filter(ng => !ng.group_object.group).map((n, index) => {
 					return (
 						<Notification 
 							notification_group={n} 

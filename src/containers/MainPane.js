@@ -28,7 +28,7 @@ class MainPane extends Component {
 					className={`section-tab ${this.props.section === "notifications" ? "selected-section" : "unselected-section"}`} 
 					onClick={this.props.tabClick}
 					>
-						Notifications {this.props.unreadNotificationsCount ? <div className="sidenav-badge topic-badge badge">{this.props.unreadNotificationsCount}</div> : null}
+						Notifications {this.props.unreadNotificationsCount > 0 ? <div className="sidenav-badge topic-badge badge">{this.props.unreadNotificationsCount}</div> : null}
 				</div>
 
 				<div 
@@ -44,7 +44,7 @@ class MainPane extends Component {
 					className={`section-tab ${this.props.section === "groups" ? "selected-section" : "unselected-section"}`} 
 					onClick={this.props.tabClick}
 					>
-						Groups
+						Groups {this.props.groupNotifications.length ? <div className="sidenav-badge topic-badge badge">{this.props.groupNotifications.length}</div> : null}
 				</div>		
 				{<Groups display={this.props.section === "groups"} />}			
 
@@ -59,7 +59,8 @@ class MainPane extends Component {
 const mapStateToProps = state => {
   return {
     topics: state.topics.topics,
-    unreadNotificationsCount: state.notifications.unreadNotificationsCount
+    unreadNotificationsCount: state.notifications.unreadNotificationsCount,
+    groupNotifications: state.notifications.notification_groups.filter(ng => ng.group_object.group && ng.action_type == "add_comment" && !ng.is_read)
   }
 }
 
