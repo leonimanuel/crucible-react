@@ -7,7 +7,7 @@ export default function groupsReducer(state = {
 	selectedGroup: "",
 	selectedGroupMembers: [],
 	isMemberOfSelectedGroup: false,
-	selectedGroupFeed: [],
+	selectedGroupFeedItems: [],
 	allMembers: [], //[{name: "alice", email: "alice@aol.com"}, {name: "bill", email: "bill@aol.com"}],
 	// discussions: [],
 	discussion: "",
@@ -36,7 +36,7 @@ export default function groupsReducer(state = {
 					selectedGroupId: action.group_data.group.id,
 					selectedGroup: action.group_data.group,
 					selectedGroupMembers: [],
-					selectedGroupFeed: action.group_data.feed_items,
+					selectedGroupFeedItems: action.group_data.feed_items,
 					isMemberOfSelectedGroup: action.group_data.is_member,
 					// allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
 				}

@@ -205,6 +205,12 @@ class Timeline extends Component {
 						}} 
 					/>
 
+					<Route 
+						path="/groups/:id" 
+						render={(matchProps) => {
+							return this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))
+						}} 
+					/>
 
 					<Route 
 						path="/posts/:notificationType/:id"
@@ -284,6 +290,7 @@ const mapStateToProps = state => {
 		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
 		selectedContact: state.network.selectedContact,
 		contactFeed: state.network.contactFeed,
+		groupFeedItems: state.groups.selectedGroupFeedItems,
 		timelineType: state.timeline.timelineType,
 		userId: state.users.userId,
 		hasMore: state.timeline.hasMore,

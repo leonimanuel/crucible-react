@@ -115,7 +115,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
   		}
 	  } 
 	  else {
-			alert("no handling for this resource type yet")
+			// console.log("read notification not handled by this function")
 	  }
 				
 	}			
