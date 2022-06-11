@@ -31,6 +31,7 @@ const Notification = (props) => {
 		case "create_reply":
 			notifTypeClassName = "create_reply"
 			notifDescription =  ` ${additional_actor_count ? `and ${additional_actor_count} others` : ""} replied to ${props.currentUser.id == notificationObject.author.id ? "your" : `<b>${notificationObject.author.handle}</b>'s`} comment: `
+			target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
 			break
 
 		case "tag_user_on_reply":

@@ -108,8 +108,12 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 					})
 
 					const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
-  			}
-  		} catch (error) {
+  			} else {
+	        let error = await res.json()
+	        alert(`error: ${res.status}, ${error.message}`)
+      	}    			
+      }  
+  		catch (error) {
   			alert (error, "readNotification")
   		}
 	  } 
@@ -121,7 +125,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 }
 
 export const showPost = (postObjType, postObjId) => {
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
 		})
@@ -162,13 +166,10 @@ export const showPost = (postObjType, postObjId) => {
 
 	  }
 	  else if (postObjType == "Reply") {
-		  fetch(API_ROOT + `/replies/${postObjId}`, configObj)
-		    .then(resp => {
-		    	return resp.json()
-		    	// debugger
-		    })
-		    .then(activity => {
-				  // debugger
+		  try {
+		  	let res = await fetch(API_ROOT + `/replies/${postObjId}`, configObj)
+		  	if (res.status === 200) {
+		  		let activity = await res.json()
 					dispatch({
 						type: "SET_NOTIFICATION_ACTIVITY",
 						activity
@@ -178,12 +179,14 @@ export const showPost = (postObjType, postObjId) => {
 						type: "SET_TIMELINE_TYPE",
 						timelineType: "notification"
 					})
-		    })
-		    .catch(err => alert(err))	  	
-	  } 
-	  else {
-	  	alert("no handling for this resource type yet")
-	  }				
+  			} else {
+	        let error = await res.json()
+	        alert(`error: ${res.status}, ${error.message}`)
+      	}    
+		  } catch (error) {
+		  	alert(error)
+		  }
+	  }		
 	}
 }
 
