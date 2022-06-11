@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications } from "../../actions/groups.js"
+import { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications, clearSelectedGroup } from "../../actions/groups.js"
 
 import Menu from "../tools/Menu.js";
 import LoadingBar from "../tools/LoadingBar.js"
@@ -35,6 +35,10 @@ class GroupCard extends Component {
 		if (this.props.selectedGroup.private && !this.props.isMemberOfSelectedGroup) {
     	document.location.href="/";
 		}
+	}
+
+	componentWillUnmount() {
+		this.props.clearSelectedGroup()
 	}
 
 	render() {
@@ -100,7 +104,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications, clearSelectedGroup })(GroupCard);
 
 
 

@@ -19,7 +19,6 @@ export default function notificationsReducer(state = {
 			// HIDE it from the notifications menu. 
 
 			const groupNotificationsCount = notificationGroupsArray.filter(ng => ng.group_object.type ==  "Comment" && ng.group_object.group).length
-			debugger
 			return {
 				...state,
 				notification_groups: sortedNotificationGroupsArray,

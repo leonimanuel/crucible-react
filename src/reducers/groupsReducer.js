@@ -105,6 +105,16 @@ export default function groupsReducer(state = {
 					allGroups: state.allGroups.filter(group => group.id != action.groupId)
 				}
 
+			case "CLEAR_SELECTED_GROUP":
+				return {
+					...state,
+					selectedGroupId: "",
+					selectedGroup: "",
+					selectedGroupMembers: [],
+					isMemberOfSelectedGroup: false,
+					selectedGroupFeedItems: []					
+				}
+
 			default:
 				return state;	
 		}

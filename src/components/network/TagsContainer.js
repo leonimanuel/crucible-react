@@ -1,5 +1,6 @@
 import { API_ROOT } from "../../constants"
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 // import { COUNTRIES } from './countries';
 import './network.scss';
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -41,10 +42,11 @@ const TagsContainer = (props) => {
 			// setCurrentSearchVal(searchVal)
 			currentSearchVal = searchVal
   		
+      let groupId = props.selectedGroupId
   		setTimeout(async () => {				
 				if (currentSearchVal === prevSearchVal) {
 				  try {
-				  	let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}?tags=true`, configObj);
+				  	let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}?tags=true${groupId ? `&group_id=${groupId}` : ""}`, configObj);
 				  	if (response.status == 200) {
 				  		let contacts = await response.json()
 				  		let suggestions = contacts.map(c => ({id: c.handle, text: c.handle, contact_id: c.id}))
@@ -106,9 +108,9 @@ const TagsContainer = (props) => {
 };
 
 const mapStateToProps = state => {
-	// return {
-	// 	contacts: state.network.
-	// }
+	return {
+    selectedGroupId: state.groups.selectedGroupId
+	}
 }
 
-export default TagsContainer;
+export default connect(mapStateToProps)(TagsContainer);

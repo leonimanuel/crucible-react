@@ -378,5 +378,12 @@ export const leaveGroup = (groupId) => {
 }
 
 
+export const clearSelectedGroup = () => {
+  return {
+    type: "CLEAR_SELECTED_GROUP",
+  }  
+}
+
+
 
 
