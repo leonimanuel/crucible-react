@@ -56,7 +56,7 @@ const TagsContainer = (props) => {
 				  	alert(error)
 				  }
 				} 
-  		}, 1000)	 
+  		}, 250)	 
 	  }
 	}
 
@@ -67,7 +67,9 @@ const TagsContainer = (props) => {
 
   const handleAddition = tag => {
     // setTags([...tags, tag]);
-    props.updateTags([...tags, tag]);
+    if (tag.contact_id) {
+      props.updateTags([...tags, tag]);  
+    }
   };
 
   const handleDrag = (tag, currPos, newPos) => {
