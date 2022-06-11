@@ -34,7 +34,6 @@ export default function notificationsReducer(state = {
 			modifiedNotificationGroup.is_read = true
 
 			const newNotificationGroups = notificationGroups.filter(n => n.id !== modifiedNotificationGroup.id)
-			debugger
 
 			const sortedNotificationGroups = [...newNotificationGroups, modifiedNotificationGroup].sort(function(a,b) {
 			  // Turn your strings into dates, and then subtract them
@@ -46,7 +45,6 @@ export default function notificationsReducer(state = {
 			// notificationGroups[selectionIndex].is_read = true
 
 			// const updatedNotificationGroups = state.notification_groups.filter(n => n.id !== action.notifId)
-			debugger
 			return {
 				...state,
 				notification_groups: sortedNotificationGroups,

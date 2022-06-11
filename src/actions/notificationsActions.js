@@ -83,7 +83,6 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 	  } 
 	  else if (objectType == "Reply") {
   		try {
-  			debugger
   			let res = await fetch(API_ROOT + `/replies/${objectId}`, configObj)
   			if (res.status == 200) {
 					let activity = await res.json()
@@ -168,7 +167,6 @@ export const showPost = (postObjType, postObjId) => {
 	  }
 	  else if (postObjType == "Reply") {
 		  try {
-		  	debugger
 		  	let res = await fetch(API_ROOT + `/replies/${postObjId}`, configObj)
 		  	if (res.status === 200) {
 		  		let activity = await res.json()
