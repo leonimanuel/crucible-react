@@ -83,6 +83,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 	  } 
 	  else if (objectType == "Reply") {
   		try {
+  			debugger
   			let res = await fetch(API_ROOT + `/replies/${objectId}`, configObj)
   			if (res.status == 200) {
 					let activity = await res.json()
@@ -167,6 +168,7 @@ export const showPost = (postObjType, postObjId) => {
 	  }
 	  else if (postObjType == "Reply") {
 		  try {
+		  	debugger
 		  	let res = await fetch(API_ROOT + `/replies/${postObjId}`, configObj)
 		  	if (res.status === 200) {
 		  		let activity = await res.json()
@@ -179,6 +181,12 @@ export const showPost = (postObjType, postObjId) => {
 						type: "SET_TIMELINE_TYPE",
 						timelineType: "notification"
 					})
+
+					const replies = activity.item.object.replies.flat().filter(r => !!r)
+			  	dispatch(({
+			  		type: "SET_REPLIES",
+			  		replies: replies
+			  	}))		
   			} else {
 	        let error = await res.json()
 	        alert(`error: ${res.status}, ${error.message}`)
