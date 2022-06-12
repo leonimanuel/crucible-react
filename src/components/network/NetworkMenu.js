@@ -53,7 +53,7 @@ const NetworkMenu = (props) => {
 				<div className={`network-option ${stateNetworkOption == "followers" ? "selected" : ""}`} data-type="followers" id="followers-network-option" onClick={selectNetworkOption}>Followers</div>
 			</div>
 			
-			<div id={`search-crucible-network-button`}>	 
+			<div id={`search-crucible-network-button`} className="search-button">	 
 			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="center" modal>
 			    { close => <NetworkModal handleContactSelect={() => close()} /> }
 			  </Popup>								

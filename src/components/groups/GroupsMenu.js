@@ -10,6 +10,7 @@ import AddListItemButton from "./AddListItemButton.js"
 // import { API_ROOT } from "../../constants"
 // import { fetchUsers } from "../../actions/groups.js"
 import GroupsModal from "./GroupsModal.js"
+import SearchGroupsModal from "./SearchGroupsModal.js"
 
 import { loadGroups } from "../../actions/groups.js"
 
@@ -73,7 +74,14 @@ class GroupsMenu extends Component {
 					    	}
 						  </Popup>								
 						</div>
-					</div>					
+					</div>	
+
+					<div id={`search-crucible-network-button`} className="search-button">	 
+					  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="center" modal>
+					    { close => <SearchGroupsModal handleGroupSelect={() => close()} /> }
+					  </Popup>								
+					</div>
+
 					{this.props.groups 
 						? 
 							<GroupsList 

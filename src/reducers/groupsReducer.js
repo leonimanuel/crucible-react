@@ -15,7 +15,8 @@ export default function groupsReducer(state = {
 	// showDetailPane: false,
 	groupUnreadMessages: "",
 	renderForum: false,
-	memberSuggestions: []
+	memberSuggestions: [],
+	recommendedGroups: []
 }, action) {
 		// debugger
 		// console.log("executing groupsReducer")

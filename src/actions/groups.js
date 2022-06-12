@@ -315,6 +315,35 @@ export const addNewGroup = (groupName, members, isPrivate) => {
 	}
 }
 
+export const fetchGroupRecommendations = (searchVal) => {
+  return async (dispatch) => {
+    dispatch({type: "FETCHING_MEMBER_RECOMMENDATIONS"})
+
+    let configObj = {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    }
+    
+    try {
+      let response = await fetch(`${API_ROOT}/groups/recommendations`, configObj) 
+      if (response.status == 200) {
+        debugger
+        let groups = await response.json()
+        dispatch({
+          type: "SET_GROUP_RECOMMENDATIONS",
+          members: groups
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }  
+  }
+}
+
 export const editGroup = (groupId, groupName, addedMembers, removedMembers) => {
   return (dispatch) => {
     let addedMemberIds = addedMembers.map(member => member.id)
