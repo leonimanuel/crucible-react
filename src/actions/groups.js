@@ -331,11 +331,10 @@ export const fetchGroupRecommendations = (searchVal) => {
     try {
       let response = await fetch(`${API_ROOT}/groups/recommendations`, configObj) 
       if (response.status == 200) {
-        debugger
         let groups = await response.json()
         dispatch({
           type: "SET_GROUP_RECOMMENDATIONS",
-          members: groups
+          groups: groups
         })
       }
     } catch (error) {

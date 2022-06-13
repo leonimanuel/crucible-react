@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import './App.scss';
 import './components/tools/menu.scss';
+import './components/tools/modals.scss';
 import { BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import { LastLocationProvider } from 'react-router-last-location';
 import { connect } from "react-redux"

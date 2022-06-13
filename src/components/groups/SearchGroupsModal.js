@@ -58,30 +58,29 @@ const SearchGroupsModal = (props) => {
 	}
 
 	return (
-		<div id="network-modal-container" className="modal">
-	    <form id="network-search-form" onSubmit={handleSubmit} className="search-form">
-	      <input id="network-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
-	      <input id="network-search-submit-button" className="search-submit-button" type="submit" value="search" />
+		<div id="groups-modal-container" className="modal-container">
+	    <form id="groups-search-form" onSubmit={handleSubmit} className="search-form">
+	      <input id="groups-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
+	      <input id="groups-search-submit-button" className="search-submit-button" type="submit" value="search" />
 	    </form>
 
-
-
-	    {
-	    	<React.Fragment>
-		    	<div id="network-recommendations">
-			    	<h3>{props.recommendedGroups.length ? "Recommendations" : ""}</h3>
+    	<React.Fragment>
+	    	{
+	    		props.recommendedGroups.length && !stateSearchResults.length
+	    			?
+		    	<div id="groups-recommendations" className="modal-search-results-wrapper">
+			    	<h3>Recommendations</h3>
 			    	{props.recommendedGroups.map(group => <GroupSearchResult group={group} onGroupSelect={props.handleGroupSelect} />)}
 			    </div>
+			    	:
+		    	null
+	    	}
 
-			    <div id="network-search-results">
-			    	<h3>{stateSearchResults.length ? "Search Results" : ""}</h3>
-			    	{stateSearchResults.map(group => <GroupSearchResult group={group} onGroupSelect={props.handleGroupSelect} />)}
-			    </div>	    	
-	    	</React.Fragment>
-	  	}
-
-
-
+		    <div id="groups-search-results" className="modal-search-results-wrapper">
+		    	<h3>{stateSearchResults.length ? "Search Results" : ""}</h3>
+		    	{stateSearchResults.map(group => <GroupSearchResult group={group} onGroupSelect={props.handleGroupSelect} />)}
+		    </div>	    	
+    	</React.Fragment>
 		</div>
 	)
 }
