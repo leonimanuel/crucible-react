@@ -73,7 +73,7 @@ const Notification = (props) => {
 		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group)}>
 			<Link to={target_path} className="notification-link">
 				<div className="timestamp-wrapper"><Moment className="timestamp" fromNow>{notification_group.updated_at}</Moment></div>
-				<span className={`notification-description ${notifTypeClassName}`}><Link className="contact-result-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>	
+				<span className={`notification-description ${notifTypeClassName}`}><Link className="notification-actor-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>	
 				<span className="notification-target" >
 					{notificationObject.content}
 				</span> 			
