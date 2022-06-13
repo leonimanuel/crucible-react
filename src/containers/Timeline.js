@@ -181,8 +181,9 @@ class Timeline extends Component {
 			<div id="timeline-wrapper">
 				<div id="timeline-items-wrapper">
 					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
-					<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />
-					<Route exact path="/" render={() => <PositionForm /> } />						
+					{/*<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />*/}
+					<Route exact path="/" render={() => <PositionForm /> } />
+					<Route path="/groups/:id" render={() => <PositionForm /> } />
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">

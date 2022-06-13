@@ -6,6 +6,37 @@
 	padding: 0;
 }
 
+#group-card-container {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  
+  #group-card-name-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+
+    #name-and-membership-wrapper {
+      display: flex;
+      // align-items: bottom;
+    }
+  }
+  // display: flex;
+  // background-color: blue;
+  
+  #group-card-members-wrapper {
+    cursor: pointer;
+    text-align: left;
+
+    #group-card-members-button {
+      font-weight: bold;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }  
+}
+
 #new-group-popup {
   display: flex;
   flex-direction: column;
