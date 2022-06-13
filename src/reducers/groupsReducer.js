@@ -116,6 +116,12 @@ export default function groupsReducer(state = {
 					selectedGroupFeedItems: []					
 				}
 
+			case "SET_GROUP_RECOMMENDATIONS":
+				return {
+					...state,
+					recommendedGroups: action.groups
+				}
+
 			default:
 				return state;	
 		}
