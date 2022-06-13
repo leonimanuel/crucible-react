@@ -22,8 +22,8 @@ class GroupsItem extends Component {
 
 	render() {
 		return (
-			<Link to={`/groups/${this.props.group.id}`} >
-				<div className={`sidenav-item group-item detail-item-container`} onClick={this.handleGroupClick}>			
+			<Link className="group-item-link" to={`/groups/${this.props.group.id}`} >
+				<div className={`detail-item-container`} onClick={this.handleGroupClick}>			
 					<div>{this.props.group.name} {this.props.groupNotifications.length ? <span className="badge">{this.props.groupNotifications.length}</span> : null }</div>
 				</div>
 			</Link>
