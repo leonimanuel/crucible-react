@@ -101,7 +101,7 @@ class GroupsModal extends Component {
 		}
 
 		return (
-			<div id="new-group-popup" className="modal">
+			<div id="new-group-popup" className="modal-container">
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 				<div id="new-group-popup-title">New Group</div>
 				<form id="new-group-form" onSubmit={this.handleSubmit}>

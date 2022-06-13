@@ -56,7 +56,7 @@ const GroupMembersModal = (props) => {
 
 	let groupMemberIds = props.members.map(m => m.id)
 	return (
-		<div id="group-members-popup" className="modal">
+		<div id="group-members-popup" className="modal-container">
 	    <form id="group-member-search-form" onSubmit={handleSubmit} className="search-form">
 	      <input id="group-member-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" />
 	      <input id="group-member-search-submit-button" className="search-submit-button" type="submit" value="search" />
