@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { API_ROOT } from '../../constants';
 import { connect } from "react-redux"
 
-import { fetchMemberRecommendations, setSearchedMembersFollowStatuses } from "../../actions/networkActions.js"
 import { fetchGroupRecommendations } from "../../actions/groups.js"
 
 import GroupSearchResult from "./GroupSearchResult.js"
@@ -25,10 +24,7 @@ const SearchGroupsModal = (props) => {
 
 	const handleSubmit = async e => {
     e.preventDefault();
-    
-    // props.fetchMemberSearches(stateInput)
 
-    // if (stateInput) {
 	  let configObj = {
 	    method: 'GET',
 	    headers: {
@@ -43,12 +39,7 @@ const SearchGroupsModal = (props) => {
 	  	if (response.status == 200) {
 	  		let groups = await response.json()
 
-				// let searchedMembersFollowStatuses = members.map(member => {
-				// 	return {memberId: member.id, isFollowing: member.is_following}
-				// })
-
 				setStateSearchResults(groups)
-				// props.setSearchedMembersFollowStatuses(searchedMembersFollowStatuses)
 
 	  	}
 	  } catch (error) {
@@ -60,7 +51,7 @@ const SearchGroupsModal = (props) => {
 	return (
 		<div id="groups-modal-container" className="modal-container">
 	    <form id="groups-search-form" onSubmit={handleSubmit} className="search-form">
-	      <input id="groups-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for members here" required />
+	      <input id="groups-search-input" className="search-input" type="text" onChange={handleChange} value={stateInput} placeholder="search for groups here" required />
 	      <input id="groups-search-submit-button" className="search-submit-button" type="submit" value="search" />
 	    </form>
 
@@ -91,7 +82,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchMemberRecommendations, setSearchedMembersFollowStatuses, fetchGroupRecommendations })(SearchGroupsModal);
+export default connect(mapStateToProps, { fetchGroupRecommendations })(SearchGroupsModal);
 
 
 

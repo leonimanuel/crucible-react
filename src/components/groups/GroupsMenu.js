@@ -77,7 +77,7 @@ class GroupsMenu extends Component {
 					</div>	
 
 					<div id={`search-crucible-network-button`} className="search-button">	 
-					  <Popup trigger={<div id="groups-menu-header">Search Crucible Network</div>} position="center" modal>
+					  <Popup trigger={<div id="groups-menu-header">Find Groups</div>} position="center" modal>
 					    { close => <SearchGroupsModal handleGroupSelect={() => close()} /> }
 					  </Popup>								
 					</div>
