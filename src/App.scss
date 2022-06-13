@@ -104,6 +104,20 @@ textarea {
 
 
 
+// OTHER STUFF
+.timestamp-wrapper {
+  text-align: right;
+  
+  .timestamp {
+    font-style: italic;
+    font-size: 0.8em;
+    padding-right: 5px;
+  }
+}
+
+
+
+
 // MEDIA QUERY STUFF
 @media (min-width: 300px) and (max-width: 900px) {
   #timeline-wrapper { width: 700px; }

@@ -2,9 +2,13 @@ import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 // import { connect } from 'getstream';
+import Moment from 'react-moment';
+import moment from 'moment-timezone';
 
 
 const Notification = (props) => {
+	moment.tz.setDefault("UTC") // VERY IMPORTANT. Otherwise, moment will think the activity timestamp is local timezone
+
 	const { notification_group } = props
 	
 	const latest_actor = notification_group.activities[0].actor
@@ -67,7 +71,8 @@ const Notification = (props) => {
 
 	return (
 		<div className={`notification-container ${notification_group.is_read ? "read" : "unread"}`} onClick={() => props.handleSelectNotification(notificationObject.id, notificationObject.type, notification_group)}>
-			<Link to={target_path} >
+			<Link to={target_path} className="notification-link">
+				<div className="timestamp-wrapper"><Moment className="timestamp" fromNow>{notification_group.updated_at}</Moment></div>
 				<span className={`notification-description ${notifTypeClassName}`}><Link className="contact-result-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>	
 				<span className="notification-target" >
 					{notificationObject.content}
