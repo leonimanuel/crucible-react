@@ -48,7 +48,6 @@ export const showSelectedContact = (contactId) => {
 	  fetch(API_ROOT + `/contacts/${contactId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
-	  	debugger
 	  	dispatch({
 	  		type: "SET_SELECTED_CONTACT",
 	  		contact: data.contact,
@@ -66,7 +65,9 @@ export const showSelectedContact = (contactId) => {
 	  		timelineType: "member"
 	  	})
 	  })
-	  .catch(err => alert(err))
+	  .catch(err => {
+	  	alert(err)
+	  })
 	}	
 }
 

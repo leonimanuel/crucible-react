@@ -54,7 +54,11 @@ class Timeline extends Component {
 			const postObjType = locationParams[1]
 			const postObjId = locationParams[2]
 			this.props.showPost(postObjType, postObjId)
-		} 		
+		}
+
+		if (this.props.location.pathname.split("/")[1] == "profiles") {
+			this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+		}
 	}	
 
 	componentDidUpdate(previousProps, previousState) {
@@ -142,7 +146,7 @@ class Timeline extends Component {
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>
-					</div>					
+					</div>
 				) 
 
 			default:
@@ -202,7 +206,7 @@ class Timeline extends Component {
 					<Route 
 						path="/profiles/:id" 
 						render={(matchProps) => {
-							return (this.props.selectedContact.id == matchProps.match.params.id) ? this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index)) : this.props.showSelectedContact(matchProps.match.params.id)
+							return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))
 						}} 
 					/>
 
