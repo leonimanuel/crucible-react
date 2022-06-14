@@ -64,7 +64,7 @@ const Notification = (props) => {
 
 		case "follow_user":
 			notifTypeClassName = "follow_user"
-			notifDescription = " followed you"
+			notifDescription = ` ${additional_actor_count ? `and ${additional_actor_count} others` : ""} followed you`
 			target_path = `/profiles/${latest_actor.id}`
 			break
 
