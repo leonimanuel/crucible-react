@@ -62,6 +62,11 @@ const Notification = (props) => {
 			target_path = `/groups/${notificationObject.id}`
 			break
 
+		case "follow_user":
+			notifTypeClassName = "follow_user"
+			notifDescription = " followed you"
+			target_path = `/profiles/${latest_actor.id}`
+			break
 
 		default: 
 			notifTypeClassName = ""
@@ -74,9 +79,15 @@ const Notification = (props) => {
 			<Link to={target_path} className="notification-link">
 				<div className="timestamp-wrapper"><Moment className="timestamp" fromNow>{notification_group.updated_at}</Moment></div>
 				<span className={`notification-description ${notifTypeClassName}`}><Link className="notification-actor-link" to={`/profiles/${latest_actor.id}`} >{latest_actor.handle}</Link>{notifDescription}</span>	
-				<span className="notification-target" >
-					{notificationObject.content}
-				</span> 			
+				{
+					notificationObject.content
+						?
+					<span className="notification-target" >
+						{notificationObject.content}
+					</span>
+						:
+					null
+				}			
 			</Link>			 
 		</div>
 	)

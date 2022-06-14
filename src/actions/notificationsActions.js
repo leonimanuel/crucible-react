@@ -117,7 +117,13 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
   			alert (error, "readNotification")
   		}
 	  } 
-	  else {
+	  else if (objectType == "User") {
+			const read_res = client.﻿feed﻿(﻿'notification'﻿, `${userId}`﻿)﻿.﻿get﻿({ mark_read: ﻿[notificationGroupId]﻿ });
+
+			dispatch({
+				type: "READ_NOTIFICATION",
+				notificationGroupId
+			})			
 			// console.log("read notification not handled by this function")
 	  }
 				

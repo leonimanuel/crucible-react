@@ -8,6 +8,7 @@ import FollowButton from "../network/FollowButton.js"
 
 const MemberCard = (props) => {
 	const fc_ratio = props.member.fact_comment_ratio
+	debugger
 	return (
 		<div id="member-card-container" className="timeline-card-container">	 
 			<div id="member-card-handle-wrapper">
