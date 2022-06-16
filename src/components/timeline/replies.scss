@@ -21,12 +21,9 @@
   }
 
   .replies-viewtoggle, .reply-container {
-    border-radius: 10px;
-    margin: 5px 0;
-    padding: 5px 10px;
     text-align: left;
-
-    background-color: #EAEAEA; //light grey
+    border-radius: 10px;
+    padding: 5px 10px;
   }
 
   .replies-viewtoggle {
@@ -53,6 +50,13 @@
         margin-left: 10px;
         font-size: 0.8em;
       }
+    }
+
+    .reply-content-wrapper {
+      // outline: 1px solid red;
+      padding: 5px 10px;
+      background-color: #EAEAEA; //light grey
+      border-radius: 10px;
     }
   }
 }

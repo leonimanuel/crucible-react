@@ -35,14 +35,15 @@ const Reply = (props) => {
 				{reply.created_at ? <Moment className="reply-timestamp" fromNow>{reply.created_at}</Moment> : null}
 			</div>
 
-
-			{!reply.reply_comment
-				?
-					<div className="reply-text">{reply.content}</div>
-				:
-					<TimelineComment comment={reply.reply_comment} hideTaggedUsers={true}/>
-			}
-				<TaggedUsers tagged_users={reply.tagged_users}/>
+			<div className="reply-content-wrapper">
+				{!reply.reply_comment
+					?
+						<div className="reply-text">{reply.content}</div>
+					:
+						<TimelineComment comment={reply.reply_comment} hideTaggedUsers={true}/>
+				}
+					<TaggedUsers tagged_users={reply.tagged_users}/>
+			</div>
 		</div>
 	)
 }
