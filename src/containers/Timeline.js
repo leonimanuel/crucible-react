@@ -100,11 +100,8 @@ class Timeline extends Component {
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
-							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
-								<div className="timeline-item-article-title">
-									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
-								</div> 							
-								<TimelineComment comment={resource} />
+							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
+								<TimelineComment comment={resource} onArticleClick={(e) => this.handleArticleClick(e, resource)} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 							{false && resource.facts_comments_reviews[0].review_status == "pending" 

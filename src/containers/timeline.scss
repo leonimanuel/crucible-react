@@ -380,18 +380,43 @@ $base-color-dark-blue: #0f4c75;
     .timeline-comment {
       // position: relative;
       // border: 2px solid red;
+
+      .article-anchor {
+        padding: 0;
+        font-style: italic;
+        font-weight: bold;
+      }
+
+
       .timeline-comment-context-wrapper {
         // border: 2px solid green;
         position: relative;
+        margin-left: 20px;
 
         .timeline-comment-context {
           // border: 2px solid red;
           // font-size: .8em;
+
           padding: 5px;
           padding-bottom: 10px;
           background-color: #F3F1F5;
           border-radius: 10px;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+          &:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            position: absolute;
+
+            border-top: 9px solid #F3F1F5;
+            border-bottom: 15px solid transparent;
+
+            border-left: 9px solid transparent;      
+            border-right: 18px solid #F3F1F5;
+            left: -25px;
+            top: 40px;    
+          }
 
           .timeline-comment-highlight {
             // font-weight: bold;
@@ -415,8 +440,8 @@ $base-color-dark-blue: #0f4c75;
       }
 
       .timeline-comment-content-wrapper {
-        border-radius: 0 20px 20px 20px;
-        margin-left: 5%;
+        // border-radius: 0 20px 20px 20px;
+        // margin-left: 5%;
 
         .supporting-fact-container {
           border-radius: 10px;
@@ -471,16 +496,33 @@ $base-color-dark-blue: #0f4c75;
 
 
 .timeline-comment-content-wrapper {
+  margin-top: 10px;
+  margin-right: 20px;
   // outline: 2px solid red;
 
   padding: 10px;
   background-color: lightblue; // this color indicates that it is a regular comment
   border-radius: 10px;
+  position: relative;
 
   &.timeline-position {
     background-color: gold; // this color indicates that it is a position
   }
 
+  &:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+
+    border-top: 9px solid lightblue;
+    border-bottom: 15px solid transparent;
+
+    border-left: 18px solid lightblue;      
+    border-right: 9px solid transparent;
+    right: -20px;
+    top: 20px;    
+  }
 }
 
 .timeline-comment-content {

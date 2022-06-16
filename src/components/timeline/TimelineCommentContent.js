@@ -46,7 +46,7 @@ class TimelineCommentContent extends Component {
 		}
 
 		return (
-			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
+			<div className={`timeline-comment-content-wrapper bubble bubble-bottom-left ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				{comment.content ? <div><b>response:</b></div> : null}
 				<div className="timeline-comment-content">{comment.content}</div>				
 				{comment.facts.length ? <div style={{"margin-top": "10px"}}><b>supporting facts: </b></div> : null}
