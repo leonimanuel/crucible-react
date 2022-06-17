@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YT8SYJHZTD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YT8SYJHZTD', {
+        'user_id': localStorage.getItem("userId")
+      });
+      gtag('set', 'user_properties', { 
+        'cr_id' : localStorage.getItem("userId")
+      });
+      gtag('set', 'user_properties', { 
+        'user_email' : localStorage.getItem("userEmail")
+      });        
+    </script>    
+
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap" rel="stylesheet">
     <meta charset="utf-8" />

@@ -71,7 +71,9 @@ class Login extends Component {
 					let data = await response.json()
 					const loginWrapper = document.getElementById("login-wrapper");
 					loginWrapper.innerText = "successfully logged in!"
-					localStorage.setItem("token", data.auth_token)				
+					localStorage.setItem("token", data.auth_token);		
+					localStorage.setItem("userId", data.user.id);
+					localStorage.setItem("userEmail", data.user.email);
           this.props.logIn()
 
 
