@@ -45,7 +45,9 @@ class TimelineComment extends Component {
 				<div className="timeline-comment-context-wrapper bubble">
 					{/*comment.selection ? <div style={{"margin-top": "10px"}}><b>article excerpt:</b></div> : null */}
 					{comment.selection ? <div style={{"margin-top": "10px"}}>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => this.props.onArticleClick(e, comment)}>{comment.article_title}</a>}</div> : null }
-					{comment.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext())}...</div> : null}
+					<div className="timeline-comment-context-bubble">
+						{comment.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext())}...</div> : null}
+					</div>
 					{/*<div className="context-lip"></div>*/}
 				</div>
 				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>
