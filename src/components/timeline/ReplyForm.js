@@ -42,11 +42,11 @@ class ReplyForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
-    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
+    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.responseExcerpt.id, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
   }
 
   clearReplyForm = () => {
-    this.setState({ text: '', facts: [], tags: [] });
+    this.setState({ text: '', responseExcerpt: "", facts: [], tags: [] });
     let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
     messageInput.innerHTML = ""
   }
