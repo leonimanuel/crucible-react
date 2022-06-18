@@ -23,6 +23,7 @@ class ReplyForm extends Component {
   state = {
     text: '',
     draggedOver: false,    
+    responseExcerpt: [],
     facts: [],
     tags: []
   }
@@ -49,6 +50,14 @@ class ReplyForm extends Component {
     messageInput.innerHTML = ""
   }
 
+  updateResponseExcerpt = (excerpt) => {
+    this.setState({responseExcerpt: [excerpt]})
+  }
+
+  removeResponseExcerpt = () => {
+    this.setState({responseExcerpt: []})
+  }
+
   updateFacts = (facts) => {
     this.setState({facts: facts})
   }  
@@ -60,6 +69,14 @@ class ReplyForm extends Component {
   render = () => {
     return (
       <div className="reply-form" >
+        <FactDropzone 
+          facts={this.state.responseExcerpt} 
+          handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
+          handleResponseExcerptRemoval={this.removeResponseExcerpt}
+          placeholder="responding to an excerpt? drag & drop it here."
+          dropType="responseExcerpt"
+        />
+
         <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
           <div 
             className="reply-input-div"
@@ -71,7 +88,12 @@ class ReplyForm extends Component {
           <input className="reply-submit-button" type="submit" />
         </form>
       
-        <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>
+        <FactDropzone 
+          facts={this.state.facts} 
+          handleFactsUpdate={(facts) => this.updateFacts(facts)}
+          placeholder="Support your position with facts by dragging them here from your fact bank."
+          dropType="supportingFacts"
+        />
         <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>
       </div>
     );
