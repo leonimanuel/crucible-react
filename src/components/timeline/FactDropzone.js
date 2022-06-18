@@ -48,22 +48,18 @@ class FactDropzone extends Component {
       let precedingFactId = e.target.dataset.preceding_fact_id
       let draggedFact = transferObj.fact
       let filteredFacts = this.props.facts.filter(f => f.id != draggedFact.id)
-      
-      if (this.props.dropType == "responseExcerpt") {
-        this.props.handleResponseExcerptUpdate(draggedFact)
-      }
-      else if (this.props.dropType == "supportingFacts") {
-        if (precedingFactId == "first") {
-          // this.setState({facts: [draggedFact, ...filteredFacts]})        
-          this.props.handleFactsUpdate([draggedFact, ...filteredFacts])
-        } else {
-          let precedingFactIndex = filteredFacts.indexOf(this.props.facts.find(f => f.id == precedingFactId))
-          filteredFacts.splice(precedingFactIndex + 1, 0, draggedFact)
-          
-          // this.setState({facts: filteredFacts})
-          
-          this.props.handleFactsUpdate(filteredFacts)
-        }
+
+
+      if (precedingFactId == "first") {
+        // this.setState({facts: [draggedFact, ...filteredFacts]})        
+        this.props.handleFactsUpdate([draggedFact, ...filteredFacts])
+      } else {
+        let precedingFactIndex = filteredFacts.indexOf(this.props.facts.find(f => f.id == precedingFactId))
+        filteredFacts.splice(precedingFactIndex + 1, 0, draggedFact)
+        
+        // this.setState({facts: filteredFacts})
+        
+        this.props.handleFactsUpdate(filteredFacts)
       }
     // }
   }	
@@ -71,9 +67,7 @@ class FactDropzone extends Component {
   handleRemoveFact = (factId) => { //removes fact from new chat fact array
     // this.setState({facts: this.state.facts.filter(fact => fact.id != factId)})
     const excerpt = this.props.facts.filter(fact => fact.id != factId)
-    debugger
-    if (this.props.dropType == "responseExcerpt") {this.props.handleResponseExcerptRemoval()}
-    else if (this.props.dropType == "supportingFacts") {this.props.handleFactsUpdate(excerpt)}
+    this.props.handleFactsUpdate(excerpt)
     
   }
 
@@ -92,7 +86,6 @@ class FactDropzone extends Component {
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
             onDrop={this.drop}
-            style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
           >
             {/*"Drag First Fact Here"*/}
           </div>
@@ -115,7 +108,6 @@ class FactDropzone extends Component {
                     onDragEnter={this.handleDragEnter}
                     onDragLeave={this.handleDragLeave}
                     onDrop={this.drop}
-                    style={{display: this.props.dropType == "responseExcerpt" ? "none" : "block"}}                         
                   >
                     {/*`after fact ${fact.id}`*/}
                   </div>

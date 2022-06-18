@@ -70,14 +70,6 @@ class ReplyForm extends Component {
   render = () => {
     return (
       <div className="reply-form" >
-        {/*<FactDropzone 
-                  facts={this.state.responseExcerpt} 
-                  handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
-                  handleResponseExcerptRemoval={this.removeResponseExcerpt}
-                  placeholder="responding to an excerpt? drag & drop it here."
-                  dropType="responseExcerpt"
-                />*/}
-
         <ResponseExcerptDropzone 
           responseExcerpt={this.state.responseExcerpt}
           handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
