@@ -1,0 +1,113 @@
+import React, { Component } from 'react';
+
+import SupportingChatFact from "../social/SupportingChatFact.js"
+import parse from "html-react-parser";
+
+class ResponseExcerptDropzone extends Component {
+  state = {
+    draggedOver: false
+  }
+
+  allowDrop = e => {
+    e.preventDefault();
+    // this.setState({draggedOver: true})
+    e.target.dataset.dragged_over = true
+  }
+
+  handleDragEnter = e => {
+    e.persist();
+    // this.setState({draggedOver: true})
+    e.target.dataset.dragged_over = true
+  }
+
+  handleDragLeave = e => {
+    e.persist();
+    // this.setState({draggedOver: false})
+    e.target.dataset.dragged_over = false
+  }
+
+  drop = e => {
+    e.preventDefault();
+    // this.setState({draggedOver: false})
+    e.target.dataset.dragged_over = false
+    // console.log(JSON.parse(e.dataTransfer.getData("object")))
+    let transferObj = JSON.parse(e.dataTransfer.getData("object"))
+    e.persist()
+
+    let draggedFact = transferObj.fact    
+    this.props.handleResponseExcerptUpdate(draggedFact)
+  }	
+
+  generateContext = (excerpt) => {
+    const context = excerpt.node_text.replace(excerpt.content, `<span class="timeline-comment-highlight">${excerpt.content}</span>`)
+    return context
+  }
+
+  handleArticleClick = (e, resource, actor) => {
+    e.preventDefault()
+    window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
+  }  
+
+  handleRemoveFact = (factId) => { 
+    this.props.handleResponseExcerptRemoval()
+  }
+
+	render() {
+		const excerpt = this.props.responseExcerpt
+    if (excerpt) {
+      debugger
+    }
+    return (
+      <div id="chat-fact-dropzone">
+        {this.props.placeholder}
+        <div id="comment-facts-container">
+          <div
+            className="fact-dropslot"
+            data-preceding_fact_id="first"
+            data-dragged_over="false"
+            onDragOver={this.allowDrop} 
+            onDragEnter={this.handleDragEnter}
+            onDragLeave={this.handleDragLeave}
+            onDrop={this.drop}
+            style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
+          >
+            {/*"Drag First Fact Here"*/}
+          </div>
+          
+          {
+            excerpt
+              ?
+            <div className="timeline-comment-context-wrapper bubble">
+              {
+                excerpt.content 
+                  ? 
+                <div style={{"margin-top": "10px"}}>
+                  {
+                    <a 
+                      className="article-anchor reply-excerpt" 
+                      href={excerpt.article_url} 
+                      onClick={(e, resoure) => this.props.onArticleClick(e, excerpt)}
+                    >
+                      {excerpt.article_title || excerpt.article_url.split("/")[2].replace("www.", "")}
+                    </a>
+                  }
+                </div> 
+                  : 
+                null 
+              }
+              <div className="timeline-comment-context-bubble">
+                {excerpt.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
+              </div>
+              {/*<div className="context-lip"></div>*/}
+            </div>
+              :
+            null
+          }
+
+        </div>                
+      </div>   
+		)
+	}
+}
+
+export default ResponseExcerptDropzone;
