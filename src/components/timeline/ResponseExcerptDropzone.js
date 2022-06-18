@@ -48,7 +48,7 @@ class ResponseExcerptDropzone extends Component {
     window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
   }  
 
-  handleRemoveFact = (factId) => { 
+  handleRemoveExcerpt = () => { 
     this.props.handleResponseExcerptRemoval()
   }
 
@@ -77,7 +77,7 @@ class ResponseExcerptDropzone extends Component {
           {
             excerpt
               ?
-            <div className="timeline-comment-context-wrapper bubble">
+            <div className="timeline-comment-context-wrapper">
               {
                 excerpt.content 
                   ? 
@@ -97,6 +97,7 @@ class ResponseExcerptDropzone extends Component {
               }
               <div className="timeline-comment-context-bubble">
                 {excerpt.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
+                <div className="remove-fact-button" onClick={this.handleRemoveExcerpt}>✕</div>
               </div>
               {/*<div className="context-lip"></div>*/}
             </div>

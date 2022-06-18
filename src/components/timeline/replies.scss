@@ -62,46 +62,72 @@
 }
 
 .reply-form {
-  border: 1px solid grey;
+  // border: 2px solid green;
   border-radius: 5px;
   background-color: #30475E;
 
-  .reply-form-subcontainer {
-    // border: 2px solid red;
-    border-radius: 0 0 10px 10px ;
-    display: flex;
+  .reply-form-subcontainer-bubble {
+    // outline: 2px solid gold;
+    max-width: 100%;  
     margin: 10px;
-    justify-content: space-between;
-    align-items: flex-end;
-    max-width: 100%;
+    border-radius: 10px ;    
+    position: relative;
+    min-height: 100px;
+    padding: 10px;
+    background-color: lightblue;
+    margin-right: 20px;
 
+    .reply-form-subcontainer {
+      // outline: 2px solid red;
 
-    .reply-input-div {
-      border-radius: 5px;
-      /*width: 70%;*/
-      flex: 1;
-      margin: 0 5px;
-      text-align: left;
-      outline: none;
-      padding: 3px;
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: flex-end;
+      text-align: right;
 
-      // max-width: 100px;
-      background-color: white;
-      font-size: 1em;
-      max-height: 150px;
-      overflow: scroll;
-      /*overflow-wrap: break-word;  */
-      border-radius: 2px solid blue;
-    }
+      .reply-input-div {
+        border-radius: 5px;
+        /*width: 70%;*/
+        flex: 1;
+        margin-bottom: 5px;
+        text-align: left;
+        outline: none;
+        padding: 3px;
 
-    .reply-submit-button {
-      background-color: lightblue;
-      border: none;
-      border-radius: 5px;
-      padding: 5px;
-      font-weight: bold;
-      cursor: pointer;    
-    } 
+        // max-width: 100px;
+        background-color: white;
+        font-size: 1em;
+        min-height: 50px;
+        max-height: 150px;
+        overflow: scroll;
+        /*overflow-wrap: break-word;  */
+        border-radius: 2px solid blue;
+      }
+
+      .reply-submit-button {
+        background-color: teal;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: bold;
+        cursor: pointer;    
+      } 
+
+      &:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+
+        border-top: 9px solid lightblue;
+        border-bottom: 15px solid transparent;
+
+        border-left: 18px solid lightblue;      
+        border-right: 9px solid transparent;
+        right: -20px;
+        top: 20px;    
+      }    
+    }    
   }
 
   .reply-fact-dropzone {

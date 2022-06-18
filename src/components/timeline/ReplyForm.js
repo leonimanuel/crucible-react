@@ -85,16 +85,18 @@ class ReplyForm extends Component {
           placeholder="responding to an excerpt? drag & drop it here."             
         />
 
-        <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
-          <div 
-            className="reply-input-div"
-            id={`reply-input-div-${this.props.index}`}
-            contentEditable="true"
-            onKeyUp={this.handleChange}   
-          >
-          </div>
-          <input className="reply-submit-button" type="submit" />
-        </form>
+        <div className="reply-form-subcontainer-bubble">
+          <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
+            <div 
+              className="reply-input-div"
+              id={`reply-input-div-${this.props.index}`}
+              contentEditable="true"
+              onKeyUp={this.handleChange}   
+            >
+            </div>
+            <input className="reply-submit-button" type="submit" />
+          </form>
+        </div>
       
         <FactDropzone 
           facts={this.state.facts} 
