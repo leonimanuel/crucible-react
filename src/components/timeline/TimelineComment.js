@@ -6,6 +6,12 @@ import parse from "html-react-parser";
 import TimelineCommentContent from "./TimelineCommentContent.js"
 import SupportingFact from "../agora/SupportingFact.js"
 
+import TimelineFact from "./TimelineFact.js"
+import TaggedUsers from "./TaggedUsers.js"
+
+import Moment from 'react-moment';
+import moment from 'moment-timezone';
+
 import { selectComment } from "../../actions/commentsActions.js"
 
 class TimelineComment extends Component {
@@ -51,6 +57,33 @@ class TimelineComment extends Component {
 					{/*<div className="context-lip"></div>*/}
 				</div>
 				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>
+
+				{
+					comment.facts.length 
+						? 
+					<React.Fragment>
+						<div className="supporting-facts-wrapper">
+							{comment.facts.map((fact, index) => {
+								return (
+									<div className="supporting-fact-style-container">
+										<div className="style supporting-fact-connector-boxes-container">
+											<div className="style supporting-fact-connector-box top-connector-box"></div>
+											<div className={`style supporting-fact-connector-box ${index+1 != comment.facts.length ? `bottom-connector-box` : null}`}></div>
+										</div>
+										<div className="supporting-fact-container">							
+											<TimelineFact fact={fact}/>
+											<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
+										</div>
+									</div>
+								) 
+							})} 							
+						</div>					
+					</React.Fragment>
+						: 
+					null
+				}
+				<TaggedUsers tagged_users={comment.tagged_users}/>
+
 			</div>
 		)
 	}

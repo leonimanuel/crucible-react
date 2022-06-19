@@ -375,42 +375,7 @@ $base-color-dark-blue: #0f4c75;
           border-radius: 10px;
         }
       }
-    }
-
-    .timeline-comment {
-      // position: relative;
-      // border: 2px solid red;
-
-
-
-      .timeline-comment-content-wrapper {
-        // border-radius: 0 20px 20px 20px;
-        // margin-left: 5%;
-
-        .supporting-fact-container {
-          border-radius: 10px;
-          box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
-          background-color: white;
-          text-align: left;
-          padding: 2%;    
-          margin: 10px 0;
-        }        
-      }
-
-      // .timeline-comment-content-wrapper {
-      //   // border: 2px solid green;
-      //   // position: absolute;
-      //   top: 10px;
-      //   padding: 10px;
-      //   border-radius: 10px;
-      //   background-color: lightblue;
-      //   margin-left: 5%;
-      // }
-
-      // .timeline-comment-content {
-      //   font-size: 1.2em;
-      // }
-    }            
+    }          
   } 
 }
 
@@ -520,9 +485,9 @@ $base-color-dark-blue: #0f4c75;
 
 
 .timeline-comment-content-wrapper {
+  // outline: 2px solid red;
   margin-top: 10px;
   margin-left: 20px;
-  // outline: 2px solid red;
 
   padding: 10px;
   background-color: lightblue; // this color indicates that it is a regular comment
@@ -545,14 +510,61 @@ $base-color-dark-blue: #0f4c75;
     border-right: 18px solid lightblue;      
     border-left: 9px solid transparent;
     left: -20px;
-    top: 20px;    
+    top: 10px;    
   }
+
+  .timeline-comment-content {
+    font-size: 1.1em;
+    // font-weight: bold;
+  }  
 }
 
-.timeline-comment-content {
-  font-size: 1.1em;
-  // font-weight: bold;
+.supporting-facts-wrapper {
+  // outline: 2px solid red;
+  position: relative;
 
+  margin-left: 40px;
+  margin-top: 0;
+  // padding-top: 10px;
+
+  .supporting-fact-style-container {
+    display: flex;
+    // align-items: center;
+    .supporting-fact-connector-boxes-container {
+      width: 100px;
+      min-width: 20px;
+      // outline: 2px solid green;
+      .supporting-fact-connector-box {
+        width: 100%;
+        height: 50%;
+
+        &.top-connector-box {
+          border-bottom: 3px solid lightblue;
+          border-left: 3px solid lightblue;
+        }
+
+        &.bottom-connector-box {
+          border-left: 3px solid lightblue;
+        }
+      }
+    }
+    
+    // .supporting-fact-connector {
+    //   height: 3px;
+    //   width: 100px;
+    //   background-color: lightblue;
+    // } 
+
+    .supporting-fact-container {
+      // outline: 2px solid green;
+      border-radius: 10px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+      background-color: white;
+      text-align: left;
+      padding: 2%;    
+      margin: 10px 0;
+    }   
+  }
 }
 
 
