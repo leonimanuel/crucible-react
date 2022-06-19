@@ -54,59 +54,58 @@ class ResponseExcerptDropzone extends Component {
 
 	render() {
 		const excerpt = this.props.responseExcerpt
-    if (excerpt) {
-      debugger
-    }
-    return (
-      <div id="chat-fact-dropzone">
-        {this.props.placeholder}
-        <div id="comment-facts-container">
-          <div
-            className="fact-dropslot"
-            data-preceding_fact_id="first"
-            data-dragged_over="false"
-            onDragOver={this.allowDrop} 
-            onDragEnter={this.handleDragEnter}
-            onDragLeave={this.handleDragLeave}
-            onDrop={this.drop}
-            style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
-          >
-            {/*"Drag First Fact Here"*/}
-          </div>
-          
-          {
-            excerpt
-              ?
-            <div className="timeline-comment-context-wrapper">
-              {
-                excerpt.content 
-                  ? 
-                <div style={{"margin-top": "10px"}}>
-                  {
-                    <a 
-                      className="article-anchor reply-excerpt" 
-                      href={excerpt.article_url} 
-                      onClick={(e, resoure) => this.props.onArticleClick(e, excerpt)}
-                    >
-                      {excerpt.article_title || excerpt.article_url.split("/")[2].replace("www.", "")}
-                    </a>
-                  }
-                </div> 
-                  : 
-                null 
-              }
-              <div className="timeline-comment-context-bubble">
-                {excerpt.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
-                <div className="remove-fact-button" onClick={this.handleRemoveExcerpt}>✕</div>
-              </div>
-              {/*<div className="context-lip"></div>*/}
-            </div>
-              :
-            null
-          }
 
-        </div>                
-      </div>   
+    return (
+      <React.Fragment>
+        {
+          excerpt 
+            ?
+          <div className="timeline-comment-context-wrapper">
+            {
+              excerpt.content 
+                ? 
+              <div style={{"margin-top": "10px"}}>
+                {
+                  <a 
+                    className="article-anchor reply-excerpt" 
+                    href={excerpt.article_url} 
+                    onClick={(e, resoure) => this.props.onArticleClick(e, excerpt)}
+                  >
+                    {excerpt.article_title || excerpt.article_url.split("/")[2].replace("www.", "")}
+                  </a>
+                }
+              </div> 
+                : 
+              null 
+            }
+            <div className="timeline-comment-context-bubble">
+              {excerpt.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
+              <div className="remove-fact-button" onClick={this.handleRemoveExcerpt}>✕</div>
+            </div>
+            {/*<div className="context-lip"></div>*/}
+          </div>
+            :
+          <div className="chat-fact-dropzone-bubble">          
+            <div className="chat-fact-dropzone">
+              {this.props.placeholder}
+              <div className="comment-facts-container">
+                <div
+                  className="fact-dropslot"
+                  data-preceding_fact_id="first"
+                  data-dragged_over="false"
+                  onDragOver={this.allowDrop} 
+                  onDragEnter={this.handleDragEnter}
+                  onDragLeave={this.handleDragLeave}
+                  onDrop={this.drop}
+                  style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
+                >
+                  {/*"Drag First Fact Here"*/}
+                </div>
+              </div>                
+            </div> 
+          </div>
+        }          
+      </React.Fragment>
 		)
 	}
 }

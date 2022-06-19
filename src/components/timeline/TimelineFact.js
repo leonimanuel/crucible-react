@@ -49,7 +49,7 @@ class TimelineFact extends Component {
 		// }
 		// let ellipsis = fact.node_text ? "..." : null
 		let ellipsis = null
-		if (!fact.url.split("/")[2]) {debugger}
+		// if (!fact.article_url.split("/")[2]) {debugger}
 		return (
 			<div className="timeline-fact-wrapper">
 				{!this.props.userFacts.find(f => f.id === fact.id)

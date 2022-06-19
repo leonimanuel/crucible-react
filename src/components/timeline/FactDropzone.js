@@ -74,10 +74,10 @@ class FactDropzone extends Component {
 	render() {
 		return (
       <div 
-        id="chat-fact-dropzone" 
+        className="chat-fact-dropzone" 
       >
         {this.props.placeholder}
-        <div id="comment-facts-container">
+        <div className="comment-facts-container">
           <div
             className="fact-dropslot"
             data-preceding_fact_id="first"

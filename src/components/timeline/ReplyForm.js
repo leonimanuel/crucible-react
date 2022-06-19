@@ -69,7 +69,7 @@ class ReplyForm extends Component {
 
   render = () => {
     return (
-      <div className="reply-form" >
+      <div className="reply-form comment-form" >
         <ResponseExcerptDropzone 
           responseExcerpt={this.state.responseExcerpt}
           handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
@@ -77,16 +77,16 @@ class ReplyForm extends Component {
           placeholder="responding to an excerpt? drag & drop it here."             
         />
 
-        <div className="reply-form-subcontainer-bubble">
-          <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
+        <div className="reply-form-subcontainer-bubble comment-form-subcontainer-bubble">
+          <form className="reply-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
             <div 
-              className="reply-input-div"
+              className="reply-input-div comment-input-div"
               id={`reply-input-div-${this.props.index}`}
               contentEditable="true"
               onKeyUp={this.handleChange}   
             >
             </div>
-            <input className="reply-submit-button" type="submit" />
+            <input className="reply-submit-button comment-submit-button" type="submit" />
           </form>
         </div>
       

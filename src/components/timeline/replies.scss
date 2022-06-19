@@ -61,14 +61,14 @@
   }
 }
 
-.reply-form {
+.comment-form {
   // border: 2px solid green;
   margin-top: 5px;
   padding: 5px 0;
   border-radius: 5px;
-  background-color: #30475E;
+  // background-color: #30475E; //dark blue
 
-  .reply-form-subcontainer-bubble {
+  .comment-form-subcontainer-bubble {
     // outline: 2px solid gold;
     max-width: 100%;  
     margin: 10px;
@@ -79,7 +79,7 @@
     background-color: lightblue;
     margin-right: 20px;
 
-    .reply-form-subcontainer {
+    .comment-form-subcontainer {
       // outline: 2px solid red;
 
       // display: flex;
@@ -87,7 +87,7 @@
       // align-items: flex-end;
       text-align: right;
 
-      .reply-input-div {
+      .comment-input-div {
         border-radius: 5px;
         /*width: 70%;*/
         flex: 1;
@@ -106,7 +106,7 @@
         border-radius: 2px solid blue;
       }
 
-      .reply-submit-button {
+      .comment-submit-button {
         background-color: teal;
         border: none;
         border-radius: 5px;
