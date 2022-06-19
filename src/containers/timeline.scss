@@ -241,18 +241,23 @@ $base-color-dark-blue: #0f4c75;
   }
 
   .timeline-item-header {
-    // border: 2px solid purple;
+    // outline: 2px solid purple;
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
 
-    .item-header-username {
-      font-weight: bold;
-      cursor: pointer;
-    }
+    .item-header-description {
+      // outline: 2px solid red;
+      // border-bottom: 3px solid lightblue;
 
-    .timeline-actor-link {
-      padding: 0;
+      .item-header-username {
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .timeline-actor-link {
+        padding: 0;
+      }
     }
   }
 
@@ -418,6 +423,8 @@ $base-color-dark-blue: #0f4c75;
       padding: 5px;
       padding-bottom: 10px;
       background-color: #F3F1F5;
+      // background-color: snow;
+      // background-color: white;
       border-radius: 10px;
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
