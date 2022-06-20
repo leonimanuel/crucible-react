@@ -13,7 +13,6 @@ class ReplyForm extends Component {
     let replyForms = document.querySelectorAll('.reply-input-div')
     replyForms.forEach(replyForm => {
       replyForm.addEventListener("paste", function(e) {
-          debugger
           e.preventDefault();
           var text = e.clipboardData.getData("text/plain");
           document.execCommand("insertHTML", false, text);
@@ -86,7 +85,11 @@ class ReplyForm extends Component {
               onKeyUp={this.handleChange}   
             >
             </div>
-            <input className="reply-submit-button comment-submit-button" type="submit" />
+            <input 
+              className="reply-submit-button comment-submit-button" 
+              type="submit" value="reply" 
+              disabled={!(this.state.text || this.state.responseExcerpt)} 
+            />
           </form>
         </div>
       

@@ -91,7 +91,11 @@ class PositionForm extends Component {
               onKeyUp={this.handleChange}   
             >
             </div>
-            <input className="position-submit-button comment-submit-button" type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`} />
+            <input 
+              className="position-submit-button comment-submit-button" 
+              type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
+              disabled={!(this.state.text || this.state.responseExcerpt)}
+            />
           </form>
         </div>
       
