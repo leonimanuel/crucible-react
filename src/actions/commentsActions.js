@@ -100,7 +100,7 @@ export const selectComment = (comment, userId) => {
   }
 }
 
-export const submitPosition = (text, factIDs, tags) => {
+export const submitPosition = (text, factIDs, responseExcerptId, tags, groupId, clearForm) => {
   return async dispatch => {
   	dispatch({type: "SUBMITTING_POSITION"})
 
@@ -113,9 +113,11 @@ export const submitPosition = (text, factIDs, tags) => {
 	    },
 	    body: JSON.stringify({
 	      comment_type: "position",
+	      responseExcerptId: responseExcerptId,
 	      text: text,
 	      factIds: factIDs,
-	      tags: tags
+	      tags: tags,
+	      groupId: groupId
 	    })
 	  }
 	  
@@ -127,8 +129,11 @@ export const submitPosition = (text, factIDs, tags) => {
 		  		type: "ADD_NEW_POSITION",
 		  		position: newPositionActivity
 		  	})
+
+		  	clearForm()
 		  } else {
-		  	debugger
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error.message}`)
 		  }
 	  } catch (error) {
 	  	alert(error)

@@ -94,6 +94,7 @@ class Timeline extends Component {
 					</div>
 				)
 
+			case "Position":
 			case "Comment":
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
 				return (
@@ -104,31 +105,28 @@ class Timeline extends Component {
 								<TimelineComment comment={resource} onArticleClick={(e) => this.handleArticleClick(e, resource)} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
-							{false && resource.facts_comments_reviews[0].review_status == "pending" 
-								&& !!activity.item.reviewable
-								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
-							
 						</div>
 					</div>			
 				) 
+				break
 
-			case "Position":
-				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
-				return (
-					<div className="timeline-item-container">
-						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader time={activity.time} actor={activity.actor} type="created a new position"/>
-							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineCommentContent comment={resource} position={true} tagged_users={activity.item.tagged_users}/>
-								<RepliesContainer comment={resource} index={index}/>						
-							</div>
-							{false && resource.facts_comments_reviews[0].review_status == "pending" 
-								&& !!activity.item.reviewable
-								&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
+			// case "Position":
+			// 	review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
+			// 	return (
+			// 		<div className="timeline-item-container">
+			// 			<div className="timeline-item-subcontainer">
+			// 				<TimelineItemHeader time={activity.time} actor={activity.actor} type="created a new position"/>
+			// 				<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
+			// 					<TimelineCommentContent comment={resource} position={true} tagged_users={activity.item.tagged_users}/>
+			// 					<RepliesContainer comment={resource} index={index}/>						
+			// 				</div>
+			// 				{false && resource.facts_comments_reviews[0].review_status == "pending" 
+			// 					&& !!activity.item.reviewable
+			// 					&& (index + 1) % Math.floor(Math.random() * 5) === 0 ? <TimelineReviewItem selectedItem={review_resource} type={activity.item.review_type} /> : null}
 							
-						</div>
-					</div>			
-				) 
+			// 			</div>
+			// 		</div>			
+			// 	) 
 
 			case "Article_share":
 				return (
@@ -145,6 +143,7 @@ class Timeline extends Component {
 						</div>
 					</div>
 				) 
+				break
 
 			default:
 				return <div>Item type not found</div>

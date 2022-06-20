@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./positions.scss"
 
 import { connect } from 'react-redux';
-import { createReply } from "../../actions/timelineActions.js"
+import { submitPosition } from "../../actions/commentsActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 import FactDropzone from "../timeline/FactDropzone.js"
@@ -11,15 +11,12 @@ import TagsContainer from "../network/TagsContainer.js"
 
 class PositionForm extends Component {
   componentDidMount() {
-    let replyForms = document.querySelectorAll('.reply-input-div')
-    replyForms.forEach(replyForm => {
-      replyForm.addEventListener("paste", function(e) {
-          debugger
-          e.preventDefault();
-          var text = e.clipboardData.getData("text/plain");
-          document.execCommand("insertHTML", false, text);
-      });    
-    })
+    let positionForm = document.getElementById('position-input-div')
+    positionForm.addEventListener("paste", function(e) {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
+    });    
   }
 
   state = {
@@ -43,12 +40,19 @@ class PositionForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
-    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.responseExcerpt.id, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
+    this.props.submitPosition(
+      this.state.text, 
+      factIDs, 
+      this.state.responseExcerpt.id, 
+      this.state.tags.map(t => t.contact_id), 
+      this.props.selectedGroup ? this.props.selectedGroup.id : null,
+      this.clearReplyForm
+    )
   }
 
   clearReplyForm = () => {
     this.setState({ text: '', responseExcerpt: "", facts: [], tags: [] });
-    let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
+    let messageInput = document.getElementById(`position-input-div`)
     messageInput.innerHTML = ""
   }
 
@@ -81,12 +85,13 @@ class PositionForm extends Component {
         <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
           <form className="position-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
             <div 
-              className="position-input-div comment-input-div"
+              className="comment-input-div"
+              id="position-input-div"
               contentEditable="true"
               onKeyUp={this.handleChange}   
             >
             </div>
-            <input className="position-submit-button comment-submit-button" type="submit" />
+            <input className="position-submit-button comment-submit-button" type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`} />
           </form>
         </div>
       
@@ -102,4 +107,4 @@ class PositionForm extends Component {
   };
 }
 
-export default connect(state => ({userId: state.users.userId}), { createReply })(PositionForm);
+export default connect(state => ({userId: state.users.userId, selectedGroup: state.groups.selectedGroup}), { submitPosition })(PositionForm);
