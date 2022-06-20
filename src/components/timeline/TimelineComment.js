@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 import parse from "html-react-parser";
 
+import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
+
+
 import TimelineCommentContent from "./TimelineCommentContent.js"
 import SupportingFact from "../agora/SupportingFact.js"
 
@@ -24,12 +27,6 @@ class TimelineComment extends Component {
 		// this.props.selectComment(this.props.comment, this.props.userId)
 	}
 
-	generateContext = () => {
-		const { comment } = this.props
-		const context = comment.node_text.replace(comment.selection, `<span class="timeline-comment-highlight">${comment.selection}</span>`)
-		return context
-	}
-
 	render() {		
 		const { comment, dummy } = this.props;
 
@@ -49,10 +46,9 @@ class TimelineComment extends Component {
 			 	className={`timeline-comment timeline-item`} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
 				<div className="timeline-comment-context-wrapper bubble">
-					{/*comment.selection ? <div style={{"margin-top": "10px"}}><b>article excerpt:</b></div> : null */}
-					{comment.selection ? <div style={{"margin-top": "10px"}}>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => this.props.onArticleClick(e, comment)}>{comment.article_title}</a>}</div> : null }
+					{comment.response_excerpt?.content ? <div style={{"margin-top": "10px"}}>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>}</div> : null }
 					<div className="timeline-comment-context-bubble">
-						{comment.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(comment))}...</div> : <div className="timeline-comment-context">{comment.selection}</div>}
+						{comment.response_excerpt?.node_text ? <div className="timeline-comment-context">...{parse(generateContext(comment.response_excerpt))}...</div> : <div className="timeline-comment-context">{comment.response_excerpt?.content}</div>}
 					</div>
 					{/*<div className="context-lip"></div>*/}
 				</div>
@@ -72,7 +68,6 @@ class TimelineComment extends Component {
 										</div>
 										<div className="supporting-fact-container">							
 											<TimelineFact fact={fact}/>
-											<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
 										</div>
 									</div>
 								) 

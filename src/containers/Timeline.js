@@ -5,6 +5,8 @@ import { connect } from "react-redux"
 import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { API_ROOT } from "../constants"
+import { handleArticleClick } from "../helpers/helpers.js"
+
 import "./timeline.scss"
 
 import TimelineFact from "../components/timeline/TimelineFact.js"
@@ -72,11 +74,6 @@ class Timeline extends Component {
 		this.setState({loadingActivities: false})
 	}
 
-	handleArticleClick = (e, resource, actor) => {
-		e.preventDefault()
-		window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
-	}
-
 	showTimelineItem = (activity, index) => {
 		const resource = activity.item.object
 		let review_resource = {}
@@ -88,11 +85,11 @@ class Timeline extends Component {
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="collected a new fact"/>
 							<div className="timeline-item-content-container">							
 								<TimelineFact fact={resource.fact}/>
-								<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{resource.fact.created_at}</Moment>}</div>
 							</div>
 						</div>				
 					</div>
 				)
+				break
 
 			case "Position":
 			case "Comment":
@@ -102,7 +99,7 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineComment comment={resource} onArticleClick={(e) => this.handleArticleClick(e, resource)} />
+								<TimelineComment comment={resource} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>
@@ -135,7 +132,7 @@ class Timeline extends Component {
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="shared an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
 								<div className="timeline-item-article-title timeline-article-header">
-									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => this.handleArticleClick(e, resource)}>{resource.article_title}</a>
+									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => handleArticleClick(e, resource)}>{resource.article_title}</a>
 								</div> 							
 								{resource.content ? <TimelineComment comment={resource} /> : null}
 								<RepliesContainer comment={resource} index={index}/>						

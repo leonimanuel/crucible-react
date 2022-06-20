@@ -68,3 +68,16 @@ export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedU
       .catch(err => alert(err))
 	}		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

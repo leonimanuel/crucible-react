@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import SupportingChatFact from "../social/SupportingChatFact.js"
+import SupportingExcerpt from "./SupportingExcerpt.js"
+// import TimelineFact from "./TimelineFact.js"
+import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
+
+import parse from "html-react-parser";
 
 class FactDropzone extends Component {
   state = {
@@ -90,19 +94,20 @@ class FactDropzone extends Component {
             {/*"Drag First Fact Here"*/}
           </div>
           {
-            this.props.facts.map(fact => {
+            this.props.facts.map(excerpt => {
               return (
                 <div className="supporting-fact-wrapper">
-                  <SupportingChatFact 
-                  	key={fact.id} 
-                  	fact={fact} 
+                  {<SupportingExcerpt
+                  	key={excerpt.id} 
+                  	fact={excerpt} 
                   	facts={this.props.facts} 
                   	sendRemoval={(factId) => this.handleRemoveFact(factId)}
                   	handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
-                	/>  
+                	/>}
+
                   <div 
                     className="fact-dropslot"
-                    data-preceding_fact_id={fact.id}
+                    data-preceding_fact_id={excerpt.id}
                     data-dragged_over={this.state.draggedOver}
                     onDragOver={this.allowDrop} 
                     onDragEnter={this.handleDragEnter}

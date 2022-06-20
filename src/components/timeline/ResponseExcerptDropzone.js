@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 import parse from "html-react-parser";
@@ -38,16 +39,6 @@ class ResponseExcerptDropzone extends Component {
     this.props.handleResponseExcerptUpdate(draggedFact)
   }	
 
-  generateContext = (excerpt) => {
-    const context = excerpt.node_text.replace(excerpt.content, `<span class="timeline-comment-highlight">${excerpt.content}</span>`)
-    return context
-  }
-
-  handleArticleClick = (e, resource, actor) => {
-    e.preventDefault()
-    window.open(resource.article_url + `?crucibleShareId=${resource.id}`,'_blank')
-  }  
-
   handleRemoveExcerpt = () => { 
     this.props.handleResponseExcerptRemoval()
   }
@@ -61,28 +52,20 @@ class ResponseExcerptDropzone extends Component {
           excerpt 
             ?
           <div className="timeline-comment-context-wrapper">
-            {
-              excerpt.content 
-                ? 
-              <div style={{"margin-top": "10px"}}>
-                {
-                  <a 
-                    className="article-anchor reply-excerpt" 
-                    href={excerpt.article_url} 
-                    onClick={(e, resoure) => this.props.onArticleClick(e, excerpt)}
-                  >
-                    {excerpt.article_title || excerpt.article_url.split("/")[2].replace("www.", "")}
-                  </a>
-                }
-              </div> 
-                : 
-              null 
-            }
+            <div style={{"margin-top": "10px"}}>
+              <a 
+                className="article-anchor reply-excerpt" 
+                href={excerpt.article_url} 
+                onClick={(e, resoure) => handleArticleClick(e, excerpt)}
+              >
+                {excerpt.article_title || excerpt.article_url.split("/")[2].replace("www.", "")}
+              </a>
+            </div> 
+
             <div className="timeline-comment-context-bubble">
-              {excerpt.node_text ? <div className="timeline-comment-context">...{parse(this.generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
+              {excerpt.node_text ? <div className="timeline-comment-context">...{parse(generateContext(excerpt))}...</div> : <div className="timeline-comment-context">{excerpt.content}</div>}
               <div className="remove-fact-button" onClick={this.handleRemoveExcerpt}>✕</div>
             </div>
-            {/*<div className="context-lip"></div>*/}
           </div>
             :
           <div className="chat-fact-dropzone-bubble">          
