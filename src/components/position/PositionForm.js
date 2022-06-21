@@ -94,7 +94,7 @@ class PositionForm extends Component {
             <input 
               className="position-submit-button comment-submit-button" 
               type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
-              disabled={!(this.state.text || this.state.responseExcerpt)}
+              disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)}
             />
           </form>
         </div>
