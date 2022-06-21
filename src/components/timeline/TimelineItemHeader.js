@@ -13,7 +13,7 @@ class TimelineItemHeader extends Component {
 		const { actor } = this.props
 		return (
 			<div className={`timeline-item-header`}>
-				<div><span className="item-header-username"><Link className="timeline-actor-link" to={`/profiles/${actor.id}`}>{actor.name}</Link> </span>{this.props.type}</div>
+				<div className="item-header-description"><span className="item-header-username"><Link className="timeline-actor-link" to={`/profiles/${actor.id}`}>{actor.name}</Link> </span>{this.props.type}</div>
 				{<Moment fromNow>{this.props.time}</Moment>}
 			</div>
 		)

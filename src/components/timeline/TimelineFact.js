@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import parse from 'html-react-parser';
 import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 
+import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
+
 import TimelineItemHeader from "./TimelineItemHeader.js"
+
+import Moment from 'react-moment';
+import moment from 'moment-timezone';
+import parse from 'html-react-parser';
+
 
 class TimelineFact extends Component {
 	state = {
@@ -24,17 +30,6 @@ class TimelineFact extends Component {
 	toggleFactRephrase = () => this.setState({showOriginalFact: !this.state.showOriginalFact});
 	toggleFactContext = () => this.setState({showContext: !this.state.showContext})
 
-
-	generateContext = () => {
-		const { fact } = this.props
-		if (fact.node_text) {
-			const context = fact.node_text.replace(fact.content, `<span class="timeline-fact-highlight">${fact.content}</span>`)
-			return context
-		}
-
-		return fact.content
-	}
-
 	render() {
 		const { fact } = this.props;
 		
@@ -49,7 +44,7 @@ class TimelineFact extends Component {
 		// }
 		// let ellipsis = fact.node_text ? "..." : null
 		let ellipsis = null
-		if (!fact.url.split("/")[2]) {debugger}
+		// if (!fact.article_url.split("/")[2]) {debugger}
 		return (
 			<div className="timeline-fact-wrapper">
 				{!this.props.userFacts.find(f => f.id === fact.id)
@@ -72,7 +67,7 @@ class TimelineFact extends Component {
 					this.state.showContext 
 					?
 					<div className="timeline-fact-context-wrapper">
-						<div className="timeline-fact-context">{ellipsis}{parse(this.generateContext())}{ellipsis}</div>
+						<div className="timeline-fact-context">{ellipsis}{parse(generateContext(fact))}{ellipsis}</div>
 						{/*<div className="context-lip"></div>*/}
 					</div>
 					:
@@ -83,7 +78,7 @@ class TimelineFact extends Component {
 					</div>					
 				}
 				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].replace("www.", "")}</a>
-
+				<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
 			</div>			
 		)
 	}

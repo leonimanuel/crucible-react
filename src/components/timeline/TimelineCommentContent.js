@@ -46,19 +46,8 @@ class TimelineCommentContent extends Component {
 		}
 
 		return (
-			<div className={`timeline-comment-content-wrapper bubble bubble-bottom-left ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
-				{comment.content ? <div><b>response:</b></div> : null}
+			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				
-				{comment.facts.length ? <div style={{"margin-top": "10px"}}><b>supporting facts: </b></div> : null}
-				{comment.facts ? comment.facts.map(fact => {
-					return (
-						<div className="supporting-fact-container">							
-							<TimelineFact fact={fact}/>
-							<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
-						</div>
-					) 
-				}) : null}
-				<TaggedUsers tagged_users={comment.tagged_users}/>
 			</div>
 		)
 	}
