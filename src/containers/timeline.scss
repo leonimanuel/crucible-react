@@ -291,7 +291,7 @@ $base-color-dark-blue: #0f4c75;
   position: relative;
   color: black;
   font-weight: normal;
-  border: 2px solid purple;
+  // border: 2px solid purple;
   font-family: "Abel", sans-serif;
 
   // outline: 1px solid purple;
@@ -533,7 +533,7 @@ $base-color-dark-blue: #0f4c75;
   }  
 }
 
-.supporting-facts-wrapper {
+.supporting-facts-wrapper, .comment-facts-container {
   // outline: 2px solid red;
   position: relative;
 
@@ -555,10 +555,19 @@ $base-color-dark-blue: #0f4c75;
         &.top-connector-box {
           border-bottom: 3px solid lightblue;
           border-left: 3px solid lightblue;
+        
+          &.draft {
+            border-bottom: 3px dashed lightblue;
+            border-left: 3px dashed lightblue;            
+          }
         }
 
         &.bottom-connector-box {
           border-left: 3px solid lightblue;
+
+          &.draft {
+            border-left: 3px dashed lightblue;
+          }
         }
       }
     }
@@ -578,6 +587,10 @@ $base-color-dark-blue: #0f4c75;
       text-align: left;
       padding: 2%;    
       margin: 10px 0;
+
+      &.draft {
+        border: 3px solid dashed;
+      }
     }   
   }
 }
@@ -715,7 +728,7 @@ $base-color-dark-blue: #0f4c75;
 }
 
 .chat-fact-dropzone {
-  // outline: 2px solid red;
+  outline: 2px solid red;
   text-align: center;
   border: 2px dashed grey;
   border-radius: 10px;

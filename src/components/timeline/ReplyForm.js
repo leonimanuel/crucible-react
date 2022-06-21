@@ -88,7 +88,7 @@ class ReplyForm extends Component {
             <input 
               className="reply-submit-button comment-submit-button" 
               type="submit" value="reply" 
-              disabled={!(this.state.text || this.state.responseExcerpt)} 
+              disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)} 
             />
           </form>
         </div>

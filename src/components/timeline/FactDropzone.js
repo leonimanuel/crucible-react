@@ -94,16 +94,26 @@ class FactDropzone extends Component {
             {/*"Drag First Fact Here"*/}
           </div>
           {
-            this.props.facts.map(excerpt => {
+            this.props.facts.map((excerpt, index) => {
               return (
                 <div className="supporting-fact-wrapper">
-                  {<SupportingExcerpt
-                  	key={excerpt.id} 
-                  	fact={excerpt} 
-                  	facts={this.props.facts} 
-                  	sendRemoval={(factId) => this.handleRemoveFact(factId)}
-                  	handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
-                	/>}
+                  {
+                    <div className="supporting-fact-style-container">
+                      <div className="style supporting-fact-connector-boxes-container draft">
+                        <div className="style supporting-fact-connector-box top-connector-box draft"></div>
+                        <div className={`style supporting-fact-connector-box ${index+1 != this.props.facts.length ? `bottom-connector-box` : null} draft`}></div>
+                      </div>
+                      <div className="supporting-fact-container draft">             
+                        <SupportingExcerpt
+                        key={excerpt.id} 
+                        fact={excerpt} 
+                        facts={this.props.facts} 
+                        sendRemoval={(factId) => this.handleRemoveFact(factId)}
+                        handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
+                      />
+                      </div>
+                    </div>
+                  }
 
                   <div 
                     className="fact-dropslot"

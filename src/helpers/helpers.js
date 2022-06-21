@@ -1,5 +1,4 @@
 export const generateContext = (excerpt) => {
-	debugger
 	excerpt["content"] = excerpt.content || excerpt.selection
   if (excerpt.node_text) {
 		return excerpt.node_text.replace(excerpt.content, `<span class="timeline-excerpt-highlight">${excerpt.content}</span>`)
