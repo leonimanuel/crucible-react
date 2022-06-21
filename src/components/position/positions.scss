@@ -1,9 +1,91 @@
 .position-form {
-  border: 1px solid grey;
-  background-color: white;
-  border-radius: 10px;
-  // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin: 5px;
-  padding-top: 15px;
+  .expanded-position-form {
+  	border: 1px solid grey;
+  	background-color: white;
+  	border-radius: 10px;
+  	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  	// outline: 2px solid green;
+	  margin: 5px;
+	  margin-top: 0;
+	  padding-top: 15px;
+  	overflow: hidden;
+  	max-height: 0;
+  	opacity: 0;
+  	transition: max-height .3s ease-out;
+	  
+	  &.expanded {
+	  	max-height: 100%;
+	  	opacity: 1;
+	  }  
+  }
 }
+
+
+// <button class="button-51" role="button">Button 51</button>
+
+.button-51 {
+  background-color: transparent;
+  border: 1px solid #266DB6;
+  box-sizing: border-box;
+  // color: #00132C;
+  color: slategrey;
+  font-family: "Avenir Next LT W01 Bold",sans-serif;
+  font-size: 20px;
+  // font-weight: 700;
+  line-height: 24px;
+  font-style: italic;
+
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-51:hover,
+.button-51:active {
+  outline: 0;
+}
+
+.button-51:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-51:before {
+  background-color: #D5EDF6;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+.button-51:hover:before {
+  background-color: #6DCFF6;
+}
+
+@media (min-width: 768px) {
+  .button-51 {
+    padding: 16px 32px;
+  }
+}
+.button-51.hidden {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+

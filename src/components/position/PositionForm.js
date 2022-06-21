@@ -20,6 +20,7 @@ class PositionForm extends Component {
   }
 
   state = {
+    startPostSelected: false,
     text: '',
     draggedOver: false,    
     responseExcerpt: "",
@@ -75,37 +76,54 @@ class PositionForm extends Component {
   render = () => {
     return (
       <div className="position-form comment-form" >
-        <ResponseExcerptDropzone 
-          responseExcerpt={this.state.responseExcerpt}
-          handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
-          handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-          placeholder="responding to an excerpt? drag & drop it here."             
-        />
-
-        <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
-          <form className="position-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
-            <div 
-              className="comment-input-div"
-              id="position-input-div"
-              contentEditable="true"
-              onKeyUp={this.handleChange}   
+        {
+          <React.Fragment>
+            <button 
+              id="create-post-button"
+              className={`button-51 ${this.state.startPostSelected ? "hidden" : "visibile"}`} 
+              role="button"
+              onClick={() => this.setState({startPostSelected: !this.state.startPostSelected})}
             >
-            </div>
-            <input 
-              className="position-submit-button comment-submit-button" 
-              type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
-              disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)}
-            />
-          </form>
-        </div>
-      
-        <FactDropzone 
-          facts={this.state.facts} 
-          handleFactsUpdate={(facts) => this.updateFacts(facts)}
-          placeholder="Support your position with facts by dragging them here from your fact bank."
-          dropType="supportingFacts"
-        />
-        <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>
+              click here to share an observation...
+            </button>
+
+            <div 
+              className={`expanded-position-form ${this.state.startPostSelected ? "expanded" : ""}`}
+            >
+              <ResponseExcerptDropzone 
+                responseExcerpt={this.state.responseExcerpt}
+                handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
+                handleResponseExcerptRemoval={this.removeResponseExcerpt}       
+                placeholder="responding to an excerpt? drag & drop it here."             
+              />
+
+              <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
+                <form className="position-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
+                  <div 
+                    className="comment-input-div"
+                    id="position-input-div"
+                    contentEditable="true"
+                    onKeyUp={this.handleChange}   
+                  >
+                  </div>
+                  <input 
+                    className="position-submit-button comment-submit-button" 
+                    type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
+                    disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)}
+                  />
+                </form>
+              </div>
+            
+              <FactDropzone 
+                facts={this.state.facts} 
+                handleFactsUpdate={(facts) => this.updateFacts(facts)}
+                placeholder="Support your position with facts by dragging them here from your fact bank."
+                dropType="supportingFacts"
+              />
+              <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>    
+            </div>        
+          </React.Fragment>
+        }
       </div>
     );
   };
