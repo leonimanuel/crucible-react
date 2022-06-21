@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import SupportingChatFact from "../social/SupportingChatFact.js"
+import SupportingExcerpt from "./SupportingExcerpt.js"
+// import TimelineFact from "./TimelineFact.js"
+import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
+
+import parse from "html-react-parser";
 
 class FactDropzone extends Component {
   state = {
@@ -31,7 +35,6 @@ class FactDropzone extends Component {
     e.target.dataset.dragged_over = false
     // console.log(JSON.parse(e.dataTransfer.getData("object")))
     let transferObj = JSON.parse(e.dataTransfer.getData("object"))
-    debugger
     if (transferObj.origin == "factbank") {
       if (this.props.facts.find(fact => fact.id == transferObj.fact.id)) {        
         return alert("you've already added this fact.")
@@ -49,7 +52,8 @@ class FactDropzone extends Component {
       let precedingFactId = e.target.dataset.preceding_fact_id
       let draggedFact = transferObj.fact
       let filteredFacts = this.props.facts.filter(f => f.id != draggedFact.id)
-      
+
+
       if (precedingFactId == "first") {
         // this.setState({facts: [draggedFact, ...filteredFacts]})        
         this.props.handleFactsUpdate([draggedFact, ...filteredFacts])
@@ -58,6 +62,7 @@ class FactDropzone extends Component {
         filteredFacts.splice(precedingFactIndex + 1, 0, draggedFact)
         
         // this.setState({facts: filteredFacts})
+        
         this.props.handleFactsUpdate(filteredFacts)
       }
     // }
@@ -65,22 +70,18 @@ class FactDropzone extends Component {
 
   handleRemoveFact = (factId) => { //removes fact from new chat fact array
     // this.setState({facts: this.state.facts.filter(fact => fact.id != factId)})
-    this.props.handleFactsUpdate(this.props.facts.filter(fact => fact.id != factId))
+    const excerpt = this.props.facts.filter(fact => fact.id != factId)
+    this.props.handleFactsUpdate(excerpt)
+    
   }
 
 	render() {
 		return (
       <div 
-        id="chat-fact-dropzone" 
-        // FOR THE LOVE OF CHRIST MAKE SURE TO DELETE IF YOU'RE NOT USING. COMMENTED OUT. ERROR. EMERGENCY. FUCK. NO COMMENTS IN JSX
-        // className={this.state.draggedOver ? "dragged-over" : "" }
-        // onDragOver={this.allowDrop} 
-        // onDragEnter={this.handleDragEnter}
-        // onDragLeave={this.handleDragLeave}
-        // onDrop={this.drop}
+        className="chat-fact-dropzone" 
       >
-        Support your position with facts by dragging them here from your fact bank.
-        <div id="comment-facts-container">
+        {this.props.placeholder}
+        <div className="comment-facts-container">
           <div
             className="fact-dropslot"
             data-preceding_fact_id="first"
@@ -88,29 +89,40 @@ class FactDropzone extends Component {
             onDragOver={this.allowDrop} 
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
-            onDrop={this.drop}  
+            onDrop={this.drop}
           >
             {/*"Drag First Fact Here"*/}
           </div>
           {
-            this.props.facts.map(fact => {
+            this.props.facts.map((excerpt, index) => {
               return (
                 <div className="supporting-fact-wrapper">
-                  <SupportingChatFact 
-                  	key={fact.id} 
-                  	fact={fact} 
-                  	facts={this.props.facts} 
-                  	sendRemoval={(factId) => this.handleRemoveFact(factId)}
-                  	handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
-                	/>  
+                  {
+                    <div className="supporting-fact-style-container">
+                      <div className="style supporting-fact-connector-boxes-container draft">
+                        <div className="style supporting-fact-connector-box top-connector-box draft"></div>
+                        <div className={`style supporting-fact-connector-box ${index+1 != this.props.facts.length ? `bottom-connector-box` : null} draft`}></div>
+                      </div>
+                      <div className="supporting-fact-container draft">             
+                        <SupportingExcerpt
+                        key={excerpt.id} 
+                        fact={excerpt} 
+                        facts={this.props.facts} 
+                        sendRemoval={(factId) => this.handleRemoveFact(factId)}
+                        handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
+                      />
+                      </div>
+                    </div>
+                  }
+
                   <div 
                     className="fact-dropslot"
-                    data-preceding_fact_id={fact.id}
+                    data-preceding_fact_id={excerpt.id}
                     data-dragged_over={this.state.draggedOver}
                     onDragOver={this.allowDrop} 
                     onDragEnter={this.handleDragEnter}
                     onDragLeave={this.handleDragLeave}
-                    onDrop={this.drop}                            
+                    onDrop={this.drop}
                   >
                     {/*`after fact ${fact.id}`*/}
                   </div>

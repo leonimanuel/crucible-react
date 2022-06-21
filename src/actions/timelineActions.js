@@ -34,7 +34,7 @@ export const setActivities = (activityId, handleLoad) => {
 	}		
 }
 
-export const createReply = (text, comment_id, factIDs, taggedUserIds, clearReplyForm) => {
+export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedUserIds, clearReplyForm) => {
 	return (dispatch) => {
 		dispatch({
 			type: "CREATING_REPLY"
@@ -50,12 +50,14 @@ export const createReply = (text, comment_id, factIDs, taggedUserIds, clearReply
       body: JSON.stringify({
         text: text,
         factIds: factIDs,
+        responseExcerptId: reponseExcerptId,
         taggedUserIds: taggedUserIds
       })
     }
     fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
       .then(resp => resp.json())
       .then((reply) => {
+				debugger
 				dispatch({
 					type: "ADD_NEW_REPLY",
 					reply
@@ -66,3 +68,16 @@ export const createReply = (text, comment_id, factIDs, taggedUserIds, clearReply
       .catch(err => alert(err))
 	}		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

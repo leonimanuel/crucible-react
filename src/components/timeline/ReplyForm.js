@@ -5,6 +5,7 @@ import { createReply } from "../../actions/timelineActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
 import FactDropzone from "./FactDropzone.js"
+import ResponseExcerptDropzone from "./ResponseExcerptDropzone.js"
 import TagsContainer from "../network/TagsContainer.js"
 
 class ReplyForm extends Component {
@@ -12,7 +13,6 @@ class ReplyForm extends Component {
     let replyForms = document.querySelectorAll('.reply-input-div')
     replyForms.forEach(replyForm => {
       replyForm.addEventListener("paste", function(e) {
-          debugger
           e.preventDefault();
           var text = e.clipboardData.getData("text/plain");
           document.execCommand("insertHTML", false, text);
@@ -23,6 +23,7 @@ class ReplyForm extends Component {
   state = {
     text: '',
     draggedOver: false,    
+    responseExcerpt: "",
     facts: [],
     tags: []
   }
@@ -40,13 +41,21 @@ class ReplyForm extends Component {
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
-    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
+    this.props.createReply(this.state.text, this.props.comment.id, factIDs, this.state.responseExcerpt.id, this.state.tags.map(t => t.contact_id), this.clearReplyForm)
   }
 
   clearReplyForm = () => {
-    this.setState({ text: '', facts: [], tags: [] });
+    this.setState({ text: '', responseExcerpt: "", facts: [], tags: [] });
     let messageInput = document.getElementById(`reply-input-div-${this.props.index}`)
     messageInput.innerHTML = ""
+  }
+
+  updateResponseExcerpt = (excerpt) => {
+    this.setState({responseExcerpt: excerpt})
+  }
+
+  removeResponseExcerpt = () => {
+    this.setState({responseExcerpt: ""})
   }
 
   updateFacts = (facts) => {
@@ -59,19 +68,37 @@ class ReplyForm extends Component {
 
   render = () => {
     return (
-      <div className="reply-form" >
-        <form className="reply-form-subcontainer" onSubmit={this.handleSubmit}>
-          <div 
-            className="reply-input-div"
-            id={`reply-input-div-${this.props.index}`}
-            contentEditable="true"
-            onKeyUp={this.handleChange}   
-          >
-          </div>
-          <input className="reply-submit-button" type="submit" />
-        </form>
+      <div className="reply-form comment-form" >
+        <ResponseExcerptDropzone 
+          responseExcerpt={this.state.responseExcerpt}
+          handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
+          handleResponseExcerptRemoval={this.removeResponseExcerpt}       
+          placeholder="responding to an excerpt? drag & drop it here."             
+        />
+
+        <div className="reply-form-subcontainer-bubble comment-form-subcontainer-bubble">
+          <form className="reply-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
+            <div 
+              className="reply-input-div comment-input-div"
+              id={`reply-input-div-${this.props.index}`}
+              contentEditable="true"
+              onKeyUp={this.handleChange}   
+            >
+            </div>
+            <input 
+              className="reply-submit-button comment-submit-button" 
+              type="submit" value="reply" 
+              disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)} 
+            />
+          </form>
+        </div>
       
-        <FactDropzone facts={this.state.facts} handleFactsUpdate={(facts) => this.updateFacts(facts)}/>
+        <FactDropzone 
+          facts={this.state.facts} 
+          handleFactsUpdate={(facts) => this.updateFacts(facts)}
+          placeholder="Support your position with facts by dragging them here from your fact bank."
+          dropType="supportingFacts"
+        />
         <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>
       </div>
     );
