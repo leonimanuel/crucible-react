@@ -17,7 +17,7 @@
   transition: height .2s ease;
 
   &[data-dragged_over=false] {
-    height: 10px;
+    // height: 10px;
   }
 
   &[data-dragged_over=true] {
@@ -86,6 +86,7 @@
     border: none;
     border-radius: 0;
     border-left: 3px solid lightblue;
+    
     &[data-dragged_over=false] {
       height: 10px;
     }
@@ -145,6 +146,8 @@
       text-align: right;
 
       .comment-input-div {
+        // position: relative;
+
         border-radius: 5px;
         /*width: 70%;*/
         flex: 1;
@@ -161,6 +164,29 @@
         overflow: scroll;
         /*overflow-wrap: break-word;  */
         border-radius: 2px solid blue;
+
+        &:before {
+            content: "share your thoughts here...";
+            // color: #555; 
+            color: grey; 
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        // &:empty:focus::before {
+        //     content: "";
+        // }
+
+        &:focus::before {
+            content: "";
+        }        
+
+        .comment-input-placeholder {
+          display: none;
+          position: absolute;
+          color: grey;
+          font-style: italic;
+        }
       }
 
       .comment-submit-button {

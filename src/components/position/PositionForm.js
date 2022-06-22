@@ -21,6 +21,7 @@ class PositionForm extends Component {
 
   state = {
     startPostSelected: false,
+    showInputPlaceholder: true,
     text: '',
     draggedOver: false,    
     responseExcerpt: "",
@@ -94,7 +95,7 @@ class PositionForm extends Component {
                 responseExcerpt={this.state.responseExcerpt}
                 handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
                 handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-                placeholder="responding to an excerpt? drag & drop it here."             
+                placeholder="responding to something you read? Drag the excerpt here from your Excerpt Bank."
               />
 
               <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
@@ -103,7 +104,9 @@ class PositionForm extends Component {
                     className="comment-input-div"
                     id="position-input-div"
                     contentEditable="true"
-                    onKeyUp={this.handleChange}   
+                    onKeyUp={this.handleChange}
+                    onFocus={() => this.setState({showInputPlaceholder: false})}
+                    onBlur={() => this.setState({showInputPlaceholder: true})}
                   >
                   </div>
                   <input 

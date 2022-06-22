@@ -73,7 +73,7 @@ class ReplyForm extends Component {
           responseExcerpt={this.state.responseExcerpt}
           handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
           handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-          placeholder="responding to an excerpt? drag & drop it here."             
+          placeholder="responding to something you read? Drag & drop the excerpt here from your Excerpt Bank."             
         />
 
         <div className="reply-form-subcontainer-bubble comment-form-subcontainer-bubble">
@@ -96,7 +96,7 @@ class ReplyForm extends Component {
         <FactDropzone 
           facts={this.state.facts} 
           handleFactsUpdate={(facts) => this.updateFacts(facts)}
-          placeholder="Support your position with facts by dragging them here from your fact bank."
+          placeholder="Support your position with excerpts by dragging them here from your fact bank."
           dropType="supportingFacts"
         />
         <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>
