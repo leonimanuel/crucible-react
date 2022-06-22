@@ -591,6 +591,10 @@ $base-color-dark-blue: #0f4c75;
 
       &.draft {
         border: 3px solid dashed;
+        margin: 0;
+
+        .timeline-fact-wrapper {
+        }
 
         .remove-fact-button {
           display: none;

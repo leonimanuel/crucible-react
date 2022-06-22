@@ -43,6 +43,8 @@
     border-left: 2px dashed grey;
     border-top: 2px dashed grey;
     border-right: 2px dashed grey;
+    // background-color: inherit;
+    background-color: white;
   }  
 
   .supporting-fact-wrapper {
@@ -94,7 +96,8 @@
   }
 
   &[data-position=last] {
-    // height: 30px;
+    margin-top: 10px;
+
     &[data-dragged_over=false] {
       height: 30px;
     }
