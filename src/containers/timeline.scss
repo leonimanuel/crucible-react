@@ -247,8 +247,8 @@ $base-color-dark-blue: #0f4c75;
 
     .item-header-description {
       // outline: 2px solid red;
-      border-bottom: 3px solid lightblue;
-      border-right: 3px solid lightblue;
+      border-bottom: 3px solid #0f4c75;
+      // border-right: 3px solid #0f4c75;
       border-radius: 0 0 10px 0;
       padding-right: 5px;
 
@@ -285,6 +285,9 @@ $base-color-dark-blue: #0f4c75;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
         cursor: pointer;
+        margin: 5px;
+
+        border-left: 3px solid #0f4c75;
         // font-size: 2em;
         // font-style: bold;
 
@@ -310,8 +313,8 @@ $base-color-dark-blue: #0f4c75;
       top: -3px;
 
       border-radius: 10px 0 0 0;
-      border-left: 3px solid lightblue;
-      border-top: 3px solid lightblue;
+      border-left: 3px solid #0f4c75;
+      border-top: 3px solid #0f4c75;
 
     }              
   } 
@@ -429,7 +432,7 @@ $base-color-dark-blue: #0f4c75;
   padding: 0px 10px;
   text-align: left;
 
-  border-left: 3px solid lightblue;
+  border-left: 3px solid #0f4c75;
   border-radius: 5px 0 0 0;
 
   .article-anchor {
@@ -537,7 +540,7 @@ $base-color-dark-blue: #0f4c75;
   margin-left: 20px;
 
   padding: 10px;
-  background-color: lightblue; // this color indicates that it is a regular comment
+  background-color: #0f4c75; // this color indicates that it is a regular comment
   border-radius: 10px;
   position: relative;
 
@@ -552,8 +555,8 @@ $base-color-dark-blue: #0f4c75;
     left: -20px;
     height: 0;
 
-    border-left: 3px solid lightblue;
-    border-bottom: 3px solid lightblue;
+    border-left: 3px solid #0f4c75;
+    border-bottom: 3px solid #0f4c75;
     border-radius: 0px 10px 10px 50px;
     // border-right:
     width: 20px;
@@ -570,7 +573,7 @@ $base-color-dark-blue: #0f4c75;
     // opacity: .5;
     border: 0 solid transparent;
     // border: 1px solid black;
-    border-top: 12px solid lightblue;
+    border-top: 12px solid #0f4c75;
     border-radius: 0px 20px 0px;
     width: 20px;
     height: 27px;
@@ -583,10 +586,10 @@ $base-color-dark-blue: #0f4c75;
     // height: 0px;
     // position: absolute;
 
-    // border-top: 9px solid lightblue;
+    // border-top: 9px solid #0f4c75;
     // border-bottom: 15px solid transparent;
 
-    // border-right: 18px solid lightblue;      
+    // border-right: 18px solid #0f4c75;      
     // border-left: 9px solid transparent;
     // left: -20px;
     // top: 10px;    
@@ -595,11 +598,12 @@ $base-color-dark-blue: #0f4c75;
     // width: 20px;
     // height: 20px;
     // position: absolute;
-    // background-color: lightblue;    
+    // background-color: #0f4c75;    
   }
 
   .timeline-comment-content {
     font-size: 1.1em;
+    color: white
     // font-weight: bold;
   }  
 }
@@ -624,20 +628,20 @@ $base-color-dark-blue: #0f4c75;
         height: 50%;
 
         &.top-connector-box {
-          border-bottom: 3px solid lightblue;
-          border-left: 3px solid lightblue;
+          border-bottom: 3px solid #0f4c75;
+          border-left: 3px solid #0f4c75;
         
           &.draft {
-            border-bottom: 3px dashed lightblue;
-            border-left: 3px dashed lightblue;            
+            border-bottom: 3px dashed #0f4c75;
+            border-left: 3px dashed #0f4c75;            
           }
         }
 
         &.bottom-connector-box {
-          border-left: 3px solid lightblue;
+          border-left: 3px solid #0f4c75;
 
           &.draft {
-            border-left: 3px dashed lightblue;
+            border-left: 3px dashed #0f4c75;
           }
         }
       }
@@ -646,12 +650,12 @@ $base-color-dark-blue: #0f4c75;
     // .supporting-fact-connector {
     //   height: 3px;
     //   width: 100px;
-    //   background-color: lightblue;
+    //   background-color: #0f4c75;
     // } 
 
     .supporting-fact-container {
       // outline: 2px solid green;
-      border: 3px solid lightblue;
+      border: 3px solid #0f4c75;
       border-radius: 10px;
       box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
       background-color: white;
