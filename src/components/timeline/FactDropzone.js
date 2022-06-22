@@ -77,63 +77,64 @@ class FactDropzone extends Component {
 
 	render() {
 		return (
-      <div 
-        className="chat-fact-dropzone" 
-      >
-        {this.props.placeholder}
-        <div className="comment-facts-container">
-          <div
-            className="fact-dropslot"
-            data-preceding_fact_id="first"
-            data-dragged_over="false"
-            onDragOver={this.allowDrop} 
-            onDragEnter={this.handleDragEnter}
-            onDragLeave={this.handleDragLeave}
-            onDrop={this.drop}
-          >
-            {/*"Drag First Fact Here"*/}
-          </div>
-          {
-            this.props.facts.map((excerpt, index) => {
-              return (
-                <div className="supporting-fact-wrapper">
-                  {
-                    <div className="supporting-fact-style-container">
-                      <div className="style supporting-fact-connector-boxes-container draft">
-                        <div className="style supporting-fact-connector-box top-connector-box draft"></div>
-                        <div className={`style supporting-fact-connector-box ${index+1 != this.props.facts.length ? `bottom-connector-box` : null} draft`}></div>
-                      </div>
-                      <div className="supporting-fact-container draft">             
-                        <SupportingExcerpt
-                        key={excerpt.id} 
-                        fact={excerpt} 
-                        facts={this.props.facts} 
-                        sendRemoval={(factId) => this.handleRemoveFact(factId)}
-                        handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
-                      />
-                      </div>
-                    </div>
-                  }
+      <div className="comment-facts-container">
+        <div
+          className="fact-dropslot"
+          data-preceding_fact_id="first"
+          data-position={this.props.facts.length ? "middle" : "first"}
+          data-dragged_over="false"
+          onDragOver={this.allowDrop} 
+          onDragEnter={this.handleDragEnter}
+          onDragLeave={this.handleDragLeave}
+          onDrop={this.drop}
+        >
+          {this.props.facts.length ? null : "Drag a supporting fact here (optional)"}
+        </div>            
 
+        {
+          this.props.facts.map((excerpt, index) => {
+            return (
+              <div className="supporting-fact-wrapper">
+                {
+                  <div className="supporting-fact-style-container">
+                    <div className="style supporting-fact-connector-boxes-container draft">
+                      <div className="style supporting-fact-connector-box top-connector-box draft"></div>
+                      <div className={`style supporting-fact-connector-box ${index+1 != this.props.facts.length ? `bottom-connector-box` : null} draft`}></div>
+                    </div>
+                    <div className="supporting-fact-container draft">             
+                      <SupportingExcerpt
+                      key={excerpt.id} 
+                      fact={excerpt} 
+                      facts={this.props.facts} 
+                      sendRemoval={(factId) => this.handleRemoveFact(factId)}
+                      handleDrag={(facts) => this.props.handleFactsUpdate(facts)}
+                    />
+                    </div>
+                  </div>
+                }
+
+                {
+                  index+1 >= 3 ? null : 
                   <div 
                     className="fact-dropslot"
                     data-preceding_fact_id={excerpt.id}
+                    data-position={index+1 == this.props.facts.length ? "last" : "middle"}
                     data-dragged_over={this.state.draggedOver}
                     onDragOver={this.allowDrop} 
                     onDragEnter={this.handleDragEnter}
                     onDragLeave={this.handleDragLeave}
                     onDrop={this.drop}
                   >
-                    {/*`after fact ${fact.id}`*/}
+                    {index+1 == this.props.facts.length ? "Add another supporting fact here (up to 3)" : null}
                   </div>
+                }
 
-                  {/*<div className="dropslot-spacer" style={{height: this.state.draggedOver ? "50px" : "10px"}}>dropslot spacer</div>*/}
-                </div>
-              )                      
-            })
-          }
-        </div>                
-      </div>   
+                {/*<div className="dropslot-spacer" style={{height: this.state.draggedOver ? "50px" : "10px"}}>dropslot spacer</div>*/}
+              </div>
+            )                      
+          })
+        }
+      </div>                
 		)
 	}
 }

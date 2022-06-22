@@ -71,82 +71,82 @@ $base-color-dark-blue: #0f4c75;
     }
   }
 
-  #position-form-wrapper {
-    // border: 2px solid green;
-    display: flex;
-    position: relative;
+  // #position-form-wrapper {
+  //   // border: 2px solid green;
+  //   display: flex;
+  //   position: relative;
 
-    #position-form-container {
-      border: 1px solid grey;
-      width: 100%;
-      background-color: white;
-      border-radius: 10px;
-      // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-      margin: 5px;
-      // margin-right: 0;
+  //   #position-form-container {
+  //     border: 1px solid grey;
+  //     width: 100%;
+  //     background-color: white;
+  //     border-radius: 10px;
+  //     // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+  //     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  //     // margin: 5px;
+  //     // margin-right: 0;
 
-      #position-form {
-        display: flex;
-        margin: 10px;
-        justify-content: space-between;
-        align-items: flex-end;
-        max-width: 100%;
-      }      
+  //     #position-form {
+  //       display: flex;
+  //       // margin: 10px;
+  //       justify-content: space-between;
+  //       align-items: flex-end;
+  //       max-width: 100%;
+  //     }      
 
-      #position-input-div:empty:before {
-          content: attr(dataPlaceholder);
-          color: grey;
-          font-weight: bold;
-      }
+  //     #position-input-div:empty:before {
+  //         content: attr(dataPlaceholder);
+  //         color: grey;
+  //         font-weight: bold;
+  //     }
 
-      #position-input-div {
-        border: 1px solid darkgrey;
-        border-radius: 5px;
-        /*width: 70%;*/
-        flex: 1;
-        margin: 0 5px;
-        text-align: left;
-        outline: none;
-        padding: 3px;
-        // max-width: 100px;
-        // background-color: lightgrey;
-        font-size: 1em;
-        max-height: 100px;
-        overflow: scroll;
-        /*overflow-wrap: break-word;  */
-        // border-radius: 2px solid blue;
-      }
+  //     #position-input-div {
+  //       border: 1px solid darkgrey;
+  //       border-radius: 5px;
+  //       /*width: 70%;*/
+  //       flex: 1;
+  //       margin: 0 5px;
+  //       text-align: left;
+  //       outline: none;
+  //       padding: 3px;
+  //       // max-width: 100px;
+  //       // background-color: lightgrey;
+  //       font-size: 1em;
+  //       max-height: 100px;
+  //       overflow: scroll;
+  //       /*overflow-wrap: break-word;  */
+  //       // border-radius: 2px solid blue;
+  //     }
 
 
-      #position-submit-button {
-        border: none;
-        background-color: gold;
-        border-radius: 5px;
-        padding: 5px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-    } 
+  //     #position-submit-button {
+  //       border: none;
+  //       background-color: gold;
+  //       border-radius: 5px;
+  //       padding: 5px;
+  //       font-weight: bold;
+  //       cursor: pointer;
+  //     }
+  //   } 
 
-    #position-form-tooltip {
-      position: absolute;
-      background-color: $base-color-dark-blue;
-      color: white;
-      font-weight: bold;
-      // border: 1px solid red;
-      border-radius: 20px;
-      padding: 1px 10px;
-      bottom: 0px;
-      right: 20px;
-      font-size: 1.2em;
-    }
+  //   #position-form-tooltip {
+  //     position: absolute;
+  //     background-color: $base-color-dark-blue;
+  //     color: white;
+  //     font-weight: bold;
+  //     // border: 1px solid red;
+  //     border-radius: 20px;
+  //     padding: 1px 10px;
+  //     bottom: 0px;
+  //     right: 20px;
+  //     font-size: 1.2em;
+  //   }
 
-    .timeline-item-spacer {
-      // border: 2px solid orange;
-      width: 20px;
-    }      
-  }
+  //   .timeline-item-spacer {
+  //     // border: 2px solid orange;
+  //     width: 20px;
+  //   }      
+  // }
 }
 
 #timeline-items-wrapper {
@@ -539,13 +539,14 @@ $base-color-dark-blue: #0f4c75;
 
   margin-left: 40px;
   margin-top: 0;
+  padding-right: 5px;
   // padding-top: 10px;
 
   .supporting-fact-style-container {
     display: flex;
     // align-items: center;
     .supporting-fact-connector-boxes-container {
-      width: 100px;
+      width: 75px;
       min-width: 20px;
       // outline: 2px solid green;
       .supporting-fact-connector-box {
@@ -590,6 +591,17 @@ $base-color-dark-blue: #0f4c75;
 
       &.draft {
         border: 3px solid dashed;
+
+        .remove-fact-button {
+          display: none;
+          top: -20px;
+        }
+
+        &:hover {
+          .remove-fact-button {
+            display: block;
+          }
+        }      
       }
     }   
   }
@@ -722,73 +734,9 @@ $base-color-dark-blue: #0f4c75;
   border: 1px solid #BD4B4B;
 } 
 
-.chat-fact-dropzone-bubble {
-  // outline: 2px solid green;
-  position: relative;
-}
-
-.chat-fact-dropzone {
-  // outline: 2px solid red;
-  text-align: center;
-  border: 2px dashed grey;
-  border-radius: 10px;
-  color: grey;
-  font-weight: bold;
-
-  margin: 10px;
-  padding: 20px;
-  /*height: 20px;*/
-
-  &:before {
-    position: absolute;      
-    content: "";
-    
-    width: 20px;
-    height: 20px;
-    // background-color: #F3F1F5;
-    // border-top: 15px solid transparent;
-    // border-bottom: 9px dashed #F3F1F5;
-
-    // border-left: 18px dashed #F3F1F5;      
-    // border-right: 9px solid transparent;
-    
-    right: 40px;
-    top: -20px;
-    border-radius: 0 100px 0 0;
-    border-left: 2px dashed grey;
-    border-top: 2px dashed grey;
-    border-right: 2px dashed grey;
-  }  
-
-  .supporting-fact-wrapper {
-    position: relative;
-  }
-
-  .fact-dropslot {
-    // display:  none;
-    // position: absolute;
-    // height: 50px;
-    // width: 100%;
-    // top: 50px;
-
-    // z-index: 2;
-    transition: height .2s ease;
-
-    // visibility: hidden;
-  }
-
-  .fact-dropslot[data-dragged_over=false] {
-    height: 10px;
-  }
-
-  .fact-dropslot[data-dragged_over=true] {
-    height: 50px;
-  }
-}
 
 
-#chat-fact-dropzone.dragged-over {
-  background-color: grey;
-  color: white;
-  border-color: grey;
-}
+
+
+
+

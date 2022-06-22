@@ -69,22 +69,17 @@ class ResponseExcerptDropzone extends Component {
           </div>
             :
           <div className="chat-fact-dropzone-bubble">          
-            <div className="chat-fact-dropzone">
-              {this.props.placeholder}
-              <div className="comment-facts-container">
-                <div
-                  className="fact-dropslot"
-                  data-preceding_fact_id="first"
-                  data-dragged_over="false"
-                  onDragOver={this.allowDrop} 
-                  onDragEnter={this.handleDragEnter}
-                  onDragLeave={this.handleDragLeave}
-                  onDrop={this.drop}
-                  style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
-                >
-                  {/*"Drag First Fact Here"*/}
-                </div>
-              </div>                
+            <div 
+              className="chat-fact-dropzone"
+              data-preceding_fact_id="first"
+              data-dragged_over="false"
+              onDragOver={this.allowDrop} 
+              onDragEnter={this.handleDragEnter}
+              onDragLeave={this.handleDragLeave}
+              onDrop={this.drop}
+              style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
+            >
+              {this.props.placeholder}          
             </div> 
           </div>
         }          

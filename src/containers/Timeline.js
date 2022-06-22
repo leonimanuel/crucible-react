@@ -8,6 +8,7 @@ import { API_ROOT } from "../constants"
 import { handleArticleClick } from "../helpers/helpers.js"
 
 import "./timeline.scss"
+import "../components/timeline/dropzones.scss"
 
 import TimelineFact from "../components/timeline/TimelineFact.js"
 import TimelineItemHeader from "../components/timeline/TimelineItemHeader.js"
