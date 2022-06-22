@@ -135,7 +135,7 @@ class Timeline extends Component {
 								<div className="timeline-item-article-title timeline-article-header">
 									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => handleArticleClick(e, resource)}>{resource.article_title}</a>
 								</div> 							
-								{resource.content ? <TimelineComment comment={resource} /> : null}
+								{resource.content || resource.response_excerpt ? <TimelineComment comment={resource} /> : null}
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>

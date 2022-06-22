@@ -45,13 +45,21 @@ class TimelineComment extends Component {
 			<div id={`timeline-comment-${comment.id}`} key={comment.id}
 			 	className={`timeline-comment timeline-item`} onClick={this.handleSelectComment}>
 				{/*<div className="timeline-comment-user-name">{this.props.userId === comment.user_id ? "You" : comment.user.name}</div>*/}
-				<div className="timeline-comment-context-wrapper bubble">
-					{comment.response_excerpt?.content ? <div style={{"margin-top": "10px"}}>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>}</div> : null }
-					<div className="timeline-comment-context-bubble">
-						{comment.response_excerpt?.node_text ? <div className="timeline-comment-context">...{parse(generateContext(comment.response_excerpt))}...</div> : <div className="timeline-comment-context">{comment.response_excerpt?.content}</div>}
+				
+				{
+					comment.response_excerpt?.content 
+						?
+					<div className="timeline-comment-context-wrapper bubble">
+						<div style={{"margin-top": "10px"}}>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>}</div>
+						<div className="timeline-comment-context-bubble">
+							{comment.response_excerpt?.node_text ? <div className="timeline-comment-context">...{parse(generateContext(comment.response_excerpt))}...</div> : <div className="timeline-comment-context">{comment.response_excerpt?.content}</div>}
+						</div>
+						{/*<div className="context-lip"></div>*/}
 					</div>
-					{/*<div className="context-lip"></div>*/}
-				</div>
+						:
+					null
+				}
+				
 				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>
 
 				{
