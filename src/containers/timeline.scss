@@ -212,7 +212,6 @@ $base-color-dark-blue: #0f4c75;
 
 .timeline-item-container {
   // outline: 2px solid green;
-  // border: 2px solid green;
   margin: 5px;
   margin-bottom: 20px;
   // margin-right: 0;
@@ -248,7 +247,10 @@ $base-color-dark-blue: #0f4c75;
 
     .item-header-description {
       // outline: 2px solid red;
-      // border-bottom: 3px solid lightblue;
+      border-bottom: 3px solid lightblue;
+      border-right: 3px solid lightblue;
+      border-radius: 0 0 10px 0;
+      padding-right: 5px;
 
       .item-header-username {
         font-weight: bold;
@@ -263,12 +265,13 @@ $base-color-dark-blue: #0f4c75;
 
 
   .timeline-item-content-container {
-    // border: 2px solid blue;
+    // outline: 2px solid blue;
     border-radius: 10px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
     background-color: white;
     text-align: left;
-    padding: 2%;
+    // padding: 2%;
+    position: relative;
 
     .timeline-item-article-title {
       a {
@@ -295,7 +298,22 @@ $base-color-dark-blue: #0f4c75;
           text-align: justify;
         }
       }
-    }      
+    }
+
+    &:before {
+      position: absolute;
+
+      content: "";
+      // border: 1px solid red;
+      width: 10px;
+      height: 10px;
+      top: -3px;
+
+      border-radius: 10px 0 0 0;
+      border-left: 3px solid lightblue;
+      border-top: 3px solid lightblue;
+
+    }              
   } 
 }
 
@@ -368,7 +386,7 @@ $base-color-dark-blue: #0f4c75;
   }
 
   .timeline-fact-context-wrapper {
-    // border: 2px solid green;
+    // outline: 3px solid orange;
     position: relative;
     text-align: left;
 
@@ -406,9 +424,13 @@ $base-color-dark-blue: #0f4c75;
 }    
 
 .timeline-comment-context-wrapper {
-  // outline: 2px solid green;
-  margin: 0px 10px;
+  // outline: 2px solid orange;
+  // margin: 0px 10px;
+  padding: 0px 10px;
   text-align: left;
+
+  border-left: 3px solid lightblue;
+  border-radius: 5px 0 0 0;
 
   .article-anchor {
     // outline: 1px solid red;
@@ -426,7 +448,7 @@ $base-color-dark-blue: #0f4c75;
 
     &.reply-excerpt {
       // color: white;
-    }    
+    }
   }
 
   .timeline-comment-context-bubble {
@@ -523,19 +545,57 @@ $base-color-dark-blue: #0f4c75;
     background-color: gold; // this color indicates that it is a position
   }
 
-  &:before {
-    content: "";
-    width: 0px;
-    height: 0px;
+  .bubble-arrow {
     position: absolute;
-
-    border-top: 9px solid lightblue;
-    border-bottom: 15px solid transparent;
-
-    border-right: 18px solid lightblue;      
-    border-left: 9px solid transparent;
+    width: 0;
+    top: -10px;
     left: -20px;
-    top: 10px;    
+    height: 0;
+
+    border-left: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+    border-radius: 0px 10px 10px 50px;
+    // border-right:
+    width: 20px;
+    height: 35px;
+    // &.alt{
+    //   right: -2px;      
+    //   bottom: 40px;
+    //   left: auto;
+    // }
+  }
+  .bubble-arrow:after {
+    content: "";
+    position: absolute;
+    // opacity: .5;
+    border: 0 solid transparent;
+    // border: 1px solid black;
+    border-top: 12px solid lightblue;
+    border-radius: 0px 20px 0px;
+    width: 20px;
+    height: 27px;
+    transform: rotate(180deg);
+  }
+
+  &:before {
+    // content: "";
+    // width: 0px;
+    // height: 0px;
+    // position: absolute;
+
+    // border-top: 9px solid lightblue;
+    // border-bottom: 15px solid transparent;
+
+    // border-right: 18px solid lightblue;      
+    // border-left: 9px solid transparent;
+    // left: -20px;
+    // top: 10px;    
+
+    // content: "";
+    // width: 20px;
+    // height: 20px;
+    // position: absolute;
+    // background-color: lightblue;    
   }
 
   .timeline-comment-content {
