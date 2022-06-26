@@ -448,12 +448,12 @@ $base-color-dark-blue: #0f4c75;
 
   .article-anchor-wrapper {
     display: flex;
+    margin-right: 40px;
 
     .article-anchor {
       // outline: 1px solid red;
       padding: 0;
       padding-right: 5px;
-      // margin-right: 40px;
       font-style: italic;
       font-weight: bold;
 
@@ -470,6 +470,7 @@ $base-color-dark-blue: #0f4c75;
     }
 
     .context-speech-arrow {
+      
       content: "";
       width: 0px;
       height: 0px;

@@ -165,21 +165,23 @@
         /*overflow-wrap: break-word;  */
         border-radius: 2px solid blue;
 
-        &:before {
+        &.no-text {
+          &:before {
             content: "share your thoughts here...";
             // color: #555; 
             color: grey; 
             font-weight: bold;
             font-style: italic;
-        }
+          }
 
-        // &:empty:focus::before {
-        //     content: "";
-        // }
+          // &:empty:focus::before {
+          //     content: "";
+          // }
 
-        &:focus::before {
-            content: "";
-        }        
+          &:focus::before {
+              content: "";
+          }  
+        }      
 
         .comment-input-placeholder {
           display: none;

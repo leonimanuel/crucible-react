@@ -79,7 +79,7 @@ class ReplyForm extends Component {
         <div className="reply-form-subcontainer-bubble comment-form-subcontainer-bubble">
           <form className="reply-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
             <div 
-              className="reply-input-div comment-input-div"
+              className={`reply-input-div comment-input-div ${this.state.text ? "contains-text" : "no-text"}`}
               id={`reply-input-div-${this.props.index}`}
               contentEditable="true"
               onKeyUp={this.handleChange}   

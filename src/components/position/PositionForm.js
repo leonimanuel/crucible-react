@@ -101,7 +101,7 @@ class PositionForm extends Component {
               <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
                 <form className="position-form-subcontainer comment-form-subcontainer" onSubmit={this.handleSubmit}>
                   <div 
-                    className="comment-input-div"
+                    className={`comment-input-div ${this.state.text ? "contains-text" : "no-text"}`}
                     id="position-input-div"
                     contentEditable="true"
                     onKeyUp={this.handleChange}
