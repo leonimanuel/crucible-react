@@ -50,7 +50,10 @@ class TimelineComment extends Component {
 					comment.response_excerpt?.content 
 						?
 					<div className="timeline-comment-context-wrapper">
-						<div>{<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>}</div>
+						<div className="article-anchor-wrapper">
+							<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>
+							<div className="style context-speech-arrow"></div>
+						</div>
 						<div className="timeline-comment-context-bubble">
 							{comment.response_excerpt?.node_text ? <div className="timeline-comment-context">...{parse(generateContext(comment.response_excerpt))}...</div> : <div className="timeline-comment-context">{comment.response_excerpt?.content}</div>}
 							

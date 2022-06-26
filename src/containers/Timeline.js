@@ -132,9 +132,11 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="shared an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
-								<div className="timeline-item-article-title timeline-article-header">
-									<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => handleArticleClick(e, resource)}>{resource.article_title}</a>
-								</div> 							
+								<div className="timeline-item-article-wrapper">
+									<div className="timeline-item-article-title timeline-article-header">
+										<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => handleArticleClick(e, resource)}>{resource.article_title}</a>
+									</div> 	
+								</div>						
 								{resource.content || resource.response_excerpt ? <TimelineComment comment={resource} /> : null}
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
