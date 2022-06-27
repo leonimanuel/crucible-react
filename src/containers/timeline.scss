@@ -439,7 +439,8 @@ $base-color-dark-blue: #0f4c75;
   // outline: 1px solid orange;
   // margin: 0px 10px;
   padding: 0px 10px;
-  padding-top: 5px;
+  padding-top: 10px;
+  // margin-top: 10px;
 
   text-align: left;
 
@@ -571,7 +572,8 @@ $base-color-dark-blue: #0f4c75;
 
 .timeline-comment.timeline-item {
   // outline: 2px solid red;
-  padding-top:10px;
+  // border-top: 1px solid transparent;
+  // padding-top:10px;
 
   .timeline-comment-content-wrapper {
     // outline: 2px solid red;
