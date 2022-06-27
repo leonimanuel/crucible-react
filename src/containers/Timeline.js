@@ -100,7 +100,7 @@ class Timeline extends Component {
 						<div className="timeline-item-subcontainer">
 							<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineComment comment={resource} />
+								<TimelineComment comment={resource} context={"post"} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>
