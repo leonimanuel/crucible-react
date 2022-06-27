@@ -33,7 +33,6 @@ import { API_ROOT } from "../constants"
 
 export const submitRephrase = (rephraseText, factId) => {
   return (dispatch) => {
-	  debugger
 	  let configObj = {
 	    method: 'POST',
 	    headers: {
@@ -55,6 +54,35 @@ export const submitRephrase = (rephraseText, factId) => {
 					fact
 	  		})
 	  	}) 	
+  }
+}
+
+export const removeFact = (fact) => {
+  return async (dispatch) => {
+	  let configObj = {
+	    method: 'DELETE',
+	    headers: {
+	      "Content-Type": "application/json",
+	      Accept: "application/json",
+	      Authorization: localStorage.getItem("token")
+	    }
+	  }
+
+	  try {
+		  let resp = await fetch(`${API_ROOT}/facts/${fact.id}?topic_id=${fact.topic_id}`, configObj);
+		  if (resp.status == 204) {
+	  		dispatch({
+	  			type: "REMOVE_FACT",
+					factId: fact.id
+	  		})
+		  }
+			else {
+				let res = await resp.json()
+				alert(`${res.message}, code: ${resp.status}`)
+			}  	
+	  } catch (error) {
+	  	alert(error)
+	  }
   }
 }
 

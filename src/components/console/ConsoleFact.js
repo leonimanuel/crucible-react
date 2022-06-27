@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
+
+import { removeFact } from "../../actions/factsActions.js"
+
 import ShowMoreIcon from "./down-arrow-icon.svg"
 import FactDetailsPane from "./FactDetailsPane.js"
 
@@ -88,13 +91,14 @@ class ConsoleFact extends Component {
 
 
 				{/**/}
+				<div className="remove-fact-button" onClick={() => this.props.removeFact(fact)}>✕</div>
 			</div>
 		)
 	}
 }
 
 
-export default ConsoleFact;
+export default connect(null, { removeFact })(ConsoleFact);
 
 
 

@@ -77,24 +77,39 @@
 	border-radius: 10px;
 	/*padding: 5px;*/
 	margin-bottom: 10px;
-	overflow: hidden;
+	// overflow: hidden;
 	/*padding: 3px;*/
 	/*text-align: justify;*/
 	/*transition: .2s;	*/
 
-	box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-	box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+	// box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+	// box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	// box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;	
 	transition: box-shadow 0.3s ease-in-out;
+	position: relative;
+
+	.remove-fact-button {
+		display: none;	
+	}
 
 	&:hover {
 		box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	
+		.remove-fact-button {
+			display: block;	
+			right: 2px;
+			top: -5px;			
+		}
 	}
 }
 
 .truncated-fact {
 	/*max-height: 4.3em;*/
+
+	.fact-details-pane {
+		visibility: hidden;
+	}	
 }
 
 .expanded-fact {

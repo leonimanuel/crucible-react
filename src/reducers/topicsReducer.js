@@ -54,6 +54,12 @@ export default function topicsReducer(state = {
 				facts: [...state.facts, action.fact]
 			}
 
+		case "REMOVE_FACT":
+			return {
+				...state,
+				facts: state.facts.filter(fact => fact.id != action.factId)
+			}			
+
 		default:
 			return state;
 	}
