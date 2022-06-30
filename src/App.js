@@ -135,7 +135,7 @@ class App extends Component {
           <div className="App">
 
             {/*<div id="blob"></div>*/}
-            <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>           
+            
             
             <Route 
               path="/confirm-email/:token"
@@ -152,7 +152,9 @@ class App extends Component {
               :               
               this.props.userId
               ?
+                
                 <div>
+                  <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>
                   {/*
                     <ActionCableConsumer 
                       channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}

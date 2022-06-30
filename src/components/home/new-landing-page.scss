@@ -1,31 +1,57 @@
 $base-color-light-grey: #EAEAEA;
 $base-color-dark-blue: #0f4c75;
+$base-color-light-blue: #A5BECC;
 
 #landing-page {
-	background-color: $base-color-dark-blue;
+	background-color: $base-color-light-blue;
 	height: 100%;
 
 	display: flex;
 	align-items: center;
 
-	#landing-timeline-item {
+	#dummy-timeline-item-container {
+		position: relative;
 		width: 50%;
 		// background-color: green;
-	}
+	
+		.timeline-item-content-container {
+			// outline: 2px solid red;
+			background-color: transparent;
+			box-shadow: none;
+		}
 
-	.timeline-item-subcontainer {
-		// background-color: red;
+		.timeline-item-subcontainer {
+			// background-color: red;
 
-		.timeline-item-header {
-			color: white;
-
-			.item-header-username {
+			.timeline-item-header {
 				color: white;
+
+				.item-header-username {
+					color: white;
+
+					.timeline-actor-link {
+						color: white;
+					}
+				}
+			}
+
+			.timeline-item-content-container {
+				// background-color: transparent;
+
+				.tagged-users-wrapper {
+					display: none;
+				}
 			}
 		}
 
-		.timeline-item-content-container {
-			// background-color: transparent;
+		&:before {
+			// outline: 2px solid red;
+			position: absolute;
+			content: "";
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+			// z-index: 10;
 		}
 	}
 
