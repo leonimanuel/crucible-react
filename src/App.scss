@@ -114,6 +114,17 @@ textarea {
   }
 }
 
+// MOBILE OPTIMIZATION
+@media (max-width: 480px) {
+  button, input, a {
+    min-height: 50px;
+  }
+
+  .App {
+    font-size:calc(16px + 1.5vw);
+    // font-size: 22px;
+  }
+}       
 
 
 

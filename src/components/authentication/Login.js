@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React, { useState, useEffect } from "react"
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
 import "./auth.scss"
 
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
-class Login extends Component {
-	state = {
-		email: "",
-		password: "",
-		confirmationResent: false,
-		forgotPassword: false
+function Login(props) {
+	const [stateEmail, setStateEmail] = useState("");
+	const [statePassword, setStatePassword] = useState("");
+	const [stateConfirmationResent, setStateConfirmationResent] = useState(false);
+	const [stateForgotPassword, setStateForgotPassword] = useState(false);
+
+	// state = {
+	// 	email: "",
+	// 	password: "",
+	// 	confirmationResent: false,
+	// 	forgotPassword: false
+	// }
+
+	const handleChange = e => {
+		if (e.target.name == "email") { setStateEmail(e.target.value) }
+		if (e.target.name == "password") { setStatePassword(e.target.value) }
+		// this.setState({
+		// 	[e.target.name]: e.target.value
+		// }) 
 	}
 
-	handleChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		}) 
-	}
-
-	handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const errorBox = document.getElementById("error-box");
 		errorBox.innerText = "";	
@@ -31,7 +39,7 @@ class Login extends Component {
 		
 		// let rootURL = "http://localhost:3000"
 
-		if (this.state.forgotPassword) {
+		if (stateForgotPassword) {
 			let configObj = {
 				method: "POST",
 				headers: {
@@ -39,7 +47,7 @@ class Login extends Component {
 					Accept: "application/json"
 				},
 				body: JSON.stringify({
-					email: this.state.email,
+					email: stateEmail,
 				})
 			}
 
@@ -61,8 +69,8 @@ class Login extends Component {
 					Accept: "application/json"
 				},
 				body: JSON.stringify({
-					email: this.state.email,
-					password: this.state.password
+					email: stateEmail,
+					password: statePassword
 				})
 			}
 			
@@ -76,7 +84,7 @@ class Login extends Component {
 					localStorage.setItem("token", data.auth_token);		
 					localStorage.setItem("userId", data.user.id);
 					localStorage.setItem("userEmail", data.user.email);
-          this.props.logIn()
+          props.logIn()
 
 
 				} else if (response.status == 403) {
@@ -119,7 +127,7 @@ class Login extends Component {
 		// 	.catch(err => alert(err.message))
 	}
 
-	resendConfirmation = async () => {
+	const resendConfirmation = async () => {
 	  let configObj = {
 	    method: "GET",
 	    headers: {
@@ -134,20 +142,19 @@ class Login extends Component {
 	  	if (response.status == 200 || 403) {
 	  		const errorBox = document.getElementById("error-box");
 	  		errorBox.innerText = "confirmation email sent"
-	  		debugger
 	  	}
 	  } catch (error) {
 	  	alert(error)
 	  }
 	}
 
-	forgotPassword = () => {
-		this.setState({forgotPassword: true})
+	const forgotPassword = () => {
+		setStateForgotPassword(true)
+		// this.setState({forgotPassword: true})
 	}
 
-	render() {
-		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
-
+	// render() {
+		if (props.isLoggedIn === true) { return <Redirect to="/"/> }
 		// return (
 	 //    <MDBContainer>
 	 //      <MDBRow>
@@ -184,28 +191,33 @@ class Login extends Component {
 
 		return (
 				<div id="login-wrapper" className="auth-wrapper">
-					<h1 className="auth-header">{this.state.forgotPassword ? "reset password" : "Login"}</h1>
-					<form className="auth-form" onSubmit={this.handleSubmit}>
-						<div className="auth-item">
-							<label className="form-label auth-form-label">Email </label>
-							<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
-						</div>
-
-						{this.state.forgotPassword ? null :
+					<h1 className="auth-header">{stateForgotPassword ? "reset password" : "Login"}</h1>
+					
+					<div id="auth-form-and-options">
+						<form className="auth-form" onSubmit={handleSubmit}>
 							<div className="auth-item">
-								<label className="form-label auth-form-label">Password </label>
-								<input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
+								<label className="form-label auth-form-label">Email </label>
+								<input className="form-input auth-input" type="email" name="email" onChange={handleChange} value={stateEmail} required/>										
 							</div>
-						}
-						
-						<div id="error-box" style={{color: "red"}}></div>
-						<div id='resend-confirmation-button' onClick={this.resendConfirmation} style={{display: "none"}}>resend confirmation email</div>
-						{!this.state.forgotPassword ? <div id='forgot-password-button' onClick={this.forgotPassword}>forgot password?</div> : <div onClick={() => this.setState({forgotPassword: false})}>back to login</div>}
-						{this.state.forgotPassword ? <input className="auth-button" type="submit" value="send reset link"/> : <input className="auth-button" type="submit" value="Log in"/>}
-					</form>
+
+							{stateForgotPassword ? null :
+								<div className="auth-item">
+									<label className="form-label auth-form-label">Password </label>
+									<input className="form-input auth-input" type="password" name="password" onChange={handleChange} value={statePassword} required/>										
+								</div>
+							}
+							{!stateForgotPassword ? <button id='forgot-password-button' onClick={forgotPassword}>forgot password?</button> : <button onClick={() => setStateForgotPassword(false)}>back to login</button>}
+							
+							<div id="error-box" style={{color: "red"}}></div>
+							<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "none"}}>resend confirmation email</div>
+							{stateForgotPassword ? <input className="auth-button" type="submit" value="send reset link"/> : <input className="auth-button" type="submit" value="Log in"/>}
+						</form>
+
+						<div id="sign-up-prompt">Don't have an account? <Link to="/signup">Sign up</Link></div>
+					</div>
 				</div>					
 		)
-	}
+	// }
 }
 
 const mapStateToProps = state => {

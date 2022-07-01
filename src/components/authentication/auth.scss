@@ -1,5 +1,15 @@
+$base-color-dark-blue: #0f4c75;
+$base-color-button-hover: #73A9AD;
+
+// * { 
+//   outline: 1px solid red;
+//   outline-offset: -1px;
+// }
+
 .auth-wrapper {
+	// outline: 1px solid orange;
 	margin: auto;
+	// padding: 5% 10%;
 	// margin-top: 20vh;
 	/*width: 50%;*/
 	/*max-width: 300px;*/
@@ -17,85 +27,133 @@
 	/*text-align: center;*/
 
 	box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-}
 
-.auth-wrapper input {
-	margin: 5px 0;
-}
-
-.auth-header {
-	margin: 10px 0;
-}
-
-.auth-form {
-	/*text-align: right;*/
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-
-	margin: 0 40px;
-/*	margin: 0 auto;
-	margin-right: 40px;*/
-
-
-	.auth-item {
-		// outline: 1px solid red;
+	@media (max-width: 480px) {
+		width: 95%;
+		height: 95%;
 		display: flex;
 		flex-direction: column;
-		align-items: left;
-		// align-items: flex-start;
-		margin-bottom: 10px;
+		justify-content: center;
+	}		
 
-		.form-label.auth-form-label {
+
+	.auth-header {
+		// outline: 1px solid orange;
+		margin: 10px 0;
+	}
+
+	#auth-form-and-options {
+		// outline: 1px solid blue;
+		display: flex;
+		flex-direction: column;
+		margin: 10px 20px;
+
+		@media (min-width: 481px) {
+			min-width: 300px;	
+		}		
+
+		
+
+		.auth-form {
 			// outline: 1px solid green;
-			text-align: left;
-			font-weight: bold;
+			/*text-align: right;*/
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+
+			.auth-item {
+				// outline: 1px solid red;
+				display: flex;
+				flex-direction: column;
+				align-items: left;
+				// align-items: flex-start;
+				margin-bottom: 10px;
+				width: 100%;
+
+				.form-label.auth-form-label {
+					// outline: 1px solid green;
+					text-align: left;
+					font-weight: bold;
+					margin: 0;
+				}
+
+				.auth-input {
+					// outline: 1px solid red;
+			    background-color: rgb(250, 251, 252);
+			    border-color: rgb(223, 225, 230);
+			    color: rgb(9, 30, 66);
+			    cursor: text;
+			    border-radius: 3px;
+			    border-width: 2px;
+			    border-style: solid;
+			    box-sizing: border-box;
+			    font-size: 14px;
+			    transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
+			    line-height: 1.42857; 
+			    padding: 8px 6px;
+			    height: 36px;
+			    :hover{
+			        background-color: rgb(235, 236, 240);
+			    }
+			    :focus{
+			        background-color: rgb(255, 255, 255);
+			        border-color: rgb(76, 154, 255);
+			    }
+				}		
+			}
 		}
 
-		.auth-input {
-			// outline: 1px solid red;
-	    background-color: rgb(250, 251, 252);
-	    border-color: rgb(223, 225, 230);
-	    color: rgb(9, 30, 66);
-	    cursor: text;
-	    border-radius: 3px;
-	    border-width: 2px;
-	    border-style: solid;
-	    box-sizing: border-box;
-	    font-size: 14px;
-	    transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
-	    line-height: 1.42857; 
-	    padding: 8px 6px;
-	    height: 36px;
-	    :hover{
-	        background-color: rgb(235, 236, 240);
-	    }
-	    :focus{
-	        background-color: rgb(255, 255, 255);
-	        border-color: rgb(76, 154, 255);
-	    }
+		.auth-button {
+			// outline: 1px solid blue;
+			width: 100%;
+			border: none;
+			border-radius: 5px;
+			/*background-color: #0f4c75;*/
+			background-color: $base-color-dark-blue;
+			color: black;
+			padding: 5px;
+
+			font-weight: bold;
+			cursor: pointer;
+			color: white;
+
+			&:hover {
+				background-color: $base-color-button-hover
+			}
 		}		
 	}
-}
 
-.auth-button {
-	border: none;
-	border-radius: 5px;
-	/*background-color: #0f4c75;*/
-	background-color: gold;
-	color: black;
-	padding: 5px;
+	#sign-up-prompt {
+		// outline: 1px solid green;
+		text-align: left;
+		margin-top: 10px;
+		
+		a {
+			padding: 0;
+			color: blue;
 
-	font-weight: bold;
-	cursor: pointer;
-}
+			@media (max-width: 480px) {
+				font-size:calc(16px + 1.5vw);
+			}							
+		}
+	}
 
-#resend-confirmation-button {
-	border: none;
-	background-color: gold;
-	border-radius: 3px;
-	font-weight: bold;
-	cursor: pointer;
+	#forgot-password-button {
+		// outline: 1px solid green;
+		border: none;
+		background: none;
+		text-align: right;
+		margin-bottom: 10px;
+		color: blue;
+	}			
+
+	#resend-confirmation-button {
+		border: none;
+		background-color: gold;
+		border-radius: 3px;
+		font-weight: bold;
+		cursor: pointer;
+	}
 }
 
 .popup-content {
