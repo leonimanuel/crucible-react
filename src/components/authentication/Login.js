@@ -87,44 +87,24 @@ function Login(props) {
           props.logIn()
 
 
-				} else if (response.status == 403) {
-						const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
-						resendConfirmationButton.style.display = "block"				
-				}
-				else if (response.status == 404) {
-					alert("no account found with this email address")
+				} else if (response.status == 401) {
+						alert("email or password is invalid")		
+				}	else if (response.status == 403) {
+						const data = await response.json();
+						localStorage.setItem("token", data.auth_token);	
+						let answer = window.confirm("Please confirm your email to continue. Re-send confirmation email?")
+						if (answer) {
+							resendConfirmation()
+						}
+						// const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
+						// resendConfirmationButton.style.display = "block"				
+				} else if (response.status == 404) {
+						alert("email or password is invalid")
 				} 
 			} catch (error) {
 				alert(error)
 			}			
 		}
-
-		// fetch(API_ROOT + "/authenticate", configObj)
-		// 	.then(resp => {
-		// 		resp.json();
-		// 	})
-		// 	.then(data => {
-		// 		debugger
-		// 		if (data.message) {
-		// 			const loginWrapper = document.getElementById("login-wrapper");
-		// 			loginWrapper.innerHTML = data.message
-		// 			localStorage.setItem("token", data.auth_token)
-		// 		}
-		// 		else if (data.error === "confirm email") {
-		// 			const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
-		// 			resendConfirmationButton.style.display = "block"
-		// 		}
-		// 		else if (data.error) {
-		// 			const errorBox = document.getElementById("error-box");
-		// 			errorBox.innerText = data.error.user_authentication;
-		// 		}
-		// 		else if (data) {
-		// 			console.log(data)					
-		// 			localStorage.setItem("token", data.auth_token)
-		// 			this.props.logIn(data.user)
-		// 		} 				
-		// 	})
-		// 	.catch(err => alert(err.message))
 	}
 
 	const resendConfirmation = async () => {
@@ -139,7 +119,7 @@ function Login(props) {
 	  // debugger
 	  try {
 	  	let response = await fetch(API_ROOT + `/resend-confirmation-email`, configObj)
-	  	if (response.status == 200 || 403) {
+	  	if (response.status == 200) {
 	  		const errorBox = document.getElementById("error-box");
 	  		errorBox.innerText = "confirmation email sent"
 	  	}
@@ -209,7 +189,7 @@ function Login(props) {
 							{!stateForgotPassword ? <button id='forgot-password-button' onClick={forgotPassword}>forgot password?</button> : <button onClick={() => setStateForgotPassword(false)}>back to login</button>}
 							
 							<div id="error-box" style={{color: "red"}}></div>
-							<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "none"}}>resend confirmation email</div>
+							{/*<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "block"}}>resend confirmation email</div>*/}
 							{stateForgotPassword ? <input className="auth-button" type="submit" value="send reset link"/> : <input className="auth-button" type="submit" value="Log in"/>}
 						</form>
 

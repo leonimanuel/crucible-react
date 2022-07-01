@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
 
@@ -75,7 +75,6 @@ class SignUp extends Component {
 	  	.then(resp => resp.json())
 	  	.then(data => {
 	  		const confirmationMessage = document.getElementById("confirmation-sent-message");
-	  		debugger
 	  		confirmationMessage.innerText = "confirmation email re-sent"
 	  	}) 		
 	}
@@ -88,38 +87,40 @@ class SignUp extends Component {
 						? 
 							<React.Fragment>
 								<h1 className="auth-header">Sign Up</h1>
-								<form className="auth-form" id="sign-up-form" onSubmit={this.handleSubmit}>
-									<div>
-										<label>First Name: </label>
-										<input type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>						
-									</div>
+								<div id="auth-form-and-options">
+									<form className="auth-form" id="sign-up-form" onSubmit={this.handleSubmit}>
+										<div className="auth-item">
+											<label className="form-label auth-form-label">Name: </label>
+											<input className="form-input auth-input" type="text" name="name" onChange={this.handleChange} value={this.state.name} required/>						
+										</div>
 
-									<div>
-										<label>Handle: </label>
-										<input type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
-									</div>
-									<div id="handle-error-box" style={{color: "red", "font-size": "0.8em", width: "80%"}}></div>										
-									
-									<div>
-										<label>Email: </label>
-										<input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
-									</div>
+										<div className="auth-item">
+											<label className="form-label auth-form-label">Handle: </label>
+											<input className="form-input auth-input" type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required/>
+										</div>
+										<div id="handle-error-box" style={{color: "red", "font-size": "0.8em", width: "80%"}}></div>										
+										
+										<div className="auth-item">
+											<label className="form-label auth-form-label">Email: </label>
+											<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
+										</div>
 
-									<div>
-										<label>Password: </label>
-										<input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
-									</div>
-									<div id="error-box" style={{color: "red"}}></div>
-									<input className="auth-button" type="submit" value="Sign up"/>
-								</form>
+										<div className="auth-item">
+											<label className="form-label auth-form-label">Password: </label>
+											<input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
+										</div>
+										<div id="error-box" style={{color: "red"}}></div>
+										<input className="auth-button" type="submit" value="Sign up"/>
+									</form>
+
+									<div id="sign-up-prompt">Already have an account? <Link to="/login">Sign in</Link></div>									
+								</div>
 							</React.Fragment>
 						:
-							<React.Fragment>
+							<div id="confirmation-sent-wrapper">
 								<div id="confirmation-sent-message">Please check your email for a link to verify your account</div>
-								<button id='resend-confirmation-button' onClick={this.resendConfirmation}>resend confirmation email</button>
-							</React.Fragment>
-							
-
+								<button id='resend-confirmation-button' className="auth-button" onClick={this.resendConfirmation}>resend confirmation email</button>
+							</div>
 					}
 				</div>					
 		)

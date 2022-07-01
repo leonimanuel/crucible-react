@@ -2,30 +2,31 @@ import React, { Component } from "react";
 import { API_ROOT } from "../../constants"
 import { logIn } from "../../actions/users.js"
 import { connect } from "react-redux"
+import { Redirect, Link } from "react-router-dom";
 // import { confirmEmail } from "../../actions/users.js"
 
 class ConfirmEmail extends Component {
 	state = {
-		confirmation: "pending"
+		confirmed: false
 	}
 
 	componentDidMount = async () => {
-    debugger
     const token = this.props.match.params.token
     let configObj = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: localStorage.getItem("token")
       }
     }
 
     try {
       let response = await fetch(API_ROOT + `/confirm-email/${token}`, configObj)
       if (response.status == 200) {
-        this.setState({confirmation: "success"});
-        this.props.logIn()
+        this.setState({confirmed: true});
+
+      } else if (response.status == 401) {
+        alert("unable to authenticate user")
       }
     } catch (error) {
       alert(error)
@@ -36,7 +37,7 @@ class ConfirmEmail extends Component {
 		return (
 			<div className="auth-wrapper">
 				<div>CONFIRMING EMAIL</div>
-				{this.state.confirmation === "success" ? <div>Email confirmed. Logging in...</div> : null}				
+				{this.state.confirmed ? <Redirect to="/login"/> : null}
 			</div>
 		)
 	}
