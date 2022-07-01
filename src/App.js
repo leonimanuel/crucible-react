@@ -47,6 +47,10 @@ class App extends Component {
   componentDidMount() {
     this.props.logIn()
     this.props.getArticleRecommendations()
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+     alert("Crucible is not yet fully optimized for mobile, features will be limited on this device")
+    }    
   }
 
   handleUnreadUpdate = (response) => {
@@ -129,7 +133,8 @@ class App extends Component {
               ?
                 
                 <div>
-                  <Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>
+                  {/*<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>*/}
+                  
                   {/*
                     <ActionCableConsumer 
                       channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}

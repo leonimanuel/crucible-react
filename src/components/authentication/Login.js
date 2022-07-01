@@ -103,10 +103,10 @@ function Login(props) {
 							<input className="form-input auth-input" type="email" name="email" onChange={handleChange} value={stateEmail} required/>										
 						</div>
 
-							<div className="auth-item">
-								<label className="form-label auth-form-label">Password </label>
-								<input className="form-input auth-input" type="password" name="password" onChange={handleChange} value={statePassword} required/>										
-							</div>
+						<div className="auth-item">
+							<label className="form-label auth-form-label">Password </label>
+							<input className="form-input auth-input" type="password" name="password" onChange={handleChange} value={statePassword} required/>										
+						</div>
 						
 						<button id='reset-password-request-button' className="auth-option"><Link to="/reset-password-request">forgot password?</Link></button>
 
