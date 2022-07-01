@@ -1,4 +1,5 @@
 $base-color-dark-blue: #0f4c75;
+$tracer-color: #0f4c75;
 
 .timeline-card-container {
   // border: 1px solid black;
@@ -689,20 +690,20 @@ $base-color-dark-blue: #0f4c75;
         height: 50%;
 
         &.top-connector-box {
-          border-bottom: 3px solid #0f4c75;
-          border-left: 3px solid #0f4c75;
+          border-bottom: 3px solid $tracer-color;
+          border-left: 3px solid $tracer-color;
         
           &.draft {
-            border-bottom: 3px dashed #0f4c75;
-            border-left: 3px dashed #0f4c75;            
+            border-bottom: 3px dashed $tracer-color;
+            border-left: 3px dashed $tracer-color;            
           }
         }
 
         &.bottom-connector-box {
-          border-left: 3px solid #0f4c75;
+          border-left: 3px solid $tracer-color;
 
           &.draft {
-            border-left: 3px dashed #0f4c75;
+            border-left: 3px dashed $tracer-color;
           }
         }
       }
@@ -716,7 +717,7 @@ $base-color-dark-blue: #0f4c75;
 
     .supporting-fact-container {
       // outline: 2px solid green;
-      border: 3px solid #0f4c75;
+      border: 3px solid $tracer-color;
       border-radius: 10px;
       box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
       background-color: white;

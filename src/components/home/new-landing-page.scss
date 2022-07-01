@@ -1,30 +1,61 @@
 $base-color-light-grey: #EAEAEA;
 $base-color-dark-blue: #0f4c75;
-$base-color-light-blue: #A5BECC;
+$tracer-color: #A5BECC;
+
+// * { 
+//   outline: 1px solid red;
+//   outline-offset: -1px;
+// }
 
 #landing-page {
-	background-color: $base-color-light-blue;
+	background-color: $base-color-dark-blue;
 	height: 100%;
 
 	display: flex;
-	align-items: center;
+	// align-items: center;
+
+	@media (min-width: 300px) and (max-width: 900px) {
+	  flex-direction: column-reverse;
+	}	
 
 	#dummy-timeline-item-container {
+		// outline: 5px solid green;
 		position: relative;
-		width: 50%;
+
+
+		// height: 50%;
+		font-size: 1.2em;
 		// background-color: green;
-	
-		.timeline-item-content-container {
-			// outline: 2px solid red;
-			background-color: transparent;
-			box-shadow: none;
-		}
+		overflow: scroll;
+
+		@media (min-width: 300px) and (max-width: 900px) {
+		  width: 95%;
+		  min-width: 90%;
+		  max-height: 10000px;
+
+		  margin-top: 50px;
+		}	
+
+		@media (min-width: 901px) {
+			width: 50%;
+			min-width: 450px;
+			max-height: 80%;		
+		}	
+
 
 		.timeline-item-subcontainer {
 			// background-color: red;
 
 			.timeline-item-header {
 				color: white;
+
+				time {
+					display: none;
+				}
+
+				.item-header-description {
+					border-bottom: 3px solid $tracer-color;
+				}
 
 				.item-header-username {
 					color: white;
@@ -37,10 +68,40 @@ $base-color-light-blue: #A5BECC;
 
 			.timeline-item-content-container {
 				// background-color: transparent;
+				background-color: transparent;
+				box-shadow: none;
+
+		    &:before {
+		      position: absolute;
+		      content: "";
+		      width: 10px;
+		      height: 10px;
+		      top: -2.5px;
+
+		      border-radius: 10px 0 0 0;
+		      border-left: 3px solid $tracer-color;
+		      border-top: 3px solid $tracer-color;
+		    }
 
 				.tagged-users-wrapper {
 					display: none;
 				}
+
+				.timeline-comment-context-wrapper {
+					border-left-color: $tracer-color;
+				}			
+				
+			  .timeline-comment-content-wrapper {
+			    background-color: $tracer-color; // this color indicates that it is a regular comment
+
+			    .bubble-arrow {
+			      border-left-color: $tracer-color;
+			      border-bottom-color: $tracer-color;
+			    }
+			    .bubble-arrow:after {
+			      border-top: 12px solid $tracer-color;
+			    }			
+		    }		
 			}
 		}
 
@@ -53,45 +114,93 @@ $base-color-light-blue: #A5BECC;
 			opacity: 0.5;
 			// z-index: 10;
 		}
+
+
+		.supporting-facts-wrapper, .comment-facts-container {
+		  .supporting-fact-style-container {
+		    .supporting-fact-connector-boxes-container {
+		      .supporting-fact-connector-box {
+		        &.top-connector-box {
+		          border-bottom-color: $tracer-color;
+		          border-left-color: $tracer-color;
+		        
+		          &.draft {
+		            border-bottom-color: $tracer-color;
+		            border-left-color: $tracer-color;            
+		          }
+		        }
+
+		        &.bottom-connector-box {
+		          border-left-color: $tracer-color;
+
+		          &.draft {
+		            border-left-color: $tracer-color;
+		          }
+		        }
+		      }
+		    }
+
+		    .supporting-fact-container {
+		      border: 3px solid $tracer-color;
+
+		      .add-comment-fact-button {
+		      	display: none;
+		      }
+		    }   
+		  }
+		}		
 	}
 
-	#new-landing-buttons-container {
-		// outline: 2px solid white;
-		height: 20%;
-		// margin-top: 40px;
+	#landing-text-and-buttons {
+		// outline: 2px solid red;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
-		/*border: 2px solid white;*/
-		// opacity: 0;
-		transition: .3s;
 
-		// margin-bottom: 20px;
-	}
+		#landing-slug {
+			font-size: 5em;
+			font-family: 'Bebas Neue';
+			color: white;
+		}
+
+		#new-landing-buttons-container {
+			// outline: 2px solid white;
+			height: 20%;
+			// margin-top: 40px;
+			display: flex;
+			justify-content: center;
+			/*border: 2px solid white;*/
+			// opacity: 0;
+			transition: .3s;
+
+			// margin-bottom: 20px;
+		}
 
 
-	.landing-button {
-		background-color: white;
-		// color: #0f4c75;
-		/*color: black;*/
+		.landing-button {
+			background-color: white;
+			// color: #0f4c75;
+			/*color: black;*/
 
-		font-size: 1.2em;
-		font-weight: bold;
-		padding: 5px;
-		margin: 0 20px;
-		cursor: pointer;	
+			font-size: 1.2em;
+			font-weight: bold;
+			padding: 5px;
+			margin: 0 20px;
+			cursor: pointer;	
 
-	/*  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-	              0 2px 2px rgba(0,0,0,0.12), 
-	              0 4px 4px rgba(0,0,0,0.12), 
-	              0 8px 8px rgba(0,0,0,0.12),
-	              0 16px 16px rgba(0,0,0,0.12);  */
-		/*border: 4px solid gold;*/
-		border: none;
-		border-radius: 5px;
-	}
+		/*  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+		              0 2px 2px rgba(0,0,0,0.12), 
+		              0 4px 4px rgba(0,0,0,0.12), 
+		              0 8px 8px rgba(0,0,0,0.12),
+		              0 16px 16px rgba(0,0,0,0.12);  */
+			/*border: 4px solid gold;*/
+			border: none;
+			border-radius: 5px;
+		}
 
-	.landing-button:hover {
-		background-color: gold;
+		.landing-button:hover {
+			background-color: gold;
+		}
 	}
 }
 
