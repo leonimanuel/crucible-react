@@ -2,23 +2,13 @@ import React, { Component } from 'react';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
-import { Helmet } from 'react-helmet';
-// import ScriptTag from 'react-script-tag';
 
 import { API_ROOT } from "../../constants"
 import "./auth.scss"
-import "./auth2.scss"
-// import "./css/util.css"
-// import "./css/main.scss"
+
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 class Login extends Component {
-	componentDidMount() {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "../src/components/authentication/js/main.js";
-    document.body.appendChild(script);
-	}
-
 	state = {
 		email: "",
 		password: "",
@@ -27,14 +17,12 @@ class Login extends Component {
 	}
 
 	handleChange = e => {
-		debugger
 		this.setState({
-			[e.target.type]: e.target.value
+			[e.target.name]: e.target.value
 		}) 
 	}
 
 	handleSubmit = async (e) => {
-		debugger
 		e.preventDefault()
 		const errorBox = document.getElementById("error-box");
 		errorBox.innerText = "";	
@@ -102,6 +90,33 @@ class Login extends Component {
 				alert(error)
 			}			
 		}
+
+		// fetch(API_ROOT + "/authenticate", configObj)
+		// 	.then(resp => {
+		// 		resp.json();
+		// 	})
+		// 	.then(data => {
+		// 		debugger
+		// 		if (data.message) {
+		// 			const loginWrapper = document.getElementById("login-wrapper");
+		// 			loginWrapper.innerHTML = data.message
+		// 			localStorage.setItem("token", data.auth_token)
+		// 		}
+		// 		else if (data.error === "confirm email") {
+		// 			const resendConfirmationButton =  document.getElementById("resend-confirmation-button");
+		// 			resendConfirmationButton.style.display = "block"
+		// 		}
+		// 		else if (data.error) {
+		// 			const errorBox = document.getElementById("error-box");
+		// 			errorBox.innerText = data.error.user_authentication;
+		// 		}
+		// 		else if (data) {
+		// 			console.log(data)					
+		// 			localStorage.setItem("token", data.auth_token)
+		// 			this.props.logIn(data.user)
+		// 		} 				
+		// 	})
+		// 	.catch(err => alert(err.message))
 	}
 
 	resendConfirmation = async () => {
@@ -133,87 +148,65 @@ class Login extends Component {
 	render() {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
 
-    const style = {
-      margin: "15px 0"
-    };
+		// return (
+	 //    <MDBContainer>
+	 //      <MDBRow>
+	 //        <MDBCol md="6">
+	 //          <form>
+	 //            <p className="h4 text-center mb-4">Sign in</p>
+	 //            <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
+	 //              Your email
+	 //            </label>
+	 //            <input
+	 //              type="email"
+	 //              id="defaultFormLoginEmailEx"
+	 //              className="form-control"
+	 //            />
+	 //            <br />
+	 //            <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
+	 //              Your password
+	 //            </label>
+	 //            <input
+	 //              type="password"
+	 //              id="defaultFormLoginPasswordEx"
+	 //              className="form-control"
+	 //            />
+	 //            <div className="text-center mt-4">
+	 //              <MDBBtn color="indigo" type="submit">
+	 //                Login
+	 //              </MDBBtn>
+	 //            </div>
+	 //          </form>
+	 //        </MDBCol>
+	 //      </MDBRow>
+	 //    </MDBContainer>
+		// )
 
 		return (
-      <div className="login-container">
-        <div className="title">
-         Login
-        </div>
-        <FluidInput type="text" name="email" label="email" id="email" style={style} value={this.state.email} onChange={this.handleChange}/>
-        <FluidInput type="password" name="password" label="password" id="password" style={style} value={this.state.password} onChange={this.handleChange}/>
-        <Button buttonText="log in" buttonClass="login-button" onSubmit={this.handleSubmit} />
-      </div>			
+				<div id="login-wrapper" className="auth-wrapper">
+					<h1 className="auth-header">{this.state.forgotPassword ? "reset password" : "Login"}</h1>
+					<form className="auth-form" onSubmit={this.handleSubmit}>
+						<div className="auth-item">
+							<label className="form-label auth-form-label">Email </label>
+							<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>										
+						</div>
+
+						{this.state.forgotPassword ? null :
+							<div className="auth-item">
+								<label className="form-label auth-form-label">Password </label>
+								<input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>										
+							</div>
+						}
+						
+						<div id="error-box" style={{color: "red"}}></div>
+						<div id='resend-confirmation-button' onClick={this.resendConfirmation} style={{display: "none"}}>resend confirmation email</div>
+						{!this.state.forgotPassword ? <div id='forgot-password-button' onClick={this.forgotPassword}>forgot password?</div> : <div onClick={() => this.setState({forgotPassword: false})}>back to login</div>}
+						{this.state.forgotPassword ? <input className="auth-button" type="submit" value="send reset link"/> : <input className="auth-button" type="submit" value="Log in"/>}
+					</form>
+				</div>					
 		)
 	}
 }
-
-
-class FluidInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      focused: false,
-      value: ""
-    };
-  }
-  focusField() {
-    const { focused } = this.state;
-    this.setState({
-      focused: !focused
-    });
-  }
-  handleChange(event) {
-    const { target } = event;
-    const { value } = target;
-    this.setState({
-      value: value
-    });
-  }
-  render() {
-    const { type, label, style, id } = this.props;
-    const { focused } = this.state;
-    const { value } = this.props
-    let inputClass = "fluid-input";
-    if (focused) {
-      inputClass += " fluid-input--focus";
-    } else if (value != "") {
-      inputClass += " fluid-input--open";
-    }
-    
-    return (
-      <div className={inputClass} style={style}>
-        <div className="fluid-input-holder">
-          
-          <input 
-            className="fluid-input-input"
-            type={type}
-            id={id}
-            onFocus={this.focusField.bind(this)}
-            onBlur={this.focusField.bind(this)}
-            onChange={this.props.onChange.bind(this)}
-            autocomplete="off"
-          />
-          <label className="fluid-input-label" forHtml={id}>{label}</label>
-          
-        </div>
-      </div>
-    );
-  }
-}
-
-class Button extends React.Component {
-  render() {
-    return (
-      <div className={`button ${this.props.buttonClass}`} onClick={this.props.onSubmit}>
-        {this.props.buttonText}
-      </div>
-    );
-  }
-}
-
 
 const mapStateToProps = state => {
 	return {

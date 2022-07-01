@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+//for mdb-react
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+
 import * as serviceWorker from './serviceWorker';
 // import _ from 'lodash';
 import { ActionCableProvider } from 'react-actioncable-provider';
