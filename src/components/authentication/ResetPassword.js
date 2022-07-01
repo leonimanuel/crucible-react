@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { API_ROOT } from "../../constants"
 import { logIn } from "../../actions/users.js"
 import { connect } from "react-redux"
+
+import { Redirect, Link } from "react-router-dom";
 // import { confirmEmail } from "../../actions/users.js"
 
 class ResetPassword extends Component {
@@ -61,28 +63,31 @@ class ResetPassword extends Component {
         {!this.state.resetSuccess ?
           <React.Fragment>
             <h1 className="auth-header">reset your password</h1>
-            <form className="auth-form" onSubmit={this.handleSubmit}>
-              <div className = "auth-item">
-                <label>Email: </label>
-                <input type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>                   
-              </div>
+            
+            <div id="auth-form-and-options">
+              <form className="auth-form" onSubmit={this.handleSubmit}>
+                <div className="auth-item">
+                  <label className="form-label auth-form-label">Email </label>
+                  <input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required/>                    
+                </div>
 
-              <div className = "auth-item">
-                <label>New Password: </label>
-                <input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>                    
-              </div>
+                <div className="auth-item">
+                  <label className="form-label auth-form-label">Password </label>
+                  <input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required/>                   
+                </div>
 
-              <div className = "auth-item">
-                <label>Confirm New Password: </label>
-                <input type="password" name="confirmPassword" onChange={this.handleChange} value={this.state.confirmPassword} required/>                    
-              </div>
-              
-              <div id="error-box" style={{color: "red"}}></div>
-              {<input className="auth-button" type="submit" value="reset password"/>}
-            </form>              
+                <div className="auth-item">
+                  <label className="form-label auth-form-label">Confirm Password </label>
+                  <input className="form-input auth-input" type="password" name="confirmPassword" onChange={this.handleChange} value={this.state.confirmPassword} required/>                   
+                </div>
+                
+                <div id="error-box" style={{color: "red"}}></div>
+                {<input className="auth-button" type="submit" value="reset password"/>}
+              </form>  
+            </div>            
           </React.Fragment>
           :
-          "password successfully reset!"
+          <Redirect to="/"></Redirect>
         }
 			</div>
 		)

@@ -29,6 +29,7 @@ import Login from "./components/authentication/Login.js"
 import SignUp from "./components/authentication/SignUp.js"
 import ConfirmEmail from "./components/authentication/ConfirmEmail.js"
 import ResetPassword from "./components/authentication/ResetPassword.js"
+import ResetPasswordRequest from "./components/authentication/ResetPasswordRequest.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
 import Pitch from "./Pitch.js"
 
@@ -188,11 +189,14 @@ class App extends Component {
               <Route path="/signup"><SignUp/></Route> 
               <Route path="/control"><Control/></Route> 
 
+              <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
 
               <Route 
                 path="/reset-password/:token"
                 render={routerProps => this.props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
               </Route> 
+
+
           
             <Route path="/v2-brief"><Pitch /></Route>
           </div>      
