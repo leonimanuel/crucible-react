@@ -20,7 +20,7 @@ class SignUp extends Component {
 		}) 
 	}
 
-	handleSubmit = e => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
 		console.log("submitting login info")
 		let errorBox = document.getElementById("handle-error-box")
@@ -42,22 +42,23 @@ class SignUp extends Component {
 				})
 			}
 
-			fetch(API_ROOT + "/users", configObj)
-				.then(resp => resp.json())
-				.then(data => {
-					if (data.message) {
-						localStorage.setItem("token", data.auth_token)
-						this.setState({submitted: "success"})
-					} 
-					else if (data.error) {
-						const errorBox = document.getElementById("error-box");
-						errorBox.innerText = data.error;
-					}
-					else {
-						alert(data.error)
-					}
-				})
-				.catch(err => alert(err.message))
+			try {
+				let resp = await fetch(API_ROOT + "/users", configObj)
+				if (resp.status == 201) {
+					let data = await resp.json();
+					localStorage.setItem("token", data.auth_token)
+					this.setState({submitted: "success"})					
+				} 
+				else if (resp.status == 422) {
+					const errorBox = document.getElementById("error-box");
+					let response = await resp.json();
+					if (errorBox) { errorBox.innerText = response.errors.join('\r\n') }
+					else {alert(response.errors.join('\r\n'))}
+				}
+			}
+			catch (error) {
+				alert(error)
+			}
 		}
 	}
 

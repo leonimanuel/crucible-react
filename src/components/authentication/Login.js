@@ -53,6 +53,8 @@ function Login(props) {
 				localStorage.setItem("userEmail", data.user.email);
         props.logIn()
 
+        gaEventTracker("login")
+
 		  //   window.dataLayer = window.dataLayer || [];
 		  //   function gtag() {dataLayer.push(arguments);}
 				// gtag("event", "login", {
