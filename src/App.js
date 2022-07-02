@@ -9,7 +9,7 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
-import { API_ROOT } from "./constants"
+import { API_ROOT, GA4_MEASUREMENT_ID } from "./constants"
 import ReactGA from "react-ga4";
 
 
@@ -48,14 +48,25 @@ const App = props => {
   // }
 
   useEffect(() => {
-    ReactGA.initialize([
-      {
-        trackingId: "your GA measurement id",
-      }
-    ]);
+    ReactGA.initialize(GA4_MEASUREMENT_ID);
+
+    // ReactGA.initialize([
+    //   {
+    //     trackingId: GA4_MEASUREMENT_ID,
+    //   }
+    // ]);
 
     // Send pageview with a custom path
-    ReactGA.send({ hitType: "pageview", page: "/" });
+    // ReactGA.send({ hitType: "pageview", page: "/" });
+
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag() {dataLayer.push(arguments);}
+    // gtag('config', 'G-YT8SYJHZTD', {
+    //   'user_id': localStorage.getItem("userId")
+    // });
+    // window.dataLayer.push({
+
+    // })
 
     props.logIn()
     props.getArticleRecommendations()

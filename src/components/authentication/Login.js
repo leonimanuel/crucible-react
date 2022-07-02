@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react"
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
-
 import { API_ROOT } from "../../constants"
+import useAnalyticsEventTracker from "../../actions/analyticsEventTracker.js"
+
 import "./auth.scss"
 
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 function Login(props) {
+	const gaEventTracker = useAnalyticsEventTracker('engagement');	
+
 	const [stateEmail, setStateEmail] = useState("");
 	const [statePassword, setStatePassword] = useState("");
 	const [stateConfirmationResent, setStateConfirmationResent] = useState(false);
@@ -50,6 +53,11 @@ function Login(props) {
 				localStorage.setItem("userEmail", data.user.email);
         props.logIn()
 
+		  //   window.dataLayer = window.dataLayer || [];
+		  //   function gtag() {dataLayer.push(arguments);}
+				// gtag("event", "login", {
+				//   method: "Crucible"
+				// });
 
 			} else if (response.status == 401) {
 					alert("email or password is invalid")		
@@ -92,6 +100,7 @@ function Login(props) {
 	}
 
 	if (props.isLoggedIn === true) { return <Redirect to="/"/> }
+
 	return (
 			<div id="login-wrapper" className="auth-wrapper">
 				<h1 className="auth-header">Login</h1>
