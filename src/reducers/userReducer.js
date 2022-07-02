@@ -42,7 +42,8 @@ export default function userReducer(state = {
 				dailyReviews: action.user.daily_reviews,
 				dailyStreak: action.user.daily_streaks,
 				dailyFactsComments: action.user.daily_facts_comments,
-				user: action.user
+				user: action.user,
+				settings: action.user.settings
 			}
 		
 		case "UPDATE_USER":
@@ -51,10 +52,13 @@ export default function userReducer(state = {
 			user["email"] = action.user.email
 			user["handle"] = action.user.handle
 
+			user["settings"]["email_tags"] = action.user.email_tags
+			user["settings"]["email_replies"] = action.user.email_replies
+			user["settings"]["email_group_add"] = action.user.email_group_add
+
 			return {
 				...state,
 				userName: action.user.name,
-				userEmail: action.user.email,
 				userEmail: action.user.email,
 				user: user
 			}

@@ -133,7 +133,7 @@ class App extends Component {
               ?
                 
                 <div>
-                  {/*<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>*/}
+                  {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
                   
                   {/*
                     <ActionCableConsumer 

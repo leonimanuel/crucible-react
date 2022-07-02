@@ -7,14 +7,8 @@ $base-color-button-hover: #73A9AD;
 // }
 
 .auth-wrapper {
-	// outline: 1px solid orange;
+	// outline: 1px solid red;
 	margin: auto;
-	// padding: 5% 10%;
-	// margin-top: 20vh;
-	/*width: 50%;*/
-	/*max-width: 300px;*/
-
-
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -24,8 +18,6 @@ $base-color-button-hover: #73A9AD;
 	background-color: white;
 
 	z-index: 1;
-	/*text-align: center;*/
-
 	box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
 	@media (max-width: 480px) {
@@ -39,7 +31,12 @@ $base-color-button-hover: #73A9AD;
 
 	.auth-header {
 		// outline: 1px solid orange;
+		text-align: center;
 		margin: 10px 0;
+	}
+
+	.form-subheader {
+		margin-top: 20px;
 	}
 
 	#auth-form-and-options {
@@ -51,8 +48,6 @@ $base-color-button-hover: #73A9AD;
 		@media (min-width: 481px) {
 			min-width: 300px;	
 		}		
-
-		
 
 		.auth-form {
 			// outline: 1px solid green;
@@ -70,11 +65,32 @@ $base-color-button-hover: #73A9AD;
 				margin-bottom: 10px;
 				width: 100%;
 
+				&.form-checkbox-item {
+					// outline: 1px solid pink;
+					flex-direction: row;
+
+					margin-bottom: 0px;
+
+					input {
+						// outline: 2px solid green;
+						margin-right: 5px;
+					}
+
+					label {
+						// outline: 2px solid blue;
+						font-weight: normal;
+					}					
+				}
+
 				.form-label.auth-form-label {
 					// outline: 1px solid green;
 					text-align: left;
 					font-weight: bold;
 					margin: 0;
+
+					&.checkbox-label {
+						font-weight: normal;
+					}
 				}
 
 				.auth-input {
@@ -173,6 +189,11 @@ $base-color-button-hover: #73A9AD;
   border: none;
   // border: 2px solid red;
   // justify-content: center;
+
+	@media (max-width: 480px) {
+		width: 100%;
+		height: 100%;
+	}		  
 }
 
 

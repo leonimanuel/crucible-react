@@ -73,7 +73,10 @@ export const updateUserProfile = (user, closeModal) => {
       }, body: JSON.stringify({
         name: user.name,
         handle: user.handle,
-        email: user.email
+        email: user.email,
+        email_tags: user.email_tags,
+        email_replies: user.email_replies,
+        email_group_add: user.email_group_add    
       })
     }
 
@@ -86,11 +89,12 @@ export const updateUserProfile = (user, closeModal) => {
         }))
 
         closeModal()
-      } else {
-        alert("can't update profile")
+      } else if (res.status == 422) {
+        let response = await res.json()
+        alert(response.errors.join('\r\n'))
       }
     } catch (error) {
-      alert(error + "can't update profile")
+      alert("something went wrong, please try again later")
     }
   }
 
