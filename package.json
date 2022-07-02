@@ -19,6 +19,7 @@
     "react-dnd-html5-backend": "^15.1.2",
     "react-dom": "^16.14.0",
     "react-ga": "^3.3.1",
+    "react-ga4": "^1.4.1",
     "react-helmet": "^6.1.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-onclickoutside": "^6.12.1",

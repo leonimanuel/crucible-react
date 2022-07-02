@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React, { useState, useEffect } from "react"
 import './App.scss';
 import './components/tools/menu.scss';
 import './components/tools/modals.scss';
@@ -10,6 +10,7 @@ import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discus
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
 import { API_ROOT } from "./constants"
+import ReactGA from "react-ga4";
 
 
 import NewLandingPage from "./components/home/NewLandingPage.js"
@@ -39,176 +40,201 @@ import { toggleSidenav } from "./actions/sidenavActions.js"
 import { addFactFromCable } from "./actions/topicsActions.js"
 // import { isLoggedIn } from 
 
-class App extends Component {
-  state = {
-    sidenavOpen: true
-  }
+const App = props => {
+  // const [stateSidenavvOpen, setStateSidenavOpen] = useState(true);
 
-  componentDidMount() {
-    this.props.logIn()
-    this.props.getArticleRecommendations()
+  // state = {
+  //   sidenavOpen: true
+  // }
+
+  useEffect(() => {
+    ReactGA.initialize([
+      {
+        trackingId: "your GA measurement id",
+      }
+    ]);
+
+    // Send pageview with a custom path
+    ReactGA.send({ hitType: "pageview", page: "/" });
+
+    props.logIn()
+    props.getArticleRecommendations()
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
      alert("Crucible is not yet fully optimized for mobile, features will be limited on this device")
-    }    
-  }
+    }       
+  }, [])
 
-  handleUnreadUpdate = (response) => {
+  // componentDidMount() {
+  //   ReactGA.initialize([
+  //     {
+  //       trackingId: "your GA measurement id",
+  //     }
+  //   ]);
+
+  //   // Send pageview with a custom path
+  //   ReactGA.send({ hitType: "pageview", page: "/" });
+
+  //   props.logIn()
+  //   props.getArticleRecommendations()
+
+  //   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  //    alert("Crucible is not yet fully optimized for mobile, features will be limited on this device")
+  //   }    
+  // }
+
+  const handleUnreadUpdate = (response) => {
     if (!response.total_unreads) { //special case for chrome extension
-      if (response.sender_id !== this.props.userId) {
-        this.props.resetUnreadCount(response)      
+      if (response.sender_id !== props.userId) {
+        props.resetUnreadCount(response)      
       }
     }
   }
 
-  handleReceivedMessage = response => {
+  const handleReceivedMessage = response => {
     debugger
     console.log("handling received message")
     const { message } = response;
-    this.props.addMessageToDiscussion(message, this.props.userId)
+    props.addMessageToDiscussion(message, props.userId)
   }
 
-  handleReceivedComment = response => {
+  const handleReceivedComment = response => {
     debugger
     const { comment } = response;
-    this.props.addCommentToDiscussion(comment, this.props.userId)   
+    props.addCommentToDiscussion(comment, props.userId)   
   }
 
-  handleReadDiscussion = response => {
+  const handleReadDiscussion = response => {
     debugger
-    this.props.resetUnreadCount(response)
+    props.resetUnreadCount(response)
   }
 
-  handleReviewedItem = response => {
+  const handleReviewedItem = response => {
     debugger
     if (response.daily_reviews) {
-      this.props.resetItemUnderReview(response)      
+      props.resetItemUnderReview(response)      
     } else if (response.total_votes) {
-      this.props.updateAccuracyScore(response)
+      props.updateAccuracyScore(response)
     }
   }
 
-  handleMiscItem = response => {
+  const handleMiscItem = response => {
     debugger
     if (response.fact) {
-      this.props.addFactFromCable(response)
+      props.addFactFromCable(response)
     } 
     else if (response.discussion) {
-      this.props.addDiscussionFromCable(response.discussion)
+      props.addDiscussionFromCable(response.discussion)
     } else if (response.quotas) {
-      this.props.resetQuotas()
+      props.resetQuotas()
     }
   }
 
-  handleMainClick = () => {
+  const handleMainClick = () => {
     let sideNav = document.getElementById("side-nav");
     let sectionTabs = document.getElementById("sections-list")
     sideNav.style = `left: -${sideNav.clientWidth - sectionTabs.clientWidth}px`
-    this.props.toggleSidenav(false)
+    props.toggleSidenav(false)
   }
 
-  handleSidenavToggle = (bool) => {
-    this.props.toggleSidenav(bool)
+  const handleSidenavToggle = (bool) => {
+    props.toggleSidenav(bool)
   }
+  
+  return (
+    <Router>
+      <LastLocationProvider>
+        <div className="App">
 
-  render() {
-    let blob = document.getElementById("blob")
-    if (blob) blob.style.opacity = "1"    
-    return (
-      <Router>
-        <LastLocationProvider>
-          <div className="App">
+          {/*<div id="blob"></div>*/}
+          
+          
+          <Route 
+            path="/confirm-email/:token"
+            render={routerProps => props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+          </Route> 
 
-            {/*<div id="blob"></div>*/}
-            
-            
+
+          {            
+            props.userId
+            ?
+              
+              <div>
+                {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
+                
+                {/*
+                  <ActionCableConsumer 
+                    channel={{ channel: "MessageNotificationsChannel", user: props.userId }}
+                    onReceived={this.handleUnreadUpdate} 
+                  />          
+
+                  <ActionCableConsumer 
+                    channel={{ channel: "MessagesChannel", user: props.userId }}
+                    onReceived={this.handleReceivedMessage} 
+                  />
+
+                  <ActionCableConsumer 
+                    channel={{ channel: "CommentsChannel" }}
+                    onReceived={this.handleReceivedComment} 
+                  />            
+
+                  <ActionCableConsumer 
+                    channel={{ channel: "ReadDiscussionChannel", user: props.userId }}
+                    onReceived={this.handleReadDiscussion} 
+                  />    
+
+                  <ActionCableConsumer 
+                    channel={{ channel: "ReviewsChannel", user: props.userId }}
+                    onReceived={this.handleReviewedItem} 
+                  />    
+
+                  <ActionCableConsumer 
+                    channel={{ channel: "MiscChannel", user: props.userId }}
+                    onReceived={this.handleMiscItem} 
+                  />                      
+                */}
+
+
+                
+                <main id="main-content" onClick={handleMainClick}>               
+
+                  <SideNav onSidenavToggle={handleSidenavToggle}/>
+                  {/*<Route exact path="/"><Home/></Route>*/}
+                  <Timeline/>
+                  {<Route path="/console"><Console/></Route>}
+                  <Route path="/review"><Review/></Route>
+                  {/*<Route path="/groups"><Timeline/></Route>*/}  
+                  <Route path="/database"><Database/></Route>  
+                  
+                  {/*<Social />*/}
+                  <ArticlesContainer />
+                  <FeedbackButton />
+                </main>
+              </div>
+            : 
+              <React.Fragment>
+                <Route exact path="/" component={NewLandingPage} userId={props.userId}/>
+                <Route path="/groups">{props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
+              </React.Fragment> 
+          }            
+            <Route path="/login"><Login/></Route>
+            <Route path="/signup"><SignUp/></Route> 
+            <Route path="/control"><Control/></Route> 
+
+            <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
+
             <Route 
-              path="/confirm-email/:token"
-              render={routerProps => this.props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
+              path="/reset-password/:token"
+              render={routerProps => props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
             </Route> 
 
 
-            {            
-              this.props.userId
-              ?
-                
-                <div>
-                  {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
-                  
-                  {/*
-                    <ActionCableConsumer 
-                      channel={{ channel: "MessageNotificationsChannel", user: this.props.userId }}
-                      onReceived={this.handleUnreadUpdate} 
-                    />          
-
-                    <ActionCableConsumer 
-                      channel={{ channel: "MessagesChannel", user: this.props.userId }}
-                      onReceived={this.handleReceivedMessage} 
-                    />
-
-                    <ActionCableConsumer 
-                      channel={{ channel: "CommentsChannel" }}
-                      onReceived={this.handleReceivedComment} 
-                    />            
-
-                    <ActionCableConsumer 
-                      channel={{ channel: "ReadDiscussionChannel", user: this.props.userId }}
-                      onReceived={this.handleReadDiscussion} 
-                    />    
-
-                    <ActionCableConsumer 
-                      channel={{ channel: "ReviewsChannel", user: this.props.userId }}
-                      onReceived={this.handleReviewedItem} 
-                    />    
-
-                    <ActionCableConsumer 
-                      channel={{ channel: "MiscChannel", user: this.props.userId }}
-                      onReceived={this.handleMiscItem} 
-                    />                      
-                  */}
-  
-
-                  
-                  <main id="main-content" onClick={this.handleMainClick}>               
-
-                    <SideNav onSidenavToggle={this.handleSidenavToggle}/>
-                    {/*<Route exact path="/"><Home/></Route>*/}
-                    <Timeline/>
-                    {<Route path="/console"><Console/></Route>}
-                    <Route path="/review"><Review/></Route>
-                    {/*<Route path="/groups"><Timeline/></Route>*/}  
-                    <Route path="/database"><Database/></Route>  
-                    
-                    {/*<Social />*/}
-                    <ArticlesContainer />
-                    <FeedbackButton />
-                  </main>
-                </div>
-              : 
-                <React.Fragment>
-                  <Route exact path="/" component={NewLandingPage} userId={this.props.userId}/>
-                  <Route path="/groups">{this.props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
-                </React.Fragment> 
-            }            
-              <Route path="/login"><Login/></Route>
-              <Route path="/signup"><SignUp/></Route> 
-              <Route path="/control"><Control/></Route> 
-
-              <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
-
-              <Route 
-                path="/reset-password/:token"
-                render={routerProps => this.props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
-              </Route> 
-
-
-          
-            <Route path="/v2-brief"><Pitch /></Route>
-          </div>      
-        </LastLocationProvider>
-      </Router>
-    );
-  }
+        
+          <Route path="/v2-brief"><Pitch /></Route>
+        </div>      
+      </LastLocationProvider>
+    </Router>
+  );
 }
 
 const mapStateToProps = state => {
