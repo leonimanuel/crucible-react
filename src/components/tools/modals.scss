@@ -25,6 +25,19 @@
 
 }
 
+.popup-content {
+  background-color: transparent;
+  display: flex;
+  border: none;
+  // border: 2px solid red;
+  // justify-content: center;
+
+	@media (max-width: 480px) {
+		width: 100%;
+		height: 100%;
+	}		  
+}
+
 .modal-container {
   background-color: white;
   padding: 10px;

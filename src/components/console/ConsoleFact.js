@@ -91,7 +91,7 @@ class ConsoleFact extends Component {
 
 
 				{/**/}
-				<div className="remove-fact-button" onClick={() => this.props.removeFact(fact)}>✕</div>
+				<div className="remove-fact-button close-button" onClick={() => this.props.removeFact(fact)}>✕</div>
 			</div>
 		)
 	}

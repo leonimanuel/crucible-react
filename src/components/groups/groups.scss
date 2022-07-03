@@ -1,3 +1,5 @@
+$base-color-dark-blue: #0f4c75;
+
 #groups-menu {
 	color: black;
 }
@@ -37,26 +39,10 @@
   }  
 }
 
-#new-group-popup {
-  display: flex;
-  flex-direction: column;
-  // background: #fbd46d;
-  font-family: 'Abel', sans-serif;
-  // color: #333;
-  // font-weight: bold;
-  // padding: 4px 4px;
-  // font-size: 13px;
-  // border: 2px solid black;
-  // border-radius: 4px;
-  // z-index: 1;
-  // width: 200px;
-
-	.close-button {
-		display: inline-block;
-		margin-left: 95%;
-		color: red;
-		cursor: pointer;
-	}
+.new-group {
+  @media (min-width: 481px) {
+    max-width: 300px; 
+  }   
 
 	#new-group-popup-title {
 		text-align: center;
@@ -69,13 +55,23 @@
 		/*width: 100px;*/
 	}
 
-	#suggestions-box {
-		position: absolute;
-		/*background-color: green;*/
-		background-color: white;
-		/*border: 1px solid black;*/
-		border-top: 0px;
-		border-radius: 5px
+	#member-suggestions-container {
+		// outline: 2px solid blue;
+		position: relative;
+		width: 100%;
+		z-index: 10px;		
+		
+		#suggestions-box {
+			// outline: 2px solid green;
+			width: 100%;
+			position: absolute;
+			/*background-color: green;*/
+			background-color: snow;
+			/*border: 1px solid black;*/
+			border-top: 0px;
+			border-radius: 5px;
+			z-index: 1;
+		}
 	}
 
 	.member-suggestion {
@@ -91,21 +87,29 @@
 
 	#added-member-box {
 		display: flex;
+		flex-wrap: wrap;		
 	}
 
 	.member-tag {
+		margin: 5px;
+
 		display: flex;
 		align-items: center;
-		background-color: darkcyan;
-		/*color: white;*/
-		border: 2px solid blue;
+		background-color: $base-color-dark-blue;
+		color: white;
+		padding: 5px;
 		border-radius: 5px;
+		position: relative;
 	}
 
-	.remove-member-button {
-		color: white;
-		font-size: 0.8em
+	.remove-item-button {
+		// height: 20px;
 	}
+
+	// .remove-member-button {
+	// 	color: white;
+	// 	font-size: 0.8em
+	// }
 
 	.highlight {
 		background-color: cyan

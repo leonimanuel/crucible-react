@@ -1,16 +1,178 @@
-.form-wrapper {
+$base-color-dark-blue: #0f4c75;
+$base-color-button-hover: #73A9AD;
+
+// * { 
+//   outline: 1px solid red;
+//   outline-offset: -1px;
+// }
+
+
+.modal-form-wrapper {
+  position: relative;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   border-radius: 10px;
+
   background-color: white;
+
+  z-index: 1;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
   @media (max-width: 480px) {
-    // width: 95%;
-    // height: 95%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-  }     
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-header {
+    // outline: 1px solid orange;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .form-fields-and-options {
+    // outline: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+
+    @media (min-width: 481px) {
+      min-width: 300px; 
+    }   
+
+    .form-subheader {
+      margin-top: 20px;
+    }
+
+    .form-content-wrapper {
+      // outline: 1px solid green;
+      /*text-align: right;*/
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .form-field {
+        // outline: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        // align-items: flex-start;
+        margin-bottom: 10px;
+        width: 100%;
+
+        &.form-checkbox-item, &.form-radio-item {
+          // outline: 1px solid pink;
+          flex-direction: row;
+          margin-bottom: 0px;
+          align-items: center;
+
+          input {
+            // outline: 2px solid green;
+            margin-right: 5px;
+            height: 15px;
+
+            @media (max-width: 480px) {
+              height: 36px;
+            }            
+          }
+
+          label {
+            // outline: 2px solid blue;
+            font-weight: normal;
+          }         
+        }
+
+        .form-label {
+          // outline: 1px solid green;
+          text-align: left;
+          font-weight: bold;
+          margin: 0;
+
+          &.checkbox-label {
+            font-weight: normal;
+          }
+        }
+
+        .form-input {
+          // outline: 1px solid red;
+          background-color: rgb(250, 251, 252);
+          border-color: rgb(223, 225, 230);
+          color: rgb(9, 30, 66);
+          cursor: text;
+          border-radius: 3px;
+          border-width: 2px;
+          border-style: solid;
+          box-sizing: border-box;
+          font-size: 14px;
+          transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
+          line-height: 1.42857; 
+          padding: 8px 6px;
+          height: 36px;
+          :hover{
+              background-color: rgb(235, 236, 240);
+          }
+          :focus{
+              background-color: rgb(255, 255, 255);
+              border-color: rgb(76, 154, 255);
+          }
+        }   
+      }
+
+      .form-action-button {
+        // outline: 1px solid blue;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        /*background-color: #0f4c75;*/
+        background-color: $base-color-dark-blue;
+        color: black;
+        padding: 5px;
+
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+
+        margin-top: 20px;
+
+        &:hover {
+          background-color: $base-color-button-hover
+        }
+      }       
+    }
+
+    .form-option-description {
+      text-align: left;
+      margin-top: 10px;      
+    }
+
+    .form-option {
+      background: none;
+      border: none;
+      padding: 0;
+    }     
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+
+
+  a {
+    padding: 0;
+    color: blue;
+
+    @media (max-width: 480px) {
+      font-size:calc(16px + 1.5vw);
+    }             
+  }  
 }
 
 
@@ -91,3 +253,6 @@ li:hover{
   transform: scale(0);
   opacity: 0;
 }
+
+
+

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 
 import { API_ROOT } from "../../constants"
+import FormWrapper from "../tools/FormWrapper.js"
 import "./auth.scss"
 
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
@@ -42,22 +43,22 @@ function Login(props) {
   }
 
   return (
-    <div id="login-wrapper" className="auth-wrapper">
-      <h1 className="auth-header">reset password</h1>
+    <FormWrapper>
+      <h1 className="auth-header form-header">reset password</h1>
       
-      <div id="auth-form-and-options">
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <div className="auth-item">
+      <div className="auth-form-and-options form-fields-and-options">
+        <form className="auth-form form-content-wrapper" onSubmit={handleSubmit}>
+          <div className="auth-item form-field">
             <label className="form-label auth-form-label">Email </label>
             <input className="form-input auth-input" type="email" name="email" onChange={handleChange} value={stateEmail} required/>                    
           </div>
 
-          <button id='back-to-login-button' className="auth-option"><Link to="/login">back to login</Link></button>
+          <button id='back-to-login-button' className="auth-option form-option"><Link to="/login">back to login</Link></button>
 
-          <input className="auth-button" type="submit" value="send reset link"/>
+          <input className="auth-button form-action-button" type="submit" value="send reset link"/>
         </form>
       </div>
-    </div>          
+    </FormWrapper>          
   )
 }
 

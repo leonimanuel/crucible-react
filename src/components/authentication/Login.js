@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 import { API_ROOT } from "../../constants"
 import useAnalyticsEventTracker from "../../actions/analyticsEventTracker.js"
-
+import FormWrapper from "../tools/FormWrapper.js"
 import "./auth.scss"
 
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
@@ -46,8 +46,6 @@ function Login(props) {
 			// debugger
 			if (response.status == 200) {
 				let data = await response.json()
-				const loginWrapper = document.getElementById("login-wrapper");
-				loginWrapper.innerText = "successfully logged in!"
 				localStorage.setItem("token", data.auth_token);		
 				localStorage.setItem("userId", data.user.id);
 				localStorage.setItem("userEmail", data.user.email);
@@ -104,33 +102,32 @@ function Login(props) {
 	if (props.isLoggedIn === true) { return <Redirect to="/"/> }
 
 	return (
-			<div id="login-wrapper" className="auth-wrapper">
-				<h1 className="auth-header">Login</h1>
-				
-				<div id="auth-form-and-options">
-					<form className="auth-form" onSubmit={handleSubmit}>
-						<div className="auth-item">
-							<label className="form-label auth-form-label">Email </label>
-							<input className="form-input auth-input" type="email" name="email" onChange={handleChange} value={stateEmail} required/>										
-						</div>
+		<FormWrapper>
+			<h1 className="auth-header form-header">Login</h1>
+			
+			<div className="auth-form-and-options form-fields-and-options">
+				<form className="auth-form form-content-wrapper" onSubmit={handleSubmit}>
+					<div className="auth-item form-field">
+						<label className="form-label auth-form-label">Email </label>
+						<input className="form-input auth-input" type="email" name="email" onChange={handleChange} value={stateEmail} required/>										
+					</div>
 
-						<div className="auth-item">
-							<label className="form-label auth-form-label">Password </label>
-							<input className="form-input auth-input" type="password" name="password" onChange={handleChange} value={statePassword} required/>										
-						</div>
-						
-						<button id='reset-password-request-button' className="auth-option"><Link to="/reset-password-request">forgot password?</Link></button>
+					<div className="auth-item form-field">
+						<label className="form-label auth-form-label">Password </label>
+						<input className="form-input auth-input" type="password" name="password" onChange={handleChange} value={statePassword} required/>										
+					</div>
+					
+					<button id='reset-password-request-button' className="auth-option form-option"><Link to="/reset-password-request">forgot password?</Link></button>
 
-						<div id="error-box" style={{color: "red"}}></div>
-						{/*<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "block"}}>resend confirmation email</div>*/}
-						<input className="auth-button" type="submit" value="Log in"/>
-					</form>
+					<div id="error-box" style={{color: "red"}}></div>
+					{/*<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "block"}}>resend confirmation email</div>*/}
+					<input className="auth-button form-action-button" type="submit" value="Log in"/>
+				</form>
 
-					<div id="sign-up-prompt">Don't have an account? <Link to="/signup">Sign up</Link></div>
-				</div>
-			</div>					
-		)
-	// }
+				<div id="sign-up-prompt" className="form-option-description">Don't have an account? <Link to="/signup">Sign up</Link></div>
+			</div>
+		</FormWrapper>				
+	)
 }
 
 const mapStateToProps = state => {

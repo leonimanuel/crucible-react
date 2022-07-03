@@ -7,6 +7,7 @@ import { createPopper } from "@popperjs/core"
 // import Autosuggest from 'react-autosuggest';
 import MemberSuggestion from "./MemberSuggestion.js"
 import MemberTag from "./MemberTag.js"
+import FormWrapper from "../tools/FormWrapper.js"
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 
@@ -74,7 +75,6 @@ class GroupsModal extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		debugger
 		if (this.state.groupName.toLowerCase() === "Feed".toLowerCase() || this.state.groupName.toLowerCase() === "Guest".toLowerCase()) {
 			this.setState({groupNameError: "Group name can't be Feed or Guest"})
 		}
@@ -101,33 +101,48 @@ class GroupsModal extends Component {
 		}
 
 		return (
-			<div id="new-group-popup" className="modal-container">
+			<FormWrapper>
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
-				<div id="new-group-popup-title">New Group</div>
-				<form id="new-group-form" onSubmit={this.handleSubmit}>
-					<div className="new-group-input-div"><b>Group Name (optional): </b><input type="text" name="groupName" onChange={this.handleChange}/></div>
-					<div style={{color: "red"}}>{this.state.groupNameError}</div>
+				<h1 className="form-header">New Group</h1>
+				<div className="form-fields-and-options">
+					<form className="form-content-wrapper new-group" onSubmit={this.handleSubmit}>
+						<div className="auth-item form-field">
+							<label className="form-label">Group Name</label>
+							<input className="form-input" type="text" name="groupName" onChange={this.handleChange} value={this.state.groupName} required/>										
+						</div>						
+						<div style={{color: "red"}}>{this.state.groupNameError}</div>
 
-					<div className="new-group-input-div"><b>Members: </b><input id="add-member-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off" /></div>
-					
-					<div id="suggestions-box">
-						{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
-					</div>
+						<div className="auth-item form-field">
+							<label className="form-label">Members</label>
+							<input className="form-input" type="text" name="memberSearchVal" onChange={this.handleChange} value={this.state.memberSearchVal} autoComplete="off"/>										
+						
+							<div id="member-suggestions-container">
+								<div id="suggestions-box">
+									{this.props.suggestionMembers.length > 0 && this.state.memberSearchVal ? this.renderSuggestions() : null}
+								</div>
+							</div>
+						</div>	
 
-					<div id="added-member-box">
-						{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
-					</div>
+						<div id="added-member-box">
+							{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
+						</div>
 
-		      <div onChange={this.handlePrivacyChange}>
-		        <input type="radio" value="public" name="privacy" checked={this.state.isPrivate === false}/> Public
-		        <input type="radio" value="private" name="privacy" checked={this.state.isPrivate === true}/> Private
-		      </div>
+			      <div onChange={this.handlePrivacyChange}>
+							<div className="form-field form-radio-item">						
+				        <input className="form-input" type="radio" value="public" name="privacy" checked={this.state.isPrivate === false}/>
+				        <label className="form-label checkbox-label">Public</label>
+			        </div>
+			        <div className="form-field form-radio-item">
+				        <input className="form-input" type="radio" value="private" name="privacy" checked={this.state.isPrivate === true}/>
+				        <label className="form-label checkbox-label">Private</label>						
+			        </div>									        
+			      </div>
 
 
-					<input type="submit" value="Create Group" {...opts}
-					/>
-				</form>
-			</div>
+			      <input className="form-action-button" type="submit" value="Create Group" {...opts}/>
+					</form>				
+				</div>
+			</FormWrapper>
 		)
 	}
 }

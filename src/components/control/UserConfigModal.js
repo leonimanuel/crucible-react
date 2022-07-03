@@ -47,44 +47,44 @@ class UserConfigModal extends Component {
 
 	  return (
 			<div id="edit-user-modal" className="auth-wrapper">
-				<h1 className="auth-header">Edit Profile</h1>
-				<div id="auth-form-and-options">
-					<form className="auth-form" id="sign-up-form" onSubmit={this.handleSubmit}>
-						<div className="auth-item">
+				<h1 className="auth-header form-header">Edit Profile</h1>
+				<div className="form-fields-and-options">
+					<form className="auth-form form-content-wrapper" id="sign-up-form" onSubmit={this.handleSubmit}>
+						<div className="auth-item form-field">
 							<label className="form-label auth-form-label">Name: </label>
 							<input className="form-input auth-input" type="text" name="name" onChange={this.handleChange} value={this.state.name} required maxlength="50"/>						
 						</div>
 
-						<div className="auth-item">
+						<div className="auth-item form-field">
 							<label className="form-label auth-form-label">Handle: </label>
 							<input className="form-input auth-input" type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required maxlength="25"/>
 						</div>
 						<div id="handle-error-box" style={{color: "red", "font-size": "0.8em", width: "80%"}}></div>										
 						
-						<div className="auth-item">
+						<div className="auth-item form-field">
 							<label className="form-label auth-form-label">Email: </label>
 							<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required maxlength="50"/>										
 						</div>
 
 						<h5 className="form-subheader">Email settings</h5>
 
-						<div className="auth-item form-checkbox-item">						
+						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_tags" checked={email_tags} onChange={() => this.setState({email_tags: !email_tags})}/>
 							<label className="form-label auth-form-label checkbox-label">tag alerts</label>
 						</div>
 
-						<div className="auth-item form-checkbox-item">						
+						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_replies" checked={email_replies} onChange={() => this.setState({email_replies: !email_replies})}/>
 							<label className="form-label auth-form-label checkbox-label">reply alerts</label>
 						</div>
 
-						<div className="auth-item form-checkbox-item">						
+						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_group_add" checked={email_group_add} onChange={() => this.setState({email_group_add: !email_group_add})}/>
 							<label className="form-label auth-form-label checkbox-label">added to group alerts</label>
 						</div>
 
 						<div id="error-box" style={{color: "red"}}></div>
-						<input className="auth-button" type="submit" value="save"/>
+						<input className="auth-button form-action-button" type="submit" value="save"/>
 
 
 						
