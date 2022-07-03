@@ -74,19 +74,6 @@ export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedU
     catch (error) {
     	alert(error)
     }
-    
-    fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
-      .then(resp => resp.json())
-      .then((reply) => {
-				debugger
-				dispatch({
-					type: "ADD_NEW_REPLY",
-					reply
-				})
-
-				clearReplyForm()
-      })
-      .catch(err => alert(err))
 	}		
 }
 
