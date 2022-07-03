@@ -131,7 +131,12 @@ export const submitPosition = (text, factIDs, responseExcerptId, tags, groupId, 
 		  	})
 
 		  	clearForm()
-		  } else {
+		  }
+		  else if (res.status == 422) {
+        let response = await res.json()
+        alert(response.errors.join('\r\n'))    		  	
+		  } 
+		  else {
         let error = await res.json()
         alert(`error: ${res.status}, ${error.message}`)
 		  }
