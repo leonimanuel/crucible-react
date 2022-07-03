@@ -279,7 +279,7 @@ export const fetchUsers = (value, members, addedUsers) => {
 	}
 }
 
-export const addNewGroup = (groupName, members, isPrivate) => {
+export const addNewGroup = (groupName, members, isPrivate, closePopup) => {
 	return async (dispatch) => {
     let memberIds = members.map(member => member.id)
 
@@ -305,7 +305,13 @@ export const addNewGroup = (groupName, members, isPrivate) => {
           type: 'ADD_GROUP', 
           group
         })
-      } else {
+        closePopup()
+      }
+      else if (res.status == 422) {
+        let response = await res.json()
+        alert(response.errors.join('\r\n'))        
+      }
+      else {
         let error = await res.json()
         alert(`error: ${res.status}, ${error.message}`)
       }

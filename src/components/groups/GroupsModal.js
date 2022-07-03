@@ -80,8 +80,7 @@ class GroupsModal extends Component {
 		}
 
 		else if (this.state.groupName && this.state.addedMembers.length) {
-			this.props.addNewGroup(this.state.groupName, this.state.addedMembers, this.state.isPrivate)
-			this.props.closePopup()
+			this.props.addNewGroup(this.state.groupName, this.state.addedMembers, this.state.isPrivate, this.props.closePopup)
 		}
 		
 	}
@@ -108,7 +107,7 @@ class GroupsModal extends Component {
 					<form className="form-content-wrapper new-group" onSubmit={this.handleSubmit}>
 						<div className="auth-item form-field">
 							<label className="form-label">Group Name</label>
-							<input className="form-input" type="text" name="groupName" onChange={this.handleChange} value={this.state.groupName} required/>										
+							<input className="form-input" type="text" name="groupName" onChange={this.handleChange} value={this.state.groupName} required maxlength="30"/>										
 						</div>						
 						<div style={{color: "red"}}>{this.state.groupNameError}</div>
 

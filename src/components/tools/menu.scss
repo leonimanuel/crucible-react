@@ -140,7 +140,11 @@ $base-color-button-hover: #73A9AD;
         margin-top: 20px;
 
         &:hover {
-          background-color: $base-color-button-hover
+          background-color: $base-color-button-hover;
+        }
+
+        &:disabled {
+          background-color: lightgrey;
         }
       }       
     }
