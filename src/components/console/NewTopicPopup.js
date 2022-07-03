@@ -20,9 +20,9 @@ class NewTopicPopup extends Component {
 		e.preventDefault();
 		this.props.addNewTopic(
 			this.props.parentId,
-			this.state.topicName
+			this.state.topicName,
+			this.props.closePopup
 		)
-		this.props.closePopup()
 	}
 
 	render() {
@@ -39,7 +39,7 @@ class NewTopicPopup extends Component {
 					<form className="form-content-wrapper" onSubmit={this.handleSubmit}>
 						<div className="form-field">
 							<label className="form-label">Topic Name</label>
-							<input className="form-input" type="text" name="topicName" onChange={this.handleChange} value={this.state.topicName} required/>										
+							<input className="form-input" type="text" name="topicName" onChange={this.handleChange} value={this.state.topicName} required maxlength="30"/>										
 						</div>
 						<input className="form-action-button" type="submit" value="Create Topic" {...opts} />
 					</form>

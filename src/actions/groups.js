@@ -299,7 +299,7 @@ export const addNewGroup = (groupName, members, isPrivate, closePopup) => {
     // debugger
     try {
       let res = await fetch(API_ROOT + `/groups`, configObj)
-      if ((res.status == 200)) {
+      if ((res.status == 201)) {
         let group = await res.json()
         dispatch({ 
           type: 'ADD_GROUP', 

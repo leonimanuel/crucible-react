@@ -1,8 +1,8 @@
 import { API_ROOT } from "../constants"
 
 
-export const addNewTopic = (parentId, topicName) => {
-	return (dispatch) => {
+export const addNewTopic = (parentId, topicName, closePopup) => {
+	return async (dispatch) => {
     let configObj = {
       method: "POST",
       headers: {
@@ -16,16 +16,29 @@ export const addNewTopic = (parentId, topicName) => {
 			})
     }
     // debugger
-    fetch(API_ROOT + `/topics`, configObj)
-      .then(resp => resp.json())
-      .then((topic) => {
-				// alert("please reload the page to see new topic (temporary)")				
+    
+    try {
+    	let res = await fetch(API_ROOT + `/topics`, configObj);
+    	if (res.status == 201) {
+    		let topic = await res.json();
         dispatch({ 
 					type: 'ADD_NEW_TOPIC', 
 					topic
-				})
-     })
-      .catch(err => alert(err.message))
+				});
+				closePopup()
+    	}
+    	else if (res.status == 422) {
+        let response = await res.json();
+        alert(response.errors.join('\r\n'));
+    	}
+      else {
+        let error = await res.json()
+        alert(`error: ${res.status}, ${error.message}`)
+      }
+    } 
+    catch (error) {
+    	alert(error)
+    }
 	}
 }
 
