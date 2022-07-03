@@ -35,7 +35,7 @@ export const setActivities = (activityId, handleLoad) => {
 }
 
 export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedUserIds, clearReplyForm) => {
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch({
 			type: "CREATING_REPLY"
 		})
@@ -54,6 +54,27 @@ export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedU
         taggedUserIds: taggedUserIds
       })
     }
+    
+    try {
+    	let res = await fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
+    	if (res.status == 200) {
+    		let reply = await res.json()
+				dispatch({
+					type: "ADD_NEW_REPLY",
+					reply
+				})
+
+				clearReplyForm()
+    	} 
+    	else if (res.status == 422) {
+        let response = await res.json()
+        alert(response.errors.join('\r\n'))    		
+    	}
+    }
+    catch (error) {
+    	alert(error)
+    }
+    
     fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
       .then(resp => resp.json())
       .then((reply) => {
