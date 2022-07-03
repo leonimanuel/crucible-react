@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 
 import { updateUserProfile } from "../../actions/users.js"
+import FormWrapper from "../tools/FormWrapper.js"
 
 class UserConfigModal extends Component {
 	state = {
@@ -46,7 +47,7 @@ class UserConfigModal extends Component {
   	let { email_tags, email_replies, email_group_add } = this.state;
 
 	  return (
-			<div id="edit-user-modal" className="auth-wrapper">
+			<FormWrapper>
 				<h1 className="auth-header form-header">Edit Profile</h1>
 				<div className="form-fields-and-options">
 					<form className="auth-form form-content-wrapper" id="sign-up-form" onSubmit={this.handleSubmit}>
@@ -85,12 +86,9 @@ class UserConfigModal extends Component {
 
 						<div id="error-box" style={{color: "red"}}></div>
 						<input className="auth-button form-action-button" type="submit" value="save"/>
-
-
-						
 					</form>
 				</div>
-			</div>		
+			</FormWrapper>	
 		)
   }
 }

@@ -118,11 +118,9 @@ export const addFactToNew = (selection, articleURL, rephrase) => {
 					"rephrase": rephrase	
 			})
 		}
-		debugger
 		fetch(API_ROOT + "/facts", configObj)
 			.then(resp => resp.json())
 			.then(fact => {
-				debugger
 				dispatch({
 					type: "ADD_FACT",
 					fact

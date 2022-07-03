@@ -1,0 +1,81 @@
+$base-color-button-hover: #73A9AD;
+
+#nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-color: #0f4c75;
+  height: 5vh;
+  align-items: flex-start;
+  /*margin: 0 20px;*/
+  /*margin-bottom: 10px;*/
+  border-bottom: 4px solid gold;
+  transition: border-color .2s;
+
+  z-index: 2;
+
+  .menu-options, .profile-options {
+    /*margin: auto 0;*/
+    margin: 0 20px;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 5px;
+
+    .nav-link {
+      /*margin: 0 10px;*/
+      color: white;
+      text-decoration: none;
+      padding: 0 3px;
+
+      &:hover {
+        color: gold;
+      }
+    }  
+  }
+
+  .menu-options {
+    // outline: 2px solid green;
+    display: flex;
+  }
+
+  .profile-options {
+    .dropdown {
+      // outline: 1px solid red;
+      // margin-right: 100px;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      z-index: 2;
+      overflow: hidden;
+
+      border-radius: 0 0 10px 10px;
+    }
+
+    .dropdown-content {
+      // outline: 1px solid green;
+      display: none;
+      background-color: snow;
+
+      a {
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+
+      .dropdown-item {
+        background-color: #0f4c75;
+        cursor: pointer;
+        color: white;
+        // border: 1px solid white;
+
+        &:hover {
+          background-color: $base-color-button-hover
+        }
+      }      
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  }
+}
