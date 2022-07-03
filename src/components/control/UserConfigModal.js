@@ -57,13 +57,13 @@ class UserConfigModal extends Component {
 
 						<div className="auth-item">
 							<label className="form-label auth-form-label">Handle: </label>
-							<input className="form-input auth-input" type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required maxlength="100"/>
+							<input className="form-input auth-input" type="text" name="handle" onChange={this.handleChange} value={this.state.handle} required maxlength="25"/>
 						</div>
 						<div id="handle-error-box" style={{color: "red", "font-size": "0.8em", width: "80%"}}></div>										
 						
 						<div className="auth-item">
 							<label className="form-label auth-form-label">Email: </label>
-							<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required maxlength="25"/>										
+							<input className="form-input auth-input" type="email" name="email" onChange={this.handleChange} value={this.state.email} required maxlength="50"/>										
 						</div>
 
 						<h5 className="form-subheader">Email settings</h5>
