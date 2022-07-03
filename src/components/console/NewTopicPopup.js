@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import ReactDOM from "react-dom"
 import { connect } from "react-redux"
 import { addNewTopic } from "../../actions/topicsActions.js"
+import FormWrapper from "../tools/FormWrapper.js"
 
 class NewTopicPopup extends Component {
 	state = {
@@ -31,15 +32,19 @@ class NewTopicPopup extends Component {
 		}
 
 		return (
-			<div id="new-topic-popup" className="popup">
-				<span id="new-topic-close-button" className="close-button" onClick={this.props.closePopup}>X</span>				
-				<form id="new-topic-form" onSubmit={this.handleSubmit}>
-					<div id="new-topic-popup-title">New Topic</div>
-					<div>Topic name: <input type="text" name="topicName" onChange={this.handleChange} value={this.state.topicName} required/></div>
-					<br/>
-					<input type="submit" value="Create Topic" {...opts} />
-				</form>
-			</div>
+			<FormWrapper>
+				<button id="new-topic-close-button" className="close-button" onClick={this.props.closePopup}>X</button>				
+				<h1 className="auth-header form-header">New Topic</h1>
+				<div className="auth-form-and-options form-fields-and-options">
+					<form className="form-content-wrapper" onSubmit={this.handleSubmit}>
+						<div className="form-field">
+							<label className="form-label">Topic Name</label>
+							<input className="form-input" type="text" name="topicName" onChange={this.handleChange} value={this.state.topicName} required/>										
+						</div>
+						<input className="form-action-button" type="submit" value="Create Topic" {...opts} />
+					</form>
+				</div>
+			</FormWrapper>
 		)
 	}
 }

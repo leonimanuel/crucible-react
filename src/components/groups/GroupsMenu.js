@@ -68,7 +68,7 @@ class GroupsMenu extends Component {
 						  	modal
 					  	>
 					    	{ close => <GroupsModal 
-					    			handleGroupAdded={() => close()} 
+					    			handleGroupAdded={() => close()}
 					    			closePopup={() => close()} 
 					    		/> 
 					    	}
