@@ -10,26 +10,6 @@ import FeedbackForm from "./FeedbackForm.js"
 import { API_ROOT } from "../../constants"
 
 class FeedbackButton extends Component {
-	submitFeedback = (feedback) => {
-		let configObj = {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-				Authorization: localStorage.getItem("token")
-			},
-			body: JSON.stringify({
-				feedback: feedback
-			})
-		}
-
-		fetch(API_ROOT + "/feedback", configObj)
-			.then(resp => resp.json())
-			.then(data => {
-
-			})		
-	}
-
 	render() {
 		return(
 			<React.Fragment>
