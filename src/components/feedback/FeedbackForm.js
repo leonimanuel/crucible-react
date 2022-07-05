@@ -39,7 +39,7 @@ class FeedbackForm extends Component {
 			}
 		}
 		catch (error) {
-			alert(error)
+			alert("Can't submit right now, sorry about that. Please try again later or email us directly at leon@crucible-app.com")
 		}
 	}
 
