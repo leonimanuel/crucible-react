@@ -83,6 +83,12 @@ class SignUp extends Component {
 
 	render() {
 		if (this.props.isLoggedIn === true) { return <Redirect to="/"/> }
+		
+		let opts = {}
+		if (!this.state.name || !this.state.handle || !this.state.email || !this.state.password) {
+			opts["disabled"] = "disabled";
+		}		
+
 		return (
 			<FormWrapper>
 				{!this.state.submitted 
@@ -112,7 +118,7 @@ class SignUp extends Component {
 										<input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required maxlength="25"/>										
 									</div>
 									<div id="error-box" style={{color: "red"}}></div>
-									<input className="auth-button form-action-button" type="submit" value="Sign up"/>
+									<input className="auth-button form-action-button" type="submit" value="Sign up" {...opts}/>
 								</form>
 
 								<div id="sign-up-prompt" className="form-option-description">Already have an account? <Link to="/login">Sign in</Link></div>									

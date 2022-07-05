@@ -101,6 +101,11 @@ function Login(props) {
 
 	if (props.isLoggedIn === true) { return <Redirect to="/"/> }
 
+	let opts = {}
+	if (!stateEmail || !statePassword) {
+		opts["disabled"] = "disabled";
+	}
+
 	return (
 		<FormWrapper>
 			<h1 className="auth-header form-header">Login</h1>
@@ -121,7 +126,7 @@ function Login(props) {
 
 					<div id="error-box" style={{color: "red"}}></div>
 					{/*<div id='resend-confirmation-button' onClick={resendConfirmation} style={{display: "block"}}>resend confirmation email</div>*/}
-					<input className="auth-button form-action-button" type="submit" value="Log in"/>
+					<input className="auth-button form-action-button" type="submit" value="Log in" {...opts}/>
 				</form>
 
 				<div id="sign-up-prompt" className="form-option-description">Don't have an account? <Link to="/signup">Sign up</Link></div>
