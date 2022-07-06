@@ -1,3 +1,6 @@
+$tracer-color-draft: lightblue;
+$base-color-dark-blue: #0f4c75;
+
 .chat-fact-dropzone-bubble {
   // outline: 2px solid green;
   position: relative;
@@ -85,7 +88,7 @@
     // visibility: hidden;
     border: none;
     border-radius: 0;
-    border-left: 3px solid lightblue;
+    border-left: 3px solid $tracer-color-draft;
     
     &[data-dragged_over=false] {
       height: 10px;
@@ -135,7 +138,7 @@
     position: relative;
     min-height: 100px;
     padding: 10px;
-    background-color: lightblue;
+    background-color: $tracer-color-draft;
 
     .comment-form-subcontainer {
       // outline: 2px solid red;
@@ -191,13 +194,24 @@
         }
       }
 
-      .comment-submit-button {
-        background-color: teal;
-        border: none;
-        border-radius: 5px;
-        padding: 5px;
-        font-weight: bold;
-        cursor: pointer;    
+      .submit-button-wrapper {
+        // outline: 2px solid red;
+        display: inline-block;
+
+        .submit-button-subwrapper {
+          display: flex;
+        }
+      }
+
+      .form-action-button {
+        // background: none;
+        margin-left: 5px;
+        padding: 0 10px;
+      }
+
+      .comment-group-select {
+        text-align: left;
+        min-width: 250px;
       } 
 
       &:before {
@@ -206,10 +220,10 @@
         height: 0px;
         position: absolute;
 
-        border-top: 9px solid lightblue;
+        border-top: 9px solid $tracer-color-draft;
         border-bottom: 15px solid transparent;
 
-        border-left: 18px solid lightblue;      
+        border-left: 18px solid $tracer-color-draft;      
         border-right: 9px solid transparent;
         right: -20px;
         top: 20px;    

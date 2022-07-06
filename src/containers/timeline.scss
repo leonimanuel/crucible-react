@@ -1,5 +1,6 @@
 $base-color-dark-blue: #0f4c75;
 $tracer-color: #0f4c75;
+$tracer-color-draft: lightblue;
 
 .timeline-card-container {
   // border: 1px solid black;
@@ -694,16 +695,16 @@ $tracer-color: #0f4c75;
           border-left: 3px solid $tracer-color;
         
           &.draft {
-            border-bottom: 3px dashed $tracer-color;
-            border-left: 3px dashed $tracer-color;            
+            border-bottom: 3px dashed $tracer-color-draft;
+            border-left: 3px dashed $tracer-color-draft;            
           }
         }
 
         &.bottom-connector-box {
-          border-left: 3px solid $tracer-color;
+          border-left: 3px solid $tracer-color-draft;
 
           &.draft {
-            border-left: 3px dashed $tracer-color;
+            border-left: 3px dashed $tracer-color-draft;
           }
         }
       }
@@ -726,7 +727,7 @@ $tracer-color: #0f4c75;
       margin: 10px 0;
 
       &.draft {
-        border: 3px solid dashed;
+        border: 3px dashed $tracer-color-draft;
         margin: 0;
 
         .remove-fact-button {

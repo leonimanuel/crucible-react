@@ -1,9 +1,10 @@
 // import React, { Component } from 'react';
 import React, { useState, useEffect } from "react"
+import mixpanel from 'mixpanel-browser';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
-import { API_ROOT } from "../../constants"
+import { API_ROOT, MIXPANEL_TOKEN } from "../../constants"
 import useAnalyticsEventTracker from "../../actions/analyticsEventTracker.js"
 import FormWrapper from "../tools/FormWrapper.js"
 import "./auth.scss"
@@ -18,15 +19,20 @@ function Login(props) {
 	const [stateConfirmationResent, setStateConfirmationResent] = useState(false);
 
 	const handleChange = e => {
-		if (e.target.name == "email") { setStateEmail(e.target.value) }
-		if (e.target.name == "password") { setStatePassword(e.target.value) }
+		if (e.target.name == "email") { setStateEmail(e.target.value) };
+		if (e.target.name == "password") { setStatePassword(e.target.value) };
 	}
 
+	useEffect(() => {
+		console.log("useEffect on Login.js");
+		mixpanel.init(MIXPANEL_TOKEN, {debug: true}); 
+	}, [])
+
 	const handleSubmit = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		const errorBox = document.getElementById("error-box");
 		errorBox.innerText = "";	
-		e.preventDefault()
+		e.preventDefault();
 		console.log("submitting login info")
 
 		let configObj = {
@@ -51,8 +57,11 @@ function Login(props) {
 				localStorage.setItem("userEmail", data.user.email);
         props.logIn()
 
-        gaEventTracker("login")
-
+        // gaEventTracker("login")
+        // mixpanel.identify(`${data.user.id}`)
+				mixpanel.track('Log in', {
+				  'source': "web app"
+				});
 		  //   window.dataLayer = window.dataLayer || [];
 		  //   function gtag() {dataLayer.push(arguments);}
 				// gtag("event", "login", {

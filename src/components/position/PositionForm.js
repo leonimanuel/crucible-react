@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import "./positions.scss"
 
+import Select from 'react-select';
 import { connect } from 'react-redux';
 import { submitPosition } from "../../actions/commentsActions.js"
 
@@ -26,7 +27,8 @@ class PositionForm extends Component {
     draggedOver: false,    
     responseExcerpt: "",
     facts: [],
-    tags: []
+    tags: [],
+    selectedGroup: ""
   }
 
   handleChange = e => {
@@ -36,6 +38,10 @@ class PositionForm extends Component {
       //   this.handleSubmit(e) 
       // }
     });
+  }
+
+  handleGroupSelect = group => {
+    this.setState({selectedGroup: group})
   }
 
   handleSubmit = e => {
@@ -75,6 +81,8 @@ class PositionForm extends Component {
   }  
 
   render = () => {
+    let isDisabled = !(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text) || !this.state.selectedGroup
+
     return (
       <div className="position-form comment-form" >
         {
@@ -109,11 +117,29 @@ class PositionForm extends Component {
                     onBlur={() => this.setState({showInputPlaceholder: true})}
                   >
                   </div>
-                  <input 
-                    className="position-submit-button comment-submit-button" 
-                    type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
-                    disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)}
-                  />
+                  
+                  <div className="submit-button-wrapper">
+                    <div className="submit-button-subwrapper">
+                      <Fragment>
+                        <Select
+                          className="comment-group-select"
+                          classNamePrefix="select"
+                          isRtl={false}
+                          isSearchable={false}
+                          name="color"
+                          placeholder="Select group..."
+                          onChange={this.handleGroupSelect}
+                          options={this.state.groups}
+                        />
+                      </Fragment>  
+
+                      <input 
+                        className="position-submit-button comment-submit-button form-action-button" 
+                        type="submit" value={`post`}
+                        disabled={isDisabled}
+                      />                     
+                    </div>  
+                  </div>               
                 </form>
               </div>
             
