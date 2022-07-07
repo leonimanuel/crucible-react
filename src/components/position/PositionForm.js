@@ -8,6 +8,7 @@ import SupportingChatFact from "../social/SupportingChatFact.js"
 import FactDropzone from "../timeline/FactDropzone.js"
 import ResponseExcerptDropzone from "../timeline/ResponseExcerptDropzone.js"
 import TagsContainer from "../network/TagsContainer.js"
+import TagsContainer2 from "../network/TagsContainer2.js"
 
 class PositionForm extends Component {
   componentDidMount() {
@@ -46,7 +47,7 @@ class PositionForm extends Component {
       this.state.text, 
       factIDs, 
       this.state.responseExcerpt.id, 
-      this.state.tags.map(t => t.contact_id), 
+      this.state.tags.map(t => t.value), 
       this.props.selectedGroup ? this.props.selectedGroup.id : null,
       this.clearReplyForm
     )
@@ -71,6 +72,7 @@ class PositionForm extends Component {
   }  
 
   handleTagsUpdate = (tags) => {
+    debugger
     this.setState({tags: tags})
   }  
 
@@ -123,7 +125,7 @@ class PositionForm extends Component {
                 placeholder="Support your position with facts by dragging them here from your fact bank."
                 dropType="supportingFacts"
               />
-              <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>    
+              <TagsContainer2 updateTags={this.handleTagsUpdate} tags={this.state.tags} selectedGroupId={this.props.selectedGroup.id}/>    
             </div>        
           </React.Fragment>
         }

@@ -109,16 +109,20 @@
 }
 
 
+#user-tag-selector {
+  outline: 2px solid red;
+}
 
 
 
-
-
+// NOT USING ANYMORE
 /* Example Styles for React Tags*/
 .tags-container {
+  outline: 1px solid red;
   // padding: 40px;
-  text-align: center;
-
+  display: flex;
+  // text-align: center;
+  justify-content: center;
   // outline: 1px solid green;
   border: 2px solid lightgrey;
   border-radius: 5px;
@@ -130,10 +134,12 @@
 /* Example Styles for React Tags*/
 
 .container {
+  outline: 1px solid blue;
   margin: auto;
   width: 50%;
 }
 .ReactTags__tags {
+  outline: 1px solid blue;
   position: relative;
 }
 
@@ -148,6 +154,7 @@
 
 /* Styles for the input */
 .ReactTags__tagInput {
+  outline: 1px solid green;
   border-radius: 2px;
   display: inline-block;
 
@@ -155,6 +162,9 @@
 	margin: 5px;
   border: 1px solid black;
 
+  // &:before {
+  //   content: "tagged users"
+  // }
 }
 .ReactTags__tagInput input.ReactTags__tagInputField,
 .ReactTags__tagInput input.ReactTags__tagInputField:focus {
