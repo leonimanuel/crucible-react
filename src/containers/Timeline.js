@@ -68,6 +68,10 @@ class Timeline extends Component {
 		// debugger
 		if (this.props.location.pathname !== this.state.location) { // no idea what the point of this is
 			this.setState({location: this.props.location.pathname})
+		
+			if (this.props.location.pathname.split("/")[1] == "profiles") {
+				this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+			}
 		}
 	}
 

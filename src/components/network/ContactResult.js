@@ -10,17 +10,13 @@ import FollowButton from "./FollowButton.js"
 
 const ContactResult = (props) => {
 	let followStatusObj = props.membersFollowStatuses.find(i => i.memberId == props.contact.id )
-	debugger
 	return (
 		<div 
 			className={`contact-result-container`} 
 			>	 
 				<Link 
 					to={`/profiles/${props.contact.id}`} 
-					className="contact-result-link"
-					onClick={() => {
-						 props.showSelectedContact(props.contact.id);
-					}}					
+					className="contact-result-link"			
 				>
 
 					{props.contact.handle}	

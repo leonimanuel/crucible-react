@@ -1,18 +1,22 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
+
 // import { connect } from 'getstream';
 
 
 const NetworkContact = (props) => {
 
+  const nextPath = (path) => {
+    props.history.push(path);
+  }
+
 	return (
-		<div className={`network-contact-container detail-item-container`} onClick={() => props.handleSelectContact(props.contact.id)}>	 
-			<Link to={`/profiles/${props.contact.id}`} >
+		<div className={`network-contact-container detail-item-container`} onClick={() => nextPath(`/profiles/${props.contact.id}`)}>	 
 				{props.contact.handle}	
-			</Link>		
 		</div>
 	)
 }
 
-export default NetworkContact;
+export default withRouter(NetworkContact);

@@ -29,6 +29,17 @@
 		overflow: scroll;
 		max-height: 100%;
 
+		.network-contact-link {
+			outline: 2px solid red;
+			margin: 20px;
+			padding: 20px;
+			height: 0;
+		}
+
+		a {
+			margin: 0;
+		}
+
 		// .network-contact-container {
 		// 	border-bottom: 1.5px solid black;
 		// 	// outline: 1px solid black;
