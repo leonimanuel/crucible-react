@@ -37,6 +37,7 @@ class MainPane extends Component {
 		// 	mainPane.style = "width: 100px"
 		// }
 		let groupNotifications = this.props.notificationGroups.filter(ng => ng.group_object.group && ng.action_type == "add_comment" && !ng.is_read)
+		debugger
 		return (
 			<div id="sidenav-main-pane">
 				<div id="console" className={`section-tab ${this.props.section === "console" ? "selected-section" : "unselected-section"}`} onClick={this.props.tabClick}

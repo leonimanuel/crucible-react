@@ -1,118 +1,108 @@
+import React, { Component } from "react";
+import { connect } from "react-redux"
+
+import AsyncCreatableSelect from 'react-select/async-creatable'
+import AsyncSelect from 'react-select/async'
 import { API_ROOT } from "../../constants"
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-// import { COUNTRIES } from './countries';
-import './network.scss';
-import { WithContext as ReactTags } from 'react-tag-input';
 
-// const suggestions = COUNTRIES.map(country => {
-//   return {
-//     id: country,
-//     text: country
-//   };
-// });
+const defaultOptions = [
+			{ value: "apppple", label: "AppleT" }, 
+			{ value: "google", label: "Google" }
+		]
 
-const KeyCodes = {
-  comma: 188,
-  enter: 13
-};
+class TagsContainer extends Component {
+	state = {
+		typing: false
+	}
 
-// const delimiters = [KeyCodes.comma, KeyCodes.enter];
+	componentDidMount() {
+		let input = document.getElementById("user-tag-selector").querySelector("input");
+		input.addEventListener('keydown', (e) => {
+	    console.log("typing set to true");
+	    this.setState({typing: true})
+	    
+	    // https://schier.co/blog/wait-for-user-to-stop-typing-using-javascript
+	    let timeout = ""
+	    if (timeout) { 
+	    	clearTimeout(timeout);
+  		}
+	    
+	    timeout = setTimeout(() => {
+        this.setState({typing: false})
+        console.log("typing set to false");
+	    }, 250);
 
-const TagsContainer = (props) => {
-  const [searchResults, setSearchResults] = React.useState([]);
-  // const [tags, setTags] = React.useState([]);
-  let tags = props.tags
-  // const [currentSearchVal, setCurrentSearchVal] = React.useState("");
-  let currentSearchVal = ""
+		});		
+	}
 
-	const handleInputChange = async searchVal => {
-	  if (searchVal) {
+	filterOptions = (inputValue: string, searchOptions) => { //returns matching options
+	  return searchOptions.filter(kw =>
+	    kw.label.toLowerCase().includes(inputValue.toLowerCase())
+	  );
+	};
+
+	promiseOptions = inputValue => //retrieves options from backend that match search string
+	  new Promise(resolve => {
 		  let configObj = {
-		    method: 'GET',
+		    method: "GET",
 		    headers: {
 		      "Content-Type": "application/json",
 		      Accept: "application/json",
 		      Authorization: localStorage.getItem("token")
 		    }
 		  }
-			
-			// setPrevSearchVal(searchVal);
-			let prevSearchVal = searchVal
-			// setCurrentSearchVal(searchVal)
-			currentSearchVal = searchVal
-  		
-      let groupId = props.selectedGroupId
-  		setTimeout(async () => {				
-				if (currentSearchVal === prevSearchVal) {
-				  try {
-				  	let response = await fetch(`${API_ROOT}/contacts/search/${searchVal}?tags=true${groupId ? `&group_id=${groupId}` : ""}`, configObj);
-				  	if (response.status == 200) {
-				  		let contacts = await response.json()
-				  		let suggestions = contacts.map(c => ({id: c.handle, text: c.handle, contact_id: c.id}))
-				  		setSearchResults(suggestions);				  	
-				  	}
-				  } catch (error) {
-				  	alert(error)
-				  }
-				} 
-  		}, 250)	 
-	  }
-	}
 
-  const handleDelete = i => {
-    // setTags(tags.filter((tag, index) => index !== i));
-    props.updateTags(tags.filter((tag, index) => index !== i));
-  };
+		  let searchOptions = null		  
 
-  const handleAddition = tag => {
-    // setTags([...tags, tag]);
-    if (tag.contact_id) {
-      props.updateTags([...tags, tag]);  
-    }
-  };
 
-  const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
+		  let previousValue = inputValue
 
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
+		  let groupId = this.props.selectedGroupId
+				// const currentInputVal = document.getElementById("user-tag-selector").children[1].children[0].children[0].children[0].children[0].value
+				// if (currentInputVal === previousValue) {
+				setTimeout(() => {
+					if (!this.state.typing) {
+					  console.log("FETCHING")
+					  fetch(`${API_ROOT}/contacts/search/${inputValue}?tags=true${groupId ? `&group_id=${groupId}` : ""}`, configObj)
+					    .then(resp => resp.json())
+					    .then((contacts) => {
+					      // debugger
+					      // {id: c.handle, text: c.handle, contact_id: c.id}
+					      if (contacts.length > 0) {
+						      searchOptions = contacts.map(item => {
+						      	return {label: item.handle, value: item.id, type: "user"}
+						      })				      	
+					      } else {
+									// searchOptions = [{label: `no users found matching "${inputValue}"`, value: "request-user", type: "user"}]
+									searchOptions = []
+					      }
+					    }) 
 
-    // re-render
-    // setTags(newTags);
-    props.updateTags(newTags)
-  };
+				    setTimeout(() => {
+				      console.log("calling filteroptions")
+				      resolve(this.filterOptions(inputValue, searchOptions));
+				    }, 100);		
+					}
+				}, 500)
+	});	
 
-  const handleTagClick = index => {
-    console.log('The tag at index ' + index + ' was clicked');
-  };
-
-  return (
-    <div className="tags-container">
-      <div>
-        <span>tag users:</span>
-        <ReactTags
-          tags={props.tags}
-          suggestions={searchResults}
-          handleInputChange={handleInputChange}
-          handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleDrag={handleDrag}
-          handleTagClick={handleTagClick}
-          inputFieldPosition="top"
-          autocomplete
-          placeholder="notify peers about your post"
-          autofocus={false}
-        />
-      </div>
-    </div>
-  );
-};
-
-const mapStateToProps = state => {
-	return {
-    selectedGroupId: state.groups.selectedGroupId
+	render() {
+    return (
+	    <div className="tags-container">
+		    <label>tag users</label>
+		    <AsyncSelect
+	      	id={"user-tag-selector"}
+	      	className="select"
+	      	key={`my_unique_select_key__`}
+		      isMulti
+		      value={this.props.tags}
+		      onChange={(selections) => this.props.updateTags(selections)}
+		      placeholder="User handle"
+		      loadOptions={this.promiseOptions}
+		    />		    	
+	    </div>
+  	)		
 	}
 }
 
-export default connect(mapStateToProps)(TagsContainer);
+export default TagsContainer;
