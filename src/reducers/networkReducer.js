@@ -77,10 +77,16 @@ export default function networkReducer(state = {
 				return {memberId: member.id, isFollowing: member.is_following}
 			})
 
+			function uniquifyMemberArray(memberArray) {
+				return memberArray.filter((value, index, self) => {
+				  return self.findIndex(v => v.memberId === value.memberId) === index;
+				})
+			}
+
 			return {
 				...state,
 				recommendedMembers: recommendedMembers,
-				membersFollowStatuses: recommendedMembersFollowingStatus
+				membersFollowStatuses: uniquifyMemberArray([...state.membersFollowStatuses, ...recommendedMembersFollowingStatus])
 			}
 
 
