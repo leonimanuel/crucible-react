@@ -25,7 +25,7 @@ function Login(props) {
 
 	useEffect(() => {
 		console.log("useEffect on Login.js");
-		mixpanel.init(MIXPANEL_TOKEN, {debug: true}); 
+		mixpanel.init(MIXPANEL_TOKEN); 
 	}, [])
 
 	const handleSubmit = async (e) => {

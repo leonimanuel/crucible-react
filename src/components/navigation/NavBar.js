@@ -39,11 +39,11 @@ class NavBar extends Component {
 							<div className="dropdown">
 								<div className="nav-link user-dropdown">{this.props.userName}</div>
 								<div className="dropdown-content">
-									<div className="nav-link dropdown-item" onClick={this.handleLogOut}><Link to="/">Logout</Link></div>
 									<Link to={`/profiles/${this.props.user.id}`}><div className="nav-link dropdown-item">View Profile</div></Link>
 								  <Popup trigger={<div className="nav-link dropdown-item">Edit Profile</div>} position="right center" modal>
 								    { close => <UserConfigModal user={this.props.user} closeModal={() => close()} /> }
 								  </Popup>												  
+									<div className="nav-link dropdown-item" onClick={this.handleLogOut}><Link to="/">Logout</Link></div>
 								</div>
 							</div>
 						: 
