@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { API_ROOT } from "../constants"
 import { handleArticleClick } from "../helpers/helpers.js"
+import mixpanel from 'mixpanel-browser';
 
 import "./timeline.scss"
 import "../components/timeline/dropzones.scss"
@@ -43,7 +44,7 @@ class Timeline extends Component {
 		location: this.props.location.pathname,
 		loadingActivities: false,
 		notificationReadOnLoad: false,
-		postType: ""
+		postType: "timeline"
 		// pagination: 5,
 		// page_offset: 0 
 	}
@@ -179,6 +180,9 @@ class Timeline extends Component {
 		const activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
 		this.props.setActivities(activityId, this.handleLoad);
 
+		mixpanel.track("Load More Activities", {
+			feed_type: this.state.postType
+		})
 	}
 
 	handleNotificationLoad = (objectId, notificationType, notificationGroupId, userId) => {

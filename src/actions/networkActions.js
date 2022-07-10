@@ -50,7 +50,7 @@ export const showSelectedContact = (contactId) => {
 	  .then(resp => resp.json())
 	  .then(data => {
 	  	mixpanel.track("View Other Profile", {
-	  		target_user: data.contact.id
+	  		target_user_id: data.contact.id
 	  	})
 
 	  	dispatch({
@@ -116,7 +116,7 @@ export const getMemberConnectionStatus = () => {
 }
 
 
-export const changeMemberFollow = (member, newFollowBool) => {
+export const changeMemberFollow = (member, willFollow) => {
 	return (dispatch) => {
 		dispatch({
 			type: "UPDATING_MEMBER_FOLLOW"
@@ -130,7 +130,7 @@ export const changeMemberFollow = (member, newFollowBool) => {
 	      Authorization: localStorage.getItem("token")
 	    }, 
 	    body: JSON.stringify({
-	      willFollow: newFollowBool,
+	      willFollow: willFollow,
 	      memberId: member.id
 	    })	    
 	  }
@@ -138,6 +138,11 @@ export const changeMemberFollow = (member, newFollowBool) => {
 	  fetch(API_ROOT + `/feed/followship`, configObj)
 	    .then(resp => resp.json())
 	    .then((data) => {
+
+        mixpanel.track((willFollow ? "Follow User" : "Unfollow User"), {
+          target_user_id: member.id
+        })				
+
 				dispatch({
 					type: "CHANGE_MEMBER_FOLLOW_STATUS",
 					followStatus: data.is_following,

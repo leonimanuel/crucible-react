@@ -1,3 +1,4 @@
+import mixpanel from 'mixpanel-browser';
 import { StreamChat } from 'stream-chat';
 import { API_ROOT, HEADERS } from "../constants";
 
@@ -124,6 +125,12 @@ export const submitPosition = (text, factIDs, responseExcerptId, tags, groupId, 
 	  try {
 		  let res = await fetch(`${API_ROOT}/comments`, configObj);
 		  if (res.status == 201) {
+		  	mixpanel.track("Create Post", {
+		  		has_comment: !!text,
+		  		has_selection: !!responseExcerptId,
+		  		supported: !!factIDs.length,
+		  		group_id: groupId
+		  	})
 		  	let newPositionActivity = await res.json()
 		  	dispatch({
 		  		type: "ADD_NEW_POSITION",

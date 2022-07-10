@@ -1,3 +1,4 @@
+import mixpanel from 'mixpanel-browser';
 import { API_ROOT, STREAM_CLIENT_ID, STREAM_APP_ID } from "../constants"
 import { markNotificationReadInStream } from "./notificationsActions.js"
 
@@ -155,6 +156,10 @@ export const joinGroup = (groupId) => {
     try {
       let res = await fetch(API_ROOT + `/groups/${groupId}/join-group`, configObj)
       if ((res.status == 201)) {
+        mixpanel.track("Join Group", {
+          group_id: groupId
+        })  
+
         dispatch({ 
           type: 'JOIN_SELECTED_GROUP',
           groupId: groupId
@@ -302,6 +307,12 @@ export const addNewGroup = (groupName, members, isPrivate, closePopup) => {
       let res = await fetch(API_ROOT + `/groups`, configObj)
       if ((res.status == 201)) {
         let group = await res.json()
+        
+        mixpanel.track("Create Group", {
+          isPrivate: isPrivate,
+          group_id: group.id
+        })        
+
         dispatch({ 
           type: 'ADD_GROUP', 
           group

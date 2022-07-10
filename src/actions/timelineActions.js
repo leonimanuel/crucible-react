@@ -1,3 +1,4 @@
+import mixpanel from 'mixpanel-browser';
 import { API_ROOT } from "../constants"
 
 export const setActivities = (activityId, handleLoad) => {
@@ -34,7 +35,7 @@ export const setActivities = (activityId, handleLoad) => {
 	}		
 }
 
-export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedUserIds, clearReplyForm) => {
+export const createReply = (text, comment_id, factIDs, responseExcerptId, taggedUserIds, clearReplyForm) => {
 	return async (dispatch) => {
 		dispatch({
 			type: "CREATING_REPLY"
@@ -50,15 +51,24 @@ export const createReply = (text, comment_id, factIDs, reponseExcerptId, taggedU
       body: JSON.stringify({
         text: text,
         factIds: factIDs,
-        responseExcerptId: reponseExcerptId,
+        responseExcerptId: responseExcerptId,
         taggedUserIds: taggedUserIds
       })
     }
     
     try {
     	let res = await fetch(`${API_ROOT}/comments/${comment_id}/replies`, configObj)
-    	if (res.status == 200) {
+    	if (res.status == 201) {
     		let reply = await res.json()
+
+		  	mixpanel.track("Create Reply", {
+		  		has_comment: !!text,
+		  		has_selection: !!responseExcerptId,
+		  		supported: !!factIDs.length,
+		  		parent_id: comment_id,
+		  		reply_id: reply.id
+		  	})    		
+
 				dispatch({
 					type: "ADD_NEW_REPLY",
 					reply

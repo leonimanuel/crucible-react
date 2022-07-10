@@ -1,4 +1,5 @@
 // import React, { Component } from 'react';
+import mixpanel from 'mixpanel-browser';
 import React, { useState, useEffect } from "react"
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
@@ -49,6 +50,8 @@ function Login(props) {
 			let response = await fetch(API_ROOT + "/authenticate", configObj)
 			if (response.status == 200) {
 				let data = await response.json()
+				mixpanel.identify(data.user.id)
+
 				localStorage.setItem("token", data.auth_token);		
 				localStorage.setItem("userId", data.user.id);
 				localStorage.setItem("userEmail", data.user.email);

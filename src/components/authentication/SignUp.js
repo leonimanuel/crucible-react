@@ -47,9 +47,11 @@ class SignUp extends Component {
 			try {
 				let resp = await fetch(API_ROOT + "/users", configObj)
 				if (resp.status == 201) {
-					// mixpanel.track("Sign Up")
-					
 					let data = await resp.json();
+
+					mixpanel.identify(data.user_id)
+					mixpanel.track("Sign Up")
+					
 					localStorage.setItem("token", data.auth_token)
 					// this.setState({submitted: "success"})
 					this.props.logIn()					
