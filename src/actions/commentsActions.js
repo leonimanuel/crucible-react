@@ -130,7 +130,7 @@ export const submitPosition = (text, factIDs, responseExcerptId, tags, groupId, 
 		  		has_selection: !!responseExcerptId,
 		  		supported: !!factIDs.length,
 		  		group_id: groupId,
-		  		source: "internal"
+		  		source: "web-app"
 		  	})
 		  	let newPositionActivity = await res.json()
 		  	dispatch({
