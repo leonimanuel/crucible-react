@@ -42,7 +42,8 @@ class Timeline extends Component {
 	state = {
 		location: this.props.location.pathname,
 		loadingActivities: false,
-		notificationReadOnLoad: false
+		notificationReadOnLoad: false,
+		postType: ""
 		// pagination: 5,
 		// page_offset: 0 
 	}
@@ -57,10 +58,14 @@ class Timeline extends Component {
 			const postObjType = locationParams[1]
 			const postObjId = locationParams[2]
 			this.props.showPost(postObjType, postObjId)
+			this.setState({postType: "posts"})
 		}
 
 		if (this.props.location.pathname.split("/")[1] == "profiles") {
 			this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+			this.setState({postType: "profiles"})
+		} else if (this.props.location.pathname.split("/")[1] == "groups") {
+			this.setState({postType: "groups"})
 		}
 	}	
 
@@ -71,6 +76,9 @@ class Timeline extends Component {
 		
 			if (this.props.location.pathname.split("/")[1] == "profiles") {
 				this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+				this.setState({postType: "profiles"})
+			} else if (this.props.location.pathname.split("/")[1] == "groups") {
+				this.setState({postType: "groups"})
 			}
 		}
 	}
@@ -102,7 +110,12 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
+							<TimelineItemHeader 
+								time={activity.time} 
+								actor={activity.actor} 
+								type="commented on an article" 
+								group={this.state.postType != "groups" && resource.group_id ? {id: resource.group_id, name: resource.group_name} : null }
+							/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
 								<TimelineComment comment={resource} context={"post"} />
 								<RepliesContainer comment={resource} index={index}/>						
@@ -134,7 +147,12 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader time={activity.time} actor={activity.actor} type="shared an article"/>
+							<TimelineItemHeader 
+								time={activity.time} 
+								actor={activity.actor} 
+								type="shared an article" 
+								group={this.state.postType != "groups" && resource.group_id ? {id: resource.group_id, name: resource.group_name} : null }
+							/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
 								<div className="timeline-item-article-wrapper">
 									<div className="timeline-item-article-title timeline-article-header">

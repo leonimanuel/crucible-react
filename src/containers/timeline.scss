@@ -259,8 +259,13 @@ $tracer-color-draft: lightblue;
         cursor: pointer;
       }
 
-      .timeline-actor-link {
+      .timeline-actor-link, .timeline-group-link {
         padding: 0;
+      }
+
+      .timeline-group-link {
+        color: blue;
+        font-weight: bold;
       }
     }
   }
