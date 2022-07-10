@@ -23,7 +23,8 @@ class UserConfigModal extends Component {
 			email: this.props.user.email,
 			email_tags: this.props.user.settings.email_tags,
 			email_replies: this.props.user.settings.email_replies,
-			email_group_add: this.props.user.settings.email_group_add
+			email_group_add: this.props.user.settings.email_group_add,
+			email_private_group_post: this.props.user.settings.email_private_group_post
 		})
 	}
 
@@ -44,7 +45,7 @@ class UserConfigModal extends Component {
   }
 
   render() {
-  	let { email_tags, email_replies, email_group_add } = this.state;
+  	let { email_tags, email_replies, email_group_add, email_private_group_post } = this.state;
 
 	  return (
 			<FormWrapper>
@@ -71,18 +72,24 @@ class UserConfigModal extends Component {
 
 						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_tags" checked={email_tags} onChange={() => this.setState({email_tags: !email_tags})}/>
-							<label className="form-label auth-form-label checkbox-label">tag alerts</label>
+							<label className="form-label auth-form-label checkbox-label">tagged on a post</label>
 						</div>
 
 						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_replies" checked={email_replies} onChange={() => this.setState({email_replies: !email_replies})}/>
-							<label className="form-label auth-form-label checkbox-label">reply alerts</label>
+							<label className="form-label auth-form-label checkbox-label">replies to your post</label>
 						</div>
 
 						<div className="form-field form-checkbox-item">						
 							<input className="form-input" type="checkbox" name="email_group_add" checked={email_group_add} onChange={() => this.setState({email_group_add: !email_group_add})}/>
-							<label className="form-label auth-form-label checkbox-label">added to group alerts</label>
+							<label className="form-label auth-form-label checkbox-label">added to a group</label>
 						</div>
+
+						<div className="form-field form-checkbox-item">						
+							<input className="form-input" type="checkbox" name="email_private_group_post" checked={email_private_group_post} onChange={() => this.setState({email_private_group_post: !email_private_group_post})}/>
+							<label className="form-label auth-form-label checkbox-label">private groups posts</label>
+						</div>
+
 
 						<div id="error-box" style={{color: "red"}}></div>
 						<input className="auth-button form-action-button" type="submit" value="save"/>
