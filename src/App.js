@@ -49,8 +49,8 @@ const App = props => {
   // }
 
   useEffect(() => {
+    console.log("API ROOT: " + API_ROOT)
     ReactGA.initialize(GA4_MEASUREMENT_ID);
-
     mixpanel.init(MIXPANEL_TOKEN);
     // ReactGA.initialize([
     //   {

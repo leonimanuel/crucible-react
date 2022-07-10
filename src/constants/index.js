@@ -1,19 +1,18 @@
+
+
+
 // LOCAL
-export const API_ROOT = 'http://localhost:3000';
-export const API_WS_ROOT = 'ws://localhost:3000/cable';
-
-export const MIXPANEL_TOKEN="291a7d96c4980cddfe0015b895bb6d8a"
-
-export const STREAM_CLIENT_ID = "37zxvpg2wqvj"
-export const STREAM_APP_ID = "1155294"
+export const API_ROOT = process.env.NODE_ENV === "development" ? 'http://localhost:3000' : 'https://vast-wave-32276.herokuapp.com';
+export const API_WS_ROOT = process.env.NODE_ENV === "development" ? 'ws://localhost:3000/cable' : 'wss://crucible-api.herokuapp.com/cable';
+export const MIXPANEL_TOKEN = process.env.NODE_ENV === "development" ? "291a7d96c4980cddfe0015b895bb6d8a" : "e05cb8fbf040b90d8481ccb37072a407"
+export const STREAM_CLIENT_ID = process.env.NODE_ENV === "development" ? "37zxvpg2wqvj" : "segsgzcsweg6"
+export const STREAM_APP_ID = process.env.NODE_ENV === "development" ? "1155294" : "1173272"
 
 
 // PRODUCTION
 // export const API_ROOT = 'https://vast-wave-32276.herokuapp.com';
 // export const API_WS_ROOT = 'wss://crucible-api.herokuapp.com/cable';
-
 // export const MIXPANEL_TOKEN="e05cb8fbf040b90d8481ccb37072a407"
-
 // export const STREAM_CLIENT_ID = "segsgzcsweg6"
 // export const STREAM_APP_ID = "1173272"
 

@@ -96,7 +96,7 @@ class ReplyForm extends Component {
         <FactDropzone 
           facts={this.state.facts} 
           handleFactsUpdate={(facts) => this.updateFacts(facts)}
-          placeholder="Support your position with excerpts by dragging them here from your fact bank."
+          placeholder="Support your position with excerpts by dragging them here from your excerpts (optional)."
           dropType="supportingFacts"
         />
         <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags}/>

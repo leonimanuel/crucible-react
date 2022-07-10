@@ -6,7 +6,7 @@ class ConsoleFactsList extends Component {
 	render() {
 		return (
 			<div id="console-fact-list-container">
-				<div className="console-facts-title console-section-title">Facts</div>
+				<div className="console-facts-title console-section-title">Excerpts</div>
 				<div id="console-facts-container">
 					{this.props.facts.length ? 
 						this.props.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) 

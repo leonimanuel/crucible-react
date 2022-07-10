@@ -96,7 +96,7 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader time={activity.time} actor={activity.actor} type="collected a new fact"/>
+							<TimelineItemHeader time={activity.time} actor={activity.actor} type="collected a new excerpt"/>
 							<div className="timeline-item-content-container">							
 								<TimelineFact fact={resource.fact}/>
 							</div>
@@ -107,6 +107,10 @@ class Timeline extends Component {
 
 			case "Position":
 			case "Comment":
+				let postDescription = ""
+				if (resource.response_excerpt && resource.content) { postDescription = "commented on an article" }
+				else if (resource.response_excerpt && !resource.content) { postDescription = "shared an excerpt" }
+				else if (!resource.response_excerpt && resource.content) { postDescription = "shared a thought" }
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
 				return (
 					<div className="timeline-item-container">
@@ -114,7 +118,7 @@ class Timeline extends Component {
 							<TimelineItemHeader 
 								time={activity.time} 
 								actor={activity.actor} 
-								type="commented on an article" 
+								type={postDescription}
 								group={this.state.postType != "groups" && resource.group_id ? {id: resource.group_id, name: resource.group_name} : null }
 							/>
 							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					

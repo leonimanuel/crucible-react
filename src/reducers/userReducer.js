@@ -88,13 +88,13 @@ export default function userReducer(state = {
 				dailyFactsComments: 0				
 			}
 
-		case "UPDATE_ACCURACY_SCORE":
-			return {
-				...state,
-				userAccuracyScore: action.response.total_votes.accuracy,
-				totalUpvotes: action.response.total_votes.tallies.total_upvotes,
-				totalDownvotes: action.response.total_votes.tallies.total_downvotes
-			}
+		// case "UPDATE_ACCURACY_SCORE":
+		// 	return {
+		// 		...state,
+		// 		userAccuracyScore: action.response.total_votes.accuracy,
+		// 		totalUpvotes: action.response.total_votes.tallies.total_upvotes,
+		// 		totalDownvotes: action.response.total_votes.tallies.total_downvotes
+		// 	}
 
 		case "ADD_COMMENT_TO_DISCUSSION":
 			if (action.comment.user.id === action.currrentUserId) {

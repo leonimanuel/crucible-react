@@ -121,7 +121,7 @@ class PositionForm extends Component {
               <FactDropzone 
                 facts={this.state.facts} 
                 handleFactsUpdate={(facts) => this.updateFacts(facts)}
-                placeholder="Support your position with facts by dragging them here from your fact bank."
+                placeholder="Support your position with facts by dragging them here from your excerpts (optional)."
                 dropType="supportingFacts"
               />
               <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags} selectedGroupId={this.props.selectedGroup.id}/>
