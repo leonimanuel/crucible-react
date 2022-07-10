@@ -69,7 +69,7 @@ class Database extends Component {
 
 const mapStateToProps = state => {
 	return  {
-		parentTopic: state.topics.parentTopic || state.topics.topics.find(topic => topic.name === "New Facts"),
+		parentTopic: state.topics.parentTopic || state.topics.topics.find(topic => topic.name === "New"),
 	}
 }
 

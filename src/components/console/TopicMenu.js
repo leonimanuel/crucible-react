@@ -25,7 +25,7 @@ const mapStateToProps = state => {
   // debugger
   return {
     topics: state.topics.topics,
-    newFactsTopic: state.topics.topics.find(topic => topic.name == "New Facts"),
+    newFactsTopic: state.topics.topics.find(topic => topic.name == "New"),
     parentTopic: state.topics.parentTopic
   }
 }

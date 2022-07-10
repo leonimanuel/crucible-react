@@ -52,7 +52,7 @@ class ConsoleTopic extends Component {
 				className={`topic-box ${this.state.draggedOver ? "dragged-over" : "" }`}
 			>
 				{this.props.topic.name}
-				{this.props.topic.name === "New Facts" ? <div className="sidenav-badge topic-badge badge">{this.props.factsCount}</div> : null}
+				{this.props.topic.name === "New" ? <div className="sidenav-badge topic-badge badge">{this.props.factsCount}</div> : null}
 			</div>
 		)
 	}
@@ -61,7 +61,7 @@ class ConsoleTopic extends Component {
 const mapStateToProps = state => {
 	// debugger
 	return {
-		factsCount: state.topics.facts.filter(fact => fact.topic_id === state.topics.topics.find(topic => topic.name === "New Facts").id).length
+		factsCount: state.topics.facts.filter(fact => fact.topic_id === state.topics.topics.find(topic => topic.name === "New").id).length
 	}
 }
 

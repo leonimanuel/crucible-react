@@ -22,7 +22,7 @@ class ConsoleWindow extends Component {
 				{this.props.parentTopic.parent_id ? <div id="topic-back-button" onClick={() => this.props.selectTopic(currentTopicParent)}>⬅ {currentTopicParent.name}</div> : null }
 				<div id="console-window-title">{this.props.parentTopic ? this.props.parentTopic.name : "NONE"}</div>
 						
-					{this.props.parentTopic.name === "New Facts" ? null 
+					{this.props.parentTopic.name === "New" ? null 
 						: <ConsoleTopicsList 
 						topics={this.props.topics.filter(topic => topic.parent_id == this.props.parentTopic.id)} 
 						parentId={this.props.parentTopic.id}/>

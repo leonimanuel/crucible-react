@@ -16,7 +16,7 @@ import mixpanel from 'mixpanel-browser';
 
 import NewLandingPage from "./components/home/NewLandingPage.js"
 import SideNav from "./containers/SideNav.js"
-import Home from "./containers/Home.js"
+// import Home from "./containers/Home.js"
 import NavBar from "./components/navigation/NavBar.js"
 import Console from "./containers/Console.js"
 import Review from "./containers/Review.js"
