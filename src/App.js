@@ -9,8 +9,9 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
-import { API_ROOT, GA4_MEASUREMENT_ID } from "./constants"
+import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN } from "./constants"
 import ReactGA from "react-ga4";
+import mixpanel from 'mixpanel-browser';
 
 
 import NewLandingPage from "./components/home/NewLandingPage.js"
@@ -50,6 +51,7 @@ const App = props => {
   useEffect(() => {
     ReactGA.initialize(GA4_MEASUREMENT_ID);
 
+    mixpanel.init(MIXPANEL_TOKEN);
     // ReactGA.initialize([
     //   {
     //     trackingId: GA4_MEASUREMENT_ID,

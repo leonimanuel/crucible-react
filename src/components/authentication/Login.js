@@ -1,6 +1,5 @@
 // import React, { Component } from 'react';
 import React, { useState, useEffect } from "react"
-import mixpanel from 'mixpanel-browser';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
@@ -25,7 +24,6 @@ function Login(props) {
 
 	useEffect(() => {
 		console.log("useEffect on Login.js");
-		mixpanel.init(MIXPANEL_TOKEN); 
 	}, [])
 
 	const handleSubmit = async (e) => {
@@ -49,7 +47,6 @@ function Login(props) {
 		
 		try {
 			let response = await fetch(API_ROOT + "/authenticate", configObj)
-			// debugger
 			if (response.status == 200) {
 				let data = await response.json()
 				localStorage.setItem("token", data.auth_token);		
@@ -59,9 +56,10 @@ function Login(props) {
 
         // gaEventTracker("login")
         // mixpanel.identify(`${data.user.id}`)
-				mixpanel.track('Log in', {
-				  'source': "web app"
-				});
+				// mixpanel.track('Log in', {
+				//   'source': "web app"
+				// });
+
 		  //   window.dataLayer = window.dataLayer || [];
 		  //   function gtag() {dataLayer.push(arguments);}
 				// gtag("event", "login", {

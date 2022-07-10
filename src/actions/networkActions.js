@@ -1,5 +1,6 @@
 import { API_ROOT } from "../constants"
 import { connect } from 'getstream';
+import mixpanel from 'mixpanel-browser';
 
 let client = "" //for stream
 
@@ -48,6 +49,10 @@ export const showSelectedContact = (contactId) => {
 	  fetch(API_ROOT + `/contacts/${contactId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
+	  	mixpanel.track("View Other Profile", {
+	  		target_user: data.contact.id
+	  	})
+
 	  	dispatch({
 	  		type: "SET_SELECTED_CONTACT",
 	  		contact: data.contact,

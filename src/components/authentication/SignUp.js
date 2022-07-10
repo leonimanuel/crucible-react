@@ -1,3 +1,4 @@
+import mixpanel from 'mixpanel-browser';
 import React, { Component } from 'react';
 import { logIn } from "../../actions/users.js"
 import { connect } from 'react-redux';
@@ -46,9 +47,12 @@ class SignUp extends Component {
 			try {
 				let resp = await fetch(API_ROOT + "/users", configObj)
 				if (resp.status == 201) {
+					// mixpanel.track("Sign Up")
+					
 					let data = await resp.json();
 					localStorage.setItem("token", data.auth_token)
-					this.setState({submitted: "success"})					
+					// this.setState({submitted: "success"})
+					this.props.logIn()					
 				} 
 				else if (resp.status == 422) {
 					const errorBox = document.getElementById("error-box");
