@@ -33,10 +33,6 @@ class TimelineCommentContent extends Component {
 		const { comment } = this.props
 		let sortedCommentFacts = []
 
-		if (!comment || !comment.fact_order || !comment.facts) {
-			debugger
-		}
-		
 		if (comment.fact_order.length == comment.facts.length) {
 			comment.fact_order.map((factId, index) => {
 				sortedCommentFacts.push(comment.facts.find(fact => fact.id == factId))
@@ -48,7 +44,7 @@ class TimelineCommentContent extends Component {
 		return (
 			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
 				<div className="timeline-comment-content">{comment.content}</div>				
-				<div class="bubble-arrow"></div>
+				<div class={`bubble-arrow ${this.props.showTracer ? "show-tracer" : ""}`}></div>
 			</div>
 		)
 	}

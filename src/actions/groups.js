@@ -38,7 +38,7 @@ export const loadGroups = () => {
   }  
 }
 
-export const loadSelectedGroup = (groupId) => {
+export const loadSelectedGroup = (groupId, activityId, handleLoad) => {
   return async (dispatch) => {
     dispatch({
       type: "LOADING_SELECTED_GROUP"
@@ -52,8 +52,9 @@ export const loadSelectedGroup = (groupId) => {
         Authorization: localStorage.getItem("token")
       }
     }
+    // debugger
     try {
-      let res = await fetch(API_ROOT + `/groups/${groupId}`, configObj)
+      let res = await fetch(API_ROOT + `/groups/${groupId}?activityId=${activityId}`, configObj)
       if ((res.status == 200)) {
         let group_data = await res.json()
         dispatch({ 
@@ -68,6 +69,8 @@ export const loadSelectedGroup = (groupId) => {
     } catch (error) {
       alert(error)
     }
+
+    if (handleLoad) {handleLoad()}
   }   
 }
 

@@ -15,6 +15,7 @@ export const setActivities = (activityId, handleLoad) => {
 				Authorization: localStorage.getItem("token")
 			}
 		}
+		// debugger
 		fetch(API_ROOT + `/timeline/${activityId}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {

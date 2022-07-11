@@ -26,7 +26,7 @@ export default function networkReducer(state = {
 			return {
 				...state,
 				selectedContact: action.contact,
-				contactFeed: [...sortedUserActivities],
+				contactFeed: [...state.contactFeed, ...sortedUserActivities],
 				membersFollowStatuses: [...state.membersFollowStatuses.filter(i => i.memberId != action.contact.id), {memberId: action.contact.id, isFollowing: action.contact.is_following}]
 
 			}

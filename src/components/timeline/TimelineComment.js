@@ -49,7 +49,7 @@ class TimelineComment extends Component {
 				{
 					comment.response_excerpt?.content 
 						?
-					<div className="timeline-comment-context-wrapper">
+					<div className={`timeline-comment-context-wrapper ${this.props.showTracer ? "show-tracer" : ""}`}>
 						<div className="article-anchor-wrapper">
 							<a className="article-anchor" href={comment.article_url} onClick={(e, resoure) => handleArticleClick(e, comment)}>{comment.article_title}</a>
 							<div className={`style context-speech-arrow ${this.props.context}`}></div>
@@ -64,7 +64,7 @@ class TimelineComment extends Component {
 					null
 				}
 				
-				<TimelineCommentContent comment={comment} selectComment={this.handleSelectComment}/>
+				{!comment.content || <TimelineCommentContent comment={comment} selectComment={this.handleSelectComment} showTracer={this.props.showTracer}/>}
 
 				{
 					comment.facts.length 

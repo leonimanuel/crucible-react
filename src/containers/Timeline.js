@@ -26,6 +26,7 @@ import GroupCard from "../components/groups/GroupCard.js"
 import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity, showPost, readNotification } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
+import { loadSelectedGroup } from "../actions/groups.js"
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -51,7 +52,7 @@ class Timeline extends Component {
 
 	componentDidMount() {
 		this.setState({loadingActivities: true}, () => {
-			this.props.setActivities(0, this.handleLoad);
+			this.loadActivitiesByFeedType()
 		})
 		
 		if (this.props.location.pathname.includes("posts") && !this.props.selectedNotificationActivity) {
@@ -63,7 +64,7 @@ class Timeline extends Component {
 		}
 
 		if (this.props.location.pathname.split("/")[1] == "profiles") {
-			this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+			// this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
 			this.setState({postType: "profiles"})
 		} else if (this.props.location.pathname.split("/")[1] == "groups") {
 			this.setState({postType: "groups"})
@@ -74,7 +75,7 @@ class Timeline extends Component {
 		// debugger
 		if (this.props.location.pathname !== this.state.location) { // no idea what the point of this is
 			this.setState({location: this.props.location.pathname})
-		
+			this.loadActivitiesByFeedType()
 			if (this.props.location.pathname.split("/")[1] == "profiles") {
 				this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
 				this.setState({postType: "profiles"})
@@ -84,13 +85,10 @@ class Timeline extends Component {
 		}
 	}
 
-	handleLoad = () => {
-		this.setState({loadingActivities: false})
-	}
-
 	showTimelineItem = (activity, index) => {
 		const resource = activity.item.object
 		let review_resource = {}
+		let showTracer = false
 		switch (activity.item.type) {
 			case "Fact":
 				return (
@@ -112,17 +110,19 @@ class Timeline extends Component {
 				else if (resource.response_excerpt && !resource.content) { postDescription = "shared an excerpt" }
 				else if (!resource.response_excerpt && resource.content) { postDescription = "shared a thought" }
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
+				
+				showTracer = resource.content && resource.response_excerpt
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader showTracer={resource.content && resource.response_excerpt}
+							<TimelineItemHeader showTracer={showTracer}
 								time={activity.time} 
 								actor={activity.actor} 
 								type={postDescription}
 								group={this.state.postType != "groups" && resource.group_id ? {id: resource.group_id, name: resource.group_name} : null }
 							/>
-							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
-								<TimelineComment comment={resource} context={"post"} />
+							<div className={`timeline-item-content-container ${showTracer ? "show-tracer" : ""}`} style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
+								<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>
@@ -149,22 +149,23 @@ class Timeline extends Component {
 			// 	) 
 
 			case "Article_share":
+				showTracer = resource.content && resource.source
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader showTracer={resource.content && resource.source}
+							<TimelineItemHeader showTracer={showTracer}
 								time={activity.time} 
 								actor={activity.actor} 
 								type="shared an article" 
 								group={this.state.postType != "groups" && resource.group_id ? {id: resource.group_id, name: resource.group_name} : null }
 							/>
-							<div className="timeline-item-content-container" style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
-								<div className="timeline-item-article-wrapper">
+							<div className={`timeline-item-content-container ${showTracer ? "show-tracer" : ""}`} style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>
+								<div className={`timeline-item-article-wrapper ${showTracer ? "show-tracer" : ""}`}>
 									<div className="timeline-item-article-title timeline-article-header">
 										<a className="article-anchor" href={resource.article_url} onClick={(e, resoure) => handleArticleClick(e, resource)}>{resource.article_title}</a>
 									</div> 	
 								</div>						
-								{resource.content || resource.response_excerpt ? <TimelineComment comment={resource} /> : null}
+								{resource.content || resource.response_excerpt ? <TimelineComment comment={resource} showTracer={showTracer} /> : null}
 								<RepliesContainer comment={resource} index={index}/>						
 							</div>
 						</div>
@@ -178,15 +179,34 @@ class Timeline extends Component {
 
 	}
 
+	loadActivitiesByFeedType = () => {
+		debugger
+		let activityId = ""
+		if (this.props.location.pathname.split("/")[1] === "groups") {
+			activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0"
+			let groupId = this.props.location.pathname.split("/")[2]
+			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad) 
+		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
+			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
+			let profileId = this.props.location.pathname.split("/")[2]
+			this.props.showSelectedContact(profileId, activityId, this.handleLoad)
+		} else {
+			activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
+			this.props.setActivities(activityId, this.handleLoad);	
+		}		
+	}
 
 	fetchMoreActivities = () => {
 		console.log("fetching more activities");
-		const activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
-		this.props.setActivities(activityId, this.handleLoad);
-
+		this.loadActivitiesByFeedType()
+		
 		mixpanel.track("Load More Activities", {
 			feed_type: this.state.postType
 		})
+	}
+
+	handleLoad = () => {
+		this.setState({loadingActivities: false})
 	}
 
 	handleNotificationLoad = (objectId, notificationType, notificationGroupId, userId) => {
@@ -232,14 +252,23 @@ class Timeline extends Component {
 					<Route 
 						path="/profiles/:id" 
 						render={(matchProps) => {
-							return this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))
+							return (
+								<InfiniteScroll dataLength={this.props.timeline_activities.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+									{this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))}
+								</InfiniteScroll>
+							)
 						}} 
 					/>
+
 
 					<Route 
 						path="/groups/:id" 
 						render={(matchProps) => {
-							return this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))
+							return (
+								<InfiniteScroll dataLength={this.props.timeline_activities.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+									{this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))}
+								</InfiniteScroll>
+							)
 						}} 
 					/>
 
@@ -320,6 +349,7 @@ const mapStateToProps = state => {
 		newPositions: state.timeline.newPositions,
 		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
 		selectedContact: state.network.selectedContact,
+		selectedGroupId: state.groups.selectedGroupId,
 		contactFeed: state.network.contactFeed,
 		groupFeedItems: state.groups.selectedGroupFeedItems,
 		timelineType: state.timeline.timelineType,
@@ -331,7 +361,7 @@ const mapStateToProps = state => {
 
 
 
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact, loadSelectedGroup })(Timeline));
 
 
 

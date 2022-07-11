@@ -18,7 +18,7 @@ class GroupCard extends Component {
 	}
 
 	componentDidMount() {
-		this.props.loadSelectedGroup(this.props.groupId)
+		// this.props.loadSelectedGroup(this.props.groupId)
 		// this.props.getMembershipStatus(this.props.currentUserId)
 	}
 

@@ -31,12 +31,13 @@ export const fetchContacts = (contactType) => {
 	}
 }
 
-export const showSelectedContact = (contactId) => {
+export const showSelectedContact = (contactId, activityId, handleLoad) => {
 	return (dispatch) => {
 		dispatch({
 			type: "FETCHING_SELECTED_CONTACT"
 		})
 
+		// debugger
 	 	let configObj = {
 	    method: "GET",
 	    headers: {
@@ -45,8 +46,7 @@ export const showSelectedContact = (contactId) => {
 	      Authorization: localStorage.getItem("token")
 	    }
 	  }
-
-	  fetch(API_ROOT + `/contacts/${contactId}`, configObj)
+	  fetch(API_ROOT + `/profiles/${contactId}?activityId=${activityId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
 	  	mixpanel.track("View Other Profile", {
@@ -73,6 +73,8 @@ export const showSelectedContact = (contactId) => {
 	  .catch(err => {
 	  	alert(err)
 	  })
+
+	  if (handleLoad) {handleLoad()} 
 	}	
 }
 

@@ -170,7 +170,7 @@ $tracer-color-draft: lightblue;
     margin-left: 10px;
 
     .item-header-description {
-      outline: 2px solid purple;
+      // outline: 2px solid purple;
       // outline: 2px solid red;
       // border-right: 3px solid #0f4c75;
       // border-radius: 0 0 10px 0;
@@ -207,24 +207,29 @@ $tracer-color-draft: lightblue;
     padding-right: 5px;
     position: relative;
 
-    &:before {
-      // outline: 1px solid red;
-      position: absolute;
-      content: "";
-      // border: 1px solid red;
-      width: 10px;
-      height: 10px;
-      top: -2.5px;
+    &.show-tracer {
+      &:before {        
+        // outline: 1px solid red;
+        position: absolute;
+        content: "";
+        // border: 1px solid red;
+        width: 10px;
+        height: 10px;
+        top: -2.5px;
 
-      border-radius: 10px 0 0 0;
-      border-left: 3px solid #0f4c75;
-      border-top: 3px solid #0f4c75;
-    }  
+        border-radius: 10px 0 0 0;
+        border-left: 3px solid #0f4c75;
+        border-top: 3px solid #0f4c75;
+      }  
+    }
 
     .timeline-item-article-wrapper {
       border: 1px solid transparent; // for some reason important for margins
-      border-left: 3px solid #0f4c75;
       border-radius: 10px 0 0 0;
+
+      &.show-tracer {
+        border-left: 3px solid #0f4c75;
+      }
 
       .timeline-item-article-title {
         a {
@@ -370,15 +375,13 @@ $tracer-color-draft: lightblue;
 }    
 
 .timeline-comment-context-wrapper {
-  // outline: 1px solid orange;
-  // margin: 0px 10px;
   padding: 10px;
-  // margin-top: 10px;
-
   text-align: left;
 
-  border-left: 3px solid #0f4c75;
-  // border-radius: 5px 0 0 0;
+  &.show-tracer {
+    border-left: 3px solid #0f4c75;    
+  }
+
 
   .article-anchor-wrapper {
     display: flex;
@@ -524,7 +527,7 @@ $tracer-color-draft: lightblue;
 .timeline-comment.timeline-item {
   // outline: 2px solid red;
   // border-top: 1px solid transparent;
-  // padding-top:10px;
+  padding-top: 5px;
 
   .timeline-comment-content-wrapper {
     // outline: 2px solid red;
@@ -540,6 +543,7 @@ $tracer-color-draft: lightblue;
       background-color: gold; // this color indicates that it is a position
     }
 
+
     .bubble-arrow {
       // outline: 1px solid red;
       position: absolute;
@@ -548,9 +552,7 @@ $tracer-color-draft: lightblue;
       left: -20px;
       height: 0;
 
-      border-left: 3px solid #0f4c75;
-      border-bottom: 3px solid #0f4c75;
-      border-radius: 0px 10px 10px 50px;
+      border-radius: 0px 10px 0px 50px;
       // border-right:
       width: 20px;
       height: 25px;
@@ -559,9 +561,15 @@ $tracer-color-draft: lightblue;
       //   bottom: 40px;
       //   left: auto;
       // }
+
+      &.show-tracer {
+        border-left: 3px solid #0f4c75;
+        border-bottom: 3px solid #0f4c75;
+      }
     }
     .bubble-arrow:after {
-      // outline: 1px solid green;
+      display: none; // HEADS UP, this is why it's not showing :)
+
       content: "";
       position: absolute;
       // opacity: .5;
