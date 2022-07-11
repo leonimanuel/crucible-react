@@ -226,8 +226,8 @@ const App = props => {
               </div>
             : 
               <React.Fragment>
-                <Route exact path="/" component={NewLandingPage} userId={props.userId}/>
                 <Route path="/groups">{props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
+                <Route path="/" component={NewLandingPage} userId={props.userId}/>
               </React.Fragment> 
           }            
             <Route path="/login"><Login/></Route>

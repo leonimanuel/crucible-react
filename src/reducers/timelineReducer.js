@@ -30,13 +30,13 @@ export default function timelineReducer(state = {
 			}		
 
 		case "ADD_NEW_REPLY":
+			debugger
 			return {
 				...state,
 				replies: [...state.replies, action.reply]
 			}					
 
 		case "ADD_NEW_POSITION":
-			debugger
 			return {
 				...state,
 				newPositions: [action.position, ...state.newPositions]

@@ -15,7 +15,6 @@ export const setActivities = (activityId, handleLoad) => {
 				Authorization: localStorage.getItem("token")
 			}
 		}
-
 		fetch(API_ROOT + `/timeline/${activityId}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {
@@ -23,6 +22,7 @@ export const setActivities = (activityId, handleLoad) => {
 				dispatch({
 					type: "SET_ACTIVITIES",
 					activities
+
 				})
 				dispatch({
 					type: "SET_REPLIES",

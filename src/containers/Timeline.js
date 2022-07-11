@@ -115,7 +115,7 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader 
+							<TimelineItemHeader showTracer={resource.content && resource.response_excerpt}
 								time={activity.time} 
 								actor={activity.actor} 
 								type={postDescription}
@@ -152,7 +152,7 @@ class Timeline extends Component {
 				return (
 					<div className="timeline-item-container">
 						<div className="timeline-item-subcontainer">
-							<TimelineItemHeader 
+							<TimelineItemHeader showTracer={resource.content && resource.source}
 								time={activity.time} 
 								actor={activity.actor} 
 								type="shared an article" 
@@ -173,7 +173,7 @@ class Timeline extends Component {
 				break
 
 			default:
-				return <div>Item type not found</div>
+				return null
 		}
 
 	}

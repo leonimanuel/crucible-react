@@ -32,7 +32,6 @@ export const addComment = (groupName, discussionName, comment, span, startOffset
         //  comment
         // })
     //  })
-    //   .catch(err => alert(err.message))
   }
 }
 
@@ -72,7 +71,9 @@ export const addFactFromComment = (fact, authorId) => {
           })    
         }
      })
-      .catch(err => alert(err.message))
+      .catch(err => {
+	alert(err.message)
+})
     //POST FACT
   }
 }
@@ -275,7 +276,9 @@ export const addGuests = (discussion, addedMembers) => {
           discussion
         })
      })
-      .catch(err => alert(err.message))
+      .catch(err => {
+	alert(err.message)
+})
   }
 }
 

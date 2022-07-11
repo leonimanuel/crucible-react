@@ -248,7 +248,9 @@ export const fetchDiscussion = (groupName, discussionName) => {
         //   members
         // })
      })
-      .catch(err => alert(err.message))
+      .catch(err => {
+        alert(err.message)
+      }) 
 	}
 }
 
@@ -281,7 +283,9 @@ export const fetchUsers = (value, members, addedUsers) => {
 					members
 				})
      })
-      .catch(err => alert(err.message))
+      .catch(err => {
+        alert(err.message)
+      })
 	}
 }
 
@@ -388,7 +392,9 @@ export const editGroup = (groupId, groupName, addedMembers, removedMembers) => {
           group
         })
      })
-      .catch(err => alert(err.message))
+      .catch(err => {
+        alert(err.message)
+      })
   }  
 }
 

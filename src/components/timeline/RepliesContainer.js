@@ -12,7 +12,6 @@ const RepliesContainer = (props) => {
 	const { comment } = props
 
 	const visibleReplies = showAllReplies ? props.replies : props.replies.filter((reply, index) => { return index >= (props.replies.length - 2)})
-
 	return (
 		<div className="replies-container">
 			{ props.replies.length 

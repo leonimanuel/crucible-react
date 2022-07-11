@@ -10,10 +10,10 @@ class TimelineItemHeader extends Component {
 		moment.tz.setDefault("UTC") // VERY IMPORTANT. Otherwise, moment will think the activity timestamp is local timezone
 	}
 	render() {
-		const { actor, group } = this.props
+		const { actor, group, showTracer } = this.props
 		return (
 			<div className={`timeline-item-header`}>
-				<div className="item-header-description">
+				<div className={`item-header-description ${showTracer ? "show-tracer" : ""}`}>
 					<span className="item-header-username">
 						<Link className="timeline-actor-link" to={`/profiles/${actor.id}`}>
 							{actor.name}

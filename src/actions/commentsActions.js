@@ -56,7 +56,9 @@ export const selectComment = (comment, userId) => {
 			          messages
 			        })     
         		})
-      			.catch(err => alert(err.message))     			
+      			.catch(err => {
+      				alert(err.message)
+      			})     			
 
         } else {
 	        dispatch({ 
@@ -86,7 +88,9 @@ export const selectComment = (comment, userId) => {
 						    		message
 						    	})   
 		        		})
-		      			.catch(err => alert(err.message)) 			    		
+		      			.catch(err => {
+	alert(err.message)
+}) 			    		
 			    	} else {
 				    	dispatch({
 				    		type: "ADD_NEW_MESSAGE",
@@ -96,7 +100,9 @@ export const selectComment = (comment, userId) => {
 			    }
 				});				
 	   })
-	    .catch(err => alert(err.message))	
+	    .catch(err => {
+	alert(err.message)
+})	
 
   }
 }
