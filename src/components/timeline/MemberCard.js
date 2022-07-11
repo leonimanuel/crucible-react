@@ -21,39 +21,21 @@ const MemberCard = (props) => {
 					<div className="stats-section">
 						<div className="member-card-stat-item">	
 							<div className="member-card-stat-label">
-								Comments
+								Posts
 							</div>
 							<div className="member-card-stat-value">
-								{props.member.comments_count}
+								{props.member.comments_count + props.member.positions_count}
 							</div>																							
 						</div>
 
 						<div className="member-card-stat-item">	
 							<div className="member-card-stat-label">
-								Positions
-							</div>
-							<div className="member-card-stat-value">
-								{props.member.positions_count}
-							</div>	
-						</div>
-
-						<div className="member-card-stat-item">	
-							<div className="member-card-stat-label">
-								Facts
+								Excerpts
 							</div>
 							<div className="member-card-stat-value">
 								{props.member.facts_count}
 							</div>		
 						</div>
-
-						<div className="member-card-stat-item">
-							<div className="member-card-stat-label">
-								F/C
-							</div>
-							<div className="member-card-stat-value" style={{"font-weight": "bold", color: fc_ratio >= 1 ? "green" : (fc_ratio < 1 && fc_ratio >= 0.5) ? "gold" : "red"}}>
-								{props.member.fact_comment_ratio}
-							</div>																								
-						</div>	
 					</div>
 
 					<div className="stats-section">
