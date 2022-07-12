@@ -35,6 +35,11 @@ $base-color-button-hover: #73A9AD;
     margin: 10px 0;
   }
 
+  .form-option-description {
+    text-align: left;
+    margin-top: 10px;      
+  }
+
   .form-fields-and-options {
     // outline: 1px solid blue;
     display: flex;
@@ -148,11 +153,6 @@ $base-color-button-hover: #73A9AD;
       //     background-color: lightgrey;
       //   }
       }       
-    }
-
-    .form-option-description {
-      text-align: left;
-      margin-top: 10px;      
     }
 
     .form-option {

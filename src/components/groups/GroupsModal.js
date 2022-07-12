@@ -18,7 +18,7 @@ class GroupsModal extends Component {
 		memberSearchVal: "",
 		addedMembers: [],
 		groupNameError: "",
-		isPrivate: false
+		isPrivate: true
 	}
 
 	handleChange = (e) => {
@@ -102,7 +102,7 @@ class GroupsModal extends Component {
 		return (
 			<FormWrapper>
 				<span id="new-group-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
-				<h1 className="form-header">New Group</h1>
+				<h3 className="form-header">New Private Group</h3>
 				<div className="form-fields-and-options">
 					<form className="form-content-wrapper new-group" onSubmit={this.handleSubmit}>
 						<div className="auth-item form-field">
@@ -125,8 +125,10 @@ class GroupsModal extends Component {
 						<div id="added-member-box">
 							{this.state.addedMembers.map(member => <MemberTag removeMember={this.removeMember} member={member} />)}
 						</div>
+		
+						<span className="form-option-description">Only members can view, post, and add more members.</span>
 
-			      <div onChange={this.handlePrivacyChange}>
+			      {/*<div onChange={this.handlePrivacyChange}>
 							<div className="form-field form-radio-item">						
 				        <input className="form-input" type="radio" value="public" name="privacy" checked={this.state.isPrivate === false}/>
 				        <label className="form-label checkbox-label">Public</label>
@@ -135,7 +137,7 @@ class GroupsModal extends Component {
 				        <input className="form-input" type="radio" value="private" name="privacy" checked={this.state.isPrivate === true}/>
 				        <label className="form-label checkbox-label">Private</label>						
 			        </div>									        
-			      </div>
+			      </div>*/}
 
 
 			      <input className="form-action-button" type="submit" value="Create Group" {...opts}/>
