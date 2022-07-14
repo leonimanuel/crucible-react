@@ -5,7 +5,7 @@ import DiscussionsOverview from "../components/home/DiscussionsOverview.js"
 import ReviewsOverview from "../components/home/ReviewsOverview.js"
 import BriefingsOverview from "../components/home/BriefingsOverview.js"
 import ScoresOverview from "../components/home/ScoresOverview.js"
-import LandingPage from "../components/home/LandingPage.js"
+// import LandingPage from "../components/home/LandingPage.js"
 
 class Home extends Component {
 	render() {

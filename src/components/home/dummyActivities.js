@@ -5,6 +5,73 @@ export const dummyActivities = [
   {
     actor: {
       id: 1,
+      name: 'Leon Malisov',
+      handle: 'leon_malisov'
+    },
+    item: {
+      type: 'Comment',
+      object: {
+        id: 17,
+        content: "that's the idea...",
+        fact_order: [],
+        response_excerpt: {
+          id: 57,
+          content: 'The share of foreign-born people in the United States is back to the levels of the first two decades of the 20th century.',
+          node_text: 'If immigrants are so upwardly mobile, why doesn’t it seem that way? One reason is that there are more newcomers than there have been in decades and most haven’t had time yet to get ahead. The share of foreign-born people in the United States is back to the levels of the first two decades of the 20th century.'
+        },
+        article_title: 'Opinion | Why So Many Children of Immigrants Rise to the Top - The New York Times',
+        article_url: 'https://www.nytimes.com/interactive/2022/07/11/opinion/immigrants-success-america.html?',
+        span_id: null,
+        startPoint: null,
+        endPoint: null,
+        previous_el_id: null,
+        discussion_id: null,
+        user_id: 1,
+        selection_comment_upvotes: 0,
+        selection_comment_downvotes: 0,
+        review_status: 'pending',
+        group_id: null,
+        group_name: null,
+        user: {
+          id: 1,
+          name: {
+            id: 1,
+            name: 'Leon Malisov',
+            email: 'leonmalisov@gmail.com',
+            password_digest: '$2a$12$nLAT1kVTzUCgZWdBb5.KeOPNWikTqb4oCE2JHeUa7mTlknQrh.T3y',
+            created_at: '2022-04-24T18:03:49.555Z',
+            updated_at: '2022-04-24T18:04:04.172Z',
+            daily_reviews: 0,
+            daily_streaks: 0,
+            handle: 'leon_malisov',
+            total_upvotes: 0,
+            total_downvotes: 0,
+            feed_email: true,
+            email_confirmed: true,
+            confirm_token: null,
+            daily_facts_comments: 0,
+            reach_score: 0,
+            reset_password_token: null
+          },
+          daily_facts_comments: 0
+        },
+        facts: [],
+        facts_comments_reviews: [],
+        replies: [],
+        tagged_users: [],
+        subject_id: 1
+      },
+      tagged_users: null,
+      reviewable: false,
+      review_type: 'Comment',
+      review_object: null
+    },
+    time: '2022-07-13T23:19:57.571000',
+    activity_id: '4f6ced30-0302-11ed-8080-80001d3e704f'
+  },
+  {
+    actor: {
+      id: 1,
       name: 'Billy Buxingtonerooni',
       handle: 'billybux'
     },

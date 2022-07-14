@@ -86,7 +86,7 @@ class PositionForm extends Component {
               role="button"
               onClick={() => this.setState({startPostSelected: !this.state.startPostSelected})}
             >
-              click here to share an observation...
+              New Post
             </button>
 
             <div 

@@ -20,26 +20,30 @@ class NewLandingPage extends Component {
 	render() {
 		const activity = dummyActivities[0]
 		const resource = activity.item.object 	
-
-		return (
+    let showTracer = false
+		showTracer = resource.content && resource.response_excerpt
+    return (
 			<div id="landing-page">
 				<div className="timeline-item-container" id="dummy-timeline-item-container">
-					<div className="timeline-item-subcontainer">
+					<h1 id="landing-page-featured-post">Featured Post</h1>
+          <div className="timeline-item-subcontainer">
 						<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
 						<div className="timeline-item-content-container">					
-							<TimelineComment comment={resource} context={"post"} />
+							<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
 						</div>
 					</div>
 				</div>		
 
 				<div id="landing-text-and-buttons">
-					<div id="landing-slug">
-						connect the deets
-					</div>
+					<div id="landing-text">
+            <h1 id="landing-slug">
+              reading is better with friends
+            </h1>
+          </div>
 					
 					<div id="new-landing-buttons-container">
-						<Link to="/login"><button className="landing-button" id="landing-login-button">log in</button></Link>
-						<Link to="/signup"><button className="landing-button" id="landing-create-account-button">create account</button></Link>
+						<Link to="/login"><button className="form-action-button">log in</button></Link>
+						<Link to="/signup"><button className="form-action-button">create account</button></Link>
 					</div>
 				</div>
 			</div>
