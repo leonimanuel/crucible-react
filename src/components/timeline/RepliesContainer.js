@@ -14,30 +14,35 @@ const RepliesContainer = (props) => {
 	const visibleReplies = showAllReplies ? props.replies : props.replies.filter((reply, index) => { return index >= (props.replies.length - 2)})
 	return (
 		<div className="replies-container">
-			{ props.replies.length 
-				?
-					<React.Fragment>
-						{props.replies.length ? <div className="replies-header">Replies</div> : null}
-						
-						{
-							(showAllReplies || visibleReplies.length == props.replies.length) ? null : 
-							<div className="replies-viewtoggle" onClick={() => setShowAllReplies(true)}>
-								show more replies
+			<div className={`replies-content-container ${props.replies.length || stateShowReplyForm ? "" : "hide"}`}>
+				{ props.replies.length 
+					?
+						<React.Fragment>
+							{props.replies.length ? <div className="replies-header">Replies</div> : null}
+							
+							{
+								(showAllReplies || visibleReplies.length == props.replies.length) ? null : 
+								<div className="replies-viewtoggle" onClick={() => setShowAllReplies(true)}>
+									show more replies
+								</div>
+							}
+
+							<div className="replies-wrapper" key={comment.id}>
+								{visibleReplies.map(reply => <Reply comment={comment} reply={reply}/>)}
 							</div>
-						}
-
-
-						<div className="replies-wrapper" key={comment.id}>
-							{visibleReplies.map(reply => <Reply comment={comment} reply={reply}/>)}
-						</div>
-					</React.Fragment>
-				: null
-			}
+						</React.Fragment>
+					: null
+				}
+			
+				{stateShowReplyForm ? <ReplyForm comment={comment} index={props.index}/> : null}
+			</div>
 			
 			<React.Fragment>
-				{stateShowReplyForm 
-					? <ReplyForm comment={comment} index={props.index}/> 
-					: <div className="create-first-reply-button" onClick={() => setStateShowReplyForm(true)}>Reply</div>}
+				{stateShowReplyForm ? null : 
+					<div className="reply-button-wrapper">
+						<div className="reply-button" onClick={() => setStateShowReplyForm(true)}>Reply</div>					
+					</div>
+				}
 			</React.Fragment>			
 		</div>
 	)

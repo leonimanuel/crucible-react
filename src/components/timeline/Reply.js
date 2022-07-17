@@ -40,7 +40,12 @@ const Reply = (props) => {
 					?
 						<div className="reply-text">{reply.content}</div>
 					:
-						<TimelineComment comment={reply.reply_comment} hideTaggedUsers={true} context={"reply"}/>
+						<TimelineComment 
+							comment={reply.reply_comment} 
+							hideTaggedUsers={true} 
+							showTracer={reply.reply_comment.response_excerpt && reply.reply_comment.content} 
+							context={"reply"}
+						/>
 				}
 					<TaggedUsers tagged_users={reply.tagged_users}/>
 			</div>
