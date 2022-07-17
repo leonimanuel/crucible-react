@@ -79,7 +79,8 @@ class Timeline extends Component {
 			this.setState({location: this.props.location.pathname})
 			this.loadActivitiesByFeedType()
 			if (this.props.location.pathname.split("/")[1] == "profiles") {
-				this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
+				// debugger
+				// this.props.showSelectedContact(this.props.location.pathname.split("/")[2])
 				this.setState({postType: "profiles"})
 			} else if (this.props.location.pathname.split("/")[1] == "groups") {
 				this.setState({postType: "groups"})

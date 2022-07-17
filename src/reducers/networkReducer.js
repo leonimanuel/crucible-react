@@ -21,12 +21,12 @@ export default function networkReducer(state = {
 			}			
 
 		case "SET_SELECTED_CONTACT":
-			// debugger
 			const sortedUserActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
+			const newContactSelection = !!(action.contact.id !== state.selectedContact.id)
 			return {
 				...state,
 				selectedContact: action.contact,
-				contactFeed: [...state.contactFeed, ...sortedUserActivities],
+				contactFeed: newContactSelection ? sortedUserActivities : [...state.contactFeed, ...sortedUserActivities],
 				membersFollowStatuses: [...state.membersFollowStatuses.filter(i => i.memberId != action.contact.id), {memberId: action.contact.id, isFollowing: action.contact.is_following}]
 
 			}
