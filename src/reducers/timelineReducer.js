@@ -12,7 +12,6 @@ export default function timelineReducer(state = {
 			
 			const myFeedActivities = action.timelineType == "myFeed" ? [...state.activities, ...sortedTimelineActivities] : state.activities
 			const discoverActivities = action.timelineType == "discoverFeed" ? [...state.discoverActivities, ...sortedTimelineActivities] : state.discoverActivities
-			debugger
 			return {
 				...state,
 				activities: myFeedActivities,

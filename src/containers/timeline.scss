@@ -199,13 +199,14 @@ $tracer-color-draft: lightblue;
 
   .timeline-item-content-container {
     border-radius: 10px;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
-    background-color: white;
     text-align: left;
     // padding: 2%;
-    padding-right: 5px;
     position: relative;
     padding-bottom: 10px;
+
+
+    // background-color: white;
+    // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
 
     &.show-tracer {
       &:before {        
@@ -224,6 +225,7 @@ $tracer-color-draft: lightblue;
     }
 
     .timeline-item-article-wrapper {
+      // outline: 2px solid red;
       border: 1px solid transparent; // for some reason important for margins
       border-radius: 10px 0 0 0;
 
@@ -376,6 +378,7 @@ $tracer-color-draft: lightblue;
 
 .timeline-comment-context-wrapper {
   padding: 10px;
+  padding-right: 0;
   text-align: left;
 
   &.show-tracer {
@@ -406,12 +409,20 @@ $tracer-color-draft: lightblue;
       }
     }
 
+    .context-speech-arrow-liner {
+      // outline: 2px solid red;
+      margin-left: 10px;
+      width: 1px;
+      // box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+      // box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+      box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    }
+
     .context-speech-arrow {
-      
+      // outline: 2px solid red;
       content: "";
       width: 0px;
       height: 0px;
-      margin-left: 10px;
       // position: absolute;
 
       border-top: 15px solid transparent;
@@ -423,10 +434,14 @@ $tracer-color-draft: lightblue;
       // right: 20px;
       // top: -20px;    
       // right: -30px;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      // box-shadow: -10px 0px 10px 1px #aaaaaa;
 
       &.post {
-        border-bottom-color: #DDDDDD;
-        border-left-color: #DDDDDD;
+        // border-bottom-color: #DDDDDD;
+        // border-left-color: #DDDDDD;
+        border-bottom-color: white;
+        border-left-color: white;
       }
 
       &.reply {
@@ -449,14 +464,15 @@ $tracer-color-draft: lightblue;
 
       padding: 5px;
       padding-bottom: 10px;
-      background-color: #DDDDDD;
       // background-color: snow;
-      // background-color: white;
+      background-color: white;
       border-radius: 10px;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
       &.post {
-        background-color: #DDDDDD;
+        // background-color: #DDDDDD;
       }
 
       &.reply {
@@ -528,86 +544,126 @@ $tracer-color-draft: lightblue;
   // outline: 2px solid red;
   // border-top: 1px solid transparent;
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
 
-  .timeline-comment-content-wrapper {
-    // outline: 2px solid red;
-    // margin-top: 10px;
-    margin-left: 20px;
-
-    padding: 10px;
-    background-color: #0f4c75; // this color indicates that it is a regular comment
-    border-radius: 10px;
-    position: relative;
-
-    &.timeline-position {
-      background-color: gold; // this color indicates that it is a position
-    }
-
-
-    .bubble-arrow {
-      // outline: 1px solid red;
-      position: absolute;
-      width: 0;
-      top: 0px;
-      left: -20px;
-      height: 0;
-
-      border-radius: 0px 10px 0px 50px;
-      // border-right:
-      width: 20px;
-      height: 25px;
-      // &.alt{
-      //   right: -2px;      
-      //   bottom: 40px;
-      //   left: auto;
-      // }
-
-      &.show-tracer {
-        border-left: 3px solid #0f4c75;
-        border-bottom: 3px solid #0f4c75;
-      }
-    }
-    .bubble-arrow:after {
-      display: none; // HEADS UP, this is why it's not showing :)
-
+  .timeline-comment-and-arrow {
+    display: flex;
+    
+    .context-speech-arrow {
+      outline: 2px solid green;
       content: "";
-      position: absolute;
-      // opacity: .5;
-      border: 0 solid transparent;
-      // border: 1px solid black;
-      border-top: 12px solid #0f4c75;
-      border-radius: 0px 20px 0px;
-      width: 20px;
-      height: 25px;
-      transform: rotate(180deg);
+      width: 0px;
+      height: 0px;
+
+      border-top: 15px solid ;
+      border-bottom: 9px solid transparent;
+
+      border-left: 18px solid transparent;      
+      border-right: 9px solid ;
+
+      // border-bottom-color: $tracer-color;
+      // border-left-color: $tracer-color;      
+
+      // right: 20px;
+      // top: -20px;    
+      // right: -30px;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      // box-shadow: -10px 0px 10px 1px #aaaaaa;
+
+      &.post {
+        // border-bottom-color: $tracer-color;
+        // border-left-color: $tracer-color;
+      }
+
+      &.reply {
+        // border-bottom-color: snow;
+        // border-left-color: snow;
+      }
+    }     
+
+    .timeline-comment-content-wrapper {
+      outline: 2px solid red;
+      // margin-top: 10px;
+      // margin-left: 20px;
+      margin-right: auto;
+
+      padding: 10px;
+      background-color: $tracer-color; // this color indicates that it is a regular comment
+      position: relative;
+
+      border-radius: 10px 20px 20px 10px;
+
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+      box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
+      .bubble-arrow {
+        display: none;
+        outline: 1px solid green;
+        position: absolute;
+        width: 0;
+        top: 0px;
+        left: -20px;
+        height: 0;
+
+        border-radius: 0px 10px 0px 50px;
+        // border-right:
+        width: 20px;
+        height: 25px;
+        // &.alt{
+        //   right: -2px;      
+        //   bottom: 40px;
+        //   left: auto;
+        // }
+
+        &.show-tracer {
+          border-left: 3px solid #0f4c75;
+          border-bottom: 3px solid #0f4c75;
+        }
+      }
+      .bubble-arrow:after {
+        display: none; // HEADS UP, this is why it's not showing :)
+
+        content: "";
+        position: absolute;
+        // opacity: .5;
+        border: 0 solid transparent;
+        // border: 1px solid black;
+        border-top: 12px solid #0f4c75;
+        border-radius: 0px 20px 0px;
+        width: 20px;
+        height: 25px;
+        transform: rotate(180deg);
+      }
+
+      &:before {
+        // content: "";
+        // width: 0px;
+        // height: 0px;
+        // position: absolute;
+
+        // border-top: 9px solid #0f4c75;
+        // border-bottom: 15px solid transparent;
+
+        // border-right: 18px solid #0f4c75;      
+        // border-left: 9px solid transparent;
+        // left: -20px;
+        // top: 10px;    
+
+        // content: "";
+        // width: 20px;
+        // height: 20px;
+        // position: absolute;
+        // background-color: #0f4c75;    
+      }
+
+      .timeline-comment-content {
+        font-size: 1.1em;
+        color: white
+        // font-weight: bold;
+      }  
     }
-
-    &:before {
-      // content: "";
-      // width: 0px;
-      // height: 0px;
-      // position: absolute;
-
-      // border-top: 9px solid #0f4c75;
-      // border-bottom: 15px solid transparent;
-
-      // border-right: 18px solid #0f4c75;      
-      // border-left: 9px solid transparent;
-      // left: -20px;
-      // top: 10px;    
-
-      // content: "";
-      // width: 20px;
-      // height: 20px;
-      // position: absolute;
-      // background-color: #0f4c75;    
-    }
-
-    .timeline-comment-content {
-      font-size: 1.1em;
-      color: white
-      // font-weight: bold;
-    }  
   }
 }
 

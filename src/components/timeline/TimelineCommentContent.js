@@ -42,9 +42,12 @@ class TimelineCommentContent extends Component {
 		}
 
 		return (
-			<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
-				<div className="timeline-comment-content">{comment.content}</div>				
-				<div class={`bubble-arrow ${this.props.showTracer ? "show-tracer" : ""}`}></div>
+			<div className="timeline-comment-and-arrow">
+				<div className={`style context-speech-arrow ${this.props.context}`}></div>				
+				<div className={`timeline-comment-content-wrapper ${this.props.position ? "timeline-position" : ""}`} onClick={this.handleSelectComment}>
+					<div className="timeline-comment-content">{comment.content}</div>				
+					<div class={`bubble-arrow ${this.props.showTracer ? "show-tracer" : ""}`}></div>
+				</div>
 			</div>
 		)
 	}
