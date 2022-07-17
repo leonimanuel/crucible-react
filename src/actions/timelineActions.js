@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 import { API_ROOT } from "../constants"
 
-export const setActivities = (activityId, handleLoad) => {
+export const setActivities = (activityId, timelineType, handleLoad) => {
 	return (dispatch) => {
 		dispatch({
 			type: "LOADING_ACTIVITIES"
@@ -16,12 +16,13 @@ export const setActivities = (activityId, handleLoad) => {
 			}
 		}
 		// debugger
-		fetch(API_ROOT + `/timeline/${activityId}`, configObj)
+		fetch(API_ROOT + `/timeline/${activityId}?timelineType=${timelineType}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {
 				const replies = activities.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
 				dispatch({
 					type: "SET_ACTIVITIES",
+					timelineType: timelineType,
 					activities
 
 				})

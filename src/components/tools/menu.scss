@@ -281,4 +281,51 @@ li:hover{
 }
 
 
+#selection-buttons-wrapper {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+#selection-buttons-wrapper button {
+  // outline: 2px solid blue;
+  background: none;
+  border: none;
+  color: grey;
+  padding: 5px;
+  outline: none;
+  font-weight: bold;
+  border-radius: 0;
+  margin: 0 10px;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 3px solid grey;
+  }
+
+  &.selected {
+    color: #0f4c75;
+    border-bottom: 3px solid #0f4c75;
+  }
+}
+
+.selection-form {
+  display: flex;
+  flex-direction: column;
+  /*text-align: center;*/
+}
+
+.selection-action-submit {
+  width: 100px;
+  align-self: flex-end;
+  margin-top: 10px;
+  /*background-color: #0f4c75;*/
+  /*color: white;*/
+  font-weight: bold;
+  border: none;
+  padding: 5px 0;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
+}
+
 

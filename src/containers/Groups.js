@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 // import { ActionCable } from "react-actioncable-provider";
 // import { API_ROOT } from "../constants"
 import { addMessageToDiscussion, toggleForum } from "../actions/discussionsActions.js"
-import "./discussions.css"
+// import "./discussions.css"
 
 import Article from "../components/agora/Article.js"
 import Forum from "./Forum.js"

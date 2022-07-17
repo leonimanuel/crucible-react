@@ -95,7 +95,7 @@ class TimelineComment extends Component {
 						: 
 					null
 				}
-				<FacebookSelector onSelect={this.handleReaction}/>
+				{/*<FacebookSelector onSelect={this.handleReaction}/>*/}
 				<TaggedUsers tagged_users={comment.tagged_users}/>
 
 			</div>

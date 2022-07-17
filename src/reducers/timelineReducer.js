@@ -1,5 +1,6 @@
 export default function timelineReducer(state = {
 	activities: [],
+	discoverActivities: [],
 	newPositions: [],
 	hasMore: true,
 	replies: [],
@@ -9,9 +10,13 @@ export default function timelineReducer(state = {
 		case "SET_ACTIVITIES":
 			const sortedTimelineActivities = action.activities.sort((a, b) => new Date(b.time) - new Date(a.time))
 			
+			const myFeedActivities = action.timelineType == "myFeed" ? [...state.activities, ...sortedTimelineActivities] : state.activities
+			const discoverActivities = action.timelineType == "discoverFeed" ? [...state.discoverActivities, ...sortedTimelineActivities] : state.discoverActivities
+			debugger
 			return {
 				...state,
-				activities: [...state.activities, ...sortedTimelineActivities],
+				activities: myFeedActivities,
+				discoverActivities: discoverActivities,
 				timelineType: "feed",
 				hasMore: action.activities.length ? true : false
 			}

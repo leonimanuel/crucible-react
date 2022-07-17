@@ -47,7 +47,8 @@ class Timeline extends Component {
 		location: this.props.location.pathname,
 		loadingActivities: false,
 		notificationReadOnLoad: false,
-		postType: "timeline"
+		postType: "timeline",
+		timelineType: "discoverFeed"
 		// pagination: 5,
 		// page_offset: 0 
 	}
@@ -193,8 +194,9 @@ class Timeline extends Component {
 			let profileId = this.props.location.pathname.split("/")[2]
 			this.props.showSelectedContact(profileId, activityId, this.handleLoad)
 		} else {
-			activityId = this.props.timeline_activities.length ? this.props.timeline_activities.at(-1).activity_id : "0"
-			this.props.setActivities(activityId, this.handleLoad);	
+			const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
+			activityId = timelineActivities.length ? timelineActivities.at(-1).activity_id : "0"
+			this.props.setActivities(activityId, this.state.timelineType, this.handleLoad);	
 		}		
 	}
 
@@ -221,7 +223,17 @@ class Timeline extends Component {
 		if (previousTimelineType == "network") { this.props.clearSelectedContact()}
 		else if (previousTimelineType == "post") {this.props.clearNotificationActivity()} 
 
-		this.setState({loadingActivities: true}, () => { this.props.setActivities(0, this.handleLoad) })
+		this.setState({loadingActivities: true}, () => { this.props.setActivities(0, this.state.timelineType, this.handleLoad) })
+	}
+
+	handleFeedTypeSelection = (e) => {
+		if (e.target.value != this.state.timelineType) {
+			this.setState({timelineType: e.target.value}, () => {
+				const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
+				const activityId = timelineActivities.length ? timelineActivities.at(-1).activity_id : "0"
+				this.props.setActivities(activityId, this.state.timelineType, this.handleLoad)
+			})
+		}
 	}
 
 	refresh = () => {
@@ -229,8 +241,14 @@ class Timeline extends Component {
 	}
 
 	render() {
+		const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
 		return (
 			<div id="timeline-wrapper">
+        <div id="selection-buttons-wrapper">
+          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
+          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
+        </div>
+
 				<div id="timeline-items-wrapper">
 					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
 					{/*<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />*/}
@@ -255,7 +273,7 @@ class Timeline extends Component {
 						path="/profiles/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.timeline_activities.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.contactFeed.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.contactFeed.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -267,7 +285,7 @@ class Timeline extends Component {
 						path="/groups/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.timeline_activities.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.groupFeedItems.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.groupFeedItems.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -296,10 +314,10 @@ class Timeline extends Component {
 						render={(matchProps) => {
 							return (
 								<InfiniteScroll
-								  dataLength={this.props.timeline_activities.length}
+								  dataLength={timelineActivities.length}
 								  next={this.fetchMoreActivities}
 								  hasMore={this.props.hasMore}
-								  loader={this.props.timeline_activities.length > 3 ? <h4>Loading...</h4> : null}
+								  loader={timelineActivities.length > 3 ? <h4>Loading...</h4> : null}
 								  endMessage={
 								    <p style={{ textAlign: 'center' }}>
 								      <b>Yay! You have seen it all</b>
@@ -311,8 +329,8 @@ class Timeline extends Component {
 
 									<Route exact path="/" 
 										render={(matchProps) => {
-											if (this.props.timeline_activities.length) {
-												return this.props.timeline_activities.map((activity, index) => this.showTimelineItem(activity, index))
+											if (timelineActivities.length) {
+												return timelineActivities.map((activity, index) => this.showTimelineItem(activity, index))
 											} else if (!this.state.loadingActivities) {
 												return (
 													<div id="timeline-prompt" className="sidenav-onboarding-prompt">
@@ -348,6 +366,7 @@ const mapStateToProps = state => {
 	return {
 		selectedComment: state.comments.selectedComment,
 		timeline_activities: state.timeline.activities,
+		discover_activities: state.timeline.discoverActivities,
 		newPositions: state.timeline.newPositions,
 		selectedNotificationActivity: state.notifications.selectedNotificationActivity,
 		selectedContact: state.network.selectedContact,
