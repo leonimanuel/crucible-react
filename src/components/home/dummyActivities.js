@@ -16,8 +16,8 @@ export const dummyActivities = [
         fact_order: [],
         response_excerpt: {
           id: 57,
-          content: 'The share of foreign-born people in the United States is back to the levels of the first two decades of the 20th century.',
-          node_text: 'If immigrants are so upwardly mobile, why doesn’t it seem that way? One reason is that there are more newcomers than there have been in decades and most haven’t had time yet to get ahead. The share of foreign-born people in the United States is back to the levels of the first two decades of the 20th century.'
+          content: 'The economists found that on average, the children of immigrants were exceptionally good at moving up the economic ladder.',
+          node_text: 'Using the data set, Professor Abramitzky and Professor Boustan were able to compare the income trajectories of immigrants’ children with those of people whose parents were born in the United States. The economists found that on average, the children of immigrants were exceptionally good at moving up the economic ladder.'
         },
         article_title: 'Opinion | Why So Many Children of Immigrants Rise to the Top - The New York Times',
         article_url: 'https://www.nytimes.com/interactive/2022/07/11/opinion/immigrants-success-america.html?',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import "./network.scss"
 import { connect } from "react-redux"
 import { fetchContacts, showSelectedContact, clearRecommendationsAndSearches } from "../../actions/networkActions.js"
-
+import { APP_NAME } from "../../constants"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
@@ -54,7 +54,7 @@ const NetworkMenu = (props) => {
 			</div>
 			
 			<div id={`search-crucible-network-button`} className="search-button">	 
-			  <Popup trigger={<div id="network-menu-header">Search Crucible Network</div>} position="center" modal>
+			  <Popup trigger={<div id="network-menu-header">Search {APP_NAME} Network</div>} position="center" modal>
 			    { close => <NetworkModal handleContactSelect={() => close()} /> }
 			  </Popup>								
 			</div>

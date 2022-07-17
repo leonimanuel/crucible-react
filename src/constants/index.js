@@ -7,7 +7,8 @@ export const API_WS_ROOT = process.env.NODE_ENV === "development" ? 'ws://localh
 export const MIXPANEL_TOKEN = process.env.NODE_ENV === "development" ? "291a7d96c4980cddfe0015b895bb6d8a" : "e05cb8fbf040b90d8481ccb37072a407"
 export const STREAM_CLIENT_ID = process.env.NODE_ENV === "development" ? "37zxvpg2wqvj" : "segsgzcsweg6"
 export const STREAM_APP_ID = process.env.NODE_ENV === "development" ? "1155294" : "1173272"
-
+export const APP_NAME = "Clammer" 
+export const CONTACT_EMAIL = "leon@clammer.io"
 
 // PRODUCTION
 // export const API_ROOT = 'https://vast-wave-32276.herokuapp.com';

@@ -80,7 +80,8 @@ export const updateUserProfile = (user, closeModal) => {
         email: user.email,
         email_tags: user.email_tags,
         email_replies: user.email_replies,
-        email_group_add: user.email_group_add    
+        email_group_add: user.email_group_add,
+        email_private_group_post: user.email_private_group_post
       })
     }
 

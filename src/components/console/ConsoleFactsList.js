@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { CONTACT_EMAIL } from "../../constants"
+
 import ConsoleFact from "./ConsoleFact.js"
 
 class ConsoleFactsList extends Component {
@@ -12,7 +14,7 @@ class ConsoleFactsList extends Component {
 						this.props.facts.map(fact => <ConsoleFact key={fact.id} parentTopic={this.props.parentTopic} fact={fact}/>) 
 						: 
 						<React.Fragment>
-							<div id="facts-prompt" className="sidenav-onboarding-prompt">excerpts added to Crucible, either through the <a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1">chrome extension</a> or in-app, will appear here.</div>
+							<div id="facts-prompt" className="sidenav-onboarding-prompt">excerpts added to {CONTACT_EMAIL}, either through the <a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1">chrome extension</a> or in-app, will appear here.</div>
 							<br />
 							{/*<div id="topics-prompt" className="sidenav-onboarding-prompt">Create new topic folders with the "<b>+</b>" button in the top-left. Then, simply drag your excerpts into the desired folder.</div>*/}
 							<a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1" target="_blank"><button className="form-action-button" id="extension-link-button">Collect New Excerpts</button></a>							

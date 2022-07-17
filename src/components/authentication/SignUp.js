@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 import FormWrapper from "../tools/FormWrapper.js"
 
-import { API_ROOT } from "../../constants"
+import { API_ROOT, CONTACT_EMAIL } from "../../constants"
 
 class SignUp extends Component {
 	state = {
@@ -61,6 +61,8 @@ class SignUp extends Component {
 					let response = await resp.json();
 					if (errorBox) { errorBox.innerText = response.errors.join('\r\n') }
 					else {alert(response.errors.join('\r\n'))}
+				} else {
+					alert(`something went wrong, please try again or email ${CONTACT_EMAIL}`)
 				}
 			}
 			catch (error) {

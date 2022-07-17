@@ -9,7 +9,7 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
-import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN } from "./constants"
+import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN, APP_NAME } from "./constants"
 import ReactGA from "react-ga4";
 import mixpanel from 'mixpanel-browser';
 
@@ -74,7 +74,7 @@ const App = props => {
     props.getArticleRecommendations()
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-     alert("Crucible is not yet fully optimized for mobile, features will be limited on this device")
+     alert(`${APP_NAME} is not yet fully optimized for mobile, features will be limited on this device`)
     }       
   }, [])
 

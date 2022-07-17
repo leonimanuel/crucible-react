@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import FormWrapper from "../tools/FormWrapper.js"
-import { API_ROOT } from "../../constants"
+import { API_ROOT, APP_NAME, CONTACT_EMAIL } from "../../constants"
 
 class FeedbackForm extends Component {
 	state = {
@@ -35,11 +35,11 @@ class FeedbackForm extends Component {
 				this.props.closePopup()
 			}
 			else {
-				alert("Can't submit right now, sorry about that. Please try again later or email us directly at leon@crucible-app.com")
+				alert(`Can't submit right now, sorry about that. Please try again later or email us directly at ${CONTACT_EMAIL}`)
 			}
 		}
 		catch (error) {
-			alert("Can't submit right now, sorry about that. Please try again later or email us directly at leon@crucible-app.com")
+			alert(`Can't submit right now, sorry about that. Please try again later or email us directly at ${CONTACT_EMAIL}`)
 		}
 	}
 
@@ -59,7 +59,7 @@ class FeedbackForm extends Component {
 							<textarea 
 								name="feedback" id="feedback-input" className="form-input" cols="50" rows="3" required
 								onChange={this.handleChange} value={this.state.feedback}
-								placeholder="Please submit any questions or comments here. Your message will be sent to the Crucible team as an email.">
+								placeholder={`Please submit any questions or comments here. Your message will be sent to the ${APP_NAME} team as an email.`}>
 							</textarea>
 						</div>
 						

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 import parse from "html-react-parser";
+import { FacebookSelector } from '@charkour/react-reactions';
 
 import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
 
@@ -25,6 +26,11 @@ class TimelineComment extends Component {
 
 	handleSelectComment = () => {
 		// this.props.selectComment(this.props.comment, this.props.userId)
+	}
+
+	handleReaction = (reactionString) => {
+		// reactionString will be something like 'wow' or 'haha' 
+		debugger
 	}
 
 	render() {		
@@ -89,6 +95,7 @@ class TimelineComment extends Component {
 						: 
 					null
 				}
+				<FacebookSelector onSelect={this.handleReaction}/>
 				<TaggedUsers tagged_users={comment.tagged_users}/>
 
 			</div>

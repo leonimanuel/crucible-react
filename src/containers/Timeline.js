@@ -27,6 +27,8 @@ import { setActivities } from "../actions/timelineActions.js"
 import { clearNotificationActivity, showPost, readNotification } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 import { loadSelectedGroup } from "../actions/groups.js"
+import { APP_NAME } from "../constants"
+
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -180,7 +182,6 @@ class Timeline extends Component {
 	}
 
 	loadActivitiesByFeedType = () => {
-		debugger
 		let activityId = ""
 		if (this.props.location.pathname.split("/")[1] === "groups") {
 			activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0"
@@ -314,7 +315,7 @@ class Timeline extends Component {
 											} else if (!this.state.loadingActivities) {
 												return (
 													<div id="timeline-prompt" className="sidenav-onboarding-prompt">
-													  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other Crucible members </span>} position="right center" modal>
+													  <Popup trigger={<span id="timeline-prompt-popup-trigger">Follow other {APP_NAME} members </span>} position="right center" modal>
 													    { close => <NetworkModal handleContactSelect={() => close()}/> }
 													  </Popup>															
 													   to view their activity here!

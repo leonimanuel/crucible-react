@@ -12,7 +12,8 @@ class UserConfigModal extends Component {
 		email: "",
 		email_tags: false,
 		email_replies: false,
-		email_group_add: false
+		email_group_add: false,
+		email_private_group_post: false
 	}
 
 	componentDidMount() {
