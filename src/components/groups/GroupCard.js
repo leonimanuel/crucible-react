@@ -51,21 +51,13 @@ class GroupCard extends Component {
 						<React.Fragment>
 							<div id="group-card-name-wrapper">
 								<div id="name-and-membership-wrapper">
-									<div className="timeline-card-name"><img id="group-privacy-icon" src={group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {group.name}</div>
-						      {
-						      	this.props.isMemberOfSelectedGroup
-						      		?
-						      			<div id="group-membership-indicator">member</div>
-						      		:
-						      		group.private ? null : <button onClick={() => this.props.joinGroup(this.props.groupId)}>join group</button>
-						      }
-						      
+									<div className="timeline-card-name"><img className="group-privacy-icon" src={group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {group.name}</div>
 								</div>
 					      
 					      <Menu>
 					        <nav className="dropdown-nav">
 					          <ul className="nav">
-					            {this.props.isMemberOfSelectedGroup ? <li><div onClick={() => this.props.leaveGroup(this.props.groupId)}>leave group</div></li> : null}
+					            {this.props.isMemberOfSelectedGroup ? <li className={"context-menu-item"}><div onClick={() => this.props.leaveGroup(this.props.groupId)}>leave group</div></li> : null}
 					          </ul>
 					        </nav>
 					      </Menu>
@@ -79,7 +71,15 @@ class GroupCard extends Component {
 						    			closePopup={() => close()} 
 						    		/> 
 						    	}
-							  </Popup>										
+							  </Popup>
+					      
+					      {
+					      	this.props.isMemberOfSelectedGroup
+					      		?
+					      			<div id="group-membership-indicator">member</div>
+					      		:
+					      		group.private ? null : <button className="form-action-button" onClick={() => this.props.joinGroup(this.props.groupId)}>join group</button>
+					      }
 							</div>
 
 						</React.Fragment>

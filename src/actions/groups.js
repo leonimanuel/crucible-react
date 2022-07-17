@@ -76,7 +76,6 @@ export const loadSelectedGroup = (groupId, activityId, handleLoad) => {
 
 export const readGroupNotifications = (userId, notificationGroups, groupId) => {
   let notifications = notificationGroups.filter(ng => (ng.group_object.type ==  "Group" && ng.group_object.id == groupId) || (ng.group_object.type ==  "Comment" && ng.group_object.group == groupId))
-  debugger
   return (dispatch) => {
     if (notifications.length) {
       notifications.forEach(notification => {

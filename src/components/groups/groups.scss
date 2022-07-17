@@ -28,6 +28,8 @@ $base-color-dark-blue: #0f4c75;
   #group-card-members-wrapper {
     cursor: pointer;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
 
     #group-card-members-button {
       font-weight: bold;
@@ -36,6 +38,11 @@ $base-color-dark-blue: #0f4c75;
         color: blue;
       }
     }
+
+		#group-membership-indicator {
+			font-weight: bold;
+			color: green;
+		}
   }  
 }
 
@@ -114,6 +121,10 @@ $base-color-dark-blue: #0f4c75;
 	.highlight {
 		background-color: cyan
 	}
+}
+
+.context-menu-item {
+	cursor: pointer;
 }
 
 

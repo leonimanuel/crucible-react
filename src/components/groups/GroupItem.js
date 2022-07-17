@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 // import { setSelectedGroup } from "../../actions/groups.js"
 import { readGroupNotifications } from "../../actions/groups.js"
 // import { showDetailPane } from "../../actions/sidenavActions.js"
+import PrivateIcon from "./locked_icon.svg"
+import PublicIcon from "./globe_online_world_icon.svg"
 
 class GroupsItem extends Component {
 	// handleGroupClick = () => {
@@ -24,7 +26,7 @@ class GroupsItem extends Component {
 		return (
 			<Link className="group-item-link" to={`/groups/${this.props.group.id}`} >
 				<div className={`detail-item-container`} onClick={this.handleGroupClick}>			
-					<div>{this.props.group.name} {this.props.groupNotifications.length ? <span className="badge">{this.props.groupNotifications.length}</span> : null }</div>
+					<div><img className="group-privacy-icon" src={this.props.group.private ? PrivateIcon : PublicIcon} alt="private-icon" width="20px" /> {this.props.group.name} {this.props.groupNotifications.length ? <span className="badge">{this.props.groupNotifications.length}</span> : null }</div>
 				</div>
 			</Link>
 
