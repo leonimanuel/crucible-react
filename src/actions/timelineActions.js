@@ -37,7 +37,7 @@ export const setActivities = (activityId, timelineType, handleLoad) => {
 	}		
 }
 
-export const createReply = (text, comment_id, factIDs, responseExcerptId, taggedUserIds, clearReplyForm) => {
+export const createReply = (text, comment_id, factIDs, responseExcerptId, taggedUserIds, closeReplyForm) => {
 	return async (dispatch) => {
 		dispatch({
 			type: "CREATING_REPLY"
@@ -76,7 +76,7 @@ export const createReply = (text, comment_id, factIDs, responseExcerptId, tagged
 					reply
 				})
 
-				clearReplyForm()
+				closeReplyForm()
     	} 
     	else if (res.status == 422) {
         let response = await res.json()

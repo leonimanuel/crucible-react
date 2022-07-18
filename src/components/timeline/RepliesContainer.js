@@ -34,7 +34,7 @@ const RepliesContainer = (props) => {
 					: null
 				}
 			
-				{stateShowReplyForm ? <ReplyForm comment={comment} index={props.index}/> : null}
+				{stateShowReplyForm ? <ReplyForm comment={comment} index={props.index} closeReplyForm={() => setStateShowReplyForm(false)}/> : null}
 			</div>
 			
 			<React.Fragment>
