@@ -35,16 +35,18 @@ class NewLandingPage extends Component {
 				</div>		
 
 				<div id="landing-text-and-buttons">
-					<div id="landing-text">
-            <h1 id="landing-slug">
-              reading is better with friends
-            </h1>
+					<div className="landing-subwrapper">
+            <div id="landing-text">
+              <h1 id="landing-slug">
+                reading is better with friends
+              </h1>
+            </div>
+            
+            <div id="new-landing-buttons-container">
+              <Link to="/signup"><button className="form-action-button">create account</button></Link>
+              <div id="sign-in-prompt" className="form-option-description">Already have an account? <Link to="/login" className="form-option">Sign in</Link></div>
+            </div>
           </div>
-					
-					<div id="new-landing-buttons-container">
-						<Link to="/login"><button className="form-action-button">log in</button></Link>
-						<Link to="/signup"><button className="form-action-button">create account</button></Link>
-					</div>
 				</div>
 			</div>
 		)
