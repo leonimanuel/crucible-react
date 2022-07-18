@@ -35,7 +35,10 @@ class NewLandingPage extends Component {
 				</div>		
 
 				<div id="landing-text-and-buttons">
-					<div className="landing-subwrapper">
+          <div className="landing-subwrapper">
+            <div id="app-title">
+              {/*<img src="../../public/logo512.png" alt="clammer-logo" />*/}
+            </div>
             <div id="landing-text">
               <h1 id="landing-slug">
                 reading is better with friends
