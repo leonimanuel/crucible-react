@@ -24,17 +24,7 @@ class NewLandingPage extends Component {
 		showTracer = resource.content && resource.response_excerpt
     return (
 			<div id="landing-page">
-				<div className="timeline-item-container" id="dummy-timeline-item-container">
-					<h1 id="landing-page-featured-post">Featured Post</h1>
-          <div className="timeline-item-subcontainer">
-						<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
-						<div className="timeline-item-content-container">					
-							<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
-						</div>
-					</div>
-				</div>		
-
-				<div id="landing-text-and-buttons">
+        <div id="landing-text-and-buttons">
           <div className="landing-subwrapper">
             <div id="app-title">
               {/*<img src="../../public/logo512.png" alt="clammer-logo" />*/}
@@ -50,7 +40,18 @@ class NewLandingPage extends Component {
               <div id="sign-in-prompt" className="form-option-description">Already have an account? <Link to="/login" className="form-option">Sign in</Link></div>
             </div>
           </div>
-				</div>
+        </div>
+
+				<div className="timeline-item-container" id="dummy-timeline-item-container">
+					<h1 id="landing-page-featured-post">Featured Post</h1>
+          <div className="timeline-item-subcontainer">
+						<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
+						<div className="timeline-item-content-container">					
+							<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
+						</div>
+					</div>
+				</div>		
+
 			</div>
 		)
 
