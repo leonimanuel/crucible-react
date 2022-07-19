@@ -88,7 +88,7 @@ class FactDropzone extends Component {
           onDragLeave={this.handleDragLeave}
           onDrop={this.drop}
         >
-          {this.props.facts.length ? null : "Drag a supporting excerpt here (optional)"}
+          {this.props.facts.length ? null : this.props.placeholder}
         </div>            
 
         {

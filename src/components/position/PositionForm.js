@@ -96,7 +96,7 @@ class PositionForm extends Component {
                 responseExcerpt={this.state.responseExcerpt}
                 handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
                 handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-                placeholder="responding to something you read? Drag the excerpt here from your Excerpt Bank."
+                placeholder="responding to something you read? Drag the excerpt here from the left-hand menu."
               />
 
               <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
@@ -111,7 +111,7 @@ class PositionForm extends Component {
                   >
                   </div>
                   <input 
-                    className="position-submit-button comment-submit-button" 
+                    className="position-submit-button comment-submit-button form-action-button" 
                     type="submit" value={`post to ${this.props.selectedGroup ? this.props.selectedGroup.name : "timeline"}`}
                     disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)}
                   />
@@ -121,7 +121,7 @@ class PositionForm extends Component {
               <FactDropzone 
                 facts={this.state.facts} 
                 handleFactsUpdate={(facts) => this.updateFacts(facts)}
-                placeholder="Support your position with facts by dragging them here from your excerpts (optional)."
+                placeholder="Support your comment by dragging an excerpt here (optional)."
                 dropType="supportingFacts"
               />
               <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags} selectedGroupId={this.props.selectedGroup.id}/>

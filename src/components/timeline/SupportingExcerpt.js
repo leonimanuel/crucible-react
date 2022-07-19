@@ -10,7 +10,8 @@ import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
 class SupportingExcerpt extends Component {
 	state = {
 		factPosition: "",
-		showOriginalFact: false
+		showOriginalFact: false,
+		showContext: true
 	}
 
 	startDrag = e => {

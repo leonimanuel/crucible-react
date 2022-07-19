@@ -30,7 +30,6 @@ class TimelineComment extends Component {
 
 	handleReaction = (reactionString) => {
 		// reactionString will be something like 'wow' or 'haha' 
-		debugger
 	}
 
 	render() {		

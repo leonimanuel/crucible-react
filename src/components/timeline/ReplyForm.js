@@ -80,7 +80,7 @@ class ReplyForm extends Component {
           responseExcerpt={this.state.responseExcerpt}
           handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
           handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-          placeholder="responding to something you read? Drag & drop the excerpt here from your Excerpt Bank."             
+          placeholder="responding to something you read? Drag the excerpt here from the left-hand menu."
         />
 
         <div className="reply-form-subcontainer-bubble comment-form-subcontainer-bubble">
@@ -93,7 +93,7 @@ class ReplyForm extends Component {
             >
             </div>
             <input 
-              className="reply-submit-button comment-submit-button" 
+              className="reply-submit-button comment-submit-button form-action-button" 
               type="submit" value="reply" 
               disabled={!(this.state.text || this.state.responseExcerpt) || (this.state.facts.length && !this.state.text)} 
             />

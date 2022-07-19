@@ -52,7 +52,7 @@ class ResponseExcerptDropzone extends Component {
           excerpt 
             ?
           <div className="timeline-comment-context-wrapper">
-            <div style={{"margin-top": "10px"}}>
+            <div className="article-anchor-wrapper">
               <a 
                 className="article-anchor reply-excerpt" 
                 href={excerpt.article_url} 
