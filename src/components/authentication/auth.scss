@@ -41,3 +41,13 @@ $base-color-button-hover: #73A9AD;
 		height: 100%;
 	}		  
 }
+
+.disclaimer {
+	color: slategrey;
+	line-height: 1.1;
+	a { margin: 0; padding: 0;}
+}
+
+.auth-form-and-options {
+	max-width: 400px;
+}

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 import FormWrapper from "../tools/FormWrapper.js"
 
-import { API_ROOT, CONTACT_EMAIL } from "../../constants"
+import { API_ROOT, CONTACT_EMAIL, TERMS_AND_CONDITIONS_URL, PRIVACY_POLICY_URL } from "../../constants"
 
 class SignUp extends Component {
 	state = {
@@ -13,7 +13,8 @@ class SignUp extends Component {
 		handle: "",
 		email: "",
 		password: "",
-		submitted: ""
+		submitted: "",
+		ageVerified: true
 	}
 
 	handleChange = e => {
@@ -23,7 +24,15 @@ class SignUp extends Component {
 	}
 
 	handleSubmit = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
+
+		if (!this.state.ageVerified) {
+			alert("You must be 13 years or older to create an account")
+			return
+		}
+
+		alert("what the fukc")
+
 		console.log("submitting login info")
 		let errorBox = document.getElementById("handle-error-box")
 		if (this.state.handle.match(/\W/)) {
@@ -126,6 +135,17 @@ class SignUp extends Component {
 										<input className="form-input auth-input" type="password" name="password" onChange={this.handleChange} value={this.state.password} required maxlength="25"/>										
 									</div>
 									<div id="error-box" style={{color: "red"}}></div>
+									<div className="auth-item form-field form-checkbox-item">
+										<input type="checkbox" name="ageVerification" value="Bike" checked={this.state.ageVerified} onChange={() => this.setState({ageVerified: !this.state.ageVerified})} />
+										<label className="form-label auth-form-label checkbox-label disclaimer">I am 13 years or older.</label>
+									</div>
+									<span className="form-option-description disclaimer">
+										By signing up, you are agreeing to Clammer's
+										<br/> 
+										<a href={TERMS_AND_CONDITIONS_URL} target="_blank"> Terms and Conditions </a>
+										and
+										<a href={PRIVACY_POLICY_URL} target="_blank"> Privacy Policy</a>
+									</span>
 									<input className="auth-button form-action-button" type="submit" value="Sign up" {...opts}/>
 								</form>
 
