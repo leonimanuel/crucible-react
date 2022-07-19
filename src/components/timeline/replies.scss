@@ -1,6 +1,22 @@
 .replies-container {
   position: relative;
 
+  .reply-form {
+    border: 2px solid lightgrey;
+
+    .comment-input-div.reply-input-div {
+      &.no-text {
+        &:before {
+          content: "share your reply here.";
+        }
+      } 
+    }
+
+    .chat-fact-dropzone-bubble {
+      display: none;
+    }
+  }
+
   .replies-content-container {
     border-radius: 5px;
     background-color: white;
@@ -109,8 +125,6 @@
     }
   }
 }
-
-
 
 
 

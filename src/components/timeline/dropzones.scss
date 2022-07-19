@@ -32,7 +32,7 @@ $base-color-dark-blue: #0f4c75;
     content: "";
     
     width: 20px;
-    height: 20px;
+    height: 22px;
     // background-color: #F3F1F5;
     // border-top: 15px solid transparent;
     // border-bottom: 9px dashed #F3F1F5;
@@ -69,18 +69,17 @@ $base-color-dark-blue: #0f4c75;
   align-items: center;
   // padding: 50% 0;
 
-
   transition: height .2s ease;
 
   &[data-position=first] {
     margin-top: 10px;
     // border: none;
     &[data-dragged_over=false] {
-      height: 30px;
+      height: 50px;
     }
 
     &[data-dragged_over=true] {
-      height: 50px;
+      height: 75px;
     }      
   }
 
@@ -95,7 +94,7 @@ $base-color-dark-blue: #0f4c75;
     }
 
     &[data-dragged_over=true] {
-      height: 50px;
+      height: 75px;
     }           
   }
 
@@ -103,11 +102,11 @@ $base-color-dark-blue: #0f4c75;
     margin-top: 10px;
 
     &[data-dragged_over=false] {
-      height: 30px;
+      height: 50px;
     }
 
     &[data-dragged_over=true] {
-      height: 50px;
+      height: 75px;
     }           
   }       
 }
@@ -168,9 +167,16 @@ $base-color-dark-blue: #0f4c75;
         /*overflow-wrap: break-word;  */
         border-radius: 2px solid blue;
 
+        &#position-input-div {
+          &.no-text {
+            &:before {
+              content: "share your thoughts here...";
+            } 
+          }           
+        }
+
         &.no-text {
           &:before {
-            content: "share your thoughts here...";
             // color: #555; 
             color: grey; 
             font-weight: bold;
