@@ -244,10 +244,16 @@ class Timeline extends Component {
 		const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
 		return (
 			<div id="timeline-wrapper">
-        <div id="selection-buttons-wrapper">
-          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
-          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
-        </div>
+        <Route exact path="/" 
+					render={(matchProps) => {
+						return (
+			        <div id="selection-buttons-wrapper">
+			          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
+			          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
+			        </div>
+						)
+					}} 
+        />
 
 				<div id="timeline-items-wrapper">
 					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
@@ -273,7 +279,7 @@ class Timeline extends Component {
 						path="/profiles/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.contactFeed.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.contactFeed.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.contactFeed.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.contactFeed.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -285,7 +291,7 @@ class Timeline extends Component {
 						path="/groups/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.groupFeedItems.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.groupFeedItems.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.groupFeedItems.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.groupFeedItems.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -320,7 +326,7 @@ class Timeline extends Component {
 								  loader={timelineActivities.length > 3 ? <h4>Loading...</h4> : null}
 								  endMessage={
 								    <p style={{ textAlign: 'center' }}>
-								      <b>Yay! You have seen it all</b>
+								      <b>You've reached the end of this feed</b>
 								    </p>
 								  }
 								  scrollableTarget="timeline-items-wrapper"
