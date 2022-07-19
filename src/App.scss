@@ -144,19 +144,19 @@ textarea {
 }
 
 @media (min-width: 901px) and (max-width: 850px) {
-  #side-nav {width: 300px; }
+  // #side-nav {width: 300px; }
   #timeline-wrapper { width: 400px; }
   #articles-container {display: none;}
 }
 
 @media (min-width: 851px) and (max-width: 950px) {
-  #side-nav { width: 300px; }
+  // #side-nav { width: 300px; }
   #timeline-wrapper { width: 500px; }
   #articles-container {display: none;}
 }
 
 @media (min-width: 951px) and (max-width: 1050px) {
-  #side-nav { width: 350px; }
+  // #side-nav { width: 350px; }
   #timeline-wrapper { width: 550px; }
   #articles-container {display: none;}
 }
