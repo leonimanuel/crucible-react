@@ -286,8 +286,13 @@ li:hover{
 
 
 #selection-buttons-wrapper {
-  margin: 0;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  #selection-buttons-subwrapper {
+    // outline: 2px solid red;
+    margin: 0;
+    margin-bottom: 10px;
+  }
 }
 
 #selection-buttons-wrapper button {

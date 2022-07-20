@@ -248,8 +248,10 @@ class Timeline extends Component {
 					render={(matchProps) => {
 						return (
 			        <div id="selection-buttons-wrapper">
-			          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
-			          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
+			          <div id="selection-buttons-subwrapper">
+				          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
+				          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
+			          </div>
 			        </div>
 						)
 					}} 
