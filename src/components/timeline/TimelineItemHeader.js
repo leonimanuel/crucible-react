@@ -16,7 +16,7 @@ class TimelineItemHeader extends Component {
 				<div className={`item-header-description ${showTracer ? "show-tracer" : ""}`}>
 					<span className="item-header-username">
 						<Link className="timeline-actor-link" to={`/profiles/${actor.id}`}>
-							{actor.name}
+							{actor.handle}
 						</Link>
 					</span>
 					<span> {this.props.type}</span>
