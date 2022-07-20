@@ -33,7 +33,8 @@ class NewLandingPage extends Component {
               <h1 id="landing-slug">
                 clammer
               </h1>
-              <h3 id="landing-pitch">share what you read, as you read it.</h3>
+              {/*<h3 id="landing-pitch">share what you read, as you read it.</h3>*/}
+              <h3 id="landing-pitch">you are what you read</h3>
             </div>
             
             <div id="new-landing-buttons-container">
@@ -44,7 +45,7 @@ class NewLandingPage extends Component {
         </div>
 
 				<div className="timeline-item-container" id="dummy-timeline-item-container">
-					<h1 id="landing-page-featured-post">Featured Post</h1>
+					<h1 id="landing-page-featured-post">Featured Post: </h1>
           <div className="timeline-item-subcontainer">
 						<TimelineItemHeader time={activity.time} actor={activity.actor} type="commented on an article"/>
 						<div className="timeline-item-content-container">					

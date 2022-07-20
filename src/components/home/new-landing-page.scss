@@ -56,12 +56,16 @@ $tracer-color: #0f4c75;
 		}	
 
 		#landing-page-featured-post {
+			// outline: 2px solid red;
+			margin-bottom: 0;
+			// color: black;
 			color: $base-color-dark-blue;
+			font-size: 1.5em;
 			font-family: 'Bebas Neue';			
 		}
 
 		.timeline-item-subcontainer {
-			margin: 20px 0;
+			margin: 10px 0;
 			
 			max-width: 90%;
 			// border: 2px solid blue;
