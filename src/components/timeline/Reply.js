@@ -31,11 +31,11 @@ const Reply = (props) => {
 	return (
 		<div className="reply-container">
 			<div className="reply-header">
-				<div className={`reply-user-handle ${reply.reply_comment ? "tracer" : ""}`}>{reply.user.handle ? reply.user.handle : "unavailable"}</div>
+				<div className={`reply-user-handle ${reply.reply_comment?.response_excerpt ? "tracer" : ""}`}>{reply.user.handle ? reply.user.handle : "unavailable"}</div>
 				{reply.created_at ? <Moment className="reply-timestamp" fromNow>{reply.created_at}</Moment> : null}
 			</div>
 
-			<div className={`reply-content-wrapper ${reply.reply_comment ? "tracer" : ""}`}>
+			<div className={`reply-content-wrapper ${reply.reply_comment?.response_excerpt ? "tracer" : ""}`}>
 				{!reply.reply_comment
 					?
 						<div className="reply-text">{reply.content}</div>
