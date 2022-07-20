@@ -139,14 +139,15 @@ class SignUp extends Component {
 										<input type="checkbox" name="ageVerification" value="Bike" checked={this.state.ageVerified} onChange={() => this.setState({ageVerified: !this.state.ageVerified})} />
 										<label className="form-label auth-form-label checkbox-label disclaimer">I am 13 years or older.</label>
 									</div>
+
+									<input className="auth-button form-action-button" type="submit" value="Sign up" {...opts}/>
 									<span className="form-option-description disclaimer">
 										By signing up, you are agreeing to Clammer's
 										<br/> 
 										<a href={TERMS_AND_CONDITIONS_URL} target="_blank"> Terms and Conditions </a>
 										and
 										<a href={PRIVACY_POLICY_URL} target="_blank"> Privacy Policy</a>
-									</span>
-									<input className="auth-button form-action-button" type="submit" value="Sign up" {...opts}/>
+									</span>									
 								</form>
 
 								<div id="sign-up-prompt" className="form-option-description">Already have an account? <Link to="/login">Sign in</Link></div>									

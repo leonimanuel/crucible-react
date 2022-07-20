@@ -31,8 +31,9 @@ class NewLandingPage extends Component {
             </div>
             <div id="landing-text">
               <h1 id="landing-slug">
-                reading is better with friends
+                clammer
               </h1>
+              <h3 id="landing-pitch">share what you read, as you read it.</h3>
             </div>
             
             <div id="new-landing-buttons-container">
