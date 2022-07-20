@@ -25,7 +25,9 @@ class MainPane extends Component {
 			const activity = this.props.selectedNotificationActivity
 			if (this.props.notificationGroups.length && !!activity.item.object.group_id && !this.state.groupMembershipNotificationRead) {
 				let commentNotificationGroup = this.props.notificationGroups.find(ng => ng.group_object.type == "Comment" && ng.group_object.id == activity.item.object.id)
-				this.props.readGroupNotifications(this.props.userId, [commentNotificationGroup], activity.item.object.group_id);
+				if (commentNotificationGroup) {
+					this.props.readGroupNotifications(this.props.userId, [commentNotificationGroup], activity.item.object.group_id);
+				}
 				this.setState({groupMembershipNotificationRead: true});
 			}
 		}
