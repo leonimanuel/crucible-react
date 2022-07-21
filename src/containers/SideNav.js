@@ -24,8 +24,11 @@ class SideNav extends Component {
 
 	componentDidMount() {
 		// debugger
-		this.props.fetchTopics();
-		this.props.setNotifications(this.props.userId);
+		
+		if (this.props.userId) {
+			this.props.fetchTopics();
+			this.props.setNotifications(this.props.userId);
+		}
 		// console.log("mounted sidenav")
 		// let sideNav = document.getElementById("side-nav")
 		// let sectionTabs = document.getElementById("sections-list")

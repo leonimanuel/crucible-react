@@ -261,15 +261,13 @@ class Timeline extends Component {
 		const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
 		return (
 			<div id="timeline-wrapper">
-        <Route exact path="/" 
+        <Route exact path={["/", "/timeline", "/discover"]}
 					render={(matchProps) => {
 						return (
 			        <div id="selection-buttons-wrapper">
 			          <div id="selection-buttons-subwrapper">
-				          <Link to="/timeline"><button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button></Link>
+				          {this.props.userId ?  <Link to="/timeline"><button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button></Link> : null}
 				          <Link to="/discover"><button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button></Link>
-				          
-				          
 			          </div>
 			        </div>
 						)
@@ -279,7 +277,7 @@ class Timeline extends Component {
 				<div id="timeline-items-wrapper">
 					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
 					{/*<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />*/}
-					<Route exact path="/" render={() => <PositionForm /> } />
+					<Route path={["/", "/timeline", "/discover"]} render={() => <PositionForm /> } />
 					<Route path="/groups/:id" render={() => <PositionForm /> } />
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
@@ -337,7 +335,7 @@ class Timeline extends Component {
 						}}
 					/>
 
-					<Route exact path="/"
+					<Route exact path={["/", "/timeline", "/discover"]}
 						render={(matchProps) => {
 							return (
 								<InfiniteScroll
@@ -354,7 +352,7 @@ class Timeline extends Component {
 
 								>
 
-									<Route exact path="/" 
+									<Route exact path={["/", "/timeline", "/discover"]}
 										render={(matchProps) => {
 											if (timelineActivities.length) {
 												return timelineActivities.map((activity, index) => this.showTimelineItem(activity, index))

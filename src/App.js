@@ -154,6 +154,32 @@ const App = props => {
     props.toggleSidenav(bool)
   }
   
+  const renderMain = () => {
+    return (
+      <div>
+        {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
+        
+        <main id="main-content" onClick={handleMainClick}>               
+
+          <SideNav onSidenavToggle={handleSidenavToggle}/>
+          {/*<Route exact path="/"><Home/></Route>*/}
+          <Timeline/>
+          {<Route path="/console"><Console/></Route>}
+          <Route path="/review"><Review/></Route>
+          {/*<Route path="/groups"><Timeline/></Route>*/}  
+          <Route path="/database"><Database/></Route>  
+          
+          {/*<Social />*/}
+          <ArticlesContainer />
+          <FeedbackButton />
+        </main>
+      </div>
+    )
+  }
+  // basically, what I'm trying to say if that exact path === "/", then if user logged in, load main stuff, else load landing page
+  // else, if exact path === "/discover", 
+
+
   return (
     <Router>
       <LastLocationProvider>
@@ -161,51 +187,29 @@ const App = props => {
 
           {/*<div id="blob"></div>*/}
           
-          
           <Route 
             path="/confirm-email/:token"
             render={routerProps => props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
           </Route> 
 
+          <Route exact path={["/", "/timeline"]}>
+            { props.userId ? renderMain() : <NewLandingPage />}
+          </Route>   
 
-          {            
-            props.userId
-            ?
-              
-              <div>
-                {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
-                
-                <main id="main-content" onClick={handleMainClick}>               
+          <Route exact path="/discover">
+            {renderMain()}
+          </Route>
 
-                  <SideNav onSidenavToggle={handleSidenavToggle}/>
-                  {/*<Route exact path="/"><Home/></Route>*/}
-                  <Timeline/>
-                  {<Route path="/console"><Console/></Route>}
-                  <Route path="/review"><Review/></Route>
-                  {/*<Route path="/groups"><Timeline/></Route>*/}  
-                  <Route path="/database"><Database/></Route>  
-                  
-                  {/*<Social />*/}
-                  <ArticlesContainer />
-                  <FeedbackButton />
-                </main>
-              </div>
-            : 
-              <React.Fragment>
-                <Route path="/groups">{props.loginFailed ? <Redirect to="/login"/> : null}</Route>                   
-                <Route exact path="/" component={NewLandingPage} userId={props.userId}/>
-              </React.Fragment> 
-          }            
-            <Route path="/login"><Login/></Route>
-            <Route path="/signup"><SignUp/></Route> 
-            <Route path="/control"><Control/></Route> 
+          <Route path="/login"><Login/></Route>
+          <Route path="/signup"><SignUp/></Route> 
+          <Route path="/control"><Control/></Route> 
 
-            <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
+          <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
 
-            <Route 
-              path="/reset-password/:token"
-              render={routerProps => props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
-            </Route> 
+          <Route 
+            path="/reset-password/:token"
+            render={routerProps => props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
+          </Route> 
 
 
         

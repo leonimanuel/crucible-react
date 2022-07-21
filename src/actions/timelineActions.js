@@ -15,8 +15,9 @@ export const setActivities = (activityId, timelineType, handleLoad) => {
 				Authorization: localStorage.getItem("token")
 			}
 		}
-		// debugger
-		fetch(API_ROOT + `/timeline/${activityId}?timelineType=${timelineType}`, configObj)
+		
+		const path = timelineType === "myFeed" ? "timeline" : "discover"
+		fetch(API_ROOT + `/${path}/${activityId}`, configObj)
 			.then(resp => resp.json())
 			.then(activities => {
 				const replies = activities.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
