@@ -24,7 +24,7 @@ class DetailPane extends Component {
 		// }
 		return (
 			<div id="sidenav-details-pane">
-				{this.props.section === "console" && this.props.parentTopic ? <ConsoleWindow /> : null}
+				{this.props.section === "console" ? <ConsoleWindow /> : null}
 				{this.props.section === "notifications" ? <NotificationDetailsMenu /> : null}
 				{this.props.section === "network" ? <NetworkMenu /> : null}
 				{this.props.section === "groups" ? <GroupsMenu /> : null}
