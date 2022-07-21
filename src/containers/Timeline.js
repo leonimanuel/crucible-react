@@ -193,11 +193,28 @@ class Timeline extends Component {
 			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
 			let profileId = this.props.location.pathname.split("/")[2]
 			this.props.showSelectedContact(profileId, activityId, this.handleLoad)
-		} else {
-			const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
+		} 
+
+		// OLD IMPLEMENTATION
+		// else {
+		// 	const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
+		// 	activityId = timelineActivities.length ? timelineActivities.at(-1).activity_id : "0"
+		// 	this.props.setActivities(activityId, this.state.timelineType, this.handleLoad);	
+		// }		
+
+		// NEW IMPLEMENTATION
+		else if (this.props.location.pathname.split("/")[1] === "timeline" 
+							|| this.props.location.pathname === "/") {
+			const timelineActivities = this.props.timeline_activities
 			activityId = timelineActivities.length ? timelineActivities.at(-1).activity_id : "0"
-			this.props.setActivities(activityId, this.state.timelineType, this.handleLoad);	
-		}		
+			this.props.setActivities(activityId, "myFeed", this.handleLoad);	
+		}
+
+		else if (this.props.location.pathname.split("/")[1] === "discover") {
+			const timelineActivities = this.props.discover_activities;
+			activityId = timelineActivities.length ? timelineActivities.at(-1).activity_id : "0"
+			this.props.setActivities(activityId, "discoverFeed", this.handleLoad);				
+		}
 	}
 
 	fetchMoreActivities = () => {
@@ -249,8 +266,10 @@ class Timeline extends Component {
 						return (
 			        <div id="selection-buttons-wrapper">
 			          <div id="selection-buttons-subwrapper">
-				          <button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button>
-				          <button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button>
+				          <Link to="/timeline"><button className={`selection-button ${this.state.timelineType === "myFeed" ? "selected" : null}`} value="myFeed" onClick={this.handleFeedTypeSelection}>My Feed</button></Link>
+				          <Link to="/discover"><button className={`selection-button ${this.state.timelineType === "discoverFeed" ? "selected" : null}`} value="discoverFeed" onClick={this.handleFeedTypeSelection}>Discover</button></Link>
+				          
+				          
 			          </div>
 			        </div>
 						)
@@ -391,6 +410,7 @@ const mapStateToProps = state => {
 
 
 export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact, loadSelectedGroup })(Timeline));
+
 
 
 

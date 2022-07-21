@@ -38,7 +38,6 @@ class ReplyForm extends Component {
   }
 
   handleSubmit = e => {
-    alert("HANDLING SUBMIT")
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
