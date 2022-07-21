@@ -38,6 +38,7 @@ class ReplyForm extends Component {
   }
 
   handleSubmit = e => {
+    alert("HANDLING SUBMIT")
     const factIDs = this.state.facts.map(fact => fact.id)
     e.preventDefault();
     
@@ -46,7 +47,7 @@ class ReplyForm extends Component {
       this.props.comment.id, 
       factIDs, 
       this.state.responseExcerpt.id, 
-      this.state.tags.map(t => t.contact_id), 
+      this.state.tags.map(t => t.value), 
       this.props.closeReplyForm
     )
   }
@@ -70,6 +71,7 @@ class ReplyForm extends Component {
   }  
 
   handleTagsUpdate = (tags) => {
+    debugger
     this.setState({tags: tags})
   }  
 

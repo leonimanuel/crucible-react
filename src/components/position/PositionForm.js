@@ -71,7 +71,6 @@ class PositionForm extends Component {
   }  
 
   handleTagsUpdate = (tags) => {
-    debugger
     this.setState({tags: tags})
   }  
 

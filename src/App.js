@@ -175,40 +175,6 @@ const App = props => {
               <div>
                 {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
                 
-                {/*
-                  <ActionCableConsumer 
-                    channel={{ channel: "MessageNotificationsChannel", user: props.userId }}
-                    onReceived={this.handleUnreadUpdate} 
-                  />          
-
-                  <ActionCableConsumer 
-                    channel={{ channel: "MessagesChannel", user: props.userId }}
-                    onReceived={this.handleReceivedMessage} 
-                  />
-
-                  <ActionCableConsumer 
-                    channel={{ channel: "CommentsChannel" }}
-                    onReceived={this.handleReceivedComment} 
-                  />            
-
-                  <ActionCableConsumer 
-                    channel={{ channel: "ReadDiscussionChannel", user: props.userId }}
-                    onReceived={this.handleReadDiscussion} 
-                  />    
-
-                  <ActionCableConsumer 
-                    channel={{ channel: "ReviewsChannel", user: props.userId }}
-                    onReceived={this.handleReviewedItem} 
-                  />    
-
-                  <ActionCableConsumer 
-                    channel={{ channel: "MiscChannel", user: props.userId }}
-                    onReceived={this.handleMiscItem} 
-                  />                      
-                */}
-
-
-                
                 <main id="main-content" onClick={handleMainClick}>               
 
                   <SideNav onSidenavToggle={handleSidenavToggle}/>

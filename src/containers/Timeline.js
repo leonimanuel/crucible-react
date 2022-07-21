@@ -394,4 +394,3 @@ export default withRouter(connect(mapStateToProps, { setActivities, clearNotific
 
 
 
-

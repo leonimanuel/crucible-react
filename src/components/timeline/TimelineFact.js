@@ -31,7 +31,6 @@ class TimelineFact extends Component {
 	toggleFactContext = () => this.setState({showContext: !this.state.showContext})
 
 	render() {
-		debugger
 		const { fact } = this.props;
 		
 		// const innerHTML = (fact.node_text) ? `<span>${fact.node_text.replace(fact.content, `<span style="font-weight: bold">${fact.content}</span>`)}</span>` : `<span>${fact.content}</span>`
