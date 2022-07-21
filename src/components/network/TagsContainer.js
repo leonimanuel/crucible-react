@@ -76,12 +76,9 @@ class TagsContainer extends Component {
 									// searchOptions = [{label: `no users found matching "${inputValue}"`, value: "request-user", type: "user"}]
 									searchOptions = []
 					      }
+					      console.log("calling filteroptions")
+					      resolve(this.filterOptions(inputValue, searchOptions));
 					    }) 
-
-				    setTimeout(() => {
-				      console.log("calling filteroptions")
-				      resolve(this.filterOptions(inputValue, searchOptions));
-				    }, 100);		
 					}
 				}, 500)
 	});	
