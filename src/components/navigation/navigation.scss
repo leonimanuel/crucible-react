@@ -40,6 +40,10 @@ $base-color-button-hover: #73A9AD;
   }
 
   .profile-options {
+    #navbar-auth-options {
+      display: flex;      
+    }
+
     .dropdown {
       // outline: 1px solid red;
       // margin-right: 100px;

@@ -47,7 +47,7 @@ class NavBar extends Component {
 								</div>
 							</div>
 						: 
-							<div>
+							<div id="navbar-auth-options">
 								<Link className="nav-link" to="/login" style={{"margin-right": "10px"}}>Login</Link>
 								<Link className="nav-link" to="/signup" >Signup</Link>
 							</div>
