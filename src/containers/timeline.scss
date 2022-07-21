@@ -210,6 +210,7 @@ $tracer-color-draft: lightblue;
 
 
   .timeline-item-content-container {
+    // outline: 2px solid blue;
     border-radius: 10px;
     text-align: left;
     // padding: 2%;
@@ -217,6 +218,7 @@ $tracer-color-draft: lightblue;
     padding-bottom: 10px;
 
 
+    // font-family: 'Roboto Mono', monospace;
     // background-color: white;
     // box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12),0 16px 16px rgba(0,0,0,0.12);   
 
@@ -288,7 +290,7 @@ $tracer-color-draft: lightblue;
   color: black;
   font-weight: normal;
   // border: 2px solid purple;
-  font-family: "Abel", sans-serif;
+  // font-family: "Abel", sans-serif;
   line-height: 1.3;
   // outline: 1px solid purple;
   // margin-top: 10px;
@@ -474,7 +476,11 @@ $tracer-color-draft: lightblue;
 
     .timeline-comment-context {
       // border: 2px solid red;
-      font-family: "Abel", sans-serif;
+      // font-family: "Abel", sans-serif;
+      // font-family: 'Roboto Mono', monospace;
+      // font-family: 'Lato', monospace;
+      // font-family: 'Merriweather', monospace;
+      // font-family: 'Playfair', monospace;
       font-weight: normal;
       line-height: 1.3;
 

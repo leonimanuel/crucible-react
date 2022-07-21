@@ -10,10 +10,10 @@ $tracer-color: #0f4c75;
 
 #landing-page {
 	// border: 5px solid red;
+	// outline: 4px solid gold;
 	// background-color: $base-color-dark-blue;
 	// background-color: $base-color-dark-blue;
 	// background-color: $base-color-light-grey;
-	height: 100%;
 
 	display: flex;
 	padding: 0;
@@ -26,8 +26,13 @@ $tracer-color: #0f4c75;
 	  // border: 3px solid purple;
 	}	
 
+	@media (min-width: 751px) {
+		height: 100%;
+	}		
+
 	#dummy-timeline-item-container {
 		// border: 1px solid transparent;
+		// outline: 2px solid purple;
 		// outline: 2px solid green;
 		// max-width: 500px;
 		height: 100%;
@@ -40,6 +45,7 @@ $tracer-color: #0f4c75;
 		flex-direction: column;
 		justify-content: center;
 		// align-items: center;
+		// display: none;
 
 		@media (min-width: 300px) and (max-width: 750px) {
 		  // width: 95%;
@@ -56,7 +62,7 @@ $tracer-color: #0f4c75;
 		}	
 
 		#landing-page-featured-post {
-			// outline: 2px solid red;
+			// outline: 2px solid green;
 			margin-bottom: 0;
 			// color: black;
 			color: $base-color-dark-blue;
@@ -67,10 +73,14 @@ $tracer-color: #0f4c75;
 		.timeline-item-subcontainer {
 			// outline: 2px solid red;
 			margin: 10px 0;
-			
-			max-width: 600px;
+			overflow: hidden;
 			// border: 2px solid blue;
-			overflow: scroll;
+
+			@media (min-width: 751px) {
+				// border-right: 3px solid $tracer-color;
+				max-width: 600px;
+				overflow: scroll;
+			}						
 			// background-color: red;
 
 			.timeline-item-header {
