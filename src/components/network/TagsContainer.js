@@ -52,8 +52,7 @@ class TagsContainer extends Component {
 		    }
 		  }
 
-		  let searchOptions = null		  
-
+		  let searchOptions = []		  
 
 		  let previousValue = inputValue
 
@@ -74,7 +73,7 @@ class TagsContainer extends Component {
 						      })				      	
 					      } else {
 									// searchOptions = [{label: `no users found matching "${inputValue}"`, value: "request-user", type: "user"}]
-									searchOptions = []
+									// searchOptions = []
 					      }
 					      console.log("calling filteroptions")
 					      resolve(this.filterOptions(inputValue, searchOptions));
