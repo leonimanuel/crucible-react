@@ -33,12 +33,12 @@ class NewLandingPage extends Component {
               <h1 id="landing-slug">
                 clammer
               </h1>
-              {/*<h3 id="landing-pitch">share what you read, as you read it.</h3>*/}
-              <h3 id="landing-pitch">you are what you read</h3>
+              {<h3 id="landing-pitch">share what you read, as you read it.</h3>}
+              {/*<h3 id="landing-pitch">you are what you read</h3>*/}
             </div>
             
             <div id="new-landing-buttons-container">
-              <Link to="/signup"><button className="form-action-button">create account</button></Link>
+              <Link to="/discover"><button className="form-action-button">discover</button></Link>
               <div id="sign-in-prompt" className="form-option-description">Already have an account? <Link to="/login" className="form-option">Sign in</Link></div>
             </div>
           </div>
@@ -52,6 +52,8 @@ class NewLandingPage extends Component {
 							<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
 						</div>
 					</div>
+ 
+          
 				</div>		
 
 			</div>

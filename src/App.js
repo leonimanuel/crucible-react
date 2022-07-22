@@ -156,9 +156,7 @@ const App = props => {
   
   const renderMain = () => {
     return (
-      <div>
-        {<Route path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>}
-        
+      <div>        
         <main id="main-content" onClick={handleMainClick}>               
 
           <SideNav onSidenavToggle={handleSidenavToggle}/>
@@ -179,7 +177,7 @@ const App = props => {
   // basically, what I'm trying to say if that exact path === "/", then if user logged in, load main stuff, else load landing page
   // else, if exact path === "/discover", 
 
-
+  const allPaths = ["/timeline", "/discover", "/profiles", "/groups", "/posts"]
   return (
     <Router>
       <LastLocationProvider>
@@ -202,16 +200,24 @@ const App = props => {
         
           <Route path="/v2-brief"><Pitch /></Route>
 
+          <Route path={allPaths} render={routerProps => <NavBar {...routerProps} />} ></Route>
+          <Route exact path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>
+
           {
             !props.userId 
               ?
             <React.Fragment>
-              <Route exact path="/"><NewLandingPage /></Route>
-              <Route path="/">{renderMain()}</Route>              
+              <Route exact path="/"><NewLandingPage/></Route>
+              <Route path={allPaths}>{renderMain()}</Route>              
             </React.Fragment>
               :
-            <Route path={["/"]}>{renderMain()}</Route>
+            <React.Fragment>
+              <Route exact path="/">{renderMain()}</Route>           
+              <Route path={allPaths}>{renderMain()}</Route>
+            </React.Fragment>
           }
+
+
 
         </div>      
       </LastLocationProvider>

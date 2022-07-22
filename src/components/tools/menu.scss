@@ -1,5 +1,6 @@
 $base-color-dark-blue: #0f4c75;
-$base-color-button-hover: #73A9AD;
+// $base-color-button-hover: #73A9AD;
+$base-color-button-hover: white;
 
 // * { 
 //   outline: 1px solid red;
@@ -188,7 +189,7 @@ $base-color-button-hover: #73A9AD;
 .form-action-button {
   // outline: 1px solid blue;
   // width: 100%;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 5px;
   /*background-color: #0f4c75;*/
   background-color: $base-color-dark-blue;
@@ -201,6 +202,8 @@ $base-color-button-hover: #73A9AD;
 
   &:hover {
     background-color: $base-color-button-hover;
+    color: $base-color-dark-blue;
+    border: 2px solid $base-color-dark-blue;
   }
 
   &:disabled {
