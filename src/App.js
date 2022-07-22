@@ -184,21 +184,10 @@ const App = props => {
     <Router>
       <LastLocationProvider>
         <div className="App">
-
-          {/*<div id="blob"></div>*/}
-          
           <Route 
             path="/confirm-email/:token"
             render={routerProps => props.userId ? <Redirect to="/"/> : <ConfirmEmail {...routerProps} />} >
           </Route> 
-
-          <Route exact path={["/", "/timeline"]}>
-            { props.userId ? renderMain() : <NewLandingPage />}
-          </Route>   
-
-          <Route exact path="/discover">
-            {renderMain()}
-          </Route>
 
           <Route path="/login"><Login/></Route>
           <Route path="/signup"><SignUp/></Route> 
@@ -210,10 +199,20 @@ const App = props => {
             path="/reset-password/:token"
             render={routerProps => props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
           </Route> 
-
-
         
           <Route path="/v2-brief"><Pitch /></Route>
+
+          {
+            !props.userId 
+              ?
+            <React.Fragment>
+              <Route exact path="/"><NewLandingPage /></Route>
+              <Route path="/">{renderMain()}</Route>              
+            </React.Fragment>
+              :
+            <Route path={["/"]}>{renderMain()}</Route>
+          }
+
         </div>      
       </LastLocationProvider>
     </Router>

@@ -75,7 +75,6 @@ class Timeline extends Component {
 	}	
 
 	componentDidUpdate(previousProps, previousState) {
-		// debugger
 		if (this.props.location.pathname !== this.state.location) { // no idea what the point of this is
 			this.setState({location: this.props.location.pathname})
 			this.loadActivitiesByFeedType()
@@ -192,7 +191,7 @@ class Timeline extends Component {
 		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
 			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
 			let profileId = this.props.location.pathname.split("/")[2]
-			this.props.showSelectedContact(profileId, activityId, this.handleLoad)
+			this.props.showSelectedContact(profileId, activityId, this.handleLoad, !!this.props.userId)
 		} 
 
 		// OLD IMPLEMENTATION
@@ -277,8 +276,7 @@ class Timeline extends Component {
 				<div id="timeline-items-wrapper">
 					<Route path="/profiles/:id" render={() => this.props.selectedContact ? <MemberCard member={this.props.selectedContact} /> : null } />
 					{/*<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />*/}
-					<Route path={["/", "/timeline", "/discover"]} render={() => <PositionForm /> } />
-					<Route path="/groups/:id" render={() => <PositionForm /> } />
+					<Route exact path={["/", "/timeline", "/discover", "/groups/:id"]} render={() => <PositionForm /> } />
 
 					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">
@@ -304,7 +302,6 @@ class Timeline extends Component {
 							)
 						}} 
 					/>
-
 
 					<Route 
 						path="/groups/:id" 

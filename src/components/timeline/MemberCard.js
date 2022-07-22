@@ -66,7 +66,7 @@ const MemberCard = (props) => {
 const mapStateToProps = state => {
   return {
     membersFollowStatuses: state.network.membersFollowStatuses,
-    currentUserId: state.users.user.id
+    currentUserId: state.users.userId
   }
 }
 

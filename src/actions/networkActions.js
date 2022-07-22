@@ -31,7 +31,7 @@ export const fetchContacts = (contactType) => {
 	}
 }
 
-export const showSelectedContact = (contactId, activityId, handleLoad) => {
+export const showSelectedContact = (contactId, activityId, handleLoad, isLoggedIn) => {
 	return (dispatch) => {
 		dispatch({
 			type: "FETCHING_SELECTED_CONTACT"
@@ -46,7 +46,9 @@ export const showSelectedContact = (contactId, activityId, handleLoad) => {
 	      Authorization: localStorage.getItem("token")
 	    }
 	  }
-	  fetch(API_ROOT + `/profiles/${contactId}?activityId=${activityId}`, configObj)
+
+	  const path = isLoggedIn ? "profiles" : "profiles_unauthenticated"
+	  fetch(API_ROOT + `/${path}/${contactId}?activityId=${activityId}`, configObj)
 	  .then(resp => resp.json())
 	  .then(data => {
 	  	mixpanel.track("View Other Profile", {
