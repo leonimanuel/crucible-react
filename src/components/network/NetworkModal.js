@@ -15,7 +15,9 @@ const NetworkModal = (props) => {
   useEffect(() => {
 
     // fetchRecommendations()
-    props.fetchMemberRecommendations()
+    if (props.userId) {
+    	props.fetchMemberRecommendations()
+    }
     	// .then(resp => resp.json())
     	// .then(contacts => {
     	// 	setStateSearchResults(contacts)
@@ -44,7 +46,8 @@ const NetworkModal = (props) => {
 	  }
 	  
 	  try {
-  		let response = await fetch(`${API_ROOT}/contacts/search/${stateInput}`, configObj)
+	  	let path = props.userId ? "search" : "search_unauthenticated"
+  		let response = await fetch(`${API_ROOT}/contacts/${path}/${stateInput}`, configObj)
 	  	if (response.status == 200) {
 	  		let members = await response.json()
 
@@ -87,7 +90,8 @@ const NetworkModal = (props) => {
 const mapStateToProps = state => {
 	return {
 		recommendedMembers: state.network.recommendedMembers,
-		searchedMembers: state.network.searchedMembers
+		searchedMembers: state.network.searchedMembers,
+		userId: state.users.userId
 	}
 }
 

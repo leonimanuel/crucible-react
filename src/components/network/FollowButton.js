@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { changeMemberFollow } from "../../actions/networkActions.js"
 import { connect } from "react-redux"
+import { withRouter } from "react-router";
 // import { connect } from "react-redux"
 
 
@@ -9,15 +10,20 @@ const FollowButton = (props) => {
   const [stateFollowStatusButtonHover, setStateFollowStatusButtonHover] = useState(false)
 
   const renderButtonText = () => {
-    if (props.followStatus) {
-      return stateFollowStatusButtonHover ? "unfollow" : "following"
+    if (props.userId) {
+      if (props.followStatus) {
+        return stateFollowStatusButtonHover ? "unfollow" : "following"
+      } else {
+        return "follow"
+      }
     } else {
-      return "follow"
+      return "Join to follow"
     }
   }
 
   const handleFollowUpdate = () => {
-    props.changeMemberFollow(props.member, !props.followStatus)
+    props.userId ? props.changeMemberFollow(props.member, !props.followStatus) : props.history.push("/signup");
+    
   }  
 
   return (
@@ -44,4 +50,4 @@ const FollowButton = (props) => {
 
 
 
-export default connect(null, { changeMemberFollow })(FollowButton);
+export default connect(state => ({userId: state.users.userId}), { changeMemberFollow })(withRouter(FollowButton));

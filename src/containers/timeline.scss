@@ -338,7 +338,11 @@ $tracer-color-draft: lightblue;
     right: -10px;
     top: -20px;
 
-    /*top: 10px;*/
+    &:hover {
+      &:before {
+        content: "collect excerpt "
+      }      
+    }
   }
 
   .original-vs-rephrase-indicator {

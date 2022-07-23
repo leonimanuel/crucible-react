@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux"
+import { withRouter } from "react-router";
 import "./replies.scss"
 
 import Reply from "./Reply.js"
@@ -12,6 +13,11 @@ const RepliesContainer = (props) => {
 	const { comment } = props
 
 	const visibleReplies = showAllReplies ? props.replies : props.replies.filter((reply, index) => { return index >= (props.replies.length - 2)})
+	
+	const handleStartReply = () => {
+		props.currentUserId ? setStateShowReplyForm(true) : props.history.push("/signup")
+	}
+
 	return (
 		<div className="replies-container">
 			<div className={`replies-content-container ${props.replies.length || stateShowReplyForm ? "" : "hide"}`}>
@@ -40,7 +46,7 @@ const RepliesContainer = (props) => {
 			<React.Fragment>
 				{stateShowReplyForm ? null : 
 					<div className="reply-button-wrapper">
-						<div className="reply-button" onClick={() => setStateShowReplyForm(true)}>Reply</div>					
+						<div className="reply-button" onClick={() => handleStartReply() }>{props.currentUserId ? "Reply" : "Join to reply"}</div>					
 					</div>
 				}
 			</React.Fragment>			
@@ -55,4 +61,4 @@ const mapStateToProps = (state, props) => {
 	}
 }
 
-export default connect(mapStateToProps)(RepliesContainer);
+export default connect(mapStateToProps)(withRouter(RepliesContainer));

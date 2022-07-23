@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { withRouter } from "react-router";
 import { addFactFromComment } from "../../actions/discussionsActions.js"
 
 import { generateContext, handleArticleClick } from "../../helpers/helpers.js"
@@ -22,9 +23,8 @@ class TimelineFact extends Component {
 	}
 
 	handleAddFact = (fact) => {
-		console.log("executing handleAddFact")
-		// debugger
-		this.props.addFactFromComment(fact, fact.collector_id);
+		this.props.userId ? this.props.addFactFromComment(fact, fact.collector_id) : this.props.history.push("/signup")
+		
 	}	
 
 	toggleFactRephrase = () => this.setState({showOriginalFact: !this.state.showOriginalFact});
@@ -91,4 +91,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { addFactFromComment })(TimelineFact);
+export default connect(mapStateToProps, { addFactFromComment })(withRouter(TimelineFact));

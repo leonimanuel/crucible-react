@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { withRouter } from "react-router";
 import { fetchUsers, addNewGroup } from "../../actions/groups.js"
 import { createPopper } from "@popperjs/core"
 
@@ -19,6 +20,12 @@ class GroupsModal extends Component {
 		addedMembers: [],
 		groupNameError: "",
 		isPrivate: true
+	}
+
+	componentDidMount() {
+		if (!this.props.userId) {
+			this.props.history.push("/signup")
+		}
 	}
 
 	handleChange = (e) => {
@@ -149,7 +156,7 @@ class GroupsModal extends Component {
 }
 
 
-export default connect(state => ({suggestionMembers: state.groups.memberSuggestions}), { fetchUsers, addNewGroup })(GroupsModal);
+export default connect(state => ({suggestionMembers: state.groups.memberSuggestions, userId: state.users.userId}), { fetchUsers, addNewGroup })(withRouter(GroupsModal));
 
 
 

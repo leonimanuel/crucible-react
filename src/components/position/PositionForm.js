@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./positions.scss"
 
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { submitPosition } from "../../actions/commentsActions.js"
 
 import SupportingChatFact from "../social/SupportingChatFact.js"
@@ -74,6 +75,14 @@ class PositionForm extends Component {
     this.setState({tags: tags})
   }  
 
+  handleNewPositionClick = () => {
+    if (this.props.userId) {
+      this.setState({startPostSelected: !this.state.startPostSelected})
+    } else {
+      this.props.history.push("/signup");
+    }
+  }
+
   render = () => {
     return (
       <div className="position-form comment-form" >
@@ -83,9 +92,9 @@ class PositionForm extends Component {
               id="create-post-button"
               className={`button-51 ${this.state.startPostSelected ? "hidden" : "visibile"}`} 
               role="button"
-              onClick={() => this.setState({startPostSelected: !this.state.startPostSelected})}
+              onClick={() => this.handleNewPositionClick() }
             >
-              New Post
+              {this.props.userId ? "New Post" : "Join to post"}
             </button>
 
             <div 
@@ -132,4 +141,4 @@ class PositionForm extends Component {
   };
 }
 
-export default connect(state => ({userId: state.users.userId, selectedGroup: state.groups.selectedGroup}), { submitPosition })(PositionForm);
+export default connect(state => ({userId: state.users.userId, selectedGroup: state.groups.selectedGroup}), { submitPosition })(withRouter(PositionForm));
