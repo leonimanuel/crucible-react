@@ -36,6 +36,7 @@ $base-color-dark-blue: #0f4c75;
 }
 
 #console-topic-menu-container, #agora-menu {
+	display: none;
 	padding-left: 5px;
 
 	background-color: $base-color-dark-blue;
