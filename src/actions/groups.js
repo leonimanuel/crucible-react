@@ -38,7 +38,7 @@ export const loadGroups = () => {
   }  
 }
 
-export const loadSelectedGroup = (groupId, activityId, handleLoad) => {
+export const loadSelectedGroup = (groupId, activityId, handleLoad, isLoggedIn, redirectToLogin) => {
   return async (dispatch) => {
     dispatch({
       type: "LOADING_SELECTED_GROUP"
@@ -53,16 +53,20 @@ export const loadSelectedGroup = (groupId, activityId, handleLoad) => {
       }
     }
     // debugger
+    const path = isLoggedIn ? "groups" : "groups_unauthenticated"
     try {
-      let res = await fetch(API_ROOT + `/groups/${groupId}?activityId=${activityId}`, configObj)
+      let res = await fetch(API_ROOT + `/${path}/${groupId}?activityId=${activityId}`, configObj)
       if ((res.status == 200)) {
         let group_data = await res.json()
         dispatch({ 
           type: 'SET_SELECTED_GROUP', 
           group_data
         })
-
-      } else {
+      } else if (res.status === 401) {
+          redirectToLogin()
+        // history.push("/login")
+      }
+      else {
         let error = await res.json()
         alert(`error: ${res.status}, ${error.message}`)
       }    

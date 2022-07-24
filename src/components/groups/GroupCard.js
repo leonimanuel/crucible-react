@@ -29,6 +29,7 @@ class GroupCard extends Component {
 		}
 		if (lastProps.groupId != this.props.groupId) {
 			// debugger
+			alert("REFACTOR")
 			this.props.loadSelectedGroup(this.props.groupId)
 		}
 

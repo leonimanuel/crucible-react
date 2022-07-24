@@ -187,7 +187,7 @@ class Timeline extends Component {
 		if (this.props.location.pathname.split("/")[1] === "groups") {
 			activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0"
 			let groupId = this.props.location.pathname.split("/")[2]
-			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad) 
+			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad, !!this.props.userId, this.redirectToLogin) 
 		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
 			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
 			let profileId = this.props.location.pathname.split("/")[2]
@@ -256,6 +256,10 @@ class Timeline extends Component {
 		alert("refreshing")
 	}
 
+	redirectToLogin = () => {
+		this.props.history.push("/login")
+	}
+
 	render() {
 		const timelineActivities = this.state.timelineType == "discoverFeed" ? this.props.discover_activities : this.props.timeline_activities
 		return (
@@ -278,7 +282,6 @@ class Timeline extends Component {
 					{/*<Route path="/groups/:id" render={(matchProps) => <GroupCard groupId={matchProps.match.params.id} />} />*/}
 					<Route exact path={["/", "/timeline", "/discover", "/groups/:id"]} render={() => <PositionForm /> } />
 
-					{/*!this.props.selectedContact ? <PositionForm /> : <MemberCard member={this.props.selectedContact} /> */}
 					<div id="timeline-divider-wrapper">
 						<Route path="/profiles/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.handleBacktoTimeline("network")}>{"⬅ back to timeline"}</div></Link> } />						
 						{<Route path="/posts/:notificationType/:id" render={ (matchProps) => <Link to="/"><div id="back-to-timeline-button" onClick={() => this.handleBacktoTimeline("post")}>{"⬅ back to timeline"}</div></Link>  } />						}

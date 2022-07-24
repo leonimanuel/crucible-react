@@ -13,7 +13,6 @@ import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN, APP_NAME } from "./consta
 import ReactGA from "react-ga4";
 import mixpanel from 'mixpanel-browser';
 
-
 import NewLandingPage from "./components/home/NewLandingPage.js"
 import SideNav from "./containers/SideNav.js"
 // import Home from "./containers/Home.js"
@@ -176,6 +175,8 @@ const App = props => {
   }
   // basically, what I'm trying to say if that exact path === "/", then if user logged in, load main stuff, else load landing page
   // else, if exact path === "/discover", 
+
+  // Ok, os now we deal with authentication
 
   const allPaths = ["/timeline", "/discover", "/profiles", "/groups", "/posts"]
   return (
