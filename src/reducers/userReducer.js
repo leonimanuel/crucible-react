@@ -12,6 +12,7 @@ export default function userReducer(state = {
 	userEmail: "",
 	userId: "",
 	user: "",
+	authAttempted: false
 	// userReputabilityScore: "",
 	// userAccuracyScore: "",
 	// totalUpvotes: "",
@@ -27,6 +28,7 @@ export default function userReducer(state = {
 		case "LOG_IN":
 			return {
 				...state,
+				authAttempted: true,
 				isLoggedIn: true, //necessary?
 				isConfirmed: action.user.email_confirmed,
 				loginFailed: false,
@@ -109,6 +111,7 @@ export default function userReducer(state = {
 		case "LOGIN_FAILED":
 			return {
 				...state,
+				authAttempted: true,
 				loginFailed: true
 			}
 

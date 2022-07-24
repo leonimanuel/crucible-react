@@ -70,17 +70,13 @@ const App = props => {
 
     // })
 
-    props.logIn(renderApp)
+    props.logIn()
     props.getArticleRecommendations()
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
      alert(`${APP_NAME} is not yet fully optimized for mobile, features will be limited on this device`)
     }       
   }, [])
-
-  const renderApp = () => {
-    setStateAuthAttempted(true)
-  }
 
   // componentDidMount() {
   //   ReactGA.initialize([
@@ -185,7 +181,7 @@ const App = props => {
 
   const allPaths = ["/timeline", "/discover", "/profiles", "/groups", "/posts"]
   
-  if (!stateAuthAttempted) {
+  if (!props.authAttempted) {
     return <LoadingBar />
   }
 
@@ -240,7 +236,8 @@ const mapStateToProps = state => {
   return {
     userId: state.users.userId,
     isConfirmed: state.users.isConfirmed,
-    loginFailed: state.users.loginFailed
+    loginFailed: state.users.loginFailed,
+    authAttempted: state.users.authAttempted
   }
 }
 

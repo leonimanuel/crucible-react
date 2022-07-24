@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 import { API_ROOT } from "../constants"
 
-export const logIn = (renderApp) => {
+export const logIn = () => {
 	return async (dispatch) => {
     let configObj = {
       method: "GET",
@@ -12,9 +12,7 @@ export const logIn = (renderApp) => {
       }
     }
     try {
-      let resp = await fetch(API_ROOT + `/users/GETUSER`, configObj)
-      renderApp()
-      
+      let resp = await fetch(API_ROOT + `/users/GETUSER`, configObj)      
       if (resp.status == 200) {        
         let data = await resp.json()
         const user = data.user

@@ -55,7 +55,7 @@ function Login(props) {
 				localStorage.setItem("token", data.auth_token);		
 				localStorage.setItem("userId", data.user.id);
 				localStorage.setItem("userEmail", data.user.email);
-        props.logIn(() => true)
+        props.logIn()
 
         // gaEventTracker("login")
         // mixpanel.identify(`${data.user.id}`)
