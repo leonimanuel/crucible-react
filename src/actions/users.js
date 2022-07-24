@@ -58,7 +58,9 @@ export const logIn = () => {
         } else {
           dispatch({type: "LOGIN_FAILED"})
         }
-      } 
+      } else {
+        dispatch({type: "LOGIN_FAILED"})
+      }
     } catch (error) {
       alert(error)
     }
