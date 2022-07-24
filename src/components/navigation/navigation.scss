@@ -1,4 +1,4 @@
-$base-color-button-hover: #73A9AD;
+$base-color-button-hover: #0f4c75;
 
 #nav-wrapper {
   // outline: 2px solid green;
@@ -18,7 +18,7 @@ $base-color-button-hover: #73A9AD;
     // outline: 2px solid red;
     margin: 0 20px;
     font-weight: bold;
-    border-bottom: 2px solid #0f4c75;
+    // border-bottom: 2px solid #0f4c75;
     // font-family: 'Roboto Mono', monospace;
 
     .nav-link {
@@ -29,7 +29,7 @@ $base-color-button-hover: #73A9AD;
       color: black;
 
       &:hover {
-        color: gold;
+        color: $base-color-button-hover;
       }
     }  
   }

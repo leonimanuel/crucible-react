@@ -55,10 +55,9 @@ class GroupsMenu extends Component {
 		return (
 			<div id="groups-menu">
 				<div id="groups-list" className="sidenav-list">
-					<div id="new-group-button" className="list-title-wrapper">
+					<div className="list-title-wrapper">
 						<div id="groups-list-title" className="list-title">Groups</div>					
 					</div>	
-				  
 				  <Popup 
 				  	trigger={ <div className="form-action-button">New Private Group</div>} 
 				  	position="center" 
