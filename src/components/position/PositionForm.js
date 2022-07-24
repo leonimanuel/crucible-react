@@ -104,7 +104,7 @@ class PositionForm extends Component {
                 responseExcerpt={this.state.responseExcerpt}
                 handleResponseExcerptUpdate={(excerpt) => this.updateResponseExcerpt(excerpt)}
                 handleResponseExcerptRemoval={this.removeResponseExcerpt}       
-                placeholder="responding to something you read? Drag the excerpt here from the left-hand menu."
+                placeholder="responding to something you read? Drag the snippet here from the left-hand menu."
               />
 
               <div className="position-form-subcontainer-bubble comment-form-subcontainer-bubble">
@@ -129,7 +129,7 @@ class PositionForm extends Component {
               <FactDropzone 
                 facts={this.state.facts} 
                 handleFactsUpdate={(facts) => this.updateFacts(facts)}
-                placeholder="Support your comment by dragging an excerpt here (optional)."
+                placeholder="Support your comment by dragging a snippet here (optional)."
                 dropType="supportingFacts"
               />
               <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags} selectedGroupId={this.props.selectedGroup.id}/>
