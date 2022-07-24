@@ -48,7 +48,7 @@ class Timeline extends Component {
 		loadingActivities: false,
 		notificationReadOnLoad: false,
 		postType: "timeline",
-		timelineType: "discoverFeed"
+		timelineType: this.props.location.pathname.split("/")[1] === "timeline" || this.props.location.pathname === "/" ? "myFeed" : this.props.location.pathname.split("/")[1] === "discover" ? "discoverFeed" : null
 		// pagination: 5,
 		// page_offset: 0 
 	}
