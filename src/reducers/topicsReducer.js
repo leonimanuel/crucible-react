@@ -49,9 +49,10 @@ export default function topicsReducer(state = {
 			}
 
 		case "ADD_FACT":
+			debugger
 			return {
 				...state,
-				facts: [...state.facts, action.fact]
+				facts: [...state.facts, action.excerpt.fact]
 			}
 
 		case "REMOVE_FACT":

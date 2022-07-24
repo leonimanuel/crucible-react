@@ -1,7 +1,6 @@
 import { API_ROOT, STREAM_CLIENT_ID, STREAM_APP_ID } from "../constants"
 import { connect } from 'getstream';
 
-
 let client = ""
 
 export const setNotifications = (userId) => {
@@ -23,11 +22,41 @@ export const setNotifications = (userId) => {
 	    .then(async (data) => {
 				client = connect(STREAM_CLIENT_ID, data.token, STREAM_APP_ID); // client is declared at top of file
 
-				const user_notification_feed = client.feed('notification', `${userId}`);
+				// const user_notification_feed = client.feed('notification', `${userId}`);
+				// const subscription = user_notification_feed.subscribe(function (data) {
+				// 	console.log("new notification! please reload to see for now")
+				// })				
 
-				const subscription = user_notification_feed.subscribe(function (data) {
+				const user_activity_feed = client.feed('user', `${userId}`);
+				const subscription = user_activity_feed.subscribe(async (data) => {
+					const newItem = data?.new[0]
+					if (newItem?.verb === "add_fact") {
+						const excerptId = newItem?.foreign_id.split(":")[1]
+					  let configObj = {
+					    method: "GET",
+					    headers: {
+					      "Content-Type": "application/json",
+					      Accept: "application/json",
+					      Authorization: localStorage.getItem("token")
+					    }
+					  }
+					  try {
+					  	let response = await fetch(`${API_ROOT}/facts/${excerptId}`, configObj);
+					  	if (response.status === 200) {
+								const excerpt = await response.json()
+								debugger
+								dispatch({
+									type: "ADD_FACT",
+									excerpt	 
+								}) 		
+					  	}
+					  }
+					  catch (error) {
+					  	console.log(error)
+					  }
+
+					}
 					console.log("new notification! please reload to see for now")
-					// debugger
 				})				
 
 				dispatch({

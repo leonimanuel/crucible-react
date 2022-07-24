@@ -132,11 +132,12 @@ export const addFactToNew = (selection, articleURL, rephrase) => {
 	}
 }
 
-export const addFactFromCable = (response) => {
-	const fact = response.fact
-	return {
-		type: "ADD_FACT",
-		fact
-	}
-}
+
+
+
+
+
+
+
+
 

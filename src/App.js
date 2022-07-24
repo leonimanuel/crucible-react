@@ -38,7 +38,7 @@ import Pitch from "./Pitch.js"
 import { logIn, resetQuotas } from "./actions/users.js"
 import { resetUnreadCount, addDiscussionFromCable } from "./actions/discussionsActions.js"
 import { toggleSidenav } from "./actions/sidenavActions.js"
-import { addFactFromCable } from "./actions/topicsActions.js"
+// import { addFactFromCable } from "./actions/topicsActions.js"
 // import { isLoggedIn } from 
 
 const App = props => {
@@ -104,44 +104,44 @@ const App = props => {
     }
   }
 
-  const handleReceivedMessage = response => {
-    debugger
-    console.log("handling received message")
-    const { message } = response;
-    props.addMessageToDiscussion(message, props.userId)
-  }
+  // const handleReceivedMessage = response => {
+  //   debugger
+  //   console.log("handling received message")
+  //   const { message } = response;
+  //   props.addMessageToDiscussion(message, props.userId)
+  // }
 
-  const handleReceivedComment = response => {
-    debugger
-    const { comment } = response;
-    props.addCommentToDiscussion(comment, props.userId)   
-  }
+  // const handleReceivedComment = response => {
+  //   debugger
+  //   const { comment } = response;
+  //   props.addCommentToDiscussion(comment, props.userId)   
+  // }
 
-  const handleReadDiscussion = response => {
-    debugger
-    props.resetUnreadCount(response)
-  }
+  // const handleReadDiscussion = response => {
+  //   debugger
+  //   props.resetUnreadCount(response)
+  // }
 
-  const handleReviewedItem = response => {
-    debugger
-    if (response.daily_reviews) {
-      props.resetItemUnderReview(response)      
-    } else if (response.total_votes) {
-      props.updateAccuracyScore(response)
-    }
-  }
+  // const handleReviewedItem = response => {
+  //   debugger
+  //   if (response.daily_reviews) {
+  //     props.resetItemUnderReview(response)      
+  //   } else if (response.total_votes) {
+  //     props.updateAccuracyScore(response)
+  //   }
+  // }
 
-  const handleMiscItem = response => {
-    debugger
-    if (response.fact) {
-      props.addFactFromCable(response)
-    } 
-    else if (response.discussion) {
-      props.addDiscussionFromCable(response.discussion)
-    } else if (response.quotas) {
-      props.resetQuotas()
-    }
-  }
+  // const handleMiscItem = response => {
+  //   debugger
+  //   if (response.fact) {
+  //     props.addFactFromCable(response)
+  //   } 
+  //   else if (response.discussion) {
+  //     props.addDiscussionFromCable(response.discussion)
+  //   } else if (response.quotas) {
+  //     props.resetQuotas()
+  //   }
+  // }
 
   const handleMainClick = () => {
     let sideNav = document.getElementById("side-nav");
@@ -233,7 +233,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addFactFromCable, addDiscussionFromCable, resetQuotas, getArticleRecommendations })(App);
+export default connect(mapStateToProps, { logIn, resetUnreadCount, addMessageToDiscussion, addCommentToDiscussion, resetItemUnderReview, updateAccuracyScore, toggleSidenav, addDiscussionFromCable, resetQuotas, getArticleRecommendations })(App);
 
 
 
