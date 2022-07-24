@@ -5,7 +5,8 @@ export default function networkReducer(state = {
 	recommendedMembers: [],
 	// searchedMembers: [],
 	membersFollowStatuses: [],
-	contactFeed: []
+	contactFeed: [],
+	hasMore: true
 }, action) {
 	switch(action.type) {
 		case "SET_NETWORK_FOLLOWING":
@@ -27,8 +28,8 @@ export default function networkReducer(state = {
 				...state,
 				selectedContact: action.contact,
 				contactFeed: newContactSelection ? sortedUserActivities : [...state.contactFeed, ...sortedUserActivities],
+				hasMore: !!sortedUserActivities.length,
 				membersFollowStatuses: [...state.membersFollowStatuses.filter(i => i.memberId != action.contact.id), {memberId: action.contact.id, isFollowing: action.contact.is_following}]
-
 			}
 
 		case "CLEAR_SELECTED_CONTACT":

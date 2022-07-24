@@ -62,7 +62,7 @@ class Timeline extends Component {
 			let locationParams = this.props.location.pathname.split("/").filter(i => i)
 			const postObjType = locationParams[1]
 			const postObjId = locationParams[2]
-			this.props.showPost(postObjType, postObjId)
+			this.props.showPost(postObjType, postObjId, this.handleLoad, this.redirectToLogin)
 			this.setState({postType: "posts"})
 		}
 
@@ -186,7 +186,7 @@ class Timeline extends Component {
 		let activityId = ""
 		if (this.props.location.pathname.split("/")[1] === "groups") {
 			let groupId = this.props.location.pathname.split("/")[2];
-			if (this.props.selectedGroupId === groupId) {
+			if (this.props.selectedGroupId === parseInt(groupId)) {
 				activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0";
 			} else {
 				activityId = "0"
@@ -314,7 +314,7 @@ class Timeline extends Component {
 						path="/groups/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.groupFeedItems.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.groupFeedItems.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.groupFeedItems.length} next={this.fetchMoreActivities} hasMore={this.props.groupsHasMore} loader={this.props.groupFeedItems.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.groupFeedItems.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -405,6 +405,7 @@ const mapStateToProps = state => {
 		timelineType: state.timeline.timelineType,
 		userId: state.users.userId,
 		hasMore: state.timeline.hasMore,
+		groupsHasMore: state.groups.hasMore,
 		notification_groups: state.notifications.notification_groups
 	}
 }

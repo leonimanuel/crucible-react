@@ -159,7 +159,7 @@ export const readNotification = (objectId, objectType, notificationGroupId, user
 	}			
 }
 
-export const showPost = (postObjType, postObjId) => {
+export const showPost = (postObjType, postObjId, handleLoad, redirectToLogin) => {
 	return async (dispatch) => {
 		dispatch({
 			type: "LOADING_NOTIFICATION_TARGET"
@@ -174,60 +174,38 @@ export const showPost = (postObjType, postObjId) => {
 	    }
 	  }
 
-	  if (postObjType == "Comment" || postObjType == "Position") {
-		  fetch(API_ROOT + `/comments/${postObjId}`, configObj)
-		    .then(resp => {
-		    	return resp.json()
-		    	// debugger
-		    })
-		    .then(activity => {
-					dispatch({
-						type: "SET_NOTIFICATION_ACTIVITY",
-						activity
-					})
+	  let  path = ""
+	  if (postObjType == "Comment" || postObjType == "Position") { path = "comments"}
+	  else if (postObjType == "Reply") { path = "replies"}
+  	else { return }
+	  try {
+	  	let response = await fetch(API_ROOT + `/${path}/${postObjId}`, configObj);
+	  	if (response.status === 200) {
+	  		let activity = await response.json();
+				dispatch({
+					type: "SET_NOTIFICATION_ACTIVITY",
+					activity
+				})
 
-					const replies = activity.item.object.replies.flat().filter(r => !!r)
-			  	dispatch(({
-			  		type: "SET_REPLIES",
-			  		replies: replies
-			  	}))					
+				const replies = activity.item.object.replies.flat().filter(r => !!r)
+		  	dispatch(({
+		  		type: "SET_REPLIES",
+		  		replies: replies
+		  	}))					
 
-					dispatch({
-						type: "SET_TIMELINE_TYPE",
-						timelineType: "notification"
-					})
-		    })
-		    .catch(err => alert(err))
+				dispatch({
+					type: "SET_TIMELINE_TYPE",
+					timelineType: "notification"
+				})
 
+				handleLoad()		  		
+	  	} else if (response.status === 401) {
+	  		redirectToLogin()
+	  	}
 	  }
-	  else if (postObjType == "Reply") {
-		  try {
-		  	let res = await fetch(API_ROOT + `/replies/${postObjId}`, configObj)
-		  	if (res.status === 200) {
-		  		let activity = await res.json()
-					dispatch({
-						type: "SET_NOTIFICATION_ACTIVITY",
-						activity
-					})
-
-					dispatch({
-						type: "SET_TIMELINE_TYPE",
-						timelineType: "notification"
-					})
-
-					const replies = activity.item.object.replies.flat().filter(r => !!r)
-			  	dispatch(({
-			  		type: "SET_REPLIES",
-			  		replies: replies
-			  	}))		
-  			} else {
-	        let error = await res.json()
-	        alert(`error: ${res.status}, ${error.message}`)
-      	}    
-		  } catch (error) {
-		  	alert(error)
-		  }
-	  }		
+	  catch (error) {
+	  	alert(error)
+	  }
 	}
 }
 

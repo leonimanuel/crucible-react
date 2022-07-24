@@ -16,7 +16,8 @@ export default function groupsReducer(state = {
 	groupUnreadMessages: "",
 	renderForum: false,
 	memberSuggestions: [],
-	recommendedGroups: []
+	recommendedGroups: [],
+	hasMore: true
 }, action) {
 		// debugger
 		// console.log("executing groupsReducer")
@@ -42,6 +43,7 @@ export default function groupsReducer(state = {
 					selectedGroupMembers: [],
 					selectedGroupFeedItems: [...selectedGroupFeedItems, ...sortedGroupActivities],
 					isMemberOfSelectedGroup: action.group_data.is_member,
+					hasMore: !!action.group_data.feed_items.length
 					// allGroups: [...state.allGroups.filter(g => g.id !== action.group_data.group.id), action.group_data.group],
 				}
 
