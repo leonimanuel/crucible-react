@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { withRouter } from "react-router";
 
 import { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications, clearSelectedGroup } from "../../actions/groups.js"
 
@@ -42,6 +43,14 @@ class GroupCard extends Component {
 		this.props.clearSelectedGroup()
 	}
 
+	handleJoinGroup = () => {
+		this.props.userId ? this.props.joinGroup(this.props.groupId) : this.redirectToLogin()
+	}
+
+	redirectToLogin = () => {
+		this.props.history.push("/login")
+	}	
+
 	render() {
 		// let group = this.props.groups.find(group => group.id == this.props.groupId);
 		let group = this.props.selectedGroup;
@@ -79,7 +88,7 @@ class GroupCard extends Component {
 					      		?
 					      			<div id="group-membership-indicator">member</div>
 					      		:
-					      		group.private ? null : <button className="form-action-button" onClick={() => this.props.joinGroup(this.props.groupId)}>join group</button>
+					      		group.private ? null : <button className="form-action-button" onClick={this.handleJoinGroup}>join group</button>
 					      }
 							</div>
 
@@ -105,7 +114,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications, clearSelectedGroup })(GroupCard);
+export default connect(mapStateToProps, { loadSelectedGroup, leaveGroup, joinGroup, readGroupNotifications, clearSelectedGroup })(withRouter(GroupCard));
 
 
 
