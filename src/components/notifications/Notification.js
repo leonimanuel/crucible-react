@@ -22,7 +22,13 @@ const Notification = (props) => {
 	switch (notification_group.action_type) {
 		case "add_position":
 			notifTypeClassName = "add_position"
-			notifDescription = " created a new position"
+			notifDescription = " shared a post"
+			target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
+			break
+
+		case "tag_user_on_post":
+			notifTypeClassName = "tag_user_on_post"
+			notifDescription =  " tagged you on a post: "
 			target_path = `/posts/${notificationObject.type}/${notificationObject.id}`
 			break
 
