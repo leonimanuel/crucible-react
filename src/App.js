@@ -12,6 +12,7 @@ import { getArticleRecommendations } from "./actions/briefingsActions.js"
 import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN, APP_NAME } from "./constants"
 import ReactGA from "react-ga4";
 import mixpanel from 'mixpanel-browser';
+import LoadingBar from "./components/tools/LoadingBar.js"
 
 import NewLandingPage from "./components/home/NewLandingPage.js"
 import SideNav from "./containers/SideNav.js"
@@ -42,7 +43,7 @@ import { toggleSidenav } from "./actions/sidenavActions.js"
 
 const App = props => {
   // const [stateSidenavvOpen, setStateSidenavOpen] = useState(true);
-
+  const [stateAuthAttempted, setStateAuthAttempted] = useState(false);
   // state = {
   //   sidenavOpen: true
   // }
@@ -69,13 +70,17 @@ const App = props => {
 
     // })
 
-    props.logIn()
+    props.logIn(renderApp)
     props.getArticleRecommendations()
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
      alert(`${APP_NAME} is not yet fully optimized for mobile, features will be limited on this device`)
     }       
   }, [])
+
+  const renderApp = () => {
+    setStateAuthAttempted(true)
+  }
 
   // componentDidMount() {
   //   ReactGA.initialize([
@@ -179,6 +184,11 @@ const App = props => {
   // Ok, os now we deal with authentication
 
   const allPaths = ["/timeline", "/discover", "/profiles", "/groups", "/posts"]
+  
+  if (!stateAuthAttempted) {
+    return <LoadingBar />
+  }
+
   return (
     <Router>
       <LastLocationProvider>

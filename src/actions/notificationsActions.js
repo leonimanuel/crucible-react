@@ -198,7 +198,7 @@ export const showPost = (postObjType, postObjId, handleLoad, redirectToLogin) =>
 					timelineType: "notification"
 				})
 
-				handleLoad()		  		
+				handleLoad()
 	  	} else if (response.status === 401) {
 	  		redirectToLogin()
 	  	}

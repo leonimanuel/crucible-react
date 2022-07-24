@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 import { API_ROOT } from "../constants"
 
-export const logIn = () => {
+export const logIn = (renderApp) => {
 	return async (dispatch) => {
     let configObj = {
       method: "GET",
@@ -13,6 +13,8 @@ export const logIn = () => {
     }
     try {
       let resp = await fetch(API_ROOT + `/users/GETUSER`, configObj)
+      renderApp()
+      
       if (resp.status == 200) {        
         let data = await resp.json()
         const user = data.user
@@ -54,7 +56,7 @@ export const logIn = () => {
               type: "SET_NOTIFICATIONS",
               notifications: data.notifications
             })        
-          }  
+          }
         } else {
           dispatch({type: "LOGIN_FAILED"})
         }
