@@ -185,9 +185,13 @@ class Timeline extends Component {
 	loadActivitiesByFeedType = () => {
 		let activityId = ""
 		if (this.props.location.pathname.split("/")[1] === "groups") {
-			activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0"
-			let groupId = this.props.location.pathname.split("/")[2]
-			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad, !!this.props.userId, this.redirectToLogin) 
+			let groupId = this.props.location.pathname.split("/")[2];
+			if (this.props.selectedGroupId === groupId) {
+				activityId = this.props.groupFeedItems.length ? this.props.groupFeedItems.at(-1).activity_id : "0";
+			} else {
+				activityId = "0"
+			}
+			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad, !!this.props.userId, this.redirectToLogin);
 		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
 			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
 			let profileId = this.props.location.pathname.split("/")[2]

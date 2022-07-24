@@ -29,13 +29,13 @@ class GroupCard extends Component {
 		}
 		if (lastProps.groupId != this.props.groupId) {
 			// debugger
-			alert("REFACTOR")
-			this.props.loadSelectedGroup(this.props.groupId)
+			// alert("REFACTOR")
+			// this.props.loadSelectedGroup(this.props.groupId)
 		}
 
-		if (this.props.selectedGroup.private && !this.props.isMemberOfSelectedGroup) {
-    	document.location.href="/";
-		}
+		// if (this.props.selectedGroup.private && !this.props.isMemberOfSelectedGroup) {
+  //   	document.location.href="/";
+		// }
 	}
 
 	componentWillUnmount() {
