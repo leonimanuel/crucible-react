@@ -1,3 +1,5 @@
+$tracer-color: #0f4c75;
+
 .replies-container {
   position: relative;
 
@@ -94,7 +96,7 @@
     }
 
     .reply-content-wrapper {
-      // outline: 1px solid blue;
+      outline: 1px solid blue;
       border: 1px solid transparent; //important for margins
       background-color: #EAEAEA; //light grey
       border-radius: 10px;
@@ -104,7 +106,7 @@
 
       &.tracer {
         &:before {
-          // outline: 1px solid red;
+          outline: 3px solid red;
           position: absolute;
           content: "";
           // border: 1px solid red;
@@ -117,6 +119,20 @@
           border-top: 3px solid #0f4c75;
         }    
       } 
+
+      .timeline-comment {
+        .speech-arrow-wrapper {
+          visibility: hidden;
+        }
+        .timeline-comment-content-wrapper {
+          background-color: transparent;
+          border-radius: 0;
+          border-bottom: 3px solid $tracer-color;
+          .timeline-comment-content {
+            color: black;
+          }
+        }
+      }
 
       .reply-text {
         // outline: 1px solid red;
