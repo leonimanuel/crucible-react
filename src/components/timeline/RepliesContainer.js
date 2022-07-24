@@ -17,7 +17,7 @@ const RepliesContainer = (props) => {
 	const handleStartReply = () => {
 		props.currentUserId ? setStateShowReplyForm(true) : props.history.push("/signup")
 	}
-
+	
 	return (
 		<div className="replies-container">
 			<div className={`replies-content-container ${props.replies.length || stateShowReplyForm ? "" : "hide"}`}>

@@ -62,6 +62,13 @@ export const loadSelectedGroup = (groupId, activityId, handleLoad, isLoggedIn, r
           type: 'SET_SELECTED_GROUP', 
           group_data
         })
+
+        const replies = group_data.feed_items.map(a => a.item.object.replies ? a.item.object.replies : null).flat().filter(r => !!r)
+        debugger
+        dispatch(({
+          type: "SET_REPLIES",
+          replies: replies
+        }))     
       } else if (res.status === 401) {
           redirectToLogin()
         // history.push("/login")

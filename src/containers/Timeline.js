@@ -128,7 +128,7 @@ class Timeline extends Component {
 							/>
 							<div className={`timeline-item-content-container ${showTracer ? "show-tracer" : ""}`} style={{border: this.props.selectedComment.id == resource.id ? "2px solid #0f4c75" : null  }}>					
 								<TimelineComment comment={resource} context={"post"} showTracer={showTracer} />
-								<RepliesContainer comment={resource} index={index}/>						
+								<RepliesContainer comment={resource} index={index} context={this.state.timelineType}/>						
 							</div>
 						</div>
 					</div>			
@@ -171,7 +171,7 @@ class Timeline extends Component {
 									</div> 	
 								</div>						
 								{resource.content || resource.response_excerpt ? <TimelineComment comment={resource} showTracer={showTracer} context={"post"}/> : null}
-								<RepliesContainer comment={resource} index={index}/>						
+								<RepliesContainer comment={resource} index={index} context={this.state.timelineType}/>						
 							</div>
 						</div>
 					</div>
