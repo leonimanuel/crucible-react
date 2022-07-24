@@ -38,6 +38,12 @@ export const setActivities = (activityId, timelineType, handleLoad) => {
 	}		
 }
 
+export const clearNewPostContaner = () => {
+	return {
+		type: "CLEAR_NEW_POSITION_CONTAINER"
+	}
+}
+
 export const createReply = (text, comment_id, factIDs, responseExcerptId, taggedUserIds, closeReplyForm) => {
 	return async (dispatch) => {
 		dispatch({

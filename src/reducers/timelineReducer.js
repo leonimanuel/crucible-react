@@ -44,6 +44,12 @@ export default function timelineReducer(state = {
 				...state,
 				newPositions: [action.position, ...state.newPositions]
 			}
+
+		case "CLEAR_NEW_POSITION_CONTAINER":
+			return {
+				...state,
+				newPositions: []
+			}
 		// case "UPDATE_ACTIVITY_REVIEWABLE":
 		// 	const reviewedItem = state.activities.find(a => a.item.object.id == action.selectedItem.id && a.item.type == action.selectedItem.type)
 		// 	const reviewedItemIndex = state.activities.indexOf(reviewedItem)

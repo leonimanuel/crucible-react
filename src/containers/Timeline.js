@@ -23,7 +23,7 @@ import MemberCard from "../components/timeline/MemberCard.js"
 import GroupCard from "../components/groups/GroupCard.js"
 
 
-import { setActivities } from "../actions/timelineActions.js"
+import { setActivities, clearNewPostContaner } from "../actions/timelineActions.js"
 import { clearNotificationActivity, showPost, readNotification } from "../actions/notificationsActions.js"
 import { clearSelectedContact, showSelectedContact } from "../actions/networkActions.js"
 import { loadSelectedGroup } from "../actions/groups.js"
@@ -85,6 +85,8 @@ class Timeline extends Component {
 			} else if (this.props.location.pathname.split("/")[1] == "groups") {
 				this.setState({postType: "groups"})
 			}
+
+			this.props.clearNewPostContaner()
 		}
 	}
 
@@ -410,9 +412,7 @@ const mapStateToProps = state => {
 	}
 }
 
-
-
-export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact, loadSelectedGroup })(Timeline));
+export default withRouter(connect(mapStateToProps, { setActivities, clearNotificationActivity, showPost, readNotification, clearSelectedContact, showSelectedContact, loadSelectedGroup, clearNewPostContaner })(Timeline));
 
 
 
