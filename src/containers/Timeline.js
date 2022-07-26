@@ -196,7 +196,6 @@ class Timeline extends Component {
 			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad, !!this.props.userId, this.redirectToLogin);
 		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
 			let profileId = this.props.location.pathname.split("/")[2]
-			debugger
 			if (this.props.selectedContact.id === parseInt(profileId)) {
 				activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0";
 			} else {
@@ -310,7 +309,7 @@ class Timeline extends Component {
 						path="/profiles/:id" 
 						render={(matchProps) => {
 							return (
-								<InfiniteScroll dataLength={this.props.contactFeed.length} next={this.fetchMoreActivities} hasMore={this.props.hasMore} loader={this.props.contactFeed.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
+								<InfiniteScroll dataLength={this.props.contactFeed.length} next={this.fetchMoreActivities} hasMore={this.props.profileHasMore} loader={this.props.contactFeed.length > 3 ? <h4>Loading...</h4> : null} endMessage={ <p style={{ textAlign: 'center' }}><b>you've reached the end of this feed.</b></p>} scrollableTarget="timeline-items-wrapper" >
 									{this.props.contactFeed.map((activity, index) => this.showTimelineItem(activity, index))}
 								</InfiniteScroll>
 							)
@@ -413,6 +412,7 @@ const mapStateToProps = state => {
 		userId: state.users.userId,
 		hasMore: state.timeline.hasMore,
 		groupsHasMore: state.groups.hasMore,
+		profileHasMore: state.network.hasMore,
 		notification_groups: state.notifications.notification_groups
 	}
 }
