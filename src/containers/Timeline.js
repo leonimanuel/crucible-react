@@ -195,8 +195,13 @@ class Timeline extends Component {
 			}
 			this.props.loadSelectedGroup(groupId, activityId, this.handleLoad, !!this.props.userId, this.redirectToLogin);
 		} else if (this.props.location.pathname.split("/")[1] === "profiles") {
-			activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0"
 			let profileId = this.props.location.pathname.split("/")[2]
+			debugger
+			if (this.props.selectedContact.id === parseInt(profileId)) {
+				activityId = this.props.contactFeed.length ? this.props.contactFeed.at(-1).activity_id : "0";
+			} else {
+				activityId = "0"
+			}			
 			this.props.showSelectedContact(profileId, activityId, this.handleLoad, !!this.props.userId)
 		} 
 

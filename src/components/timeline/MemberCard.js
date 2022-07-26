@@ -30,7 +30,7 @@ const MemberCard = (props) => {
 
 						<div className="member-card-stat-item">	
 							<div className="member-card-stat-label">
-								Excerpts
+								Snippets
 							</div>
 							<div className="member-card-stat-value">
 								{props.member.facts_count}
