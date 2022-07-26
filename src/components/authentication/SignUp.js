@@ -31,8 +31,6 @@ class SignUp extends Component {
 			return
 		}
 
-		alert("what the fukc")
-
 		console.log("submitting login info")
 		let errorBox = document.getElementById("handle-error-box")
 		if (this.state.handle.match(/\W/)) {
