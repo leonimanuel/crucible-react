@@ -46,6 +46,7 @@ class SupportingExcerpt extends Component {
 		// } else {
 		// 		border = "3px solid red" 		
 		// }
+		debugger
 		return (
 			<div 
 				className="timeline-fact-wrapper"
@@ -73,7 +74,7 @@ class SupportingExcerpt extends Component {
 						{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 					</div>					
 				}
-				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].replace("www.", "")}</a>
+				<a className="fact-source" href={fact.article_url} target="_blank">- {fact.article_url.split("/")[2].replace("www.", "")}</a>
 				<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
 				<div className="remove-fact-button" onClick={() => this.props.sendRemoval(fact.id)}>✕</div>
 			</div>		
