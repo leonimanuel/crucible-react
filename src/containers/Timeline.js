@@ -112,7 +112,7 @@ class Timeline extends Component {
 			case "Comment":
 				let postDescription = ""
 				if (resource.response_excerpt && resource.content) { postDescription = "commented on an article" }
-				else if (resource.response_excerpt && !resource.content) { postDescription = "shared a snippet" }
+				else if (resource.response_excerpt && !resource.content) { postDescription = "shared a Excerpt" }
 				else if (!resource.response_excerpt && resource.content) { postDescription = "shared a thought" }
 				review_resource = (activity.item.review_type == "Fact" || activity.item.review_type == "FactsComment") ? activity.item.review_object : resource
 				

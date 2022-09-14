@@ -35,7 +35,7 @@ class ConsoleWindow extends Component {
 							<ConsoleFactsList  />						
 					</React.Fragment>
 						:
-					<div id="facts-prompt" className="sidenav-onboarding-prompt">snippets added to {APP_NAME}, either through the <a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1">chrome extension</a> or in-app, will appear here.</div>
+					<div id="facts-prompt" className="sidenav-onboarding-prompt">Excerpts added to {APP_NAME}, either through the <a href="https://chrome.google.com/webstore/detail/crucible/npbeagaahjohdgibaddadkhcffnedcnh?authuser=1">chrome extension</a> or in-app, will appear here.</div>
 				}
 			</div>
 		)			
