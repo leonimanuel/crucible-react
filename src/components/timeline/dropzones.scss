@@ -20,7 +20,8 @@ $base-color-dark-blue: #0f4c75;
   transition: height .2s ease;
 
   &[data-dragged_over=false] {
-    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
   }
 
   &[data-dragged_over=true] {
