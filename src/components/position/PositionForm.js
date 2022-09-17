@@ -129,7 +129,7 @@ class PositionForm extends Component {
               <FactDropzone 
                 facts={this.state.facts} 
                 handleFactsUpdate={(facts) => this.updateFacts(facts)}
-                placeholder="Support your comment by dragging a Excerpt here (optional)."
+                placeholder="Support your comment by dragging an excerpt here (optional)."
                 dropType="supportingFacts"
               />
               <TagsContainer updateTags={this.handleTagsUpdate} tags={this.state.tags} selectedGroupId={this.props.selectedGroup.id}/>
