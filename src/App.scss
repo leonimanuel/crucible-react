@@ -144,7 +144,7 @@ textarea {
 
 // MEDIA QUERY STUFF
 @media (min-width: 300px) and (max-width: 900px) {
-  #timeline-wrapper { width: 700px; }
+  #timeline-wrapper { width: 700px; max-width: 98%}
   main > #side-nav, #articles-container { display: none; }  
 }
 

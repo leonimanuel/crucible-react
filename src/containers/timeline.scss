@@ -182,6 +182,11 @@ $tracer-color-draft: lightblue;
       // border-radius: 0 0 10px 0;
       padding-right: 5px;
 
+      @media (min-width: 300px) and (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+      }      
+
       &.show-tracer {
         border-bottom: 3px solid #0f4c75;
       }
@@ -189,6 +194,7 @@ $tracer-color-draft: lightblue;
       .item-header-username {
         font-weight: bold;
         cursor: pointer;
+        text-align: left;
       }
 
       .timeline-actor-link, .timeline-group-link {
@@ -712,9 +718,30 @@ $tracer-color-draft: lightblue;
   padding-right: 5px;
   // padding-top: 10px;
 
+  @media (min-width: 300px) and (max-width: 900px) {
+    margin-left: 0px;
+    padding-right: 0px;    
+  }  
+
   .supporting-fact-style-container {
     display: flex;
     // align-items: center;
+
+    @media (min-width: 300px) and (max-width: 900px) {
+      border: none;
+      // outline: 2px solid red;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left:20%;
+
+        width: 3px;
+        height: 10px;
+        background-color: $tracer-color;
+      }
+    }  
+
     .supporting-fact-connector-boxes-container {
       width: 75px;
       min-width: 20px;
@@ -726,6 +753,10 @@ $tracer-color-draft: lightblue;
         &.top-connector-box {
           border-bottom: 3px solid $tracer-color;
           border-left: 3px solid $tracer-color;
+
+          @media (min-width: 300px) and (max-width: 900px) {
+            border: none; 
+          }  
         
           &.draft {
             border-bottom: 3px dashed $tracer-color-draft;
@@ -735,6 +766,10 @@ $tracer-color-draft: lightblue;
 
         &.bottom-connector-box {
           border-left: 3px solid $tracer-color;
+
+          @media (min-width: 300px) and (max-width: 900px) {
+            border: none; 
+          } 
 
           &.draft {
             border-left: 3px dashed $tracer-color-draft;
@@ -758,6 +793,10 @@ $tracer-color-draft: lightblue;
       text-align: left;
       padding: 2%;    
       margin: 10px 0;
+
+      @media (min-width: 300px) and (max-width: 900px) {
+        margin-bottom: 0;
+      } 
 
       &.draft {
         border: 3px dashed $tracer-color-draft;
