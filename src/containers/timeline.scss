@@ -56,10 +56,20 @@ $tracer-color-draft: lightblue;
         display: flex;
         // flex-direction: row;
         justify-content: space-between;
+
+        @media (min-width: 300px) and (max-width: 900px) {
+          flex-wrap: wrap;   
+        }          
         // outline: 2px solid red;
         .stats-section {
           display: flex;
-          
+          // outline: 2px solid purple;
+
+          @media (min-width: 300px) and (max-width: 900px) {
+            width: 100%;
+            justify-content: space-around;
+          }         
+
           .member-card-stat-item {
             // outline: 2px solid blue;
             margin: 0 20px;
