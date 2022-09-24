@@ -73,9 +73,9 @@ const App = props => {
     props.logIn()
     props.getArticleRecommendations()
 
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-     alert(`${APP_NAME} is not yet fully optimized for mobile, features will be limited on this device`)
-    }       
+    // if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //  alert(`${APP_NAME} is not yet fully optimized for mobile, features will be limited on this device`)
+    // }       
   }, [])
 
   // componentDidMount() {
