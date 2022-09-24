@@ -68,20 +68,23 @@ class ResponseExcerptDropzone extends Component {
             </div>
           </div>
             :
-          <div className="chat-fact-dropzone-bubble">          
-            <div 
-              className="chat-fact-dropzone"
-              data-preceding_fact_id="first"
-              data-dragged_over="false"
-              onDragOver={this.allowDrop} 
-              onDragEnter={this.handleDragEnter}
-              onDragLeave={this.handleDragLeave}
-              onDrop={this.drop}
-              style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
-            >
-              {this.props.placeholder}          
-            </div> 
-          </div>
+          <React.Fragment>
+            <div className="chat-fact-dropzone-bubble desktop">          
+              <div 
+                className="chat-fact-dropzone"
+                data-preceding_fact_id="first"
+                data-dragged_over="false"
+                onDragOver={this.allowDrop} 
+                onDragEnter={this.handleDragEnter}
+                onDragLeave={this.handleDragLeave}
+                onDrop={this.drop}
+                style={{display: this.props.dropType == "responseExcerpt" && this.props.facts.length ? "none" : "block"}}  
+              >
+                {this.props.placeholder}          
+              </div> 
+            </div>
+            <div className="chat-fact-dropzone-bubble mobile">drag & drop excerpts are not available on mobile browser</div>            
+          </React.Fragment>
         }          
       </React.Fragment>
 		)

@@ -4,9 +4,22 @@ $base-color-dark-blue: #0f4c75;
 .chat-fact-dropzone-bubble {
   // outline: 2px solid green;
   position: relative;
+  &.mobile {
+    color: grey;
+    font-style: italic;
+    line-height: 0.9;
+    text-align: left;
+    margin: 0 10px;
+    display: none;
+  }
+
+  @media (min-width: 300px) and (max-width: 900px) and (-webkit-min-device-pixel-ratio: 3) {
+    &.mobile { display: block; }
+    &.desktop { display: none; }
+  }   
 }
 
-.chat-fact-dropzone {
+.chat-fact-dropzone {   
   // outline: 2px solid red;
   text-align: center;
   border: 2px dashed grey;
@@ -57,7 +70,10 @@ $base-color-dark-blue: #0f4c75;
 }
 
 .fact-dropslot {
-  // outline: 2px solid green;
+  @media (min-width: 300px) and (max-width: 900px) and (-webkit-min-device-pixel-ratio: 3) {
+    display: none;
+  } 
+
   border: 2px dashed grey;
   border-radius: 10px;
 
