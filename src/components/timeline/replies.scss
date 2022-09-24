@@ -106,7 +106,7 @@ $tracer-color: #0f4c75;
 
       &.tracer {
         &:before {
-          outline: 3px solid red;
+          // outline: 3px solid red;
           position: absolute;
           content: "";
           // border: 1px solid red;
