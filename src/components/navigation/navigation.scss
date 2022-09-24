@@ -22,11 +22,11 @@ $base-color-button-hover: #0f4c75;
     // font-family: 'Roboto Mono', monospace;
 
     .nav-link {
-      /*margin: 0 10px;*/
       color: white;
       text-decoration: none;
       padding: 0 3px;
       color: black;
+
 
       &:hover {
         color: $base-color-button-hover;
@@ -51,10 +51,17 @@ $base-color-button-hover: #0f4c75;
       display: flex;
       flex-direction: column;
       cursor: default;
-      z-index: 2;
+      z-index: 10;
       overflow: hidden;
+      align-content: flext-start;
 
       border-radius: 0 0 10px 10px;
+    }
+
+    .user-dropdown {
+      @media (min-width: 300px) and (max-width: 900px) and (-webkit-min-device-pixel-ratio: 3) {
+        font-size: 0.8em;
+      } 
     }
 
     .dropdown-content {
@@ -66,12 +73,14 @@ $base-color-button-hover: #0f4c75;
         margin: 0;
         padding: 0;
         color: white;
+        font-size: 16pxpx; // makes everything ok for some reason
       }
 
       .dropdown-item {
         background-color: #0f4c75;
         cursor: pointer;
         color: white;
+        font-size: 1.2em;
         // border: 1px solid white;
 
         &:hover {
