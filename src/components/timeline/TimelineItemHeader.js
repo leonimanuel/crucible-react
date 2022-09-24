@@ -14,15 +14,23 @@ class TimelineItemHeader extends Component {
 		return (
 			<div className={`timeline-item-header`}>
 				<div className={`item-header-description ${showTracer ? "show-tracer" : ""}`}>
-					<span className="item-header-username">
-						<Link className="timeline-actor-link" to={`/profiles/${actor.id}`}>
+					<span className="item-header-username desktop">
+						<Link className="timeline-actor-link" to={`/profiles/${actor.id}`} style={{ padding: '0px' }}>
 							{actor.handle}
 						</Link>
 					</span>
 					<span> {this.props.type}</span>
 					{group ? <span> in <Link className="timeline-group-link" to={`/groups/${group.id}`}>{group.name}</Link></span> : null}
 				</div>
-				{<Moment fromNow>{this.props.time}</Moment>}
+				<div className="item-header-timestamp">
+					<span className="item-header-username mobile">
+						<Link className="timeline-actor-link" to={`/profiles/${actor.id}`} style={{ padding: '0px' }}>
+							{actor.handle}
+						</Link>
+					</span>	
+					{<Moment fromNow>{this.props.time}</Moment>}
+				</div>
+				
 			</div>
 		)
 	}
