@@ -9,24 +9,24 @@ import GroupCard from "../groups/GroupCard.js"
 const ArticlesContainer = (props) => {
 	const staticArticles = [
 		{
-			url: "https://www.nytimes.com/2022/09/13/business/economy/income-poverty-census-bureau.html?name=styln-us-economy&region=TOP_BANNER&block=storyline_menu_recirc&action=click&pgtype=Article&variant=show&is_new=false",
-			title: "Pandemic Aid Cut U.S. Poverty to New Low in 2021, Census Bureau Reports"
+			url: "https://theintercept.com/2022/09/28/cia-extinction-woolly-mammoth-dna/",
+			title: "The CIA Just Invested in Woolly Mammoth Resurrection Technology"
 		},
 		{
-			url: "https://www.theatlantic.com/ideas/archive/2022/09/ukraine-victory-russia-putin/671405/",
-			title: "It’s Time to Prepare for a Ukrainian Victory"	
+			url: "https://www.bloomberg.com/opinion/articles/2022-09-13/niall-ferguson-ukraine-s-army-is-winning-but-its-economy-is-losing",
+			title: "Ukraine’s Army Is Winning But Its Economy Is Losing"	
 		},
 		{
-			url: "https://www.brookings.edu/blog/up-front/2022/08/30/its-getting-more-expensive-to-raise-children-and-government-isnt-doing-much-to-help/",
-			title: "It’s getting more expensive to raise children. And government isn’t doing much to help."
+			url: "https://www.wsj.com/articles/iran-protests-are-proving-a-durable-challenge-to-the-islamic-republic-11665319812",
+			title: "Iran Protests Are Proving a Durable Challenge to the Islamic Republic"
 		},
 		{
-			url: "https://www.pewresearch.org/religion/2022/09/13/modeling-the-future-of-religion-in-america/",
-			title: "Modeling the Future of Religion in America"
+			url: "https://www.politico.com/news/2022/10/09/senate-swing-state-polls-2022-00060983",
+			title: "Battle for Senate majority remains a nail-biter"
 		},
 		{
-			url: "https://theintercept.com/2022/09/07/facebook-personal-data-no-accountability/",
-			title: "Facebook Engineers: We have no idea where we keep all your personal data"
+			url: "https://www.wired.com/story/the-election-swinging-facebook-fueled-get-out-the-vote-machine/",
+			title: "The Election-Swinging, Facebook-Fueled, Get-Out-the-Vote Machine"
 		}
 	]
 
