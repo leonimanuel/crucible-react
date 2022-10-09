@@ -827,6 +827,26 @@ $tracer-color-draft: lightblue;
         margin-bottom: 0;
       } 
 
+      .article-anchor {
+        // outline: 1px solid red;
+        // text-align: justify;
+        padding: 0;
+        padding-right: 5px;
+        font-style: italic;
+        font-weight: bold;
+
+        // display: -webkit-box;
+        // -webkit-line-clamp: 1;
+        // -webkit-box-orient: vertical;
+        // overflow: hidden;
+        // text-overflow: ellipsis;    
+        // position: relative;
+
+        &.reply-excerpt {
+          // color: white;
+        }
+      }      
+
       &.draft {
         border: 3px dashed $tracer-color-draft;
         margin: 0;

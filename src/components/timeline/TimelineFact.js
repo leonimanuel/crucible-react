@@ -59,7 +59,7 @@ class TimelineFact extends Component {
 
 				<div className="timeline-fact-options-wrapper">
 					<div className="show-context-indicator timeline-fact-option" onClick={this.toggleFactContext}> {this.state.showContext ? "hide" : "show"} context</div>	
-					<div className="show-context-indicator timeline-fact-option" onClick={() => window.open(fact.url,'_blank')}> source</div>	
+					<div className="show-context-indicator timeline-fact-option" onClick={() => window.open(fact.article_url,'_blank')}> source</div>	
 					{!this.state.showContext && !!fact.rephrase ? <div className="original-vs-rephrase-indicator timeline-fact-option" onClick={this.toggleFactRephrase}> show {this.state.showOriginalFact ? "rephrase" : "original"} </div> : null}					
 				</div>
 
@@ -67,6 +67,7 @@ class TimelineFact extends Component {
 					this.state.showContext 
 					?
 					<div className="timeline-fact-context-wrapper">
+						<a className="article-anchor" href={fact.article_url} onClick={(e, resoure) => handleArticleClick(e, fact)}>{fact.article_title}</a>
 						<div className="timeline-fact-context">{ellipsis}{parse(generateContext(fact))}{ellipsis}</div>
 						{/*<div className="context-lip"></div>*/}
 					</div>
@@ -77,7 +78,6 @@ class TimelineFact extends Component {
 						{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 					</div>					
 				}
-				<a className="fact-source" href={fact.url} target="_blank">- {fact.url.split("/")[2].replace("www.", "")}</a>
 				<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
 			</div>			
 		)

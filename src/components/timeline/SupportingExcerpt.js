@@ -46,7 +46,6 @@ class SupportingExcerpt extends Component {
 		// } else {
 		// 		border = "3px solid red" 		
 		// }
-		debugger
 		return (
 			<div 
 				className="timeline-fact-wrapper"
@@ -56,14 +55,16 @@ class SupportingExcerpt extends Component {
 			>
 				<div className="timeline-fact-options-wrapper">
 					<div className="show-context-indicator timeline-fact-option" onClick={this.toggleFactContext}> {this.state.showContext ? "hide" : "show"} context</div>	
-					<div className="show-context-indicator timeline-fact-option" onClick={() => window.open(fact.url,'_blank')}> source</div>	
+					<div className="show-context-indicator timeline-fact-option" onClick={() => window.open(fact.article_url,'_blank')}> source</div>	
 					{!this.state.showContext && !!fact.rephrase ? <div className="original-vs-rephrase-indicator timeline-fact-option" onClick={this.toggleFactRephrase}> show {this.state.showOriginalFact ? "rephrase" : "original"} </div> : null}					
 				</div>
 
 				{
 					this.state.showContext 
 					?
+					
 					<div className="timeline-fact-context-wrapper">
+						<a className="article-anchor" href={fact.article_url} onClick={(e, resoure) => handleArticleClick(e, fact)}>{fact.article_title}</a>
 						<div className="timeline-fact-context">{parse(generateContext(fact))}</div>
 						{/*<div className="context-lip"></div>*/}
 					</div>
@@ -74,7 +75,6 @@ class SupportingExcerpt extends Component {
 						{fact.rephrase ? (this.state.showOriginalFact ? fact.content : fact.rephrase.content) : fact.content}
 					</div>					
 				}
-				<a className="fact-source" href={fact.article_url} target="_blank">- {fact.article_url.split("/")[2].replace("www.", "")}</a>
 				<div className="fact-collection-timestamp">collected&nbsp;{<Moment fromNow>{fact.created_at}</Moment>}</div>
 				<div className="remove-fact-button" onClick={() => this.props.sendRemoval(fact.id)}>✕</div>
 			</div>		
