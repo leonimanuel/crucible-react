@@ -52,6 +52,7 @@ class FeedbackForm extends Component {
 
 		return(
 			<FormWrapper>
+				<span id="feedback-close-button" className="close-button" onClick={this.props.closePopup}>X</span>
 				<h1 className="form-header">feedback</h1>
 				<div className="form-fields-and-options">
 					<form className="form-content-wrapper" onSubmit={this.handleSubmit}>
