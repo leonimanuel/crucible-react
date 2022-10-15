@@ -35,7 +35,6 @@ export default function groupsReducer(state = {
 			case "SET_SELECTED_GROUP":
 				const sortedGroupActivities = action.group_data.feed_items.sort((a, b) => new Date(b.time) - new Date(a.time))
 				let selectedGroupFeedItems = state.selectedGroupId === action.group_data.group.id ? state.selectedGroupFeedItems : []
-				debugger
 				return {
 					...state,
 					selectedGroupId: action.group_data.group.id,
