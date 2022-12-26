@@ -88,7 +88,7 @@ export const updateUserProfile = (user, closeModal) => {
     }
 
     try {
-      let res = await fetch(API_ROOT + `/users/${user.id}`, configObj)
+      let res = await fetch(API_ROOT + `/users`, configObj)
       if (res.status == 200) {
         dispatch(({
           type: "UPDATE_USER",
