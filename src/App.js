@@ -9,12 +9,13 @@ import { ActionCableConsumer } from "react-actioncable-provider";
 import { addMessageToDiscussion, addCommentToDiscussion } from "./actions/discussionsActions.js"
 import { resetItemUnderReview, updateAccuracyScore } from "./actions/reviewsActions.js"
 import { getArticleRecommendations } from "./actions/briefingsActions.js"
-import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN, APP_NAME } from "./constants"
+import { API_ROOT, GA4_MEASUREMENT_ID, MIXPANEL_TOKEN, APP_NAME, TERMS_AND_CONDITIONS_URL, PRIVACY_POLICY_URL } from "./constants"
 import ReactGA from "react-ga4";
 import mixpanel from 'mixpanel-browser';
 import LoadingBar from "./components/tools/LoadingBar.js"
 
 import NewLandingPage from "./components/home/NewLandingPage.js"
+import AppLandingPage from "./components/home/AppLandingPage.js"
 import SideNav from "./containers/SideNav.js"
 // import Home from "./containers/Home.js"
 import NavBar from "./components/navigation/NavBar.js"
@@ -34,6 +35,8 @@ import ResetPassword from "./components/authentication/ResetPassword.js"
 import ResetPasswordRequest from "./components/authentication/ResetPasswordRequest.js"
 import FeedbackButton from "./components/feedback/FeedbackButton.js"
 import Pitch from "./Pitch.js"
+
+
 
 import { logIn, resetQuotas } from "./actions/users.js"
 import { resetUnreadCount, addDiscussionFromCable } from "./actions/discussionsActions.js"
@@ -200,6 +203,16 @@ const App = props => {
 
           <Route path="/reset-password-request"><ResetPasswordRequest/></Route>
 
+          <Route exact path='/privacy-policy' component={() => {
+              window.location.href = `${PRIVACY_POLICY_URL}`;
+              return null;
+          }}/>
+
+          <Route path='/terms-conditions' component={() => {
+              window.location.href = `${TERMS_AND_CONDITIONS_URL}`;
+              return null;
+          }}/>              
+
           <Route 
             path="/reset-password/:token"
             render={routerProps => props.userId ? <Redirect to="/"/> : <ResetPassword {...routerProps} />} >
@@ -207,18 +220,19 @@ const App = props => {
         
           <Route path="/v2-brief"><Pitch /></Route>
 
-          <Route path={allPaths} render={routerProps => <NavBar {...routerProps} />} ></Route>
-          <Route exact path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>
+          <Route path={allPaths} render={routerProps => <NavBar {...routerProps} />} ></Route>          
 
           {
             !props.userId 
               ?
             <React.Fragment>
-              <Route exact path="/"><NewLandingPage/></Route>
+              {/*<Route exact path="/"><NewLandingPage/></Route>*/}
+              <Route exact path="/"><AppLandingPage/></Route>
               <Route path={allPaths}>{renderMain()}</Route>              
             </React.Fragment>
               :
             <React.Fragment>
+              <Route exact path="/" render={routerProps => <NavBar {...routerProps} />} ></Route>
               <Route exact path="/">{renderMain()}</Route>           
               <Route path={allPaths}>{renderMain()}</Route>
             </React.Fragment>
