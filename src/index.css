@@ -1,6 +1,10 @@
 html, body, #root {
   /*height: 100%;*/
   background-color: whitesmoke;
+
+  @media (min-width: 300px) and (max-width: 750px) {
+    overflow-x: hidden;
+  }   
 }
 
 html {
@@ -16,6 +20,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /*border: 2px solid red;*/
   /*height: 100%;*/
+
+  @media (min-width: 300px) and (max-width: 750px) {
+    position: relative;
+  }   
 }
 
 #root {

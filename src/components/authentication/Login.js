@@ -139,7 +139,7 @@ function Login(props) {
 					<input className="auth-button form-action-button" type="submit" value="Log in" {...opts}/>
 				</form>
 
-				<div id="sign-up-prompt" className="form-option-description">Don't have an account? <Link to="/signup">Sign up</Link></div>
+				<div id="sign-up-prompt" className="form-option-description">Don't have an account? <Link to="/">Register for the iOS Beta</Link></div>
 			</div>
 		</FormWrapper>				
 	)

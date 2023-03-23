@@ -3,10 +3,376 @@ $base-color-dark-blue: #0f4c75;
 // $tracer-color: #A5BECC;
 $tracer-color: #0f4c75;
 
-// * { 
-//   outline: 1px solid red;
-//   outline-offset: -1px;
-// }
+
+// <div id="app-landing-page">
+// 	<div className="text-container app-landing-subcontainer">
+// 		APP LANDING Text Goes Here
+// 	</div>
+
+// 	<div className="image-container app-landing-subcontainer">
+// 		APP Image Goes Here
+// 	</div>				
+// </div>
+
+#footer {
+	width: 100%;
+	// height: 30px;
+	font-family: "Nunito";
+	border-top: 1px solid gray;
+	background: #EFF5F5;
+
+	display: flex;
+	white-space: nowrap ;
+
+	@media (min-width: 300px) and (max-width: 750px) {
+		flex-direction: column;
+	}	
+
+	@media (min-width: 751px) {
+		justify-content: space-between;
+	}	
+
+
+  ul {
+		display: flex;
+		margin-bottom: 0;
+  
+		li {
+			padding: 5px;
+		}
+  }
+}
+
+#landing-and-footer-wrapper {
+	// height:
+}
+
+#app-landing-page {
+	// border: 4px solid green;
+	width: 100%;
+	
+	display: flex;
+	overflow: scroll;
+
+	@media (min-width: 300px) and (max-width: 750px) {
+		flex-direction: column;
+	}	
+
+	@media (min-width: 751px) {
+		height: 100vh;
+	}	
+
+	font-family: "Roboto";
+
+	.app-landing-subcontainer {
+		@media (min-width: 300px) and (max-width: 750px) {
+			width: 100%;
+		}			
+
+		@media (min-width: 751px) {
+			width: 50%;
+			height: 100%;
+		}
+
+		padding: 20px;
+
+		display: flex;
+		flex-direction: column;
+		
+		&.text-container {
+			// border: 4px solid purple;
+			text-align: left;
+			background-color: white;
+
+			@media (min-width: 300px) and (max-width: 750px) {
+				min-height: 80vh;
+				justify-content: space-between;
+
+				.spacer {
+					display: none;
+				}
+			}			
+
+			@media (min-width: 751px) {
+				justify-content: space-around;
+			}				
+
+				// @media (min-width: 751px) {
+				// 	width: 250px;
+				// }		
+
+			.app-name {
+				font-weight: bold;
+				font-size: 4em;
+				font-family: 'Righteous', sans-serif;
+				color: $base-color-dark-blue;
+
+				@media (min-width: 300px) and (max-width: 750px) {
+					font-size: 2.5em;
+				}			
+
+				@media (min-width: 751px) {
+					font-size: 4em;
+				}						
+			}
+
+			.about-text {
+				
+				.headline {
+					font-weight: bold;
+				}
+				
+				h3 {
+				font-weight: 400;
+				}
+				// padding-top: 100px;
+				// font-weight: 500;
+				// font-weight: bold;
+			}
+
+			form {					
+				.email-and-submit-wrapper {
+					@media (min-width: 300px) and (max-width: 750px) {
+						display: flex;
+						flex-direction: column;
+					}			
+				}
+
+				label {
+					font-weight: 500;
+					font-size: 25px;
+					// font-style: italic;
+				}
+
+				input[type="email"] {
+					height: 40px;
+					width: 250px;
+
+					@media (min-width: 300px) and (max-width: 750px) {
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+					}		
+
+					margin: 5px 0;
+				}
+
+				input[type="submit"] {
+					// border: none;
+					// background: none;
+					// padding: 0;
+					margin-left: 10px;
+
+					@media (min-width: 300px) and (max-width: 750px) {
+						margin-left: 0;
+					}						
+				}
+			}
+		}
+
+		&.image-container {
+			// background-color: $base-color-dark-blue;
+			background: rgb(15,76,117);
+			background: radial-gradient(circle, rgba(15,76,117,1) 25%, rgba(2,0,36,1) 100%);
+			justify-content: center;
+			align-items: center;
+
+			.slider {
+				height: 550px;
+				// display: flex;
+				// align-items: center;
+			}
+
+			.feature-description {
+				@media (min-width: 751px) {
+					padding-top: 20px;
+				}						
+				color: white;
+				font-size: 25px;
+				font-family: "Nunito";
+				font-weight: bold;
+			}
+
+			// .clammer-screenshot {
+			// 	@media (min-width: 300px) and (max-width: 750px) {
+			// 		width: 250px;
+			// 	}			
+
+			// 	@media (min-width: 751px) {
+			// 		width: 250px;
+			// 	}				
+			// }
+
+			img {
+			  width: 90%;
+			  // max-width: 250px;
+
+				@media (min-width: 300px) and (max-width: 750px) {
+					// border: 4px solid yellow;
+					width: 100%;
+					/*height: 80%;*/
+				}		  
+			}
+
+			.image-and-prompt-container {
+				// border: 1px solid red;
+				// width: 100%;
+			}
+
+			.frame-and-content-wrapper, .screenshot-content {
+					border-radius: 40px;
+			}
+
+			.frame-and-content-wrapper {
+				border: 2px solid #343A40; //dark grey
+				margin: 0;
+				width: 275px;
+				position: relative;
+				
+				// .screenshot-frame {
+				// 	// width: 300px;
+				// 	border: 1px solid green;					
+				// 	// background-size: 230px 505px;
+				// 	// background-size: contain;
+				// 	background-size: 87% 96%;
+			 //    background-repeat: no-repeat;
+			 //    background-position: center center; 						
+				// }
+
+				.screenshot-content {
+					// border: 1px solid green;					
+					width: 100%;
+					background-color: black;
+					border: 10px solid black;
+					// display: none;
+					// position: absolute;
+					// opacity: 50%;
+					// width: 90px;
+					// background-image: url("iphone-14-pro-frame.png");
+					// background-size: 700px;
+				}					
+			}
+
+			.images-container {
+				// border: 2px solid green;
+				padding: 0;
+				position: relative;
+
+				.supporting-excerpts-container {
+					// border: 1px solid white;
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+					border-radius: 10px;
+					overflow: hidden;
+
+					position: absolute;
+					
+					@media (min-width: 300px) and (max-width: 750px) {
+						top: 340px;
+					}			
+
+					@media (min-width: 751px) {
+						top: 300px;
+					}		
+
+					// right: -20px;
+					left: -25px;
+					width: 350px;
+					
+					img {
+						padding: 10px 0;
+						background: black;
+						border-radius: 10px;
+					}
+				}
+
+				.gif-wrapper {
+					padding: 10px;
+
+					.screenshot-content {
+						border-radius: 40px;
+						border: 8px solid black;
+					}
+				}
+
+				.icons-container {
+					// border: 2px solid red;
+					position: absolute;
+					top: 0px;
+					right: -20px;
+
+					display: flex;
+					flex-direction: column;
+					justify-content: space-evenly;
+
+					height: 100%;
+				}
+
+				.app-icon-img {
+					// position: absolute;
+
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;					
+					
+					&.chrome {
+						width: 50px;					
+						top: 40px;
+						right: -20px;
+
+						background: white;
+						border-radius: 10px;
+					}
+
+					&.safari {
+						width: 50px;			
+						top: 120px;
+
+						background: white;
+						border-radius: 10px;						
+						// right: -40px;						
+					}
+
+					&.apple-news {
+						width: 50px;					
+						top: 180px;
+						right: -20px;
+						border-radius: 10px;					
+					}
+
+					&.nytimes {
+						width: 50px;					
+						top: 350px;
+						right: -20px;
+						border-radius: 10px;	
+					}
+
+					&.wsj {
+						width: 50px;					
+						top: 250px;
+						right: -20px;
+						border-radius: 10px;								
+					}
+
+					&.plus {
+						width: 50px;					
+						top: 420px;
+						right: -20px;
+						background: white;
+						border-radius: 10px;						
+					}
+				}	
+			}	
+		}		
+	}
+}
+
+
+
+
+
+
+
+
+
+
 
 #landing-page {
 	// border: 5px solid red;
